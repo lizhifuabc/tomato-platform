@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.order.order.dao.OrderDao">
+    <update id="updateOrderStatus">
+        update
+            t_order_info
+        set
+            version = version + 1,
+            order_status = #{updateOrderStatusBO.orderStatus}
+        where
+            order_no = #{updateOrderStatusBO.orderNo}
+            and version = #{updateOrderStatusBO.currentVersion}
+            and order_status = #{updateOrderStatusBO.expectOrderStatus}
+    </update>
+</mapper>

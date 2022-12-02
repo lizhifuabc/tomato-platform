@@ -11,4 +11,12 @@
 
     <artifactId>tomato-domain</artifactId>
     <version>${revision}</version>
+
+    <dependencies>
+        <!-- lombok 依赖 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 </project>

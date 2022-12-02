@@ -16,10 +16,5 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-domain</artifactId>
         </dependency>
-        <!-- lombok 依赖 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
     </dependencies>
 </project>
