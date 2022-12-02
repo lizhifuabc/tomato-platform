@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tomato</groupId>
+    <artifactId>tomato-platform</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>tomato-module</module>
+        <module>tomato-framework</module>
+    </modules>
+
+    <properties>
+        <!-- maven 全局版本号管理 -->
+        <revision>1.0-SNAPSHOT</revision>
+        <!-- java 版本管理 -->
+        <java.version>17</java.version>
+        <!-- Maven 相关配置 -->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!-- bom 版本依赖 -->
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-bom</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
