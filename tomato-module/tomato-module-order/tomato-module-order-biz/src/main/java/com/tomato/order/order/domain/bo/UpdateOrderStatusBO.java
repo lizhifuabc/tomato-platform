@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
 /**
  * 更新订单状态
  *
@@ -32,4 +35,8 @@ public class UpdateOrderStatusBO {
      * 当前版本号
      */
     private Integer currentVersion;
+    /**
+     * 完成时间
+     */
+    private LocalDateTime completeTime;
 }
