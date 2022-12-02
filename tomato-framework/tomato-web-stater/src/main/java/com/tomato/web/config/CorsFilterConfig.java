@@ -26,7 +26,7 @@ public class CorsFilterConfig {
      */
     @Bean
     public CorsFilter corsFilter () {
-        log.info("跨域配置 初始化：{}",accessControlAllowOrigin);
+        log.info("初始化 CorsFilter 跨域配置：{}",accessControlAllowOrigin);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);

@@ -34,6 +34,7 @@ public class SpringContextUtil implements ApplicationContextAware, DisposableBea
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) {
 		SpringContextUtil.applicationContext = applicationContext;
+		log.info("初始化 SpringContextUtil 中的 ApplicationContext :{}",applicationContext);
 	}
 
 	/**
@@ -59,7 +60,7 @@ public class SpringContextUtil implements ApplicationContextAware, DisposableBea
 	 * 清除SpringContextHolder中的ApplicationContext为Null.
 	 */
 	public static void clearHolder() {
-		log.info("清除SpringContextHolder中的ApplicationContext:{}",applicationContext);
+		log.info("清除 SpringContextUtil 中的 ApplicationContext :{}",applicationContext);
 		applicationContext = null;
 	}
 
@@ -81,5 +82,4 @@ public class SpringContextUtil implements ApplicationContextAware, DisposableBea
 	public void destroy() {
 		SpringContextUtil.clearHolder();
 	}
-
 }
