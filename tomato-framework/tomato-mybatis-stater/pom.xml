@@ -5,24 +5,27 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module-order</artifactId>
+        <artifactId>tomato-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-order-biz</artifactId>
+    <artifactId>tomato-mybatis-stater</artifactId>
 
     <dependencies>
+        <!-- mybatis https://github.com/mybatis/spring-boot-starter -->
         <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-stater</artifactId>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
+        <!-- mysql 驱动 -->
         <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-order-base</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!-- druid 版本管理 -->
         <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-mybatis-stater</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 
