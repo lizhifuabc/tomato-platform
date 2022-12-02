@@ -1,1 +1,2 @@
 com.tomato.web.util.SpringContextUtil
+com.tomato.web.config.CorsFilterConfig
