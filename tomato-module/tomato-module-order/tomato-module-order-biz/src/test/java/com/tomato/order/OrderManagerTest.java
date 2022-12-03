@@ -19,5 +19,6 @@ public class OrderManagerTest {
     @Test
     public void test(){
         System.out.println(orderManager.completeOrder("123", "123", 12));
+        System.out.println(orderManager.dealOrder("123", 12));
     }
 }
