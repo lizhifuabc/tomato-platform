@@ -15,6 +15,7 @@
         <module>tomato-domain</module>
         <module>tomato-web-stater</module>
         <module>tomato-mybatis-stater</module>
+        <module>tomato-util</module>
     </modules>
 
     <properties>
