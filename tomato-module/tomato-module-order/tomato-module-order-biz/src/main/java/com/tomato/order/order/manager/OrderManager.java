@@ -24,11 +24,28 @@ public class OrderManager {
     /**
      * 完成订单
      * @param orderNo 订单号
-     * @param orderStatus 状态：成功、失败、取消等终态
+     * @param orderStatus 终态：成功、失败、取消等终态
      * @param currentVersion 当前版本号
      * @return
      */
     public int completeOrder(String orderNo,String orderStatus,Integer currentVersion){
+        UpdateOrderStatusBO updateOrderStatusBO = UpdateOrderStatusBO.builder()
+                .orderNo(orderNo)
+                .expectOrderStatus(CommonStatusEnum.DEAL.getValue())
+                .completeTime(LocalDateTime.now())
+                .orderStatus(orderStatus)
+                .currentVersion(currentVersion)
+                .build();
+        return orderDao.updateOrderStatus(updateOrderStatusBO);
+    }
+    /**
+     * 完成订单
+     * @param orderNo 订单号
+     * @param orderStatus 终态：成功、失败、取消等终态
+     * @param currentVersion 当前版本号
+     * @return
+     */
+    public int dealOrder(String orderNo,String orderStatus,Integer currentVersion){
         UpdateOrderStatusBO updateOrderStatusBO = UpdateOrderStatusBO.builder()
                 .orderNo(orderNo)
                 .expectOrderStatus(CommonStatusEnum.DEAL.getValue())
