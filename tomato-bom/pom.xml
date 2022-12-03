@@ -89,6 +89,11 @@
                 <artifactId>tomato-mybatis-stater</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-util</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!--  业务代码 end -->
         </dependencies>
     </dependencyManagement>
