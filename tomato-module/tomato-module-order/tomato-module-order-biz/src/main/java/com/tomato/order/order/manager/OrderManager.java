@@ -1,8 +1,8 @@
 package com.tomato.order.order.manager;
 
-import com.tomato.domain.type.CommonStatusEnum;
 import com.tomato.order.order.dao.OrderDao;
 import com.tomato.order.order.domain.bo.UpdateOrderStatusBO;
+import constant.OrderStatusEnum;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,16 +22,16 @@ public class OrderManager {
     }
 
     /**
-     * 完成订单
+     * 完成订单：只能从 DEAL-->终态
      * @param orderNo 订单号
-     * @param orderStatus 终态：成功、失败、取消等终态
+     * @param orderStatus 终态：支付成功、支付失败、支付撤销、订单关闭
      * @param currentVersion 当前版本号
      * @return
      */
     public int completeOrder(String orderNo,String orderStatus,Integer currentVersion){
         UpdateOrderStatusBO updateOrderStatusBO = UpdateOrderStatusBO.builder()
                 .orderNo(orderNo)
-                .expectOrderStatus(CommonStatusEnum.DEAL.getValue())
+                .expectOrderStatus(OrderStatusEnum.DEAL.getValue())
                 .completeTime(LocalDateTime.now())
                 .orderStatus(orderStatus)
                 .currentVersion(currentVersion)
@@ -39,18 +39,16 @@ public class OrderManager {
         return orderDao.updateOrderStatus(updateOrderStatusBO);
     }
     /**
-     * 完成订单
+     * 设置订单为支付中：只能从 INIT-->DEAL
      * @param orderNo 订单号
-     * @param orderStatus 终态：成功、失败、取消等终态
      * @param currentVersion 当前版本号
      * @return
      */
-    public int dealOrder(String orderNo,String orderStatus,Integer currentVersion){
+    public int dealOrder(String orderNo,Integer currentVersion){
         UpdateOrderStatusBO updateOrderStatusBO = UpdateOrderStatusBO.builder()
                 .orderNo(orderNo)
-                .expectOrderStatus(CommonStatusEnum.DEAL.getValue())
-                .completeTime(LocalDateTime.now())
-                .orderStatus(orderStatus)
+                .expectOrderStatus(OrderStatusEnum.INIT.getValue())
+                .orderStatus(OrderStatusEnum.DEAL.getValue())
                 .currentVersion(currentVersion)
                 .build();
         return orderDao.updateOrderStatus(updateOrderStatusBO);

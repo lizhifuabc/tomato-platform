@@ -1,12 +1,18 @@
-package com.tomato.domain.type;
+package constant;
+
+import com.tomato.domain.type.BaseEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
- * 通用状态
+ * 订单状态
  *
  * @author lizhifu
  * @date 2022/12/2
  */
-public enum CommonStatusEnum implements BaseEnum{
+@AllArgsConstructor
+@Getter
+public enum OrderStatusEnum implements BaseEnum {
     /**
      * 初始化
      */
@@ -27,22 +33,11 @@ public enum CommonStatusEnum implements BaseEnum{
      * 取消
      */
     CANCEL("CANCEL", "取消"),
+    /**
+     * 超时
+     */
+    TIMEOUT("TIMEOUT", "超时"),
     ;
-
-    CommonStatusEnum(String value,String desc) {
-        this.value = value;
-        this.desc = desc;
-    }
-
-    @Override
-    public String getValue() {
-        return value;
-    }
-
-    @Override
-    public String getDesc() {
-        return desc;
-    }
     private final String value;
 
     private final String desc;
