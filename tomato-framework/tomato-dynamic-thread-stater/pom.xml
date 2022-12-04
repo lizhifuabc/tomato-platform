@@ -5,19 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-platform</artifactId>
+        <artifactId>tomato-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-framework</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-domain</module>
-        <module>tomato-web-stater</module>
-        <module>tomato-mybatis-stater</module>
-        <module>tomato-util</module>
-        <module>tomato-dynamic-thread-stater</module>
-    </modules>
+    <artifactId>tomato-dynamic-thread-stater</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
