@@ -33,12 +33,12 @@ public class AsyncConfiguration implements AsyncConfigurer {
     }
     @Bean("asyncTaskExecutor")
     public DynamicThreadPoolExecutor asyncTaskExecutor() {
-        CustomThreadFactory customThreadFactory = new CustomThreadFactory("asyncTaskExecutor-test");
+        CustomThreadFactory customThreadFactory = new CustomThreadFactory("demo-test");
         // 自定义线程池
         DynamicThreadPoolExecutor executor = new DynamicThreadPoolExecutor(
-                5,
-                10,
-                60,
+                1,
+                1,
+                1,
                 new LinkedBlockingQueue<>(),
                 customThreadFactory
                 );

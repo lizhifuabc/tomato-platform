@@ -1,6 +1,7 @@
 package com.tomato.dynamic.thread.support;
 
 import com.tomato.dynamic.thread.support.runnable.DynamicRunnable;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 import java.util.concurrent.*;
@@ -16,6 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author lizhifu
  * @date 2022/12/6
  */
+@Slf4j
 public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
     public ExtendThreadPoolExecutor(int corePoolSize,
                                     int maximumPoolSize,
@@ -30,6 +32,10 @@ public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
                                      ThreadFactory threadFactory) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS, workQueue,threadFactory);
     }
+    /**
+     * 线程池名称
+     */
+    protected String threadPoolName;
     /**
      * 任务执行超时，单位（毫秒），仅供统计。
      */
@@ -71,7 +77,7 @@ public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
         if (queueTimeout > 0) {
             long waitTime = currTime - runnable.getSubmitTime();
             if (waitTime > queueTimeout) {
-
+                log.error("{} execute queue timeout waitTime: {}ms", this.getThreadPoolName(),waitTime);
             }
         }
         super.beforeExecute(t, r);
@@ -84,6 +90,7 @@ public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
             long runTime = System.currentTimeMillis() - runnable.getStartExeTime();
             if (runTime > runTimeout) {
                 runTimeoutCount.incrementAndGet();
+                log.error("{} execute, run timeout runTime: {}ms", this.getThreadPoolName(), runTime);
             }
         }
         super.afterExecute(r, t);
@@ -111,5 +118,13 @@ public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
 
     public int getQueueTimeoutCount() {
         return queueTimeoutCount.get();
+    }
+
+    public String getThreadPoolName() {
+        return Optional.ofNullable(threadPoolName).orElse("DynamicThreadPool");
+    }
+
+    public void setThreadPoolName(String threadPoolName) {
+        this.threadPoolName = Optional.ofNullable(threadPoolName).orElse("DynamicThreadPool");
     }
 }
