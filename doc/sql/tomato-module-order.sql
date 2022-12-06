@@ -1,4 +1,4 @@
-# 订单表
+# 订单表 bigint(20),数据库显示的时候只能显示20位数字
 drop table if exists `t_order_info`;
 create table`t_order_info` (
     `id` bigint(20) unsigned not null auto_increment,
