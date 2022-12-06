@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * {@link org.springframework.util.CustomizableThreadCreator}
- * {@link org.springframework.scheduling.concurrent.CustomizableThreadFactory}.
+ * 复制于 {@link org.springframework.util.CustomizableThreadCreator}
+ * {@link com.tomato.dynamic.thread.thread.CustomThreadFactory}.
  * 用于创建新的｛@link Thread｝实例的简单可自定义帮助程序类。
  * 提供各种bean属性：线程名称前缀、线程优先级等。
  * @author lizhifu
@@ -127,8 +127,8 @@ public class CustomThreadCreator implements Serializable {
 
 
 	/**
-	 * Template method for the creation of a new {@link Thread}.
-	 * <p>The default implementation creates a new Thread for the given
+	 * 用于创建新模板的模板方法 {@link Thread}.
+	 * <p>默认实现为给定的的线程
 	 * {@link Runnable}, applying an appropriate thread name.
 	 * @param runnable the Runnable to execute
 	 * @see #nextThreadName()
