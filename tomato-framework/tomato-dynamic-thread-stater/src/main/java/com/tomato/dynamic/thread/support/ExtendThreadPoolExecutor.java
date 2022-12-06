@@ -9,6 +9,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 扩展线程池参数
  *
+ * 执行任务前方法：beforeExecute(wt, task);
+ * 执行任务：task.run();
+ * 执行任务后方法：afterExecute(task, thrown);
+ *
  * @author lizhifu
  * @date 2022/12/6
  */
@@ -16,10 +20,15 @@ public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
     public ExtendThreadPoolExecutor(int corePoolSize,
                                     int maximumPoolSize,
                                     long keepAliveTime,
-                                    TimeUnit unit,
-                                    BlockingQueue<Runnable> workQueue,
-                                    ThreadFactory threadFactory) {
-        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,threadFactory);
+                                    BlockingQueue<Runnable> workQueue) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS, workQueue);
+    }
+    public ExtendThreadPoolExecutor(int corePoolSize,
+                                     int maximumPoolSize,
+                                     long keepAliveTime,
+                                     BlockingQueue<Runnable> workQueue,
+                                     ThreadFactory threadFactory) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS, workQueue,threadFactory);
     }
     /**
      * 任务执行超时，单位（毫秒），仅供统计。

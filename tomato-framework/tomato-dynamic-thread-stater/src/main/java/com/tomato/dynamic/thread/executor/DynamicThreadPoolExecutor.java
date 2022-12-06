@@ -14,10 +14,14 @@ public class DynamicThreadPoolExecutor extends ExtendThreadPoolExecutor {
     public DynamicThreadPoolExecutor(int corePoolSize,
                                      int maximumPoolSize,
                                      long keepAliveTime,
-                                     TimeUnit unit,
+                                     BlockingQueue<Runnable> workQueue) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, workQueue);
+    }
+    public DynamicThreadPoolExecutor(int corePoolSize,
+                                     int maximumPoolSize,
+                                     long keepAliveTime,
                                      BlockingQueue<Runnable> workQueue,
-                                     ThreadFactory threadFactory,
-                                     RejectedExecutionHandler handler) {
-        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory);
+                                     ThreadFactory threadFactory) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, workQueue,threadFactory);
     }
 }

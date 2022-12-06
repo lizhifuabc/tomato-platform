@@ -25,6 +25,10 @@
             <artifactId>tomato-mybatis-stater</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-dynamic-thread-stater</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
