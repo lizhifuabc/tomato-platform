@@ -37,27 +37,28 @@ public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
      */
     protected String threadPoolName;
     /**
-     * 任务执行超时，单位（毫秒），仅供统计。
+     * 执行超时，单位（毫秒）
      */
     private long runTimeout;
 
     /**
-     * 任务队列等待超时，单位（毫秒），仅供统计。
+     * 等待超时，单位（毫秒）
      */
     private long queueTimeout;
 
     /**
-     * 计数运行超时任务。
+     * 执行超时数量
      */
     private final AtomicInteger runTimeoutCount = new AtomicInteger();
 
     /**
-     * 计数队列等待超时任务。
+     * 等待超时数量
      */
     private final AtomicInteger queueTimeoutCount = new AtomicInteger();
     @Override
     public void execute(Runnable command) {
         if (runTimeout > 0 || queueTimeout > 0) {
+            // 记录任务提交时间
             command = new DynamicRunnable(command);
         }
         super.execute(command);
@@ -72,9 +73,11 @@ public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
         DynamicRunnable runnable = (DynamicRunnable) r;
         long currTime = System.currentTimeMillis();
         if (runTimeout > 0) {
+            // 记录任务开始执行时间
             runnable.setStartExeTime(currTime);
         }
         if (queueTimeout > 0) {
+            // 任务开始执行时间 - 任务创建(提交)时间
             long waitTime = currTime - runnable.getSubmitTime();
             if (waitTime > queueTimeout) {
                 log.error("{} execute queue timeout waitTime: {}ms", this.getThreadPoolName(),waitTime);
@@ -87,6 +90,7 @@ public abstract class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
     protected void afterExecute(Runnable r, Throwable t) {
         if (runTimeout > 0) {
             DynamicRunnable runnable = (DynamicRunnable) r;
+            // 任务执行总时间：任务结束执行时间 - 任务开始执行时间
             long runTime = System.currentTimeMillis() - runnable.getStartExeTime();
             if (runTime > runTimeout) {
                 runTimeoutCount.incrementAndGet();
