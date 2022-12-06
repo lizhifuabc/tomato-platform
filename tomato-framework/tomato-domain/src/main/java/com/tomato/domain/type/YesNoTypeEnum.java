@@ -25,12 +25,12 @@ public enum YesNoTypeEnum implements BaseEnum{
 
     @Override
     public Object getValue() {
-        return null;
+        return value;
     }
 
     @Override
     public String getDesc() {
-        return null;
+        return desc;
     }
     private final Integer value;
 
