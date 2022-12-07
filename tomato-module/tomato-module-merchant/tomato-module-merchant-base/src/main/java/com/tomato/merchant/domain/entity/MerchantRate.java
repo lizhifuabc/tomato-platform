@@ -35,11 +35,11 @@ public class MerchantRate extends JpaBaseEntity {
      * 状态: 0-停用, 1-正常
      */
     @Column(nullable = false)
-    private Byte merchantRateStatus;
+    private Integer merchantRateStatus;
 
     /**
      * 支付方式
      */
     @Column(nullable = false)
-    private Byte payType;
+    private Integer payType;
 }
