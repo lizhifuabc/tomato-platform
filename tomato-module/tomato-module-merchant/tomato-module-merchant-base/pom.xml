@@ -16,5 +16,9 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-jpa-stater</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-web-stater</artifactId>
+        </dependency>
     </dependencies>
 </project>
