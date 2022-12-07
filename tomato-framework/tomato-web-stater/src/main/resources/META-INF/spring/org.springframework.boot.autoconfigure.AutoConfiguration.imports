@@ -1,2 +1,3 @@
 com.tomato.web.util.SpringContextUtil
 com.tomato.web.config.CorsFilterConfig
+com.tomato.web.handler.GlobalExceptionHandler

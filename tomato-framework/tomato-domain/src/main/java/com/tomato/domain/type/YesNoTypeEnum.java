@@ -1,7 +1,8 @@
 package com.tomato.domain.type;
 
 /**
- * 是与否
+ * 是否枚举
+ * 0-否, 1-是
  *
  * @author lizhifu
  * @date 2022/12/2
@@ -24,7 +25,7 @@ public enum YesNoTypeEnum implements BaseEnum{
     }
 
     @Override
-    public Object getValue() {
+    public Integer getValue() {
         return value;
     }
 

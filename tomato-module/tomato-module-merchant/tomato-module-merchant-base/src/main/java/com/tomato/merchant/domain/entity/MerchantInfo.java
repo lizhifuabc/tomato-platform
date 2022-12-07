@@ -32,8 +32,18 @@ public class MerchantInfo extends JpaBaseEntity {
     @Column(length = 32,nullable = false)
     private String merchantShortName;
     /**
-     * 商户状态: 0-停用, 1-正常
+     * 手机号
+     */
+    @Column(length = 11,nullable = false,unique = true)
+    private String phone;
+    /**
+     * 邮箱
+     */
+    @Column(length = 50,nullable = false,unique = true)
+    private String email;
+    /**
+     * 是否停用: 0-否, 1-是
      */
     @Column(nullable = false)
-    private Byte merchantStatus;
+    private Integer merchantStatus;
 }
