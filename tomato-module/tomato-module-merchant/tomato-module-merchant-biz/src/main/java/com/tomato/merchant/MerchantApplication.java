@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  */
 @SpringBootApplication
 @EnableJpaAuditing // 开启时间的支持
-//@EntityScan(basePackages = {"com.tomato"})
 public class MerchantApplication {
 
 	public static void main(String[] args) {

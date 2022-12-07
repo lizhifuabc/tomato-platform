@@ -16,7 +16,7 @@ import org.springframework.web.filter.CorsFilter;
 @Slf4j
 public class CorsFilterConfig {
 
-    @Value("${access-control-allow-origin}")
+    @Value("${access-control-allow-origin:*}")
     private String accessControlAllowOrigin;
     
     /**
