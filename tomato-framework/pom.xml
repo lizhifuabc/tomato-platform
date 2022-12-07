@@ -17,6 +17,7 @@
         <module>tomato-mybatis-stater</module>
         <module>tomato-util</module>
         <module>tomato-dynamic-thread-stater</module>
+        <module>tomato-jpa-stater</module>
     </modules>
 
     <properties>

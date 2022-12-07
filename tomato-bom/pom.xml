@@ -99,6 +99,11 @@
                 <artifactId>tomato-dynamic-thread-stater</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-jpa-stater</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!--  业务代码 end -->
         </dependencies>
     </dependencyManagement>
