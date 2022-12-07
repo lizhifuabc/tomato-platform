@@ -1,4 +1,4 @@
-package entity;
+package com.tomato.order.domain.entity;
 
 import com.tomato.domain.entity.BaseEntity;
 

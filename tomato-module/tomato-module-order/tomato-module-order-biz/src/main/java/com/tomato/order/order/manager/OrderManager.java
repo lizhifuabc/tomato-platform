@@ -2,7 +2,7 @@ package com.tomato.order.order.manager;
 
 import com.tomato.order.order.dao.OrderDao;
 import com.tomato.order.order.domain.bo.UpdateOrderStatusBO;
-import constant.OrderStatusEnum;
+import com.tomato.order.domain.constant.OrderStatusEnum;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

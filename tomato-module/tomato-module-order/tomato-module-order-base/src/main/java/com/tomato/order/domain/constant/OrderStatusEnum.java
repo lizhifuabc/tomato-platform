@@ -1,4 +1,4 @@
-package constant;
+package com.tomato.order.domain.constant;
 
 import com.tomato.domain.type.BaseEnum;
 import lombok.AllArgsConstructor;
