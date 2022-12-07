@@ -23,6 +23,8 @@
         <spring.boot.mybatis.version>3.0.0</spring.boot.mybatis.version>
         <!-- druid 版本管理 -->
         <spring.boot.druid.version>1.2.15</spring.boot.druid.version>
+        <!-- shardingsphere 分库分表依赖 -->
+        <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -61,6 +63,13 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${spring.boot.druid.version}</version>
+            </dependency>
+
+            <!-- shardingsphere 分库分表依赖 -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+                <version>${spring-boot.shardingsphere.version}</version>
             </dependency>
 
             <!--  业务代码 start -->

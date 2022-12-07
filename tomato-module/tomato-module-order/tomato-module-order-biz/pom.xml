@@ -28,6 +28,11 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-dynamic-thread-stater</artifactId>
         </dependency>
+        <!-- shardingsphere 分库分表依赖 -->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
