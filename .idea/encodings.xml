@@ -17,6 +17,12 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-web-stater/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-merchant/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-merchant/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-merchant/tomato-module-merchant-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-merchant/tomato-module-merchant-base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-merchant/tomato-module-merchant-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-merchant/tomato-module-merchant-biz/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-base/src/main/java" charset="UTF-8" />

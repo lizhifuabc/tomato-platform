@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-platform</artifactId>
+        <artifactId>tomato-module</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module</artifactId>
+    <artifactId>tomato-module-merchant</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>tomato-module-order</module>
-        <module>tomato-module-merchant</module>
+        <module>tomato-module-merchant-biz</module>
+        <module>tomato-module-merchant-base</module>
     </modules>
 
     <properties>
