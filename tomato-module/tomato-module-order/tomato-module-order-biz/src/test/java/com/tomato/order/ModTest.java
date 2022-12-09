@@ -10,10 +10,11 @@ import java.util.UUID;
  */
 public class ModTest {
     public static void main(String[] args) {
+        // 数量
         int num = 3;
-        String orderNo = UUID.randomUUID().toString();
-        int hash = orderNo.hashCode();
-        System.out.println(hash);
+        String key = UUID.randomUUID().toString();
+        // hash值：返回一个数的绝对值
+        long hash = Math.abs((long) key.hashCode());
         System.out.println(hash % num);
     }
 }

@@ -1,6 +1,7 @@
 package com.tomato.order.domain.entity;
 
 import com.tomato.domain.entity.BaseEntity;
+import lombok.Data;
 
 /**
  * 订单实体
@@ -11,6 +12,7 @@ import com.tomato.domain.entity.BaseEntity;
  * @author lizhifu
  * @date 2022/12/2
  */
+@Data
 public class OrderEntity extends BaseEntity {
-
+    private String noticeWeb;
 }

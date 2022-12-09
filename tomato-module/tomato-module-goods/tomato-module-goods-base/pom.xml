@@ -5,18 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-platform</artifactId>
+        <artifactId>tomato-module-goods</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-module-order</module>
-        <module>tomato-module-merchant</module>
-        <module>tomato-module-doc</module>
-        <module>tomato-module-goods</module>
-    </modules>
+    <artifactId>tomato-module-goods-base</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
