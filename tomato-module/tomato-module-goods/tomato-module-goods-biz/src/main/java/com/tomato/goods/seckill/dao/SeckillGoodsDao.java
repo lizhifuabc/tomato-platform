@@ -1,17 +1,17 @@
-package com.tomato.goods.skill.dao;
+package com.tomato.goods.seckill.dao;
 
-import com.tomato.goods.entity.SkillGoodsEntity;
+import com.tomato.goods.entity.SeckillGoodsEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * 秒杀活动商品{@link SkillGoodsEntity}
+ * 秒杀活动商品{@link SeckillGoodsEntity}
  *
  * @author lizhifu
  * @date 2022/12/10
  */
 @Mapper
-public interface SkillGoodsDao {
+public interface SeckillGoodsDao {
     /**
      * 更新秒杀剩余量
      * @return

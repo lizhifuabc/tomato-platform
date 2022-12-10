@@ -1,4 +1,4 @@
-package com.tomato.goods.skill.domain.bo;
+package com.tomato.goods.seckill.domain.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UpdateSkillRemainingBO {
+public class UpdateSeckillRemainingBO {
     /**
      * 秒杀活动商品记录id
      */
@@ -23,7 +23,7 @@ public class UpdateSkillRemainingBO {
     /**
      * 秒杀活动商品记录id
      */
-    private Long skillGoodsId;
+    private Long seckillGoodsId;
     /**
      * 版本号
      */

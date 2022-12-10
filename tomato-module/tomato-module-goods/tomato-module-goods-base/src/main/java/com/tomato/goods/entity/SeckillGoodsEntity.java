@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2022/12/10
  */
 @Data
-public class SkillGoodsEntity extends BaseEntity {
+public class SeckillGoodsEntity extends BaseEntity {
     /**
      * 商品表主键
      */

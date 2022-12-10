@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2022/12/10
  */
 @Data
-public class SkillUserEntity extends BaseEntity {
+public class SeckillUserEntity extends BaseEntity {
     /**
      * 商品表主键
      */
@@ -18,7 +18,7 @@ public class SkillUserEntity extends BaseEntity {
     /**
      * 秒杀活动商品记录id
      */
-    private Long skillGoodsId;
+    private Long seckillGoodsId;
     /**
      * 秒杀活动商品记录id
      */
@@ -26,9 +26,9 @@ public class SkillUserEntity extends BaseEntity {
     /**
      * 秒杀总量
      */
-    private Integer skillCount;
+    private Integer seckillCount;
     /**
      * 秒杀剩余量
      */
-    private Integer skillRemaining;
+    private Integer seckillRemaining;
 }

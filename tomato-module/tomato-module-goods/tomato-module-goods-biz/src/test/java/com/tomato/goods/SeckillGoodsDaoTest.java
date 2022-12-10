@@ -1,6 +1,6 @@
 package com.tomato.goods;
 
-import com.tomato.goods.skill.dao.SkillGoodsDao;
+import com.tomato.goods.seckill.dao.SeckillGoodsDao;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,13 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @date 2022/12/10
  */
 @SpringBootTest
-public class SkillGoodsDaoTest {
+public class SeckillGoodsDaoTest {
     @Resource
-    SkillGoodsDao skillGoodsDao;
+    SeckillGoodsDao seckillGoodsDao;
 
     @Test
     public void test(){
-        int i = skillGoodsDao.updateSkillRemaining(1L, 1);
+        int i = seckillGoodsDao.updateSkillRemaining(1L, 1);
         System.out.println(i);
     }
 }

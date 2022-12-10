@@ -1,6 +1,6 @@
 package com.tomato.goods;
 
-import com.tomato.goods.entity.SkillGoodsEntity;
+import com.tomato.goods.entity.SeckillGoodsEntity;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,10 +21,10 @@ public class RedisTest {
 
     @Test
     public void test(){
-        SkillGoodsEntity skillGoodsEntity = new SkillGoodsEntity();
-        skillGoodsEntity.setGoodsId(10000L);
-        skillGoodsEntity.setCreateTime(LocalDateTime.now());
-        redisTemplate.opsForValue().set("test",skillGoodsEntity);
+        SeckillGoodsEntity seckillGoodsEntity = new SeckillGoodsEntity();
+        seckillGoodsEntity.setGoodsId(10000L);
+        seckillGoodsEntity.setCreateTime(LocalDateTime.now());
+        redisTemplate.opsForValue().set("test", seckillGoodsEntity);
         Object test = redisTemplate.opsForValue().get("test");
         System.out.println(test);
     }
