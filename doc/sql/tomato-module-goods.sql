@@ -20,7 +20,7 @@ create table `t_skill_activity`  (
 
 
 -- ----------------------------
--- 秒杀活动商品记录
+-- 秒杀活动商品
 -- ----------------------------
 drop table if exists `t_skill_goods`;
 create table `t_skill_goods`  (
@@ -39,7 +39,7 @@ create table `t_skill_goods`  (
     `create_time` datetime not null default current_timestamp comment '创建时间',
     primary key (`id`),
     index inx_skill_activity_id(`skill_activity_id`)
-)engine=innodb auto_increment=1 default charset=utf8mb4 collate=utf8mb4_bin comment='秒杀活动商品记录';
+)engine=innodb auto_increment=1 default charset=utf8mb4 collate=utf8mb4_bin comment='秒杀活动商品';
 
 -- ----------------------------
 -- 用户参与活动记录

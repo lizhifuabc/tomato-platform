@@ -1,5 +1,7 @@
 package com.tomato.redis.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tomato.jackson.module.JavaTimeModule;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -27,8 +29,12 @@ public class RedisAutoConfigure {
         template.setKeySerializer(RedisSerializer.string());
         template.setHashKeySerializer(RedisSerializer.string());
         // 使用 JSON 序列化方式（库是 Jackson ），序列化 VALUE 。
-        template.setValueSerializer(RedisSerializer.json());
-        template.setHashValueSerializer(RedisSerializer.json());
+        // 区别于Jackson2JsonRedisSerializer，GenericJackson2JsonRedisSerializer,会额外存储序列化对象的包命和类名
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(mapper);
+        template.setValueSerializer(serializer);
+        template.setHashValueSerializer(serializer);
         return template;
     }
 }
