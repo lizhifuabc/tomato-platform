@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-stater</artifactId>
+            <artifactId>tomato-web-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
@@ -22,11 +22,11 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-mybatis-stater</artifactId>
+            <artifactId>tomato-mybatis-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-dynamic-thread-stater</artifactId>
+            <artifactId>tomato-dynamic-thread-starter</artifactId>
         </dependency>
         <!-- shardingsphere 分库分表依赖 -->
         <dependency>

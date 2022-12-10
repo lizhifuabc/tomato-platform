@@ -9,17 +9,19 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-dynamic-thread-stater</artifactId>
+    <artifactId>tomato-jackson-starter</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-domain</artifactId>
-        </dependency>
+        <!--json模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-util</artifactId>
+        </dependency>
+        <!-- 生产配置元数据。optional: 依赖是可选的，不会被依赖传递      -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

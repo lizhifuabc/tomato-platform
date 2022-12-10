@@ -14,11 +14,11 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-jpa-stater</artifactId>
+            <artifactId>tomato-jpa-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-stater</artifactId>
+            <artifactId>tomato-web-starter</artifactId>
         </dependency>
     </dependencies>
 </project>

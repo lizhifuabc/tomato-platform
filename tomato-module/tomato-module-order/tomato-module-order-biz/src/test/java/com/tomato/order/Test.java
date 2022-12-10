@@ -24,5 +24,18 @@ public class Test {
                 .map(OrderEntity::getNoticeWeb)
                 .map(String::toUpperCase).orElse(null);
         System.out.println(s);
+
+        String a = "null";
+        System.out.println(up(a));
+
+
+        OrderEntity orderEntity = null;
+//        orderEntity.setNoticeWeb(null);
+        Optional.ofNullable(orderEntity).map(OrderEntity::getNoticeWeb).map(String::toUpperCase).ifPresent(orderEntity::setNoticeWeb);
+        System.out.println("UP:"+orderEntity.getNoticeWeb());
+    }
+
+    public static String up(String source){
+        return Optional.ofNullable(source).map(String::toUpperCase).orElse(source);
     }
 }

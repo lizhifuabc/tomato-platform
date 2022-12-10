@@ -9,23 +9,23 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-mybatis-stater</artifactId>
+    <artifactId>tomato-web-starter</artifactId>
 
     <dependencies>
-        <!-- mybatis https://github.com/mybatis/spring-boot-starter -->
+        <!-- spring boot web 相关 -->
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- mysql 驱动 -->
+
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-domain</artifactId>
         </dependency>
-        <!-- druid 版本管理 -->
+
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-validator-starter</artifactId>
         </dependency>
     </dependencies>
 
