@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.goods.skill.dao.SkillGoodsDao">
+    <update id="updateSkillRemaining">
+        update
+            t_skill_goods
+        set
+            version = version + 1,
+            skill_remaining = skill_remaining - 1
+        where
+            id = #{id}
+            and skill_remaining > 0
+            and version = #{version}
+    </update>
+</mapper>
