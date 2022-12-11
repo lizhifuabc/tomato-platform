@@ -118,4 +118,14 @@ public class PageResp<T> extends Resp {
         response.setPageIndex(pageIndex);
         return response;
     }
+
+    @Override
+    public String toString() {
+        return "PageResp{" +
+                "totalCount=" + totalCount +
+                ", pageSize=" + pageSize +
+                ", pageIndex=" + pageIndex +
+                ", data=" + data +
+                '}'+super.toString();
+    }
 }

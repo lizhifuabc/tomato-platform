@@ -71,4 +71,11 @@ public class MultiResp<T> extends Resp {
         response.setData(data);
         return response;
     }
+
+    @Override
+    public String toString() {
+        return "MultiResp{" +
+                "data=" + data +
+                '}'+super.toString();
+    }
 }

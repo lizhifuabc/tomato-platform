@@ -50,4 +50,12 @@ public class SingleResp<T> extends Resp {
         response.setData(data);
         return response;
     }
+
+    @Override
+    public String toString() {
+        return "SingleResp{" +
+                "data=" + data +
+                '}'+super.toString();
+    }
+
 }
