@@ -1,14 +1,9 @@
 package com.tomato.redis.ratelimit;
 
-import com.tomato.domain.resp.Resp;
 import com.tomato.domain.resp.SingleResp;
 import com.tomato.redis.domain.req.RedisRateLimiterReq;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
-import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +13,9 @@ import java.util.List;
  * replenishRate = burstCapacity ，可以实现稳定的速率。
  * burstCapacity > replenishRate，允许临时突发。速率限制器需要在两次突发之间保留一段时间（根据replenishRate），
  * 因为两个连续的突发将导致请求丢弃（HTTP 429-太多请求）
+ * See https://stripe.com/blog/rate-limiters and
+ * https://gist.github.com/ptarjan/e38f45f2dfe601419ca3af937fff574d#file-1-check_request_rate_limiter-rb-L11-L34.
+ *
  * @author lizhifu
  * @date 2022/12/10
  */
