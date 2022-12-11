@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * redis 令牌桶限流
+ * redis 限流
  *
  * @author lizhifu
  * @date 2022/12/10

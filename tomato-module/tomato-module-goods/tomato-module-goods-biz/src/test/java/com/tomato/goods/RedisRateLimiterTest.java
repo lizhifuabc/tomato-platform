@@ -1,6 +1,8 @@
 package com.tomato.goods;
 
+import com.tomato.domain.resp.SingleResp;
 import com.tomato.redis.domain.req.RedisRateLimiterReq;
+import com.tomato.redis.domain.resp.RedisRateLimiterResp;
 import com.tomato.redis.ratelimit.RedisRateLimiter;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,7 @@ public class RedisRateLimiterTest {
                 .burstCapacity(2)
                 .requestedTokens(1)
                 .build();
-        System.out.println(redisRateLimiter.isAllowed(redisRateLimiterReq));
+        SingleResp<RedisRateLimiterResp> allowed = redisRateLimiter.isAllowed(redisRateLimiterReq);
+        System.out.println(allowed);
     }
 }
