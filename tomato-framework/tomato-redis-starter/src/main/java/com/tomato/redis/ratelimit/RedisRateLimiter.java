@@ -3,8 +3,11 @@ package com.tomato.redis.ratelimit;
 import com.tomato.domain.resp.SingleResp;
 import com.tomato.redis.domain.req.RedisRateLimiterReq;
 import com.tomato.redis.domain.resp.RedisRateLimiterResp;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.RedisScript;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +23,7 @@ import java.util.List;
  * @author lizhifu
  * @date 2022/12/10
  */
+@Validated
 public class RedisRateLimiter {
     private StringRedisTemplate stringRedisTemplate;
     private RedisScript<List<Long>> script;
@@ -28,8 +32,7 @@ public class RedisRateLimiter {
         this.stringRedisTemplate = stringRedisTemplate;
         this.script = script;
     }
-
-    public SingleResp<RedisRateLimiterResp> isAllowed(RedisRateLimiterReq redisRateLimiterReq){
+    public SingleResp<RedisRateLimiterResp> isAllowed(@Valid RedisRateLimiterReq redisRateLimiterReq){
         // 用户每秒允许多少个请求，而没有任何丢弃的请求。这是令牌桶被填充的速率。
         int replenishRate = redisRateLimiterReq.getReplenishRate();
         // 允许用户在一秒钟内执行的最大请求数。这是令牌桶可以容纳的令牌数。将此值设置为零将阻止所有请求。

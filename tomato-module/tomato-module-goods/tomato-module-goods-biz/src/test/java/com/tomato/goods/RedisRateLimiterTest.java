@@ -22,10 +22,10 @@ public class RedisRateLimiterTest {
     @Test
     public void test(){
         RedisRateLimiterReq redisRateLimiterReq = RedisRateLimiterReq.builder()
-                .id("test")
-                .replenishRate(1)
-                .burstCapacity(2)
-                .requestedTokens(1)
+                .id(null)
+                .replenishRate(-100)
+                .burstCapacity(-100)
+                .requestedTokens(-100)
                 .build();
         SingleResp<RedisRateLimiterResp> allowed = redisRateLimiter.isAllowed(redisRateLimiterReq);
         System.out.println(allowed);

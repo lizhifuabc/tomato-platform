@@ -17,8 +17,8 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-validator-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>

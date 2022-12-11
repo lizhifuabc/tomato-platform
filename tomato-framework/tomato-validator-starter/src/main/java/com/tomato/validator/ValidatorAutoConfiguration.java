@@ -4,6 +4,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.hibernate.validator.HibernateValidator;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Bean;
  * @author lizhifu
  * @date 2022/5/16
  */
+@AutoConfiguration
 public class ValidatorAutoConfiguration {
     /**
      * Spring Validation 默认会校验完所有字段，然后才抛出异常。<br>
