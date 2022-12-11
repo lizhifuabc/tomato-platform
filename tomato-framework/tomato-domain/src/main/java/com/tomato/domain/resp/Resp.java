@@ -1,5 +1,7 @@
 package com.tomato.domain.resp;
 
+import com.tomato.domain.resp.code.CommonRespCode;
+
 /**
  * 返回数据结构
  *
@@ -61,6 +63,8 @@ public class Resp {
     public static Resp buildSuccess() {
         Resp resp = new Resp();
         resp.setSuccess(true);
+        resp.setCode(CommonRespCode.SUCCESS.code());
+        resp.setMsg(CommonRespCode.SUCCESS.msg());
         return resp;
     }
 

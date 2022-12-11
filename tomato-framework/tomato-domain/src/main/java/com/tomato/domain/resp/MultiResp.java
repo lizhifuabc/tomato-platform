@@ -48,6 +48,8 @@ public class MultiResp<T> extends Resp {
     public static MultiResp buildSuccess() {
         MultiResp response = new MultiResp();
         response.setSuccess(true);
+        response.setCode(CommonRespCode.SUCCESS.code());
+        response.setMsg(CommonRespCode.SUCCESS.msg());
         return response;
     }
 
@@ -68,6 +70,8 @@ public class MultiResp<T> extends Resp {
     public static <T> MultiResp<T> of(Collection<T> data) {
         MultiResp<T> response = new MultiResp<>();
         response.setSuccess(true);
+        response.setCode(CommonRespCode.SUCCESS.code());
+        response.setMsg(CommonRespCode.SUCCESS.msg());
         response.setData(data);
         return response;
     }

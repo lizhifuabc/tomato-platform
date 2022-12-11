@@ -25,6 +25,8 @@ public class SingleResp<T> extends Resp {
     public static SingleResp buildSuccess() {
         SingleResp response = new SingleResp();
         response.setSuccess(true);
+        response.setCode(CommonRespCode.SUCCESS.code());
+        response.setMsg(CommonRespCode.SUCCESS.msg());
         return response;
     }
 
@@ -47,6 +49,8 @@ public class SingleResp<T> extends Resp {
     public static <T> SingleResp<T> of(T data) {
         SingleResp<T> response = new SingleResp<>();
         response.setSuccess(true);
+        response.setCode(CommonRespCode.SUCCESS.code());
+        response.setMsg(CommonRespCode.SUCCESS.msg());
         response.setData(data);
         return response;
     }

@@ -1,5 +1,7 @@
 package com.tomato.domain.resp;
 
+import com.tomato.domain.resp.code.CommonRespCode;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -88,6 +90,8 @@ public class PageResp<T> extends Resp {
     public static PageResp buildSuccess() {
         PageResp response = new PageResp();
         response.setSuccess(true);
+        response.setCode(CommonRespCode.SUCCESS.code());
+        response.setMsg(CommonRespCode.SUCCESS.msg());
         return response;
     }
 
@@ -102,6 +106,8 @@ public class PageResp<T> extends Resp {
     public static <T> PageResp<T> of(int pageSize, int pageIndex) {
         PageResp<T> response = new PageResp<>();
         response.setSuccess(true);
+        response.setCode(CommonRespCode.SUCCESS.code());
+        response.setMsg(CommonRespCode.SUCCESS.msg());
         response.setData(Collections.emptyList());
         response.setTotalCount(0);
         response.setPageSize(pageSize);
@@ -112,6 +118,8 @@ public class PageResp<T> extends Resp {
     public static <T> PageResp<T> of(Collection<T> data, int totalCount, int pageSize, int pageIndex) {
         PageResp<T> response = new PageResp<>();
         response.setSuccess(true);
+        response.setCode(CommonRespCode.SUCCESS.code());
+        response.setMsg(CommonRespCode.SUCCESS.msg());
         response.setData(data);
         response.setTotalCount(totalCount);
         response.setPageSize(pageSize);

@@ -13,4 +13,8 @@ public interface CommonRespCode {
      * 系统异常
      */
     RespCode INTERNAL_SERVER_ERROR = new RespCode("500", "系统异常");
+    /**
+     * 成功
+     */
+    RespCode SUCCESS = new RespCode("200", "请求成功");
 }
