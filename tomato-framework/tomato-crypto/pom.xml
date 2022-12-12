@@ -5,24 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-platform</artifactId>
+        <artifactId>tomato-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-framework</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-domain</module>
-        <module>tomato-web-starter</module>
-        <module>tomato-mybatis-starter</module>
-        <module>tomato-util</module>
-        <module>tomato-dynamic-thread-starter</module>
-        <module>tomato-jpa-starter</module>
-        <module>tomato-validator-starter</module>
-        <module>tomato-redis-starter</module>
-        <module>tomato-jackson-starter</module>
-        <module>tomato-crypto</module>
-    </modules>
+    <artifactId>tomato-crypto</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
