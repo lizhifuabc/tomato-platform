@@ -16,5 +16,9 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-jackson-starter</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -25,6 +25,12 @@
         <spring.boot.druid.version>1.2.15</spring.boot.druid.version>
         <!-- shardingsphere 分库分表依赖 -->
         <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
+        <!-- 一个开源的第三方算法提供商  -->
+        <bouncycastle.version>1.70</bouncycastle.version>
+        <!-- apache 编解码库 https://github.com/apache/commons-codec -->
+        <apache.commons.codec.version>1.15</apache.commons.codec.version>
+        <!-- apache 编解码库 https://github.com/apache/commons-lang -->
+        <apache.commons.lang3.version>3.12.0</apache.commons.lang3.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -57,6 +63,24 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${spring.boot.mybatis.version}</version>
+            </dependency>
+            <!-- 一个开源的第三方算法提供商  -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcpkix-jdk15on</artifactId>
+                <version>${bouncycastle.version}</version>
+            </dependency>
+            <!-- apache 编解码库 https://github.com/apache/commons-codec -->
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${apache.commons.codec.version}</version>
+            </dependency>
+            <!-- apache 编解码库 https://github.com/apache/commons-lang -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.lang3.version}</version>
             </dependency>
             <!-- druid -->
             <dependency>
