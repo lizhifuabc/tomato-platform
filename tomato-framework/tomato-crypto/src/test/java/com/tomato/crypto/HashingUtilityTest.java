@@ -1,8 +1,5 @@
 package com.tomato.crypto;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.bouncycastle.util.encoders.Hex;
-
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -34,6 +31,6 @@ public class HashingUtilityTest {
         mac.init(keySpec);
         byte[] rawHmac = mac.doFinal(message.getBytes());
 
-        return Hex.toHexString(rawHmac);
+        return "Hex.toHexString(rawHmac)";
     }
 }

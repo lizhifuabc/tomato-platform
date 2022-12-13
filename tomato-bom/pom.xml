@@ -29,8 +29,10 @@
         <bouncycastle.version>1.70</bouncycastle.version>
         <!-- apache 编解码库 https://github.com/apache/commons-codec -->
         <apache.commons.codec.version>1.15</apache.commons.codec.version>
-        <!-- apache 编解码库 https://github.com/apache/commons-lang -->
+        <!-- apache commons https://github.com/apache/commons-lang -->
         <apache.commons.lang3.version>3.12.0</apache.commons.lang3.version>
+        <!-- apache commons https://github.com/apache/commons-crypto -->
+        <apache.commons.crypto.version>1.1.0</apache.commons.crypto.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -76,11 +78,17 @@
                 <artifactId>commons-codec</artifactId>
                 <version>${apache.commons.codec.version}</version>
             </dependency>
-            <!-- apache 编解码库 https://github.com/apache/commons-lang -->
+            <!-- apache commons https://github.com/apache/commons-lang -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${apache.commons.lang3.version}</version>
+            </dependency>
+            <!-- apache commons https://github.com/apache/commons-lang -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-crypto</artifactId>
+                <version>${apache.commons.crypto.version}</version>
             </dependency>
             <!-- druid -->
             <dependency>
