@@ -2,6 +2,7 @@ package com.tomato.merchant.service;
 
 
 import com.tomato.merchant.domain.entity.MerchantInfo;
+import com.tomato.merchant.domain.req.MerchantCreateReq;
 
 /**
  * 商户信息
@@ -16,4 +17,10 @@ public interface MerchantService {
      * @return
      */
     public MerchantInfo selectByMerchantNo(String merchantNo);
+
+    /**
+     * 商户创建
+     * @param merchantCreateReq
+     */
+    public void createMerchant(MerchantCreateReq merchantCreateReq);
 }

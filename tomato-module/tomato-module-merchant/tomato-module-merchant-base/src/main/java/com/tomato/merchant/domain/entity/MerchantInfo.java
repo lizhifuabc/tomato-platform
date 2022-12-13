@@ -11,7 +11,7 @@ import lombok.Data;
  * @date 2022/11/25
  */
 @Entity
-@Table(name = "t_merchant_info")
+@Table(name = "t_merchant_info",indexes = {@Index(name = "index_phone_search",columnList = "phoneSearch")})
 @Data
 public class MerchantInfo extends JpaBaseEntity {
     /**
@@ -34,8 +34,13 @@ public class MerchantInfo extends JpaBaseEntity {
     /**
      * 手机号
      */
-    @Column(length = 11,nullable = false,unique = true)
+    @Column(length = 36,nullable = false,unique = true)
     private String phone;
+    /**
+     * 手机号后四位模糊搜素
+     */
+    @Column(length = 36,nullable = false)
+    private String phoneSearch;
     /**
      * 邮箱
      */
@@ -44,6 +49,6 @@ public class MerchantInfo extends JpaBaseEntity {
     /**
      * 是否停用: 0-否, 1-是
      */
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "tinyint(0) not null default 0",insertable = false)
     private Integer merchantStatus;
 }

@@ -2,6 +2,8 @@ package com.tomato.merchant.service.impl;
 
 import com.tomato.merchant.dao.MerchantInfoDao;
 import com.tomato.merchant.domain.entity.MerchantInfo;
+import com.tomato.merchant.domain.req.MerchantCreateReq;
+import com.tomato.merchant.manager.MerchantSecurityManager;
 import com.tomato.merchant.service.MerchantService;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class MerchantServiceImpl implements MerchantService {
     private final MerchantInfoDao merchantInfoDao;
+    private final MerchantSecurityManager merchantSecurityManager;
 
-    public MerchantServiceImpl(MerchantInfoDao merchantInfoDao) {
+    public MerchantServiceImpl(MerchantInfoDao merchantInfoDao, MerchantSecurityManager merchantSecurityManager) {
         this.merchantInfoDao = merchantInfoDao;
+        this.merchantSecurityManager = merchantSecurityManager;
     }
 
     @Override
@@ -27,5 +31,17 @@ public class MerchantServiceImpl implements MerchantService {
         query.setMerchantNo(merchantNo);
         Example<MerchantInfo> example = Example.of(query);
         return merchantInfoDao.findOne(example).orElse(null);
+    }
+
+    @Override
+    public void createMerchant(MerchantCreateReq merchantCreateReq) {
+        MerchantInfo merchantInfo = new MerchantInfo();
+        merchantInfo.setMerchantNo(String.valueOf(System.currentTimeMillis()));
+        merchantInfo.setMerchantName(merchantCreateReq.getMerchantName());
+        merchantInfo.setMerchantShortName(merchantCreateReq.getMerchantShortName());
+        merchantInfo.setPhone(merchantSecurityManager.security(merchantCreateReq.getPhone()));
+        merchantInfo.setPhoneSearch(merchantSecurityManager.phone(merchantCreateReq.getPhone()));
+        merchantInfo.setEmail(merchantCreateReq.getEmail());
+        merchantInfoDao.save(merchantInfo);
     }
 }

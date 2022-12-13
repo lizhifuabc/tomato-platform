@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2022/11/25
  */
 @RestController
-@RequestMapping("merchant")
+@RequestMapping
 public class MerchantController {
     /**
      * 校验商户信息并返回
      * @param merchantInfoReq
      * @return
      */
-    @PostMapping("/checkMerchant")
+    @PostMapping("/merchant/checkMerchant")
     public SingleResp<MerchantInfoResp> checkMerchant(@Valid @RequestBody MerchantInfoReq merchantInfoReq){
         return SingleResp.of(null);
     }
