@@ -17,4 +17,8 @@ public interface CommonRespCode {
      * 成功
      */
     RespCode SUCCESS = new RespCode("200", "请求成功");
+    /**
+     * 请求失败
+     */
+    RespCode FAIL = new RespCode("400", "请求失败");
 }
