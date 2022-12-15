@@ -22,6 +22,7 @@
         <module>tomato-redis-starter</module>
         <module>tomato-jackson-starter</module>
         <module>tomato-crypto</module>
+        <module>tomato-id-starter</module>
     </modules>
 
     <properties>

@@ -4,7 +4,7 @@ TODO:
 
 2 mybatis 加解密
 
-3 加密数据模糊查询
+3 加密数据模糊查询 -done
 
 
 Spring Security 6的新特性包括：
