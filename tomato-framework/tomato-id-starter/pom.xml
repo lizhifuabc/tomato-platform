@@ -10,5 +10,25 @@
     </parent>
 
     <artifactId>tomato-id-starter</artifactId>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-commons -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-commons</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-util</artifactId>
+        </dependency>
+        <!-- 生产配置元数据。optional: 依赖是可选的，不会被依赖传递      -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 </project>

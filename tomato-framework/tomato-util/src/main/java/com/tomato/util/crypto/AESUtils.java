@@ -15,7 +15,7 @@ import java.util.Base64;
  * @author lizhifu
  * @since 2022/12/9
  */
-public class AES {
+public class AESUtils {
     /**
      * AES
      */
