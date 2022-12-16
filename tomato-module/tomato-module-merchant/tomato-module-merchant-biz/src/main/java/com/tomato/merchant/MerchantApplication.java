@@ -2,6 +2,7 @@ package com.tomato.merchant;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  * @author lizhifu
  */
 @SpringBootApplication
+@ImportResource(locations = {"classpath:bean.xml"})
 @EnableJpaAuditing // 开启时间的支持
 public class MerchantApplication {
 

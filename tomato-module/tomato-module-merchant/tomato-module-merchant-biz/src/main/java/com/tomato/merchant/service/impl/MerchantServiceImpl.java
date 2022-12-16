@@ -6,6 +6,7 @@ import com.tomato.merchant.domain.req.MerchantCreateReq;
 import com.tomato.merchant.manager.MerchantSecurityManager;
 import com.tomato.merchant.service.MerchantService;
 import org.springframework.data.domain.Example;
+import org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,10 +19,11 @@ import org.springframework.stereotype.Service;
 public class MerchantServiceImpl implements MerchantService {
     private final MerchantInfoDao merchantInfoDao;
     private final MerchantSecurityManager merchantSecurityManager;
-
-    public MerchantServiceImpl(MerchantInfoDao merchantInfoDao, MerchantSecurityManager merchantSecurityManager) {
+    private final MySQLMaxValueIncrementer merchantIncrementer;
+    public MerchantServiceImpl(MerchantInfoDao merchantInfoDao, MerchantSecurityManager merchantSecurityManager, MySQLMaxValueIncrementer merchantIncrementer) {
         this.merchantInfoDao = merchantInfoDao;
         this.merchantSecurityManager = merchantSecurityManager;
+        this.merchantIncrementer = merchantIncrementer;
     }
 
     @Override
@@ -36,7 +38,7 @@ public class MerchantServiceImpl implements MerchantService {
     @Override
     public void createMerchant(MerchantCreateReq merchantCreateReq) {
         MerchantInfo merchantInfo = new MerchantInfo();
-        merchantInfo.setMerchantNo(String.valueOf(System.currentTimeMillis()));
+        merchantInfo.setMerchantNo(merchantIncrementer.nextStringValue());
         merchantInfo.setMerchantName(merchantCreateReq.getMerchantName());
         merchantInfo.setMerchantShortName(merchantCreateReq.getMerchantShortName());
         merchantInfo.setPhone(merchantSecurityManager.security(merchantCreateReq.getPhone()));
