@@ -12,7 +12,7 @@
         <module>tomato-module</module>
         <module>tomato-framework</module>
     </modules>
-
+    <name>${project.artifactId}</name>
     <properties>
         <!-- maven 全局版本号管理 -->
         <revision>1.0-SNAPSHOT</revision>
