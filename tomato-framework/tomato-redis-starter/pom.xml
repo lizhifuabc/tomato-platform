@@ -16,6 +16,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+        <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-data-30</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-validator-starter</artifactId>
