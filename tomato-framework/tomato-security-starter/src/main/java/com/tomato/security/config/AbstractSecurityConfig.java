@@ -4,14 +4,18 @@ import com.tomato.security.filter.TokenAuthenticationFilter;
 import com.tomato.security.handler.AccessDeniedHandlerImpl;
 import com.tomato.security.handler.AuthenticationEntryPointImpl;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.util.function.BiFunction;
 
 /**
  * Spring Security 配置
@@ -19,9 +23,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @author lizhifu
  * @since 2022/12/16
  */
-@AutoConfiguration
-@EnableMethodSecurity(securedEnabled = true)
-public class SecurityConfig {
+public abstract class AbstractSecurityConfig {
+    /**
+     * Token获取用户信息
+     *
+     * @return
+     */
+    protected abstract BiFunction<String, HttpServletRequest, UserDetails> userFunction();
     @Resource
     private SecurityProperties securityProperties;
     /**
@@ -71,7 +79,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
         ;
         // 添加 Token Filter
-        httpSecurity.addFilterBefore(new TokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(new TokenAuthenticationFilter(this.userFunction()), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 }
