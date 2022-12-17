@@ -1,12 +1,11 @@
 package com.tomato.sys.login.controller;
 
+import com.tomato.domain.resp.Resp;
 import com.tomato.domain.resp.SingleResp;
 import com.tomato.sys.login.domain.req.LoginReq;
 import com.tomato.sys.login.domain.resp.LoginResp;
 import com.tomato.sys.login.service.LoginService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 /**
@@ -27,5 +26,9 @@ public class LoginController {
     public SingleResp<LoginResp> login(@Valid @RequestBody LoginReq loginReq) {
         SingleResp<LoginResp> singleResp = loginService.login(loginReq, "127.0.0.1", "user-agent");
         return singleResp;
+    }
+    @GetMapping("/login/logout")
+    public Resp logout(@RequestHeader(value = "TOKEN", required = false) String token) {
+        return Resp.buildSuccess();
     }
 }
