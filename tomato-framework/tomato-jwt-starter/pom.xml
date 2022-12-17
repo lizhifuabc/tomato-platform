@@ -5,25 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module</artifactId>
+        <artifactId>tomato-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-doc</artifactId>
+    <artifactId>tomato-jwt-starter</artifactId>
+
     <dependencies>
-        <!-- spring boot web 相关 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <!-- lombok 依赖 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
+        <!-- jwt 依赖       -->
         <dependency>
             <groupId>com.nimbusds</groupId>
             <artifactId>nimbus-jose-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-domain</artifactId>
         </dependency>
     </dependencies>
 </project>

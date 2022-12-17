@@ -1,7 +1,5 @@
 package com.tomato.domain.resp.code;
 
-import com.tomato.domain.resp.code.RespCode;
-
 /**
  * 统一错误码
  *

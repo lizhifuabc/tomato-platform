@@ -35,6 +35,12 @@
         <apache.commons.crypto.version>1.1.0</apache.commons.crypto.version>
         <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
         <redisson.version>3.18.1</redisson.version>
+        <!--  jwt 相关      -->
+        <jjwt.version>0.9.1</jjwt.version>
+        <jwks-rsa.version>0.9.0</jwks-rsa.version>
+        <!-- https://connect2id.com/products/nimbus-jose-jwt/examples       -->
+        <nimbus-jose-jwt.version>9.25.6</nimbus-jose-jwt.version>
+        <jjwt-api.version>0.11.5</jjwt-api.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -104,7 +110,31 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${spring.boot.druid.version}</version>
             </dependency>
+            <!-- jwt Token生成与解析-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt-api.version}</version>
+            </dependency>
 
+            <!-- jwt -->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>jwks-rsa</artifactId>
+                <version>${jwks-rsa.version}</version>
+            </dependency>
+            <!-- jwt -->
+            <dependency>
+                <groupId>com.nimbusds</groupId>
+                <artifactId>nimbus-jose-jwt</artifactId>
+                <version>${nimbus-jose-jwt.version}</version>
+            </dependency>
             <!-- shardingsphere 分库分表依赖 -->
             <dependency>
                 <groupId>org.apache.shardingsphere</groupId>
@@ -146,6 +176,11 @@
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-dynamic-thread-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-security-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

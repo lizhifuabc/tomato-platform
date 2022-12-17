@@ -12,18 +12,13 @@
     <artifactId>tomato-module-sys-biz</artifactId>
 
     <dependencies>
-        <!-- spring security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-sys-base</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-starter</artifactId>
+            <artifactId>tomato-security-starter</artifactId>
         </dependency>
 
         <dependency>
