@@ -1,11 +1,10 @@
 package com.tomato.security.filter;
 
-import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -18,31 +17,35 @@ import java.io.IOException;
  * @since 2022/12/16
  */
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
-    public static final String TOKEN = "x-access-token";
-
-    public static final String USER_AGENT = "user-agent";
+    public static final String TOKEN = "Authorization";
+    private static final String AUTHORIZATION_BEARER = "Bearer";
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        //需要做token校验, 消息头的token优先于请求query参数的token
-        String xHeaderToken = request.getHeader(TOKEN);
-        String xRequestToken = request.getParameter(TOKEN);
-        String xAccessToken = null != xHeaderToken ? xHeaderToken : xRequestToken;
-        if (StringUtils.isBlank(xAccessToken)) {
-            chain.doFilter(request, response);
-            return;
-        }
-        //清理spring security
-        SecurityContextHolder.clearContext();
+        // token校验, 消息头token
+        String token = getToken(request);
+        if (StringUtils.hasText(token)) {
 
-//        UserDetails loginUserDetail = userFunction.apply(xAccessToken,request);
-//        if (null != loginUserDetail) {
-//            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUserDetail, null, loginUserDetail.getAuthorities());
-//            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-//            SmartRequestUtil.setRequestUser((RequestUser) loginUserDetail);
-//        }
+        }
         // 若未给予spring security上下文用户授权 则会授权失败 进入AuthenticationEntryPointImpl
         chain.doFilter(request, response);
+    }
+    /**
+     * 从请求中，获得认证 Token
+     *
+     * @param request 请求
+     * @return 认证 Token
+     */
+    private static String getToken(HttpServletRequest request) {
+        String authorization = request.getHeader(TOKEN);
+        if (!StringUtils.hasText(authorization)) {
+            return null;
+        }
+        int index = authorization.indexOf(AUTHORIZATION_BEARER + " ");
+        // 未找到
+        if (index == -1) {
+            return null;
+        }
+        return authorization.substring(index + 7).trim();
     }
 }
