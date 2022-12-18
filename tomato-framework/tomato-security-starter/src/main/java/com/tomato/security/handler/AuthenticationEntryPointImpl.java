@@ -22,7 +22,7 @@ import java.io.IOException;
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        log.info("[anonymous][访问 URL({}) 时，没有登录]", request.getRequestURI(), authException);
+        log.info("[anonymous][访问 URL({}) 时，没有登录]", request.getRequestURI(), authException.getLocalizedMessage());
         // 请求授权失败，需要进行用户认证。客户端可再次发起请求、并在请求头中提供一个包含认证证书、如会话跟踪cookie
         Resp resp = Resp.buildFailure(String.valueOf(HttpStatus.UNAUTHORIZED.value()),"未登录访问");
         ObjectMapper objectMapper = new ObjectMapper();

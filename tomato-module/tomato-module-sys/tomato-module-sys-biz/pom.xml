@@ -20,7 +20,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-security-starter</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-mybatis-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

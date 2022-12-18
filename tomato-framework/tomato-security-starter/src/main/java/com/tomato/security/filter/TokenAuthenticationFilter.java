@@ -4,7 +4,11 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -30,12 +34,20 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        // token校验, 消息头token
+        // 消息头 token
         String token = getToken(request);
+        if(ObjectUtils.isEmpty(token)){
+            chain.doFilter(request, response);
+            return;
+        }
+        //清理spring security
+        SecurityContextHolder.clearContext();
         // TODO
-        userFunction.apply(token,request);
-        if (StringUtils.hasText(token)) {
-
+        UserDetails userDetails = userFunction.apply(token,request);
+        if(null != userDetails){
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
         // 若未给予spring security上下文用户授权 则会授权失败 进入AuthenticationEntryPointImpl
         chain.doFilter(request, response);
