@@ -40,16 +40,18 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             chain.doFilter(request, response);
             return;
         }
-        //清理spring security
+        // 清理 spring security，
+        // 若未给予spring security 上下文用户授权，授权失败 AuthenticationEntryPointImpl
         SecurityContextHolder.clearContext();
         // TODO
         UserDetails userDetails = userFunction.apply(token,request);
         if(null != userDetails){
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
-        // 若未给予spring security上下文用户授权 则会授权失败 进入AuthenticationEntryPointImpl
+        // 若未给予spring security 上下文用户授权，授权失败 AuthenticationEntryPointImpl
         chain.doFilter(request, response);
     }
     /**
