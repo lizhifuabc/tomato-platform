@@ -17,6 +17,7 @@
         <module>tomato-module-doc</module>
         <module>tomato-module-goods</module>
         <module>tomato-module-sys</module>
+        <module>tomato-captcha-starter</module>
     </modules>
 
     <properties>
