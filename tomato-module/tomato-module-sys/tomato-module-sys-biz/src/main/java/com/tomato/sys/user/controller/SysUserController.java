@@ -2,6 +2,8 @@ package com.tomato.sys.user.controller;
 
 import com.tomato.domain.resp.Resp;
 import com.tomato.sys.domain.req.SysUserCreateReq;
+import com.tomato.sys.user.service.SysUserService;
+import com.tomato.web.common.BaseController;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +15,13 @@ import org.springframework.web.bind.annotation.*;
  * @since 2022/12/18
  */
 @RestController
-public class SysUserController {
+public class SysUserController extends BaseController {
+    private final SysUserService sysUserService;
+
+    public SysUserController(SysUserService sysUserService) {
+        this.sysUserService = sysUserService;
+    }
+
     /**
      * 添加用户
      * @param sysUserCreateReq

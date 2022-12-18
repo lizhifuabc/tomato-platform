@@ -1,5 +1,6 @@
 package com.tomato.web.handler;
 
+import com.tomato.domain.exception.BusinessException;
 import com.tomato.domain.resp.Resp;
 import com.tomato.domain.resp.code.CommonRespCode;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +32,15 @@ import static com.tomato.domain.resp.code.CommonRespCode.INTERNAL_SERVER_ERROR;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    /**
+     * 业务异常处理
+     */
+    @ResponseBody
+    @ExceptionHandler(BusinessException.class)
+    public Resp businessExceptionHandler(BusinessException e) {
+        log.error("全局业务异常,URL:{}", getCurrentRequestUrl(), e);
+        return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), e.getMessage());
+    }
     /**
      * json 格式错误 缺少请求体
      */
@@ -56,5 +69,16 @@ public class GlobalExceptionHandler {
     public Resp otherExceptionHandler(HttpServletRequest req, Throwable throwable) {
         log.error("[otherExceptionHandler]", throwable);
         return Resp.buildFailure(INTERNAL_SERVER_ERROR.code(),INTERNAL_SERVER_ERROR.msg());
+    }
+    /**
+     * 获取当前请求url
+     */
+    private String getCurrentRequestUrl() {
+        RequestAttributes request = RequestContextHolder.getRequestAttributes();
+        if (null == request) {
+            return null;
+        }
+        ServletRequestAttributes servletRequest = (ServletRequestAttributes) request;
+        return servletRequest.getRequest().getRequestURI();
     }
 }
