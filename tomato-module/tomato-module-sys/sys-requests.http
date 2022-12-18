@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "loginName": "admin",
-  "password": "123456"
+  "loginPwd": "123456"
 }
 > {% client.global.set("auth_token", response.body.data.token); %}
 

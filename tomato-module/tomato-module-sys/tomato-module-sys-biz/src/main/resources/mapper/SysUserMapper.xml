@@ -20,7 +20,7 @@
     </insert>
     <select id="selectById" resultType="SysUserEntity">
         select
-            login_name,actual_name,gender,phone,department_id
+            login_name,actual_name,gender,phone,department_id,login_pwd,disabled_flag
         from
             t_sys_user
         where
@@ -28,7 +28,7 @@
     </select>
     <select id="selectByLoginName" resultType="SysUserEntity">
         select
-            id,login_name,actual_name,gender,phone,department_id
+            id,login_name,actual_name,gender,phone,department_id,login_pwd,disabled_flag
         from
             t_sys_user
         where

@@ -11,6 +11,7 @@ import com.tomato.sys.user.dao.SysUserDao;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,13 +25,27 @@ import org.springframework.stereotype.Service;
 public class LoginService {
     private final TokenService tokenService;
     private final SysUserDao sysUserDao;
-    public LoginService(TokenService tokenService, SysUserDao sysUserDao) {
+    private final PasswordEncoder passwordEncoder;
+    public LoginService(TokenService tokenService, SysUserDao sysUserDao, PasswordEncoder passwordEncoder) {
         this.tokenService = tokenService;
         this.sysUserDao = sysUserDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public SingleResp<LoginResp> login(LoginReq loginReq, String ip, String userAgent) {
         SysUserEntity sysUserEntity = sysUserDao.selectByLoginName(loginReq.getLoginName());
+        // 校验账号是否存在
+        if(null == sysUserEntity){
+            return SingleResp.buildFailure("登录失败，账号或密码不正确");
+        }
+        // 校验密码
+        if(!passwordEncoder.matches(loginReq.getLoginPwd(), sysUserEntity.getLoginPwd())){
+            return SingleResp.buildFailure("登录失败，账号或密码不正确");
+        }
+        // 校验是否禁用
+        if (sysUserEntity.getDisabledFlag()) {
+            return SingleResp.buildFailure("登录失败，账号已被禁用");
+        }
         String token = tokenService.generateToken(sysUserEntity.getId(),loginReq.getLoginName(), LoginDeviceEnum.PC);
         LoginResp loginResp = LoginResp.builder()
                 .token(token)

@@ -42,7 +42,7 @@ public class SysUserEntity extends BaseEntity {
     private Long departmentId;
 
     /**
-     * 是否被禁用 0否1是
+     * 是否被禁用 0 否 1是
      */
     private Boolean disabledFlag;
     /**
