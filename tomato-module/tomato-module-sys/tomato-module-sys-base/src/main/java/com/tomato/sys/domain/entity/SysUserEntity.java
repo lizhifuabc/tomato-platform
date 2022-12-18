@@ -10,7 +10,7 @@ import lombok.Data;
  * @since 2022/12/18
  */
 @Data
-public class SystemUserEntity extends BaseEntity {
+public class SysUserEntity extends BaseEntity {
     /**
      * 登录账号
      */
@@ -45,12 +45,6 @@ public class SystemUserEntity extends BaseEntity {
      * 是否被禁用 0否1是
      */
     private Boolean disabledFlag;
-
-    /**
-     * 是否删除0否 1是
-     */
-    private Boolean deletedFlag;
-
     /**
      * 备注
      */

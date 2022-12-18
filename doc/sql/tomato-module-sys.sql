@@ -1,8 +1,8 @@
 -- ----------------------------
 -- 用户信息表
 -- ----------------------------
-DROP TABLE IF EXISTS `t_system_user`;
-CREATE TABLE `t_system_user`  (
+DROP TABLE IF EXISTS `t_sys_user`;
+CREATE TABLE `t_sys_user`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
     `login_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '登录帐号',
     `login_pwd` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '登录密码',
@@ -11,7 +11,6 @@ CREATE TABLE `t_system_user`  (
     `phone` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
     `department_id` int(0) NOT NULL COMMENT '部门id',
     `disabled_flag` tinyint unsigned NOT NULL COMMENT '是否被禁用 0否1是',
-    `deleted_flag` tinyint unsigned NOT NULL COMMENT '是否删除0否 1是',
     `remark` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '备注',
 
     `version` int default 0 not null comment '乐观锁',

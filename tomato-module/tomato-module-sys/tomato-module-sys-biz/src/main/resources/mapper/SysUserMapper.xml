@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tomato.sys.user.dao.SystemUserDao">
+<mapper namespace="com.tomato.sys.user.dao.SysUserDao">
     <select id="selectById" resultType="SystemUserEntity">
         select
             login_name,actual_name,gender,phone,department_id
         from
-            t_system_user
+            t_sys_user
         where
             id = #{id}
     </select>

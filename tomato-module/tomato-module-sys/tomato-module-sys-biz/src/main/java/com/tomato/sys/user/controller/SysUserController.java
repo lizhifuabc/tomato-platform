@@ -29,6 +29,7 @@ public class SysUserController extends BaseController {
      */
     @PostMapping("/sys/user/create")
     public Resp createSysUser(@Valid @RequestBody SysUserCreateReq sysUserCreateReq) {
+        sysUserService.createSysUser(sysUserCreateReq);
         return Resp.buildSuccess();
     }
     /**

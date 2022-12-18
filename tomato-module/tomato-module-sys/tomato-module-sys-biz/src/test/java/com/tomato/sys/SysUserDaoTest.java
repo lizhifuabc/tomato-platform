@@ -1,6 +1,6 @@
 package com.tomato.sys;
 
-import com.tomato.sys.user.dao.SystemUserDao;
+import com.tomato.sys.user.dao.SysUserDao;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,12 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @since 2022/12/18
  */
 @SpringBootTest
-public class SystemUserDaoTest {
+public class SysUserDaoTest {
     @Resource
-    SystemUserDao systemUserDao;
+    SysUserDao sysUserDao;
 
     @Test
     public void test(){
-        systemUserDao.selectById(100L);
+        sysUserDao.selectById(100L);
     }
 }

@@ -3,11 +3,11 @@ package com.tomato.sys.login.service;
 import com.tomato.domain.resp.SingleResp;
 import com.tomato.security.token.LoginDeviceEnum;
 import com.tomato.security.token.TokenService;
-import com.tomato.sys.domain.entity.SystemUserEntity;
+import com.tomato.sys.domain.entity.SysUserEntity;
 import com.tomato.sys.domain.req.LoginReq;
 import com.tomato.sys.domain.resp.LoginResp;
 import com.tomato.sys.login.domain.bo.LoginUserDetails;
-import com.tomato.sys.user.dao.SystemUserDao;
+import com.tomato.sys.user.dao.SysUserDao;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,10 +23,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class LoginService {
     private final TokenService tokenService;
-    private final SystemUserDao systemUserDao;
-    public LoginService(TokenService tokenService, SystemUserDao systemUserDao) {
+    private final SysUserDao sysUserDao;
+    public LoginService(TokenService tokenService, SysUserDao sysUserDao) {
         this.tokenService = tokenService;
-        this.systemUserDao = systemUserDao;
+        this.sysUserDao = sysUserDao;
     }
 
     public SingleResp<LoginResp> login(LoginReq loginReq, String ip, String userAgent) {
@@ -47,10 +47,10 @@ public class LoginService {
     public UserDetails getLoginUserDetail(String token, HttpServletRequest request) {
 
         Long userId = tokenService.getUserId(token);
-        SystemUserEntity systemUserEntity = systemUserDao.selectById(userId);
+        SysUserEntity sysUserEntity = sysUserDao.selectById(userId);
         LoginUserDetails loginResp = LoginUserDetails.builder()
                 .token(token)
-                .loginName(systemUserEntity.getLoginName())
+                .loginName(sysUserEntity.getLoginName())
                 .build();
         log.info("loginResp is {}",loginResp);
         return loginResp;

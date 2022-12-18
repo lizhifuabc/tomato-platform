@@ -1,6 +1,6 @@
 package com.tomato.sys.user.dao;
 
-import com.tomato.sys.domain.entity.SystemUserEntity;
+import com.tomato.sys.domain.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,11 +11,11 @@ import org.apache.ibatis.annotations.Param;
  * @since 2022/12/18
  */
 @Mapper
-public interface SystemUserDao {
+public interface SysUserDao {
     /**
      * 根据 ID 查询
      * @param id id
      * @return 用户信息
      */
-    public SystemUserEntity selectById(@Param("id") Long id);
+    public SysUserEntity selectById(@Param("id") Long id);
 }
