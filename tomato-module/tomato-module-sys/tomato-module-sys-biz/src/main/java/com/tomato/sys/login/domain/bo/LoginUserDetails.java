@@ -1,4 +1,4 @@
-package com.tomato.sys.login.domain.resp;
+package com.tomato.sys.login.domain.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
@@ -10,14 +10,14 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- * 用户登录
+ * 扩展 spring UserDetails
  *
  * @author lizhifu
  * @since 2022/12/18
  */
 @Data
 @Builder
-public class LoginResp implements UserDetails {
+public class LoginUserDetails implements UserDetails {
     /**
      * token
      */

@@ -1,4 +1,4 @@
-package com.tomato.sys.login.domain.req;
+package com.tomato.sys.domain.req;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

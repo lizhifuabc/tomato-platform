@@ -16,6 +16,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-validator-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

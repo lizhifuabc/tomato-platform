@@ -1,6 +1,8 @@
 package com.tomato.sys.user.controller;
 
 import com.tomato.domain.resp.Resp;
+import com.tomato.sys.domain.req.SysUserCreateReq;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -12,6 +14,15 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class SysUserController {
+    /**
+     * 添加用户
+     * @param sysUserCreateReq
+     * @return
+     */
+    @PostMapping("/sys/user/create")
+    public Resp createSysUser(@Valid @RequestBody SysUserCreateReq sysUserCreateReq) {
+        return Resp.buildSuccess();
+    }
     /**
      * 更新禁用/启用状态
      * @param id id

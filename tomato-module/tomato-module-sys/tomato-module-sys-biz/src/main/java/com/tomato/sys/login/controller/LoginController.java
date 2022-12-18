@@ -2,8 +2,8 @@ package com.tomato.sys.login.controller;
 
 import com.tomato.domain.resp.Resp;
 import com.tomato.domain.resp.SingleResp;
-import com.tomato.sys.login.domain.req.LoginReq;
-import com.tomato.sys.login.domain.resp.LoginResp;
+import com.tomato.sys.domain.req.LoginReq;
+import com.tomato.sys.domain.resp.LoginResp;
 import com.tomato.sys.login.service.LoginService;
 import org.springframework.web.bind.annotation.*;
 

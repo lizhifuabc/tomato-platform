@@ -4,8 +4,9 @@ import com.tomato.domain.resp.SingleResp;
 import com.tomato.security.token.LoginDeviceEnum;
 import com.tomato.security.token.TokenService;
 import com.tomato.sys.domain.entity.SystemUserEntity;
-import com.tomato.sys.login.domain.req.LoginReq;
-import com.tomato.sys.login.domain.resp.LoginResp;
+import com.tomato.sys.domain.req.LoginReq;
+import com.tomato.sys.domain.resp.LoginResp;
+import com.tomato.sys.login.domain.bo.LoginUserDetails;
 import com.tomato.sys.user.dao.SystemUserDao;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +48,7 @@ public class LoginService {
 
         Long userId = tokenService.getUserId(token);
         SystemUserEntity systemUserEntity = systemUserDao.selectById(userId);
-        LoginResp loginResp = LoginResp.builder()
+        LoginUserDetails loginResp = LoginUserDetails.builder()
                 .token(token)
                 .loginName(systemUserEntity.getLoginName())
                 .build();
