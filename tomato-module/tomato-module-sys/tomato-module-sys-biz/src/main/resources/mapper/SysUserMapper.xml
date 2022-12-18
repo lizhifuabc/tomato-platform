@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.sys.user.dao.SysUserDao">
-    <select id="selectById" resultType="SystemUserEntity">
+    <select id="selectById" resultType="SysUserEntity">
         select
             login_name,actual_name,gender,phone,department_id
         from
             t_sys_user
         where
             id = #{id}
+    </select>
+    <select id="existByLoginName" resultType="java.lang.Boolean">
+        select
+            count(id)
+        from
+            t_sys_user
+        where
+            login_name = #{loginName}
+        LIMIT 1
+    </select>
+    <select id="existByPhone" resultType="java.lang.Boolean">
+        select
+            count(id)
+        from
+            t_sys_user
+        where
+            phone = #{phone}
+        LIMIT 1
     </select>
 </mapper>

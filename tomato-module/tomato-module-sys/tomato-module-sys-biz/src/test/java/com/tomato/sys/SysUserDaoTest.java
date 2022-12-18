@@ -19,5 +19,7 @@ public class SysUserDaoTest {
     @Test
     public void test(){
         sysUserDao.selectById(100L);
+        System.out.println("existByLoginName:" + sysUserDao.existByLoginName("123"));
+        System.out.println("existByPhone：" + sysUserDao.existByPhone("12312"));
     }
 }

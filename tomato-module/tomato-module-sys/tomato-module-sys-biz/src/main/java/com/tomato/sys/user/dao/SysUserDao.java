@@ -17,5 +17,20 @@ public interface SysUserDao {
      * @param id id
      * @return 用户信息
      */
-    public SysUserEntity selectById(@Param("id") Long id);
+    SysUserEntity selectById(@Param("id") Long id);
+
+    /**
+     * 通过登录名查询是否存在
+     *
+     * @param loginName 登录名
+     * @return 用户信息
+     */
+    Boolean existByLoginName(@Param("loginName") String loginName);
+    /**
+     * 通过手机号查询是否存在
+     *
+     * @param phone 手机号
+     * @return 用户信息
+     */
+    Boolean existByPhone(@Param("phone") String phone);
 }
