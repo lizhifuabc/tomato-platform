@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS `t_sys_user`;
 CREATE TABLE `t_sys_user`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
     `login_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '登录帐号',
-    `login_pwd` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '登录密码',
+    `login_pwd` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '登录密码',
     `actual_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户姓名',
     `gender` tinyint(1) NOT NULL DEFAULT 0 COMMENT '性别',
     `phone` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
@@ -20,3 +20,5 @@ CREATE TABLE `t_sys_user`  (
     UNIQUE INDEX `uk_login_name`(`login_name`) USING BTREE,
     UNIQUE INDEX `uk_phone`(`phone`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
+
+INSERT INTO `t_sys_user` VALUES (1, 'admin', '$2a$10$uuL1feDWb1kmfP2Xeqvj2OhiWh11Gdl3QCZ/vojZTWtjHdpFf4Mce', '管理员', 0, '13500000000', 1, 0, '管理员', 0, '2022-10-22 19:33:02', '2018-05-11 09:38:54');

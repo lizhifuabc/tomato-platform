@@ -30,7 +30,8 @@ public class LoginService {
     }
 
     public SingleResp<LoginResp> login(LoginReq loginReq, String ip, String userAgent) {
-        String token = tokenService.generateToken(10000L,loginReq.getLoginName(), LoginDeviceEnum.PC);
+        SysUserEntity sysUserEntity = sysUserDao.selectByLoginName(loginReq.getLoginName());
+        String token = tokenService.generateToken(sysUserEntity.getId(),loginReq.getLoginName(), LoginDeviceEnum.PC);
         LoginResp loginResp = LoginResp.builder()
                 .token(token)
                 .build();

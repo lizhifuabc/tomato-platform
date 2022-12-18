@@ -20,6 +20,13 @@ public interface SysUserDao {
     SysUserEntity selectById(@Param("id") Long id);
 
     /**
+     * 通过登录名查询
+     *
+     * @param loginName 登录名
+     * @return 用户信息
+     */
+    SysUserEntity selectByLoginName(@Param("loginName") String loginName);
+    /**
      * 通过登录名查询是否存在
      *
      * @param loginName 登录名
@@ -33,4 +40,10 @@ public interface SysUserDao {
      * @return 用户信息
      */
     Boolean existByPhone(@Param("phone") String phone);
+
+    /**
+     * 插入
+     * @param sysUserEntity 用户信息
+     */
+    void insert(@Param("sysUserEntity") SysUserEntity sysUserEntity);
 }

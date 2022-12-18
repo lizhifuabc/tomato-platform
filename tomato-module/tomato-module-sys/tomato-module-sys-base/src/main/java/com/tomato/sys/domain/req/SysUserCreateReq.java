@@ -38,6 +38,7 @@ public class SysUserCreateReq {
     @NotNull(message = "手机号不能为空")
     @Pattern(regexp = VerificationPattern.PHONE_REGEXP, message = "手机号格式不正确")
     private String phone;
-
+    @Length(max = 200, message = "备注最多200字符")
+    private String remark;
     private List<Long> roleIdList;
 }

@@ -1,0 +1,30 @@
+### 登录
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "loginName": "admin",
+  "password": "123456"
+}
+> {% client.global.set("auth_token", response.body.data.token); %}
+
+### 退出
+GET http://localhost:8080/login/logout
+Authorization: Bearer {{auth_token}}
+
+### 更新禁用/启用状态
+GET http://localhost:8080/sys/user/update/disabled/100
+
+### 创建用户
+POST http://localhost:8080/sys/user/create
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "actualName": "李志福",
+  "loginName": "lizhifu",
+  "gender": 1,
+  "departmentId": 1,
+  "disabledFlag": 1,
+  "phone": "18810869700"
+}
