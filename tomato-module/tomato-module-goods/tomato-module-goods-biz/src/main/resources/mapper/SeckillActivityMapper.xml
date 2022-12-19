@@ -21,7 +21,7 @@
         from
             t_seckill_activity
         where
-            start_time &gt;= #{startTime} and end_time &lt;= #{endTime} and activity_status = 0
+            start_time &gt;= #{startTime} and end_time &lt;= #{endTime} and disabled_flag = 0
     </select>
     <select id="selectByStartTime" resultType="java.lang.Long">
         select
@@ -29,6 +29,15 @@
         from
             t_seckill_activity
         where
-            start_time &gt;= #{start} and start_time &lt;= #{end} and activity_status = 0
+            start_time &gt;= #{start} and start_time &lt;= #{end} and disabled_flag = 0
+    </select>
+    
+    <select id="selectById" resultType="SeckillActivityEntity">
+        select
+            activity_name,activity_desc,start_time,end_time,disabled_flag
+        from
+            t_seckill_activity
+        where
+            id = #{id}
     </select>
 </mapper>

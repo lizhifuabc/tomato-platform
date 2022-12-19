@@ -32,3 +32,13 @@ Content-Type: application/json
     }
   ]
 }
+
+### 用户秒杀
+POST http://localhost:8080/seckill/queue/user/seckill
+Content-Type: application/json
+
+{
+  "goodsId": 1,
+  "seckillActivityId": 1,
+  "userId": 100000
+}

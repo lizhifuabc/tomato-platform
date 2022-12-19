@@ -20,4 +20,15 @@
         values
             (#{seckillGoodsId},#{userId}, #{goodsId}, #{seckillCount}, #{seckillRemaining})
     </insert>
+
+    <select id="selectByUserIdSeckillGoodsId" resultType="SeckillUserEntity">
+        select
+            seckill_goods_id,
+            user_id,goods_id,
+            seckill_count,seckill_remaining
+        from
+            t_seckill_user
+        where
+            user_id = #{userId} and seckill_goods_id = #{seckillGoodsId}
+    </select>
 </mapper>

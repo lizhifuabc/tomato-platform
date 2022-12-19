@@ -17,7 +17,7 @@ import java.util.List;
 public interface SeckillActivityDao {
     /**
      * 创建
-     * @param seckillActivity 秒杀活动记录
+     * @param seckillActivity 秒杀活动
      */
     void insert(@Param("seckillActivity") SeckillActivityEntity seckillActivity);
 
@@ -35,4 +35,11 @@ public interface SeckillActivityDao {
      * @return id 集合
      */
     List<Long> selectByStartTime(@Param("start") LocalDateTime start,@Param("end") LocalDateTime end);
+
+    /**
+     * 根据 ID 查询
+     * @param id ID
+     * @return 秒杀活动
+     */
+    SeckillActivityEntity selectById(@Param("id") Long id);
 }

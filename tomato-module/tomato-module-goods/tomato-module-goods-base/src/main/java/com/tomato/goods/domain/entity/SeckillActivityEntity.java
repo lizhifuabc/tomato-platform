@@ -29,4 +29,8 @@ public class SeckillActivityEntity extends BaseEntity {
      * 结束时间
      */
     private LocalDateTime endTime;
+    /**
+     * 是否关闭,0-否, 1-是
+     */
+    private Boolean disabledFlag;
 }

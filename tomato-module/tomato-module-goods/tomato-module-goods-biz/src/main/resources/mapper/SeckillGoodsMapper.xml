@@ -73,4 +73,15 @@
         where
             seckill_activity_id = #{seckillActivityId} and goods_id = #{goodsId}
     </select>
+    <select id="selectById" resultType="SeckillGoodsEntity">
+        select
+            goods_id,
+            seckill_price,seckill_count,
+            seckill_limit,seckill_sort,
+            seckill_remaining
+        from
+            t_seckill_goods
+        where
+            id = #{id}
+    </select>
 </mapper>

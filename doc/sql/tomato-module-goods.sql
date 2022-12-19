@@ -9,7 +9,7 @@ create table `t_seckill_activity`  (
     `activity_desc`         varchar(128) character set utf8mb4 default null comment '活动描述',
     `start_time`            datetime not null comment '开始时间',
     `end_time`              datetime not null comment '结束时间',
-    `activity_status`       tinyint unsigned default 0 not null comment '是否关闭,0-否, 1-是',
+    `disabled_flag`         tinyint unsigned default 0 NOT NULL COMMENT '是否被禁用 0否1是',
 
     `version` int default 0 not null comment '乐观锁',
     `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',

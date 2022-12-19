@@ -9,6 +9,6 @@ import lombok.Data;
  * @date 2022/12/10
  */
 @Data
-public class SeckillResultResp {
+public class SeckillResp {
     private String seckillResult;
 }

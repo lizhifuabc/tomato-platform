@@ -44,4 +44,10 @@ public interface SeckillGoodsDao {
      * @return 商品
      */
     SeckillGoodsEntity selectBySeckillActivityIdGoodsId(@Param("goodsId") Long goodsId,@Param("seckillActivityId") Long seckillActivityId);
+    /**
+     * 根据ID查询
+     * @param id ID
+     * @return 商品
+     */
+    SeckillGoodsEntity selectById(@Param("id") Long id);
 }
