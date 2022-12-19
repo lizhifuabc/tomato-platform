@@ -2,6 +2,7 @@ package com.tomato.goods.seckill.dao;
 
 import com.tomato.goods.domain.entity.SeckillActivityEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 秒杀活动记录
@@ -15,5 +16,5 @@ public interface SeckillActivityDao {
      * 创建
      * @param seckillActivity 秒杀活动记录
      */
-    public void insert(SeckillActivityEntity seckillActivity);
+    public void insert(@Param("seckillActivity") SeckillActivityEntity seckillActivity);
 }

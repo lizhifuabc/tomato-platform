@@ -2,10 +2,10 @@ package com.tomato.goods.seckill.controller;
 
 import com.tomato.domain.resp.SingleResp;
 import com.tomato.goods.domain.req.SeckillActivityCreateReq;
+import com.tomato.goods.seckill.service.SeckillActivityService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SeckillActivityController {
+    private final SeckillActivityService seckillActivityService;
+
+    public SeckillActivityController(SeckillActivityService seckillActivityService) {
+        this.seckillActivityService = seckillActivityService;
+    }
+
     /**
      * 创建秒杀活动
      * https://mp.weixin.qq.com/s/268i0R3yxA8GWMVrCs3M1A
@@ -30,6 +36,7 @@ public class SeckillActivityController {
      */
     @PostMapping("/seckill/activity/create")
     public SingleResp create(@Validated @RequestBody SeckillActivityCreateReq seckillActivityCreateReq){
+        seckillActivityService.create(seckillActivityCreateReq);
         return SingleResp.buildSuccess();
     }
 }
