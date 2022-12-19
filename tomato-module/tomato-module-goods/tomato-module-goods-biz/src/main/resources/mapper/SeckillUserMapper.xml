@@ -23,6 +23,8 @@
 
     <select id="selectByUserIdSeckillGoodsId" resultType="SeckillUserEntity">
         select
+            version,
+            id,
             seckill_goods_id,
             user_id,goods_id,
             seckill_count,seckill_remaining

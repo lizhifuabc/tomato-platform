@@ -17,14 +17,14 @@ public interface SeckillUserDao {
      * 更新秒杀剩余量
      * @return
      */
-    public int updateSkillRemaining(UpdateSeckillRemainingBO updateSkillRemainingBO);
+    int updateSkillRemaining(UpdateSeckillRemainingBO updateSkillRemainingBO);
 
     /**
      * 插入
      * @param seckillUserEntity
-     * @return
+     * @return ID
      */
-    public void insert(SeckillUserEntity seckillUserEntity);
+    Long insert(SeckillUserEntity seckillUserEntity);
 
     /**
      * 查询

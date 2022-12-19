@@ -75,6 +75,7 @@
     </select>
     <select id="selectById" resultType="SeckillGoodsEntity">
         select
+            id,
             goods_id,
             seckill_price,seckill_count,
             seckill_limit,seckill_sort,

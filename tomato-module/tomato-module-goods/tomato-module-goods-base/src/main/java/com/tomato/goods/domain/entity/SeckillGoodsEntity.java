@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 @Data
 public class SeckillGoodsEntity extends BaseEntity {
     /**
-     * 商品id
+     * 商品id {@link GoodsEntity}
      */
     private Long goodsId;
     /**
-     * 活动id
+     * 活动id {@link SeckillActivityEntity}
      */
     private Long seckillActivityId;
     /**

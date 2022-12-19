@@ -12,11 +12,11 @@ import lombok.Data;
 @Data
 public class SeckillUserEntity extends BaseEntity {
     /**
-     * 商品表主键
+     * 商品id  {@link GoodsEntity}
      */
     private Long goodsId;
     /**
-     * 秒杀活动商品记录id
+     * 秒杀活动商品记录id {@link SeckillGoodsEntity}
      */
     private Long seckillGoodsId;
     /**

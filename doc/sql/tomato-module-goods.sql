@@ -60,3 +60,17 @@ create table `t_seckill_user` (
     primary key (`id`),
     unique key `unique_activity_relation_id` (`user_id`,`seckill_goods_id`)
 ) engine=innodb auto_increment=1 default charset=utf8mb4 collate=utf8mb4_bin comment='用户参与活动记录';
+
+-- ----------------------------
+-- 用户参与活动明细
+-- ----------------------------
+drop table if exists `t_seckill_user_detail`;
+create table `t_seckill_user_detail` (
+    `id`                    bigint(20)  unsigned not null auto_increment,
+    `seckill_user_id`       bigint(20)  not null comment '用户id',
+
+    `version` int default 0 not null comment '乐观锁',
+    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
+    `create_time` datetime not null default current_timestamp comment '创建时间',
+    primary key (`id`)
+) engine=innodb auto_increment=1 default charset=utf8mb4 collate=utf8mb4_bin comment='用户参与活动明细';
