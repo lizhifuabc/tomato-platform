@@ -5,8 +5,8 @@ Content-Type: application/json
 {
   "activityName": "活动名称",
   "activityDesc": "活动描述",
-  "startTime": "2023-12-11 00:11:11",
-  "endTime": "2022-12-20 00:11:11"
+  "startTime": "2022-12-20 09:30:00",
+  "endTime": "2022-12-20 10:30:00"
 }
 
 ### 秒杀活动添加商品

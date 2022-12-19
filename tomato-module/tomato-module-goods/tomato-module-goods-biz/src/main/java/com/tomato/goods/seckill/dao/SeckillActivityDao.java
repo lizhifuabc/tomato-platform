@@ -19,7 +19,7 @@ public interface SeckillActivityDao {
      * 创建
      * @param seckillActivity 秒杀活动记录
      */
-    public void insert(@Param("seckillActivity") SeckillActivityEntity seckillActivity);
+    void insert(@Param("seckillActivity") SeckillActivityEntity seckillActivity);
 
     /**
      * 查询即将开始的活动
@@ -27,5 +27,12 @@ public interface SeckillActivityDao {
      * @param endTime 结束时间
      * @return id 集合
      */
-    public List<Long> selectByTime(@Param("startTime")LocalDateTime startTime,@Param("endTime")LocalDateTime endTime);
+    List<Long> selectByTime(@Param("startTime")LocalDateTime startTime,@Param("endTime")LocalDateTime endTime);
+    /**
+     * 查询即将开始的活动
+     * @param start 开始时间
+     * @param end 结束时间
+     * @return id 集合
+     */
+    List<Long> selectByStartTime(@Param("start") LocalDateTime start,@Param("end") LocalDateTime end);
 }

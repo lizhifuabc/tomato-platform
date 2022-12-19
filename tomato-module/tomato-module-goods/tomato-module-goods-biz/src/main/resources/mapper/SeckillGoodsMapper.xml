@@ -49,4 +49,28 @@
             )
         </foreach>
     </insert>
+
+    <select id="selectBySeckillActivityId" resultType="SeckillGoodsEntity">
+        select
+               goods_id,
+               seckill_price,seckill_count,
+               seckill_limit,seckill_sort,
+               seckill_remaining
+        from
+            t_seckill_goods
+        where
+            seckill_activity_id = #{seckillActivityId}
+    </select>
+
+    <select id="selectBySeckillActivityIdGoodsId" resultType="SeckillGoodsEntity">
+        select
+            goods_id,
+            seckill_price,seckill_count,
+            seckill_limit,seckill_sort,
+            seckill_remaining
+        from
+            t_seckill_goods
+        where
+            seckill_activity_id = #{seckillActivityId} and goods_id = #{goodsId}
+    </select>
 </mapper>

@@ -5,6 +5,7 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,8 @@ public class RedisTest {
     RedisTemplate redisTemplate;
     @Resource
     DefaultRedisScript<Long> seckillRedisScript;
+    @Resource
+    StringRedisTemplate stringRedisTemplate;
     @Test
     public void test(){
         SeckillGoodsEntity seckillGoodsEntity = new SeckillGoodsEntity();
@@ -57,5 +60,15 @@ public class RedisTest {
         lua.append("end;");
         lua.append("return -1;");
         System.out.println(lua.toString());
+    }
+    @Test
+    public void queue(){
+        // SECKILL:QUEUE:121:123
+        String key = "SECKILL:QUEUE:121:121";
+        System.out.println(stringRedisTemplate.opsForList().size(key));
+        // range(K key, long start, long end)
+        // 获取指定区间的值。
+        List<Object> list =  redisTemplate.opsForList().range(key,0,-1);
+        System.out.println(list);
     }
 }

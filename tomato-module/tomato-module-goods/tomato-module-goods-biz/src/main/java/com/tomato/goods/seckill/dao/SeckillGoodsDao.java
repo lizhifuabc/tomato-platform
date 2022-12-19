@@ -18,15 +18,30 @@ public interface SeckillGoodsDao {
      * 插入
      * @param seckillGoods 秒杀活动商品
      */
-    public void insert(@Param("seckillGoods") SeckillGoodsEntity seckillGoods);
+    void insert(@Param("seckillGoods") SeckillGoodsEntity seckillGoods);
     /**
      * 批量插入
      * @param goodsList 秒杀活动商品
      */
-    public void insertList(@Param("goodsList") List<SeckillGoodsEntity> goodsList);
+    void insertList(@Param("goodsList") List<SeckillGoodsEntity> goodsList);
     /**
      * 更新秒杀剩余量
      * @return 更新数量
      */
-    public int updateSkillRemaining(@Param("id") Long id,@Param("version") Integer version);
+    int updateSkillRemaining(@Param("id") Long id,@Param("version") Integer version);
+
+    /**
+     * 根据活动id查询
+     * @param seckillActivityId 活动id
+     * @return 商品列表
+     */
+    List<SeckillGoodsEntity> selectBySeckillActivityId(@Param("seckillActivityId") Long seckillActivityId);
+
+    /**
+     * 根据活动ID,商品ID查询
+     * @param goodsId 商品ID
+     * @param seckillActivityId 活动ID
+     * @return 商品
+     */
+    SeckillGoodsEntity selectBySeckillActivityIdGoodsId(@Param("goodsId") Long goodsId,@Param("seckillActivityId") Long seckillActivityId);
 }
