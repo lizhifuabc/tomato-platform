@@ -198,6 +198,11 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-rabbitmq-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-dynamic-thread-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
