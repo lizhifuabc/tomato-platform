@@ -1,8 +1,12 @@
 package com.tomato.goods.seckill.service;
 
 import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.resp.SingleResp;
 import com.tomato.goods.domain.entity.SeckillGoodsEntity;
 import com.tomato.goods.seckill.manager.SeckillGoodsRedisManager;
+import com.tomato.redis.domain.req.RedisConcurrentRequestCountLimiterReq;
+import com.tomato.redis.domain.resp.RedisConcurrentRequestCountLimiterResp;
+import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,9 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SeckillRedisCheckService {
     private final SeckillGoodsRedisManager seckillGoodsRedisManager;
+    private final RedisConcurrentRequestCountLimiter redisConcurrentRequestCountLimiter;
 
-    public SeckillRedisCheckService(SeckillGoodsRedisManager seckillGoodsRedisManager) {
+    public SeckillRedisCheckService(SeckillGoodsRedisManager seckillGoodsRedisManager, RedisConcurrentRequestCountLimiter redisConcurrentRequestCountLimiter) {
         this.seckillGoodsRedisManager = seckillGoodsRedisManager;
+        this.redisConcurrentRequestCountLimiter = redisConcurrentRequestCountLimiter;
     }
     /**
      * Redis 库存校验
@@ -28,5 +34,23 @@ public class SeckillRedisCheckService {
         if (remaining <= 0){
             throw new BusinessException("商品库存不足");
         }
+    }
+
+    /**
+     * 同一ip限流 & 同一用户限流
+     * @param ip ip
+     * @param userId userId
+     */
+    public void checkUserIp(String ip, Long userId) {
+        RedisConcurrentRequestCountLimiterReq userIp = RedisConcurrentRequestCountLimiterReq.builder()
+                .id("SECKILL:" + userId.toString()+":"+ip)
+                .count(1)
+                .interval(5)
+                .build();
+        SingleResp<RedisConcurrentRequestCountLimiterResp> allowed = redisConcurrentRequestCountLimiter.isAllowed(userIp);
+        if(allowed.isSuccess() && allowed.getData().isAllowed()){
+            return;
+        }
+        throw new BusinessException("请稍后重试");
     }
 }
