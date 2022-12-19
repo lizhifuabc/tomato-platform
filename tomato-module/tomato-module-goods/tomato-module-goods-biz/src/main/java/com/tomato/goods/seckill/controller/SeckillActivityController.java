@@ -1,6 +1,10 @@
 package com.tomato.goods.seckill.controller;
 
 import com.tomato.domain.resp.SingleResp;
+import com.tomato.goods.domain.req.SeckillActivityCreateReq;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +28,8 @@ public class SeckillActivityController {
      * <p>6. 抢到商品之后，进入到立即下单页面，点击立即下单，就进入结算页，冻结库存，支付，减库存</p>
      * @return
      */
-    @RequestMapping("/seckill/activity/create")
-    public SingleResp create(){
+    @PostMapping("/seckill/activity/create")
+    public SingleResp create(@Validated @RequestBody SeckillActivityCreateReq seckillActivityCreateReq){
         return SingleResp.buildSuccess();
     }
 }

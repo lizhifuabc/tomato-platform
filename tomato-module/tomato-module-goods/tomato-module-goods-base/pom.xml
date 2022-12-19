@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-domain</artifactId>
+            <artifactId>tomato-validator-starter</artifactId>
         </dependency>
     </dependencies>
 

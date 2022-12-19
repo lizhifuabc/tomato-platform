@@ -1,0 +1,10 @@
+### 创建秒杀活动
+POST http://localhost:8080/seckill/activity/create
+Content-Type: application/json
+
+{
+  "activityName": "活动名称",
+  "activityDesc": "活动描述",
+  "startTime": "2023-12-11 00:11:11",
+  "endTime": "2022-12-20 00:11:11"
+}
