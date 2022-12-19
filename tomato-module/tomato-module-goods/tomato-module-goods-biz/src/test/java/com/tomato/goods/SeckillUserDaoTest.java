@@ -1,6 +1,6 @@
 package com.tomato.goods;
 
-import com.tomato.goods.entity.SeckillUserEntity;
+import com.tomato.goods.domain.entity.SeckillUserEntity;
 import com.tomato.goods.seckill.dao.SeckillUserDao;
 import com.tomato.goods.seckill.domain.bo.UpdateSeckillRemainingBO;
 import jakarta.annotation.Resource;

@@ -1,4 +1,4 @@
-package com.tomato.goods.resp;
+package com.tomato.goods.domain.resp;
 
 import lombok.Data;
 

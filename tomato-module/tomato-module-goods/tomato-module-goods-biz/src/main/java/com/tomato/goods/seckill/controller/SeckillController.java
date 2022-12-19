@@ -2,7 +2,7 @@ package com.tomato.goods.seckill.controller;
 
 import com.tomato.domain.resp.SingleResp;
 import com.tomato.goods.constant.SeckillResultEnum;
-import com.tomato.goods.resp.SeckillResultResp;
+import com.tomato.goods.domain.resp.SeckillResultResp;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

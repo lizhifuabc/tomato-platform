@@ -1,6 +1,6 @@
 package com.tomato.goods;
 
-import com.tomato.goods.entity.SeckillGoodsEntity;
+import com.tomato.goods.domain.entity.SeckillGoodsEntity;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

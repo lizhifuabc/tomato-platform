@@ -1,6 +1,6 @@
 package com.tomato.goods.seckill.dao;
 
-import com.tomato.goods.entity.SeckillUserEntity;
+import com.tomato.goods.domain.entity.SeckillUserEntity;
 import com.tomato.goods.seckill.domain.bo.UpdateSeckillRemainingBO;
 import org.apache.ibatis.annotations.Mapper;
 

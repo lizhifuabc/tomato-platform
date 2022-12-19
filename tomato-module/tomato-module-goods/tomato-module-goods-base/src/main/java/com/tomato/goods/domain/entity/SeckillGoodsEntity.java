@@ -1,4 +1,4 @@
-package com.tomato.goods.entity;
+package com.tomato.goods.domain.entity;
 
 import com.tomato.domain.entity.BaseEntity;
 import lombok.Data;
