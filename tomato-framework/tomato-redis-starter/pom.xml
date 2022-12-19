@@ -16,6 +16,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-aop</artifactId>-->
+<!--        </dependency>-->
         <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
         <dependency>
             <groupId>org.redisson</groupId>
@@ -33,6 +37,14 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-domain</artifactId>
         </dependency>
+
+        <!-- provided 用在编译和测试时，没有传递性       -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

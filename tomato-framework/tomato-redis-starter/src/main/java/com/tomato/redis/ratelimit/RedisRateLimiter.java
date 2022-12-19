@@ -25,8 +25,8 @@ import java.util.List;
  */
 @Validated
 public class RedisRateLimiter {
-    private StringRedisTemplate stringRedisTemplate;
-    private RedisScript<List<Long>> script;
+    private final StringRedisTemplate stringRedisTemplate;
+    private final RedisScript<List<Long>> script;
 
     public RedisRateLimiter(StringRedisTemplate stringRedisTemplate, RedisScript<List<Long>> script) {
         this.stringRedisTemplate = stringRedisTemplate;

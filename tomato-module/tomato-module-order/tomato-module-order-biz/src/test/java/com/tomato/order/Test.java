@@ -14,6 +14,7 @@ import java.util.Optional;
 public class Test {
     private static long runTimeout;
     public static void main(String[] args) {
+        System.out.println(luaScript());
         System.out.println(runTimeout);
         System.out.println(System.nanoTime());
         System.out.println(System.currentTimeMillis());
@@ -37,5 +38,16 @@ public class Test {
 
     public static String up(String source){
         return Optional.ofNullable(source).map(String::toUpperCase).orElse(source);
+    }
+    /**
+     * Lua 限流脚本
+     */
+    public static String luaScript() {
+        return "local key = KEYS[1];" +
+                "local count = tonumber(ARGV[1]);" +
+                "local interval = tonumber(ARGV[2]);" +
+                "local current = tonumber(redis.call('get', key) or \"0\") " +
+                "if current + 1 > count then return 0 " +
+                "else redis.call(\"INCRBY\", key, \"1\") redis.call(\"expire\", key, interval) return current + 1 end";
     }
 }
