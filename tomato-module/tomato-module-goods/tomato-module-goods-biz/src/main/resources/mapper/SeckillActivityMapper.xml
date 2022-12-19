@@ -14,4 +14,13 @@
              #{seckillActivity.startTime}, #{seckillActivity.endTime}
              )
     </insert>
+
+    <select id="selectByTime" resultType="java.util.List">
+        select
+            id
+        from
+            t_seckill_activity
+        where
+            start_time &gt;= #{startTime} and end_time &lt;= #{endTime} and activity_status = 0
+    </select>
 </mapper>

@@ -15,7 +15,7 @@ create table `t_seckill_activity`  (
     `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
     `create_time` datetime not null default current_timestamp comment '创建时间',
     primary key (`id`),
-    index idx_start_time(`start_time`)
+    index idx_start_time_end_time(`start_time`,`end_time`)
 )engine=innodb auto_increment=1 default charset=utf8mb4 collate=utf8mb4_bin comment='秒杀活动记录';
 
 
