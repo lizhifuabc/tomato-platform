@@ -14,21 +14,21 @@ POST http://localhost:8080/seckill/activity/goods/create
 Content-Type: application/json
 
 {
-  "seckillActivityId": 121,
+  "seckillActivityId": 1,
   "goodsList": [
     {
-    "goodsId": 121,
-    "seckillPrice": 1.23,
-    "seckillCount": 12,
-    "seckillLimit": 2,
+    "goodsId": 1,
+    "seckillPrice": 5,
+    "seckillCount": 20,
+    "seckillLimit": 1,
     "seckillSort": 1
     },
     {
-      "goodsId": 123,
-      "seckillPrice": 1.23,
-      "seckillCount": 12,
-      "seckillLimit": 2,
-      "seckillSort": 1
+      "goodsId": 2,
+      "seckillPrice": 6,
+      "seckillCount": 10,
+      "seckillLimit": 1,
+      "seckillSort": 2
     }
   ]
 }
