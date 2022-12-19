@@ -19,7 +19,6 @@ import java.util.List;
 @Service
 public class SeckillGoodsManager {
     private final SeckillGoodsDao seckillGoodsDao;
-
     public SeckillGoodsManager(SeckillGoodsDao seckillGoodsDao) {
         this.seckillGoodsDao = seckillGoodsDao;
     }

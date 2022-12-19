@@ -1,4 +1,4 @@
-package com.tomato.goods.seckill.service;
+package com.tomato.goods.seckill.manager;
 
 import com.tomato.goods.domain.entity.SeckillGoodsEntity;
 import com.tomato.goods.seckill.dao.SeckillGoodsDao;
@@ -17,11 +17,11 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class SeckillGoodsRedisService {
+public class SeckillGoodsRedisManager {
     private final String REDIS_QUEUE_KEY = "SECKILL:QUEUE:";
     private final SeckillGoodsDao seckillGoodsDao;
     private final StringRedisTemplate stringRedisTemplate;
-    public SeckillGoodsRedisService(SeckillGoodsDao seckillGoodsDao, StringRedisTemplate stringRedisTemplate) {
+    public SeckillGoodsRedisManager(SeckillGoodsDao seckillGoodsDao, StringRedisTemplate stringRedisTemplate) {
         this.seckillGoodsDao = seckillGoodsDao;
         this.stringRedisTemplate = stringRedisTemplate;
     }
@@ -52,7 +52,7 @@ public class SeckillGoodsRedisService {
      * @param seckillActivityId 活动ID
      */
     public Long seckillRemaining(Long goodsId,Long seckillActivityId){
-        // TODO 数据库查询 同步
+        // TODO 是否需要 数据库查询 同步 redis
         String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + goodsId;
         return stringRedisTemplate.opsForList().size(redisKey);
     }
