@@ -19,7 +19,7 @@ public class SeckillGoodsRedisManagerTest {
     @Test
     public void test(){
         seckillGoodsRedisManager.resetSeckillActivity(121L);
-        System.out.println(seckillGoodsRedisManager.resetSeckillGoods(121L, 121L));
+        System.out.println(seckillGoodsRedisManager.resetSeckillGoods(121L));
         System.out.println(seckillGoodsRedisManager.leftPush(121L, 121L));
         System.out.println(seckillGoodsRedisManager.seckillRemaining(121L, 121L));
     }

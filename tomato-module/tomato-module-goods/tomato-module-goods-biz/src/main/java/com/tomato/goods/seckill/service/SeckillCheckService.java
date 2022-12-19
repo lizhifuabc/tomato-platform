@@ -28,6 +28,11 @@ public class SeckillCheckService {
         this.seckillUserDao = seckillUserDao;
     }
 
+    /**
+     * 活动校验
+     * @param seckillActivityId 活动id
+     * @return
+     */
     public SeckillActivityEntity checkSeckillActivity(Long seckillActivityId){
         SeckillActivityEntity seckillActivity = seckillActivityDao.selectById(seckillActivityId);
         if (null == seckillActivity){
@@ -45,6 +50,11 @@ public class SeckillCheckService {
         return seckillActivity;
     }
 
+    /**
+     * 数据库库存校验
+     * @param seckillGoodsId 秒杀活动商品记录id
+     * @return
+     */
     public SeckillGoodsEntity checkSeckillGoods(Long seckillGoodsId){
         SeckillGoodsEntity seckillGoods = seckillGoodsDao.selectById(seckillGoodsId);
         if (null == seckillGoods){
@@ -56,6 +66,11 @@ public class SeckillCheckService {
         return seckillGoods;
     }
 
+    /**
+     * 用户抢购次数校验
+     * @param userId 用户ID
+     * @param seckillGoodsId 秒杀活动商品记录id
+     */
     public void checkSeckillUser(Long userId,Long seckillGoodsId){
         SeckillUserEntity seckillGoods = seckillUserDao.selectByUserIdSeckillGoodsId(userId,seckillGoodsId);
         if (null == seckillGoods){

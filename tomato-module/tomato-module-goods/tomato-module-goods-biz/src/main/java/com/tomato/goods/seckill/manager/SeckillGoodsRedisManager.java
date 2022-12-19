@@ -34,26 +34,25 @@ public class SeckillGoodsRedisManager {
         List<SeckillGoodsEntity> seckillGoodsEntities = seckillGoodsDao.selectBySeckillActivityId(seckillActivityId);
         log.info("重置所有活动数据:{}",seckillGoodsEntities);
         seckillGoodsEntities.forEach(seckillGoodsEntity->{
-            init(seckillGoodsEntity.getGoodsId(),seckillActivityId,seckillGoodsEntity.getSeckillRemaining());
+            init(seckillGoodsEntity.getId(),seckillActivityId,seckillGoodsEntity.getSeckillRemaining());
         });
     }
     /**
      * 重置所有商品数据
-     * @param goodsId 商品ID
-     * @param seckillActivityId 活动ID
+     * @param seckillGoodsId 秒杀活动商品ID
      */
-    public Long resetSeckillGoods(Long goodsId,Long seckillActivityId){
-        SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectBySeckillActivityIdGoodsId(goodsId,seckillActivityId);
-        return init(seckillGoodsEntity.getGoodsId(),seckillActivityId,seckillGoodsEntity.getSeckillRemaining());
+    public Long resetSeckillGoods(Long seckillGoodsId){
+        SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectById(seckillGoodsId);
+        return init(seckillGoodsEntity.getId(),seckillGoodsEntity.getSeckillActivityId(),seckillGoodsEntity.getSeckillRemaining());
     }
     /**
      * 商品库存查询
-     * @param goodsId 商品ID
+     * @param seckillGoodsId  秒杀活动商品ID {@link SeckillGoodsEntity }
      * @param seckillActivityId 活动ID
      */
-    public Long seckillRemaining(Long goodsId,Long seckillActivityId){
+    public Long seckillRemaining(Long seckillGoodsId,Long seckillActivityId){
         // TODO 是否需要 数据库查询 同步 redis
-        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + goodsId;
+        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
         return stringRedisTemplate.opsForList().size(redisKey);
     }
 
@@ -71,24 +70,24 @@ public class SeckillGoodsRedisManager {
 
     /**
      * 左边入队列，存入秒杀活动的商品
-     * @param goodsId 商品id
+     * @param seckillGoodsId 秒杀活动商品ID
      * @param seckillActivityId 活动ID
      * @return 剩余库存数
      */
-    public Long leftPush(Long goodsId, Long seckillActivityId){
-        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + goodsId;
+    public Long leftPush(Long seckillGoodsId, Long seckillActivityId){
+        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
         // lpush：左边入队列，存入秒杀活动的商品
         return stringRedisTemplate.opsForList().leftPush(redisKey,"1");
     }
     /**
      * lpush：左边入队列，存入秒杀活动的商品
-     * @param goodsId 商品id
+     * @param seckillGoodsId 秒杀活动商品ID
      * @param seckillActivityId 活动ID
      * @param count 数量
      * @return 剩余库存数
      */
-    public Long init(Long goodsId,Long seckillActivityId,Integer count){
-        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + goodsId;
+    public Long init(Long seckillGoodsId,Long seckillActivityId,Integer count){
+        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
         log.info("SeckillGoodsRedisService init redisKey is:{}",redisKey);
         // 删除数据
         stringRedisTemplate.delete(redisKey);
