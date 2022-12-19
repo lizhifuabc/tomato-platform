@@ -8,3 +8,27 @@ Content-Type: application/json
   "startTime": "2023-12-11 00:11:11",
   "endTime": "2022-12-20 00:11:11"
 }
+
+### 秒杀活动添加商品
+POST http://localhost:8080/seckill/activity/goods/create
+Content-Type: application/json
+
+{
+  "seckillActivityId": 121,
+  "goodsList": [
+    {
+    "goodsId": 121,
+    "seckillPrice": 1.23,
+    "seckillCount": 12,
+    "seckillLimit": 2,
+    "seckillSort": 1
+    },
+    {
+      "goodsId": 123,
+      "seckillPrice": 1.23,
+      "seckillCount": 12,
+      "seckillLimit": 2,
+      "seckillSort": 1
+    }
+  ]
+}

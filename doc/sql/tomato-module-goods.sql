@@ -38,7 +38,7 @@ create table `t_seckill_goods`  (
     `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
     `create_time` datetime not null default current_timestamp comment '创建时间',
     primary key (`id`),
-    index inx_seckill_activity_id(`seckill_activity_id`)
+    unique key uk_seckill_activity_id_goods_id(`seckill_activity_id`,`goods_id`)
 )engine=innodb auto_increment=1 default charset=utf8mb4 collate=utf8mb4_bin comment='秒杀活动商品';
 
 -- ----------------------------

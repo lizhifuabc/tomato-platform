@@ -12,4 +12,41 @@
             and seckill_remaining > 0
             and version = #{version}
     </update>
+    <insert id="insert" parameterType="SeckillGoodsEntity">
+        insert into
+            t_seckill_goods
+            (
+                seckill_activity_id,goods_id,
+                seckill_price,seckill_count,
+                seckill_limit,seckill_sort,
+                seckill_remaining
+            )
+        values
+            (
+             #{seckillGoods.seckillActivityId},#{seckillGoods.goodsId},
+             #{seckillGoods.seckillPrice},#{seckillGoods.seckillCount},
+             #{seckillGoods.seckillLimit},#{seckillGoods.seckillSort},
+             #{seckillGoods.seckillRemaining}
+            )
+    </insert>
+
+    <insert id="insertList">
+        insert into
+            t_seckill_goods
+            (
+            seckill_activity_id,goods_id,
+            seckill_price,seckill_count,
+            seckill_limit,seckill_sort,
+            seckill_remaining
+            )
+        values
+        <foreach collection ="goodsList" item="seckillGoods" separator =",">
+            (
+            #{seckillGoods.seckillActivityId},#{seckillGoods.goodsId},
+            #{seckillGoods.seckillPrice},#{seckillGoods.seckillCount},
+            #{seckillGoods.seckillLimit},#{seckillGoods.seckillSort},
+            #{seckillGoods.seckillRemaining}
+            )
+        </foreach>
+    </insert>
 </mapper>
