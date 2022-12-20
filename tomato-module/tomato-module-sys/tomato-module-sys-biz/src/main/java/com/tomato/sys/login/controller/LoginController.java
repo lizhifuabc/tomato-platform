@@ -5,7 +5,7 @@ import com.tomato.domain.resp.SingleResp;
 import com.tomato.sys.domain.req.LoginReq;
 import com.tomato.sys.domain.resp.LoginResp;
 import com.tomato.sys.login.service.LoginService;
-import com.tomato.web.util.servlet.ServletUtil;
+import com.tomato.web.util.servlet.IpUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +30,7 @@ public class LoginController {
     @PostMapping("/login")
     public SingleResp<LoginResp> login(@Valid @RequestBody LoginReq loginReq) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        SingleResp<LoginResp> singleResp = loginService.login(loginReq, ServletUtil.getClientIP(request), "user-agent");
+        SingleResp<LoginResp> singleResp = loginService.login(loginReq, IpUtil.getClientIp(request));
         return singleResp;
     }
     @GetMapping("/login/logout")

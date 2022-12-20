@@ -32,7 +32,7 @@ public class LoginService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public SingleResp<LoginResp> login(LoginReq loginReq, String ip, String userAgent) {
+    public SingleResp<LoginResp> login(LoginReq loginReq, String ip) {
         SysUserEntity sysUserEntity = sysUserDao.selectByLoginName(loginReq.getLoginName());
         // 校验账号是否存在
         if(null == sysUserEntity){
