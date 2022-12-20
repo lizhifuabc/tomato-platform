@@ -1,7 +1,5 @@
 package com.tomato.order.domain.resp;
 
-import com.tomato.jackson.datamask.DataMask;
-import com.tomato.jackson.datamask.DataMaskEnum;
 import lombok.Builder;
 import lombok.Data;
 

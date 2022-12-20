@@ -1,0 +1,18 @@
+### 查询
+POST http://localhost:8080/order/query/merchant
+Content-Type: application/json
+
+{
+  "merchantOrderNo": "admin",
+  "merchantNo": "123456",
+  "hmac": "123456"
+}
+
+### 订单号查询
+POST http://localhost:8080/order/query/orderNo
+Content-Type: application/json
+
+{
+  "orderNo": "admin",
+  "hmac": "123456"
+}
