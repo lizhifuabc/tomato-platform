@@ -19,6 +19,8 @@ public class OrderDaoTest {
 
     @Test
     public void test(){
+        System.out.println(orderDao.selectByOrderNo("12"));
+        System.out.println(orderDao.selectByMerchant("12", "12"));
         UpdateOrderStatusBO updateOrderStatusBO = UpdateOrderStatusBO.builder()
                 .orderNo("12")
                 .build();

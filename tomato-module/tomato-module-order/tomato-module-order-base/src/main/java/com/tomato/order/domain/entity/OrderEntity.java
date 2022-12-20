@@ -15,4 +15,21 @@ import lombok.Data;
 @Data
 public class OrderEntity extends BaseEntity {
     private String noticeWeb;
+    /**
+     * 商户订单号
+     */
+    private String merchantOrderNo;
+
+    /**
+     * 商户编号
+     */
+    private String merchantNo;
+    /**
+     * 订单号
+     */
+    private String orderNo;
+    /**
+     * 支付方式：1 微信扫码 、2 支付宝扫码
+     */
+    private Integer payType;
 }

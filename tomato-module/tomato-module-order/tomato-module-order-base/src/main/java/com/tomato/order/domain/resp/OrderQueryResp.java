@@ -5,6 +5,8 @@ import com.tomato.jackson.datamask.DataMaskEnum;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 /**
  * 订单查询
  *
@@ -15,8 +17,19 @@ import lombok.Data;
 @Builder
 public class OrderQueryResp {
     /**
-     * 商户名称
+     * 商户订单号
      */
-    @DataMask(function = DataMaskEnum.NAME)
-    private String merchantName;
+    private String merchantOrderNo;
+    /**
+     * 商户编号
+     */
+    private String merchantNo;
+    /**
+     * 订单号
+     */
+    private String orderNo;
+    /**
+     * 完成时间
+     */
+    private LocalDateTime completeTime;
 }

@@ -13,4 +13,25 @@
             and version = #{updateOrderStatusBO.currentVersion}
             and order_status = #{updateOrderStatusBO.expectOrderStatus}
     </update>
+
+    <sql id="select_fields">
+        order_status,order_no,pay_type,complete_time
+    </sql>
+
+    <select id="selectByOrderNo" resultType="OrderQueryResp">
+        select
+            <include refid="select_fields" />
+        from
+            t_order_info
+        where
+            order_no = #{orderNo}
+    </select>
+    <select id="selectByMerchant" resultType="OrderQueryResp">
+        select
+            <include refid="select_fields" />
+        from
+            t_order_info
+        where
+            merchant_no = #{merchantNo} and merchant_order_no = #{merchantOrderNo}
+    </select>
 </mapper>

@@ -19,7 +19,6 @@ public class OrderQueryController {
     @RequestMapping("/order/query")
     public SingleResp<OrderQueryResp> queryOrder(){
         OrderQueryResp orderQueryResp = OrderQueryResp.builder()
-                .merchantName("上海人民中国股份有限公司上海人民中国股份有限公司")
                 .build();
         log.info("OrderQueryController queryOrder return:{}",orderQueryResp);
         return SingleResp.of(orderQueryResp);
