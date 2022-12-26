@@ -1,12 +1,16 @@
 package com.tomato.rabbitmq.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tomato.rabbitmq.monitor.RabbitThreadPoolMonitor;
+import org.springframework.amqp.rabbit.connection.AbstractConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
+
+import java.util.Map;
 
 /**
  * rabbitmq配置
@@ -42,5 +46,10 @@ public class RabbitConfig {
         // template.setMandatory(true);
         template.setMessageConverter(jackJsonMessageConverter);
         return template;
+    }
+
+    @Bean
+    public RabbitThreadPoolMonitor rabbitThreadPoolMonitor(Map<String, AbstractConnectionFactory> abstractConnectionFactoryMap){
+        return new RabbitThreadPoolMonitor(abstractConnectionFactoryMap);
     }
 }
