@@ -16,7 +16,7 @@
         <!-- maven 全局版本号管理 -->
         <revision>1.0-SNAPSHOT</revision>
         <!-- spring boot / spring cloud 统一依赖管理 -->
-        <spring.boot.version>3.0.0</spring.boot.version>
+        <spring.boot.version>3.0.1</spring.boot.version>
         <spring.cloud.version>2021.0.5</spring.cloud.version>
         <spring.cloud.alibaba.version>2021.0.4.0</spring.cloud.alibaba.version>
         <!-- mybatis 版本管理 -->

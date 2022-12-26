@@ -20,7 +20,7 @@ import java.util.Map;
  * @since 2022/12/19
  */
 @Slf4j
-@Component
+//@Component
 public class SeckillDelayListener {
     @RabbitListener(queues = "seckill.delay.queue",ackMode = "MANUAL")
     public void delay(String no, Message message, Channel channel, @Headers Map<String, Object> headers) throws IOException {
