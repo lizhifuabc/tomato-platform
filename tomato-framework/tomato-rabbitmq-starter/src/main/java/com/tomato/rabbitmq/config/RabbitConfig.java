@@ -1,5 +1,6 @@
 package com.tomato.rabbitmq.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -22,8 +23,8 @@ public class RabbitConfig {
      * @return
      */
     @Bean
-    public MessageConverter jackJsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
+    public MessageConverter jackJsonMessageConverter(ObjectMapper objectMapper) {
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 
     /**

@@ -23,7 +23,7 @@ import java.util.Map;
 @Slf4j
 @Component
 public class OrderTimeOutDelayListener {
-    @RabbitListener(queues = RabbitMqConstant.ORDER_DELAY_QUEUE,ackMode = "MANUAL")
+    @RabbitListener(queues = RabbitMqConstant.ORDER_DELAY_QUEUE,ackMode = "MANUAL",concurrency = "2")
     public void delay(@Payload OrderDelayBO orderDelayBO, Message message, Channel channel, @Headers Map<String, Object> headers) throws IOException {
         log.info("延迟队列：订单 {}",orderDelayBO);
         try {

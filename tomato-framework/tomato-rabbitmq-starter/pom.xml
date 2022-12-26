@@ -21,6 +21,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-jackson-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
