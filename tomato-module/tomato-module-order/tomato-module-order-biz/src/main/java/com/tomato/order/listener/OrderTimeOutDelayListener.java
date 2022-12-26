@@ -23,9 +23,9 @@ import java.util.Map;
 @Slf4j
 @Component
 public class OrderTimeOutDelayListener {
-    @RabbitListener(queues = RabbitMqConstant.ORDER_DELAY_QUEUE,ackMode = "MANUAL",concurrency = "2")
+    @RabbitListener(queues = RabbitMqConstant.ORDER_DELAY_QUEUE,ackMode = "MANUAL",concurrency = "2-4",autoStartup = "true")
     public void delay(@Payload OrderDelayBO orderDelayBO, Message message, Channel channel, @Headers Map<String, Object> headers) throws IOException {
-        log.info("延迟队列：订单 {}",orderDelayBO);
+        log.info("监听器监听到延迟队列：订单 {}",orderDelayBO);
         try {
             // 消息的标识，false只确认当前一个消息收到，true确认所有consumer获得的消息（成功消费，消息从队列中删除 ）
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
