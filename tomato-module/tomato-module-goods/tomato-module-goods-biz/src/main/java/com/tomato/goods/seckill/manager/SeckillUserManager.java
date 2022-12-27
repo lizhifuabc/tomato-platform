@@ -46,7 +46,7 @@ public class SeckillUserManager {
                     .build();
             int res = seckillUserDao.updateSkillRemaining(updateSkillRemainingBO);
             if(res != 1){
-                throw new BusinessException("抢购失败");
+                throw new BusinessException("用户已到达最大抢购次数");
             }
         }
         // 只做记录使用

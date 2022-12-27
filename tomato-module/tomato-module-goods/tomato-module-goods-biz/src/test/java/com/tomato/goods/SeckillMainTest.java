@@ -1,15 +1,10 @@
 package com.tomato.goods;
 
-import com.tomato.goods.domain.entity.SeckillGoodsEntity;
 import com.tomato.goods.domain.req.SeckillReq;
-import com.tomato.goods.seckill.dao.SeckillGoodsDao;
 import com.tomato.goods.seckill.manager.SeckillGoodsRedisManager;
-import com.tomato.goods.seckill.manager.SeckillUserManager;
 import com.tomato.goods.seckill.service.SeckillCheckService;
 import com.tomato.goods.seckill.service.SeckillGoodsService;
 import com.tomato.goods.seckill.service.SeckillRedisCheckService;
-import com.tomato.redis.domain.req.RedisConcurrentRequestCountLimiterReq;
-import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,10 +32,10 @@ public class SeckillMainTest {
         // 测试参数构建
         String ip = "127.0.0.1";
         SeckillReq seckillReq = new SeckillReq();
-        seckillReq.setSeckillGoodsId(1L);
+        seckillReq.setSeckillGoodsId(2L);
         seckillReq.setSeckillActivityId(1L);
-        seckillReq.setUserId(20003L);
-        seckillReq.setGoodsId(1L);
+        seckillReq.setUserId(20001L);
+        seckillReq.setGoodsId(2L);
         // 接口请求次数限流 TODO
         // 同一ip限流 && 同一用户限流
         seckillRedisCheckService.checkUserIp(ip,seckillReq.getUserId());
@@ -57,8 +52,7 @@ public class SeckillMainTest {
 
         // 执行抢购
         // redis 扣减库存
-        String rightPop = seckillGoodsRedisManager.rightPop(seckillReq.getSeckillGoodsId(), seckillReq.getSeckillActivityId());
-        System.out.println("redis 扣减库存:"+rightPop);
+        seckillGoodsRedisManager.deductSeckillGoods(seckillReq.getSeckillGoodsId(), seckillReq.getSeckillActivityId());
         // 数据库扣减库存 && 用户抢购记录
         seckillGoodsService.deductSeckillGoods(seckillReq.getSeckillGoodsId(),seckillReq.getUserId());
 

@@ -1,5 +1,6 @@
 package com.tomato.goods.seckill.manager;
 
+import com.tomato.domain.exception.BusinessException;
 import com.tomato.goods.domain.entity.SeckillGoodsEntity;
 import com.tomato.goods.seckill.dao.SeckillGoodsDao;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 秒杀活动商品
@@ -57,15 +59,20 @@ public class SeckillGoodsRedisManager {
     }
 
     /**
+     * 扣减库存
      * rpop：右边出队列，获取抢到的商品
      * @param seckillGoodsId 秒杀活动商品ID
      * @param seckillActivityId 活动ID
      * @return
      */
-    public String rightPop(Long seckillGoodsId, Long seckillActivityId){
+    public String deductSeckillGoods(Long seckillGoodsId, Long seckillActivityId){
         String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
         // rpop：右边出队列，获取抢到的商品
-        return stringRedisTemplate.opsForList().rightPop(redisKey);
+        String rightPop = stringRedisTemplate.opsForList().rightPop(redisKey);
+        if(Objects.isNull(rightPop)){
+            throw new BusinessException("抢购失败，库存不足");
+        }
+        return rightPop;
     }
 
     /**
@@ -91,6 +98,9 @@ public class SeckillGoodsRedisManager {
         log.info("SeckillGoodsRedisService init redisKey is:{}",redisKey);
         // 删除数据
         stringRedisTemplate.delete(redisKey);
+        if (count == 0){
+            return 0L;
+        }
         // lpush：左边入队列，存入秒杀活动的商品
         return stringRedisTemplate.opsForList().leftPushAll(redisKey, goodsList(count));
     }

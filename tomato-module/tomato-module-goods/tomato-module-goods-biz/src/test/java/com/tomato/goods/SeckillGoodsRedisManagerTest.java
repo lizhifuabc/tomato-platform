@@ -25,8 +25,9 @@ public class SeckillGoodsRedisManagerTest {
     }
     @Test
     public void remove(){
+        seckillGoodsRedisManager.resetSeckillActivity(1L);
         for (int i = 0; i < 10; i++) {
-            System.out.println(seckillGoodsRedisManager.rightPop(121L, 121L));
+            System.out.println(seckillGoodsRedisManager.deductSeckillGoods(1L, 1L));
         }
     }
 }

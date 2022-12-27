@@ -64,7 +64,7 @@ public class RedisTest {
     @Test
     public void queue(){
         // SECKILL:QUEUE:121:123
-        String key = "SECKILL:QUEUE:121:121";
+        String key = "SECKILL:QUEUE:1:1";
         System.out.println(stringRedisTemplate.opsForList().size(key));
         // range(K key, long start, long end)
         // 获取指定区间的值。
