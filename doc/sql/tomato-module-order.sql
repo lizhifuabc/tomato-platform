@@ -42,3 +42,11 @@ create table`t_order_info` (
      unique key uk_merchant_no_merchant_order_no (merchant_no,merchant_order_no) using btree,
      index(`create_time`) using btree
 ) engine = innodb auto_increment = 1 character set = utf8mb4 collate = utf8mb4_unicode_ci comment = '订单表' row_format = dynamic;
+
+# 订单表扩展
+drop table if exists `t_order_info_extend`;
+create table`t_order_info_extend` (
+    `id` bigint(20) unsigned not null auto_increment,
+    `order_no` varchar(36) not null  comment '订单号',
+    unique key uk_order_no (order_no) using btree
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单表扩展';

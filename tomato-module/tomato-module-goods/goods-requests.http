@@ -40,5 +40,6 @@ Content-Type: application/json
 {
   "goodsId": 1,
   "seckillActivityId": 1,
-  "userId": 100000
+  "userId": 100000,
+  "seckillGoodsId": 1
 }

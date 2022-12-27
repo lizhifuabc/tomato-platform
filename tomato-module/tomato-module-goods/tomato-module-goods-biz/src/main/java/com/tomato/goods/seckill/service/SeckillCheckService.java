@@ -77,7 +77,7 @@ public class SeckillCheckService {
             return;
         }
         if(seckillGoods.getSeckillRemaining() <= 0){
-            throw new BusinessException("已到达最大抢购次数");
+            throw new BusinessException("用户已到达最大抢购次数");
         }
     }
 }

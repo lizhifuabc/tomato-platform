@@ -52,7 +52,7 @@
 
     <select id="selectBySeckillActivityId" resultType="SeckillGoodsEntity">
         select
-               goods_id,
+               goods_id,id,
                seckill_price,seckill_count,
                seckill_limit,seckill_sort,
                seckill_remaining
@@ -64,7 +64,7 @@
 
     <select id="selectBySeckillActivityIdGoodsId" resultType="SeckillGoodsEntity">
         select
-            goods_id,
+            goods_id,id,
             seckill_price,seckill_count,
             seckill_limit,seckill_sort,
             seckill_remaining
@@ -76,6 +76,7 @@
     <select id="selectById" resultType="SeckillGoodsEntity">
         select
             id,
+            version,
             goods_id,
             seckill_price,seckill_count,
             seckill_limit,seckill_sort,

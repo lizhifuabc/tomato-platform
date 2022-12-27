@@ -58,12 +58,12 @@ public class SeckillGoodsRedisManager {
 
     /**
      * rpop：右边出队列，获取抢到的商品
-     * @param goodsId 商品id
+     * @param seckillGoodsId 秒杀活动商品ID
      * @param seckillActivityId 活动ID
      * @return
      */
-    public String rightPop(Long goodsId, Long seckillActivityId){
-        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + goodsId;
+    public String rightPop(Long seckillGoodsId, Long seckillActivityId){
+        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
         // rpop：右边出队列，获取抢到的商品
         return stringRedisTemplate.opsForList().rightPop(redisKey);
     }
