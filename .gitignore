@@ -33,6 +33,10 @@ build/
 
 ### VS Code ###
 .vscode/
+### front ###
+**/dist
+**/node_modules
+**/.vscode
 
 ### Mac OS ###
 .DS_Store

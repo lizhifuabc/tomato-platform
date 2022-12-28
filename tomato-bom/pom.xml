@@ -43,6 +43,7 @@
         <jjwt-api.version>0.11.5</jjwt-api.version>
         <!-- 验证码相关 -->
         <aj-captcha.version>1.3.0</aj-captcha.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -145,7 +146,12 @@
                 <artifactId>jjwt-api</artifactId>
                 <version>${jjwt-api.version}</version>
             </dependency>
-
+            <!-- https://github.com/penggle/kaptcha -->
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
             <!-- jwt -->
             <dependency>
                 <groupId>com.auth0</groupId>
@@ -179,6 +185,11 @@
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-domain</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-captcha-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
