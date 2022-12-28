@@ -32,4 +32,8 @@ public class OrderEntity extends BaseEntity {
      * 支付方式：1 微信扫码 、2 支付宝扫码
      */
     private Integer payType;
+    /**
+     * 订单状态
+     */
+    private String orderStatus;
 }

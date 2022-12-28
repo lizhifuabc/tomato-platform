@@ -30,4 +30,12 @@ public class OrderQueryResp {
      * 完成时间
      */
     private LocalDateTime completeTime;
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+    /**
+     * 订单状态
+     */
+    private String orderStatus;
 }

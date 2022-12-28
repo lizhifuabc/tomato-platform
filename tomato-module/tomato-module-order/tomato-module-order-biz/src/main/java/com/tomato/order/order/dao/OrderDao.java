@@ -35,4 +35,11 @@ public interface OrderDao {
      * @return OrderQueryResp
      */
     OrderQueryResp selectByOrderNo(@Param("orderNo") String orderNo);
+
+    /**
+     * 订单查询
+     * @param orderNo 订单号
+     * @return OrderEntity
+     */
+    OrderEntity selectByOrderNoBase(@Param("orderNo") String orderNo);
 }

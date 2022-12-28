@@ -15,7 +15,7 @@
     </update>
 
     <sql id="select_fields">
-        order_status,order_no,pay_type,complete_time
+        order_status,order_no,pay_type,complete_time,create_time
     </sql>
 
     <select id="selectByOrderNo" resultType="OrderQueryResp">
@@ -26,6 +26,7 @@
         where
             order_no = #{orderNo}
     </select>
+
     <select id="selectByMerchant" resultType="OrderQueryResp">
         select
             <include refid="select_fields" />
@@ -33,5 +34,14 @@
             t_order_info
         where
             merchant_no = #{merchantNo} and merchant_order_no = #{merchantOrderNo}
+    </select>
+
+    <select id="selectByOrderNoBase" resultType="OrderEntity">
+        select
+            order_status,order_no,pay_type,complete_time,create_time,version
+        from
+            t_order_info
+        where
+            order_no = #{orderNo}
     </select>
 </mapper>

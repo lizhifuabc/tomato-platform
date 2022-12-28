@@ -9,7 +9,7 @@ create table`t_order_info` (
 
     `request_amount` decimal(14,4)  not null  comment '订单金额',
 
-    `order_status`   varchar(36) not null comment '订单状态: 0-订单生成, 1-支付中, 2-支付成功, 3-支付失败, 4-已撤销, 5-已退款, 6-订单关闭',
+    `order_status`   varchar(36) not null comment '订单状态',
     `account_status` varchar(36) not null comment '入账状态',
     `refund_status`  varchar(36) not null comment '退款状态',
     `notice_status`  varchar(36) not null comment '通知状态',
@@ -37,9 +37,9 @@ create table`t_order_info` (
     `version` int default 0 not null comment '乐观锁',
     `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
     `create_time` datetime not null default current_timestamp comment '创建时间',
-     primary key (id) using btree,
-     unique key uk_order_no (order_no) using btree,
-     unique key uk_merchant_no_merchant_order_no (merchant_no,merchant_order_no) using btree,
+     primary key (`id`) using btree,
+     unique key uk_order_no (`order_no`) using btree,
+     unique key uk_merchant_no_merchant_order_no (`merchant_no`,`merchant_order_no`) using btree,
      index(`create_time`) using btree
 ) engine = innodb auto_increment = 1 character set = utf8mb4 collate = utf8mb4_unicode_ci comment = '订单表' row_format = dynamic;
 
@@ -48,5 +48,6 @@ drop table if exists `t_order_info_extend`;
 create table`t_order_info_extend` (
     `id` bigint(20) unsigned not null auto_increment,
     `order_no` varchar(36) not null  comment '订单号',
-    unique key uk_order_no (order_no) using btree
+     primary key (`id`) using btree,
+     unique key uk_order_no (`order_no`) using btree
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单表扩展';

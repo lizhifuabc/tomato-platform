@@ -26,7 +26,7 @@ public class OrderManager {
      * @param orderNo 订单号
      * @param orderStatus 终态：支付成功、支付失败、支付撤销、订单关闭
      * @param currentVersion 当前版本号
-     * @return
+     * @return 更新条数
      */
     public int completeOrder(String orderNo,String orderStatus,Integer currentVersion){
         UpdateOrderStatusBO updateOrderStatusBO = UpdateOrderStatusBO.builder()
@@ -42,7 +42,7 @@ public class OrderManager {
      * 设置订单为支付中：只能从 INIT-->DEAL
      * @param orderNo 订单号
      * @param currentVersion 当前版本号
-     * @return
+     * @return 更新条数
      */
     public int dealOrder(String orderNo,Integer currentVersion){
         UpdateOrderStatusBO updateOrderStatusBO = UpdateOrderStatusBO.builder()
