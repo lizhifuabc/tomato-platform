@@ -4,9 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
 
 /**
  * 跨域配置
@@ -25,23 +28,20 @@ public class CorsFilterConfig {
      * @return
      */
     @Bean
-    public CorsFilter corsFilter () {
+    @Order(Integer.MIN_VALUE)
+    public CorsFilter defaultCorsFilter() {
         log.info("初始化 CorsFilter 跨域配置：{}",accessControlAllowOrigin);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        // 允许cookies跨域
-        config.setAllowCredentials(true);
-        // 允许向该服务器提交请求的URI，*表示全部允许
-        config.addAllowedOriginPattern(accessControlAllowOrigin);
-        // 允许访问的头信息,*表示全部
-        config.addAllowedHeader("*");
-        // 预检请求的缓存时间（秒），即在这个时间段里，对于相同的跨域请求不会再预检了
-        // 默认 1800L
-        config.setMaxAge(1800L);
+        CorsConfiguration configuration = new CorsConfiguration();
+        // 允许向该服务器提交请求的URI，* 表示全部允许
+        configuration.addAllowedOriginPattern(accessControlAllowOrigin);
+        configuration.setAllowedOrigins(Arrays.asList("*"));
         // 允许提交请求的方法，*表示全部允许
-        config.addAllowedMethod("*");
-        // 对接口配置跨域设置
-        source.registerCorsConfiguration("/**", config);
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "HEAD", "DELETE", "OPTION"));
+        // 允许访问的头信息,*表示全部
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.addExposedHeader("Authorization");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
         return new CorsFilter(source);
     }
 }

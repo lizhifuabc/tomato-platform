@@ -21,4 +21,8 @@ public class CaptchaResp {
      * 过期时间（秒）
      */
     private Long expireSeconds;
+    /**
+     * 验证码图片内容
+     */
+    private String captchaText;
 }

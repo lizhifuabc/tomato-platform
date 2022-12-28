@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.function.BiFunction;
 
@@ -24,6 +25,8 @@ import java.util.function.BiFunction;
  * @since 2022/12/16
  */
 public abstract class AbstractSecurityConfig {
+    @Resource
+    private CorsFilter defaultCorsFilter;
     /**
      * Token获取用户信息
      *
@@ -80,6 +83,7 @@ public abstract class AbstractSecurityConfig {
         ;
         // 添加 Token Filter
         httpSecurity.addFilterBefore(new TokenAuthenticationFilter(this.userFunction()), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(defaultCorsFilter, TokenAuthenticationFilter.class);
         return httpSecurity.build();
     }
 }

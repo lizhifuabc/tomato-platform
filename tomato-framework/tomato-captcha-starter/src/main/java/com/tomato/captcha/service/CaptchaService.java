@@ -51,6 +51,7 @@ public class CaptchaService {
 
         CaptchaResp captchaResp = new CaptchaResp();
         captchaResp.setCaptchaUuid(uuid);
+        captchaResp.setCaptchaText(captchaText);
         captchaResp.setCaptchaBase64Image("data:image/png;base64," + base64Code);
         captchaResp.setExpireSeconds(EXPIRE_SECOND);
         return captchaResp;
