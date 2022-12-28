@@ -40,7 +40,8 @@ create table`t_order_info` (
      primary key (`id`) using btree,
      unique key uk_order_no (`order_no`) using btree,
      unique key uk_merchant_no_merchant_order_no (`merchant_no`,`merchant_order_no`) using btree,
-     index(`create_time`) using btree
+     index(`create_time`) using btree,
+     index(`timeout_time`) using btree
 ) engine = innodb auto_increment = 1 character set = utf8mb4 collate = utf8mb4_unicode_ci comment = '订单表' row_format = dynamic;
 
 # 订单表扩展

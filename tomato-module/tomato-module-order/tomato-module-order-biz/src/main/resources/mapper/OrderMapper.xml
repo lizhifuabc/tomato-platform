@@ -44,4 +44,16 @@
         where
             order_no = #{orderNo}
     </select>
+
+    <update id="updateOrderStatusTimeOut">
+        update
+            t_order_info
+        set
+            version = version + 1,
+            order_status = '${@com.tomato.order.domain.constant.OrderStatusEnum@TIMEOUT.value}',
+            complete_time = current_timestamp
+        where
+            timeout_time &lt;= current_timestamp
+            and order_status = '${@com.tomato.order.domain.constant.OrderStatusEnum@DEAL.value}'
+    </update>
 </mapper>

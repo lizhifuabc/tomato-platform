@@ -42,4 +42,11 @@ public interface OrderDao {
      * @return OrderEntity
      */
     OrderEntity selectByOrderNoBase(@Param("orderNo") String orderNo);
+
+    /**
+     * 超时订单状态更新
+     * TODO 大数据量处理
+     * @return 更新条数
+     */
+    int updateOrderStatusTimeOut();
 }

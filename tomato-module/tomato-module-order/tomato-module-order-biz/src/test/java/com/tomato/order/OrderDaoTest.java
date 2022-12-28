@@ -26,4 +26,9 @@ public class OrderDaoTest {
                 .build();
         System.out.println(orderDao.updateOrderStatus(updateOrderStatusBO));
     }
+
+    @Test
+    public void updateOrderStatusTimeOut(){
+        System.out.println(orderDao.updateOrderStatusTimeOut());
+    }
 }
