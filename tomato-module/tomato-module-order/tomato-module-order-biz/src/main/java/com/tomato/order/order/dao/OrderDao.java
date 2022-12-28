@@ -6,6 +6,9 @@ import com.tomato.order.order.domain.bo.UpdateOrderStatusBO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 /**
  * 订单 dao
  * {@link OrderEntity}
@@ -49,4 +52,17 @@ public interface OrderDao {
      * @return 更新条数
      */
     int updateOrderStatusTimeOut();
+
+    /**
+     * 订单查询
+     * @param pageIndex 当前页码
+     * @param pageSize 查询数量
+     * @param createTime 创建时间
+     * @param orderStatus 订单状态
+     * @return 订单
+     */
+    List<OrderEntity> selectByCreateTime(@Param("pageIndex") int pageIndex,
+                                         @Param("pageSize") int pageSize,
+                                         @Param("createTime") LocalDateTime createTime,
+                                         @Param("orderStatus") String orderStatus);
 }

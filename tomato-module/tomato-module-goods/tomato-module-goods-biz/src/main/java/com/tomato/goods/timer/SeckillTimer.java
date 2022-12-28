@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * 缓存预热
  * <p> TODO 注册定时任务到分布式调度中心，用于预热商品数据</p>
+ * TODO 定时锁
  * @author lizhifu
  * @date 2022/12/10
  */

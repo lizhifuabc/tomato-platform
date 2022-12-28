@@ -56,4 +56,15 @@
             timeout_time &lt;= current_timestamp
             and order_status = '${@com.tomato.order.domain.constant.OrderStatusEnum@DEAL.value}'
     </update>
+
+    <select id="selectByCreateTime" resultType="OrderEntity">
+        select
+            order_status,order_no,pay_type,create_time,version
+        from
+            t_order_info
+        where
+            create_time &gt;= #{createTime}
+            and order_status = #{orderStatus}
+            limit #{pageIndex},#{pageSize}
+    </select>
 </mapper>
