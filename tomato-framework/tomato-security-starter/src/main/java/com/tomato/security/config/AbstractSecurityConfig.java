@@ -56,9 +56,8 @@ public abstract class AbstractSecurityConfig {
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         // 登出
         httpSecurity
-                // 开启跨域
-                .cors()
-                .and()
+                // 开启跨域，不能同时开启跨域配置
+//                .cors().and()
                 // CSRF禁用，不使用session
                 .csrf().disable()
                 // 基于 token 机制，所以不需要 Session

@@ -10,6 +10,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 跨域配置
@@ -34,11 +35,11 @@ public class CorsFilterConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         // 允许向该服务器提交请求的URI，* 表示全部允许
         configuration.addAllowedOriginPattern(accessControlAllowOrigin);
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOrigins(List.of("*"));
         // 允许提交请求的方法，*表示全部允许
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "HEAD", "DELETE", "OPTION"));
         // 允许访问的头信息,*表示全部
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowedHeaders(List.of("*"));
         configuration.addExposedHeader("Authorization");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
