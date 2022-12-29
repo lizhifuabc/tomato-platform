@@ -3,6 +3,8 @@ package com.tomato.sys.domain.resp;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 用户登录
  *
@@ -16,4 +18,8 @@ public class LoginResp {
      * token
      */
     private String token;
+    /**
+     * 菜单列表
+     */
+    private List<MenuResp> menuList;
 }

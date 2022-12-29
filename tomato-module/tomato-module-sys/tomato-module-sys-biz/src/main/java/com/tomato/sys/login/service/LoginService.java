@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 /**
  * 登录服务
  *
@@ -49,6 +51,7 @@ public class LoginService {
         String token = tokenService.generateToken(sysUserEntity.getId(),loginReq.getLoginName(), LoginDeviceEnum.PC);
         LoginResp loginResp = LoginResp.builder()
                 .token(token)
+                .menuList(new ArrayList<>())
                 .build();
         return SingleResp.of(loginResp);
     }

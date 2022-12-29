@@ -16,4 +16,10 @@ public class LoginReq {
 
     @NotBlank(message = "密码不能为空")
     private String loginPwd;
+
+    @NotBlank(message = "验证码不能为空")
+    private String captchaCode;
+
+    @NotBlank(message = "验证码UUID不能为空")
+    private String captchaUuid;
 }
