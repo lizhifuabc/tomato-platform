@@ -13,7 +13,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import java.io.IOException;
 
 /**
- * 未登录访问，前端重定向到登录页
+ * 认证失败处理类->未登录访问，前端重定向到登录页
  *
  * @author lizhifu
  * @since 2022/12/16
@@ -22,7 +22,7 @@ import java.io.IOException;
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        log.info("[anonymous][访问 URL({}) 时，没有登录]", request.getRequestURI(), authException.getLocalizedMessage());
+        log.info("[commence][访问 URL({}) 时，没有登录({})]", request.getRequestURI(), authException.getLocalizedMessage());
         // 请求授权失败，需要进行用户认证。客户端可再次发起请求、并在请求头中提供一个包含认证证书、如会话跟踪cookie
         Resp resp = Resp.buildFailure(String.valueOf(HttpStatus.UNAUTHORIZED.value()),"未登录访问");
         ObjectMapper objectMapper = new ObjectMapper();

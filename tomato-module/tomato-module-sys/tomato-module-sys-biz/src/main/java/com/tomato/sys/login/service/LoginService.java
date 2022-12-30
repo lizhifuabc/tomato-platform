@@ -10,11 +10,17 @@ import com.tomato.sys.login.domain.bo.LoginUserDetails;
 import com.tomato.sys.user.dao.SysUserDao;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 登录服务
@@ -69,9 +75,18 @@ public class LoginService {
         SysUserEntity sysUserEntity = sysUserDao.selectById(userId);
         LoginUserDetails loginResp = LoginUserDetails.builder()
                 .token(token)
+                .authorities(buildAuthorities())
                 .loginName(sysUserEntity.getLoginName())
                 .build();
         log.info("loginResp is {}",loginResp);
         return loginResp;
+    }
+
+    private Set<? extends GrantedAuthority> buildAuthorities() {
+        HashSet<String> permissionList = new HashSet<>();
+        permissionList.add("/login/logout");
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.addAll(permissionList.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet()));
+        return authorities;
     }
 }

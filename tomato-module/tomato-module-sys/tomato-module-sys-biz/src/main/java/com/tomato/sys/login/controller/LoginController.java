@@ -2,6 +2,7 @@ package com.tomato.sys.login.controller;
 
 import com.tomato.domain.resp.Resp;
 import com.tomato.domain.resp.SingleResp;
+import com.tomato.security.constant.RequestHeaderConstant;
 import com.tomato.sys.domain.req.LoginReq;
 import com.tomato.sys.domain.resp.LoginResp;
 import com.tomato.sys.login.service.LoginService;
@@ -34,7 +35,7 @@ public class LoginController {
         return singleResp;
     }
     @GetMapping("/login/logout")
-    public Resp logout(@RequestHeader(value = "TOKEN", required = false) String token) {
+    public Resp logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
         return Resp.buildSuccess();
     }
 }

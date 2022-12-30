@@ -72,11 +72,11 @@ public abstract class AbstractSecurityConfig {
         httpSecurity.authorizeHttpRequests()
                 // 静态资源，可匿名访问
                 .requestMatchers(HttpMethod.GET, "/*.html", "/*/*.html", "/*/*.css", "/*/*.js").permitAll()
-                // 免登录的 URL 列表
+                // 免登录的 URL 列表,忽略的url
                 .requestMatchers(securityProperties.getPermitAllUrls().toArray(new String[0])).permitAll()
                 // ②：每个项目的自定义规则
                 .and()
-                // 其他必须认证
+                // 所有请求需要身份认证
                 .authorizeHttpRequests()
                 .anyRequest().authenticated()
         ;
