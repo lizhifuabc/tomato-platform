@@ -3,6 +3,8 @@ package com.tomato.sys.domain.entity;
 import com.tomato.domain.entity.BaseEntity;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 /**
  * 菜单表
  *
@@ -17,14 +19,16 @@ public class SysMenuEntity extends BaseEntity {
     private String menuName;
 
     /**
-     * 权限标识
-     */
-    private String permission;
-
-    /**
      * 类型
+     *
+     * @see MenuTypeEnum
      */
     private Integer menuType;
+
+    /**
+     * 父菜单ID
+     */
+    private Long parentId;
 
     /**
      * 显示顺序
@@ -32,19 +36,9 @@ public class SysMenuEntity extends BaseEntity {
     private Integer sort;
 
     /**
-     * 父菜单id
-     */
-    private Long parentId;
-
-    /**
      * 路由地址
      */
     private String path;
-
-    /**
-     * 菜单图标
-     */
-    private String icon;
 
     /**
      * 组件路径
@@ -52,9 +46,14 @@ public class SysMenuEntity extends BaseEntity {
     private String component;
 
     /**
-     * 显示状态
+     * 是否为外链
      */
-    private Boolean visibleFlag;
+    private Boolean frameFlag;
+
+    /**
+     * 外链地址
+     */
+    private String frameUrl;
 
     /**
      * 是否缓存
@@ -62,17 +61,52 @@ public class SysMenuEntity extends BaseEntity {
     private Boolean cacheFlag;
 
     /**
-     * 是否禁用
+     * 显示状态
+     */
+    private Boolean visibleFlag;
+
+    /**
+     * 禁用状态
      */
     private Boolean disabledFlag;
 
     /**
-     * 创建者
+     * 后端权限字符串
      */
-    private String creator;
+    private String apiPerms;
 
     /**
-     * 更新者
+     * 权限类型
      */
-    private String updater;
+    private Integer permsType;
+
+    /**
+     * 前端权限字符串
+     */
+    private String webPerms;
+
+    /**
+     * 菜单图标
+     */
+    private String icon;
+
+    /**
+     * 功能点关联菜单ID
+     */
+    private Long contextMenuId;
+
+    /**
+     * 删除状态
+     */
+    private Boolean deletedFlag;
+
+    /**
+     * 创建人
+     */
+    private Long createUserId;
+
+    /**
+     * 更新人
+     */
+    private Long updateUserId;
 }

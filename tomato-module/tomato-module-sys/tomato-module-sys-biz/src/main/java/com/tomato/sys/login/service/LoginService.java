@@ -3,11 +3,15 @@ package com.tomato.sys.login.service;
 import com.tomato.domain.resp.SingleResp;
 import com.tomato.security.token.LoginDeviceEnum;
 import com.tomato.security.token.TokenService;
+import com.tomato.sys.domain.entity.SysMenuEntity;
 import com.tomato.sys.domain.entity.SysUserEntity;
 import com.tomato.sys.domain.req.LoginReq;
 import com.tomato.sys.domain.resp.LoginResp;
+import com.tomato.sys.domain.resp.SysMenuResp;
 import com.tomato.sys.login.domain.bo.LoginUserDetails;
+import com.tomato.sys.user.dao.SysMenuDao;
 import com.tomato.sys.user.dao.SysUserDao;
+import com.tomato.web.util.BeanUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +20,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,10 +37,12 @@ public class LoginService {
     private final TokenService tokenService;
     private final SysUserDao sysUserDao;
     private final PasswordEncoder passwordEncoder;
-    public LoginService(TokenService tokenService, SysUserDao sysUserDao, PasswordEncoder passwordEncoder) {
+    private final SysMenuDao sysMenuDao;
+    public LoginService(TokenService tokenService, SysUserDao sysUserDao, PasswordEncoder passwordEncoder, SysMenuDao sysMenuDao) {
         this.tokenService = tokenService;
         this.sysUserDao = sysUserDao;
         this.passwordEncoder = passwordEncoder;
+        this.sysMenuDao = sysMenuDao;
     }
 
     public SingleResp<LoginResp> login(LoginReq loginReq, String ip) {
@@ -55,9 +60,12 @@ public class LoginService {
             return SingleResp.buildFailure("登录失败，账号已被禁用");
         }
         String token = tokenService.generateToken(sysUserEntity.getId(),loginReq.getLoginName(), LoginDeviceEnum.PC);
+        List<SysMenuEntity> select = sysMenuDao.select();
+        // TODO 菜单角色权限
+        List<SysMenuResp> sysMenuRespList = BeanUtil.copyList(select,SysMenuResp.class);
         LoginResp loginResp = LoginResp.builder()
                 .token(token)
-                .menuList(new ArrayList<>())
+                .menuList(sysMenuRespList)
                 .build();
         return SingleResp.of(loginResp);
     }

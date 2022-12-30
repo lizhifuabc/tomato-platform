@@ -124,6 +124,7 @@ export const useUserStore = defineStore({
       this.lastLoginTime = data.lastLoginTime;
 
       //菜单权限
+      console.log("menuList:" + data.menuList)
       this.menuTree = buildMenuTree(data.menuList);
 
       //拥有路由的菜单
@@ -264,7 +265,7 @@ function recursiveBuildMenuParentIdListMap(menuList, parentMenuList, menuParentI
     if (e.parentId == 0) {
       parentMenuList = [];
     }
-    let menuIdStr = e.menuId.toString();
+    let menuIdStr = e.id.toString();
     let cloneParentMenuList = _.cloneDeep(parentMenuList);
     if (!_.isEmpty(e.children) && e.menuName) {
       // 递归
@@ -295,7 +296,7 @@ function buildMenuTree(menuList) {
 }
 
 function buildMenuChildren(menu, allMenuList) {
-  let children = allMenuList.filter((e) => e.parentId === menu.menuId);
+  let children = allMenuList.filter((e) => e.parentId === menu.id);
   if (children.length === 0) {
     return;
   }

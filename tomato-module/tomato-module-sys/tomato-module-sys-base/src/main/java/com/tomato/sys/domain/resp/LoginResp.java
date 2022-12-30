@@ -21,5 +21,5 @@ public class LoginResp {
     /**
      * 菜单列表
      */
-    private List<MenuResp> menuList;
+    private List<SysMenuResp> menuList;
 }
