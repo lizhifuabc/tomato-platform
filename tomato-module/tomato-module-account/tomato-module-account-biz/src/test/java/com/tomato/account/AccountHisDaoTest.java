@@ -4,6 +4,8 @@ import com.tomato.account.constant.AccountHisTypeEnum;
 import com.tomato.account.constant.AccountStatusEnum;
 import com.tomato.account.dao.AccountHisDao;
 import com.tomato.account.domain.entity.AccountHisEntity;
+import com.tomato.account.manager.AccountHisManager;
+import com.tomato.account.manager.AccountManager;
 import com.tomato.domain.type.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -22,22 +24,24 @@ import java.util.UUID;
 public class AccountHisDaoTest {
     @Resource
     AccountHisDao accountHisDao;
-
+    @Resource
+    AccountHisManager accountHisManager;
     @Test
     public void all(){
         String accountNo = "102023010145340502001";
-        Long accountHisId = 100L;
+        Long accountHisId = 4279550717954L;
 
         AccountHisEntity accountHisEntity = new AccountHisEntity();
-        accountHisEntity.setAccountHisId(accountHisId);
         accountHisEntity.setAccountNo(accountNo);
         accountHisEntity.setAccountStatus(AccountStatusEnum.DEAL.getValue());
         accountHisEntity.setAccountHisType(AccountHisTypeEnum.SETTLEMENT.getValue());
         accountHisEntity.setAmount(new BigDecimal(100));
         accountHisEntity.setThirdNo(UUID.randomUUID().toString());
         accountHisEntity.setAllowSett(YesNoTypeEnum.YES.getValue());
-        accountHisDao.insert(accountHisEntity);
+        accountHisManager.insert(accountHisEntity);
 
         System.out.println(accountHisDao.selectByAccountHisId(accountHisId, accountNo));
+        System.out.println(accountHisDao.selectByThirdNo(accountNo, "d27bb021-5762-4fae-871a-b704a69385d0"));
+        System.out.println(accountHisDao.checkThirdNo(accountNo, "d27bb021-5762-4fae-871a-b704a69385d0"));
     }
 }

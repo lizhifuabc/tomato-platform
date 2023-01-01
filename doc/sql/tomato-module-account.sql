@@ -37,6 +37,7 @@ CREATE TABLE `t_account_his` (
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
    `create_time` datetime not null default current_timestamp comment '创建时间',
    PRIMARY KEY (`id`),
+   unique key `uniq_account_his_id`(`account_his_id`),
    UNIQUE KEY `uniq_account_third_no` (account_no,third_no)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '账户历史表';
 
