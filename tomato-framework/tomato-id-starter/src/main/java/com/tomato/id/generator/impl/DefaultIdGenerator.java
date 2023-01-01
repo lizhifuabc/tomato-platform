@@ -1,9 +1,6 @@
 package com.tomato.id.generator.impl;
 
 import com.tomato.id.generator.IdGenerator;
-import com.tomato.util.lang.Sequence;
-
-import java.net.InetAddress;
 
 /**
  * id 生成
@@ -15,10 +12,7 @@ public class DefaultIdGenerator implements IdGenerator {
     private final Sequence sequence;
 
     public DefaultIdGenerator() {
-        this.sequence = new Sequence(null);
-    }
-    public DefaultIdGenerator(InetAddress inetAddress) {
-        this.sequence = new Sequence(inetAddress);
+        this.sequence = new Sequence();
     }
     @Override
     public Long nextId() {

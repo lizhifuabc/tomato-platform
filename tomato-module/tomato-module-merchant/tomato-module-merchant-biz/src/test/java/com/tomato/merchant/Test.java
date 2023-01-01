@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Test {
     public static void main(String[] args) {
+        System.out.println(System.currentTimeMillis());
         String date = LocalDate.now().format(DatePattern.PURE_DATE_FORMATTER);
         String genNo = "123";
         String no = "10" + date + StrUtil.fillAfter("0",genNo,7);

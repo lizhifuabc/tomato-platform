@@ -40,17 +40,17 @@ public interface AccountHisDao {
     /**
      * 新增账户历史表
      *
-     * @param AccountHisEntity 账户历史表
+     * @param accountHisEntity 账户历史表
      * @return 新增账户历史表数量
      */
-    int insert(AccountHisEntity AccountHisEntity);
+    int insert(AccountHisEntity accountHisEntity);
 
     /**
      * 更新账户历史状态  分库分表，需要增加 accountNo,或者定制 accountHisId 也作为分表字段
-     * @param AccountHisUpdateBO
+     * @param accountHisUpdateBO
      * @return
      */
-    int updateAccountStatus(AccountHisUpdateBO AccountHisUpdateBO);
+    int updateAccountStatus(AccountHisUpdateBO accountHisUpdateBO);
 
     /**
      * 批量更新账户历史状态  分库分表，需要增加 accountNo,或者定制 accountHisId 也作为分表字段

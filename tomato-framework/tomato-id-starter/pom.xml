@@ -15,14 +15,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-commons -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-commons</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-util</artifactId>
+            <artifactId>tomato-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>com.aventrix.jnanoid</groupId>

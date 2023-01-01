@@ -37,6 +37,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-util</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-id-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

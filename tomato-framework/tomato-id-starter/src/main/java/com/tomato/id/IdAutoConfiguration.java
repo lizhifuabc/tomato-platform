@@ -14,9 +14,4 @@ import org.springframework.context.annotation.Bean;
  */
 @AutoConfiguration
 public class IdAutoConfiguration {
-    @Bean
-    @ConditionalOnMissingBean
-    public IdGenerator idGenerator() {
-        return new DefaultIdGenerator();
-    }
 }
