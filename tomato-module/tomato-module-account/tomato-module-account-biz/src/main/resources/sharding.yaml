@@ -178,6 +178,13 @@ rules:
         complex:
           shardingColumns: account_no,merchant_no
           shardingAlgorithmName: custom_sharding
+    # 逻辑表名称
+    t_account_his:
+      actualDataNodes: ds_${0..31}.t_account_his
+      databaseStrategy:
+        complex:
+          shardingColumns: account_no
+          shardingAlgorithmName: custom_sharding
 
 # 配置显示sql，这项配置在测试的时候非常有用，建议打开，可以看到路由结果，生产环境可以关掉
 props:

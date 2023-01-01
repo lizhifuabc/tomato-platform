@@ -69,14 +69,14 @@ public interface AccountHisDao {
 
     /**
      * 日汇总账户待结算金额
-     * @param accountHisDailyCollectDO
+     * @param accountHisDailyCollectBO
      * @return
      */
-    AccountHisDailyCollectBO dailyCollect(AccountHisDailyCollectDO accountHisDailyCollectDO);
+    AccountHisDailyCollectSumBO dailyCollect(AccountHisDailyCollectBO accountHisDailyCollectBO);
     /**
      * 更新日汇总账户待结算历史记录
-     * @param accountHisDailyCollectDO
+     * @param accountHisDailyCollectBO
      * @return
      */
-    int updateDailyCollect(AccountHisDailyCollectDO accountHisDailyCollectDO);
+    int updateDailyCollect(AccountHisDailyCollectBO accountHisDailyCollectBO);
 }

@@ -2,7 +2,7 @@ package com.tomato.account.domain.bo;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * 日汇总账户待结算金额
@@ -13,11 +13,15 @@ import java.math.BigDecimal;
 @Data
 public class AccountHisDailyCollectBO {
     /**
-     * 总金额
+     * 账户编号
      */
-    private BigDecimal totalAmount;
+    private String accountNo;
     /**
-     * 总笔数
+     * 汇总日期
      */
-    private Integer totalCount;
+    private LocalDate collectDate;
+    /**
+     * 风险时间
+     */
+    private Integer riskDay;
 }

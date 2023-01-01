@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tomato.account.dao.AccountHisDao">
+    <select id="selectByAccountHisId" parameterType="map" resultType="AccountHisEntity">
+        select * from t_account_his where account_his_id = #{accountHisId} and account_no = #{accountNo}
+    </select>
+
+    <insert id="insert" parameterType="AccountHisEntity">
+        insert into
+            t_account_his(account_no,amount,allow_sett,third_no,account_his_type,account_status,account_his_id)
+        values
+            (#{accountNo},#{amount},#{allowSett},#{thirdNo},#{accountHisType}, #{accountStatus},#{accountHisId})
+    </insert>
+
+    <update id="updateAccountStatus" parameterType="AccountHisUpdateBO">
+        UPDATE
+            t_account_his
+        set
+            account_status = #{accountStatus},version = version + 1,before_balance = #{beforeBalance},
+            after_balance = #{afterBalance},complete_time = now()
+        WHERE
+            account_his_id = #{accountHisId} and version = #{version} and account_status = 100 and account_no = #{accountNo}
+    </update>
+
+    <select id="selectByThirdNo" parameterType="map" resultType="AccountHisEntity">
+        select * from t_account_his where third_no = #{thirdNo} and account_no = #{accountNo}
+    </select>
+
+    <update id="updateAccountStatusBatch" parameterType="AccountHisUpdateBatchBO">
+        UPDATE
+            t_account_his
+        set
+            account_status = #{accountStatus},version = version + 1,before_balance = #{beforeBalance},after_balance = #{afterBalance},complete_time = now()
+        WHERE account_his_id in
+        <foreach collection="accountHisId" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+         and version = #{version} and account_status = 100 and account_no = #{accountNo}
+    </update>
+
+    <select id="selectDeal" parameterType = "map" resultType = "AccountHisDealBO">
+        select group_concat(account_his_id) as accountHisIds,sum(amount) as sum
+        from t_account_his
+        where account_no = #{accountNo} and account_status = 100 and version = 0 and amount >0
+    </select>
+
+    <!-- 日汇总账户待结算金额  -->
+    <select id="dailyCollect" parameterType="AccountHisDailyCollectBO" resultType="AccountHisDailyCollectSumBO">
+        select
+            ifnull(sum(amount),0) as "totalAmount",
+            count(1) as "totalCount"
+        from t_account_his
+        where
+            account_no = #{accountNo}
+            and complete_sett = 1
+            and allow_sett = 0
+            and <![CDATA[date(create_time) <= date_add(#{collectDate}, INTERVAL -#{riskDay} DAY)]]>
+    </select>
+    <!-- 更新账户风险预存期外的账户历史记录记为结算完成 -->
+    <update id="updateDailyCollect" parameterType="AccountHisDailyCollectBO" >
+        UPDATE
+            t_account_his
+        set
+            complete_sett = 0,version = version + 1
+        WHERE
+            account_no = #{accountNo}
+            and complete_sett = 1
+            and allow_sett = 0
+            and <![CDATA[date(create_time) <= date_add(#{collectDate}, INTERVAL -#{riskDay} DAY)]]>
+    </update>
+</mapper>

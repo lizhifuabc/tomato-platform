@@ -20,18 +20,18 @@ CREATE TABLE `t_account_info` (
 
 DROP TABLE IF EXISTS `t_account_his`;
 CREATE TABLE `t_account_his` (
-   `id` bigint(20) NOT NULL COMMENT 'ID',
+   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
    `account_his_id` bigint(20) NOT NULL COMMENT '账户历史ID',
    `account_no` varchar(36) NOT NULL COMMENT '账户编号',
    `before_balance` decimal(16,2)   COMMENT '发生前余额',
    `after_balance` decimal(16,2)    COMMENT '发生后余额',
    `amount` decimal(16,2) NOT NULL  COMMENT '发生金额',
-   `allow_sett` tinyint(1) not null default 0 comment '是否允许结算【0->是；1->否】',
-   `complete_sett` tinyint(1) not null default 1 comment '是否完成结算【0->是；1->否】',
+   `allow_sett` tinyint(1) not null comment '是否允许结算【0-否, 1-是】',
+   `complete_sett` tinyint(1) not null default 0 comment '是否完成结算【0-否, 1-是】',
    `third_no` varchar(36) NOT NULL  COMMENT '第三方流水号',
    `account_his_type` varchar(36) NOT NULL  COMMENT '类型',
    `complete_time` datetime comment '入账完成时间',
-   `account_status` tinyint unsigned NOT NULL default 100 COMMENT '入账状态',
+   `account_status` tinyint  NOT NULL COMMENT '入账状态',
 
    `version` int default 0 not null comment '乐观锁',
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
