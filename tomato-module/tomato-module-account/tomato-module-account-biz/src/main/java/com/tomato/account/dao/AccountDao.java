@@ -3,7 +3,6 @@ package com.tomato.account.dao;
 import com.tomato.account.domain.entity.AccountEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.math.BigDecimal;
 
