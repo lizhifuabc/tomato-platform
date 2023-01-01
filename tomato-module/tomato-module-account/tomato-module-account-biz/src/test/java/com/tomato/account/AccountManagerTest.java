@@ -22,7 +22,7 @@ public class AccountManagerTest {
     public void test(){
         AccountCreateReq accountCreateReq = new AccountCreateReq();
         accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
-        accountCreateReq.setMerchantNo("10202301010002001");
+        accountCreateReq.setMerchantNo("10202301010004121");
         accountCreateReq.setRiskDay(1);
         accountManager.create(accountCreateReq);
     }

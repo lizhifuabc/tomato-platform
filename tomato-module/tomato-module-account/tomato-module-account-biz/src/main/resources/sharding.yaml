@@ -1,7 +1,7 @@
 # 数据源配置
 dataSources:
   # 数据源名称
-  ds_00:
+  ds_0:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_00?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
@@ -11,42 +11,42 @@ dataSources:
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_01?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_02:
+  ds_2:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_02?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_03:
+  ds_3:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_03?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_04:
+  ds_4:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_04?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_05:
+  ds_5:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_05?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_06:
+  ds_6:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_06?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_07:
+  ds_7:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_07?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_08:
+  ds_8:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_08?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_09:
+  ds_9:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_09?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
@@ -173,7 +173,7 @@ rules:
   tables:
     # 逻辑表名称
     t_account_info:
-      actualDataNodes: ds_${00..31}.t_account_info
+      actualDataNodes: ds_${0..31}.t_account_info
       databaseStrategy:
         complex:
           shardingColumns: account_no,merchant_no
