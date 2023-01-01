@@ -4,9 +4,9 @@ import com.tomato.merchant.dao.MerchantInfoDao;
 import com.tomato.merchant.domain.entity.MerchantInfo;
 import com.tomato.merchant.domain.req.MerchantCreateReq;
 import com.tomato.merchant.manager.MerchantSecurityManager;
+import com.tomato.merchant.service.MerchantNoService;
 import com.tomato.merchant.service.MerchantService;
 import org.springframework.data.domain.Example;
-import org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,11 +19,11 @@ import org.springframework.stereotype.Service;
 public class MerchantServiceImpl implements MerchantService {
     private final MerchantInfoDao merchantInfoDao;
     private final MerchantSecurityManager merchantSecurityManager;
-    private final MySQLMaxValueIncrementer merchantIncrementer;
-    public MerchantServiceImpl(MerchantInfoDao merchantInfoDao, MerchantSecurityManager merchantSecurityManager, MySQLMaxValueIncrementer merchantIncrementer) {
+    private final MerchantNoService merchantNoService;
+    public MerchantServiceImpl(MerchantInfoDao merchantInfoDao, MerchantSecurityManager merchantSecurityManager, MerchantNoService merchantNoService) {
         this.merchantInfoDao = merchantInfoDao;
         this.merchantSecurityManager = merchantSecurityManager;
-        this.merchantIncrementer = merchantIncrementer;
+        this.merchantNoService = merchantNoService;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MerchantServiceImpl implements MerchantService {
     @Override
     public void createMerchant(MerchantCreateReq merchantCreateReq) {
         MerchantInfo merchantInfo = new MerchantInfo();
-        merchantInfo.setMerchantNo(merchantIncrementer.nextStringValue());
+        merchantInfo.setMerchantNo(merchantNoService.nextStringValue());
         merchantInfo.setMerchantName(merchantCreateReq.getMerchantName());
         merchantInfo.setMerchantShortName(merchantCreateReq.getMerchantShortName());
         merchantInfo.setPhone(merchantSecurityManager.security(merchantCreateReq.getPhone()));
