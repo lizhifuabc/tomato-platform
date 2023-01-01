@@ -49,12 +49,14 @@ public interface OrderDao {
     /**
      * 超时订单状态更新
      * TODO 大数据量处理
+     * TODO 分库分表
      * @return 更新条数
      */
     int updateOrderStatusTimeOut();
 
     /**
      * 订单查询
+     * TODO 分库分表
      * @param pageIndex 当前页码
      * @param pageSize 查询数量
      * @param createTime 创建时间

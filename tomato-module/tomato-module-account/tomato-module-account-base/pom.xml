@@ -5,20 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module-order</artifactId>
+        <artifactId>tomato-module-account</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-order-base</artifactId>
+    <artifactId>tomato-module-account-base</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-validator-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-jackson-starter</artifactId>
-        </dependency>
     </dependencies>
+
 </project>

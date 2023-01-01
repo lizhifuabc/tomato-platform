@@ -1,0 +1,34 @@
+# 数据源配置
+dataSources:
+  # 数据源名称
+  ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/tomato?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
+    username: tomato
+    password: tomato
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/tomato?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
+    username: tomato
+    password: tomato
+
+rules:
+  - !SHARDING
+    # 分片算法配置
+    shardingAlgorithms:
+      # 分片算法名称
+      t_order_info_range:
+        # 分片算法类型
+        type: BOUNDARY_RANGE
+        # 分片算法属性配置
+        props:
+          sharding-ranges: 0, 100, 500, 1000, 5000, 10000
+    # 数据分片规则配置
+    tables:
+      # 逻辑表名称
+      t_order_info:
+        actualDataNodes: ds_${0..1}.t_order_info
+        databaseStrategy:
+          standard:
+            shardingColumn: order_no
+            shardingAlgorithmName: t_order_info_range

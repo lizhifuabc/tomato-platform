@@ -12,5 +12,5 @@ public interface IdGenerator {
      *
      * @return id
      */
-    Number nextId();
+    Comparable<?> nextId();
 }

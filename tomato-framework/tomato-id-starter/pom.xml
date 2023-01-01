@@ -24,6 +24,14 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-util</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.aventrix.jnanoid</groupId>
+            <artifactId>jnanoid</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>me.ahoo.cosid</groupId>
+            <artifactId>cosid-core</artifactId>
+        </dependency>
         <!-- 生产配置元数据。optional: 依赖是可选的，不会被依赖传递      -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

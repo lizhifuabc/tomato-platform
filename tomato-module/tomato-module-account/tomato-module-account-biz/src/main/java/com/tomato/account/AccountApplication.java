@@ -1,8 +1,7 @@
-package com.tomato.order;
+package com.tomato.account;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -13,11 +12,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableAsync // 开启异步支持
 @EnableScheduling
-//@ImportResource(locations = {"classpath:sharding.yaml"})
-public class OrderApplication {
+public class AccountApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OrderApplication.class, args);
+		SpringApplication.run(AccountApplication.class, args);
 	}
 
 }

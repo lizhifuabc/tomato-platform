@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module-order</artifactId>
+        <artifactId>tomato-module-account</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-order-biz</artifactId>
+    <artifactId>tomato-module-account-biz</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,19 +18,11 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-order-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
             <artifactId>tomato-mybatis-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-dynamic-thread-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-rabbitmq-starter</artifactId>
+            <artifactId>tomato-module-account-base</artifactId>
         </dependency>
         <!-- shardingsphere 分库分表依赖 -->
         <dependency>
@@ -40,6 +32,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-util</artifactId>
         </dependency>
     </dependencies>
 

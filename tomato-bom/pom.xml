@@ -25,6 +25,7 @@
         <spring.boot.druid.version>1.2.15</spring.boot.druid.version>
         <!-- shardingsphere 分库分表依赖 -->
         <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
+        <shardingsphere.version>5.3.0</shardingsphere.version>
         <!-- 一个开源的第三方算法提供商  -->
         <bouncycastle.version>1.70</bouncycastle.version>
         <!-- apache 编解码库 https://github.com/apache/commons-codec -->
@@ -44,6 +45,9 @@
         <!-- 验证码相关 -->
         <aj-captcha.version>1.3.0</aj-captcha.version>
         <kaptcha.version>2.3.2</kaptcha.version>
+        <!--   唯一ID生成类NanoId     -->
+        <jnanoid.version>2.0.0</jnanoid.version>
+        <cosid.version>1.16.0</cosid.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -88,6 +92,17 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-data-30</artifactId>
                 <version>${redisson.version}</version>
+            </dependency>
+            <!--   唯一ID生成类NanoId     -->
+            <dependency>
+                <groupId>com.aventrix.jnanoid</groupId>
+                <artifactId>jnanoid</artifactId>
+                <version>${jnanoid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.ahoo.cosid</groupId>
+                <artifactId>cosid-core</artifactId>
+                <version>${cosid.version}</version>
             </dependency>
             <!-- 一个开源的第三方算法提供商  -->
             <dependency>
@@ -170,6 +185,11 @@
                 <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
                 <version>${spring-boot.shardingsphere.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core</artifactId>
+                <version>${shardingsphere.version}</version>
+            </dependency>
 
             <!--  业务代码 start -->
             <dependency>
@@ -185,6 +205,11 @@
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-domain</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-module-account-base</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
