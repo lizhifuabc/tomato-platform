@@ -29,7 +29,6 @@ public interface AccountDao {
      * @param merchantNo
      * @return
      */
-    @Select("select * from account where merchant_no = #{merchantNo} and status = #{status}")
     AccountEntity selectByMerchantNo(@Param("merchantNo") String merchantNo,@Param("status") Integer status);
     /**
      * 查询账户
@@ -37,7 +36,6 @@ public interface AccountDao {
      * @param merchantNo
      * @return
      */
-    @Select("select * from account where merchant_no = #{merchantNo}")
     AccountEntity selectByMerchantNoWithOutStatus(@Param("merchantNo") String merchantNo);
     /**
      * 扣钱

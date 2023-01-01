@@ -10,6 +10,23 @@
     <select id="selectByAccountNo" resultType="AccountEntity" parameterType="map">
         SELECT * FROM t_account_info WHERE account_no = #{accountNo} and status = 0  LIMIT 1
     </select>
+    
+    <select id="selectByMerchantNo" resultType="AccountEntity" parameterType="map">
+        select
+            *
+        from
+            t_account_info
+        where
+            merchant_no = #{merchantNo} and status = #{status}
+    </select>
+    <select id="selectByMerchantNoWithOutStatus" resultType="AccountEntity" parameterType="map">
+        select
+            *
+        from
+            t_account_info
+        where
+            merchant_no = #{merchantNo}
+    </select>
     <update id="deduct" parameterType="map">
         UPDATE t_account_info set balance = balance - unbalance - #{amount},version = version +1
                        WHERE account_no = #{accountNo}  and balance >=  #{amount} and version = #{version}
