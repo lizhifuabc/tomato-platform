@@ -18,5 +18,6 @@
         <module>tomato-module-goods</module>
         <module>tomato-module-sys</module>
         <module>tomato-module-account</module>
+        <module>tomato-module-channel</module>
     </modules>
 </project>

@@ -1,1 +1,2 @@
 com.tomato.account.algorithm.CustomShardingAlgorithm
+com.tomato.account.algorithm.AccountHisCustomShardingAlgorithm
