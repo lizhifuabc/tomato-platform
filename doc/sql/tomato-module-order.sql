@@ -1,3 +1,23 @@
+# t_order_sharding_group
+drop table if exists `t_order_sharding_group`;
+create table`t_order_sharding_group` (
+   `id`         bigint(20)      unsigned not null auto_increment,
+   `name`       varchar(36)     not null comment '名称',
+   `start_id`   bigint(20)      unsigned not null comment '开始ID',
+   `end_id`     bigint(20)      unsigned not null comment '结束ID',
+   primary key (`id`) using btree
+) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = 'sharding-group表';
+
+drop table if exists `t_order_shard`;
+create table`t_order_shard` (
+    `id`         bigint(20)      unsigned not null auto_increment,
+    `name`       varchar(36)     not null comment '名称',
+    `group_id`   bigint(20)      unsigned not null comment 'group_id',
+    `hash_value`       varchar(36)     not null comment 'hash值',
+    primary key (`id`) using btree
+) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = 'sharding-group表';
+
+
 # 商户维度表：字段少
 # 1 解决商户编号+商户订单号查询问题
 # 2 防重问题
