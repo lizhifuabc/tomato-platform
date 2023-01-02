@@ -18,6 +18,11 @@ import java.util.List;
 @Mapper
 public interface OrderDao {
     /**
+     * 插入
+     * @param orderEntity 实体
+     */
+    void insert(OrderEntity orderEntity);
+    /**
      * 更新订单状态
      * @param updateOrderStatusBO 更新订单状态
      * @return 更新条数

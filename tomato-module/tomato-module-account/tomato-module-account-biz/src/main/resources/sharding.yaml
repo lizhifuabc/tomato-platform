@@ -6,7 +6,7 @@ dataSources:
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_00?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato
     password: tomato
-  ds_01:
+  ds_1:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/tomato_account_01?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
     username: tomato

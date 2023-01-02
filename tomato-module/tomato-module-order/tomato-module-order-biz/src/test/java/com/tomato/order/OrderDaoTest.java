@@ -1,5 +1,6 @@
 package com.tomato.order;
 
+import com.tomato.order.domain.entity.OrderEntity;
 import com.tomato.order.order.dao.OrderDao;
 import com.tomato.order.order.domain.bo.UpdateOrderStatusBO;
 import jakarta.annotation.Resource;
@@ -16,6 +17,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class OrderDaoTest {
     @Resource
     OrderDao orderDao;
+
+    @Test
+    public void insert(){
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setOrderNo(String.valueOf(System.currentTimeMillis()));
+        orderDao.insert(orderEntity);
+    }
 
     @Test
     public void test(){

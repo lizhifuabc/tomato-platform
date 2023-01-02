@@ -1,10 +1,14 @@
 package com.tomato.order.order.manager;
 
+import com.tomato.order.domain.entity.OrderEntity;
 import com.tomato.order.order.dao.OrderDao;
 import com.tomato.order.order.domain.bo.UpdateOrderStatusBO;
 import com.tomato.order.domain.constant.OrderStatusEnum;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 
 /**
@@ -14,11 +18,13 @@ import java.time.LocalDateTime;
  * @date 2022/12/2
  */
 @Service
+@Slf4j
 public class OrderManager {
     private final OrderDao orderDao;
-
-    public OrderManager(OrderDao orderDao) {
+    private final OrderNoManager orderNoManager;
+    public OrderManager(OrderDao orderDao, OrderNoManager orderNoManager) {
         this.orderDao = orderDao;
+        this.orderNoManager = orderNoManager;
     }
 
     /**
@@ -52,5 +58,23 @@ public class OrderManager {
                 .currentVersion(currentVersion)
                 .build();
         return orderDao.updateOrderStatus(updateOrderStatusBO);
+    }
+
+    public void createOrderDefault(OrderEntity orderEntity){
+        orderEntity.setOrderStatus(OrderStatusEnum.DEAL.getValue());
+        // 5 分钟后超时
+        orderEntity.setTimeoutTime(LocalDateTime.now().plusMinutes(5));
+        orderEntity.setOrderNo(orderNoManager.genOrderNo());
+        orderEntity.setMachineIp(ip());
+        orderDao.insert(orderEntity);
+    }
+
+    private String ip(){
+        try {
+            return InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            log.warn("OrderManager 获取本机IP UnknownHostException",e);
+            return "127.0.0.1";
+        }
     }
 }
