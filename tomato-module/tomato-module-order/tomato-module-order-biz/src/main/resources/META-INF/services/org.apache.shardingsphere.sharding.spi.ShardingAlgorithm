@@ -1,1 +1,2 @@
 com.tomato.order.algorithm.CustomShardingAlgorithm
+com.tomato.order.algorithm.TableCustomShardingAlgorithm

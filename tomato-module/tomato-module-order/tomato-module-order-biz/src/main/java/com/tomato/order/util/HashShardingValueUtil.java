@@ -15,9 +15,12 @@ public class HashShardingValueUtil {
     public static long dbSuffix(String merchantOrderNo,String merchantNo,int count) {
         return Math.abs((long) (merchantNo + merchantOrderNo).hashCode()) % count;
     }
-//    public String tableIndex(String orderNo){
-//
-//    }
+    public static String tableIndex(String orderNo){
+        return Optional.ofNullable(orderNo)
+                .filter(s -> s.length() >= 4)
+                .map(s -> s.substring(s.length() - 4,s.length() - 2))
+                .orElse("0");
+    }
     public static String dbIndex(String orderNo){
         return Optional.ofNullable(orderNo)
                 .filter(s -> s.length() >= 4)
