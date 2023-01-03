@@ -12,6 +12,14 @@ import java.util.Locale;
  */
 public class DatePattern {
     /**
+     * 标准日期格式：yyyyMMddHHmmss
+     */
+    public static final String PURE_DATETIME_PATTERN = "yyyyMMddHHmmss";
+    /**
+     * 标准日期格式 yyyyMMddHHmmss
+     */
+    public static final DateTimeFormatter PURE_DATETIME_FORMATTER = createFormatter(PURE_DATETIME_PATTERN);
+    /**
      * 标准日期格式：yyyyMMdd
      */
     public static final String PURE_DATE_PATTERN = "yyyyMMdd";

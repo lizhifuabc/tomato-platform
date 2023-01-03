@@ -4,6 +4,7 @@ import com.tomato.order.domain.entity.OrderEntity;
 import com.tomato.order.order.dao.OrderDao;
 import com.tomato.order.order.domain.bo.UpdateOrderStatusBO;
 import com.tomato.order.domain.constant.OrderStatusEnum;
+import com.tomato.order.util.OrderNoUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +22,8 @@ import java.time.LocalDateTime;
 @Slf4j
 public class OrderManager {
     private final OrderDao orderDao;
-    private final OrderNoManager orderNoManager;
-    public OrderManager(OrderDao orderDao, OrderNoManager orderNoManager) {
+    public OrderManager(OrderDao orderDao) {
         this.orderDao = orderDao;
-        this.orderNoManager = orderNoManager;
     }
 
     /**
@@ -64,7 +63,7 @@ public class OrderManager {
         orderEntity.setOrderStatus(OrderStatusEnum.DEAL.getValue());
         // 5 分钟后超时
         orderEntity.setTimeoutTime(LocalDateTime.now().plusMinutes(5));
-        orderEntity.setOrderNo(orderNoManager.genOrderNo());
+        orderEntity.setOrderNo(OrderNoUtil.genOrderNo(orderEntity.getMerchantOrderNo(),orderEntity.getMerchantNo()));
         orderEntity.setMachineIp(ip());
         orderDao.insert(orderEntity);
     }
