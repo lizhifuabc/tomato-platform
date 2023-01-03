@@ -45,19 +45,19 @@ public class CustomShardingAlgorithm implements ComplexKeysShardingAlgorithm<Str
         Collection<String> merchantOrderNos = complexKeysShardingValue.getColumnNameAndShardingValuesMap().getOrDefault(COLUMN_MERCHANT_ORDER_NO, new ArrayList<>(1));
         // 商户编号
         Collection<String> merchantNos = complexKeysShardingValue.getColumnNameAndShardingValuesMap().getOrDefault(COLUMN_MERCHANT_NO, new ArrayList<>(1));
-        String tableSuffix;
+        String dbSuffix;
         if(orderNos.isEmpty()){
-            tableSuffix= String.valueOf(HashShardingValueUtil.dbSuffix(
+            dbSuffix= String.valueOf(HashShardingValueUtil.dbSuffix(
                     merchantOrderNos.stream().findFirst().get(),
                     merchantNos.stream().findFirst().get(),availableTargetNames.size()));
 
         }else {
-            tableSuffix = orderNos.stream()
+            dbSuffix = orderNos.stream()
                     // 截取后4位
                     .map(orderNo -> orderNo.substring(orderNo.length() - 4))
                     .findFirst().get();
         }
-        String dataNode = availableTargetNames.stream().filter(targetName -> targetName.endsWith(tableSuffix)).findFirst().orElse(null);
+        String dataNode = availableTargetNames.stream().filter(targetName -> targetName.endsWith(dbSuffix)).findFirst().orElse(null);
         return Collections.singleton(dataNode);
     }
     @Override
