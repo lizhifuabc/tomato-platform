@@ -33,7 +33,7 @@ rules:
         actualDataNodes: ds_${0..1}.t_order_info
         databaseStrategy:
           complex:
-            shardingColumns: merchant_no,merchant_order_no
+            shardingColumns: merchant_no,merchant_order_no,order_no
             shardingAlgorithmName: t_order_info_custom
 # 配置显示sql，这项配置在测试的时候非常有用，建议打开，可以看到路由结果，生产环境可以关掉
 props:

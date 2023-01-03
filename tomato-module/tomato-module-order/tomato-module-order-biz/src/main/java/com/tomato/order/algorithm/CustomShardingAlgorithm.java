@@ -53,8 +53,8 @@ public class CustomShardingAlgorithm implements ComplexKeysShardingAlgorithm<Str
 
         }else {
             dbSuffix = orderNos.stream()
-                    // 截取后4位
-                    .map(orderNo -> orderNo.substring(orderNo.length() - 4))
+                    // 截取后2位
+                    .map(HashShardingValueUtil::dbIndex)
                     .findFirst().get();
         }
         String dataNode = availableTargetNames.stream().filter(targetName -> targetName.endsWith(dbSuffix)).findFirst().orElse(null);

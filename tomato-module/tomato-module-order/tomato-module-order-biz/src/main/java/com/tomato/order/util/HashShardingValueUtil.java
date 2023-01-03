@@ -1,5 +1,7 @@
 package com.tomato.order.util;
 
+import java.util.Optional;
+
 /**
  * HashShardingValueUtil
  *
@@ -16,7 +18,10 @@ public class HashShardingValueUtil {
 //    public String tableIndex(String orderNo){
 //
 //    }
-//    public String dataIndex(String orderNo){
-//
-//    }
+    public static String dbIndex(String orderNo){
+        return Optional.ofNullable(orderNo)
+                .filter(s -> s.length() >= 4)
+                .map(s -> s.substring(s.length() - 4,s.length() - 2))
+                .orElse("0");
+    }
 }
