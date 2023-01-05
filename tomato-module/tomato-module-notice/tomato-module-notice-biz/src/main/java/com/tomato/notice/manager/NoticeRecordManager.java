@@ -1,9 +1,13 @@
 package com.tomato.notice.manager;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tomato.domain.exception.BusinessException;
 import com.tomato.notice.dao.NoticeRecordDao;
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import com.tomato.notice.domain.req.NoticeCreateReq;
 import com.tomato.web.util.BeanUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,15 +17,23 @@ import org.springframework.stereotype.Service;
  * @since 2023/1/5
  */
 @Service
+@Slf4j
 public class NoticeRecordManager {
     private final NoticeRecordDao noticeRecordDao;
-
-    public NoticeRecordManager(NoticeRecordDao noticeRecordDao) {
+    private final ObjectMapper objectMapper;
+    public NoticeRecordManager(NoticeRecordDao noticeRecordDao, ObjectMapper objectMapper) {
         this.noticeRecordDao = noticeRecordDao;
+        this.objectMapper = objectMapper;
     }
 
     public void createNotice(NoticeCreateReq noticeCreateReq){
         NoticeRecordEntity noticeRecordEntity = BeanUtil.copy(noticeCreateReq,NoticeRecordEntity.class);
+        try {
+            noticeRecordEntity.setNoticeParam(objectMapper.writeValueAsString(noticeCreateReq.getNoticeParam()));
+        } catch (JsonProcessingException e) {
+            log.error("noticeCreateReq:{},通知参数格式错误",noticeCreateReq,e);
+            throw new BusinessException("通知参数格式错误");
+        }
         noticeRecordDao.insert(noticeRecordEntity);
     }
 }

@@ -33,6 +33,9 @@
             <if test="null != appNo and '' != appNo">
                 app_no,
             </if>
+            <if test="null != noticeParam and '' != noticeParam">
+                notice_param,
+            </if>
             <if test="null != noticeUrl and '' != noticeUrl">
                 notice_url
             </if>
@@ -49,6 +52,9 @@
             </if>
             <if test="null != appNo and '' != appNo">
                 #{appNo},
+            </if>
+            <if test="null != noticeParam and '' != noticeParam">
+                #{noticeParam},
             </if>
             <if test="null != noticeUrl and '' != noticeUrl">
                 #{noticeUrl}

@@ -1,0 +1,12 @@
+### 查询
+POST http://localhost:8080/notice/create
+Content-Type: application/json
+
+{
+  "merchantOrderNo": "admin",
+  "merchantNo": "123456",
+  "orderNo": "123456",
+  "appNo": "SAAS",
+  "noticeUrl": "https://baidu.com/",
+  "noticeParam":{"namel":"Marydonl","agel":"18"}
+}

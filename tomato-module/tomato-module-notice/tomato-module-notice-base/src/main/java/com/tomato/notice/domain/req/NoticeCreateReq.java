@@ -3,6 +3,8 @@ package com.tomato.notice.domain.req;
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import lombok.Data;
 
+import java.util.Map;
+
 /**
  * 商户通知记录 {@link NoticeRecordEntity}
  *
@@ -35,4 +37,9 @@ public class NoticeCreateReq {
      * 通知地址
      */
     private String noticeUrl;
+    /**
+     * 通知参数
+     */
+    private Map<String,String> noticeParam;
+
 }

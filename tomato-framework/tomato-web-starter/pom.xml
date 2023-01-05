@@ -27,6 +27,11 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-validator-starter</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-jackson-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

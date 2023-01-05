@@ -57,7 +57,10 @@ public class NoticeRecordEntity extends BaseEntity {
      * 通知状态，1-通知中，2-通知成功，3-通知失败
      */
     private Byte state;
-
+    /**
+     * 通知参数
+     */
+    private String noticeParam;
     /**
      * 最后一次通知时间
      */
