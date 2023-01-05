@@ -259,6 +259,11 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-module-notice-base</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-jackson-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
