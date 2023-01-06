@@ -1,6 +1,7 @@
 package com.tomato.notice.service;
 
 import com.tomato.notice.constant.NoticeRecordState;
+import com.tomato.notice.domain.bo.NoticeDelayBO;
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import com.tomato.notice.domain.req.NoticeCreateReq;
 import com.tomato.notice.manager.NoticeRecordManager;
@@ -23,12 +24,7 @@ public class NoticeRecordService {
     }
     public void createNotice(NoticeCreateReq noticeCreateReq){
         NoticeRecordEntity noticeRecordEntity = noticeRecordManager.createNotice(noticeCreateReq);
-        ResponseEntity<String> responseEntity = noticeSendService.send(noticeCreateReq);
-        if(responseEntity.getStatusCode().is2xxSuccessful() && NoticeRecordState.SUCCESS.equalsIgnoreCase(responseEntity.getBody())){
-            noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_SUCCESS,responseEntity.getBody());
-        }else {
-            noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,responseEntity.getBody());
-            // TODO 重发通知到MQ
-        }
+        noticeSendService.send(noticeRecordEntity.getId());
+
     }
 }

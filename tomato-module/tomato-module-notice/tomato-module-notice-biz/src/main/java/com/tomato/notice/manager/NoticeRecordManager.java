@@ -41,4 +41,12 @@ public class NoticeRecordManager {
     public void noticeResult(Long id, Byte state, String noticeResult){
         noticeRecordDao.updateNoticeResult(id,state,noticeResult);
     }
+    /**
+     * 根据 ID 查询
+     * @param id id
+     * @return
+     */
+    public NoticeRecordEntity selectById(Long id){
+        return noticeRecordDao.selectById(id);
+    }
 }

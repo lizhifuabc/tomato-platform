@@ -12,7 +12,7 @@ CREATE TABLE `t_notice_record` (
    `notice_url` varchar(256) NOT NULL COMMENT '通知地址',
    `notice_param` json NOT NULL COMMENT '通知参数',
    `notice_result` TEXT DEFAULT NULL COMMENT '最后一次通知响应结果',
-   `notice_count` INT(11) NOT NULL DEFAULT '1' COMMENT '通知次数',
+   `notice_count` INT(11) NOT NULL DEFAULT '0' COMMENT '通知次数',
    `notice_count_limit` INT(11) NOT NULL DEFAULT '6' COMMENT '最大通知次数, 默认6次',
    `state` TINYINT(6) NOT NULL DEFAULT '1' COMMENT '通知状态,1-通知中,2-通知成功,3-通知失败',
    `last_notice_time` DATETIME not null default current_timestamp COMMENT '最后一次通知时间',

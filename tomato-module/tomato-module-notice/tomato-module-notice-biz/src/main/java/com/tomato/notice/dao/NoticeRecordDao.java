@@ -27,4 +27,11 @@ public interface NoticeRecordDao {
     Integer updateNoticeResult(@Param("id") Long id,
                                @Param("state") Byte state,
                                @Param("noticeResult") String noticeResult);
+
+    /**
+     * 根据 ID 查询
+     * @param id id
+     * @return
+     */
+    NoticeRecordEntity selectById(@Param("id") Long id);
 }
