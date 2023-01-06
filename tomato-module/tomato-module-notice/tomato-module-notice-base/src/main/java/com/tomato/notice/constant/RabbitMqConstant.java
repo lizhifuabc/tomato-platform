@@ -10,14 +10,14 @@ public class RabbitMqConstant {
     /**
      * 延迟交换
      */
-    public static final String NOTICE_DELAY_EXCHANGE = "order.delay.exchange";
+    public static final String NOTICE_DELAY_EXCHANGE = "notice.delay.exchange";
     /**
      * 延迟队列
      */
-    public static final String NOTICE_DELAY_QUEUE = "order.delay.queue";
+    public static final String NOTICE_DELAY_QUEUE = "notice.delay.queue";
 
     /**
      * 延迟队列
      */
-    public static final String NOTICE_DELAY_ROUTING_KEY = "order.delay.routing.key";
+    public static final String NOTICE_DELAY_ROUTING_KEY = "notice.delay.routing.key";
 }
