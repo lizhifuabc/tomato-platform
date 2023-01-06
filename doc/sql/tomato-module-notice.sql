@@ -11,7 +11,7 @@ CREATE TABLE `t_notice_record` (
    `app_no` VARCHAR(64) NOT NULL COMMENT '系统编号(对接多个系统使用)',
    `notice_url` varchar(256) NOT NULL COMMENT '通知地址',
    `notice_param` json NOT NULL COMMENT '通知参数',
-   `res_result` TEXT DEFAULT NULL COMMENT '通知响应结果',
+   `notice_result` TEXT DEFAULT NULL COMMENT '最后一次通知响应结果',
    `notice_count` INT(11) NOT NULL DEFAULT '1' COMMENT '通知次数',
    `notice_count_limit` INT(11) NOT NULL DEFAULT '6' COMMENT '最大通知次数, 默认6次',
    `state` TINYINT(6) NOT NULL DEFAULT '1' COMMENT '通知状态,1-通知中,2-通知成功,3-通知失败',

@@ -41,7 +41,7 @@ public class NoticeRecordEntity extends BaseEntity {
     /**
      * 通知响应结果
      */
-    private String resResult;
+    private String noticeResult;
 
     /**
      * 通知次数

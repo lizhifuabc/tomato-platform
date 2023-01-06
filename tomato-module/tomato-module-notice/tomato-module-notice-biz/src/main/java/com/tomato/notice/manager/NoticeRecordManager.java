@@ -8,6 +8,7 @@ import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import com.tomato.notice.domain.req.NoticeCreateReq;
 import com.tomato.web.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +27,7 @@ public class NoticeRecordManager {
         this.objectMapper = objectMapper;
     }
 
-    public void createNotice(NoticeCreateReq noticeCreateReq){
+    public NoticeRecordEntity createNotice(NoticeCreateReq noticeCreateReq){
         NoticeRecordEntity noticeRecordEntity = BeanUtil.copy(noticeCreateReq,NoticeRecordEntity.class);
         try {
             noticeRecordEntity.setNoticeParam(objectMapper.writeValueAsString(noticeCreateReq.getNoticeParam()));
@@ -35,5 +36,9 @@ public class NoticeRecordManager {
             throw new BusinessException("通知参数格式错误");
         }
         noticeRecordDao.insert(noticeRecordEntity);
+        return noticeRecordEntity;
+    }
+    public void noticeResult(Long id, Byte state, String noticeResult){
+        noticeRecordDao.updateNoticeResult(id,state,noticeResult);
     }
 }

@@ -28,7 +28,7 @@ public class NoticeRecordServiceTest {
         map.put("test","test");
         map.put("test2","test2");
         NoticeCreateReq noticeCreateReq = new NoticeCreateReq();
-        noticeCreateReq.setNoticeUrl("http://baidu.com");
+        noticeCreateReq.setNoticeUrl("https://www.baidu.com/");
         noticeCreateReq.setAppNo("SAAS");
         noticeCreateReq.setMerchantNo("100000000");
         noticeCreateReq.setOrderNo(UUID.randomUUID().toString());

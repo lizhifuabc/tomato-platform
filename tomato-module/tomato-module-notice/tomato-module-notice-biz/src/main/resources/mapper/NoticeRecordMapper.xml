@@ -61,4 +61,17 @@
             </if>
         </trim>
     </insert>
+    
+    <update id="updateNoticeResult" parameterType="map">
+        update
+            t_notice_record
+        set
+            state = #{state},
+            notice_result = #{noticeResult},
+            notice_count = notice_count + 1,
+            version = version + 1,
+            last_notice_time = current_timestamp
+        where
+            id = #{id}
+    </update>
 </mapper>

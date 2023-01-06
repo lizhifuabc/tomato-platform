@@ -19,17 +19,12 @@ public interface NoticeRecordDao {
     void insert(NoticeRecordEntity noticeRecordEntity);
     /**
      * 更新通知结果
-     * @param notifyId 通知记录编号
+     * @param id 通知记录id
      * @param state 状态
-     * @param resResult 通知结果
+     * @param noticeResult 通知结果
      * @return 条数
      */
-    Integer updateNotifyResult(@Param("notifyId") Long notifyId, @Param("state") Byte state, @Param("resResult") String resResult);
-
-    /**
-     * 更改为通知中 & 增加允许重发通知次数
-     * @param notifyId 通知记录编号
-     * @return
-     */
-    Integer updateIngAndAddNotifyCountLimit(@Param("notifyId") Long notifyId);
+    Integer updateNoticeResult(@Param("id") Long id,
+                               @Param("state") Byte state,
+                               @Param("noticeResult") String noticeResult);
 }

@@ -19,4 +19,9 @@ public class NoticeRecordState {
      * 失败
      */
     public static final byte STATE_FAIL = 3;
+
+    /**
+     * SUCCESS
+     */
+    public static final String SUCCESS = "SUCCESS";
 }
