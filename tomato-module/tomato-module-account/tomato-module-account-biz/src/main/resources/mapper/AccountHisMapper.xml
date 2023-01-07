@@ -9,9 +9,29 @@
 
     <insert id="insert" parameterType="AccountHisEntity">
         insert into
-            t_account_his(account_no,amount,allow_sett,third_no,account_his_type,account_status,account_his_id)
+            t_account_his(account_no,amount,allow_sett,third_no,account_his_type,account_status,account_his_serial
+                <if test="null != beforeBalance">
+                    ,before_balance
+                </if>
+                <if test="null != afterBalance">
+                    ,after_balance
+                </if>
+                <if test="null != completeTime">
+                    ,complete_time
+                </if>
+            )
         values
-            (#{accountNo},#{amount},#{allowSett},#{thirdNo},#{accountHisType}, #{accountStatus},#{accountHisId})
+            (#{accountNo},#{amount},#{allowSett},#{thirdNo},#{accountHisType}, #{accountStatus}, #{accountHisSerial}
+                <if test="null != beforeBalance">
+                    ,#{beforeBalance}
+                </if>
+                <if test="null != afterBalance">
+                    ,#{afterBalance}
+                </if>
+                <if test="null != completeTime">
+                    ,#{completeTime}
+                </if>
+            )
     </insert>
 
     <update id="updateAccountStatus" parameterType="AccountHisUpdateBO">

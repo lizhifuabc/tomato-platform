@@ -19,6 +19,11 @@ import java.math.BigDecimal;
 @Data
 public class AccountTradReq {
     /**
+     * 账户编号
+     */
+    @NotBlank(message = "账户编号不能为空")
+    private String accountNo;
+    /**
      * 商户编号
      */
     @NotBlank(message = "商户编号不能为空")
@@ -27,7 +32,6 @@ public class AccountTradReq {
      * 发生金额
      */
     @Digits(integer = 16, fraction=2, message = "amount格式不正确")
-    @DecimalMin(value = "0.00", message = "amount格式不正确")
     @NotNull(message = "amount不为空")
     private BigDecimal amount;
     /**
@@ -41,4 +45,9 @@ public class AccountTradReq {
     @NotBlank(message = "账户历史类型")
     @CheckEnum(value = AccountHisTypeEnum.class, message = "账户历史类型错误")
     private String accountHisType;
+    /**
+     * 账户类型
+     */
+    @NotBlank(message = "账户类型不能为空")
+    private String accountType;
 }

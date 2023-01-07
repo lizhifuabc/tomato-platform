@@ -15,52 +15,62 @@ import java.time.LocalDateTime;
 @Data
 public class AccountHisEntity extends BaseEntity {
     /**
-     * 账户历史表ID
+     * 账户历史流水顺序号
      */
-    private Long accountHisId;
+    private Long accountHisSerial;
+
     /**
-     * 账户ID
+     * 账户编号
      */
     private String accountNo;
+
     /**
      * 发生前余额
      */
     private BigDecimal beforeBalance;
+
     /**
      * 发生后余额
      */
     private BigDecimal afterBalance;
+
     /**
      * 发生金额
      */
     private BigDecimal amount;
+
+    /**
+     * 手续费金额
+     */
+    private BigDecimal feeAmount;
+
+    /**
+     * 是否允许结算【0-否， 1-是】
+     */
+    private Integer allowSett;
+
+    /**
+     * 是否完成结算【0-否， 1-是】
+     */
+    private Integer completeSett;
+
     /**
      * 第三方流水号
      */
     private String thirdNo;
+
     /**
-     * 状态,10:创建,11:成功,12:失败
-     */
-    private Integer state;
-    /**
-     * 发生类型
+     * 类型
      */
     private String accountHisType;
+
     /**
-     * 版本号
+     * 入账完成时间
      */
-    private Integer version;
-    /**
-     * 是否允许结算【0->是；1->否】
-     */
-    private Integer allowSett;
-    /**
-     * 是否完成结算【0->是；1->否】
-     */
-    private Integer completeSett;
+    private LocalDateTime completeTime;
+
     /**
      * 入账状态
      */
-    private Integer accountStatus;
-    private LocalDateTime completeTime;
+    private String accountStatus;
 }

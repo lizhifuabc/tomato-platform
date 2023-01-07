@@ -26,7 +26,6 @@ public class AccountInfoDaoTest {
         System.out.println("selectByMerchantNo:"+ accountInfoDao.selectByMerchantNo(merchantNo,"12"));
 
         System.out.println("deduct:"+ accountInfoDao.deduct(accountNo, new BigDecimal(100), 0));
-        System.out.println("add:"+ accountInfoDao.add(accountNo, new BigDecimal(100), 0));
 
         System.out.println("freeze:"+ accountInfoDao.freeze(accountNo, new BigDecimal(100), 1));
         System.out.println("unfreeze:"+ accountInfoDao.unfreeze(accountNo, new BigDecimal(100), 2));

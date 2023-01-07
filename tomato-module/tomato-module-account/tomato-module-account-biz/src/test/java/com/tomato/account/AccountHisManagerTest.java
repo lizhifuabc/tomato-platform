@@ -34,6 +34,5 @@ public class AccountHisManagerTest {
         accountHisEntity.setAmount(new BigDecimal(100));
         accountHisEntity.setThirdNo(UUID.randomUUID().toString());
         accountHisEntity.setAllowSett(YesNoTypeEnum.YES.getValue());
-        System.out.println(accountHisManager.insert(accountHisEntity));
     }
 }

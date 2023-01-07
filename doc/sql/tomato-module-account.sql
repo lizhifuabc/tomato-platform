@@ -40,7 +40,7 @@ create table `t_account_manage_his`
 DROP TABLE IF EXISTS `t_account_his`;
 CREATE TABLE `t_account_his` (
    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-   `account_his_id` bigint(20) NOT NULL COMMENT '账户历史ID',
+   `account_his_serial`      bigint(20)                comment '账户历史流水顺序号',
    `account_no` varchar(36) NOT NULL COMMENT '账户编号',
    `before_balance` decimal(16,2)   COMMENT '发生前余额',
    `after_balance` decimal(16,2)    COMMENT '发生后余额',
@@ -51,13 +51,12 @@ CREATE TABLE `t_account_his` (
    `third_no` varchar(36) NOT NULL  COMMENT '第三方流水号',
    `account_his_type` varchar(36) NOT NULL  COMMENT '类型',
    `complete_time` datetime comment '入账完成时间',
-   `account_status` tinyint  NOT NULL COMMENT '入账状态',
+   `account_status` varchar(36)  NOT NULL COMMENT '入账状态',
 
    `version` int default 0 not null comment '乐观锁',
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
    `create_time` datetime not null default current_timestamp comment '创建时间',
    PRIMARY KEY (`id`),
-   unique key `uniq_account_his_id`(`account_his_id`),
    UNIQUE KEY `uniq_account_third_no` (account_no,third_no)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '账户历史表';
 

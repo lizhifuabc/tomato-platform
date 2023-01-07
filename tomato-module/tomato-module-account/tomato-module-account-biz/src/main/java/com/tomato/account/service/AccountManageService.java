@@ -45,9 +45,7 @@ public class AccountManageService {
         // 1.检查是否已经创建账户(不解决并发问题)
         // 这个地方是检查该商编是否已经存在账户，所以这个地方不能使用通过账户号来查询
         AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountCreateReq.getMerchantNo(),accountCreateReq.getAccountType());
-        if(account != null){
-            throw new BusinessException(AccountRespCode.ACCOUNT_ALREADY_EXIST);
-        }
+        AccountCheckService.checkAccountNotExist(account);
         // 2.创建账户
         account = accountInfoManager.create(accountCreateReq);
         // 3.创建账户管理记录
@@ -66,10 +64,7 @@ public class AccountManageService {
     public void cancelledAccount(AccountCancelledReq accountCancelledReq) {
         //1.检查是否已经注销账户
         AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountCancelledReq.getMerchantNo(),accountCancelledReq.getAccountType());
-        if(account == null){
-            log.info("账户不存在,直接返回, merchantNo:{}", accountCancelledReq.getMerchantNo());
-            return;
-        }
+        AccountCheckService.checkAccountExist(account);
         if(AccountStatusEnum.ACCOUNT_CANCELLED.getValue().equals(account.getAccountStatus())){
             log.info("账户已经注销,直接返回, merchantNo:{}", accountCancelledReq.getMerchantNo());
             return;
@@ -98,9 +93,7 @@ public class AccountManageService {
     public void freezeOrUnfreeze(AccountFreezeReq accountFreezeReq) {
         // 1.检查账户是否存在
         AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountFreezeReq.getMerchantNo(),accountFreezeReq.getAccountType());
-        if(account == null){
-            throw new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST);
-        }
+        AccountCheckService.checkAccountExist(account);
         if(AccountStatusEnum.ACCOUNT_CANCELLED.name().equals(account.getAccountStatus())){
             throw new BusinessException(AccountRespCode.ACCOUNT_STATUS_NOT_ACTIVE);
         }

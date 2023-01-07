@@ -36,7 +36,6 @@ public class AccountHisDaoTest {
         accountHisEntity.setAmount(new BigDecimal(100));
         accountHisEntity.setThirdNo(UUID.randomUUID().toString());
         accountHisEntity.setAllowSett(YesNoTypeEnum.YES.getValue());
-        accountHisManager.insert(accountHisEntity);
 
         System.out.println(accountHisDao.selectByAccountHisId(accountHisId, accountNo));
         System.out.println(accountHisDao.selectByThirdNo(accountNo, "d27bb021-5762-4fae-871a-b704a69385d0"));

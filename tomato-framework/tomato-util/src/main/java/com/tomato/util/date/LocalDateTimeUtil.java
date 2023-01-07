@@ -1,9 +1,7 @@
 package com.tomato.util.date;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 /**
  * {@link LocalDateTime} 工具类封装
@@ -19,5 +17,16 @@ public class LocalDateTimeUtil {
     public static long dataTimeToTimestamp(LocalDateTime ldt){
         long timestamp = ldt.toInstant(ZoneOffset.of("+8")).toEpochMilli();
         return timestamp;
+    }
+    public void getEndOfDay(LocalDateTime localDateTime) {
+        LocalDateTime endOfDay = localDateTime.with(LocalTime.MAX);
+        String endTimeStr = endOfDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("结束时间" + endTimeStr);
+    }
+
+    public void getStartOfDay(LocalDateTime localDateTime) {
+        LocalDateTime startOfDay = localDateTime.with(LocalTime.MIN);
+        String startTimeStr = startOfDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("开始时间" + startTimeStr);
     }
 }

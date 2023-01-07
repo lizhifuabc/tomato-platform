@@ -1,5 +1,6 @@
 package com.tomato.account.dao;
 
+import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -41,12 +42,10 @@ public interface AccountInfoDao {
 
     /**
      * 加钱
-     * @param accountNo
-     * @param amount
-     * @param version
-     * @return
+     * @param accountBalanceBO 账户金额操作
+     * @return 结果
      */
-    int add(@Param("accountNo") String accountNo, @Param("amount") BigDecimal amount,@Param("version") Integer version);
+    int add(@Param("accountBalanceBO") AccountBalanceBO accountBalanceBO);
 
     /**
      * 冻结金额
