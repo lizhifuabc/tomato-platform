@@ -23,15 +23,19 @@ public class AccountTradServiceTest {
     @Test
     public void test(){
         AccountTradReq accountTradReq = new AccountTradReq();
-        accountTradReq.setAccountNo("102023010758614013153");
+        accountTradReq.setAccountNo("102023010703528952850");
         accountTradReq.setAccountType("SETTLEMENT");
         accountTradReq.setAccountHisType("SETTLEMENT");
         accountTradReq.setAmount(new BigDecimal(100));
         accountTradReq.setThirdNo(UUID.randomUUID().toString());
-        accountTradReq.setMerchantNo("1673094483153");
+        accountTradReq.setMerchantNo("1673103402850");
         accountTradService.add(accountTradReq);
 
         accountTradReq.setThirdNo(UUID.randomUUID().toString());
         accountTradService.addAsync(accountTradReq);
+
+        accountTradReq.setThirdNo(UUID.randomUUID().toString());
+        accountTradReq.setAmount(new BigDecimal(-600));
+        accountTradService.deduct(accountTradReq);
     }
 }

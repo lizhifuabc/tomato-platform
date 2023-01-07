@@ -10,6 +10,7 @@ create table `t_account_info` (
   `balance`                 decimal(16,2)   not null default 0                  comment '余额',
   `out_reserve_balance`     decimal(16,2)   not null default 0                  comment '风险预存期外余额',
   `yesterday_balance`       decimal(16,2)   not null default 0                  comment '上日账户余额',
+  `frozen_balance`          decimal(16,2)   not null default 0                  comment '冻结金额',
   `last_trad_time`          datetime                                            comment '上一次交易日期',
   `account_status`          varchar(36)     not null                            comment '账户状态',
 

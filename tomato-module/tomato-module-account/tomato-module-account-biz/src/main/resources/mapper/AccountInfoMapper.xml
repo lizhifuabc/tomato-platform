@@ -20,9 +20,15 @@
             merchant_no = #{merchantNo} and account_type = #{accountType}
     </select>
 
-    <update id="deduct" parameterType="map">
-        UPDATE t_account_info set balance = balance - unbalance - #{amount},version = version +1
-                       WHERE account_no = #{accountNo}  and balance >=  #{amount} and version = #{version}
+    <update id="deduct" parameterType="AccountBalanceBO">
+        UPDATE
+            t_account_info
+        set
+            balance = balance - frozen_balance + #{accountBalanceBO.amount},
+            out_reserve_balance = out_reserve_balance - frozen_balance + #{accountBalanceBO.amount},
+            version = version +1
+       WHERE
+           account_no = #{accountBalanceBO.accountNo} and balance >=  #{accountBalanceBO.amount} and version = #{accountBalanceBO.version}
     </update>
     <update id="add" parameterType="AccountBalanceBO">
         UPDATE

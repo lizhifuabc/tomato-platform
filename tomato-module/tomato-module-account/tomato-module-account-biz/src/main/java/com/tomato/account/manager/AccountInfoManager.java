@@ -51,6 +51,27 @@ public class AccountInfoManager {
      * @return 结果
      */
     public void add(AccountBalanceBO accountBalanceBO,AccountInfoEntity account){
+        baseAccount(accountBalanceBO,account);
+        int count = accountInfoDao.add(accountBalanceBO);
+        if(count <= 0){
+            throw new BusinessException("在账户加钱时候出现乐观锁异常");
+        }
+    }
+
+    /**
+     * 扣款
+     * @param accountBalanceBO 账户金额操作
+     * @param account 账户
+     */
+    public void deduct(AccountBalanceBO accountBalanceBO, AccountInfoEntity account) {
+        baseAccount(accountBalanceBO,account);
+        int count = accountInfoDao.deduct(accountBalanceBO);
+        if(count <= 0){
+            throw new BusinessException("在账户扣款时候出现乐观锁异常");
+        }
+    }
+
+    private void baseAccount(AccountBalanceBO accountBalanceBO,AccountInfoEntity account){
         // lastTradTime : 2023年01月07日21:32:54
         LocalDateTime lastTradTime = account.getLastTradTime();
         // now : 2023年01月07日21:33:03
@@ -60,9 +81,5 @@ public class AccountInfoManager {
             accountBalanceBO.setLastTradTime(now);
         }
         account.setAccountHisSerial(account.getAccountHisSerial() + 1);
-        int count = accountInfoDao.add(accountBalanceBO);
-        if(count <= 0){
-            throw new BusinessException("在账户加钱时候出现乐观锁异常");
-        }
     }
 }

@@ -33,12 +33,10 @@ public interface AccountInfoDao {
     /**
      * 扣钱
      *
-     * @param accountNo
-     * @param amount
-     * @param version
+     * @param accountBalanceBO 账户金额操作
      * @return i
      */
-    int deduct(@Param("accountNo") String accountNo, @Param("amount") BigDecimal amount, @Param("version") Integer version);
+    int deduct(@Param("accountBalanceBO") AccountBalanceBO accountBalanceBO);
 
     /**
      * 加钱
