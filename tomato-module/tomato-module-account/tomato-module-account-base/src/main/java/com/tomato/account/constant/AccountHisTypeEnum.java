@@ -18,9 +18,18 @@ public enum AccountHisTypeEnum implements BaseEnum {
      */
     SETTLEMENT("SETTLEMENT", "结算"),
     /**
-     * 支付
+     * 交易
      */
-    PAYMENT("PAYMENT", "支付");
+    TRAD("TRAD", "交易"),
+    /**
+     * 转账
+     */
+    TRANS("TRANS", "转账"),
+    /**
+     * 提现
+     */
+    CASH("CASH", "提现"),
+    ;
     private final String value;
 
     private final String desc;

@@ -1,6 +1,6 @@
 package com.tomato.account.dao;
 
-import com.tomato.account.domain.entity.AccountEntity;
+import com.tomato.account.domain.entity.AccountInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,29 +13,22 @@ import java.math.BigDecimal;
  * @since 2022/12/31
  */
 @Mapper
-public interface AccountDao {
+public interface AccountInfoDao {
     /**
      * 查询账户
      *
      * @param accountNo
      * @return
      */
-    AccountEntity selectByAccountNo(@Param("accountNo") String accountNo);
+    AccountInfoEntity selectByAccountNo(@Param("accountNo") String accountNo);
 
     /**
      * 查询账户
      *
-     * @param merchantNo
-     * @return
+     * @param merchantNo 商编
+     * @return 账户
      */
-    AccountEntity selectByMerchantNo(@Param("merchantNo") String merchantNo,@Param("status") Integer status);
-    /**
-     * 查询账户
-     *
-     * @param merchantNo
-     * @return
-     */
-    AccountEntity selectByMerchantNoWithOutStatus(@Param("merchantNo") String merchantNo);
+    AccountInfoEntity selectByMerchantNo(@Param("merchantNo") String merchantNo,@Param("accountType") String accountType);
     /**
      * 扣钱
      *
@@ -74,7 +67,16 @@ public interface AccountDao {
     int unfreeze(@Param("accountNo") String accountNo, @Param("amount") BigDecimal amount,@Param("version") Integer version);
     /**
      * 插入
-     * @param AccountEntity
+     * @param AccountInfoEntity
      */
-    void insert(AccountEntity AccountEntity);
+    void insert(AccountInfoEntity AccountInfoEntity);
+
+    /**
+     * 更新账户状态
+     * @param accountNo 账户编号
+     * @param accountStatus 状态
+     * @param version 版本
+     * @return
+     */
+    int updateAccountStatus(@Param("accountNo") String accountNo, @Param("accountStatus") String accountStatus,@Param("version") Integer version);
 }

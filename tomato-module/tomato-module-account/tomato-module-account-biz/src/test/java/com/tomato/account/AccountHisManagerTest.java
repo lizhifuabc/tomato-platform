@@ -29,7 +29,7 @@ public class AccountHisManagerTest {
 
         AccountHisEntity accountHisEntity = new AccountHisEntity();
         accountHisEntity.setAccountNo(accountNo);
-        accountHisEntity.setAccountStatus(AccountStatusEnum.DEAL.getValue());
+//        accountHisEntity.setAccountStatus(AccountStatusEnum.DEAL.getValue());
         accountHisEntity.setAccountHisType(AccountHisTypeEnum.SETTLEMENT.getValue());
         accountHisEntity.setAmount(new BigDecimal(100));
         accountHisEntity.setThirdNo(UUID.randomUUID().toString());

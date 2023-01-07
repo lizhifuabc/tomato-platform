@@ -5,13 +5,13 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * 账户创建请求
+ * 账户注销请求
  *
  * @author lizhifu
  * @date 2022/7/1
  */
 @Data
-public class AccountCreateReq {
+public class AccountFreezeReq {
     /**
      * 商户编号
      */
@@ -23,4 +23,6 @@ public class AccountCreateReq {
      */
     @NotBlank(message = "账户类型不能为空")
     private String accountType;
+    @NotBlank(message = "账户状态不能为空")
+    private String accountStatus;
 }

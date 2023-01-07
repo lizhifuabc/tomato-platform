@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.account.dao.AccountManageHisDao">
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.tomato.account.domain.entity.AccountManageHisEntity">
+        INSERT INTO t_account_manage_his
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != accountNo and '' != accountNo">
+                account_no,
+            </if>
+            <if test="null != accountManageSerial">
+                account_manage_serial,
+            </if>
+            <if test="null != beforeValue and '' != beforeValue">
+                before_value,
+            </if>
+            <if test="null != afterValue and '' != afterValue">
+                after_value,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != accountNo and '' != accountNo">
+                #{accountNo},
+            </if>
+            <if test="null != accountManageSerial">
+                #{accountManageSerial},
+            </if>
+            <if test="null != beforeValue and '' != beforeValue">
+                #{beforeValue},
+            </if>
+            <if test="null != afterValue and '' != afterValue">
+                #{afterValue},
+            </if>
+        </trim>
+    </insert>
+</mapper>

@@ -5,24 +5,38 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 入账状态枚举
- *
+ * 账户状态枚举
  * @author lizhifu
- * @date 2022/6/25
  */
 @AllArgsConstructor
 @Getter
 public enum AccountStatusEnum implements BaseEnum {
-    /**
-     * 成功
-     */
-    SUCCESS(200, "成功"),
-    /**
-     * 处理中
-     */
-    DEAL(100, "处理中"),
-    ;
-    private final Integer value;
 
-    private final String desc;
+	/**
+	 * 活动中
+	 */
+	ACCOUNT_AVAILABLE("ACCOUNT_AVAILABLE","活动中"),
+
+	/**
+	 * 已注销
+	 */
+	ACCOUNT_CANCELLED("ACCOUNT_CANCELLED","已注销"),
+	
+	/**
+	 * 冻结止收
+	 */
+	ACCOUNT_FREEZE_CREDIT("ACCOUNT_FREEZE_CREDIT","冻结止收"),
+	
+	/**
+	 * 冻结止付
+	 */
+	ACCOUNT_FREEZE_DEBIT("ACCOUNT_FREEZE_DEBIT","冻结止付"),
+	
+	/**
+	 * 完全冻结
+	 */
+	ACCOUNT_FROZEN("ACCOUNT_FROZEN","完全冻结");
+	private final String value;
+
+	private final String desc;
 }

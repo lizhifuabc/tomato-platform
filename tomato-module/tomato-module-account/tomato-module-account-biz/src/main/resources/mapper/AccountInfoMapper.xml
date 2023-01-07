@@ -2,31 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.tomato.account.dao.AccountDao">
-    <insert id="insert" parameterType="AccountEntity">
-        insert into t_account_info (account_no, merchant_no,risk_day,account_type)
-            values (#{accountNo},#{merchantNo},#{riskDay},#{accountType})
+<mapper namespace="com.tomato.account.dao.AccountInfoDao">
+    <insert id="insert" parameterType="AccountInfoEntity">
+        insert into t_account_info (account_no, merchant_no,account_type,account_status)
+            values (#{accountNo},#{merchantNo},#{accountType},#{accountStatus})
     </insert>
-    <select id="selectByAccountNo" resultType="AccountEntity" parameterType="map">
+    <select id="selectByAccountNo" resultType="AccountInfoEntity" parameterType="map">
         SELECT * FROM t_account_info WHERE account_no = #{accountNo} and status = 0  LIMIT 1
     </select>
     
-    <select id="selectByMerchantNo" resultType="AccountEntity" parameterType="map">
+    <select id="selectByMerchantNo" resultType="AccountInfoEntity" parameterType="map">
         select
             *
         from
             t_account_info
         where
-            merchant_no = #{merchantNo} and status = #{status}
+            merchant_no = #{merchantNo} and account_type = #{accountType}
     </select>
-    <select id="selectByMerchantNoWithOutStatus" resultType="AccountEntity" parameterType="map">
-        select
-            *
-        from
-            t_account_info
-        where
-            merchant_no = #{merchantNo}
-    </select>
+
     <update id="deduct" parameterType="map">
         UPDATE t_account_info set balance = balance - unbalance - #{amount},version = version +1
                        WHERE account_no = #{accountNo}  and balance >=  #{amount} and version = #{version}
@@ -44,5 +37,14 @@
     <update id="unfreeze" parameterType="map">
         UPDATE t_account_info set unbalance = unbalance - #{amount},version = version +1
         WHERE account_no = #{accountNo} and version = #{version} and unbalance >= #{amount}
+    </update>
+
+    <update id="updateAccountStatus" parameterType="map">
+        UPDATE
+            t_account_info
+        set
+            account_status = #{accountStatus},version = version + 1,account_manage_serial = account_manage_serial + 1
+        WHERE
+            account_no = #{accountNo} and version = #{version}
     </update>
 </mapper>

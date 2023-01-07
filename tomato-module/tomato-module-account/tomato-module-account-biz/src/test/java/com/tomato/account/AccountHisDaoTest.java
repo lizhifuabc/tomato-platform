@@ -1,11 +1,9 @@
 package com.tomato.account;
 
 import com.tomato.account.constant.AccountHisTypeEnum;
-import com.tomato.account.constant.AccountStatusEnum;
 import com.tomato.account.dao.AccountHisDao;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.manager.AccountHisManager;
-import com.tomato.account.manager.AccountManager;
 import com.tomato.domain.type.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -33,7 +31,7 @@ public class AccountHisDaoTest {
 
         AccountHisEntity accountHisEntity = new AccountHisEntity();
         accountHisEntity.setAccountNo(accountNo);
-        accountHisEntity.setAccountStatus(AccountStatusEnum.DEAL.getValue());
+//        accountHisEntity.setAccountStatus(AccountStatusEnum.DEAL.getValue());
         accountHisEntity.setAccountHisType(AccountHisTypeEnum.SETTLEMENT.getValue());
         accountHisEntity.setAmount(new BigDecimal(100));
         accountHisEntity.setThirdNo(UUID.randomUUID().toString());

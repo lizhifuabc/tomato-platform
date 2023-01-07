@@ -5,13 +5,13 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * 账户创建请求
+ * 账户注销请求
  *
  * @author lizhifu
  * @date 2022/7/1
  */
 @Data
-public class AccountCreateReq {
+public class AccountCancelledReq {
     /**
      * 商户编号
      */
