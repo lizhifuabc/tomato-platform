@@ -54,6 +54,23 @@ public class AccountTradService {
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountTradReq);
         log.info("账户扣款 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
+
+    @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
+    public void deductAsync(AccountTradReq accountTradReq){
+        log.info("账户扣款 start,{}", accountTradReq);
+        AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType());
+        // 1.检查账户是否存在
+        AccountCheckService.checkAccountExist(account);
+        // 2.余额校验
+        AccountCheckService.checkBalance(account,accountTradReq.getAmount());
+        // 3.校验交易金额
+        validateAmount(accountTradReq.getAmount());
+        // 2.是否可以出款
+        AccountCheckService.checkDeduct(account.getAccountStatus());
+        // 4.创建账户历史
+        AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountTradReq);
+        log.info("账户扣款 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
+    }
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void add(AccountTradReq accountTradReq){
         log.info("账户入账 start,{}", accountTradReq);
