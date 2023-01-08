@@ -34,16 +34,6 @@
             )
     </insert>
 
-    <update id="updateAccountStatus" parameterType="AccountHisUpdateBO">
-        UPDATE
-            t_account_his
-        set
-            account_status = #{accountStatus},version = version + 1,before_balance = #{beforeBalance},
-            after_balance = #{afterBalance},complete_time = now()
-        WHERE
-            account_his_id = #{accountHisId} and version = #{version} and account_status = 100 and account_no = #{accountNo}
-    </update>
-
     <select id="selectByThirdNo" parameterType="map" resultType="AccountHisEntity">
         select * from t_account_his where third_no = #{thirdNo} and account_no = #{accountNo}
     </select>
@@ -52,18 +42,19 @@
         UPDATE
             t_account_his
         set
-            account_status = #{accountStatus},version = version + 1,before_balance = #{beforeBalance},after_balance = #{afterBalance},complete_time = now()
-        WHERE account_his_id in
-        <foreach collection="accountHisId" item="id" index="index" open="(" close=")" separator=",">
+            account_status = 'SUCCESS',version = version + 1,before_balance = #{beforeBalance},after_balance = #{afterBalance},complete_time = now(),
+            account_his_serial = #{accountHisSerial}
+        WHERE id in
+        <foreach collection="accountHisIdList" item="id" index="index" open="(" close=")" separator=",">
             #{id}
         </foreach>
-         and version = #{version} and account_status = 100 and account_no = #{accountNo}
+         and account_status = 'DEAL' and account_no = #{accountNo}
     </update>
 
     <select id="selectDeal" parameterType = "map" resultType = "AccountHisDealBO">
-        select group_concat(account_his_id) as accountHisIds,sum(amount) as sum
+        select group_concat(id) as accountHisIds,sum(amount) as sum
         from t_account_his
-        where account_no = #{accountNo} and account_status = 100 and version = 0 and amount >0
+        where account_no = #{accountNo} and account_status = 'DEAL'
     </select>
 
     <!-- 日汇总账户待结算金额  -->

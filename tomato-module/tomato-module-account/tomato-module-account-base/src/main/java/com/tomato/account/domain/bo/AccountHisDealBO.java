@@ -3,6 +3,7 @@ package com.tomato.account.domain.bo;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 查询未入账的账户历史返回

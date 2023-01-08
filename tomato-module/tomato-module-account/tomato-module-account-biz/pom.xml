@@ -41,6 +41,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-id-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-dynamic-thread-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

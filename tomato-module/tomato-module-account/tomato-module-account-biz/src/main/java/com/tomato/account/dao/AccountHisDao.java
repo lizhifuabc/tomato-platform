@@ -46,13 +46,6 @@ public interface AccountHisDao {
     int insert(AccountHisEntity accountHisEntity);
 
     /**
-     * 更新账户历史状态  分库分表，需要增加 accountNo,或者定制 accountHisId 也作为分表字段
-     * @param accountHisUpdateBO
-     * @return
-     */
-    int updateAccountStatus(AccountHisUpdateBO accountHisUpdateBO);
-
-    /**
      * 批量更新账户历史状态  分库分表，需要增加 accountNo,或者定制 accountHisId 也作为分表字段
      * @param accountHisUpdateBatchDO
      * @return
@@ -61,7 +54,7 @@ public interface AccountHisDao {
 
     /**
      * 查询未入账的账户历史
-     * account_status = 100 and version = 0 and amount >0
+     * account_status = 'DEAL'
      * @param accountNo
      * @return
      */

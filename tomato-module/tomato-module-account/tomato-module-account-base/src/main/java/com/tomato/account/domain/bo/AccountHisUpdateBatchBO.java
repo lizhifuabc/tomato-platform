@@ -12,23 +12,15 @@ import java.util.List;
  * @date 2022/6/7
  */
 @Data
-public class AccountHisUpdateBatchBO {
-    /**
-     * 账号编号
-     */
-    private String accountNo;
+public class AccountHisUpdateBatchBO extends AccountHisDealBO{
     /**
      * 账户历史表ID
      */
-    private List accountHisId;
+    private List accountHisIdList;
     /**
-     * 入账状态
+     * 账号
      */
-    private Integer accountStatus;
-    /**
-     * 版本号
-     */
-    private Integer version;
+    private String accountNo;
     /**
      * 发生前余额
      */
@@ -37,4 +29,8 @@ public class AccountHisUpdateBatchBO {
      * 发生后余额
      */
     private BigDecimal afterBalance;
+    /**
+     * 账户历史流水顺序号
+     */
+    private Long accountHisSerial;
 }

@@ -29,7 +29,15 @@ public class AccountInfoManager {
         this.accountInfoDao = accountInfoDao;
         this.accountNoManager = accountNoManager;
     }
-
+    /**
+     * 查询账户
+     *
+     * @param accountNo 账户
+     * @return
+     */
+    public AccountInfoEntity selectByAccountNo(String accountNo){
+        return accountInfoDao.selectByAccountNo(accountNo);
+    }
     public AccountInfoEntity create(AccountCreateReq accountCreateReq) {
         AccountInfoEntity accountInfoEntity = BeanUtil.copy(accountCreateReq, AccountInfoEntity.class);
         accountInfoEntity.setAccountNo(accountNoManager.nextStringValue(accountCreateReq));

@@ -8,7 +8,7 @@
             values (#{accountNo},#{merchantNo},#{accountType},#{accountStatus})
     </insert>
     <select id="selectByAccountNo" resultType="AccountInfoEntity" parameterType="map">
-        SELECT * FROM t_account_info WHERE account_no = #{accountNo} and status = 0  LIMIT 1
+        SELECT * FROM t_account_info WHERE account_no = #{accountNo}
     </select>
     
     <select id="selectByMerchantNo" resultType="AccountInfoEntity" parameterType="map">
