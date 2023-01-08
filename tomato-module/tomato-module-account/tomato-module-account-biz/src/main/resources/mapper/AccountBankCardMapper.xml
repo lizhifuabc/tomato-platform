@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.account.dao.AccountBankCardDao">
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="AccountBankCardEntity">
+        INSERT INTO t_account_bankcard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != accountNo and '' != accountNo">
+                account_no,
+            </if>
+            <if test="null != merchantNo and '' != merchantNo">
+                merchant_no,
+            </if>
+            <if test="null != bankCode and '' != bankCode">
+                bank_code,
+            </if>
+            <if test="null != bankName and '' != bankName">
+                bank_name,
+            </if>
+            <if test="null != bankAddress and '' != bankAddress">
+                bank_address,
+            </if>
+            <if test="null != bankBranch and '' != bankBranch">
+                bank_branch,
+            </if>
+            <if test="null != cardNo and '' != cardNo">
+                card_no,
+            </if>
+            <if test="null != accountName and '' != accountName">
+                account_name,
+            </if>
+            <if test="null != cardType and '' != cardType">
+                card_type,
+            </if>
+            <if test="null != province and '' != province">
+                province,
+            </if>
+            <if test="null != city and '' != city">
+                city,
+            </if>
+            <if test="null != cityName and '' != cityName">
+                city_name,
+            </if>
+            <if test="null != settleFlag">
+                settle_flag,
+            </if>
+            <if test="null != remark and '' != remark">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != accountNo and '' != accountNo">
+                #{accountNo},
+            </if>
+            <if test="null != merchantNo and '' != merchantNo">
+                #{merchantNo},
+            </if>
+            <if test="null != bankCode and '' != bankCode">
+                #{bankCode},
+            </if>
+            <if test="null != bankName and '' != bankName">
+                #{bankName},
+            </if>
+            <if test="null != bankAddress and '' != bankAddress">
+                #{bankAddress},
+            </if>
+            <if test="null != bankBranch and '' != bankBranch">
+                #{bankBranch},
+            </if>
+            <if test="null != cardNo and '' != cardNo">
+                #{cardNo},
+            </if>
+            <if test="null != accountName and '' != accountName">
+                #{accountName},
+            </if>
+            <if test="null != cardType and '' != cardType">
+                #{cardType},
+            </if>
+            <if test="null != province and '' != province">
+                #{province},
+            </if>
+            <if test="null != city and '' != city">
+                #{city},
+            </if>
+            <if test="null != cityName and '' != cityName">
+                #{cityName},
+            </if>
+            <if test="null != settleFlag ">
+                #{settleFlag},
+            </if>
+            <if test="null != remark and '' != remark">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+</mapper>
