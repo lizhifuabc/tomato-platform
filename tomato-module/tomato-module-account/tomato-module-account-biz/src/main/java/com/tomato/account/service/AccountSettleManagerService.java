@@ -28,6 +28,10 @@ public class AccountSettleManagerService {
         this.accountSettleControlManager = accountSettleControlManager;
     }
 
+    /**
+     * 账号结算控制
+     * @param accountSettleManagerCreateReq 账号结算控制
+     */
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void create(AccountSettleManagerCreateReq accountSettleManagerCreateReq){
         AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountSettleManagerCreateReq.getAccountNo());
