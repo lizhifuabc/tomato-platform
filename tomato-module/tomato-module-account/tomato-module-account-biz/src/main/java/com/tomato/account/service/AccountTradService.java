@@ -57,7 +57,7 @@ public class AccountTradService {
 
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void deductAsync(AccountTradReq accountTradReq){
-        log.info("账户扣款 start,{}", accountTradReq);
+        log.info("账户扣款 async start,{}", accountTradReq);
         AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType());
         // 1.检查账户是否存在
         AccountCheckService.checkAccountExist(account);
@@ -69,7 +69,7 @@ public class AccountTradService {
         AccountCheckService.checkDeduct(account.getAccountStatus());
         // 4.创建账户历史
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountTradReq);
-        log.info("账户扣款 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
+        log.info("账户扣款 async end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void add(AccountTradReq accountTradReq){
@@ -93,7 +93,7 @@ public class AccountTradService {
     }
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void addAsync(AccountTradReq accountTradReq){
-        log.info("账户入账 start,{}", accountTradReq);
+        log.info("账户入账 async start,{}", accountTradReq);
         AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType());
         // 1.检查账户是否存在
         AccountCheckService.checkAccountExist(account);
@@ -103,7 +103,7 @@ public class AccountTradService {
         validateAmount(accountTradReq.getAmount());
         // 4.创建账户历史
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountTradReq);
-        log.info("账户入账 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
+        log.info("账户入账 async end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
     /**
      * 验证交易金额
