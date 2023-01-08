@@ -62,6 +62,9 @@
             <if test="null != autoRemitFlag">
                 auto_remit_flag,
             </if>
+            <if test="null != createTime ">
+                create_time
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="null != accountNo and '' != accountNo">
@@ -120,6 +123,9 @@
             </if>
             <if test="null != autoRemitFlag">
                 #{autoRemitFlag},
+            </if>
+            <if test="null != createTime ">
+                #{createTime}
             </if>
         </trim>
     </insert>

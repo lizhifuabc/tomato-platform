@@ -1,11 +1,15 @@
-package com.tomato.account.service;
+package com.tomato.account;
 
 import com.tomato.account.domain.entity.AccountInfoEntity;
+import com.tomato.account.domain.req.AccountCreateReq;
 import com.tomato.account.domain.req.AccountSettleCreateReq;
+import com.tomato.account.domain.req.AccountSettleManagerCreateReq;
+import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTargetTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
-import com.tomato.account.manager.AccountSettleManager;
+import com.tomato.account.service.AccountManageService;
+import com.tomato.account.service.AccountSettleManagerService;
 import com.tomato.domain.type.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -14,25 +18,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 
 /**
- * AccountSettleService
+ * Account
  *
  * @author lizhifu
  * @since 2023/1/8
  */
 @SpringBootTest
-public class AccountSettleServiceTest {
+public class AccountFlowTest {
     @Resource
-    AccountSettleManager accountSettleManager;
+    AccountManageService accountManageService;
+    @Resource
+    AccountSettleManagerService accountSettleManagerService;
     @Test
     public void test(){
-        AccountInfoEntity accountInfo = new AccountInfoEntity();
-        accountInfo.setAccountNo("12312");
-        accountInfo.setMerchantNo("12312");
-
+        // 创建账户
+        AccountCreateReq accountCreateReq = new AccountCreateReq();
+        accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
+        accountCreateReq.setMerchantNo(String.valueOf(System.currentTimeMillis()));
+        AccountInfoEntity account = accountManageService.createAccount(accountCreateReq);
+        // 创建结算
+        AccountSettleManagerCreateReq accountSettleManagerCreateReq = new AccountSettleManagerCreateReq();
+        accountSettleManagerCreateReq.setAccountNo(account.getAccountNo());
+        accountSettleManagerCreateReq.setMerchantNo(account.getMerchantNo());
         AccountSettleCreateReq accountSettleCreateReq = new AccountSettleCreateReq();
         accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
         accountSettleCreateReq.setCycleType(CycleTypeEnum.WEEK.getValue());
-        accountSettleCreateReq.setCycleData("1,2,3,4,8,6,7");
+        accountSettleCreateReq.setCycleData("1,2,3,4,6,7");
         accountSettleCreateReq.setReserveDays(3);
         accountSettleCreateReq.setMinAmount(new BigDecimal(100));
         accountSettleCreateReq.setSettleFeeFlag(YesNoTypeEnum.YES.getValue());
@@ -44,6 +55,8 @@ public class AccountSettleServiceTest {
         accountSettleCreateReq.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
         accountSettleCreateReq.setUrgentFlag(YesNoTypeEnum.YES.getValue());
         accountSettleCreateReq.setAutoRemitFlag(YesNoTypeEnum.YES.getValue());
-        accountSettleManager.create(accountSettleCreateReq,accountInfo);
+
+        accountSettleManagerCreateReq.setAccountSettleCreateReq(accountSettleCreateReq);
+        accountSettleManagerService.create(accountSettleManagerCreateReq);
     }
 }

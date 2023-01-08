@@ -1,11 +1,10 @@
 package com.tomato.account.service;
 
-import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountSettleCreateReq;
+import com.tomato.account.domain.req.AccountSettleManagerCreateReq;
 import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTargetTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
-import com.tomato.account.manager.AccountSettleManager;
 import com.tomato.domain.type.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -14,21 +13,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 
 /**
- * AccountSettleService
+ * AccountSettleManagerService
  *
  * @author lizhifu
  * @since 2023/1/8
  */
 @SpringBootTest
-public class AccountSettleServiceTest {
+public class AccountSettleManagerServiceTest {
     @Resource
-    AccountSettleManager accountSettleManager;
+    AccountSettleManagerService accountSettleManagerService;
+
     @Test
     public void test(){
-        AccountInfoEntity accountInfo = new AccountInfoEntity();
-        accountInfo.setAccountNo("12312");
-        accountInfo.setMerchantNo("12312");
-
+        AccountSettleManagerCreateReq accountSettleManagerCreateReq = new AccountSettleManagerCreateReq();
+        accountSettleManagerCreateReq.setAccountNo("1231222");
+        accountSettleManagerCreateReq.setMerchantNo("1222312");
         AccountSettleCreateReq accountSettleCreateReq = new AccountSettleCreateReq();
         accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
         accountSettleCreateReq.setCycleType(CycleTypeEnum.WEEK.getValue());
@@ -44,6 +43,8 @@ public class AccountSettleServiceTest {
         accountSettleCreateReq.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
         accountSettleCreateReq.setUrgentFlag(YesNoTypeEnum.YES.getValue());
         accountSettleCreateReq.setAutoRemitFlag(YesNoTypeEnum.YES.getValue());
-        accountSettleManager.create(accountSettleCreateReq,accountInfo);
+
+        accountSettleManagerCreateReq.setAccountSettleCreateReq(accountSettleCreateReq);
+        accountSettleManagerService.create(accountSettleManagerCreateReq);
     }
 }

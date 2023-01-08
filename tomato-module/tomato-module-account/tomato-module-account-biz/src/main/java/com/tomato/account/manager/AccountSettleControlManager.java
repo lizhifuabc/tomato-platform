@@ -20,6 +20,11 @@ public class AccountSettleControlManager {
     public AccountSettleControlManager(AccountSettleControlDao accountSettleControlDao) {
         this.accountSettleControlDao = accountSettleControlDao;
     }
+
+    /**
+     * 创建账户结算控制
+     * @param accountSettleEntity
+     */
     public void create(AccountSettleEntity accountSettleEntity){
 
         AccountSettleControlEntity accountSettleControlEntity = new AccountSettleControlEntity();

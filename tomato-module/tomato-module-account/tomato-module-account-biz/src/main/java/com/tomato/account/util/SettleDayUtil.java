@@ -15,7 +15,11 @@ import java.util.Arrays;
  */
 @Slf4j
 public class SettleDayUtil {
-
+    public static void main(String[] args) {
+        // 下一结算日计算，周期类型：WEEK, 结算日设置：[1, 2, 3, 4, 6, 7], 当前值：2023-01-08
+        String[] cycleData = {"1","2","3","4","6","7"};
+        System.out.println(nextSettleDateByWeek(cycleData,LocalDate.now()) );
+    }
     public static LocalDate settleDate(String[] cycleData, LocalDate nextSettle,String cycleType,int reserveDay){
         LocalDate nextSettleDate = nextSettleDate(cycleData,nextSettle,cycleType,reserveDay);
         // 风险时间 = 下次结算时间 - （风险预存期 + 1）
@@ -50,7 +54,7 @@ public class SettleDayUtil {
         // 星期几
         int week = nextSettle.getDayOfWeek().getValue();
         // 最近的日期
-        String d = Arrays.stream(cycleData).filter(data -> Integer.parseInt(data) >= week).findFirst().orElse(cycleData[0]);
+        String d = Arrays.stream(cycleData).filter(data -> Integer.parseInt(data) > week).findFirst().orElse(cycleData[0]);
         int between = Integer.parseInt(d) - week;
 
         if(between <= 0){
@@ -66,7 +70,7 @@ public class SettleDayUtil {
         // 月几号
         int month = nextSettle.getDayOfMonth();
         // 最近的日期
-        String d = Arrays.stream(cycleData).filter(data -> Integer.parseInt(data) >= month).findFirst().orElse(cycleData[0]);
+        String d = Arrays.stream(cycleData).filter(data -> Integer.parseInt(data) > month).findFirst().orElse(cycleData[0]);
         int between = Integer.parseInt(d) - month;
 
         if(between <= 0){
