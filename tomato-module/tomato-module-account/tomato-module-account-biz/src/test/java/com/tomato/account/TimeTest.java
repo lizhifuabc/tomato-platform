@@ -14,10 +14,10 @@ import java.time.LocalDate;
  */
 public class TimeTest {
     public static void main(String[] args) {
-        String[] cycleData = {"1","2","4"};
-        LocalDate nextSettleDate = LocalDate.now().plusDays(1);
+        String[] cycleData = {"30"};
+        LocalDate nextSettleDate = LocalDate.now().plusDays(23);
         System.out.println("当前时间:"+nextSettleDate);
 //        System.out.println(SettleDayUtil.nextSettleDateByWeek(cycleData,nextSettleDate));
-        System.out.println(SettleDayUtil.settleDate(cycleData,nextSettleDate, CycleTypeEnum.WEEK.getValue(), 3));
+        System.out.println(SettleDayUtil.settleDate(cycleData,nextSettleDate, CycleTypeEnum.MONTH.getValue(), 3));
     }
 }

@@ -26,7 +26,7 @@ public class AccountSettleControlManager {
         accountSettleControlEntity.setAccountSettleId(accountSettleEntity.getId());
         accountSettleControlEntity.setAccountNo(accountSettleEntity.getAccountNo());
         accountSettleControlEntity.setMerchantNo(accountSettleEntity.getMerchantNo());
-
+        // 自动结算（定期结算）
         if (SettleTypeEnum.AUTO_SETTLEMENT.getValue().equals(accountSettleEntity.getSettleType())) {
             accountSettleControlEntity.setNextSettleDate(
                     SettleDayUtil.settleDate(
