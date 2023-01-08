@@ -5,24 +5,25 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 结算周期类型枚举
+ * 结算状态枚举
  * @author lizhifu
  */
 @AllArgsConstructor
 @Getter
-public enum CycleTypeEnum implements BaseEnum {
+public enum SettleStatusEnum implements BaseEnum {
 	/**
-	 * 月结:每个月几号结算
-	 * 1-30
+	 * 	可结算
 	 */
-	MONTH("MONTH","月结"),
+	SETTLE("SETTLE","可结算"),
 	/**
-	 * 周结：每周几结算
-	 * 1-7
+	 * 不可结算
 	 */
-	WEEK("WEEK","周结"),
+	SETTLE_UN("SETTLE_UN","不可结算"),
+	/**
+	 * 结算中
+	 */
+	SETTLING("SETTLING","结算中"),
 	;
-
 	private final String value;
 
 	private final String desc;

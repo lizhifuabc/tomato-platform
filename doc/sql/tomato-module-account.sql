@@ -112,6 +112,29 @@ create table `t_account_settle` (
    unique key `uniq_account_no` (`account_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户结算规则';
 
+# 账户结算控制
+drop table if exists `t_account_settle_control`;
+create table `t_account_settle_control` (
+    `id`                      bigint(20)      not null auto_increment             comment '自增主键',
+    `account_settle_id`       bigint(20)      not null                            comment '账户结算规则ID',
+    `account_no`              varchar(36)     not null                            comment '账户编号',
+    `merchant_no`             varchar(50)     not null                            comment '商户编号',
+
+    `settle_status`           varchar(36)                                         comment '结算状态',
+    `last_settle_batch`       varchar(36)                                         comment '上次结算批次',
+
+    `last_settle_time`        datetime                                            comment '上次结算日期',
+    `last_execute_time`       datetime                                            comment '上次结算执行日期',
+    `last_collect_time`       datetime        not null                            comment '上次汇总日期',
+    `next_settle_date`        date            not null                            comment '下次结算日期',
+
+    `version`                 int             not null default 0                  comment '乐观锁',
+    `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
+    `create_time`             datetime        not null default current_timestamp comment '创建时间',
+    primary key (`id`),
+    unique key `uniq_account_no` (`account_no`)
+) engine=innodb auto_increment=1 default charset=utf8 comment '账户结算控制';
+
 -- 目标银行卡(结算到银行卡使用)
 drop table if exists  t_account_bankcard;
 create table  t_account_bankcard(

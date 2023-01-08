@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.account.dao.AccountSettleControlDao">
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="AccountSettleControlEntity">
+        INSERT INTO t_account_settle_control
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != accountSettleId ">
+                account_settle_id,
+            </if>
+            <if test="null != accountNo and '' != accountNo">
+                account_no,
+            </if>
+            <if test="null != merchantNo and '' != merchantNo">
+                merchant_no,
+            </if>
+            <if test="null != settleStatus and '' != settleStatus">
+                settle_status,
+            </if>
+            <if test="null != lastSettleBatch and '' != lastSettleBatch">
+                last_settle_batch,
+            </if>
+            <if test="null != lastSettleTime ">
+                last_settle_time,
+            </if>
+            <if test="null != lastExecuteTime ">
+                last_execute_time,
+            </if>
+            <if test="null != lastCollectTime ">
+                last_collect_time,
+            </if>
+            <if test="null != nextSettleDate ">
+                next_settle_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != accountSettleId ">
+                #{accountSettleId},
+            </if>
+            <if test="null != accountNo and '' != accountNo">
+                #{accountNo},
+            </if>
+            <if test="null != merchantNo and '' != merchantNo">
+                #{merchantNo},
+            </if>
+            <if test="null != settleStatus and '' != settleStatus">
+                #{settleStatus},
+            </if>
+            <if test="null != lastSettleBatch and '' != lastSettleBatch">
+                #{lastSettleBatch},
+            </if>
+            <if test="null != lastSettleTime ">
+                #{lastSettleTime},
+            </if>
+            <if test="null != lastExecuteTime ">
+                #{lastExecuteTime},
+            </if>
+            <if test="null != lastCollectTime ">
+                #{lastCollectTime},
+            </if>
+            <if test="null != nextSettleDate ">
+                #{nextSettleDate},
+            </if>
+        </trim>
+    </insert>
+</mapper>
