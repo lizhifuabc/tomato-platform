@@ -1,13 +1,12 @@
 package com.tomato.account.service;
 
-import com.tomato.account.dao.AccountInfoDao;
+import com.tomato.account.dao.AccountSettleDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.domain.req.AccountBankCardCreateReq;
+import com.tomato.account.domain.entity.AccountSettleEntity;
 import com.tomato.account.domain.req.AccountSettleCreateReq;
+import com.tomato.web.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 账户结算规则
@@ -18,21 +17,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Slf4j
 public class AccountSettleManagerService {
-    private final AccountInfoDao accountInfoDao;
+    private final AccountSettleDao accountSettleDao;
 
-    public AccountSettleManagerService(AccountInfoDao accountInfoDao) {
-        this.accountInfoDao = accountInfoDao;
+    public AccountSettleManagerService(AccountSettleDao accountSettleDao) {
+        this.accountSettleDao = accountSettleDao;
     }
 
     /**
      * 创建账户结算规则
      * @param accountSettleCreateReq 账户结算规则
      */
-    @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
-    public void create(AccountSettleCreateReq accountSettleCreateReq, AccountBankCardCreateReq accountBankCardCreateReq){
-        AccountInfoEntity account = accountInfoDao.selectByAccountNo(accountSettleCreateReq.getAccountNo());
-        // 1.保存结算规则，初始化结算控制
-        // 2.结算目标银行卡
-        log.info("设置结算规则, merchantNo:{}", accountSettleCreateReq.getMerchantNo());
+    public void create(AccountSettleCreateReq accountSettleCreateReq, AccountInfoEntity accountInfo){
+        AccountSettleEntity accountSettleEntity = BeanUtil.copy(accountSettleCreateReq,AccountSettleEntity.class);
+        accountSettleEntity.setAccountNo(accountInfo.getAccountNo());
+        accountSettleEntity.setMerchantNo(accountInfo.getMerchantNo());
+        // 保存结算规则
+        accountSettleDao.insert(accountSettleEntity);
+        log.info("设置结算规则, merchantNo:{}, id:{}", accountSettleEntity.getMerchantNo(),accountSettleEntity.getId());
+        // 初始化结算控制 TODO
     }
 }

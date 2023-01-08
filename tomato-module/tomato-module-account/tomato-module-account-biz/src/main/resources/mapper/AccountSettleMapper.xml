@@ -2,5 +2,125 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.account.dao.AccountSettleDao">
-
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="AccountSettleEntity">
+        INSERT INTO t_account_settle
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != accountNo and '' != accountNo">
+                account_no,
+            </if>
+            <if test="null != merchantNo and '' != merchantNo">
+                merchant_no,
+            </if>
+            <if test="null != settleType and '' != settleType">
+                settle_type,
+            </if>
+            <if test="null != cycleType and '' != cycleType">
+                cycle_type,
+            </if>
+            <if test="null != cycleData and '' != cycleData">
+                cycle_data,
+            </if>
+            <if test="null != reserveDays">
+                reserve_days,
+            </if>
+            <if test="null != minAmount">
+                min_amount,
+            </if>
+            <if test="null != settleFeeFlag">
+                settle_fee_flag,
+            </if>
+            <if test="null != limitSettleFee">
+                limit_settle_fee,
+            </if>
+            <if test="null != settleFee">
+                settle_fee,
+            </if>
+            <if test="null != maxSettleFee">
+                max_settle_fee,
+            </if>
+            <if test="null != maxSettleDays">
+                max_settle_days,
+            </if>
+            <if test="null != settleTargetType and '' != settleTargetType">
+                settle_target_type,
+            </if>
+            <if test="null != remarkCode and '' != remarkCode">
+                remark_code,
+            </if>
+            <if test="null != remarkCaption and '' != remarkCaption">
+                remark_caption,
+            </if>
+            <if test="null != remitMemo and '' != remitMemo">
+                remit_memo,
+            </if>
+            <if test="null != remitMemoFormula and '' != remitMemoFormula">
+                remit_memo_formula,
+            </if>
+            <if test="null != urgentFlag">
+                urgent_flag,
+            </if>
+            <if test="null != autoRemitFlag">
+                auto_remit_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != accountNo and '' != accountNo">
+                #{accountNo},
+            </if>
+            <if test="null != merchantNo and '' != merchantNo">
+                #{merchantNo},
+            </if>
+            <if test="null != settleType and '' != settleType">
+                #{settleType},
+            </if>
+            <if test="null != cycleType and '' != cycleType">
+                #{cycleType},
+            </if>
+            <if test="null != cycleData and '' != cycleData">
+                #{cycleData},
+            </if>
+            <if test="null != reserveDays">
+                #{reserveDays},
+            </if>
+            <if test="null != minAmount">
+                #{minAmount},
+            </if>
+            <if test="null != settleFeeFlag">
+                #{settleFeeFlag},
+            </if>
+            <if test="null != limitSettleFee">
+                #{limitSettleFee},
+            </if>
+            <if test="null != settleFee">
+                #{settleFee},
+            </if>
+            <if test="null != maxSettleFee">
+                #{maxSettleFee},
+            </if>
+            <if test="null != maxSettleDays">
+                #{maxSettleDays},
+            </if>
+            <if test="null != settleTargetType and '' != settleTargetType">
+                #{settleTargetType},
+            </if>
+            <if test="null != remarkCode and '' != remarkCode">
+                #{remarkCode},
+            </if>
+            <if test="null != remarkCaption and '' != remarkCaption">
+                #{remarkCaption},
+            </if>
+            <if test="null != remitMemo and '' != remitMemo">
+                #{remitMemo},
+            </if>
+            <if test="null != remitMemoFormula and '' != remitMemoFormula">
+                #{remitMemoFormula},
+            </if>
+            <if test="null != urgentFlag">
+                #{urgentFlag},
+            </if>
+            <if test="null != autoRemitFlag">
+                #{autoRemitFlag},
+            </if>
+        </trim>
+    </insert>
 </mapper>

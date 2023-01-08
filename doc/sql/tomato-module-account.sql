@@ -84,24 +84,26 @@ create table `t_account_settle` (
 
    `settle_type`             varchar(36)     not null                            comment '结算类型',
    `cycle_type`              varchar(36)     not null                            comment '结算周期',
-   `cycle_data`              varchar(36)     not null                            comment '结算周期数据',
+   `cycle_data`              varchar(36)                                         comment '结算周期数据(自动结算必须),格式:1,3,5',
    `reserve_days`            int             not null                            comment '风险预存期',
    `min_amount`              decimal(16,2)   not null default 0                  comment '最小结算金额',
-   `settle_fee_flag`         smallint        not null default 0                  comment '是否承担划款手续费标志',
 
-   `limit_settle_fee`        decimal(16,2)   not null default 0                  comment '客户不承担手续费限额',
+   `settle_fee_flag`         bit             not null default 1                  comment '是否承担划款手续费标志:0-否, 1-是',
    `settle_fee`              decimal(16,2)   not null default 0                  comment '结算手续费',
+
+   `limit_settle_fee`        decimal(16,2)   not null default 0                  comment '客户不承担手续费限额(多少以内免手续费)',
    `max_settle_fee`          decimal(16,2)   not null default 0                  comment '封顶手续费',
+
    `max_settle_days`         int             not null                            comment '最大结算天数',
 
    `settle_target_type`      varchar(16)     not null                            comment '结算到目标账户类型',
-   `remark_code`             varchar(36)     not null                            comment '备注编码',
-   `remark_caption`          varchar(36)     not null                            comment '备注',
-   `remit_memo`              varchar(400)    not null                            comment '打款备注的表达式，可以动态计算',
-   `remit_memo_formula`      varchar(200)    not null                            comment '打款备注',
+   `remark_code`             varchar(36)                                         comment '备注编码',
+   `remark_caption`          varchar(36)                                         comment '备注',
+   `remit_memo`              varchar(400)                                        comment '打款备注的表达式，可以动态计算',
+   `remit_memo_formula`      varchar(200)                                        comment '打款备注',
 
-   `is_urgent`               smallint         not null default 0                 comment '是否加急',
-   `is_auto_remit`           smallint         not null default 0                 comment '是否自动打款',
+   `urgent_flag`             bit             not null default 0                 comment '是否加急:0-否, 1-是',
+   `auto_remit_flag`         bit             not null default 0                 comment '是否自动打款:0-否, 1-是',
 
    `version`                 int             not null default 0                  comment '乐观锁',
    `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
