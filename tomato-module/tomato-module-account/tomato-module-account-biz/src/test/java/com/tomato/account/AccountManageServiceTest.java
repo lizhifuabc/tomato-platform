@@ -1,7 +1,7 @@
 package com.tomato.account;
 
-import com.tomato.account.constant.AccountStatusEnum;
-import com.tomato.account.constant.AccountTypeEnum;
+import com.tomato.account.enums.AccountStatusEnum;
+import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.domain.req.AccountCancelledReq;
 import com.tomato.account.domain.req.AccountCreateReq;
 import com.tomato.account.domain.req.AccountFreezeReq;

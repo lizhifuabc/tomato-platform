@@ -1,4 +1,4 @@
-package com.tomato.account.constant;
+package com.tomato.account.enums;
 
 import com.tomato.domain.type.BaseEnum;
 import lombok.AllArgsConstructor;

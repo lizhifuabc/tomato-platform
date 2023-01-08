@@ -1,6 +1,6 @@
 package com.tomato.account;
 
-import com.tomato.account.constant.AccountTypeEnum;
+import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.domain.req.AccountCreateReq;
 import com.tomato.account.manager.AccountInfoManager;
 import jakarta.annotation.Resource;

@@ -1,6 +1,6 @@
 package com.tomato.account.service;
 
-import com.tomato.account.constant.AccountStatusEnum;
+import com.tomato.account.enums.AccountStatusEnum;
 import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.dao.AccountManageHisDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;

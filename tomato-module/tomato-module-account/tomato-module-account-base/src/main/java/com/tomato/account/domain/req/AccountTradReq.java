@@ -1,8 +1,7 @@
 package com.tomato.account.domain.req;
 
-import com.tomato.account.constant.AccountHisTypeEnum;
+import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.validator.annotation.CheckEnum;
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,7 +1,7 @@
 package com.tomato.account.service;
 
 import com.tomato.account.constant.AccountRespCode;
-import com.tomato.account.constant.AccountStatusEnum;
+import com.tomato.account.enums.AccountStatusEnum;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.domain.exception.BusinessException;
 

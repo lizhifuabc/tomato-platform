@@ -1,6 +1,6 @@
 package com.tomato.account;
 
-import com.tomato.account.constant.AccountHisTypeEnum;
+import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.dao.AccountHisDao;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.manager.AccountHisManager;

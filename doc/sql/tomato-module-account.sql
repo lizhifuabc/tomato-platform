@@ -75,6 +75,20 @@ CREATE TABLE `t_account_his` (
    UNIQUE KEY `uniq_account_third_no` (account_no,third_no)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '账户历史表';
 
+# 账户结算规则
+drop table if exists `t_account_async`;
+create table `t_account_async` (
+   `id`                      bigint(20)      not null auto_increment             comment '自增主键',
+   `account_no`              varchar(36)     not null                            comment '账户编号',
+   `merchant_no`             varchar(50)     not null                            comment '商户编号',
+
+   `version`                 int             not null default 0                  comment '乐观锁',
+   `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
+   `create_time`             datetime        not null default current_timestamp comment '创建时间',
+   primary key (`id`),
+   unique key `uniq_account_no` (`account_no`)
+) engine=innodb auto_increment=1 default charset=utf8 comment '账户结算规则';
+
 DROP TABLE IF EXISTS `t_account_daily_collect`;
 create table `t_account_daily_collect`
 (
