@@ -29,31 +29,31 @@ public class AccountHisManager {
     }
 
     public AccountHisEntity insert(AccountInfoEntity account, AccountTradReq accountTradReq){
-        AccountHisEntity accountHisEntity = new AccountHisEntity();
-        accountHisEntity.setAmount(accountTradReq.getAmount());
-        accountHisEntity.setAccountHisType(accountTradReq.getAccountHisType());
-        accountHisEntity.setAccountNo(account.getAccountNo());
+        AccountHisEntity accountHisEntity = baseAccountHis(account,accountTradReq);
         accountHisEntity.setBeforeBalance(account.getBalance());
         accountHisEntity.setAfterBalance(account.getBalance().add(accountTradReq.getAmount()));
         accountHisEntity.setAccountHisSerial(account.getAccountHisSerial());
-        accountHisEntity.setThirdNo(accountTradReq.getThirdNo());
         accountHisEntity.setFeeAmount(new BigDecimal(0));
         accountHisEntity.setAccountStatus(CommonStatusEnum.SUCCESS.getValue());
-        accountHisEntity.setAllowSett(YesNoTypeEnum.YES.getValue());
         accountHisEntity.setCompleteTime(LocalDateTime.now());
         accountHisDao.insert(accountHisEntity);
         return accountHisEntity;
     }
     public AccountHisEntity insertAsync(AccountInfoEntity account, AccountTradReq accountTradReq){
+        AccountHisEntity accountHisEntity = baseAccountHis(account,accountTradReq);
+        accountHisEntity.setFeeAmount(new BigDecimal(0));
+        accountHisEntity.setAccountStatus(CommonStatusEnum.DEAL.getValue());
+        accountHisDao.insert(accountHisEntity);
+        return accountHisEntity;
+    }
+
+    private AccountHisEntity baseAccountHis(AccountInfoEntity account, AccountTradReq accountTradReq){
         AccountHisEntity accountHisEntity = new AccountHisEntity();
         accountHisEntity.setAmount(accountTradReq.getAmount());
         accountHisEntity.setAccountHisType(accountTradReq.getAccountHisType());
         accountHisEntity.setAccountNo(account.getAccountNo());
         accountHisEntity.setThirdNo(accountTradReq.getThirdNo());
-        accountHisEntity.setFeeAmount(new BigDecimal(0));
-        accountHisEntity.setAccountStatus(CommonStatusEnum.DEAL.getValue());
         accountHisEntity.setAllowSett(YesNoTypeEnum.YES.getValue());
-        accountHisDao.insert(accountHisEntity);
         return accountHisEntity;
     }
 }
