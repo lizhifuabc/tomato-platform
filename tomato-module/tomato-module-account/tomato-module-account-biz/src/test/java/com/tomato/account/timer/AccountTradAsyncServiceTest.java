@@ -1,5 +1,6 @@
 package com.tomato.account.timer;
 
+import com.tomato.account.service.AccountTradAsyncService;
 import com.tomato.util.thread.ThreadUtil;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -12,13 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @since 2023/1/8
  */
 @SpringBootTest
-public class AccountTradAsyncTimerServiceTest {
+public class AccountTradAsyncServiceTest {
     @Resource
-    AccountTradAsyncTimerService accountTradAsyncTimerService;
+    AccountTradAsyncService accountTradAsyncService;
 
     @Test
     public void test(){
-        accountTradAsyncTimerService.exe("102023010703528952850");
+        accountTradAsyncService.exe("102023010703528952850");
         ThreadUtil.sleep(6000);
     }
 }

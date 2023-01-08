@@ -1,14 +1,12 @@
-package com.tomato.account.timer;
+package com.tomato.account.service;
 
 import com.tomato.account.dao.AccountHisDao;
 import com.tomato.account.domain.bo.AccountHisDealBO;
 import com.tomato.account.domain.bo.AccountHisUpdateBatchBO;
-import com.tomato.account.service.AccountAsyncService;
 import com.tomato.web.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * 账户异步入账服务
@@ -16,21 +14,16 @@ import org.springframework.stereotype.Component;
  * @author lizhifu
  * @since 2023/1/8
  */
-@Component
+@Service
 @Slf4j
-public class AccountTradAsyncTimerService {
+public class AccountTradAsyncService {
     private final AccountHisDao accountHisDao;
     private final AccountAsyncService accountAsyncService;
-    public AccountTradAsyncTimerService(AccountHisDao accountHisDao, AccountAsyncService accountAsyncService) {
+
+    public AccountTradAsyncService(AccountHisDao accountHisDao, AccountAsyncService accountAsyncService) {
         this.accountHisDao = accountHisDao;
         this.accountAsyncService = accountAsyncService;
     }
-
-    @Scheduled(fixedRate = 1000 * 60L)
-    public void run() {
-
-    }
-
     @Async("asyncTaskExecutorAccount")
     public void exe(String accountNo){
         AccountHisDealBO accountHisDealBO = accountHisDao.selectDeal(accountNo);
