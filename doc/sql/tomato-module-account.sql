@@ -135,6 +135,33 @@ create table `t_account_settle_control` (
     unique key `uniq_account_no` (`account_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户结算控制';
 
+# 账户结算记录
+drop table if exists `t_account_settle_record`;
+create table `t_account_settle_record` (
+    `id`                      bigint(20)      not null auto_increment             comment '自增主键',
+    `account_settle_id`       bigint(20)      not null                            comment '账户结算规则ID',
+    `account_no`              varchar(36)     not null                            comment '账户编号',
+    `merchant_no`             varchar(50)     not null                            comment '商户编号',
+    `settle_mode`             varchar(36)     not null                            comment '结算方式',
+    `settle_batch_no`         varchar(36)     not null                            comment '结算批次号',
+    `last_remit_no`           varchar(36)                                         comment '上一次打款流水号',
+    `settle_date`             date            not null                            comment '结算日期',
+    `trade_count`             int             not null                            comment '交易总数',
+    `trade_amount`            decimal(16,2)   not null                            comment '交易金额',
+    `trade_fee`               decimal(16,2)   not null                            comment '交易手续费',
+    `settle_amount`           decimal(16,2)   not null                            comment '结算金额',
+    `settle_fee`              decimal(16,2)   not null                            comment '结算手续费',
+    `remit_amount`            decimal(16,2)   not null                            comment '打款金额',
+
+    `start_date`              datetime        not null                            comment '结算开始日期',
+    `end_date`                datetime        not null                            comment '结算结束日期',
+
+    `version`                 int             not null default 0                  comment '乐观锁',
+    `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
+    `create_time`             datetime        not null default current_timestamp comment '创建时间',
+    primary key (`id`)
+) engine=innodb auto_increment=1 default charset=utf8 comment '账户结算记录';
+
 -- 目标银行卡(结算到银行卡使用)
 drop table if exists  t_account_bankcard;
 create table  t_account_bankcard(
