@@ -39,6 +39,10 @@ public class AccountTradReq {
     @NotBlank(message = "第三方流水号不能为空")
     private String thirdNo;
     /**
+     * 商户订单号
+     */
+    private String merchantOrderNo;
+    /**
      * 发生类型
      */
     @NotBlank(message = "账户历史类型")

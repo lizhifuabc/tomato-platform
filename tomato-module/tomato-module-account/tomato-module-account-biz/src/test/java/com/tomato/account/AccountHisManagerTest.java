@@ -2,7 +2,9 @@ package com.tomato.account;
 
 import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.domain.entity.AccountHisEntity;
+import com.tomato.account.enums.AccountStatusEnum;
 import com.tomato.account.manager.AccountHisManager;
+import com.tomato.domain.type.CommonStatusEnum;
 import com.tomato.domain.type.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -28,10 +30,9 @@ public class AccountHisManagerTest {
 
         AccountHisEntity accountHisEntity = new AccountHisEntity();
         accountHisEntity.setAccountNo(accountNo);
-//        accountHisEntity.setAccountStatus(AccountStatusEnum.DEAL.getValue());
+        accountHisEntity.setAccountStatus(CommonStatusEnum.DEAL.getValue());
         accountHisEntity.setAccountHisType(AccountHisTypeEnum.SETTLEMENT.getValue());
         accountHisEntity.setAmount(new BigDecimal(100));
         accountHisEntity.setThirdNo(UUID.randomUUID().toString());
-        accountHisEntity.setAllowSett(YesNoTypeEnum.YES.getValue());
     }
 }

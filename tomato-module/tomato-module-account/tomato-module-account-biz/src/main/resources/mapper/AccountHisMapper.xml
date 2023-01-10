@@ -9,7 +9,7 @@
 
     <insert id="insert" parameterType="AccountHisEntity">
         insert into
-            t_account_his(account_no,amount,allow_sett,third_no,account_his_type,account_status,account_his_serial
+            t_account_his(account_no,merchant_no,amount,third_no,account_his_type,account_status,account_his_serial
                 <if test="null != beforeBalance">
                     ,before_balance
                 </if>
@@ -19,9 +19,12 @@
                 <if test="null != completeTime">
                     ,complete_time
                 </if>
+                <if test="null != merchantOrderNo">
+                    ,merchant_order_no
+                </if>
             )
         values
-            (#{accountNo},#{amount},#{allowSett},#{thirdNo},#{accountHisType}, #{accountStatus}, #{accountHisSerial}
+            (#{accountNo},#{merchantNo},#{amount},#{thirdNo},#{accountHisType}, #{accountStatus}, #{accountHisSerial}
                 <if test="null != beforeBalance">
                     ,#{beforeBalance}
                 </if>
@@ -30,6 +33,9 @@
                 </if>
                 <if test="null != completeTime">
                     ,#{completeTime}
+                </if>
+                <if test="null != merchantOrderNo">
+                    ,#{merchantOrderNo}
                 </if>
             )
     </insert>
@@ -81,4 +87,26 @@
             and allow_sett = 0
             and <![CDATA[date(create_time) <= date_add(#{collectDate}, INTERVAL -#{riskDay} DAY)]]>
     </update>
+
+<!--    <select id="getDailyCollectAccountHistoryList" parameterType="java.util.Map"-->
+<!--            resultType="CollectAccountHistoryParam">-->
+<!--        select-->
+<!--            tah.collect_code    as collectcode,-->
+<!--            tah.direction       as direction,-->
+<!--            sum(tah.amount)     as totalamount,-->
+<!--            sum(tah.fee_amount) as totalfeeamount,-->
+<!--            count(tah.id)       as totalcount-->
+<!--        from t_account_accounthistory tah-->
+<!--        where-->
+<!--            tah.account_no = #{accountno}-->
+<!--		<![CDATA[-->
+<!--          and tah.can_collect_date >= #{startdate}-->
+<!--          and tah.can_collect_date <= #{enddate}-->
+<!--          and tah.can_settle_type = 'can_settle'-->
+<!--          and tah.is_settled = 0-->
+<!--          and tah.is_collected = 0-->
+<!--        group by tah.account_no, tah.collect_code, tah.direction-->
+<!--        order by tah.collect_code-->
+<!--        ]]>-->
+<!--    </select>-->
 </mapper>

@@ -28,7 +28,8 @@ public class AccountTradServiceTest {
         accountTradReq.setAccountHisType("SETTLEMENT");
         accountTradReq.setAmount(new BigDecimal(100000));
         accountTradReq.setThirdNo(UUID.randomUUID().toString());
-        accountTradReq.setMerchantNo("1673103402850");
+        accountTradReq.setMerchantOrderNo(UUID.randomUUID().toString());
+        accountTradReq.setMerchantNo("10202301010004121");
         accountTradService.add(accountTradReq);
 
         accountTradReq.setThirdNo(UUID.randomUUID().toString());

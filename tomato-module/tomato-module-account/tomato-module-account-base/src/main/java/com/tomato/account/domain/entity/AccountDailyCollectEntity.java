@@ -15,18 +15,15 @@ import java.time.LocalDate;
 @Data
 public class AccountDailyCollectEntity extends BaseEntity {
     /**
-     * ID
-     */
-    private Long accountDailyCollectId;
-    /**
      * 账户编号
      */
     private String accountNo;
 
     /**
-     * 版本号
+     * 商户编号
      */
-    private Integer version;
+    private String merchantNo;
+
     /**
      * 汇总日期
      */
@@ -40,22 +37,5 @@ public class AccountDailyCollectEntity extends BaseEntity {
     /**
      * 交易总笔数
      */
-    private Integer totalCount;
-
-    /**
-     * 结算状态【0->已结算；1->未结算】
-     */
-    private Integer settStatus;
-
-    /**
-     * 备注
-     */
-    private String remark;
-
-    /**
-     * 风险预存期天数
-     */
-    private Integer riskDay;
-
-    public AccountDailyCollectEntity() {}
+    private Long totalCount;
 }

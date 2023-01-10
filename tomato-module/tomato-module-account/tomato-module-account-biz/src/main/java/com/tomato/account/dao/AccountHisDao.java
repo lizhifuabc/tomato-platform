@@ -16,8 +16,8 @@ import org.apache.ibatis.annotations.Select;
 public interface AccountHisDao {
     /**
      * 查询账户历史表  分库分表，需要增加 accountNo,或者定制 accountHisId 也作为分表字段
-     * @param accountHisId
-     * @return
+     * @param id id
+     * @return 账户历史
      */
     AccountHisEntity selectByAccountHisId(@Param("id") Long id, @Param("accountNo") String accountNo);
 
@@ -25,7 +25,7 @@ public interface AccountHisDao {
      * 查询账户历史表
      * @param accountNo
      * @param thirdNo
-     * @return
+     * @return 账户历史
      */
     AccountHisEntity selectByThirdNo(@Param("accountNo") String accountNo,@Param("thirdNo") String thirdNo);
 

@@ -33,7 +33,6 @@ public class AccountHisManager {
         accountHisEntity.setBeforeBalance(account.getBalance());
         accountHisEntity.setAfterBalance(account.getBalance().add(accountTradReq.getAmount()));
         accountHisEntity.setAccountHisSerial(account.getAccountHisSerial());
-        accountHisEntity.setFeeAmount(new BigDecimal(0));
         accountHisEntity.setAccountStatus(CommonStatusEnum.SUCCESS.getValue());
         accountHisEntity.setCompleteTime(LocalDateTime.now());
         accountHisDao.insert(accountHisEntity);
@@ -41,7 +40,6 @@ public class AccountHisManager {
     }
     public AccountHisEntity insertAsync(AccountInfoEntity account, AccountTradReq accountTradReq){
         AccountHisEntity accountHisEntity = baseAccountHis(account,accountTradReq);
-        accountHisEntity.setFeeAmount(new BigDecimal(0));
         accountHisEntity.setAccountStatus(CommonStatusEnum.DEAL.getValue());
         accountHisDao.insert(accountHisEntity);
         return accountHisEntity;
@@ -49,11 +47,12 @@ public class AccountHisManager {
 
     private AccountHisEntity baseAccountHis(AccountInfoEntity account, AccountTradReq accountTradReq){
         AccountHisEntity accountHisEntity = new AccountHisEntity();
+        accountHisEntity.setMerchantOrderNo(accountTradReq.getMerchantOrderNo());
+        accountHisEntity.setMerchantNo(account.getMerchantNo());
         accountHisEntity.setAmount(accountTradReq.getAmount());
         accountHisEntity.setAccountHisType(accountTradReq.getAccountHisType());
         accountHisEntity.setAccountNo(account.getAccountNo());
         accountHisEntity.setThirdNo(accountTradReq.getThirdNo());
-        accountHisEntity.setAllowSett(YesNoTypeEnum.YES.getValue());
         return accountHisEntity;
     }
 }

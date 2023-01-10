@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.account.dao.AccountDailyCollectDao">
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="AccountDailyCollectEntity">
+        INSERT INTO t_account_daily_collect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != accountNo and '' != accountNo">
+                account_no,
+            </if>
+            <if test="null != merchantNo and '' != merchantNo">
+                merchant_no,
+            </if>
+            <if test="null != collectDate">
+                collect_date,
+            </if>
+            <if test="null != totalAmount">
+                total_amount,
+            </if>
+            <if test="null != totalCount">
+                total_count,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != accountNo and '' != accountNo">
+                #{accountNo},
+            </if>
+            <if test="null != merchantNo and '' != merchantNo">
+                #{merchantNo},
+            </if>
+            <if test="null != collectDate">
+                #{collectDate},
+            </if>
+            <if test="null != totalAmount">
+                #{totalAmount},
+            </if>
+            <if test="null != totalCount">
+                #{totalCount},
+            </if>
+        </trim>
+    </insert>
+</mapper>

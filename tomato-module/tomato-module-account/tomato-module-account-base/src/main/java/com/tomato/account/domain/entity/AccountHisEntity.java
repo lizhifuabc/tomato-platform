@@ -15,6 +15,14 @@ import java.time.LocalDateTime;
 @Data
 public class AccountHisEntity extends BaseEntity {
     /**
+     * 商户编号
+     */
+    private String merchantNo;
+    /**
+     * 商户订单号
+     */
+    private String merchantOrderNo;
+    /**
      * 账户历史流水顺序号
      */
     private Long accountHisSerial;
@@ -38,21 +46,6 @@ public class AccountHisEntity extends BaseEntity {
      * 发生金额
      */
     private BigDecimal amount;
-
-    /**
-     * 手续费金额
-     */
-    private BigDecimal feeAmount;
-
-    /**
-     * 是否允许结算【0-否， 1-是】
-     */
-    private Integer allowSett;
-
-    /**
-     * 是否完成结算【0-否， 1-是】
-     */
-    private Integer completeSett;
 
     /**
      * 第三方流水号
