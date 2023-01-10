@@ -77,24 +77,8 @@ public class AccountSettleEntity extends BaseEntity {
      * 结算到目标账户类型
      */
     private String settleTargetType;
-
-    /**
-     * 备注编码
-     */
-    private String remarkCode;
-
     /**
      * 备注
      */
-    private String remarkCaption;
-
-    /**
-     * 打款备注的表达式，可以动态计算
-     */
-    private String remitMemo;
-
-    /**
-     * 打款备注
-     */
-    private String remitMemoFormula;
+    private String remark;
 }

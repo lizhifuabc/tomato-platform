@@ -97,10 +97,7 @@ create table `t_account_settle` (
    `max_settle_days`         int             not null                            comment '最大结算天数',
 
    `settle_target_type`      varchar(16)     not null                            comment '结算到目标账户类型',
-   `remark_code`             varchar(36)                                         comment '备注编码',
-   `remark_caption`          varchar(36)                                         comment '备注',
-   `remit_memo`              varchar(400)                                        comment '打款备注的表达式，可以动态计算',
-   `remit_memo_formula`      varchar(200)                                        comment '打款备注',
+   `remark`                  varchar(256)                                        comment '备注',
 
    `version`                 int             not null default 0                  comment '乐观锁',
    `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',

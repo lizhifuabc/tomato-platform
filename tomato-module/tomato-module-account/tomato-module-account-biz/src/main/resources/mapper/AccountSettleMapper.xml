@@ -44,17 +44,8 @@
             <if test="null != settleTargetType and '' != settleTargetType">
                 settle_target_type,
             </if>
-            <if test="null != remarkCode and '' != remarkCode">
-                remark_code,
-            </if>
-            <if test="null != remarkCaption and '' != remarkCaption">
-                remark_caption,
-            </if>
-            <if test="null != remitMemo and '' != remitMemo">
-                remit_memo,
-            </if>
-            <if test="null != remitMemoFormula and '' != remitMemoFormula">
-                remit_memo_formula,
+            <if test="null != remark and '' != remark">
+                remark,
             </if>
             <if test="null != createTime ">
                 create_time
@@ -100,17 +91,8 @@
             <if test="null != settleTargetType and '' != settleTargetType">
                 #{settleTargetType},
             </if>
-            <if test="null != remarkCode and '' != remarkCode">
-                #{remarkCode},
-            </if>
-            <if test="null != remarkCaption and '' != remarkCaption">
-                #{remarkCaption},
-            </if>
-            <if test="null != remitMemo and '' != remitMemo">
-                #{remitMemo},
-            </if>
-            <if test="null != remitMemoFormula and '' != remitMemoFormula">
-                #{remitMemoFormula},
+            <if test="null != remark and '' != remark">
+                #{remark},
             </if>
             <if test="null != createTime ">
                 #{createTime}
