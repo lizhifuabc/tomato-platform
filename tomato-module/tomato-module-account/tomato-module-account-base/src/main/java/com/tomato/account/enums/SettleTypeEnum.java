@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 结算类型枚举
+ * 结算方式枚举
  * @author lizhifu
  */
 @AllArgsConstructor
@@ -15,10 +15,6 @@ public enum SettleTypeEnum implements BaseEnum {
 	 * 自动结算（定期结算）
 	 */
 	AUTO_SETTLEMENT("AUTO_SETTLEMENT","自动结算（定期结算）"),
-	/**
-	 * 实时结算（不定期结算）
-	 */
-	REALTIME_SETTLEMENT("REALTIME_SETTLEMENT","实时结算（不定期结算）"),
 	/**
 	 * 自助结算（不定期结算）
 	 */
