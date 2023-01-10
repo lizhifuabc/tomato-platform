@@ -102,9 +102,6 @@ create table `t_account_settle` (
    `remit_memo`              varchar(400)                                        comment '打款备注的表达式，可以动态计算',
    `remit_memo_formula`      varchar(200)                                        comment '打款备注',
 
-   `urgent_flag`             bit             not null default 0                 comment '是否加急:0-否, 1-是',
-   `auto_remit_flag`         bit             not null default 0                 comment '是否自动打款:0-否, 1-是',
-
    `version`                 int             not null default 0                  comment '乐观锁',
    `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
    `create_time`             datetime        not null default current_timestamp comment '创建时间',

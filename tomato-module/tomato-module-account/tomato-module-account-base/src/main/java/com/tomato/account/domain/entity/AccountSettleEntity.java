@@ -97,14 +97,4 @@ public class AccountSettleEntity extends BaseEntity {
      * 打款备注
      */
     private String remitMemoFormula;
-
-    /**
-     * 是否加急:0-否， 1-是
-     */
-    private Integer urgentFlag;
-
-    /**
-     * 是否自动打款:0-否， 1-是
-     */
-    private Integer autoRemitFlag;
 }

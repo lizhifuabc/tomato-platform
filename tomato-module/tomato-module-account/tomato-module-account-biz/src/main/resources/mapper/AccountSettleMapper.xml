@@ -56,12 +56,6 @@
             <if test="null != remitMemoFormula and '' != remitMemoFormula">
                 remit_memo_formula,
             </if>
-            <if test="null != urgentFlag">
-                urgent_flag,
-            </if>
-            <if test="null != autoRemitFlag">
-                auto_remit_flag,
-            </if>
             <if test="null != createTime ">
                 create_time
             </if>
@@ -117,12 +111,6 @@
             </if>
             <if test="null != remitMemoFormula and '' != remitMemoFormula">
                 #{remitMemoFormula},
-            </if>
-            <if test="null != urgentFlag">
-                #{urgentFlag},
-            </if>
-            <if test="null != autoRemitFlag">
-                #{autoRemitFlag},
             </if>
             <if test="null != createTime ">
                 #{createTime}
