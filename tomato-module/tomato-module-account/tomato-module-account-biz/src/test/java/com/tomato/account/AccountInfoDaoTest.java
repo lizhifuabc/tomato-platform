@@ -1,6 +1,7 @@
 package com.tomato.account;
 
 import com.tomato.account.dao.AccountInfoDao;
+import com.tomato.account.domain.entity.AccountInfoEntity;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,13 +21,13 @@ public class AccountInfoDaoTest {
 
     @Test
     public void allTest(){
-        String accountNo = "102023010145340502001";
-        String merchantNo = "10202301010002001";
-        System.out.println("selectByAccountNo:"+ accountInfoDao.selectByAccountNo(accountNo));
+        String accountNo = "102023011064752054121";
+        String merchantNo = "10202301010004121";
+        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountNo);
         System.out.println("selectByMerchantNo:"+ accountInfoDao.selectByMerchantNo(merchantNo,"12"));
 
+        accountInfoDao.updateOutReserveBalance(accountNo,new BigDecimal(100),accountInfoEntity.getVersion());
 
         System.out.println("freeze:"+ accountInfoDao.freeze(accountNo, new BigDecimal(100), 1));
-        System.out.println("unfreeze:"+ accountInfoDao.unfreeze(accountNo, new BigDecimal(100), 2));
     }
 }

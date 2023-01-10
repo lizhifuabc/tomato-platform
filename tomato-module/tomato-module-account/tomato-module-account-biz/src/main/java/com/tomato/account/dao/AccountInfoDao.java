@@ -55,13 +55,13 @@ public interface AccountInfoDao {
     int freeze(@Param("accountNo") String accountNo, @Param("amount") BigDecimal amount,@Param("version") Integer version);
 
     /**
-     * 解冻金额
+     * 更新风险预存期外余额
      * @param accountNo
-     * @param amount
+     * @param outReserveBalance
      * @param version
      * @return
      */
-    int unfreeze(@Param("accountNo") String accountNo, @Param("amount") BigDecimal amount,@Param("version") Integer version);
+    int updateOutReserveBalance(@Param("accountNo") String accountNo, @Param("outReserveBalance") BigDecimal outReserveBalance,@Param("version") Integer version);
     /**
      * 插入
      * @param AccountInfoEntity

@@ -30,6 +30,17 @@
        WHERE
            account_no = #{accountBalanceBO.accountNo} and balance >=  #{accountBalanceBO.amount} and version = #{accountBalanceBO.version}
     </update>
+
+    <update id="updateOutReserveBalance" parameterType="map">
+        UPDATE
+            t_account_info
+        set
+            out_reserve_balance = #{outReserveBalance},
+            version = version +1
+        WHERE
+            account_no = #{accountNo} and version = #{version}
+    </update>
+
     <update id="add" parameterType="AccountBalanceBO">
         UPDATE
             t_account_info
@@ -46,13 +57,8 @@
     </update>
 
     <update id="freeze" parameterType="map">
-        UPDATE t_account_info set unbalance = unbalance + #{amount},version = version +1
-        WHERE account_no = #{accountNo} and version = #{version} and balance - unbalance >= #{amount}
-    </update>
-
-    <update id="unfreeze" parameterType="map">
-        UPDATE t_account_info set unbalance = unbalance - #{amount},version = version +1
-        WHERE account_no = #{accountNo} and version = #{version} and unbalance >= #{amount}
+        UPDATE t_account_info set frozen_balance = #{amount},version = version +1
+        WHERE account_no = #{accountNo} and version = #{version}
     </update>
 
     <update id="updateAccountStatus" parameterType="map">
