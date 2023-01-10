@@ -26,8 +26,6 @@ public class AccountTradAsyncTimer {
      */
     @Scheduled(cron="0 0/1 * * * ?")
     public void run() {
-        accountAsyncInitService.accountList().forEach(accountNo->{
-            accountTradAsyncService.exe(accountNo);
-        });
+        accountAsyncInitService.accountList().forEach(accountTradAsyncService::exe);
     }
 }
