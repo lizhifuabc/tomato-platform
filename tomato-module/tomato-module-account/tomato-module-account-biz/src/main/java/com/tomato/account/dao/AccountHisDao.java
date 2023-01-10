@@ -19,7 +19,7 @@ public interface AccountHisDao {
      * @param id id
      * @return 账户历史
      */
-    AccountHisEntity selectByAccountHisId(@Param("id") Long id, @Param("accountNo") String accountNo);
+    AccountHisEntity selectById(@Param("id") Long id, @Param("accountNo") String accountNo);
 
     /**
      * 查询账户历史表

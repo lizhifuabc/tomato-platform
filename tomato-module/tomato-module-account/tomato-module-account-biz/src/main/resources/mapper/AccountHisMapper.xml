@@ -3,7 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tomato.account.dao.AccountHisDao">
-    <select id="selectByAccountHisId" parameterType="map" resultType="AccountHisEntity">
+
+    <select id="selectById" parameterType="map" resultType="AccountHisEntity">
         select * from t_account_his where id = #{id} and account_no = #{accountNo}
     </select>
 
@@ -87,26 +88,4 @@
             and allow_sett = 0
             and <![CDATA[date(create_time) <= date_add(#{collectDate}, INTERVAL -#{riskDay} DAY)]]>
     </update>
-
-<!--    <select id="getDailyCollectAccountHistoryList" parameterType="java.util.Map"-->
-<!--            resultType="CollectAccountHistoryParam">-->
-<!--        select-->
-<!--            tah.collect_code    as collectcode,-->
-<!--            tah.direction       as direction,-->
-<!--            sum(tah.amount)     as totalamount,-->
-<!--            sum(tah.fee_amount) as totalfeeamount,-->
-<!--            count(tah.id)       as totalcount-->
-<!--        from t_account_accounthistory tah-->
-<!--        where-->
-<!--            tah.account_no = #{accountno}-->
-<!--		<![CDATA[-->
-<!--          and tah.can_collect_date >= #{startdate}-->
-<!--          and tah.can_collect_date <= #{enddate}-->
-<!--          and tah.can_settle_type = 'can_settle'-->
-<!--          and tah.is_settled = 0-->
-<!--          and tah.is_collected = 0-->
-<!--        group by tah.account_no, tah.collect_code, tah.direction-->
-<!--        order by tah.collect_code-->
-<!--        ]]>-->
-<!--    </select>-->
 </mapper>

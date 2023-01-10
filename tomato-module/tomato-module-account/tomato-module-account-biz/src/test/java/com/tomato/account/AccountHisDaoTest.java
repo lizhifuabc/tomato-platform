@@ -36,7 +36,7 @@ public class AccountHisDaoTest {
         accountHisEntity.setAmount(new BigDecimal(100));
         accountHisEntity.setThirdNo(UUID.randomUUID().toString());
 
-        System.out.println(accountHisDao.selectByAccountHisId(accountHisId, accountNo));
+        System.out.println(accountHisDao.selectById(accountHisId, accountNo));
         System.out.println(accountHisDao.selectByThirdNo(accountNo, "d27bb021-5762-4fae-871a-b704a69385d0"));
         System.out.println(accountHisDao.checkThirdNo(accountNo, "d27bb021-5762-4fae-871a-b704a69385d0"));
     }
