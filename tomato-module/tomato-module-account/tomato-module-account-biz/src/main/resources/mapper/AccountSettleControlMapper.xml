@@ -63,4 +63,13 @@
             </if>
         </trim>
     </insert>
+
+    <select id="selectAccount">
+        <![CDATA[
+        select
+            account_no
+        from
+            t_account_settle_control
+        ]]>
+    </select>
 </mapper>

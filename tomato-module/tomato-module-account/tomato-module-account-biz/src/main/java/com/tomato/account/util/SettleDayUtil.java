@@ -1,5 +1,6 @@
 package com.tomato.account.util;
 
+import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.domain.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,8 +21,8 @@ public class SettleDayUtil {
         String[] cycleData = {"1","2","3","4","6","7"};
         System.out.println(nextSettleDateByWeek(cycleData,LocalDate.now()) );
     }
-    public static LocalDate settleDate(String[] cycleData, LocalDate nextSettle,String cycleType,int reserveDay){
-        LocalDate nextSettleDate = nextSettleDate(cycleData,nextSettle,cycleType,reserveDay);
+    public static LocalDate settleDate(String[] cycleData, LocalDate nextSettle,CycleTypeEnum cycleTypeEnum,int reserveDay){
+        LocalDate nextSettleDate = nextSettleDate(cycleData,nextSettle,cycleTypeEnum);
         // 风险时间 = 下次结算时间 - （风险预存期 + 1）
         // 防止长久未结算的情况
         // 当前时间：2023年01月08日
@@ -30,7 +31,7 @@ public class SettleDayUtil {
         // 当前时间 > 风险时间
         // TODO 增加循环控制
         while (LocalDate.now().isAfter(nextSettleDate.minusDays(reserveDay + 1))){
-            nextSettleDate = nextSettleDate(cycleData,nextSettleDate,cycleType,reserveDay);
+            nextSettleDate = nextSettleDate(cycleData,nextSettleDate,cycleTypeEnum);
         }
         return nextSettleDate;
     }
@@ -38,15 +39,14 @@ public class SettleDayUtil {
      *
      * @param cycleData
      * @param nextSettle
-     * @param cycleType
-     * @param reserveDay
+     * @param cycleTypeEnum
      * @return
      */
-    private static LocalDate nextSettleDate(String[] cycleData, LocalDate nextSettle,String cycleType,int reserveDay){
-        log.info("下一结算日计算，周期类型：{}, 结算日设置：{}, 当前值：{}",cycleType,cycleData,nextSettle);
-        return switch (cycleType) {
-            case "MONTH" -> nextSettleDateByMonth(cycleData, nextSettle);
-            case "WEEK" -> nextSettleDateByWeek(cycleData, nextSettle);
+    private static LocalDate nextSettleDate(String[] cycleData, LocalDate nextSettle,CycleTypeEnum cycleTypeEnum){
+        log.info("下一结算日计算，周期类型：{}, 结算日设置：{}, 当前值：{}",cycleTypeEnum,cycleData,nextSettle);
+        return switch (cycleTypeEnum) {
+            case MONTH, MONTH_WORK -> nextSettleDateByMonth(cycleData, nextSettle);
+            case WEEK, WEEK_WORK -> nextSettleDateByWeek(cycleData, nextSettle);
             default -> throw new BusinessException("不支持的结算周期类型！");
         };
     }

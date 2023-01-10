@@ -83,9 +83,9 @@ create table `t_account_settle` (
    `merchant_no`             varchar(50)     not null                            comment '商户编号',
 
    `settle_type`             varchar(36)     not null                            comment '结算类型',
-   `cycle_type`              varchar(36)     not null                            comment '结算周期',
-   `cycle_data`              varchar(36)                                         comment '结算周期数据(自动结算必须),格式:1,3,5',
-   `reserve_days`            int             not null                            comment '风险预存期',
+   `cycle_type`              varchar(36)     default 'WEEK_WORK'                 comment '结算周期，默认:周结：每周几结算,工作日，顺延一天，默认周末休息',
+   `cycle_data`              varchar(36)     default '1,2,3,4,5'                 comment '结算周期数据(自动结算必须),默认:1,2,3,4,5',
+   `reserve_days`            int             default 1                           comment '风险预存期',
    `min_amount`              decimal(16,2)   not null default 0                  comment '最小结算金额',
 
    `settle_fee_flag`         bit             not null default 1                  comment '是否承担划款手续费标志:0-否, 1-是',
@@ -111,6 +111,25 @@ create table `t_account_settle` (
    primary key (`id`),
    unique key `uniq_account_no` (`account_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户结算规则';
+
+# 节假日控制
+drop table if exists `t_account_work`;
+create table `t_account_work` (
+    `id`                      bigint(20)      not null auto_increment             comment '自增主键',
+    `work_day`                date            not null                            comment '日期',
+    `day_type`                tinyint         not null                            comment '0:工作日；1：调休工作日；2：周末休息日；3：法定休息日；',
+    `version`                 int             not null default 0                  comment '乐观锁',
+    `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
+    `create_time`             datetime        not null default current_timestamp comment '创建时间',
+    primary key (`id`),
+    unique key (`work_day`)
+) engine=innodb auto_increment=1 default charset=utf8 comment '节假日控制';
+
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-10',2);
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-11',3);
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-12',2);
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-13',3);
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-14',0);
 
 # 账户结算控制
 drop table if exists `t_account_settle_control`;

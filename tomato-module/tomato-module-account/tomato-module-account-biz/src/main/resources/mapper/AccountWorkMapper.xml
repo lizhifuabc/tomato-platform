@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.account.dao.AccountWorkDao">
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="AccountWorkEntity">
+        INSERT INTO t_account_work
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != workDay">
+                work_day,
+            </if>
+            <if test="null != dayType and '' != dayType">
+                day_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != workDay">
+                #{workDay},
+            </if>
+            <if test="null != dayType and '' != dayType">
+                #{dayType},
+            </if>
+        </trim>
+    </insert>
+    
+    <select id="selectByWorkDay" resultType="AccountWorkEntity">
+        select
+            *
+        from
+            t_account_work
+        where
+          <![CDATA[ work_day >=  #{workDay} ]]>
+    </select>
+</mapper>

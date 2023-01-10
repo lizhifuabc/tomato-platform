@@ -18,6 +18,6 @@ public class TimeTest {
         LocalDate nextSettleDate = LocalDate.now().plusDays(23);
         System.out.println("当前时间:"+nextSettleDate);
 //        System.out.println(SettleDayUtil.nextSettleDateByWeek(cycleData,nextSettleDate));
-        System.out.println(SettleDayUtil.settleDate(cycleData,nextSettleDate, CycleTypeEnum.MONTH.getValue(), 3));
+        System.out.println(SettleDayUtil.settleDate(cycleData,nextSettleDate, CycleTypeEnum.MONTH, 3));
     }
 }

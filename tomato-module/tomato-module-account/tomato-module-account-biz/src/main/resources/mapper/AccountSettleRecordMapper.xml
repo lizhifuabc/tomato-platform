@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tomato.account.dao.AccountSettleControlDao">
+<mapper namespace="com.tomato.account.dao.AccountSettleRecordDao">
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="AccountSettleControlEntity">
         INSERT INTO t_account_settle_record
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -99,4 +99,8 @@
             </if>
         </trim>
     </insert>
+
+    <select id="selectById" resultType="AccountSettleRecordEntity">
+        select * from t_account_settle_record where id = #{id}
+    </select>
 </mapper>
