@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -39,7 +40,14 @@ public class AccountAsyncService {
         accountBalanceBO.setAccountNo(accountInfoEntity.getAccountNo());
         accountBalanceBO.setVersion(accountInfoEntity.getVersion());
         accountBalanceBO.setAmount(accountHisUpdateBatchDO.getSum());
-        accountInfoManager.add(accountBalanceBO,accountInfoEntity);
+
+        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) <0 ){
+            // 扣款
+            accountInfoManager.deduct(accountBalanceBO,accountInfoEntity);
+        }else {
+            // 加款
+            accountInfoManager.add(accountBalanceBO,accountInfoEntity);
+        }
 
         accountHisUpdateBatchDO.setBeforeBalance(accountInfoEntity.getBalance());
         accountHisUpdateBatchDO.setAfterBalance(accountInfoEntity.getBalance().add(accountHisUpdateBatchDO.getSum()));
