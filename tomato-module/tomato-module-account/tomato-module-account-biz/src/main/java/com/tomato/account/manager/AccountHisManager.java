@@ -47,6 +47,7 @@ public class AccountHisManager {
 
     private AccountHisEntity baseAccountHis(AccountInfoEntity account, AccountTradReq accountTradReq){
         AccountHisEntity accountHisEntity = new AccountHisEntity();
+        accountHisEntity.setAmountFree(accountTradReq.getAmountFree());
         accountHisEntity.setMerchantOrderNo(accountTradReq.getMerchantOrderNo());
         accountHisEntity.setMerchantNo(account.getMerchantNo());
         accountHisEntity.setAmount(accountTradReq.getAmount());

@@ -34,6 +34,10 @@ public class AccountTradReq {
     @NotNull(message = "amount不为空")
     private BigDecimal amount;
     /**
+     * 手续费
+     */
+    private BigDecimal amountFree;
+    /**
      * 第三方流水号
      */
     @NotBlank(message = "第三方流水号不能为空")

@@ -1,6 +1,9 @@
 package com.tomato.account.service;
 
+import com.tomato.account.dao.AccountInfoDao;
+import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountTradReq;
+import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.service.AccountTradService;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -19,12 +22,16 @@ import java.util.UUID;
 public class AccountTradServiceTest {
     @Resource
     AccountTradService accountTradService;
-
+    @Resource
+    AccountInfoDao accountInfoDao;
     @Test
     public void test(){
+        String merchantNo = "10202301010004121";
+        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
+
         AccountTradReq accountTradReq = new AccountTradReq();
-        accountTradReq.setAccountNo("102023011183005784121");
-        accountTradReq.setMerchantNo("10202301010004121");
+        accountTradReq.setAccountNo(accountInfoEntity.getAccountNo());
+        accountTradReq.setMerchantNo(merchantNo);
         accountTradReq.setAccountType("SETTLEMENT");
         accountTradReq.setAccountHisType("SETTLEMENT");
         accountTradReq.setAmount(new BigDecimal(100000));
