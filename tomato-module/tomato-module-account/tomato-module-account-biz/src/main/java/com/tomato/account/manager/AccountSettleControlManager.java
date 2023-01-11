@@ -49,8 +49,6 @@ public class AccountSettleControlManager {
             // 是否节假日
             accountSettleControlEntity.setNextSettleDate(accountWorkService.nextWorkDay(accountSettleControlEntity.getNextSettleDate(),cycleTypeEnum));
         }
-        // 给新商户新增上上次汇总日期，上次汇总日期为入网的前一天，因为在汇总的时候取的是上次汇总日期+1
-        accountSettleControlEntity.setLastCollectTime(accountSettleEntity.getCreateTime().minusDays(1));
         accountSettleControlDao.insert(accountSettleControlEntity);
     }
 }

@@ -14,7 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class AccountSettleTimerTest {
     @Resource
     AccountSettleTimer accountSettleTimer;
-
+    @Resource
+    AccountOutReserveBalanceTimer accountOutReserveBalanceTimer;
     @Test
     public void test(){
         accountSettleTimer.run();

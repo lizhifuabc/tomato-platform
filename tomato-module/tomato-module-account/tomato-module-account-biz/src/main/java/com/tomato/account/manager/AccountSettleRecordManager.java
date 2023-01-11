@@ -38,7 +38,7 @@ public class AccountSettleRecordManager {
         // 小于最小结算金额
         if(accountInfoEntity.getOutReserveBalance().compareTo(accountSettleEntity.getMinAmount()) < 0){
             log.error("小于最小结算金额:[{}]",accountInfoEntity.getAccountNo());
-            // TODO 插入失败结算记录
+            // TODO 是否插入失败结算记录
         }
     }
     public void create(AccountSettleControlEntity accountSettleControl, AccountInfoEntity accountInfoEntity, AccountSettleEntity accountSettleEntity){

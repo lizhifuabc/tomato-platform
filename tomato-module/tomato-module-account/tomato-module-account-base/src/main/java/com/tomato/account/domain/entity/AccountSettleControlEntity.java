@@ -19,6 +19,10 @@ public class AccountSettleControlEntity extends BaseEntity {
      * 账户结算规则id
      */
     private Long accountSettleId;
+    /**
+     * 账户结算记录ID
+     */
+    private Long settleRecordId;
 
     /**
      * 账户编号
@@ -31,30 +35,9 @@ public class AccountSettleControlEntity extends BaseEntity {
     private String merchantNo;
 
     /**
-     * 结算状态
+     * 结算状态 {@link com.tomato.account.enums.SettleStatusEnum}
      */
     private String settleStatus;
-
-    /**
-     * 上次结算批次
-     */
-    private String lastSettleBatch;
-
-    /**
-     * 上次结算日期
-     */
-    private LocalDateTime lastSettleTime;
-
-    /**
-     * 上次结算执行日期
-     */
-    private LocalDateTime lastExecuteTime;
-
-    /**
-     * 上次汇总日期
-     */
-    private LocalDateTime lastCollectTime;
-
     /**
      * 下次结算日期
      */

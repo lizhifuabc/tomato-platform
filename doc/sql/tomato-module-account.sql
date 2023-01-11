@@ -135,12 +135,9 @@ create table `t_account_settle_control` (
     `account_no`              varchar(36)     not null                            comment '账户编号',
     `merchant_no`             varchar(50)     not null                            comment '商户编号',
 
-    `settle_status`           varchar(36)                                         comment '结算状态',
-    `last_settle_batch`       varchar(36)                                         comment '上次结算批次',
+    `settle_status`           varchar(36)     default 'SETTLE'                     comment '结算状态',
+    `settle_record_id`        bigint(20)                                           comment '账户结算记录ID',
 
-    `last_settle_time`        datetime                                            comment '上次结算日期',
-    `last_execute_time`       datetime                                            comment '上次结算执行日期',
-    `last_collect_time`       datetime        not null                            comment '上次汇总日期',
     `next_settle_date`        date            not null                            comment '下次结算日期',
 
     `version`                 int             not null default 0                  comment '乐观锁',
