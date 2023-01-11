@@ -1,4 +1,4 @@
-package com.tomato.account;
+package com.tomato.account.dao;
 
 import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;

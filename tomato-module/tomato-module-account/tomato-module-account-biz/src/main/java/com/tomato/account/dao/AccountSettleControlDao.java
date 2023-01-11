@@ -23,8 +23,8 @@ public interface AccountSettleControlDao {
 
     /**
      * 查询根据下次结算日小于等于指定日期且状态为可结算的结算控制记录
-     * @param localDate 指定日期
+     * @param nextSettleDate 下次结算日期
      * @return 结算控制记录的账号集合
      */
-    List<String> selectAccount(@Param("localDate") LocalDate localDate);
+    List<String> selectAccount(@Param("nextSettleDate") LocalDate nextSettleDate);
 }

@@ -1,4 +1,4 @@
-package com.tomato.account;
+package com.tomato.account.dao;
 
 import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.dao.AccountHisDao;

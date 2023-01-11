@@ -1,10 +1,14 @@
 package com.tomato.account.service;
 
+import com.tomato.account.dao.AccountInfoDao;
+import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountSettleCreateReq;
 import com.tomato.account.domain.req.AccountSettleManagerCreateReq;
+import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTargetTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
+import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.domain.type.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -22,12 +26,16 @@ import java.math.BigDecimal;
 public class AccountSettleManagerServiceTest {
     @Resource
     AccountSettleManagerService accountSettleManagerService;
-
+    @Resource
+    AccountInfoDao accountInfoDao;
     @Test
     public void test(){
+        String merchantNo = "10202301010004121";
+        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
+
         AccountSettleManagerCreateReq accountSettleManagerCreateReq = new AccountSettleManagerCreateReq();
-        accountSettleManagerCreateReq.setAccountNo("102023011183005784121");
-        accountSettleManagerCreateReq.setMerchantNo("10202301010004121");
+        accountSettleManagerCreateReq.setAccountNo(accountInfoEntity.getAccountNo());
+        accountSettleManagerCreateReq.setMerchantNo(merchantNo);
         AccountSettleCreateReq accountSettleCreateReq = new AccountSettleCreateReq();
         accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
         accountSettleCreateReq.setCycleType(CycleTypeEnum.WEEK.getValue());

@@ -64,12 +64,14 @@
         </trim>
     </insert>
 
-    <select id="selectAccount">
+    <select id="selectAccount" resultType="java.lang.String">
         <![CDATA[
         select
             account_no
         from
             t_account_settle_control
+        where
+            next_settle_date = #{nextSettleDate}
         ]]>
     </select>
 </mapper>
