@@ -31,12 +31,20 @@ public interface AccountInfoDao {
      */
     AccountInfoEntity selectByMerchantNo(@Param("merchantNo") String merchantNo,@Param("accountType") String accountType);
     /**
-     * 扣钱
+     * 常规扣钱，校验风外金额
      *
      * @param accountBalanceBO 账户金额操作
      * @return i
      */
     int deduct(@Param("accountBalanceBO") AccountBalanceBO accountBalanceBO);
+    /**
+     * 非常规扣钱，风外金额可为负值，只要有余额就可以扣
+     * 风外金额为负值时，负数为风内已经使用金额
+     *
+     * @param accountBalanceBO 账户金额操作
+     * @return i
+     */
+    int deductSpecial(@Param("accountBalanceBO") AccountBalanceBO accountBalanceBO);
 
     /**
      * 加钱

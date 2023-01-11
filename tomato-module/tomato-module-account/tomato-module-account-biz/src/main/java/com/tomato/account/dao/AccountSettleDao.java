@@ -2,6 +2,7 @@ package com.tomato.account.dao;
 
 import com.tomato.account.domain.entity.AccountSettleEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 账户结算规则
@@ -16,5 +17,12 @@ public interface AccountSettleDao {
      * 插入
      * @param accountSettleEntity 账户结算规则
      */
-    public void insert(AccountSettleEntity accountSettleEntity);
+    void insert(AccountSettleEntity accountSettleEntity);
+
+    /**
+     * 查询
+     * @param accountNo accountNo
+     * @return 实体
+     */
+    AccountSettleEntity selectByAccountNo(@Param("accountNo") String accountNo);
 }

@@ -99,4 +99,8 @@
             </if>
         </trim>
     </insert>
+
+    <select id="selectByAccountNo" resultType="AccountSettleEntity">
+        select * from t_account_settle where account_no = #{accountNo}
+    </select>
 </mapper>

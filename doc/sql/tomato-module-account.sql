@@ -4,7 +4,7 @@ create table `t_account_info` (
   `id`                      bigint(20)      not null auto_increment             comment '自增主键',
   `account_no`              varchar(36)     not null                            comment '账户编号',
   `account_his_serial`      bigint(20)      not null default 0                  comment '账户历史流水顺序号',
-  `account_manage_serial`   bigint(20)      not null default 0                  comment  '账户管理顺序号',
+  `account_manage_serial`   bigint(20)      not null default 0                  comment '账户管理顺序号',
   `account_type`            varchar(36)     not null                            comment '账户类型',
   `merchant_no`             varchar(50)     not null                            comment '商户编号',
   `balance`                 decimal(16,2)   not null default 0                  comment '余额',
