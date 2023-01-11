@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDateTime;
+
 /**
  * 账户历史
  *
@@ -62,14 +64,10 @@ public interface AccountHisDao {
 
     /**
      * 日汇总账户待结算金额
-     * @param accountHisDailyCollectBO
+     * @param accountNo 账号
+     * @param start 创建时间开始
+     * @param end 创建时间结束
      * @return
      */
-    AccountHisDailyCollectSumBO dailyCollect(AccountHisDailyCollectBO accountHisDailyCollectBO);
-    /**
-     * 更新日汇总账户待结算历史记录
-     * @param accountHisDailyCollectBO
-     * @return
-     */
-    int updateDailyCollect(AccountHisDailyCollectBO accountHisDailyCollectBO);
+    AccountHisCollectResBO collect(@Param("accountNo") String accountNo, @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 }

@@ -9,6 +9,7 @@ import com.tomato.domain.exception.BusinessException;
 import com.tomato.web.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -57,6 +58,9 @@ public class AccountInfoManager {
      */
     public void add(AccountBalanceBO accountBalanceBO,AccountInfoEntity account){
         baseAccount(accountBalanceBO,account);
+        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) < 0){
+            throw new BusinessException("金额错误");
+        }
         int count = accountInfoDao.add(accountBalanceBO);
         if(count <= 0){
             throw new BusinessException("在账户加钱时候出现乐观锁异常");
@@ -70,6 +74,9 @@ public class AccountInfoManager {
      */
     public void deduct(AccountBalanceBO accountBalanceBO, AccountInfoEntity account) {
         baseAccount(accountBalanceBO,account);
+        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) > 0){
+            throw new BusinessException("金额错误");
+        }
         int count = accountInfoDao.deduct(accountBalanceBO);
         if(count <= 0){
             throw new BusinessException("在账户扣款时候出现乐观锁异常");

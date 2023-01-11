@@ -1,4 +1,4 @@
-package com.tomato.account;
+package com.tomato.account.service;
 
 import com.tomato.account.domain.req.AccountTradReq;
 import com.tomato.account.service.AccountTradService;
@@ -23,13 +23,13 @@ public class AccountTradServiceTest {
     @Test
     public void test(){
         AccountTradReq accountTradReq = new AccountTradReq();
-        accountTradReq.setAccountNo("102023010703528952850");
+        accountTradReq.setAccountNo("102023011183005784121");
+        accountTradReq.setMerchantNo("10202301010004121");
         accountTradReq.setAccountType("SETTLEMENT");
         accountTradReq.setAccountHisType("SETTLEMENT");
         accountTradReq.setAmount(new BigDecimal(100000));
         accountTradReq.setThirdNo(UUID.randomUUID().toString());
         accountTradReq.setMerchantOrderNo(UUID.randomUUID().toString());
-        accountTradReq.setMerchantNo("10202301010004121");
         accountTradService.add(accountTradReq);
 
         accountTradReq.setThirdNo(UUID.randomUUID().toString());

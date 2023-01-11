@@ -1,4 +1,4 @@
-package com.tomato.account;
+package com.tomato.account.manager;
 
 import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.domain.req.AccountCreateReq;

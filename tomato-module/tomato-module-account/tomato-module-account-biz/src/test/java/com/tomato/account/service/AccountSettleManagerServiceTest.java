@@ -26,8 +26,8 @@ public class AccountSettleManagerServiceTest {
     @Test
     public void test(){
         AccountSettleManagerCreateReq accountSettleManagerCreateReq = new AccountSettleManagerCreateReq();
-        accountSettleManagerCreateReq.setAccountNo("1231222");
-        accountSettleManagerCreateReq.setMerchantNo("1222312");
+        accountSettleManagerCreateReq.setAccountNo("102023011064752054121");
+        accountSettleManagerCreateReq.setMerchantNo("10202301010004121");
         AccountSettleCreateReq accountSettleCreateReq = new AccountSettleCreateReq();
         accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
         accountSettleCreateReq.setCycleType(CycleTypeEnum.WEEK.getValue());

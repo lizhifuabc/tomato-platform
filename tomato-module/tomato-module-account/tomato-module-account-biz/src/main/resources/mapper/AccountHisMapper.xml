@@ -64,28 +64,14 @@
         where account_no = #{accountNo} and account_status = 'DEAL'
     </select>
 
-    <!-- 日汇总账户待结算金额  -->
-    <select id="dailyCollect" parameterType="AccountHisDailyCollectBO" resultType="AccountHisDailyCollectSumBO">
+    <!-- 账户历史汇总  -->
+    <select id="collect" parameterType="map" resultType="AccountHisCollectResBO">
         select
             ifnull(sum(amount),0) as "totalAmount",
-            count(1) as "totalCount"
+            count(id) as "totalCount"
         from t_account_his
         where
             account_no = #{accountNo}
-            and complete_sett = 1
-            and allow_sett = 0
-            and <![CDATA[date(create_time) <= date_add(#{collectDate}, INTERVAL -#{riskDay} DAY)]]>
+            and <![CDATA[ create_time <= #{end} and create_time >= #{start}]]>
     </select>
-    <!-- 更新账户风险预存期外的账户历史记录记为结算完成 -->
-    <update id="updateDailyCollect" parameterType="AccountHisDailyCollectBO" >
-        UPDATE
-            t_account_his
-        set
-            complete_sett = 0,version = version + 1
-        WHERE
-            account_no = #{accountNo}
-            and complete_sett = 1
-            and allow_sett = 0
-            and <![CDATA[date(create_time) <= date_add(#{collectDate}, INTERVAL -#{riskDay} DAY)]]>
-    </update>
 </mapper>

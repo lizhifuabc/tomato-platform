@@ -5,13 +5,13 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 日汇总账户待结算金额
+ * 账户历史汇总
  *
  * @author lizhifu
  * @date 2022/7/13
  */
 @Data
-public class AccountHisDailyCollectSumBO {
+public class AccountHisCollectResBO {
     /**
      * 总金额
      */

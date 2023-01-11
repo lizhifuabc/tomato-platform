@@ -56,8 +56,8 @@
             </if>
         WHERE
             account_no = #{accountBalanceBO.accountNo} and
-            balance - frozen_balance >=  #{accountBalanceBO.amount} and
-            out_reserve_balance - frozen_balance >=  #{accountBalanceBO.amount} and
+            balance - frozen_balance + #{accountBalanceBO.amount} >= 0  and
+            out_reserve_balance - frozen_balance + #{accountBalanceBO.amount} >= 0 and
             version = #{accountBalanceBO.version}
     </update>
 
