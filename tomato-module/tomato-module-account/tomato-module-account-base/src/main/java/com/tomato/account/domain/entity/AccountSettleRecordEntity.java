@@ -30,39 +30,9 @@ public class AccountSettleRecordEntity extends BaseEntity {
     private String merchantNo;
 
     /**
-     * 结算方式
-     */
-    private String settleMode;
-
-    /**
-     * 结算批次号
-     */
-    private String settleBatchNo;
-
-    /**
-     * 上一次打款流水号
-     */
-    private String lastRemitNo;
-
-    /**
      * 结算日期
      */
     private LocalDate settleDate;
-
-    /**
-     * 交易总数
-     */
-    private Integer tradeCount;
-
-    /**
-     * 交易金额
-     */
-    private BigDecimal tradeAmount;
-
-    /**
-     * 交易手续费
-     */
-    private BigDecimal tradeFee;
 
     /**
      * 结算金额
@@ -73,19 +43,8 @@ public class AccountSettleRecordEntity extends BaseEntity {
      * 结算手续费
      */
     private BigDecimal settleFee;
-
     /**
-     * 打款金额
+     * 结算手续费率
      */
-    private BigDecimal remitAmount;
-
-    /**
-     * 结算开始日期
-     */
-    private LocalDate startDate;
-
-    /**
-     * 结算结束日期
-     */
-    private LocalDate endDate;
+    private BigDecimal settleRate;
 }

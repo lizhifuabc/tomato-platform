@@ -32,8 +32,8 @@
             <if test="null != limitSettleFee">
                 limit_settle_fee,
             </if>
-            <if test="null != settleFee">
-                settle_fee,
+            <if test="null != settleRate">
+                settle_rate,
             </if>
             <if test="null != maxSettleFee">
                 max_settle_fee,
@@ -79,8 +79,8 @@
             <if test="null != limitSettleFee">
                 #{limitSettleFee},
             </if>
-            <if test="null != settleFee">
-                #{settleFee},
+            <if test="null != settleRate">
+                #{settleRate},
             </if>
             <if test="null != maxSettleFee">
                 #{maxSettleFee},

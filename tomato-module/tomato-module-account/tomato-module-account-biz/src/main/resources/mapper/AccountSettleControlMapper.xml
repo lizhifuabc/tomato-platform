@@ -74,4 +74,13 @@
             next_settle_date = #{nextSettleDate}
         ]]>
     </select>
+
+    <select id="selectById" resultType="AccountSettleControlEntity">
+        select
+            *
+        from
+            t_account_settle_control
+        where
+            id = #{id}
+    </select>
 </mapper>

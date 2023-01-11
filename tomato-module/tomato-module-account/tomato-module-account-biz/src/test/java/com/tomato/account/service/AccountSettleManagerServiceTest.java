@@ -8,7 +8,6 @@ import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTargetTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
-import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.domain.type.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -43,7 +42,7 @@ public class AccountSettleManagerServiceTest {
         accountSettleCreateReq.setReserveDays(3);
         accountSettleCreateReq.setMinAmount(new BigDecimal(100));
         accountSettleCreateReq.setSettleFeeFlag(YesNoTypeEnum.YES.getValue());
-        accountSettleCreateReq.setSettleFee(new BigDecimal(100));
+        accountSettleCreateReq.setSettlRate(new BigDecimal(0.06));
         accountSettleCreateReq.setLimitSettleFee(new BigDecimal(100));
         accountSettleCreateReq.setMaxSettleFee(new BigDecimal(200));
         accountSettleCreateReq.setMaxSettleDays(100);

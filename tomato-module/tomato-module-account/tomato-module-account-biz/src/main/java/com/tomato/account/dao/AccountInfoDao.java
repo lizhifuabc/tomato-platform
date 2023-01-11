@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 账户操作
@@ -84,4 +85,9 @@ public interface AccountInfoDao {
      * @return
      */
     int updateAccountStatus(@Param("accountNo") String accountNo, @Param("accountStatus") String accountStatus,@Param("version") Integer version);
+
+    /**
+     * 查询所有账户
+     */
+    List<String> selectAllAccount();
 }

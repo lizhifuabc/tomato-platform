@@ -36,7 +36,7 @@ public class AccountSettleServiceTest {
         accountSettleCreateReq.setReserveDays(3);
         accountSettleCreateReq.setMinAmount(new BigDecimal(100));
         accountSettleCreateReq.setSettleFeeFlag(YesNoTypeEnum.YES.getValue());
-        accountSettleCreateReq.setSettleFee(new BigDecimal(100));
+        accountSettleCreateReq.setSettlRate(new BigDecimal(0.06));
         accountSettleCreateReq.setLimitSettleFee(new BigDecimal(100));
         accountSettleCreateReq.setMaxSettleFee(new BigDecimal(200));
         accountSettleCreateReq.setMaxSettleDays(100);

@@ -24,9 +24,9 @@ public class AccountSettleTimer {
         this.accountSettleControlDao = accountSettleControlDao;
     }
     /**
-     * 每天凌晨1点执行一次
+     * 每天凌晨2点执行一次
      */
-    @Scheduled(cron="0 0 1 * * ?")
+    @Scheduled(cron="0 0 2 * * ?")
     public void run() {
         LocalDate nextSettleDate = LocalDate.now();
         log.info("账户结算定时start:[{}]",nextSettleDate);

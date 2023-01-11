@@ -1,8 +1,8 @@
 package com.tomato.account.dao;
 
 import com.tomato.account.domain.entity.AccountSettleRecordEntity;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Service;
 
 /**
  * 账户结算记录
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @author lizhifu
  * @since 2023/1/8
  */
-@Service
+@Mapper
 public interface AccountSettleRecordDao {
     /**
      * 插入

@@ -84,7 +84,8 @@
             t_account_info
         set
             out_reserve_balance = #{outReserveBalance},
-            version = version +1
+            version = version +1,
+            out_reserve_time = current_timestamp
         WHERE
             account_no = #{accountNo} and version = #{version}
     </update>
@@ -102,4 +103,8 @@
         WHERE
             account_no = #{accountNo} and version = #{version}
     </update>
+    
+    <select id="selectAllAccount" resultType="java.lang.String">
+        select account_no from t_account_info
+    </select>
 </mapper>

@@ -58,6 +58,10 @@ public class AccountInfoEntity extends BaseEntity {
      * 上一次交易日期
      */
     private LocalDateTime lastTradTime;
+    /**
+     * 风险预存期外余额更新时间
+     */
+    private LocalDateTime outReserveTime;
 
     /**
      * 账户状态

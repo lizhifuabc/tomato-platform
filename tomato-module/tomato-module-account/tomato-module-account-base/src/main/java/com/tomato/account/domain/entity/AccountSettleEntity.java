@@ -59,9 +59,9 @@ public class AccountSettleEntity extends BaseEntity {
     private BigDecimal limitSettleFee;
 
     /**
-     * 结算手续费
+     * 结算手续费率
      */
-    private BigDecimal settleFee;
+    private BigDecimal settleRate;
 
     /**
      * 封顶手续费

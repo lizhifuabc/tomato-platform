@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.account.dao.AccountSettleRecordDao">
-    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="AccountSettleControlEntity">
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="AccountSettleRecordEntity">
         INSERT INTO t_account_settle_record
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="null != accountSettleId ">
@@ -14,26 +14,8 @@
             <if test="null != merchantNo and '' != merchantNo">
                 merchant_no,
             </if>
-            <if test="null != settleMode and '' != settleMode">
-                settle_mode,
-            </if>
-            <if test="null != settleBatchNo and '' != settleBatchNo">
-                settle_batch_no,
-            </if>
-            <if test="null != lastRemitNo and '' != lastRemitNo">
-                last_remit_no,
-            </if>
             <if test="null != settleDate ">
                 settle_date,
-            </if>
-            <if test="null != tradeCount ">
-                trade_count,
-            </if>
-            <if test="null != tradeAmount ">
-                trade_amount,
-            </if>
-            <if test="null != tradeFee e">
-                trade_fee,
             </if>
             <if test="null != settleAmount ">
                 settle_amount,
@@ -41,14 +23,8 @@
             <if test="null != settleFee ">
                 settle_fee,
             </if>
-            <if test="null != remitAmount ">
-                remit_amount,
-            </if>
-            <if test="null != startDate ">
-                start_date,
-            </if>
-            <if test="null != endDate ">
-                end_date,
+            <if test="null != settleRate ">
+                settle_rate,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -61,26 +37,8 @@
             <if test="null != merchantNo and '' != merchantNo">
                 #{merchantNo},
             </if>
-            <if test="null != settleMode and '' != settleMode">
-                #{settleMode},
-            </if>
-            <if test="null != settleBatchNo and '' != settleBatchNo">
-                #{settleBatchNo},
-            </if>
-            <if test="null != lastRemitNo and '' != lastRemitNo">
-                #{lastRemitNo},
-            </if>
             <if test="null != settleDate ">
                 #{settleDate},
-            </if>
-            <if test="null != tradeCount ">
-                #{tradeCount},
-            </if>
-            <if test="null != tradeAmount ">
-                #{tradeAmount},
-            </if>
-            <if test="null != tradeFee e">
-                #{tradeFee},
             </if>
             <if test="null != settleAmount ">
                 #{settleAmount},
@@ -88,14 +46,8 @@
             <if test="null != settleFee ">
                 #{settleFee},
             </if>
-            <if test="null != remitAmount ">
-                #{remitAmount},
-            </if>
-            <if test="null != startDate ">
-                #{startDate},
-            </if>
-            <if test="null != endDate ">
-                #{endDate},
+            <if test="null != settleRate ">
+                #{settleRate},
             </if>
         </trim>
     </insert>

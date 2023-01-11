@@ -50,7 +50,7 @@ public class AccountSettleCreateReq {
     /**
      * 结算手续费
      */
-    private BigDecimal settleFee;
+    private BigDecimal settlRate;
 
     /**
      * 封顶手续费

@@ -27,4 +27,11 @@ public interface AccountSettleControlDao {
      * @return 结算控制记录的账号集合
      */
     List<String> selectAccount(@Param("nextSettleDate") LocalDate nextSettleDate);
+
+    /**
+     * 查询
+     * @param id id
+     * @return 实体
+     */
+    AccountSettleControlEntity selectById(@Param("id") Long id);
 }
