@@ -41,7 +41,7 @@ public class AccountAsyncService {
         accountBalanceBO.setVersion(accountInfoEntity.getVersion());
         accountBalanceBO.setAmount(accountHisUpdateBatchDO.getSum());
 
-        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) <0 ){
+        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) < 0 ){
             // 扣款
             accountInfoManager.deduct(accountBalanceBO,accountInfoEntity);
         }else {
