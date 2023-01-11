@@ -17,6 +17,6 @@ public class AccountOutReserveBalanceServiceTest {
 
     @Test
     public void test(){
-        accountOutReserveBalanceService.exe("102023011064752054121");
+        accountOutReserveBalanceService.exe("102023011183005784121");
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -62,6 +63,11 @@ public class AccountOutReserveBalanceService {
         log.info("查询账户历史:开始时间[{}]结束时间[{}]",inDate.atTime(LocalTime.MIN),now.atTime(LocalTime.MAX));
         AccountHisCollectResBO collect = accountHisDao.collect(accountNo,inDate.atTime(LocalTime.MIN), now.atTime(LocalTime.MAX));
         log.info("查询账户历史:开始时间[{}]结束时间[{}],结果:[{}]",inDate.atTime(LocalTime.MIN),now.atTime(LocalTime.MAX),collect);
-        accountInfoDao.updateOutReserveBalance(accountInfoEntity.getAccountNo(),accountInfoEntity.getBalance().subtract(collect.getTotalAmount()),accountInfoEntity.getVersion());
+        BigDecimal amount = accountInfoEntity.getBalance().subtract(collect.getTotalAmount());
+        if(amount.compareTo(BigDecimal.ZERO) < 0){
+            log.error("账户[{}]风险预存期外余额小于0，查看是否存在未入账的账户历史",accountNo);
+            return;
+        }
+        accountInfoDao.updateOutReserveBalance(accountInfoEntity.getAccountNo(),amount,accountInfoEntity.getVersion());
     }
 }

@@ -26,7 +26,7 @@ public class AccountSettleManagerServiceTest {
     @Test
     public void test(){
         AccountSettleManagerCreateReq accountSettleManagerCreateReq = new AccountSettleManagerCreateReq();
-        accountSettleManagerCreateReq.setAccountNo("102023011064752054121");
+        accountSettleManagerCreateReq.setAccountNo("102023011183005784121");
         accountSettleManagerCreateReq.setMerchantNo("10202301010004121");
         AccountSettleCreateReq accountSettleCreateReq = new AccountSettleCreateReq();
         accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
