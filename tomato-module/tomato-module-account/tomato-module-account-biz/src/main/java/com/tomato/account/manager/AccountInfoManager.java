@@ -81,8 +81,12 @@ public class AccountInfoManager {
         LocalDateTime lastTradTime = account.getLastTradTime();
         // now : 2023年01月07日21:33:03
         LocalDateTime now = LocalDateTime.now();
+        // 上一次交易日期 && 上日账户余额
+        // 跨天：当前日期 > 零点
         if(lastTradTime == null || (lastTradTime.with(LocalTime.MAX)).isBefore(now)){
+            // 上日账户余额
             accountBalanceBO.setYesterdayBalance(account.getBalance());
+            // 上一次交易日期
             accountBalanceBO.setLastTradTime(now);
         }
         account.setAccountHisSerial(account.getAccountHisSerial() + 1);
