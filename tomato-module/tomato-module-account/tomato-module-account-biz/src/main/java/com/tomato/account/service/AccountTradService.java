@@ -31,6 +31,11 @@ public class AccountTradService {
         this.accountInfoManager = accountInfoManager;
         this.accountHisManager = accountHisManager;
     }
+
+    /**
+     * 账户扣款
+     * @param accountTradReq 账户扣款
+     */
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void deduct(AccountTradReq accountTradReq){
         log.info("账户扣款 start,{}", accountTradReq);
@@ -54,7 +59,10 @@ public class AccountTradService {
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountTradReq);
         log.info("账户扣款 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
-
+    /**
+     * 账户扣款-只创建账户历史
+     * @param accountTradReq 账户扣款
+     */
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void deductAsync(AccountTradReq accountTradReq){
         log.info("账户扣款 async start,{}", accountTradReq);
@@ -71,6 +79,10 @@ public class AccountTradService {
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountTradReq);
         log.info("账户扣款 async end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
+    /**
+     * 账户加钱
+     * @param accountTradReq 账户加钱
+     */
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void add(AccountTradReq accountTradReq){
         log.info("账户入账 start,{}", accountTradReq);
@@ -91,6 +103,10 @@ public class AccountTradService {
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountTradReq);
         log.info("账户入账 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
+    /**
+     * 账户加钱--只创建账户历史
+     * @param accountTradReq 账户加钱
+     */
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
     public void addAsync(AccountTradReq accountTradReq){
         log.info("账户入账 async start,{}", accountTradReq);
