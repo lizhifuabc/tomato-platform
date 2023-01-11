@@ -23,6 +23,9 @@
                 <if test="null != merchantOrderNo">
                     ,merchant_order_no
                 </if>
+                <if test="null != amountFree">
+                    ,amount_free
+                </if>
             )
         values
             (#{accountNo},#{merchantNo},#{amount},#{thirdNo},#{accountHisType}, #{accountStatus}, #{accountHisSerial}
@@ -37,6 +40,9 @@
                 </if>
                 <if test="null != merchantOrderNo">
                     ,#{merchantOrderNo}
+                </if>
+                <if test="null != amountFree">
+                    ,#{amountFree}
                 </if>
             )
     </insert>

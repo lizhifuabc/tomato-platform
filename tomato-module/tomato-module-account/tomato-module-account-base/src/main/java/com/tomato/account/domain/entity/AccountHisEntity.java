@@ -46,6 +46,10 @@ public class AccountHisEntity extends BaseEntity {
      * 发生金额
      */
     private BigDecimal amount;
+    /**
+     * 手续费
+     */
+    private BigDecimal amountFree;
 
     /**
      * 第三方流水号

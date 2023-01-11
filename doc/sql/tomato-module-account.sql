@@ -63,6 +63,7 @@ CREATE TABLE `t_account_his` (
     `before_balance`             decimal(16,2)                                       comment '发生前余额',
     `after_balance`              decimal(16,2)                                       comment '发生后余额',
     `amount`                     decimal(16,2)   not null                            comment '发生金额',
+    `amount_free`                decimal(16,2)   not null default 0                  comment '手续费',
     `account_his_type`           varchar(36)     not null                            comment '账户历史类型',
     `complete_time`              datetime        default current_timestamp           comment '入账完成时间',
     `account_status`             varchar(36)     not null default 'SUCCESS'          comment '入账状态',
