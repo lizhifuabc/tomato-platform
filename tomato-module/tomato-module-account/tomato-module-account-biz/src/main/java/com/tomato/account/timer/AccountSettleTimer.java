@@ -29,10 +29,10 @@ public class AccountSettleTimer {
     @Scheduled(cron="0 0 2 * * ?")
     public void run() {
         LocalDate nextSettleDate = LocalDate.now();
-        log.info("账户结算定时start:[{}]",nextSettleDate);
+        log.info("账户结算定时，指定结算日期start:[{}]",nextSettleDate);
         accountSettleControlDao.selectAccount(nextSettleDate).forEach(accountNo->{
             accountSettleService.settle(nextSettleDate,accountNo);
         });
-        log.info("账户结算定时执行end:[{}]",nextSettleDate);
+        log.info("账户结算定时，指定结算日期end:[{}]",nextSettleDate);
     }
 }
