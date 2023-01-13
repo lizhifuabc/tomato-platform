@@ -14,9 +14,6 @@
             <if test="null != merchantNo and '' != merchantNo">
                 merchant_no,
             </if>
-            <if test="null != settleStatus and '' != settleStatus">
-                settle_status,
-            </if>
             <if test="null != nextSettleDate ">
                 next_settle_date,
             </if>
@@ -31,9 +28,6 @@
             <if test="null != merchantNo and '' != merchantNo">
                 #{merchantNo},
             </if>
-            <if test="null != settleStatus and '' != settleStatus">
-                #{settleStatus},
-            </if>
             <if test="null != nextSettleDate ">
                 #{nextSettleDate},
             </if>
@@ -47,7 +41,7 @@
         from
             t_account_settle_control
         where
-            next_settle_date = #{nextSettleDate} and settle_status = 'DEAL'
+            next_settle_date = #{nextSettleDate}
         ]]>
     </select>
 

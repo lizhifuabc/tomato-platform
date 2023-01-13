@@ -135,7 +135,6 @@ create table `t_account_settle_control` (
     `account_no`              varchar(36)     not null                            comment '账户编号',
     `merchant_no`             varchar(50)     not null                            comment '商户编号',
 
-    `settle_status`           varchar(36)     not null default 'DEAL'             comment '结算状态',
     `settle_record_id`        bigint(20)                                          comment '账户结算记录ID',
 
     `next_settle_date`        date            not null                            comment '下次结算日期',

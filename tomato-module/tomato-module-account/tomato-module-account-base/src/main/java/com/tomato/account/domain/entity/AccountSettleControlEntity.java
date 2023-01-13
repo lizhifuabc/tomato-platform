@@ -4,7 +4,6 @@ import com.tomato.domain.entity.BaseEntity;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * 账户结算控制
@@ -34,10 +33,6 @@ public class AccountSettleControlEntity extends BaseEntity {
      */
     private String merchantNo;
 
-    /**
-     * 结算状态
-     */
-    private String settleStatus;
     /**
      * 下次结算日期
      */
