@@ -40,14 +40,14 @@
         </trim>
     </insert>
 
-    <select id="selectAccount" resultType="java.lang.String">
+    <select id="selectAccount" resultType="AccountSettleControlEntity">
         <![CDATA[
         select
-            account_no
+            *
         from
             t_account_settle_control
         where
-            next_settle_date = #{nextSettleDate}
+            next_settle_date = #{nextSettleDate} and settle_status = 'DEAL'
         ]]>
     </select>
 
@@ -59,4 +59,24 @@
         where
             id = #{id}
     </select>
+
+    <select id="selectByAccountNo" resultType="AccountSettleControlEntity">
+        select
+            *
+        from
+            t_account_settle_control
+        where
+            account_no = #{accountNo}
+    </select>
+    
+    <update id="updateSettleControl">
+        update
+            t_account_settle_control
+        set
+            version = version + 1,
+            next_settle_date = #{nextSettleDate},
+            settle_record_id = #{settleRecordId}
+        where
+            id = #{id} and version = #{version}
+    </update>
 </mapper>

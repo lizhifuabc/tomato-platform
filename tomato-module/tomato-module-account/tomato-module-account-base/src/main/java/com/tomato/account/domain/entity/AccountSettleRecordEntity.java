@@ -30,6 +30,14 @@ public class AccountSettleRecordEntity extends BaseEntity {
     private String merchantNo;
 
     /**
+     * 结算状态
+     */
+    private String settleStatus;
+    /**
+     * 结算备注
+     */
+    private String settleRemark;
+    /**
      * 结算日期
      */
     private LocalDate settleDate;

@@ -135,8 +135,8 @@ create table `t_account_settle_control` (
     `account_no`              varchar(36)     not null                            comment '账户编号',
     `merchant_no`             varchar(50)     not null                            comment '商户编号',
 
-    `settle_status`           varchar(36)     default 'SETTLE'                     comment '结算状态',
-    `settle_record_id`        bigint(20)                                           comment '账户结算记录ID',
+    `settle_status`           varchar(36)     not null default 'DEAL'             comment '结算状态',
+    `settle_record_id`        bigint(20)                                          comment '账户结算记录ID',
 
     `next_settle_date`        date            not null                            comment '下次结算日期',
 
@@ -154,6 +154,8 @@ create table `t_account_settle_record` (
     `account_settle_id`       bigint(20)      not null                            comment '账户结算规则ID',
     `account_no`              varchar(36)     not null                            comment '账户编号',
     `merchant_no`             varchar(50)     not null                            comment '商户编号',
+    `settle_status`           varchar(36)     not null                            comment '结算状态',
+    `settle_remark`           varchar(50)     not null  default '成功'             comment '结算备注',
     `settle_date`             date            not null                            comment '结算日期',
 
     `settle_amount`           decimal(16,2)   not null                            comment '结算金额',
@@ -163,7 +165,8 @@ create table `t_account_settle_record` (
     `version`                 int             not null default 0                  comment '乐观锁',
     `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
     `create_time`             datetime        not null default current_timestamp comment '创建时间',
-    primary key (`id`)
+    primary key (`id`),
+    unique key `uniq_account_settle` (`account_no`,`settle_date`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户结算记录';
 
 -- 目标银行卡(结算到银行卡使用)

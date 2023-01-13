@@ -26,6 +26,12 @@
             <if test="null != settleRate ">
                 settle_rate,
             </if>
+            <if test="null != settleStatus ">
+                settle_status,
+            </if>
+            <if test="null != settleRemark ">
+                settle_remark,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="null != accountSettleId ">
@@ -48,6 +54,12 @@
             </if>
             <if test="null != settleRate ">
                 #{settleRate},
+            </if>
+            <if test="null != settleStatus ">
+                #{settleStatus},
+            </if>
+            <if test="null != settleRemark ">
+                #{settleRemark},
             </if>
         </trim>
     </insert>

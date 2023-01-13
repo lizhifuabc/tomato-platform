@@ -35,7 +35,7 @@ public class AccountSettleControlEntity extends BaseEntity {
     private String merchantNo;
 
     /**
-     * 结算状态 {@link com.tomato.account.enums.SettleStatusEnum}
+     * 结算状态
      */
     private String settleStatus;
     /**

@@ -6,6 +6,7 @@ import com.tomato.account.domain.entity.AccountSettleControlEntity;
 import com.tomato.account.domain.entity.AccountSettleEntity;
 import com.tomato.account.domain.entity.AccountSettleRecordEntity;
 import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.type.CommonStatusEnum;
 import com.tomato.domain.type.YesNoTypeEnum;
 import com.tomato.util.lang.BigDecimalUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,10 @@ public class AccountSettleRecordManager {
     public AccountSettleRecordManager(AccountSettleRecordDao accountSettleRecordDao) {
         this.accountSettleRecordDao = accountSettleRecordDao;
     }
-    public void check(AccountSettleControlEntity accountSettleControl, AccountInfoEntity accountInfoEntity, AccountSettleEntity accountSettleEntity){
+    public AccountSettleRecordEntity create(AccountSettleControlEntity accountSettleControl,
+                                             AccountInfoEntity accountInfoEntity,
+                                             AccountSettleEntity accountSettleEntity,
+                                             LocalDate nextSettleDate){
         // 风险预存期外余额更新时间 != 当前时间，即今日尚未更新风险预存期外余额
         if(!accountInfoEntity.getOutReserveTime().toLocalDate().isEqual(LocalDateTime.now().toLocalDate())){
             log.error("今日尚未更新风险预存期外余额:[{}]",accountInfoEntity.getAccountNo());
@@ -37,17 +41,37 @@ public class AccountSettleRecordManager {
         }
         // 小于最小结算金额
         if(accountInfoEntity.getOutReserveBalance().compareTo(accountSettleEntity.getMinAmount()) < 0){
-            log.error("小于最小结算金额:[{}]",accountInfoEntity.getAccountNo());
-            // TODO 是否插入失败结算记录
+            log.warn("小于最小结算金额:[{}]",accountInfoEntity.getAccountNo());
+            // 插入失败结算记录
+            return createFail(accountSettleControl,nextSettleDate,"小于最小结算金额，等待下一个结算日");
         }
+        return createSuccess(accountSettleControl,accountInfoEntity,accountSettleEntity,nextSettleDate);
     }
-    public void create(AccountSettleControlEntity accountSettleControl, AccountInfoEntity accountInfoEntity, AccountSettleEntity accountSettleEntity){
-        check(accountSettleControl,accountInfoEntity,accountSettleEntity);
+    private AccountSettleRecordEntity createFail(AccountSettleControlEntity accountSettleControl,LocalDate nextSettleDate,String settleRemark){
+        AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,nextSettleDate);
+        accountSettleRecordEntity.setSettleStatus(CommonStatusEnum.FAIL.getValue());
+        accountSettleRecordEntity.setSettleAmount(BigDecimal.ZERO);
+        accountSettleRecordEntity.setSettleRate(BigDecimal.ZERO);
+        accountSettleRecordEntity.setSettleFee(BigDecimal.ZERO);
+        accountSettleRecordEntity.setSettleRemark(settleRemark);
+        // 插入
+        accountSettleRecordDao.insert(accountSettleRecordEntity);
+        return accountSettleRecordEntity;
+    }
+
+    private AccountSettleRecordEntity createInit(AccountSettleControlEntity accountSettleControl,LocalDate nextSettleDate){
         AccountSettleRecordEntity accountSettleRecordEntity = new AccountSettleRecordEntity();
         accountSettleRecordEntity.setAccountNo(accountSettleControl.getAccountNo());
         accountSettleRecordEntity.setMerchantNo(accountSettleControl.getMerchantNo());
         accountSettleRecordEntity.setAccountSettleId(accountSettleControl.getAccountSettleId());
-        accountSettleRecordEntity.setSettleDate(LocalDate.now());
+        // 这里不能使用结算控制的时间，防止数据已经被其他更新
+        accountSettleRecordEntity.setSettleDate(nextSettleDate);
+        return accountSettleRecordEntity;
+    }
+
+    private AccountSettleRecordEntity createSuccess(AccountSettleControlEntity accountSettleControl, AccountInfoEntity accountInfoEntity, AccountSettleEntity accountSettleEntity,LocalDate nextSettleDate){
+        AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,nextSettleDate);
+        accountSettleRecordEntity.setSettleStatus(CommonStatusEnum.SUCCESS.getValue());
         // 计算手续费
         if (accountSettleEntity.getSettleFeeFlag().equals(YesNoTypeEnum.YES.getValue())) {
             // 基础手续费
@@ -65,6 +89,8 @@ public class AccountSettleRecordManager {
                 accountSettleRecordEntity.setSettleFee(BigDecimal.ZERO);
             }
         }
+        // 插入
         accountSettleRecordDao.insert(accountSettleRecordEntity);
+        return accountSettleRecordEntity;
     }
 }

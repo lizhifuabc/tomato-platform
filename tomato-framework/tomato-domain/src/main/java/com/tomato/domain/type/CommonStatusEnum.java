@@ -21,6 +21,11 @@ public enum CommonStatusEnum implements BaseEnum{
      */
     DEAL("DEAL", "处理中"),
 
+    /**
+     * 失败
+     */
+    FAIL("FAIL", "失败"),
+
     ;
     private final String value;
 

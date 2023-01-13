@@ -3,11 +3,15 @@ package com.tomato.account.manager;
 import com.tomato.account.dao.AccountSettleControlDao;
 import com.tomato.account.domain.entity.AccountSettleControlEntity;
 import com.tomato.account.domain.entity.AccountSettleEntity;
+import com.tomato.account.domain.entity.AccountSettleRecordEntity;
 import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
 import com.tomato.account.service.AccountWorkService;
 import com.tomato.account.util.SettleDayUtil;
+import com.tomato.domain.exception.BusinessException;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 /**
  * 账户结算控制
@@ -50,5 +54,36 @@ public class AccountSettleControlManager {
             accountSettleControlEntity.setNextSettleDate(accountWorkService.nextWorkDay(accountSettleControlEntity.getNextSettleDate(),cycleTypeEnum));
         }
         accountSettleControlDao.insert(accountSettleControlEntity);
+    }
+
+    /**
+     * 更新账户结算控制:计算下一个结算日
+     * @param accountSettleEntity
+     * @param accountSettleControlEntity
+     * @param accountSettleRecordEntity
+     */
+    public void updateSettleControl(AccountSettleEntity accountSettleEntity,
+                                    AccountSettleControlEntity accountSettleControlEntity,
+                                    AccountSettleRecordEntity accountSettleRecordEntity){
+        // 结算周期计算
+        CycleTypeEnum cycleTypeEnum = CycleTypeEnum.fromValue(accountSettleEntity.getCycleType());
+        LocalDate nextSettleDate = SettleDayUtil.settleDate(
+                accountSettleEntity.getCycleData().split(","),
+                accountSettleControlEntity.getNextSettleDate(),
+                cycleTypeEnum,
+                accountSettleEntity.getReserveDays()
+        );
+        // 是否节假日
+        nextSettleDate = accountWorkService.nextWorkDay(nextSettleDate,cycleTypeEnum);
+
+        int count = accountSettleControlDao.updateSettleControl(
+                accountSettleControlEntity.getId(),
+                nextSettleDate,
+                accountSettleRecordEntity.getId(),
+                accountSettleControlEntity.getVersion()
+        );
+        if(count <= 0){
+            throw new BusinessException("在更新结算控制的时候出现乐观锁异常");
+        }
     }
 }

@@ -34,7 +34,7 @@ public class AccountFlowTest {
         // 创建账户
         AccountCreateReq accountCreateReq = new AccountCreateReq();
         accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
-        accountCreateReq.setMerchantNo(String.valueOf(System.currentTimeMillis()));
+        accountCreateReq.setMerchantNo("10202301010004121");
         AccountInfoEntity account = accountManageService.createAccount(accountCreateReq);
         // 创建结算
         AccountSettleManagerCreateReq accountSettleManagerCreateReq = new AccountSettleManagerCreateReq();
