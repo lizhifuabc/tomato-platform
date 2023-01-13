@@ -47,17 +47,24 @@ public class AccountSettleService {
         this.accountHisManager = accountHisManager;
     }
 
+    /**
+     * 账户结算
+     * @param settleDate 指定结算日
+     * @param accountSettleControl
+     */
     @Async("asyncTaskExecutorAccount")
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public void settle(LocalDate nextSettleDate,AccountSettleControlEntity accountSettleControl){
-        log.info("下次结算日期等于[{}]的账户[{}]开始跑结算定时",nextSettleDate,accountSettleControl);
+    public void settle(LocalDate settleDate,AccountSettleControlEntity accountSettleControl){
+        log.info("下次结算日期等于[{}]的账户[{}]开始结算",settleDate,accountSettleControl);
         // 查询账户信息
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountSettleControl.getAccountNo());
         // 结算信息
         AccountSettleEntity accountSettleEntity = accountSettleDao.selectByAccountNo(accountSettleControl.getAccountNo());
 
         // 创建结算记录
-        AccountSettleRecordEntity accountSettleRecordEntity = accountSettleRecordManager.create(accountSettleControl, accountInfoEntity, accountSettleEntity, nextSettleDate);
+        AccountSettleRecordEntity accountSettleRecordEntity = accountSettleRecordManager.create(accountSettleControl, accountInfoEntity, accountSettleEntity, settleDate);
+        log.info("下次结算日期等于[{}]的账户[{}]结束结算，数据为[{}]",settleDate,accountSettleControl,accountSettleRecordEntity);
+
         // 更新结算控制：账户结算记录ID、下次结算日期
         accountSettleControlManager.updateSettleControl(accountSettleEntity,accountSettleControl,accountSettleRecordEntity);
 

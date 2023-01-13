@@ -33,9 +33,9 @@ public class AccountSettleRecordManager {
     public AccountSettleRecordEntity create(AccountSettleControlEntity accountSettleControl,
                                              AccountInfoEntity accountInfoEntity,
                                              AccountSettleEntity accountSettleEntity,
-                                             LocalDate nextSettleDate){
+                                             LocalDate settleDate){
         // 风险预存期外余额更新时间 != 当前时间，即今日尚未更新风险预存期外余额
-        if(!accountInfoEntity.getOutReserveTime().toLocalDate().isEqual(LocalDateTime.now().toLocalDate())){
+        if(!accountInfoEntity.getOutReserveTime().toLocalDate().isEqual(settleDate)){
             log.error("今日尚未更新风险预存期外余额:[{}]",accountInfoEntity.getAccountNo());
             throw new BusinessException("今日尚未更新风险预存期外余额");
         }
@@ -43,12 +43,12 @@ public class AccountSettleRecordManager {
         if(accountInfoEntity.getOutReserveBalance().compareTo(accountSettleEntity.getMinAmount()) < 0){
             log.warn("小于最小结算金额:[{}]",accountInfoEntity.getAccountNo());
             // 插入失败结算记录
-            return createFail(accountSettleControl,nextSettleDate,"小于最小结算金额，等待下一个结算日");
+            return createFail(accountSettleControl,settleDate,"小于最小结算金额，等待下一个结算日");
         }
-        return createSuccess(accountSettleControl,accountInfoEntity,accountSettleEntity,nextSettleDate);
+        return createSuccess(accountSettleControl,accountInfoEntity,accountSettleEntity,settleDate);
     }
-    private AccountSettleRecordEntity createFail(AccountSettleControlEntity accountSettleControl,LocalDate nextSettleDate,String settleRemark){
-        AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,nextSettleDate);
+    private AccountSettleRecordEntity createFail(AccountSettleControlEntity accountSettleControl,LocalDate settleDate,String settleRemark){
+        AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,settleDate);
         accountSettleRecordEntity.setSettleStatus(CommonStatusEnum.FAIL.getValue());
         accountSettleRecordEntity.setSettleAmount(BigDecimal.ZERO);
         accountSettleRecordEntity.setSettleRate(BigDecimal.ZERO);
@@ -59,18 +59,18 @@ public class AccountSettleRecordManager {
         return accountSettleRecordEntity;
     }
 
-    private AccountSettleRecordEntity createInit(AccountSettleControlEntity accountSettleControl,LocalDate nextSettleDate){
+    private AccountSettleRecordEntity createInit(AccountSettleControlEntity accountSettleControl,LocalDate settleDate){
         AccountSettleRecordEntity accountSettleRecordEntity = new AccountSettleRecordEntity();
         accountSettleRecordEntity.setAccountNo(accountSettleControl.getAccountNo());
         accountSettleRecordEntity.setMerchantNo(accountSettleControl.getMerchantNo());
         accountSettleRecordEntity.setAccountSettleId(accountSettleControl.getAccountSettleId());
         // 这里不能使用结算控制的时间，防止数据已经被其他更新
-        accountSettleRecordEntity.setSettleDate(nextSettleDate);
+        accountSettleRecordEntity.setSettleDate(settleDate);
         return accountSettleRecordEntity;
     }
 
-    private AccountSettleRecordEntity createSuccess(AccountSettleControlEntity accountSettleControl, AccountInfoEntity accountInfoEntity, AccountSettleEntity accountSettleEntity,LocalDate nextSettleDate){
-        AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,nextSettleDate);
+    private AccountSettleRecordEntity createSuccess(AccountSettleControlEntity accountSettleControl, AccountInfoEntity accountInfoEntity, AccountSettleEntity accountSettleEntity,LocalDate settleDate){
+        AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,settleDate);
         accountSettleRecordEntity.setSettleStatus(CommonStatusEnum.SUCCESS.getValue());
         // 计算手续费
         if (accountSettleEntity.getSettleFeeFlag().equals(YesNoTypeEnum.YES.getValue())) {
