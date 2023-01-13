@@ -75,7 +75,7 @@ public class AccountSettleService {
             AccountBalanceBO accountBalanceBO = new AccountBalanceBO();
             accountBalanceBO.setAccountNo(accountInfoEntity.getAccountNo());
             accountBalanceBO.setVersion(accountInfoEntity.getVersion());
-            accountBalanceBO.setAmount(accountSettleRecordEntity.getSettleAmount().add(accountSettleRecordEntity.getSettleFee()));
+            accountBalanceBO.setAmount(accountSettleRecordEntity.getSettleAmount().add(accountSettleRecordEntity.getSettleFee()).negate());
             accountInfoManager.deduct(accountBalanceBO,accountInfoEntity);
             // 创建账户历史
             AccountHisBO accountHisBO = new AccountHisBO();
