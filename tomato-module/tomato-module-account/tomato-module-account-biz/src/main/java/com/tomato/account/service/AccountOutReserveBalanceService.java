@@ -66,6 +66,8 @@ public class AccountOutReserveBalanceService {
         log.info("查询账户历史:开始时间[{}]结束时间[{}]",inDate.atTime(LocalTime.MIN),exeLocalDate.atTime(LocalTime.MAX));
         AccountHisCollectResBO collect = accountHisDao.collect(accountNo,inDate.atTime(LocalTime.MIN), exeLocalDate.atTime(LocalTime.MAX));
         log.info("查询账户历史:开始时间[{}]结束时间[{}],结果:[{}]",inDate.atTime(LocalTime.MIN),exeLocalDate.atTime(LocalTime.MAX),collect);
+        // 账户余额 - 账户历史金额
+        // TODO 是否存在未入账的账户历史，如果存在，此时余额是少的，此时计算是有问题的。
         BigDecimal amount = accountInfoEntity.getBalance().subtract(collect.getTotalAmount());
         if(amount.compareTo(BigDecimal.ZERO) < 0){
             log.error("账户[{}]风险预存期外余额小于0，查看是否存在未入账的账户历史",accountNo);
