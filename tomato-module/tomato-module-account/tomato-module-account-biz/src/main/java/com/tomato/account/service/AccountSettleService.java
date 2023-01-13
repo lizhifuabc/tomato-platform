@@ -16,6 +16,8 @@ import com.tomato.web.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -46,6 +48,7 @@ public class AccountSettleService {
     }
 
     @Async("asyncTaskExecutorAccount")
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void settle(LocalDate nextSettleDate,AccountSettleControlEntity accountSettleControl){
         log.info("下次结算日期等于[{}]的账户[{}]开始跑结算定时",nextSettleDate,accountSettleControl);
         // 查询账户信息
@@ -55,7 +58,7 @@ public class AccountSettleService {
 
         // 创建结算记录
         AccountSettleRecordEntity accountSettleRecordEntity = accountSettleRecordManager.create(accountSettleControl, accountInfoEntity, accountSettleEntity, nextSettleDate);
-        // 更新结算控制：账户结算记录ID、下次结算日期、TODO 是否需要结算状态
+        // 更新结算控制：账户结算记录ID、下次结算日期
         accountSettleControlManager.updateSettleControl(accountSettleEntity,accountSettleControl,accountSettleRecordEntity);
 
         // 结算金额 > 0 && 结算状态为 SUCCESS
