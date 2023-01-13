@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -70,7 +71,10 @@ public interface AccountInfoDao {
      * @param version
      * @return
      */
-    int updateOutReserveBalance(@Param("accountNo") String accountNo, @Param("outReserveBalance") BigDecimal outReserveBalance,@Param("version") Integer version);
+    int updateOutReserveBalance(@Param("accountNo") String accountNo,
+                                @Param("outReserveBalance") BigDecimal outReserveBalance,
+                                @Param("version") Integer version,
+                                @Param("outReserveDate")LocalDate outReserveDate);
     /**
      * 插入
      * @param AccountInfoEntity
@@ -87,7 +91,7 @@ public interface AccountInfoDao {
     int updateAccountStatus(@Param("accountNo") String accountNo, @Param("accountStatus") String accountStatus,@Param("version") Integer version);
 
     /**
-     * 查询所有账户
+     * 查询所有账户 TODO 分页查询
      */
     List<String> selectAllAccount();
 }

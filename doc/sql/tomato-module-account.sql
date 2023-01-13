@@ -9,7 +9,7 @@ create table `t_account_info` (
   `merchant_no`             varchar(50)     not null                            comment '商户编号',
   `balance`                 decimal(16,2)   not null default 0                  comment '余额',
   `out_reserve_balance`     decimal(16,2)   not null default 0                  comment '风险预存期外余额',
-  `out_reserve_time`        datetime        default current_timestamp           comment '风险预存期外余额更新时间',
+  `out_reserve_date`        date            not null default (current_date)       comment '风险预存期外余额更新日期',
   `yesterday_balance`       decimal(16,2)   not null default 0                  comment '上日账户余额',
   `frozen_balance`          decimal(16,2)   not null default 0                  comment '冻结金额',
   `last_trad_time`          datetime                                            comment '上一次交易日期',

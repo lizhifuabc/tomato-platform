@@ -35,7 +35,7 @@ public class AccountSettleRecordManager {
                                              AccountSettleEntity accountSettleEntity,
                                              LocalDate settleDate){
         // 风险预存期外余额更新时间 != 当前时间，即今日尚未更新风险预存期外余额
-        if(!accountInfoEntity.getOutReserveTime().toLocalDate().isEqual(settleDate)){
+        if(!accountInfoEntity.getOutReserveDate().isEqual(settleDate)){
             log.error("今日尚未更新风险预存期外余额:[{}]",accountInfoEntity.getAccountNo());
             throw new BusinessException("今日尚未更新风险预存期外余额");
         }

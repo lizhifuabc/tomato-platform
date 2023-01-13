@@ -85,7 +85,7 @@
         set
             out_reserve_balance = #{outReserveBalance},
             version = version +1,
-            out_reserve_time = current_timestamp
+            out_reserve_date = #{outReserveDate}
         WHERE
             account_no = #{accountNo} and version = #{version}
     </update>

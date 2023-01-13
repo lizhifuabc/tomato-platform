@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * AccountDao
@@ -26,7 +27,7 @@ public class AccountInfoDaoTest {
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountNo);
         System.out.println("selectByMerchantNo:"+ accountInfoDao.selectByMerchantNo(merchantNo,"12"));
 
-        accountInfoDao.updateOutReserveBalance(accountNo,new BigDecimal(100),accountInfoEntity.getVersion());
+        accountInfoDao.updateOutReserveBalance(accountNo,new BigDecimal(100),accountInfoEntity.getVersion(), LocalDate.now());
 
         System.out.println("freeze:"+ accountInfoDao.freeze(accountNo, new BigDecimal(100), 1));
     }

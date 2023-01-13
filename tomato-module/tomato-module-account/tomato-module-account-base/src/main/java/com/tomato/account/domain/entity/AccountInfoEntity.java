@@ -4,6 +4,7 @@ import com.tomato.domain.entity.BaseEntity;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -59,9 +60,9 @@ public class AccountInfoEntity extends BaseEntity {
      */
     private LocalDateTime lastTradTime;
     /**
-     * 风险预存期外余额更新时间
+     * 风险预存期外余额更新日期
      */
-    private LocalDateTime outReserveTime;
+    private LocalDate outReserveDate;
 
     /**
      * 账户状态
