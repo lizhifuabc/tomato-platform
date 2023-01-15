@@ -31,7 +31,11 @@ public class AccountSettleTimer {
         LocalDate nextSettleDate = LocalDate.now();
         log.info("账户结算定时，指定结算日期start:[{}]",nextSettleDate);
         accountSettleControlDao.selectAccount(nextSettleDate).forEach(accountNo->{
-            accountSettleService.settle(nextSettleDate,accountNo);
+            try{
+                accountSettleService.settle(nextSettleDate,accountNo);
+            }catch (Exception e){
+                log.error("账户[{}]结算定时出现异常",accountNo,e);
+            }
         });
         log.info("账户结算定时，指定结算日期end:[{}]",nextSettleDate);
     }

@@ -1,5 +1,6 @@
 package com.tomato.account.timer;
 
+import com.tomato.util.thread.ThreadUtil;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,9 +23,10 @@ public class TimerTest {
     @Test
     public void timer(){
         System.out.println("执行所有定时start");
-        accountSettleTimer.run();
         accountTradAsyncTimer.run();
         accountOutReserveBalanceTimer.run();
+        accountSettleTimer.run();
+        ThreadUtil.sleep(2000);
         System.out.println("执行所有定时end");
     }
 }
