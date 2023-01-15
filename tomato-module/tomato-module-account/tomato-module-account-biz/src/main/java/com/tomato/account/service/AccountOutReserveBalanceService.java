@@ -35,9 +35,10 @@ public class AccountOutReserveBalanceService {
 
     /**
      * 计算账户风险预存期外余额 TODO 异步执行 TODO 分页
-     * @param accountNo
+     * @param accountNo 账号
+     * @param exeLocalDate 执行日期，默认当前日期
      */
-    @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void exe(String accountNo,LocalDate exeLocalDate){
         // 账户查询
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountNo);

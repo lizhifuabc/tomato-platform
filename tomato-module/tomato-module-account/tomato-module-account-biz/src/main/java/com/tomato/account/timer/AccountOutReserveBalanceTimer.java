@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 风险预存期外余额定时
@@ -29,12 +30,16 @@ public class AccountOutReserveBalanceTimer {
      */
     @Scheduled(cron="0 0 1 * * ?")
     public void run() {
-        log.info("账户风险预存期外余额定时定时start");
+        log.info("账户风险预存期外余额定时定时执行start:[{}]", LocalDateTime.now());
         LocalDate exeLocalDate = LocalDate.now();
         // TODO 增加查询账户限制条件 TODO 分页
         accountInfoDao.selectAllAccount().forEach(accountNo ->{
-            accountOutReserveBalanceService.exe(accountNo,exeLocalDate);
+            try {
+                accountOutReserveBalanceService.exe(accountNo,exeLocalDate);
+            }catch (Exception e){
+                log.error("账户[{}]风险预存期外余额定时出现异常",accountNo,e);
+            }
         });
-        log.info("账户风险预存期外余额定时定时执行end");
+        log.info("账户风险预存期外余额定时执行end:[{}]",LocalDateTime.now());
     }
 }
