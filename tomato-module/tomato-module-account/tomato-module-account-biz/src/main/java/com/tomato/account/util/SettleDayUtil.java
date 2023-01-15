@@ -30,7 +30,7 @@ public class SettleDayUtil {
         // 风险时间 = 2023年01月20日 - （1 + 1）= 2023年01月18日
         // 当前时间 > 风险时间
         // TODO 增加循环控制
-        while (LocalDate.now().isAfter(nextSettleDate.minusDays(reserveDay + 1))){
+        while (LocalDate.now().isAfter(nextSettleDate.minusDays(reserveDay))){
             nextSettleDate = nextSettleDate(cycleData,nextSettleDate,cycleTypeEnum);
         }
         return nextSettleDate;

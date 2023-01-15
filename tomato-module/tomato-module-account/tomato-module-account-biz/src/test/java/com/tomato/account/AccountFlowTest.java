@@ -44,17 +44,16 @@ public class AccountFlowTest {
         accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
         accountSettleCreateReq.setCycleType(CycleTypeEnum.WEEK.getValue());
         accountSettleCreateReq.setCycleData("1,2,3,4,6,7");
-        accountSettleCreateReq.setReserveDays(3);
+        accountSettleCreateReq.setReserveDays(1);
         accountSettleCreateReq.setMinAmount(new BigDecimal(100));
         accountSettleCreateReq.setSettleFeeFlag(YesNoTypeEnum.YES.getValue());
-        accountSettleCreateReq.setSettlRate(new BigDecimal(0.06));
+        accountSettleCreateReq.setSettleRate(new BigDecimal(0.06));
         accountSettleCreateReq.setLimitSettleFee(new BigDecimal(100));
         accountSettleCreateReq.setMaxSettleFee(new BigDecimal(200));
         accountSettleCreateReq.setMaxSettleDays(100);
 
+        accountSettleCreateReq.setRemark("备注而是备注而是备注而是");
         accountSettleCreateReq.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
-        accountSettleCreateReq.setUrgentFlag(YesNoTypeEnum.YES.getValue());
-        accountSettleCreateReq.setAutoRemitFlag(YesNoTypeEnum.YES.getValue());
 
         accountSettleManagerCreateReq.setAccountSettleCreateReq(accountSettleCreateReq);
         accountSettleManagerService.create(accountSettleManagerCreateReq);

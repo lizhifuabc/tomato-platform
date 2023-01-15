@@ -48,9 +48,9 @@ public class AccountSettleCreateReq {
     private BigDecimal limitSettleFee;
 
     /**
-     * 结算手续费
+     * 结算手续费率
      */
-    private BigDecimal settlRate;
+    private BigDecimal settleRate;
 
     /**
      * 封顶手续费
@@ -66,34 +66,8 @@ public class AccountSettleCreateReq {
      * 结算到目标账户类型
      */
     private String settleTargetType;
-
-    /**
-     * 备注编码
-     */
-    private String remarkCode;
-
     /**
      * 备注
      */
-    private String remarkCaption;
-
-    /**
-     * 打款备注的表达式，可以动态计算
-     */
-    private String remitMemo;
-
-    /**
-     * 打款备注
-     */
-    private String remitMemoFormula;
-
-    /**
-     * 是否加急:0-否， 1-是
-     */
-    private Integer urgentFlag;
-
-    /**
-     * 是否自动打款:0-否， 1-是
-     */
-    private Integer autoRemitFlag;
+    private String remark;
 }

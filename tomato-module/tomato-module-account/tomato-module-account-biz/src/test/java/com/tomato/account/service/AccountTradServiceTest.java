@@ -28,19 +28,20 @@ public class AccountTradServiceTest {
     public void test(){
         String merchantNo = "10202301010004121";
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
-
         AccountTradReq accountTradReq = new AccountTradReq();
-        accountTradReq.setAccountNo(accountInfoEntity.getAccountNo());
-        accountTradReq.setMerchantNo(merchantNo);
-        accountTradReq.setAccountType("SETTLEMENT");
-        accountTradReq.setAccountHisType("SETTLEMENT");
-        accountTradReq.setAmount(new BigDecimal(100000));
-        accountTradReq.setThirdNo(UUID.randomUUID().toString());
-        accountTradReq.setMerchantOrderNo(UUID.randomUUID().toString());
-        accountTradService.add(accountTradReq);
+        for (int i = 0; i < 10; i++) {
+            accountTradReq.setAccountNo(accountInfoEntity.getAccountNo());
+            accountTradReq.setMerchantNo(merchantNo);
+            accountTradReq.setAccountType("SETTLEMENT");
+            accountTradReq.setAccountHisType("SETTLEMENT");
+            accountTradReq.setAmount(new BigDecimal(100000));
+            accountTradReq.setThirdNo(UUID.randomUUID().toString());
+            accountTradReq.setMerchantOrderNo(UUID.randomUUID().toString());
+            accountTradService.add(accountTradReq);
 
-        accountTradReq.setThirdNo(UUID.randomUUID().toString());
-        accountTradService.addAsync(accountTradReq);
+            accountTradReq.setThirdNo(UUID.randomUUID().toString());
+            accountTradService.addAsync(accountTradReq);
+        }
 
         accountTradReq.setThirdNo(UUID.randomUUID().toString());
         accountTradReq.setAmount(new BigDecimal(-600));

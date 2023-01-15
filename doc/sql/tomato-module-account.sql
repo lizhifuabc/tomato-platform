@@ -121,11 +121,10 @@ create table `t_account_work` (
     unique key (`work_day`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '节假日控制';
 
-insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-10',2);
-insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-11',3);
-insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-12',2);
-insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-13',3);
-insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-14',0);
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-14',1);
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-15',1);
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-16',3);
+insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-17',3);
 
 # 账户结算控制
 drop table if exists `t_account_settle_control`;

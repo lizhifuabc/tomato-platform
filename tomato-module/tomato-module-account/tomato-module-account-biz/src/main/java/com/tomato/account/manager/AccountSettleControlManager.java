@@ -30,7 +30,8 @@ public class AccountSettleControlManager {
 
     /**
      * 创建账户结算控制
-     * @param accountSettleEntity
+     * 下次结算日 = 当前时间 - 1 - 风险控制日期
+     * @param accountSettleEntity 结算数据
      */
     public void create(AccountSettleEntity accountSettleEntity){
 

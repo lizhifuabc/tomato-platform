@@ -42,14 +42,11 @@ public class AccountSettleManagerServiceTest {
         accountSettleCreateReq.setReserveDays(3);
         accountSettleCreateReq.setMinAmount(new BigDecimal(100));
         accountSettleCreateReq.setSettleFeeFlag(YesNoTypeEnum.YES.getValue());
-        accountSettleCreateReq.setSettlRate(new BigDecimal(0.06));
         accountSettleCreateReq.setLimitSettleFee(new BigDecimal(100));
         accountSettleCreateReq.setMaxSettleFee(new BigDecimal(200));
         accountSettleCreateReq.setMaxSettleDays(100);
 
         accountSettleCreateReq.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
-        accountSettleCreateReq.setUrgentFlag(YesNoTypeEnum.YES.getValue());
-        accountSettleCreateReq.setAutoRemitFlag(YesNoTypeEnum.YES.getValue());
 
         accountSettleManagerCreateReq.setAccountSettleCreateReq(accountSettleCreateReq);
         accountSettleManagerService.create(accountSettleManagerCreateReq);
