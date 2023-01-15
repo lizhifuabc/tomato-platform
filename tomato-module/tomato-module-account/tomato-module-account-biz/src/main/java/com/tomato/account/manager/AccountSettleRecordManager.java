@@ -36,7 +36,7 @@ public class AccountSettleRecordManager {
                                              LocalDate settleDate){
         // 风险预存期外余额更新时间 != 当前时间，即今日尚未更新风险预存期外余额
         if(!accountInfoEntity.getOutReserveDate().isEqual(settleDate)){
-            log.error("今日尚未更新风险预存期外余额:[{}]",accountInfoEntity.getAccountNo());
+            log.error("账号[{}]:[{}]尚未更新风险预存期外余额:[{}]",accountInfoEntity.getAccountNo(),settleDate,accountInfoEntity.getAccountNo());
             throw new BusinessException("今日尚未更新风险预存期外余额");
         }
         // 小于最小结算金额
