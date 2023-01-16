@@ -39,7 +39,7 @@ public class OrderQueryTimer {
         // 当前时间 - 10分钟。
         LocalDateTime start = LocalDateTime.now().minusMinutes(10);
         // 当前页码
-        int pageIndex = 1;
+        int pageIndex = 0;
         while(true){
             try {
                 // 支付中的订单 && （ 订单创建时间 + 10分钟 >= 当前时间 ）TODO 异步执行

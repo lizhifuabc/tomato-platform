@@ -105,6 +105,6 @@
     </update>
     
     <select id="selectAllAccount" resultType="java.lang.String">
-        select account_no from t_account_info
+        select account_no from t_account_info limit #{pageIndex},#{pageSize}
     </select>
 </mapper>

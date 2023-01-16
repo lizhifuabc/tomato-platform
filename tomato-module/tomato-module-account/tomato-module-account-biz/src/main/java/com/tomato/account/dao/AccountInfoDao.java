@@ -91,7 +91,10 @@ public interface AccountInfoDao {
     int updateAccountStatus(@Param("accountNo") String accountNo, @Param("accountStatus") String accountStatus,@Param("version") Integer version);
 
     /**
-     * 查询所有账户 TODO 分页查询
+     * 查询所有账户
+     * @param pageIndex 当前页码
+     * @param pageSize 查询数量
      */
-    List<String> selectAllAccount();
+    List<String> selectAllAccount(@Param("pageIndex") int pageIndex,
+                                  @Param("pageSize") int pageSize);
 }

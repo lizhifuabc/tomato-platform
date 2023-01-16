@@ -25,6 +25,7 @@ public class AccountSettleTimer {
     }
     /**
      * 每天凌晨2点执行一次
+     * TODO 分页执行，定时执行顺序，账户依赖于风内金额计算定时
      */
     @Scheduled(cron="0 0 2 * * ?")
     public void run() {
