@@ -26,6 +26,10 @@ public enum AccountHisTypeEnum implements BaseEnum {
      */
     TRANS("TRANS", "转账"),
     /**
+     * 退款
+     */
+    REFUND("REFUND", "退款"),
+    /**
      * 提现
      */
     CASH("CASH", "提现"),

@@ -25,11 +25,11 @@ public interface AccountHisDao {
 
     /**
      * 查询账户历史表
-     * @param accountNo
-     * @param thirdNo
+     * @param merchantNo 商编
+     * @param thirdNo 第三方流水号
      * @return 账户历史
      */
-    AccountHisEntity selectByThirdNo(@Param("accountNo") String accountNo,@Param("thirdNo") String thirdNo);
+    AccountHisEntity selectByThirdNo(@Param("merchantNo") String merchantNo,@Param("thirdNo") String thirdNo);
 
     /**
      * 查询账户历史

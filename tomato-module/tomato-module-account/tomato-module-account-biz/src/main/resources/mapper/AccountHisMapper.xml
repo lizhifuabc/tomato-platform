@@ -48,7 +48,7 @@
     </insert>
 
     <select id="selectByThirdNo" parameterType="map" resultType="AccountHisEntity">
-        select * from t_account_his where third_no = #{thirdNo} and account_no = #{accountNo}
+        select * from t_account_his where third_no = #{thirdNo} and merchant_no = #{merchantNo}
     </select>
 
     <update id="updateAccountStatusBatch" parameterType="AccountHisUpdateBatchBO">

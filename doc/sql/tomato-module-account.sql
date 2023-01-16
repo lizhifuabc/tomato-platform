@@ -60,13 +60,13 @@ CREATE TABLE `t_account_his` (
     `account_no`                 varchar(36)     not null                            comment '账户编号',
     `merchant_no`                varchar(50)     not null                            comment '商户编号',
     `merchant_order_no`          varchar(36)                                         comment '商户订单号(冗余)',
-    `third_no`                   varchar(36)     not null                            comment '第三方流水号',
+    `third_no`                   varchar(50)     not null                            comment '第三方流水号',
     `before_balance`             decimal(16,2)                                       comment '发生前余额',
     `after_balance`              decimal(16,2)                                       comment '发生后余额',
     `amount`                     decimal(16,2)   not null                            comment '发生金额',
     `amount_free`                decimal(16,2)   not null default 0                  comment '手续费',
     `account_his_type`           varchar(36)     not null                            comment '账户历史类型',
-    `complete_time`              datetime        default current_timestamp           comment '入账完成时间',
+    `complete_time`              datetime                                            comment '入账完成时间',
     `account_status`             varchar(36)     not null default 'SUCCESS'          comment '入账状态',
 
     `version`                   int default 0 not null comment '乐观锁',
@@ -74,7 +74,7 @@ CREATE TABLE `t_account_his` (
     `create_time`               datetime not null default current_timestamp comment '创建时间',
     primary key (`id`),
     index (`create_time`),
-    unique key `uniq_account_third_no` (`account_no`,`third_no`)
+    unique key `uniq_account_third_no` (`merchant_no`,`third_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '账户历史';
 
 # 账户结算规则
