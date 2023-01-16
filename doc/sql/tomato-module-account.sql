@@ -52,7 +52,7 @@ create table `t_account_manage_his`
     primary key (`id`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户管理历史表';
 
-# 账户历史
+# 账户历史 TODO 唯一性索引 第三方流水号 商户订单号 设计方式
 DROP TABLE IF EXISTS `t_account_his`;
 CREATE TABLE `t_account_his` (
     `id`                         bigint(20)      not null auto_increment             comment '自增主键',
