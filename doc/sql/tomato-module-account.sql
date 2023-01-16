@@ -124,7 +124,6 @@ create table `t_account_work` (
 insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-14',1);
 insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-15',1);
 insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-16',3);
-insert into `t_account_work`(`work_day`,`day_type`) values ('2023-01-17',3);
 
 # 账户结算控制
 drop table if exists `t_account_settle_control`;

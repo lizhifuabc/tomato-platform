@@ -20,5 +20,6 @@
         <module>tomato-module-account</module>
         <module>tomato-module-channel</module>
         <module>tomato-module-notice</module>
+        <module>tomato-module-remit</module>
     </modules>
 </project>
