@@ -8,7 +8,7 @@ import lombok.Getter;
  * 账户类型枚举
  *
  * @author lizhifu
- * @date 2022/12/2
+ * @since  2022/12/2
  */
 @AllArgsConstructor
 @Getter

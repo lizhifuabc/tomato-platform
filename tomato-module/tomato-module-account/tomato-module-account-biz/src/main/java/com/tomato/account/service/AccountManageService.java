@@ -19,8 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 
 /**
- *  账户service
- *
+ *  账户管理操作
+ *  <p>1. 账户创建</p>
+ *  <p>2. 注销账户</p>
+ *  <p>3. 冻结解冻</p>
  * @author lizhifu
  * @since 2023/1/7
  */
@@ -89,7 +91,7 @@ public class AccountManageService {
 
     /**
      * 冻结解冻
-     * @param accountFreezeReq
+     * @param accountFreezeReq 冻结解冻
      */
     public void freezeOrUnfreeze(AccountFreezeReq accountFreezeReq) {
         // 1.检查账户是否存在

@@ -38,7 +38,7 @@ public class AccountInfoManager {
     }
     public AccountInfoEntity create(AccountCreateReq accountCreateReq) {
         AccountInfoEntity accountInfoEntity = BeanUtil.copy(accountCreateReq, AccountInfoEntity.class);
-        accountInfoEntity.setAccountNo(accountNoManager.nextStringValue(accountCreateReq));
+        accountInfoEntity.setAccountNo(accountNoManager.nextStringValue(accountCreateReq.getMerchantNo()));
         accountInfoEntity.setAccountStatus(AccountStatusEnum.ACCOUNT_AVAILABLE.getValue());
         accountInfoDao.insert(accountInfoEntity);
         return accountInfoEntity;
