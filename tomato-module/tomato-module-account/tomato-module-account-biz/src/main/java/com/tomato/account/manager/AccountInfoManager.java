@@ -31,7 +31,7 @@ public class AccountInfoManager {
      * 查询账户
      *
      * @param accountNo 账户
-     * @return
+     * @return 账户实体
      */
     public AccountInfoEntity selectByAccountNo(String accountNo){
         return accountInfoDao.selectByAccountNo(accountNo);
@@ -39,6 +39,7 @@ public class AccountInfoManager {
     public AccountInfoEntity create(AccountCreateReq accountCreateReq) {
         AccountInfoEntity accountInfoEntity = BeanUtil.copy(accountCreateReq, AccountInfoEntity.class);
         accountInfoEntity.setAccountNo(accountNoManager.nextStringValue(accountCreateReq.getMerchantNo()));
+        // 默认活动中
         accountInfoEntity.setAccountStatus(AccountStatusEnum.ACCOUNT_AVAILABLE.getValue());
         accountInfoDao.insert(accountInfoEntity);
         return accountInfoEntity;
@@ -54,7 +55,6 @@ public class AccountInfoManager {
      * 加钱
      * @param accountBalanceBO 账户金额操作
      * @param account 账户
-     * @return 结果
      */
     public void add(AccountBalanceBO accountBalanceBO,AccountInfoEntity account){
         baseAccount(accountBalanceBO,account);
