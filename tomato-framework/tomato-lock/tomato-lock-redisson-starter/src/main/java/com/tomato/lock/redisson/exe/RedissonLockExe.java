@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Redisson 实现分布式锁(重入锁)
+ * Redisson 实现分布式锁
  *
  * @author lizhifu
  * @since 2023/1/17
@@ -25,7 +25,7 @@ public class RedissonLockExe extends AbstractLockExe<RLock> {
         try {
             final RLock lockInstance = redissonClient.getLock(lockKey);
             final boolean locked = lockInstance.tryLock(acquireTimeout, expire, TimeUnit.MILLISECONDS);
-            return null;
+            return locked ? lockInstance : null;
         } catch (InterruptedException e) {
             return null;
         }
