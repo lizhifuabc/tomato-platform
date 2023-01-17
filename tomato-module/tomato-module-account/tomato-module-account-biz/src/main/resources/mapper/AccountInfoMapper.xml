@@ -79,6 +79,25 @@
             version = #{accountBalanceBO.version}
     </update>
 
+    <update id="settleRefund" parameterType="AccountBalanceBO">
+        UPDATE
+        t_account_info
+        set
+        balance = balance + #{accountBalanceBO.amount},
+        out_reserve_balance = out_reserve_balance + #{accountBalanceBO.amount},
+        version = version +1,
+        account_his_serial = account_his_serial +1
+        <if test="accountBalanceBO.yesterdayBalance != null" >
+            ,yesterday_balance = #{accountBalanceBO.yesterdayBalance,jdbcType=DECIMAL}
+        </if>
+        <if test="accountBalanceBO.lastTradTime != null" >
+            ,last_trad_time = #{accountBalanceBO.lastTradTime,jdbcType=DATE}
+        </if>
+        WHERE
+        account_no = #{accountBalanceBO.accountNo} and
+        version = #{accountBalanceBO.version}
+    </update>
+
     <update id="updateOutReserveBalance" parameterType="map">
         UPDATE
             t_account_info

@@ -97,4 +97,11 @@ public interface AccountInfoDao {
      */
     List<String> selectAllAccount(@Param("pageIndex") int pageIndex,
                                   @Param("pageSize") int pageSize);
+
+    /**
+     * 账户退款
+     * @param accountBalanceBO 金额操作
+     * @return 更新条数
+     */
+    int settleRefund(@Param("accountBalanceBO") AccountBalanceBO accountBalanceBO);
 }

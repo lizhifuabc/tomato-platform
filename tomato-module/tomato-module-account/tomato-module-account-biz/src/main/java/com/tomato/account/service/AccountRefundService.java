@@ -1,7 +1,6 @@
 package com.tomato.account.service;
 
 import com.tomato.account.dao.AccountHisDao;
-import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.bo.AccountHisBO;
 import com.tomato.account.domain.bo.AccountRefundBO;
@@ -39,17 +38,24 @@ public class AccountRefundService {
     }
 
     /**
-     * 退款
+     * 结算退款
+     * <p>1. 结算退款，此时退到风外余额中</p>
+     *
      * @param accountRefundBO 退款
      */
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public void refund(AccountRefundBO accountRefundBO){
+    public void settleRefund(AccountRefundBO accountRefundBO){
         log.info("账户发起退款start:[{}]", accountRefundBO);
         AccountHisEntity accountHisEntity = accountHisDao.selectByThirdNo(accountRefundBO.getMerchantNo(), accountRefundBO.getOrgThirdNo());
         // 原账户历史不存在，此时存在风险
         if (Objects.isNull(accountHisEntity)){
             log.error("原账户历史不存在[{}]",accountRefundBO);
             throw new BusinessException("原账户历史不存在");
+        }
+        // 原账户历史类型错误
+        if(!accountHisEntity.getAccountHisType().equals(AccountHisTypeEnum.SETTLEMENT.getValue())){
+            log.error("原账户历史类型错误[{}]",accountRefundBO);
+            throw new BusinessException("原账户历史类型错误");
         }
         // 查询账户信息
         AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountHisEntity.getAccountNo());
@@ -59,11 +65,10 @@ public class AccountRefundService {
         accountBalanceBO.setVersion(accountInfoEntity.getVersion());
         // 退款金额 = 手续费 + 发生金额
         accountBalanceBO.setAmount(accountHisEntity.getAmount().add(accountHisEntity.getAmountFree()));
-        accountInfoManager.add(accountBalanceBO,accountInfoEntity);
+        accountInfoManager.settleRefund(accountBalanceBO,accountInfoEntity);
         // 创建账户历史
         AccountHisBO accountHisBO = new AccountHisBO();
         accountHisBO.setAccountNo(accountInfoEntity.getAccountNo());
-        // TODO 第三方流水号生成方式
         accountHisBO.setThirdNo(AccountHisTypeEnum.REFUND.getValue() + ":" + accountRefundBO.getOrgThirdNo());
         accountHisBO.setAccountHisType(AccountHisTypeEnum.REFUND.getValue());
         accountHisBO.setAmount(accountBalanceBO.getAmount());

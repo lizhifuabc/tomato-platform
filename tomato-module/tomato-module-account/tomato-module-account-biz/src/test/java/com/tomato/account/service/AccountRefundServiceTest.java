@@ -5,8 +5,6 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.UUID;
-
 /**
  * 退款
  *
@@ -22,7 +20,7 @@ public class AccountRefundServiceTest {
     public void test(){
         AccountRefundBO accountRefundBO = new AccountRefundBO();
         accountRefundBO.setMerchantNo("10202301010004121");
-        accountRefundBO.setOrgThirdNo("f8ef1d32-1fa4-4ec0-a72e-9d38206de172");
-        accountRefundService.refund(accountRefundBO);
+        accountRefundBO.setOrgThirdNo("b096f5e3-a5c9-44e3-a299-70b50bbf34e7");
+        accountRefundService.settleRefund(accountRefundBO);
     }
 }

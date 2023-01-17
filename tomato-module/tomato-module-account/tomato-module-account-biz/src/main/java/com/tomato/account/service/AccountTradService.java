@@ -6,6 +6,7 @@ import com.tomato.account.domain.bo.AccountHisBO;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountTradReq;
+import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountHisManager;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.web.util.BeanUtil;
@@ -59,6 +60,7 @@ public class AccountTradService {
         accountInfoManager.deduct(accountBalanceBO,account);
         // 4.创建账户历史
         AccountHisBO accountHisBO = BeanUtil.copy(accountTradReq,AccountHisBO.class);
+        accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountHisBO);
         log.info("账户扣款 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
@@ -80,6 +82,7 @@ public class AccountTradService {
         AccountCheckService.checkDeduct(account.getAccountStatus());
         // 4.创建账户历史
         AccountHisBO accountHisBO = BeanUtil.copy(accountTradReq,AccountHisBO.class);
+        accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountHisBO);
         log.info("账户扣款 async end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
@@ -105,6 +108,7 @@ public class AccountTradService {
         accountInfoManager.add(accountBalanceBO,account);
         // 4.创建账户历史
         AccountHisBO accountHisBO = BeanUtil.copy(accountTradReq,AccountHisBO.class);
+        accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountHisBO);
         log.info("账户入账 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }
@@ -124,6 +128,7 @@ public class AccountTradService {
         validateAmount(accountTradReq.getAmount());
         // 4.创建账户历史
         AccountHisBO accountHisBO = BeanUtil.copy(accountTradReq,AccountHisBO.class);
+        accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountHisBO);
         log.info("账户入账 async end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
     }

@@ -47,12 +47,6 @@ public class AccountTradReq {
      */
     private String merchantOrderNo;
     /**
-     * 发生类型
-     */
-    @NotBlank(message = "账户历史类型")
-    @CheckEnum(value = AccountHisTypeEnum.class, message = "账户历史类型错误")
-    private String accountHisType;
-    /**
      * 账户类型
      */
     @NotBlank(message = "账户类型不能为空")

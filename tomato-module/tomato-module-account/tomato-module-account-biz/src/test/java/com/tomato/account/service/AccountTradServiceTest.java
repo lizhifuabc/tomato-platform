@@ -33,7 +33,6 @@ public class AccountTradServiceTest {
             accountTradReq.setAccountNo(accountInfoEntity.getAccountNo());
             accountTradReq.setMerchantNo(merchantNo);
             accountTradReq.setAccountType("SETTLEMENT");
-            accountTradReq.setAccountHisType("SETTLEMENT");
             accountTradReq.setAmount(new BigDecimal(100000));
             accountTradReq.setThirdNo(UUID.randomUUID().toString());
             accountTradReq.setMerchantOrderNo(UUID.randomUUID().toString());

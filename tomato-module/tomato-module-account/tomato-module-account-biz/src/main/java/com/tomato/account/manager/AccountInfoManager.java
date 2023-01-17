@@ -66,6 +66,21 @@ public class AccountInfoManager {
             throw new BusinessException("在账户加钱时候出现乐观锁异常");
         }
     }
+    /**
+     * 结算退款
+     * @param accountBalanceBO 账户金额操作
+     * @param account 账户
+     */
+    public void settleRefund(AccountBalanceBO accountBalanceBO,AccountInfoEntity account){
+        baseAccount(accountBalanceBO,account);
+        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) < 0){
+            throw new BusinessException("金额错误");
+        }
+        int count = accountInfoDao.settleRefund(accountBalanceBO);
+        if(count <= 0){
+            throw new BusinessException("在账户加钱时候出现乐观锁异常");
+        }
+    }
 
     /**
      * 扣款
