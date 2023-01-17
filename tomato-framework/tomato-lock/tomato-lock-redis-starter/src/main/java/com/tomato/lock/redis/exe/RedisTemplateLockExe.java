@@ -53,6 +53,6 @@ public class RedisTemplateLockExe extends AbstractLockExe<Boolean> {
     public boolean unLock(String lockKey, Boolean lockInstance) {
         Long unLock = stringRedisTemplate.execute(DELETE_LOCK_SCRIPT,
                 Collections.singletonList(lockKey), lockValue);
-        return Optional.ofNullable(unLock).map(res->unLock == 1).orElse(false);
+        return Optional.ofNullable(unLock).map(res-> unLock == 1).orElse(false);
     }
 }
