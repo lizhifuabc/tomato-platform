@@ -44,7 +44,7 @@ public class AccountSettleManager {
             Arrays.sort(cycleData);
             accountSettleEntity.setCycleData(StringUtils.join(cycleData,","));
         }
-        // 默认最大结算天数 Integer.MAX_VALUE
+        // 默认最大结算天数 Integer.MAX_VALUE,预留，是否手动结算，选择日期
         if(accountSettleEntity.getMaxSettleDays() == null || accountSettleEntity.getMaxSettleDays() == 0){
             accountSettleEntity.setMaxSettleDays(Integer.MAX_VALUE);
         }

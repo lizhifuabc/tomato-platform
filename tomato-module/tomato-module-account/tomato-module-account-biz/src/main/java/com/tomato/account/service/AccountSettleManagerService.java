@@ -37,7 +37,7 @@ public class AccountSettleManagerService {
         AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountSettleManagerCreateReq.getAccountNo());
         // 检查账户是否存在
         AccountCheckService.checkAccountExist(accountInfoEntity);
-        // 创建账户结算规则
+        // 创建账户结算基本信息
         AccountSettleEntity accountSettleEntity = accountSettleManager.create(accountSettleManagerCreateReq.getAccountSettleCreateReq(), accountInfoEntity);
         // 创建账户结算控制
         accountSettleControlManager.create(accountSettleEntity);

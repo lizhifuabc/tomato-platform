@@ -1,5 +1,7 @@
 package com.tomato.account.domain.req;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -30,6 +32,8 @@ public class AccountSettleCreateReq {
     /**
      * 风险预存期
      */
+    @Min(value = 1,message = "风险预存期最小为1")
+    @NotNull
     private Integer reserveDays;
 
     /**

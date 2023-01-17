@@ -39,12 +39,13 @@ public class AccountSettleManagerServiceTest {
         accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
         accountSettleCreateReq.setCycleType(CycleTypeEnum.WEEK.getValue());
         accountSettleCreateReq.setCycleData("1,2,3,4,8,6,7");
-        accountSettleCreateReq.setReserveDays(3);
+        accountSettleCreateReq.setReserveDays(0);
         accountSettleCreateReq.setMinAmount(new BigDecimal(100));
         accountSettleCreateReq.setSettleFeeFlag(YesNoTypeEnum.YES.getValue());
         accountSettleCreateReq.setLimitSettleFee(new BigDecimal(100));
         accountSettleCreateReq.setMaxSettleFee(new BigDecimal(200));
         accountSettleCreateReq.setMaxSettleDays(100);
+        accountSettleCreateReq.setRemark("测试数据");
 
         accountSettleCreateReq.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
 
