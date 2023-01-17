@@ -21,7 +21,7 @@ public class RedissonLockExe extends AbstractLockExe<RLock> {
     }
 
     @Override
-    public RLock lock(String lockKey, String lockValue, long expire, long acquireTimeout) {
+    public RLock lock(String lockKey, long expire, long acquireTimeout) {
         try {
             final RLock lockInstance = redissonClient.getLock(lockKey);
             final boolean locked = lockInstance.tryLock(acquireTimeout, expire, TimeUnit.MILLISECONDS);
@@ -32,7 +32,7 @@ public class RedissonLockExe extends AbstractLockExe<RLock> {
     }
 
     @Override
-    public boolean unLock(String lockKey, String lockValue, RLock lockInstance) {
+    public boolean unLock(String lockKey, RLock lockInstance) {
         if (lockInstance.isHeldByCurrentThread()) {
             try {
                 return lockInstance.forceUnlockAsync().get();
