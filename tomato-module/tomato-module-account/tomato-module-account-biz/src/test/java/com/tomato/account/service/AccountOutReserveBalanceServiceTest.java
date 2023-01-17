@@ -23,7 +23,7 @@ public class AccountOutReserveBalanceServiceTest {
     AccountInfoDao accountInfoDao;
     @Test
     public void test(){
-        LocalDate exe = LocalDate.of(2023,1,17);
+        LocalDate exe = LocalDate.of(2023,1,18);
         String merchantNo = "10202301010004121";
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
         accountOutReserveBalanceService.exe(accountInfoEntity.getAccountNo(),exe);

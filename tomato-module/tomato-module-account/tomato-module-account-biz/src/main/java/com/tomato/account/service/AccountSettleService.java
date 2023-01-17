@@ -84,7 +84,7 @@ public class AccountSettleService {
             accountHisBO.setAmountFree(accountSettleRecordEntity.getSettleFee());
             accountHisBO.setAmount(accountSettleRecordEntity.getSettleAmount());
             // TODO 结算记录流水号
-            accountHisBO.setThirdNo(accountSettleRecordEntity.getAccountNo() + accountSettleRecordEntity.getId());
+            accountHisBO.setThirdNo(accountSettleRecordEntity.getAccountNo() + ":" + accountSettleRecordEntity.getId());
             AccountHisEntity accountHisEntity = accountHisManager.insert(accountInfoEntity,accountHisBO);
         }
     }

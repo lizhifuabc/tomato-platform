@@ -74,6 +74,9 @@ public class AccountRefundService {
         accountHisBO.setAmount(accountBalanceBO.getAmount());
         accountHisBO.setAmountFree(BigDecimal.ZERO);
         accountHisManager.insert(accountInfoEntity,accountHisBO);
+
+        // 更改结算记录为失败 TODO 是否更改结算控制
+
         log.info("账户发起退款end:[{}]", accountRefundBO);
     }
 }
