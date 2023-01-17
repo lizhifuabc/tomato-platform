@@ -27,5 +27,6 @@
         <module>tomato-jwt-starter</module>
         <module>tomato-rabbitmq-starter</module>
         <module>tomato-captcha-starter</module>
+        <module>tomato-lock</module>
     </modules>
 </project>

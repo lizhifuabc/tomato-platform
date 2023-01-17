@@ -35,7 +35,7 @@
         <!-- apache commons https://github.com/apache/commons-crypto -->
         <apache.commons.crypto.version>1.1.0</apache.commons.crypto.version>
         <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
-        <redisson.version>3.18.1</redisson.version>
+        <redisson.version>3.19.0</redisson.version>
         <!--  jwt 相关      -->
         <jjwt.version>0.9.1</jjwt.version>
         <jwks-rsa.version>0.9.0</jwks-rsa.version>
@@ -91,6 +91,11 @@
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-data-30</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.version}</version>
             </dependency>
             <!--   唯一ID生成类NanoId     -->
@@ -199,12 +204,22 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-lock-redis-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-web-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-domain</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-lock-core</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

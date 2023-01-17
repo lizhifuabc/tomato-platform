@@ -21,6 +21,14 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-jpa-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-jwt-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-jwt-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-lock/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-lock/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-lock/tomato-lock-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-lock/tomato-lock-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-lock/tomato-lock-redis-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-lock/tomato-lock-redis-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-lock/tomato-lock-redisson-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-lock/tomato-lock-redisson-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-mybatis-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-mybatis-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rabbitmq-starter/src/main/java" charset="UTF-8" />
