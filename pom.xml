@@ -11,6 +11,8 @@
     <modules>
         <module>tomato-module</module>
         <module>tomato-framework</module>
+        <module>tomato-book</module>
+        <module>tomato-gateway</module>
     </modules>
     <name>${project.artifactId}</name>
     <properties>
@@ -51,6 +53,8 @@
             <properties>
                 <!-- 环境标识，需要与配置文件的名称相对应 -->
                 <profiles.active>dev</profiles.active>
+                <nacos.username>nacos</nacos.username>
+                <nacos.password>nacos</nacos.password>
             </properties>
             <activation>
                 <!-- 默认环境 -->
@@ -58,4 +62,32 @@
             </activation>
         </profile>
     </profiles>
+    <!--  maven 依赖的下载是从 repositories 中获取的 -->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <!--  因为 maven 插件的依赖是从 pluginRepositories 中获取的，而不是 repositories
+      也就是说，如果你的项目中使用了 maven 插件，那么你需要配置 pluginRepositories
+      否则，maven 无法从 repositories 中获取插件的依赖
+      -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

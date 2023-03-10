@@ -16,9 +16,10 @@
         <!-- maven 全局版本号管理 -->
         <revision>1.0-SNAPSHOT</revision>
         <!-- spring boot / spring cloud 统一依赖管理 -->
-        <spring.boot.version>3.0.1</spring.boot.version>
-        <spring.cloud.version>2021.0.5</spring.cloud.version>
-        <spring.cloud.alibaba.version>2021.0.4.0</spring.cloud.alibaba.version>
+        <spring.boot.version>3.0.3</spring.boot.version>
+        <!-- https://spring.io/projects/spring-cloud       -->
+        <spring.cloud.version>2022.0.1</spring.cloud.version>
+        <spring.cloud.alibaba.version>2022.0.0.0-RC1</spring.cloud.alibaba.version>
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.0</spring.boot.mybatis.version>
         <!-- druid 版本管理 -->
@@ -310,4 +311,16 @@
             <!--  业务代码 end -->
         </dependencies>
     </dependencyManagement>
+
+    <!--  maven 依赖的下载是从 repositories 中获取的 -->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
 </project>
