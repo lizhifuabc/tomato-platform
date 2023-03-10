@@ -5,14 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module</artifactId>
+        <artifactId>tomato-module-kill</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-kill</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-module-kill-biz</module>
-        <module>tomato-module-kill-base</module>
-    </modules>
+    <artifactId>tomato-module-kill-base</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
 </project>
