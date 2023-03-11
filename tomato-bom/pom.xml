@@ -21,9 +21,10 @@
         <spring.cloud.version>2022.0.1</spring.cloud.version>
         <spring.cloud.alibaba.version>2022.0.0.0-RC1</spring.cloud.alibaba.version>
         <!-- mybatis 版本管理 -->
-        <spring.boot.mybatis.version>3.0.0</spring.boot.mybatis.version>
+        <spring.boot.mybatis.version>3.0.1</spring.boot.mybatis.version>
         <!-- druid 版本管理 -->
-        <spring.boot.druid.version>1.2.15</spring.boot.druid.version>
+        <!-- https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter  -->
+        <spring.boot.druid.version>1.2.16</spring.boot.druid.version>
         <!-- shardingsphere 分库分表依赖 -->
         <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
         <shardingsphere.version>5.3.0</shardingsphere.version>
@@ -135,6 +136,7 @@
                 <version>${apache.commons.crypto.version}</version>
             </dependency>
             <!-- druid -->
+            <!-- https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter  -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
