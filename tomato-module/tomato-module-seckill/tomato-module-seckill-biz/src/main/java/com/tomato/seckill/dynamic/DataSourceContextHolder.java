@@ -1,4 +1,4 @@
-package com.tomato.kill.dynamic;
+package com.tomato.seckill.dynamic;
 
 /**
  * 数据源上下文

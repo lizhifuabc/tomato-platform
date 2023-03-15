@@ -1,4 +1,4 @@
-package com.tomato.kill.dynamic;
+package com.tomato.seckill.dynamic;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;

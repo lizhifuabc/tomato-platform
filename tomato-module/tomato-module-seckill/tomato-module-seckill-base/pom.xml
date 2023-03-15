@@ -5,14 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module</artifactId>
+        <artifactId>tomato-module-seckill</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-kill</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-module-kill-biz</module>
-        <module>tomato-module-kill-base</module>
-    </modules>
+    <artifactId>tomato-module-seckill-base</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-validator-starter</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

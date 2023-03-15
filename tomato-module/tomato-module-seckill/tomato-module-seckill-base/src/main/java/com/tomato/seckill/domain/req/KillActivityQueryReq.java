@@ -1,4 +1,4 @@
-package com.tomato.kill.domain.req;
+package com.tomato.seckill.domain.req;
 
 import lombok.Data;
 

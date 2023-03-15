@@ -1,4 +1,4 @@
-package com.tomato.kill.dynamic;
+package com.tomato.seckill.dynamic;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 

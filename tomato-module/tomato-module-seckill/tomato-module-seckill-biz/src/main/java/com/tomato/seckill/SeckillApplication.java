@@ -1,4 +1,4 @@
-package com.tomato.kill;
+package com.tomato.seckill;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +11,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableDiscoveryClient
-public class KillApplication {
+public class SeckillApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KillApplication.class, args);
+		SpringApplication.run(SeckillApplication.class, args);
 	}
 
 }

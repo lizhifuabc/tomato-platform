@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module-kill</artifactId>
+        <artifactId>tomato-module-seckill</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-kill-biz</artifactId>
+    <artifactId>tomato-module-seckill-biz</artifactId>
 
     <dependencies>
         <!--服务注册/发现-->

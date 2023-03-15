@@ -21,6 +21,6 @@
         <module>tomato-module-channel</module>
         <module>tomato-module-notice</module>
         <module>tomato-module-remit</module>
-        <module>tomato-module-kill</module>
+        <module>tomato-module-seckill</module>
     </modules>
 </project>
