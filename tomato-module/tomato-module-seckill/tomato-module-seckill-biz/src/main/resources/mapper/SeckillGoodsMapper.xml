@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.seckill.dao.SeckillGoodsDao">
+    <update id="updateSkillRemaining">
+        update
+            t_seckill_goods
+        set
+            version = version + 1,
+            seckill_remaining = seckill_remaining - 1
+        where
+            id = #{id}
+            and seckill_remaining > 0
+            and version = #{version}
+    </update>
+    <insert id="insert" parameterType="SeckillGoodsEntity">
+        insert into
+            t_seckill_goods
+            (
+                seckill_activity_id,goods_id,
+                seckill_price,seckill_count,
+                seckill_limit,seckill_sort,
+                seckill_remaining
+            )
+        values
+            (
+             #{seckillGoods.seckillActivityId},#{seckillGoods.goodsId},
+             #{seckillGoods.seckillPrice},#{seckillGoods.seckillCount},
+             #{seckillGoods.seckillLimit},#{seckillGoods.seckillSort},
+             #{seckillGoods.seckillRemaining}
+            )
+    </insert>
+
+    <insert id="insertList">
+        insert into
+            t_seckill_goods
+            (
+            seckill_activity_id,goods_id,
+            seckill_price,seckill_count,
+            seckill_limit,seckill_sort,
+            seckill_remaining
+            )
+        values
+        <foreach collection ="goodsList" item="seckillGoods" separator =",">
+            (
+            #{seckillGoods.seckillActivityId},#{seckillGoods.goodsId},
+            #{seckillGoods.seckillPrice},#{seckillGoods.seckillCount},
+            #{seckillGoods.seckillLimit},#{seckillGoods.seckillSort},
+            #{seckillGoods.seckillRemaining}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectBySeckillActivityId" resultType="SeckillGoodsEntity">
+        select
+               goods_id,id,
+               seckill_price,seckill_count,
+               seckill_limit,seckill_sort,
+               seckill_remaining
+        from
+            t_seckill_goods
+        where
+            seckill_activity_id = #{seckillActivityId}
+    </select>
+
+    <select id="selectBySeckillActivityIdGoodsId" resultType="SeckillGoodsEntity">
+        select
+            goods_id,id,
+            seckill_price,seckill_count,
+            seckill_limit,seckill_sort,
+            seckill_remaining
+        from
+            t_seckill_goods
+        where
+            seckill_activity_id = #{seckillActivityId} and goods_id = #{goodsId}
+    </select>
+    <select id="selectById" resultType="SeckillGoodsEntity">
+        select
+            id,
+            version,
+            goods_id,
+            seckill_price,seckill_count,
+            seckill_limit,seckill_sort,
+            seckill_remaining
+        from
+            t_seckill_goods
+        where
+            id = #{id}
+    </select>
+</mapper>

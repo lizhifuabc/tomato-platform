@@ -26,12 +26,20 @@
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-web-starter</artifactId>
-
         </dependency>
         <!-- mybatis 服务依赖 -->
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-mybatis-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-seckill-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-redis-starter</artifactId>
         </dependency>
     </dependencies>
 

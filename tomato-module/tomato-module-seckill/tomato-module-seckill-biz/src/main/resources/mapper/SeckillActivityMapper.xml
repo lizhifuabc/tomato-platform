@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.seckill.dao.SeckillActivityDao">
+    <insert id="insert" parameterType="SeckillActivityEntity">
+        insert into
+            t_seckill_activity
+            (
+             activity_name,activity_desc,
+             start_time,end_time
+             )
+        values
+            (
+             #{seckillActivity.activityName},#{seckillActivity.activityDesc},
+             #{seckillActivity.startTime}, #{seckillActivity.endTime}
+             )
+    </insert>
+
+    <select id="selectByTime" resultType="java.lang.Long">
+        select
+            id
+        from
+            t_seckill_activity
+        where
+            start_time &gt;= #{startTime} and end_time &lt;= #{endTime} and disabled_flag = 0
+    </select>
+    <select id="selectByStartTime" resultType="java.lang.Long">
+        select
+            id
+        from
+            t_seckill_activity
+        where
+            start_time &gt;= #{start} and start_time &lt;= #{end} and disabled_flag = 0
+    </select>
+    
+    <select id="selectById" resultType="SeckillActivityEntity">
+        select
+            activity_name,activity_desc,start_time,end_time,disabled_flag
+        from
+            t_seckill_activity
+        where
+            id = #{id}
+    </select>
+</mapper>
