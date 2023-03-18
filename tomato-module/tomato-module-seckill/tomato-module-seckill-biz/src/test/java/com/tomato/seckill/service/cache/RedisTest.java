@@ -1,6 +1,6 @@
-package com.tomato.goods;
+package com.tomato.seckill.service.cache;
 
-import com.tomato.goods.domain.entity.SeckillGoodsEntity;
+import com.tomato.seckill.domain.entity.SeckillGoodsEntity;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

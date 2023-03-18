@@ -1,6 +1,7 @@
 package com.tomato.seckill.domain.req;
 
 import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -34,6 +35,7 @@ public class SeckillActivityCreateReq {
     private LocalDateTime startTime;
     /**
      * 结束时间
+     * TODO 结束时间必须大于开始时间
      */
     @Future
     private LocalDateTime endTime;

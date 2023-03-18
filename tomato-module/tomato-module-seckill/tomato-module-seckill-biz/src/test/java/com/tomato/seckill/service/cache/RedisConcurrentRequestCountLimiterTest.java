@@ -1,4 +1,4 @@
-package com.tomato.goods;
+package com.tomato.seckill.service.cache;
 
 import com.tomato.redis.domain.req.RedisConcurrentRequestCountLimiterReq;
 import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;
