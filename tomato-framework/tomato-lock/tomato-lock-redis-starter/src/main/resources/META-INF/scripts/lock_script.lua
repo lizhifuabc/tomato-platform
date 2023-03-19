@@ -5,7 +5,7 @@
 -- get key：获取 key 的值
 
 -- 尝试获取锁
--- KEYS[1]：锁的名称
+-- KEYS[1]：锁的键
 -- ARGV[1]：锁的持有者（通常是客户端标识符）(uuid)
 -- ARGV[2]：锁的过期时间
 redis.log(redis.LOG_WARNING, 'try to get lock: ' .. KEYS[1] .. ', owner: ' .. ARGV[1] .. ', expire: ' .. ARGV[2])
