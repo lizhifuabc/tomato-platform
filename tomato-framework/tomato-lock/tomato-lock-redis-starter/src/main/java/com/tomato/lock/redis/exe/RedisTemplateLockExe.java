@@ -27,7 +27,7 @@ public class RedisTemplateLockExe extends AbstractLockExe<Boolean> {
      * 具体表现为：当需要获取分布式锁时，先计算当前clientId是否和Redis中对应key的value相等，如果相等，说明是同一个实例，即是同一个线程。
      * 此时只要重新设置失效时间即可
      */
-    private final String lockValue = UUID.randomUUID().toString();
+    private final String uuid = UUID.randomUUID().toString();
 
     public RedisTemplateLockExe(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
@@ -46,13 +46,13 @@ public class RedisTemplateLockExe extends AbstractLockExe<Boolean> {
     public Boolean lock(String lockKey, long expire, long acquireTimeout) {
         return stringRedisTemplate.execute(LOCK_SCRIPT,
                 Collections.singletonList(lockKey),
-                lockValue, String.valueOf(expire));
+                uuid, String.valueOf(expire));
     }
 
     @Override
     public boolean unLock(String lockKey, Boolean lockInstance) {
         Long unLock = stringRedisTemplate.execute(DELETE_LOCK_SCRIPT,
-                Collections.singletonList(lockKey), lockValue);
+                Collections.singletonList(lockKey), uuid);
         return Optional.ofNullable(unLock).map(res-> unLock == 1).orElse(false);
     }
 }
