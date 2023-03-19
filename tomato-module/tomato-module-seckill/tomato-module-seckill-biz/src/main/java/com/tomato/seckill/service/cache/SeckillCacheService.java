@@ -20,12 +20,19 @@ public class SeckillCacheService {
         this.distributedLockExe = distributedLockExe;
     }
 
-    // 缓存预热
+    /**
+     * 缓存预热
+     * @param seckillActivityId 秒杀活动id
+     */
     public void cacheWarmUp(Long seckillActivityId){
         // 1. redis 分布式锁
         String key = RedisConstant.SECKILL_GOODS_INFO + seckillActivityId;
-        boolean res = (boolean) distributedLockExe.lock(key, 10,10);
-        log.info("redis 分布式锁,key:{},res:{}",key,res);
+        boolean resLock = (boolean) distributedLockExe.lock(key, 10,10);
+        log.info("redis 分布式锁,key:{},resLock:{}",key,resLock);
+
+        // 删除 redis 分布式锁
+        boolean resUnlock = distributedLockExe.unLock(key,false);
+        log.info("redis 分布式锁,key:{},resUnlock:{}",key,resUnlock);
         // 2. 缓存秒杀活动信息
     }
 }

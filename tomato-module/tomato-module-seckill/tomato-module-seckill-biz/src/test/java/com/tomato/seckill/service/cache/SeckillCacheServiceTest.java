@@ -18,15 +18,8 @@ public class SeckillCacheServiceTest {
     // 缓存预热
     @Test
     public void cacheWarmUp() throws InterruptedException {
-        for (int i = 0; i < 2; i++) {
-            // 创建线程并运行
-            new Thread(() -> {
-                seckillCacheService.cacheWarmUp(1L);
-            }).start();
-            new Thread(() -> {
-                seckillCacheService.cacheWarmUp(2L);
-            }).start();
-        }
+        seckillCacheService.cacheWarmUp(1L);
+        seckillCacheService.cacheWarmUp(2L);
         Thread.sleep(1000);
     }
 }
