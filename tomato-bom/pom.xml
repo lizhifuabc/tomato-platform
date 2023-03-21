@@ -222,6 +222,11 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-feign</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-lock-core</artifactId>
                 <version>${revision}</version>
             </dependency>

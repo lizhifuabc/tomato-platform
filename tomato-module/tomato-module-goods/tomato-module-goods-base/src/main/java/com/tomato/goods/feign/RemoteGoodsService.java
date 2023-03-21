@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author lizhifu
  * @since 2023/3/21
  */
-@FeignClient(contextId = "remoteClientDetailsService", value = "tomato-module-goods-biz" , fallbackFactory = RemoteGoodsFallbackFactory.class)
+@FeignClient(contextId = "remoteClientDetailsService", value = "tomato-module-goods-biz",
+        fallbackFactory = RemoteGoodsFallbackFactory.class)
 public interface RemoteGoodsService {
     /**
      * 查询商品信息

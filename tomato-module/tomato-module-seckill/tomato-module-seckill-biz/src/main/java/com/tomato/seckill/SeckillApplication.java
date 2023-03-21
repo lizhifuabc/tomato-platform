@@ -8,12 +8,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * 项目启动类
+ * 项目启动类：服务消费者
  * @author lizhifu
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.tomato"})
+@EnableFeignClients(basePackages = {"com.tomato"}) //开启feign
 public class SeckillApplication {
 
 	public static void main(String[] args) {

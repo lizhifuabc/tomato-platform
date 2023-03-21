@@ -5,20 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module-goods</artifactId>
+        <artifactId>tomato-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-goods-base</artifactId>
+    <artifactId>tomato-feign</artifactId>
 
     <dependencies>
+        <!--feign 依赖-->
         <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-validator-starter</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <!-- SpringCloud Loadbalancer -->
         <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-feign</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
     </dependencies>
 

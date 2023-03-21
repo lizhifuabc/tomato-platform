@@ -1,5 +1,7 @@
 package com.tomato.goods.feign.factory;
 
+import com.tomato.domain.resp.SingleResp;
+import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.RemoteGoodsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -17,6 +19,12 @@ public class RemoteGoodsFallbackFactory implements FallbackFactory<RemoteGoodsSe
     @Override
     public RemoteGoodsService create(Throwable throwable) {
         log.error("商品服务远程调用接口降级处理:{}", throwable.getMessage());
-        return null;
+        return new RemoteGoodsService() {
+            @Override
+            public SingleResp<GoodsInfoResp> queryGoodsInfo(Long id) {
+                log.error("商品{}服务远程调用接口降级处理:{}", id, throwable.getMessage());
+                return null;
+            }
+        };
     }
 }

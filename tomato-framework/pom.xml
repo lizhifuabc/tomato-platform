@@ -28,5 +28,6 @@
         <module>tomato-rabbitmq-starter</module>
         <module>tomato-captcha-starter</module>
         <module>tomato-lock</module>
+        <module>tomato-feign</module>
     </modules>
 </project>
