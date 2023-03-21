@@ -29,12 +29,8 @@ public class GoodsInfoQueryController extends BaseController {
      * @param id 商品id
      */
     @GetMapping("/goods/query/{id}")
-    public SingleResp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id) throws InterruptedException {
+    public SingleResp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id) {
         GoodsInfoEntity goodsInfo =  goodsInfoDao.selectById(id);
-        // 随机异常
-        if (Math.random() > 0.5) {
-            throw new RuntimeException("随机异常");
-        }
         return SingleResp.of(copy(goodsInfo, GoodsInfoResp.class));
     }
 }
