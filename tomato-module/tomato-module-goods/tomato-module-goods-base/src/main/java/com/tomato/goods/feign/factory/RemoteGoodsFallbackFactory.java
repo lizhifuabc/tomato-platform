@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 public class RemoteGoodsFallbackFactory implements FallbackFactory<RemoteGoodsService> {
     @Override
     public RemoteGoodsService create(Throwable throwable) {
+        log.error("商品服务远程调用接口降级处理");
         log.error("商品服务远程调用接口降级处理:{}", throwable.getMessage());
         return new RemoteGoodsService() {
             @Override
