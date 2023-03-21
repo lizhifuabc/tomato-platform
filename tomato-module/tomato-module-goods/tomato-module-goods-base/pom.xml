@@ -16,6 +16,11 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-validator-starter</artifactId>
         </dependency>
+        <!--feign 依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

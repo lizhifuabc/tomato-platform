@@ -12,6 +12,16 @@
     <artifactId>tomato-module-goods-biz</artifactId>
 
     <dependencies>
+        <!--服务注册/发现-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--配置中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-goods-base</artifactId>
@@ -27,10 +37,6 @@
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-mybatis-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-rabbitmq-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

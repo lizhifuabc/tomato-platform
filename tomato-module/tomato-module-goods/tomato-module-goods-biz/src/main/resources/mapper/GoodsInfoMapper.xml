@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.goods.dao.GoodsInfoDao">
+    <select id="selectById" resultType="GoodsInfoEntity">
+        select
+            goods_name
+        from
+            t_goods_info
+        where
+            id = #{id}
+    </select>
+</mapper>
