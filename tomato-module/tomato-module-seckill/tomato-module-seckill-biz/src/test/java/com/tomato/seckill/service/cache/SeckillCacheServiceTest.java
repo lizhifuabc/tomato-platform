@@ -20,6 +20,5 @@ public class SeckillCacheServiceTest {
     public void cacheWarmUp() throws InterruptedException {
         seckillCacheService.cacheWarmUp(1L);
         seckillCacheService.cacheWarmUp(2L);
-        Thread.sleep(1000);
     }
 }

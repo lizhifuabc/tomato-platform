@@ -31,6 +31,6 @@ public class GoodsInfoQueryController extends BaseController {
     @GetMapping("/goods/query/{id}")
     public SingleResp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id){
         GoodsInfoEntity goodsInfo =  goodsInfoDao.selectById(id);
-        return SingleResp.of(new GoodsInfoResp());
+        return SingleResp.of(copy(goodsInfo, GoodsInfoResp.class));
     }
 }
