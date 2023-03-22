@@ -1,3 +1,10 @@
+### 批量查询商品
+POST http://localhost:9997/goods/query/list
+Content-Type: application/json
+
+[1, 2, 3, 4, 5, 10, 22]
+
+
 ### 创建秒杀活动
 POST http://localhost:8080/seckill/activity/create
 Content-Type: application/json

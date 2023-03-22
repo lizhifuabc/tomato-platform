@@ -37,14 +37,6 @@ public class MultiResp<T> extends Resp {
         this.data = data;
     }
 
-    public boolean isEmpty() {
-        return data == null || data.isEmpty();
-    }
-
-    public boolean isNotEmpty() {
-        return !isEmpty();
-    }
-
     public static MultiResp buildSuccess() {
         MultiResp response = new MultiResp();
         response.setSuccess(true);
