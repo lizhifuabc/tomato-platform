@@ -39,9 +39,9 @@ public class SeckillCacheService {
         // 删除 redis 分布式锁
         boolean resUnlock = distributedLockExe.unLock(key,false);
         log.info("redis 分布式锁,key:{},resUnlock:{}",key,resUnlock);
-        // 2. 缓存秒杀活动信息
-
-        SingleResp<GoodsInfoResp> goodsInfoRespSingleResp = remoteGoodsService.queryGoodsInfo(1L);
-        log.info("goodsInfoRespSingleResp:{}",goodsInfoRespSingleResp);
+        // 2. 缓存秒杀活动商品基本信息
+        // 3. 缓存秒杀活动商品库存信息
+//        SingleResp<GoodsInfoResp> goodsInfoRespSingleResp = remoteGoodsService.queryGoodsInfoList(1L);
+//        log.info("goodsInfoRespSingleResp:{}",goodsInfoRespSingleResp);
     }
 }

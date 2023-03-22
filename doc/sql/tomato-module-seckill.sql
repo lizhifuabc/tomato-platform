@@ -1,6 +1,6 @@
 use `tomato-seckill`;
 -- ----------------------------
--- 秒杀活动记录
+-- 秒杀活动信息
 -- ----------------------------
 drop table if exists `t_seckill_activity`;
 create table `t_seckill_activity`  (
@@ -16,9 +16,12 @@ create table `t_seckill_activity`  (
    `create_time` datetime not null default current_timestamp comment '创建时间',
    primary key (`id`),
    index idx_start_time_end_time(`start_time`,`end_time`)
-)engine=innodb auto_increment=1 default charset=utf8mb4 collate=utf8mb4_bin comment='秒杀活动记录';
+)engine=innodb auto_increment=1 default charset=utf8mb4 collate=utf8mb4_bin comment='秒杀活动信息';
 
-insert into `t_seckill_activity` (`id`,`activity_name`,`activity_desc`,`start_time`,`end_time`,`disabled_flag`,`version`,`update_time`,`create_time`) values (1,'测试活动','测试活动',now(),now(),0,0,now(),now());
+insert into `t_seckill_activity` (`activity_name`,`activity_desc`,`start_time`,`end_time`) values ('早8点活动','早8点活动','2022-03-22 08:00:00',DATE_ADD(NOW(), INTERVAL 30 DAY));
+insert into `t_seckill_activity` (`activity_name`,`activity_desc`,`start_time`,`end_time`) values ('早10点活动','早10点活动','2022-03-22 10:00:00',DATE_ADD(NOW(), INTERVAL 30 DAY));
+insert into `t_seckill_activity` (`activity_name`,`activity_desc`,`start_time`,`end_time`) values ('晚14点活动','晚14点活动','2022-03-22 14:00:00',DATE_ADD(NOW(), INTERVAL 30 DAY));
+
 
 -- ----------------------------
 -- 秒杀活动商品

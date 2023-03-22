@@ -30,7 +30,7 @@ public class SeckillTimer {
     @Scheduled(fixedRate = 1000 * 60L)
     public void run() {
         // 提前一天预热 2022-12-19 00:00:00
-        List<Long> longList = seckillActivityDao.selectByStartTime(LocalDateTime.now().plusDays(1).with(LocalTime.MIN), LocalDateTime.now().plusDays(1).with(LocalTime.MAX));
+        List<Long> longList = seckillActivityDao.selectByTime(LocalDateTime.now().plusDays(1).with(LocalTime.MIN), LocalDateTime.now().plusDays(1).with(LocalTime.MAX));
         log.info("执行缓存预热{}", longList);
         longList.forEach(id->{
             seckillGoodsRedisManager.resetSeckillActivity(id);

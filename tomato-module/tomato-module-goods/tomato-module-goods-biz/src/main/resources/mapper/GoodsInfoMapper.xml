@@ -9,4 +9,16 @@
         where
             id = #{id}
     </select>
+
+    <select id="selectBatchByIds" resultType="GoodsInfoEntity">
+        select
+            goods_name
+        from
+            t_goods_info
+        where
+            id in
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+    </select>
 </mapper>

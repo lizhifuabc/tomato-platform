@@ -1,0 +1,2 @@
+### 1. 获取秒杀活动列表
+GET http://localhost:9998/seckill/activity/list

@@ -1,6 +1,7 @@
 package com.tomato.seckill.manager;
 
 import com.tomato.domain.exception.BusinessException;
+import com.tomato.seckill.constant.RedisConstant;
 import com.tomato.seckill.dao.SeckillGoodsDao;
 import com.tomato.seckill.domain.entity.SeckillGoodsEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ import java.util.Objects;
 @Service
 @Slf4j
 public class SeckillGoodsRedisManager {
-    private final String REDIS_QUEUE_KEY = "SECKILL:QUEUE:";
+
     private final SeckillGoodsDao seckillGoodsDao;
     private final StringRedisTemplate stringRedisTemplate;
     public SeckillGoodsRedisManager(SeckillGoodsDao seckillGoodsDao, StringRedisTemplate stringRedisTemplate) {
@@ -54,7 +55,7 @@ public class SeckillGoodsRedisManager {
      */
     public Long seckillRemaining(Long seckillGoodsId,Long seckillActivityId){
         // TODO 是否需要 数据库查询 同步 redis
-        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
+        String redisKey = RedisConstant.SECKILL_GOODS_QUEUE + seckillActivityId + ":" + seckillGoodsId;
         return stringRedisTemplate.opsForList().size(redisKey);
     }
 
@@ -66,7 +67,7 @@ public class SeckillGoodsRedisManager {
      * @return
      */
     public String deductSeckillGoods(Long seckillGoodsId, Long seckillActivityId){
-        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
+        String redisKey = RedisConstant.SECKILL_GOODS_QUEUE + seckillActivityId + ":" + seckillGoodsId;
         // rpop：右边出队列，获取抢到的商品
         String rightPop = stringRedisTemplate.opsForList().rightPop(redisKey);
         if(Objects.isNull(rightPop)){
@@ -82,7 +83,7 @@ public class SeckillGoodsRedisManager {
      * @return 剩余库存数
      */
     public Long leftPush(Long seckillGoodsId, Long seckillActivityId){
-        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
+        String redisKey = RedisConstant.SECKILL_GOODS_QUEUE + seckillActivityId + ":" + seckillGoodsId;
         // lpush：左边入队列，存入秒杀活动的商品
         return stringRedisTemplate.opsForList().leftPush(redisKey,"1");
     }
@@ -94,7 +95,7 @@ public class SeckillGoodsRedisManager {
      * @return 剩余库存数
      */
     public Long init(Long seckillGoodsId,Long seckillActivityId,Integer count){
-        String redisKey = REDIS_QUEUE_KEY + seckillActivityId + ":" + seckillGoodsId;
+        String redisKey = RedisConstant.SECKILL_GOODS_QUEUE + seckillActivityId + ":" + seckillGoodsId;
         log.info("SeckillGoodsRedisService init redisKey is:{}",redisKey);
         // 删除数据
         stringRedisTemplate.delete(redisKey);

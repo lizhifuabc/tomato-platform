@@ -3,6 +3,8 @@ package com.tomato.goods.dao;
 import com.tomato.goods.domain.entity.GoodsInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 商品信息dao
  *
@@ -17,4 +19,10 @@ public interface GoodsInfoDao {
      * @return 商品信息
      */
     GoodsInfoEntity selectById(Long id);
+    /**
+     * 批量查询
+     * @param ids 商品id
+     * @return 商品信息
+     */
+    List<GoodsInfoEntity> selectBatchByIds(List<Long> ids);
 }

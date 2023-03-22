@@ -1,14 +1,16 @@
 package com.tomato.goods.controller;
 
+import com.tomato.domain.resp.MultiResp;
 import com.tomato.domain.resp.SingleResp;
 import com.tomato.goods.dao.GoodsInfoDao;
 import com.tomato.goods.domain.entity.GoodsInfoEntity;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.web.common.BaseController;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.constraints.Size;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 商品查询控制器
@@ -33,4 +35,15 @@ public class GoodsInfoQueryController extends BaseController {
         GoodsInfoEntity goodsInfo =  goodsInfoDao.selectById(id);
         return SingleResp.of(copy(goodsInfo, GoodsInfoResp.class));
     }
+
+    /**
+     * 批量查询商品
+     * @param ids 商品id
+     * @return
+     */
+    @PostMapping("/goods/query/list")
+     public MultiResp<GoodsInfoResp> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids) {
+         List<GoodsInfoEntity> goodsInfo =  goodsInfoDao.selectBatchByIds(ids);
+         return MultiResp.of(copyList(goodsInfo, GoodsInfoResp.class));
+     }
 }
