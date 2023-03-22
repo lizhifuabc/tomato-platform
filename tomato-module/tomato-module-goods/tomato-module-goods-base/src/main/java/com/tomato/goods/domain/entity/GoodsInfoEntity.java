@@ -15,4 +15,5 @@ public class GoodsInfoEntity extends BaseEntity {
      * 商品名称
      */
     private String goodsName;
+
 }

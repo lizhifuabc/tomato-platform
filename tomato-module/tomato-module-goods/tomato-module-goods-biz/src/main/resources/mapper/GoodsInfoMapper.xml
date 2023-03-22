@@ -12,7 +12,7 @@
 
     <select id="selectBatchByIds" resultType="GoodsInfoEntity">
         select
-            goods_name
+            goods_name,id
         from
             t_goods_info
         where

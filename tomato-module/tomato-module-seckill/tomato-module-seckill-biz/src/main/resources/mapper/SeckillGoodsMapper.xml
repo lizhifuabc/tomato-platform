@@ -86,4 +86,13 @@
         where
             id = #{id}
     </select>
+
+    <select id="selectIdBySeckillActivityId" resultType="Long">
+        select
+            id
+        from
+            t_seckill_goods
+        where
+            seckill_activity_id = #{seckillActivityId}
+    </select>
 </mapper>

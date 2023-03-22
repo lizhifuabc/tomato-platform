@@ -21,17 +21,16 @@ import java.util.List;
 public class RemoteGoodsFallbackFactory implements FallbackFactory<RemoteGoodsService> {
     @Override
     public RemoteGoodsService create(Throwable throwable) {
-        log.error("商品服务远程调用接口降级处理:{}", throwable.getMessage());
         return new RemoteGoodsService() {
             @Override
             public SingleResp<GoodsInfoResp> queryGoodsInfo(Long id) {
-                log.error("商品{}服务远程调用接口降级处理:{}", id, throwable.getMessage());
+                log.error("商品{}服务远程调用接口[queryGoodsInfo]降级处理:{}", id, throwable.getMessage());
                 return null;
             }
 
             @Override
             public MultiResp<GoodsInfoResp> queryGoodsInfoList(List<Long> ids) {
-                log.error("商品{}服务远程调用接口降级处理:{}", ids, throwable.getMessage());
+                log.error("商品{}服务远程调用接口[queryGoodsInfoList]降级处理:{}", ids, throwable.getMessage());
                 return null;
             }
         };

@@ -8,14 +8,6 @@ package com.tomato.domain.req;
  */
 public class PageQueryReq {
     /**
-     * 升序排列
-     */
-    public static final String ASC = "ASC";
-    /**
-     * 降序排列
-     */
-    public static final String DESC = "DESC";
-    /**
      * 默认每页数量
      */
     private static final int DEFAULT_PAGE_SIZE = 10;
@@ -27,18 +19,6 @@ public class PageQueryReq {
      * 页码
      */
     private int pageIndex = 1;
-    /**
-     * 排序依据
-     */
-    private String orderBy;
-    /**
-     * 默认降序排列
-     */
-    private String orderDirection = DESC;
-    /**
-     * 分组
-     */
-    private String groupBy;
     /**
      * 是否查询总数
      */
@@ -73,34 +53,6 @@ public class PageQueryReq {
 
     public int getOffset() {
         return (getPageIndex() - 1) * getPageSize();
-    }
-
-    public String getOrderBy() {
-        return orderBy;
-    }
-
-    public PageQueryReq setOrderBy(String orderBy) {
-        this.orderBy = orderBy;
-        return this;
-    }
-
-    public String getOrderDirection() {
-        return orderDirection;
-    }
-
-    public PageQueryReq setOrderDirection(String orderDirection) {
-        if (ASC.equalsIgnoreCase(orderDirection) || DESC.equalsIgnoreCase(orderDirection)) {
-            this.orderDirection = orderDirection;
-        }
-        return this;
-    }
-
-    public String getGroupBy() {
-        return groupBy;
-    }
-
-    public void setGroupBy(String groupBy) {
-        this.groupBy = groupBy;
     }
 
     public boolean isNeedTotalCount() {

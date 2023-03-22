@@ -50,6 +50,9 @@
         <!--   唯一ID生成类NanoId     -->
         <jnanoid.version>2.0.0</jnanoid.version>
         <cosid.version>1.16.0</cosid.version>
+        <!--   Apache Commons BeanUtils 库。
+            这个库提供了许多工具类和方法来简化 JavaBean 的操作，包括复制属性、转换数据类型、访问属性等等     -->
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -106,6 +109,14 @@
                 <artifactId>jnanoid</artifactId>
                 <version>${jnanoid.version}</version>
             </dependency>
+            <!--   Apache Commons BeanUtils 库。
+            这个库提供了许多工具类和方法来简化 JavaBean 的操作，包括复制属性、转换数据类型、访问属性等等     -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>me.ahoo.cosid</groupId>
                 <artifactId>cosid-core</artifactId>
