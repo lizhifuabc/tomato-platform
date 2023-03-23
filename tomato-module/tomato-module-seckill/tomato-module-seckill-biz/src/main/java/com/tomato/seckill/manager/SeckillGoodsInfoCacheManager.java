@@ -7,7 +7,9 @@ import com.tomato.seckill.constant.RedisConstant;
 import com.tomato.seckill.dao.SeckillGoodsDao;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.scripting.support.ResourceScriptSource;
@@ -58,20 +60,21 @@ public class SeckillGoodsInfoCacheManager {
         List<Long> idList = seckillGoodsDao.selectIdBySeckillActivityId(seckillActivityId);
         MultiResp<GoodsInfoResp> goodsInfoList = remoteGoodsService.queryGoodsInfoList(idList);
         if (Objects.nonNull(goodsInfoList) && goodsInfoList.isSuccess()){
-            Map<String, Object> map = goodsInfoList.getData().stream()
-                    .map(bean -> {
-                        try {
-                            return BeanUtils.describe(bean);
-                        } catch (Exception e) {
-                                log.error("缓存秒杀商品信息失败,seckillActivityId:{},e:{}",seckillActivityId,e);
-                                return new HashMap<String, Object>();
-                        }
-                    })
-                    .flatMap(m -> m.entrySet().stream())
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-            stringRedisTemplate.opsForHash().putAll(key,map);
+            List<String> goodsInfoListStr = goodsInfoList.getData().stream().map(this::beanToString).collect(Collectors.toList());
+            ListOperations<String, String> listOps = stringRedisTemplate.opsForList();
+            listOps.rightPushAll(key, goodsInfoListStr);
+            log.info("缓存秒杀商品信息成功,seckillActivityId:{},key:{}",seckillActivityId,key);
             return;
         }
-        log.error("缓存秒杀商品信息失败,seckillActivityId:{}",seckillActivityId);
+        log.error("缓存秒杀商品信息失败,seckillActivityId:{},key:{}",seckillActivityId,key);
+    }
+
+    private String beanToString(GoodsInfoResp goodsInfoResp){
+        try {
+            return BeanUtils.describe(goodsInfoResp).toString();
+        } catch (Exception e) {
+            log.error("beanToString error",e);
+            return "";
+        }
     }
 }
