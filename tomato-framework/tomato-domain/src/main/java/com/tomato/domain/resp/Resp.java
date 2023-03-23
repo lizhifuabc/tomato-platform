@@ -1,13 +1,20 @@
 package com.tomato.domain.resp;
 
 import com.tomato.domain.resp.code.CommonRespCode;
+import lombok.Data;
 
 /**
  * 返回数据结构
+ * @Accessors(chain = true)
+ * 生成的getter/setter方法返回的是this，可以链式调用
  *
+ * TODO 请求ID private String requestId;，
+ * TODO 例如 org.apache.skywalking.apm.toolkit.trace.TraceContext.traceId()
  * @author lizhifu
  * @date 2022/11/21
  */
+@Data
+//@Accessors(chain = true)
 public class Resp {
     /**
      * 是否成功
@@ -22,31 +29,6 @@ public class Resp {
      * 返回信息
      */
     private String msg;
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
     @Override
     public String toString() {
         return "Response{" +
