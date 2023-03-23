@@ -53,6 +53,8 @@
         <!--   Apache Commons BeanUtils 库。
             这个库提供了许多工具类和方法来简化 JavaBean 的操作，包括复制属性、转换数据类型、访问属性等等     -->
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <!-- spring boot 项目检查插件 -->
+        <spring.checkstyle.plugin>0.0.38</spring.checkstyle.plugin>
     </properties>
     <dependencyManagement>
         <dependencies>
