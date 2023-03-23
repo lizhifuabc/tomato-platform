@@ -30,7 +30,7 @@ import static com.tomato.domain.resp.code.CommonRespCode.INTERNAL_SERVER_ERROR;
  * @date 2022/12/7
  */
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice // 全局拦截异常注解 @RestControllerAdvice = @ControllerAdvice + @ResponseBody
 public class GlobalExceptionHandler {
     /**
      * 业务异常处理
