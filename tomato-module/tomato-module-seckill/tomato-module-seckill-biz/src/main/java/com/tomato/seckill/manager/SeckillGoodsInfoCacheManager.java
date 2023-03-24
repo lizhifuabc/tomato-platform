@@ -53,7 +53,7 @@ public class SeckillGoodsInfoCacheManager {
             log.info("缓存秒杀商品信息成功,seckillActivityId:{},key:{}",seckillActivityId,key);
             return;
         }
-        log.error("缓存秒杀商品信息失败,seckillActivityId:{},key:{}",seckillActivityId,key);
+        log.error("缓存秒杀商品信息失败,商品信息获取失败,seckillActivityId:{},key:{}",seckillActivityId,key);
     }
 
     private String beanToString(GoodsInfoResp goodsInfoResp){
