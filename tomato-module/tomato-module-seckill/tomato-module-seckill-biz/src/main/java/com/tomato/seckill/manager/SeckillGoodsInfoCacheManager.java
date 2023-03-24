@@ -56,11 +56,16 @@ public class SeckillGoodsInfoCacheManager {
         log.error("缓存秒杀商品信息失败,商品信息获取失败,seckillActivityId:{},key:{}",seckillActivityId,key);
     }
 
+    /**
+     * bean转string
+     * @param goodsInfoResp 商品信息
+     * @return string
+     */
     private String beanToString(GoodsInfoResp goodsInfoResp){
         try {
             return BeanUtils.describe(goodsInfoResp).toString();
-        } catch (Exception e) {
-            log.error("缓存秒杀商品信息失败,goodsInfoId{},beanToString error",goodsInfoResp.getId(),e);
+        } catch (Exception ignored) {
+            log.error("缓存秒杀商品信息失败,goodsInfoId{},beanToString error",goodsInfoResp.getId(),ignored);
             return "";
         }
     }
