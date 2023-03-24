@@ -7,15 +7,10 @@ import com.tomato.seckill.constant.RedisConstant;
 import com.tomato.seckill.dao.SeckillGoodsDao;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
-import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,10 +23,6 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class SeckillGoodsInfoCacheManager {
-    /**
-     * 定义脚本及其返回类型
-     */
-    private final DefaultRedisScript<Long> redisScript;
 
     private final RemoteGoodsService remoteGoodsService;
     private final SeckillGoodsDao seckillGoodsDao;
@@ -41,12 +32,6 @@ public class SeckillGoodsInfoCacheManager {
         this.remoteGoodsService = remoteGoodsService;
         this.seckillGoodsDao = seckillGoodsDao;
         this.stringRedisTemplate = stringRedisTemplate;
-
-        this.redisScript = new DefaultRedisScript<>();
-        redisScript.setScriptSource(
-                new ResourceScriptSource(new ClassPathResource("META-INF/scripts/goodsInfo.lua")));
-        redisScript.setResultType(Long.class);
-
     }
     /**
      * 缓存
@@ -55,6 +40,8 @@ public class SeckillGoodsInfoCacheManager {
      * @param seckillActivityId 秒杀活动id
      */
     public void cache(Long seckillActivityId){
+        // 删除缓存 TODO bigkey 优化
+        stringRedisTemplate.opsForList().getOperations().delete(RedisConstant.SECKILL_GOODS_INFO + seckillActivityId);
         // 缓存秒杀商品信息
         String key = RedisConstant.SECKILL_GOODS_INFO + seckillActivityId;
         List<Long> idList = seckillGoodsDao.selectIdBySeckillActivityId(seckillActivityId);
@@ -73,7 +60,7 @@ public class SeckillGoodsInfoCacheManager {
         try {
             return BeanUtils.describe(goodsInfoResp).toString();
         } catch (Exception e) {
-            log.error("beanToString error",e);
+            log.error("缓存秒杀商品信息失败,goodsInfoId{},beanToString error",goodsInfoResp.getId(),e);
             return "";
         }
     }
