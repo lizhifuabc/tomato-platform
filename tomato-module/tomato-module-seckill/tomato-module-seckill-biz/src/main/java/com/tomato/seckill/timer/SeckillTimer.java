@@ -33,7 +33,7 @@ public class SeckillTimer {
         List<Long> longList = seckillActivityDao.selectByTime(LocalDateTime.now().plusDays(1).with(LocalTime.MIN), LocalDateTime.now().plusDays(1).with(LocalTime.MAX));
         log.info("执行缓存预热{}", longList);
         longList.forEach(id->{
-            seckillGoodsCacheManager.resetSeckillActivity(id);
+            seckillGoodsCacheManager.cache(id);
         });
     }
 }

@@ -14,5 +14,10 @@ public class RedisConstant {
     /**
      * 秒杀活动商品库存信息key
      */
-    public static final String SECKILL_GOODS_QUEUE = "SECKILL:GOODS:QUEUE:";
+    public static final String SECKILL_GOODS = "SECKILL:GOODS:";
+
+    /**
+     * 秒杀活动商品库存信息key
+     */
+    public static final String SECKILL_GOODS_SECKILL = "SECKILL:GOODS:SECKILL:";
 }

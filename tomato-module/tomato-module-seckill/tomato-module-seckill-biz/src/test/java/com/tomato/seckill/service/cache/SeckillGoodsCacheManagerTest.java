@@ -18,14 +18,14 @@ public class SeckillGoodsCacheManagerTest {
 
     @Test
     public void test(){
-        seckillGoodsCacheManager.resetSeckillActivity(121L);
-        System.out.println(seckillGoodsCacheManager.resetSeckillGoods(121L));
+        seckillGoodsCacheManager.cache(121L);
+        System.out.println(seckillGoodsCacheManager.cacheSeckillGoods(121L));
         System.out.println(seckillGoodsCacheManager.leftPush(121L, 121L));
         System.out.println(seckillGoodsCacheManager.seckillRemaining(121L, 121L));
     }
     @Test
     public void remove(){
-        seckillGoodsCacheManager.resetSeckillActivity(1L);
+        seckillGoodsCacheManager.cache(1L);
         for (int i = 0; i < 10; i++) {
             System.out.println(seckillGoodsCacheManager.deductSeckillGoods(1L, 1L));
         }

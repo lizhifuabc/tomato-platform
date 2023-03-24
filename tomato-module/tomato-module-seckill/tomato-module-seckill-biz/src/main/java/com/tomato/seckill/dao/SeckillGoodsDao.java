@@ -38,6 +38,13 @@ public interface SeckillGoodsDao {
     List<SeckillGoodsEntity> selectBySeckillActivityId(@Param("seckillActivityId") Long seckillActivityId);
 
     /**
+     * 查询商品剩余库存
+     * @param seckillActivityId 活动id
+     * @return 商品ID,剩余库存,ID
+     */
+    List<SeckillGoodsEntity> selectSeckillRemainingBySeckillActivityId(@Param("seckillActivityId") Long seckillActivityId);
+
+    /**
      * 根据活动id查询商品id
      * @param seckillActivityId 活动id
      * @return 商品id列表

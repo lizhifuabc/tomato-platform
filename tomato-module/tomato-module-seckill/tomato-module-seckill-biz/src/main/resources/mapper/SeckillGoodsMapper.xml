@@ -62,6 +62,16 @@
             seckill_activity_id = #{seckillActivityId}
     </select>
 
+    <select id="selectSeckillRemainingBySeckillActivityId" resultType="SeckillGoodsEntity">
+        select
+            goods_id,id,
+            seckill_remaining
+        from
+            t_seckill_goods
+        where
+            seckill_activity_id = #{seckillActivityId}
+    </select>
+
     <select id="selectBySeckillActivityIdGoodsId" resultType="SeckillGoodsEntity">
         select
             goods_id,id,

@@ -25,13 +25,13 @@ public class RemoteGoodsFallbackFactory implements FallbackFactory<RemoteGoodsSe
             @Override
             public SingleResp<GoodsInfoResp> queryGoodsInfo(Long id) {
                 log.error("商品{}服务远程调用接口[queryGoodsInfo]降级处理", id, throwable);
-                return null;
+                return SingleResp.buildFailure("商品服务远程调用接口[queryGoodsInfo]降级处理");
             }
 
             @Override
             public MultiResp<GoodsInfoResp> queryGoodsInfoList(List<Long> ids) {
                 log.error("商品{}服务远程调用接口[queryGoodsInfoList]降级处理", ids, throwable);
-                return null;
+                return MultiResp.buildFailure("商品服务远程调用接口[queryGoodsInfoList]降级处理");
             }
         };
     }
