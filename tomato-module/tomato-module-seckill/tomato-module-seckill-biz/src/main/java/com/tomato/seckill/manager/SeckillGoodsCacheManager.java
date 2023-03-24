@@ -8,23 +8,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
- * 秒杀活动商品
+ * 秒杀活动商品缓存
  *
  * @author lizhifu
  * @since 2022/12/19
  */
 @Service
 @Slf4j
-public class SeckillGoodsRedisManager {
+public class SeckillGoodsCacheManager {
 
     private final SeckillGoodsDao seckillGoodsDao;
     private final StringRedisTemplate stringRedisTemplate;
-    public SeckillGoodsRedisManager(SeckillGoodsDao seckillGoodsDao, StringRedisTemplate stringRedisTemplate) {
+    public SeckillGoodsCacheManager(SeckillGoodsDao seckillGoodsDao, StringRedisTemplate stringRedisTemplate) {
         this.seckillGoodsDao = seckillGoodsDao;
         this.stringRedisTemplate = stringRedisTemplate;
     }
@@ -111,11 +109,7 @@ public class SeckillGoodsRedisManager {
      * @param seckillCount 数量
      * @return list
      */
-    private List goodsList(int seckillCount){
-        List<String> list = new LinkedList<>();
-        for (int i = 0; i < seckillCount; i++) {
-            list.add("1");
-        }
-        return list;
+    private List<String> goodsList(int seckillCount){
+        return new ArrayList<>(Collections.nCopies(seckillCount, "1"));
     }
 }

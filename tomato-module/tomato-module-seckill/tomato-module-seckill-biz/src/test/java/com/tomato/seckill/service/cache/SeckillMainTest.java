@@ -1,7 +1,7 @@
 package com.tomato.seckill.service.cache;
 
 import com.tomato.seckill.domain.req.SeckillReq;
-import com.tomato.seckill.manager.SeckillGoodsRedisManager;
+import com.tomato.seckill.manager.SeckillGoodsCacheManager;
 import com.tomato.seckill.service.SeckillCheckService;
 import com.tomato.seckill.service.SeckillGoodsService;
 import com.tomato.seckill.service.SeckillRedisCheckService;
@@ -22,7 +22,7 @@ public class SeckillMainTest {
     @Resource
     SeckillCheckService seckillCheckService;
     @Resource
-    SeckillGoodsRedisManager seckillGoodsRedisManager;
+    SeckillGoodsCacheManager seckillGoodsCacheManager;
     @Resource
     SeckillGoodsService seckillGoodsService;
     @Test
@@ -52,7 +52,7 @@ public class SeckillMainTest {
 
         // 执行抢购
         // redis 扣减库存
-        seckillGoodsRedisManager.deductSeckillGoods(seckillReq.getSeckillGoodsId(), seckillReq.getSeckillActivityId());
+        seckillGoodsCacheManager.deductSeckillGoods(seckillReq.getSeckillGoodsId(), seckillReq.getSeckillActivityId());
         // 数据库扣减库存 && 用户抢购记录
         seckillGoodsService.deductSeckillGoods(seckillReq.getSeckillGoodsId(),seckillReq.getUserId());
 

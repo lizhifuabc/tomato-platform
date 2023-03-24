@@ -1,7 +1,7 @@
 package com.tomato.seckill.timer;
 
 import com.tomato.seckill.dao.SeckillActivityDao;
-import com.tomato.seckill.manager.SeckillGoodsRedisManager;
+import com.tomato.seckill.manager.SeckillGoodsCacheManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -21,10 +21,10 @@ import java.util.List;
 @Slf4j
 public class SeckillTimer {
     private final SeckillActivityDao seckillActivityDao;
-    private final SeckillGoodsRedisManager seckillGoodsRedisManager;
-    public SeckillTimer(SeckillActivityDao seckillActivityDao, SeckillGoodsRedisManager seckillGoodsRedisManager) {
+    private final SeckillGoodsCacheManager seckillGoodsCacheManager;
+    public SeckillTimer(SeckillActivityDao seckillActivityDao, SeckillGoodsCacheManager seckillGoodsCacheManager) {
         this.seckillActivityDao = seckillActivityDao;
-        this.seckillGoodsRedisManager = seckillGoodsRedisManager;
+        this.seckillGoodsCacheManager = seckillGoodsCacheManager;
     }
 
     @Scheduled(fixedRate = 1000 * 60L)
@@ -33,7 +33,7 @@ public class SeckillTimer {
         List<Long> longList = seckillActivityDao.selectByTime(LocalDateTime.now().plusDays(1).with(LocalTime.MIN), LocalDateTime.now().plusDays(1).with(LocalTime.MAX));
         log.info("执行缓存预热{}", longList);
         longList.forEach(id->{
-            seckillGoodsRedisManager.resetSeckillActivity(id);
+            seckillGoodsCacheManager.resetSeckillActivity(id);
         });
     }
 }

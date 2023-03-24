@@ -6,7 +6,7 @@ import com.tomato.redis.domain.req.RedisConcurrentRequestCountLimiterReq;
 import com.tomato.redis.domain.resp.RedisConcurrentRequestCountLimiterResp;
 import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;
 import com.tomato.seckill.domain.entity.SeckillGoodsEntity;
-import com.tomato.seckill.manager.SeckillGoodsRedisManager;
+import com.tomato.seckill.manager.SeckillGoodsCacheManager;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,11 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SeckillRedisCheckService {
-    private final SeckillGoodsRedisManager seckillGoodsRedisManager;
+    private final SeckillGoodsCacheManager seckillGoodsCacheManager;
     private final RedisConcurrentRequestCountLimiter redisConcurrentRequestCountLimiter;
 
-    public SeckillRedisCheckService(SeckillGoodsRedisManager seckillGoodsRedisManager, RedisConcurrentRequestCountLimiter redisConcurrentRequestCountLimiter) {
-        this.seckillGoodsRedisManager = seckillGoodsRedisManager;
+    public SeckillRedisCheckService(SeckillGoodsCacheManager seckillGoodsCacheManager, RedisConcurrentRequestCountLimiter redisConcurrentRequestCountLimiter) {
+        this.seckillGoodsCacheManager = seckillGoodsCacheManager;
         this.redisConcurrentRequestCountLimiter = redisConcurrentRequestCountLimiter;
     }
     /**
@@ -30,7 +30,7 @@ public class SeckillRedisCheckService {
      * @param seckillActivityId 活动ID
      */
     public void checkSeckillGoods(Long seckillGoodsId,Long seckillActivityId){
-        Long remaining = seckillGoodsRedisManager.seckillRemaining(seckillGoodsId, seckillActivityId);
+        Long remaining = seckillGoodsCacheManager.seckillRemaining(seckillGoodsId, seckillActivityId);
         if (remaining <= 0){
             throw new BusinessException("商品库存不足");
         }

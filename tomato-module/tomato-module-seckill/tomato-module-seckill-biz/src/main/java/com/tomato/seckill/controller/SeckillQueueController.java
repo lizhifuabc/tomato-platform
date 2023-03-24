@@ -4,7 +4,7 @@ import com.tomato.domain.resp.SingleResp;
 import com.tomato.seckill.constant.SeckillResultEnum;
 import com.tomato.seckill.domain.req.SeckillReq;
 import com.tomato.seckill.domain.resp.SeckillResp;
-import com.tomato.seckill.manager.SeckillGoodsRedisManager;
+import com.tomato.seckill.manager.SeckillGoodsCacheManager;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SeckillQueueController {
-    private final SeckillGoodsRedisManager seckillGoodsRedisManager;
+    private final SeckillGoodsCacheManager seckillGoodsCacheManager;
 
-    public SeckillQueueController(SeckillGoodsRedisManager seckillGoodsRedisManager) {
-        this.seckillGoodsRedisManager = seckillGoodsRedisManager;
+    public SeckillQueueController(SeckillGoodsCacheManager seckillGoodsCacheManager) {
+        this.seckillGoodsCacheManager = seckillGoodsCacheManager;
     }
 
     /**
