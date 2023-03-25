@@ -10,7 +10,7 @@ import lombok.Data;
  * @since 2022/12/19
  */
 @Data
-public class SeckillReq {
+public class SeckillUserReq {
     /**
      * 商品id
      */

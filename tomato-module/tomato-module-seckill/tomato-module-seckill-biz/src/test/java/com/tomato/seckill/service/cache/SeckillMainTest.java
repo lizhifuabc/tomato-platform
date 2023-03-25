@@ -1,6 +1,6 @@
 package com.tomato.seckill.service.cache;
 
-import com.tomato.seckill.domain.req.SeckillReq;
+import com.tomato.seckill.domain.req.SeckillUserReq;
 import com.tomato.seckill.manager.SeckillGoodsCacheManager;
 import com.tomato.seckill.service.SeckillCheckService;
 import com.tomato.seckill.service.SeckillGoodsService;
@@ -31,30 +31,30 @@ public class SeckillMainTest {
 
         // 测试参数构建
         String ip = "127.0.0.1";
-        SeckillReq seckillReq = new SeckillReq();
-        seckillReq.setSeckillGoodsId(2L);
-        seckillReq.setSeckillActivityId(1L);
-        seckillReq.setUserId(20001L);
-        seckillReq.setGoodsId(2L);
+        SeckillUserReq seckillUserReq = new SeckillUserReq();
+        seckillUserReq.setSeckillGoodsId(2L);
+        seckillUserReq.setSeckillActivityId(1L);
+        seckillUserReq.setUserId(20001L);
+        seckillUserReq.setGoodsId(2L);
         // 接口请求次数限流 TODO
         // 同一ip限流 && 同一用户限流
-        seckillRedisCheckService.checkUserIp(ip,seckillReq.getUserId());
+        seckillRedisCheckService.checkUserIp(ip, seckillUserReq.getUserId());
         // 活动校验
-        seckillCheckService.checkSeckillActivity(seckillReq.getSeckillActivityId());
+        seckillCheckService.checkSeckillActivity(seckillUserReq.getSeckillActivityId());
         // 用户抢购次数校验，对于用户来讲，此处不存在大并发，通过同一用户限流可以保证用户抢购次数问题
-        seckillCheckService.checkSeckillUser(seckillReq.getUserId(),seckillReq.getSeckillGoodsId());
+        seckillCheckService.checkSeckillUser(seckillUserReq.getUserId(), seckillUserReq.getSeckillGoodsId());
         // 用户存在抢购未支付订单，不允许进行抢购 TODO
 
         // 数据库 校验商品库存
-        seckillCheckService.checkSeckillGoods(seckillReq.getSeckillGoodsId());
+        seckillCheckService.checkSeckillGoods(seckillUserReq.getSeckillGoodsId());
         // redis 校验商品库存
-        seckillRedisCheckService.checkSeckillGoods(seckillReq.getSeckillGoodsId(),seckillReq.getSeckillActivityId());
+        seckillRedisCheckService.checkSeckillGoods(seckillUserReq.getSeckillGoodsId(), seckillUserReq.getSeckillActivityId());
 
         // 执行抢购
         // redis 扣减库存
-        seckillGoodsCacheManager.deductSeckillGoods(seckillReq.getSeckillGoodsId(), seckillReq.getSeckillActivityId());
+        seckillGoodsCacheManager.deductSeckillGoods(seckillUserReq.getSeckillGoodsId(), seckillUserReq.getSeckillActivityId());
         // 数据库扣减库存 && 用户抢购记录
-        seckillGoodsService.deductSeckillGoods(seckillReq.getSeckillGoodsId(),seckillReq.getUserId());
+        seckillGoodsService.deductSeckillGoods(seckillUserReq.getSeckillGoodsId(), seckillUserReq.getUserId());
 
         // 开始进行支付下单逻辑
     }

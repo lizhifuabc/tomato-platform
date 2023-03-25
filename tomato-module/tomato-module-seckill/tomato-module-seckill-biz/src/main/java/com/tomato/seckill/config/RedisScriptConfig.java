@@ -21,4 +21,12 @@ public class RedisScriptConfig {
         defaultRedisScript.setResultType(Long.class);
         return defaultRedisScript;
     }
+
+    @Bean
+    public DefaultRedisScript<Long> userSeckillRedisScript() {
+        DefaultRedisScript<Long> defaultRedisScript = new DefaultRedisScript<>();
+        defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("script/user_seckill.lua")));
+        defaultRedisScript.setResultType(Long.class);
+        return defaultRedisScript;
+    }
 }
