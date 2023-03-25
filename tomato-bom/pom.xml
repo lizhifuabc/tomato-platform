@@ -55,6 +55,10 @@
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <!-- spring boot 项目检查插件 -->
         <spring.checkstyle.plugin>0.0.38</spring.checkstyle.plugin>
+        <!--  springdoc https://springdoc.org/     -->
+        <springdoc.version>1.6.15</springdoc.version>
+        <!--   https://springdoc.org/v2/     -->
+        <springdoc.v2.version>2.0.4</springdoc.v2.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -117,6 +121,22 @@
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons-beanutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <!--   https://springdoc.org/v2/         -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.v2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+                <version>2.0.4</version>
             </dependency>
 
             <dependency>

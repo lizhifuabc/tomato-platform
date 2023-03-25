@@ -2,6 +2,7 @@ package com.tomato.seckill.controller;
 
 import com.tomato.seckill.constant.RedisConstant;
 import com.tomato.seckill.domain.req.SeckillUserReq;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
+@Tag(name = "用户抢购接口")
 public class SeckillUserController {
     private final DefaultRedisScript<Long> userSeckillRedisScript;
 
