@@ -1,32 +1,42 @@
 package com.tomato.jackson.config;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.tomato.jackson.module.JavaTimeModule;
+import com.tomato.util.date.DatePattern;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+
+import java.time.ZoneId;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Jackson 配置
  * @author lizhifu
  */
 @AutoConfiguration
+@ConditionalOnClass(ObjectMapper.class)//当classpath下发现该类的情况下进行自动配置
 @AutoConfigureBefore(JacksonAutoConfiguration.class)
 public class JacksonConfiguration {
 	@Bean
-	public ObjectMapper objectMapper() {
-		ObjectMapper mapper = new ObjectMapper();
-		//设置可见性
-		mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-		// 默认键入对象
-		// 将类名称序列化到json串中
-		// json格式序列化时会将对象类名称信息也会序列化进来，反序列化时同样也是需要 类和值的信息，格式是一个数组（两个长度），
-		// 数组[0]存储类的信息，数组[1]存储值信息，这也印证了为什么我们错误提示是 Unexpected token (START_OBJECT), expected START_ARRAY。
-		// mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-		mapper.registerModule(new JavaTimeModule());
-		return mapper;
+	@ConditionalOnMissingBean // 当容器里没有指定Bean的情况下创建该对象
+	public Jackson2ObjectMapperBuilderCustomizer customizer() {
+		return builder -> {
+			// 设置时区
+			builder.locale(Locale.CHINA);
+			builder.timeZone(TimeZone.getTimeZone(ZoneId.systemDefault()));
+			// 设置日期格式
+			builder.simpleDateFormat(DatePattern.NORM_DATETIME_PATTERN);
+			// 设置序列化
+			builder.serializerByType(Long.class, ToStringSerializer.instance);
+			// 设置反序列化
+			builder.modules(new JavaTimeModule());
+		};
 	}
 }
