@@ -1,0 +1,9 @@
+spring:
+  security: # 配置登录用户名和密码
+    user:
+      name: admin
+      password: 123456
+#  boot:  # 不显示admin-server的监控信息
+#    admin:
+#      discovery:
+#        ignored-services: ${spring.application.name}

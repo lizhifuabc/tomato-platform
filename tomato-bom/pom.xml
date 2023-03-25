@@ -59,6 +59,8 @@
         <springdoc.version>1.6.15</springdoc.version>
         <!--   https://springdoc.org/v2/     -->
         <springdoc.v2.version>2.0.4</springdoc.v2.version>
+        <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
+        <spring-boot-admin.version>3.0.2</spring-boot-admin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -231,7 +233,18 @@
                 <artifactId>shardingsphere-jdbc-core</artifactId>
                 <version>${shardingsphere.version}</version>
             </dependency>
-
+            <!--监控客户端-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <!--监控服务端-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
             <!--  业务代码 start -->
             <dependency>
                 <groupId>com.tomato</groupId>

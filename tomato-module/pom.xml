@@ -22,5 +22,6 @@
         <module>tomato-module-notice</module>
         <module>tomato-module-remit</module>
         <module>tomato-module-seckill</module>
+        <module>tomato-module-monitor</module>
     </modules>
 </project>
