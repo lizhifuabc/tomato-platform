@@ -9,19 +9,24 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-jackson-starter</artifactId>
+    <artifactId>tomato-redis-base-starter</artifactId>
 
     <dependencies>
-        <!--json模块-->
+        <!-- Redis基础依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-json</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <!-- 生产配置元数据。optional: 依赖是可选的，不会被依赖传递      -->
+
+        <!-- Spring-Redis集成 https://docs.spring.io/spring-integration/-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-redis</artifactId>
+        </dependency>
+        <!--  jackson 依赖      -->
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-jackson-starter</artifactId>
         </dependency>
     </dependencies>
 
