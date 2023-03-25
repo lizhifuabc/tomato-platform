@@ -10,13 +10,10 @@ import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
-import com.tomato.util.date.DatePattern;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * jackson 自定义序列化 & 反序列化
@@ -25,12 +22,22 @@ import java.time.format.DateTimeFormatter;
  * @date 2022/12/9
  */
 public class JavaTimeModule extends SimpleModule {
+    /**
+     * 标准日期时间格式，精确到秒：yyyy-MM-dd HH:mm:ss
+     */
+    public static final String NORM_DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * 标准日期时间格式，精确到秒 yyyy-MM-dd HH:mm:ss
+     */
+    public static final DateTimeFormatter NORM_DATETIME_FORMATTER = DateTimeFormatter.ofPattern(NORM_DATETIME_PATTERN, Locale.getDefault())
+            .withZone(ZoneId.systemDefault());
+
     public JavaTimeModule() {
         super(PackageVersion.VERSION);
 
         // ======================= 时间序列化规则 ===============================
         // yyyy-MM-dd HH:mm:ss
-        this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DatePattern.NORM_DATETIME_FORMATTER));
+        this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(NORM_DATETIME_FORMATTER));
         // yyyy-MM-dd
         this.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ISO_LOCAL_DATE));
         // HH:mm:ss
@@ -40,7 +47,7 @@ public class JavaTimeModule extends SimpleModule {
 
         // ======================= 时间反序列化规则 ==============================
         // yyyy-MM-dd HH:mm:ss
-        this.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DatePattern.NORM_DATETIME_FORMATTER));
+        this.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(NORM_DATETIME_FORMATTER));
         // yyyy-MM-dd
         this.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ISO_LOCAL_DATE));
         // HH:mm:ss

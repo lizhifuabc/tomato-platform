@@ -3,7 +3,6 @@ package com.tomato.jackson.config;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.tomato.jackson.module.JavaTimeModule;
-import com.tomato.util.date.DatePattern;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -15,6 +14,8 @@ import org.springframework.context.annotation.Bean;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import static com.tomato.jackson.module.JavaTimeModule.NORM_DATETIME_PATTERN;
 
 /**
  * Jackson 配置
@@ -32,7 +33,7 @@ public class JacksonConfiguration {
 			builder.locale(Locale.CHINA);
 			builder.timeZone(TimeZone.getTimeZone(ZoneId.systemDefault()));
 			// 设置日期格式
-			builder.simpleDateFormat(DatePattern.NORM_DATETIME_PATTERN);
+			builder.simpleDateFormat(NORM_DATETIME_PATTERN);
 			// 设置序列化
 			builder.serializerByType(Long.class, ToStringSerializer.instance);
 			// 设置反序列化
