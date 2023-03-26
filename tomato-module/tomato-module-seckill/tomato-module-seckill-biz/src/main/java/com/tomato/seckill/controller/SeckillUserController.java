@@ -2,6 +2,9 @@ package com.tomato.seckill.controller;
 
 import com.tomato.seckill.constant.RedisConstant;
 import com.tomato.seckill.domain.req.SeckillUserReq;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +25,10 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-@Tag(name = "用户抢购接口")
+// Tag 注解, 给整个接口起了个名字 "用户抢购接口", 描述是 "用户抢购接口 API"
+@Tag(name = "用户抢购接口", description = "用户抢购接口")
+// ApiResponses 给每个接口提供一个默认的响应, 状态码是 200, 描述是 "接口请求成功"
+@ApiResponse(responseCode = "200", description = "接口请求成功")
 public class SeckillUserController {
     private final DefaultRedisScript<Long> userSeckillRedisScript;
 
@@ -38,6 +44,7 @@ public class SeckillUserController {
      * 秒杀
      * @param seckillUserReq 秒杀请求
      */
+    @Operation(summary = "秒杀请求", description = "秒杀请求")
     @PostMapping("/seckill/user")
     public void seckill(@RequestBody @Valid SeckillUserReq seckillUserReq){
 

@@ -10,6 +10,8 @@ import lombok.Data;
  * @since 2022/12/19
  */
 @Data
+// Schema 注解设置这个类的描述
+//@Schema(description = "秒杀 请求参数")
 public class SeckillUserReq {
     /**
      * 商品id
