@@ -23,5 +23,6 @@
         <module>tomato-module-remit</module>
         <module>tomato-module-seckill</module>
         <module>tomato-module-monitor</module>
+        <module>tomato-module-gen</module>
     </modules>
 </project>
