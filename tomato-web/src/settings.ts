@@ -42,7 +42,7 @@ interface DefaultSettings {
 }
 
 const defaultSettings: DefaultSettings = {
-  title: 'vue3-element-admin',
+  title: 'admin',
   showSettings: true,
   tagsView: true,
   fixedHeader: false,
