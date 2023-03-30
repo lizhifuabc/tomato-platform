@@ -1,18 +1,60 @@
 {
-  "name": "tomato-web",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "vue3-element-admin",
+  "version": "2.1.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "vite serve --mode development",
+    "build:prod": "vite build --mode production &&vue-tsc --noEmit",
+    "serve": "vite preview",
+    "lint": "eslint src/**/*.{ts,js,vue} --fix",
+    "prepare": "husky install",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "@vueuse/core": "^9.1.1",
+    "@wangeditor/editor": "^5.0.0",
+    "@wangeditor/editor-for-vue": "^5.1.10",
+    "axios": "^1.3.4",
+    "echarts": "^5.2.2",
+    "element-plus": "^2.3.1",
+    "nprogress": "^0.2.0",
+    "path-browserify": "^1.0.1",
+    "path-to-regexp": "^6.2.0",
+    "pinia": "^2.0.33",
+    "screenfull": "^6.0.0",
+    "vue": "^3.2.45",
+    "vue-i18n": "9",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.1.0",
-    "vite": "^4.2.0"
-  }
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@iconify-json/ep": "^1.1.8",
+    "@types/nprogress": "^0.2.0",
+    "@types/path-browserify": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "fast-glob": "^3.2.11",
+    "husky": "^7.0.4",
+    "postcss": "^8.4.20",
+    "prettier": "^2.6.2",
+    "sass": "^1.53.0",
+    "typescript": "^4.7.4",
+    "unocss": "^0.50.1",
+    "unplugin-auto-import": "^0.13.0",
+    "unplugin-icons": "^0.15.1",
+    "unplugin-vue-components": "^0.23.0",
+    "vite": "^4.1.4",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vue-eslint-parser": "^9.1.0",
+    "vue-tsc": "^0.35.0"
+  },
+  "repository": "https://gitee.com/youlaiorg/vue3-element-admin.git",
+  "author": "有来开源组织",
+  "license": "MIT"
 }
