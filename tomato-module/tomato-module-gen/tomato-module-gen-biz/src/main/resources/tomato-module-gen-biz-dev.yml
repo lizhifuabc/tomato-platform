@@ -1,0 +1,32 @@
+# spring配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tomato-gen?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: tomato
+    password: tomato
+# MyBatis配置
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.tomato.gen
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath:mapper/*Mapper.xml
+  configuration:
+    # 开启驼峰命名转换
+    mapUnderscoreToCamelCase: true
+    # 设置日志实现类
+    logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 加载全局的配置文件
+  # configLocation: classpath:mybatis/mybatis-config.xml
+
+# 代码生成配置
+gen:
+  # 作者
+  author: tomato
+  # 表前缀（有自动去除）
+  prefix: t_
+  # 生成包路径
+  entityPackageName: com.tomato.gen.domain.entity
+  respPackageName: com.tomato.gen.domain.resp
+  reqPackageName: com.tomato.gen.domain.req
+  daoPackageName: com.tomato.gen.domain.dao

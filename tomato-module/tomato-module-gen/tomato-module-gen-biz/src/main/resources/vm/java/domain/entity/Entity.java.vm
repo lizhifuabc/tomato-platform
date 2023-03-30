@@ -1,0 +1,26 @@
+package ${genConfig.entityPackageName};
+
+import com.tomato.domain.entity.BaseEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+#foreach ($import in $importPackageList)
+$import
+#end
+
+/**
+ * 表：${table.tableName} ${table.tableComment} 实体
+ *
+ * @author ${genConfig.author}
+ * @since  ${genConfig.localDateTime}
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class ${table.upperTableName}Entity extends BaseEntity{
+#foreach ($field in $tableColumnList)
+    /**
+     * ${field.columnComment} ${field.columnName}
+     */
+    private ${field.javaType} ${field.lowerColumnName};
+#end
+}

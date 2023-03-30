@@ -1,0 +1,25 @@
+package ${genConfig.respPackageName};
+
+import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
+#foreach ($import in $importPackageList)
+    $import
+#end
+
+/**
+ * 表：${table.tableName} ${table.tableComment} resp
+ *
+ * @author ${genConfig.author}
+ * @since  ${genConfig.localDateTime}
+ */
+@Data
+@Schema(description = "${table.tableComment}")
+public class ${table.upperTableName}Resp {
+    #foreach ($field in $tableColumnList)
+        /**
+         * ${field.columnComment} ${field.columnName}
+         */
+        @Schema(description = "${field.columnComment}")
+        private ${field.javaType} ${field.lowerColumnName};
+    #end
+}

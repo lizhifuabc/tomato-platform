@@ -1,0 +1,32 @@
+package ${genConfig.reqPackageName};
+
+import lombok.Data;
+import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+#foreach ($import in $importPackageList)
+    $import
+#end
+
+/**
+ * 表：${table.tableName} ${table.tableComment} req
+ *
+ * @author ${genConfig.author}
+ * @since  ${genConfig.localDateTime}
+ */
+@Data
+@Schema(description = "${table.tableComment}")
+public class ${table.upperTableName}Req {
+    #foreach ($field in $tableColumnList)
+        /**
+         * ${field.columnComment} ${field.columnName}
+         */
+        #if (${field.javaType} == 'String' &&  ${field.isNullable} == 'NO')
+        @NotBlank(message = "${field.columnComment}不能为空")
+	    #end
+        #if ((${field.javaType} == 'Integer' || ${field.javaType} == 'Long' || ${field.javaType} == 'BigDecimal' || ${field.javaType} == 'LocalDate'|| ${field.javaType} == 'LocalDateTime') &&  ${field.isNullable} == 'NO')
+        @NotNull(message = "${field.columnComment}不能为空")
+        #end
+        @Schema(description = "${field.columnComment}")
+        private ${field.javaType} ${field.lowerColumnName};
+    #end
+}

@@ -1,7 +1,11 @@
 package com.tomato.gen.config;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 代码生成配置
@@ -9,56 +13,35 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "gen")
+@Data
 public class GenConfig {
     /**
      * 作者
      */
-    public static String author;
+    private String author;
 
     /**
      * 生成包路径
      */
-    public static String packageName;
-
+    private String entityPackageName;
     /**
-     * 自动去除表前缀，默认是false
+     * 生成包路径
      */
-    public static boolean autoRemovePre;
-
+    private String respPackageName;
     /**
-     * 表前缀(类名不会包含表前缀)
+     * 生成包路径
      */
-    public static String tablePrefix;
-
-    public static String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        GenConfig.author = author;
-    }
-
-    public static String getPackageName() {
-        return packageName;
-    }
-
-    public void setPackageName(String packageName) {
-        GenConfig.packageName = packageName;
-    }
-
-    public static boolean getAutoRemovePre() {
-        return autoRemovePre;
-    }
-
-    public void setAutoRemovePre(boolean autoRemovePre) {
-        GenConfig.autoRemovePre = autoRemovePre;
-    }
-
-    public static String getTablePrefix() {
-        return tablePrefix;
-    }
-
-    public void setTablePrefix(String tablePrefix) {
-        GenConfig.tablePrefix = tablePrefix;
-    }
+    private String reqPackageName;
+    /**
+     * 生成包路径
+     */
+    private String daoPackageName;
+    /**
+     * 创建时间
+     */
+    private LocalDateTime localDateTime = LocalDateTime.now();
+    /**
+     * 前缀
+     */
+    private String prefix;
 }
