@@ -26,4 +26,23 @@ public final class TemplateConstant {
      * java dao 模板
      */
     public static final String VM_DAO = "vm/java/dao/Dao.java.vm";
+
+    /**
+     * java service 模板
+     */
+    public static final String VM_SERVICE = "vm/java/service/Service.java.vm";
+
+    /**
+     * java service impl 模板
+     */
+    public static final String VM_SERVICE_IMPL = "vm/java/service/impl/ServiceImpl.java.vm";
+
+    /**
+     * java controller 模板
+     */
+    public static final String VM_CONTROLLER = "vm/java/controller/Controller.java.vm";
+    /**
+     * java mapper xml 模板
+     */
+    public static final String VM_MAPPER_XML = "vm/java/mapper/Mapper.xml.vm";
 }

@@ -58,7 +58,7 @@ public class GenTableService {
         TableBo tableBo = new TableBo();
         tableBo.setTable(table);
         tableBo.setTableColumnList(tableColumnList);
-        VelocityService velocityService = velocityServiceFactory.getVelocityService(TemplateConstant.VM_DAO);
+        VelocityService velocityService = velocityServiceFactory.getVelocityService(TemplateConstant.VM_MAPPER_XML);
         VelocityContext context = velocityService.render(tableBo);
 
         StringWriter sw = new StringWriter();
