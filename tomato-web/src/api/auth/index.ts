@@ -33,7 +33,7 @@ export function logoutApi() {
  */
 export function getCaptchaApi(): AxiosPromise<CaptchaResult> {
   return request({
-    url: '/api/v1/auth/captcha',
+    url: '/code',
     method: 'get'
   });
 }
