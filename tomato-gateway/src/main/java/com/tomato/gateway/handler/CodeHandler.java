@@ -53,7 +53,7 @@ public class CodeHandler implements HandlerFunction<ServerResponse> {
 		String captchaText = captcha.text();
 		// 验证码图片Base64字符串
 		String captchaBase64 = captcha.toBase64();
-
+		log.info("验证码:{}", captchaText);
 		// 保存验证码信息
 		Optional<String> randomStr = serverRequest.queryParam("randomStr");
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
