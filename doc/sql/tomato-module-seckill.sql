@@ -4,13 +4,13 @@ use `tomato-seckill`;
 -- ----------------------------
 drop table if exists `t_seckill_activity`;
 create table `t_seckill_activity`  (
-   `id`                    bigint(20) unsigned not null auto_increment,
    `activity_name`         varchar(64) character set utf8mb4 not null comment '活动名称',
    `activity_desc`         varchar(128) character set utf8mb4 default null comment '活动描述',
    `start_time`            datetime not null comment '开始时间',
    `end_time`              datetime not null comment '结束时间',
    `disabled_flag`         tinyint unsigned default 0 NOT NULL COMMENT '是否被禁用 0否1是',
 
+   `id`                    bigint(20) unsigned not null auto_increment comment '主键',
    `version` int default 0 not null comment '乐观锁',
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
    `create_time` datetime not null default current_timestamp comment '创建时间',
