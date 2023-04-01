@@ -18,7 +18,7 @@
         <!-- spring boot / spring cloud 统一依赖管理 -->
         <spring.boot.version>3.0.5</spring.boot.version>
         <!-- https://spring.io/projects/spring-cloud       -->
-        <spring.cloud.version>2022.0.1</spring.cloud.version>
+        <spring.cloud.version>2022.0.2</spring.cloud.version>
         <spring.cloud.alibaba.version>2022.0.0.0-RC1</spring.cloud.alibaba.version>
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.1</spring.boot.mybatis.version>
