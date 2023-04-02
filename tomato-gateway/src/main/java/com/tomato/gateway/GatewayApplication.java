@@ -3,6 +3,9 @@ package com.tomato.gateway;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.Environment;
+
 /**
  * 网关启动程序
  *
@@ -15,9 +18,13 @@ public class GatewayApplication {
     public static void main(String[] args) {
         log.info("Begin to start Spring Boot Application");
         long startTime = System.currentTimeMillis();
-        SpringApplication.run(GatewayApplication.class, args);
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(GatewayApplication.class, args);
         System.out.println("网关启动成功");
         long endTime = System.currentTimeMillis();
         log.info("End starting Spring Boot Application, Time used: "+ (endTime - startTime) );
+
+
+        Environment env = applicationContext.getEnvironment();
+        log.info("环境信息{}",env);
     }
 }
