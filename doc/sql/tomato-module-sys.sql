@@ -19,7 +19,7 @@ create table `t_sys_user`  (
     primary key (`id`) using btree,
     unique index `uk_login_name`(`login_name`) using btree,
     unique index `uk_phone`(`phone`) using btree
-) engine = innodb auto_increment = 100 character set = utf8mb4 collate = utf8mb4_unicode_ci comment = '用户信息表' row_format = dynamic;
+) engine = innodb auto_increment = 1 character set = utf8mb4 collate = utf8mb4_unicode_ci comment = '用户信息表' row_format = dynamic;
 
 insert into `t_sys_user` values (1, 'admin', '$2a$10$uul1fedwb1kmfp2xeqvj2ohiwh11gdl3qcz/vojztwtjhdpff4mce', '管理员', 0, '13500000000', 1, 0, '管理员', 0, '2022-10-22 19:33:02', '2018-05-11 09:38:54');
 

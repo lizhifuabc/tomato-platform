@@ -24,5 +24,6 @@
         <module>tomato-module-seckill</module>
         <module>tomato-module-monitor</module>
         <module>tomato-module-gen</module>
+        <module>tomato-module-demo</module>
     </modules>
 </project>
