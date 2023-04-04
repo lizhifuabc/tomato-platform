@@ -13,6 +13,7 @@
         <module>tomato-framework</module>
         <module>tomato-book</module>
         <module>tomato-gateway</module>
+        <module>tomato-example</module>
     </modules>
     <name>${project.artifactId}</name>
     <properties>
