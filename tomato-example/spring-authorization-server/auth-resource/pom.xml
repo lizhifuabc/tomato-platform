@@ -5,15 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-platform</artifactId>
+        <artifactId>spring-authorization-server</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-example</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>spring-authorization-server</module>
-    </modules>
+    <artifactId>auth-resource</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
