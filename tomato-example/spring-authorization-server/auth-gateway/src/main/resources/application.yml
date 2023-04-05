@@ -49,7 +49,9 @@ spring:
         jwt:
           # 负载均衡问题 TODO
           # 配置公钥地址，利用公钥鉴权
-          jwk-set-uri: lb://auth2-server/oauth2/jwks
+          # lb://auth2-server/oauth2/jwks
+          # http://localhost:9001/oauth2/jwks
+          jwk-set-uri: http://localhost:9001/oauth2/jwks
   cloud:
     nacos:
       username: @nacos.username@
