@@ -27,7 +27,7 @@ secure:
     enable: false
   ignore:
     urls:
-      - /oauth2/**
+      - /auth2-server/**
       - /uac/v3/api-docs/**
       - /swagger-ui.html
       - /webjars/**
@@ -119,10 +119,10 @@ spring:
           uri: lb://auth2-server
           filters:
             - AddRequestHeader=version,release
-            - RewritePath=/oauth2/(?<segment>.*),/$\{segment}
+            - RewritePath=/auth2-server/(?<segment>.*),/$\{segment}
           predicates:
             - Method=GET,POST
-            - Path=/oauth2/**
+            - Path=/auth2-server/**
   data:
     redis:
       client-type: lettuce

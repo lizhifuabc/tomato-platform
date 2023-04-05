@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.core.AuthorizationGrantType;
  */
 public interface SecurityConstants {
     /**
-     * {bcrypt} 加密的特征码
+     * {bcrypt} 加密的特征码 TODO 未使用
      */
     String BCRYPT = "{bcrypt}";
     /**

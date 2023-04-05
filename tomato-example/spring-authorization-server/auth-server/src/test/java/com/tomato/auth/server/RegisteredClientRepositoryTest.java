@@ -40,7 +40,7 @@ public class RegisteredClientRepositoryTest {
         RegisteredClient registeredClient = RegisteredClient.withId(id)
                 /* 客户端ID和密码 */
                 .clientId(client)
-                .clientSecret(SecurityConstants.BCRYPT + passwordEncoder.encode(secret))
+                .clientSecret(passwordEncoder.encode(secret))
                 /* 授权方法 */
                 .clientAuthenticationMethods(AuthenticationMethods ->
                         AuthenticationMethods.addAll(Arrays.asList(
