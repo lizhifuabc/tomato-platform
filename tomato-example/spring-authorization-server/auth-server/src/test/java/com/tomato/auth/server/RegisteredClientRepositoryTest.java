@@ -72,7 +72,8 @@ public class RegisteredClientRepositoryTest {
                         redirectUris.add("https://www.baidu.com")
                 )
                 // 客户端申请的作用域，也可以理解这个客户端申请访问用户的哪些信息
-                .scope(OidcScopes.PROFILE)
+                .scopes(scopes -> scopes.addAll(Arrays.asList(OidcScopes.OPENID, OidcScopes.PROFILE,"read","write")))
+
                 /*.scopes(scopes -> scopes.addAll(Arrays.asList(OidcScopes.OPENID, OidcScopes.PROFILE)))*/
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)//jwt需要透明令牌

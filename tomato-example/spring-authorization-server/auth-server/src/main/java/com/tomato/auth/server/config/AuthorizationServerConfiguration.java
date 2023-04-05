@@ -1,6 +1,7 @@
 package com.tomato.auth.server.config;
 
 import com.tomato.auth.server.support.CustomJwtTokenCustomizer;
+import com.tomato.auth.server.support.handler.CustomAuthenticationFailureHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -33,6 +34,15 @@ public class AuthorizationServerConfiguration {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(httpSecurity);
         OAuth2AuthorizationServerConfigurer configurer = httpSecurity.getConfigurer(OAuth2AuthorizationServerConfigurer.class);
 
+        configurer.tokenEndpoint(
+                // 个性化认证授权端点
+                (tokenEndpoint) -> {
+                    // 登录失败处理器
+                    tokenEndpoint.errorResponseHandler(new CustomAuthenticationFailureHandler());
+                }
+        );
+        // 个性化客户端认证-处理客户端认证异常
+        configurer.clientAuthentication(oAuth2ClientAuthenticationConfigurer -> oAuth2ClientAuthenticationConfigurer.errorResponseHandler(new CustomAuthenticationFailureHandler()));
         // 服务端点 /oauth2/authorize /oauth2/token /oauth2/token/revocation /oauth2/introspect 等等
         configurer.authorizationServerSettings(AuthorizationServerSettings.builder().build());
         httpSecurity.apply(configurer);
