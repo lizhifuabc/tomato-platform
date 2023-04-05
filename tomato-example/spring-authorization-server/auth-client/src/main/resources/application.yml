@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 9002
 
 logging:
   level:
@@ -9,15 +9,6 @@ logging:
     org.springframework.security.oauth2: INFO
 
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/tomato-sys
-    username: tomato
-    password: tomato
-  sql:
-    init:
-      schema-locations: classpath:data.sql
-      mode: always
   cloud:
     nacos:
       username: @nacos.username@
@@ -31,7 +22,7 @@ spring:
       - nacos:application-@profiles.active@.yml
       - nacos:${spring.application.name}-@profiles.active@.yml
   application:
-    name: auth2-server
+    name: auth2-client
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

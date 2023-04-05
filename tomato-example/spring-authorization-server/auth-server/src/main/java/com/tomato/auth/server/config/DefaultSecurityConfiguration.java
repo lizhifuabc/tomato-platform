@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -30,7 +28,7 @@ public class DefaultSecurityConfiguration {
         // http.authorizeHttpRequests().requestMatchers("/token/*").permitAll();
         //其它任意接口都需认证
         http.authorizeHttpRequests().anyRequest().authenticated();
-        //避免iframe同源无法登录 & 表单登录个性化
+        // 允许iframe嵌入，避免iframe同源无法登录 & 表单登录个性化
         http.headers().frameOptions().sameOrigin();
         //.and().apply(new FormIdentityLoginConfigurer());
         // 处理 UsernamePasswordAuthenticationToken
@@ -58,12 +56,5 @@ public class DefaultSecurityConfiguration {
         // sessionManagement: 禁用session管理
         httpSecurity.requestCache().disable().securityContext().disable().sessionManagement().disable();
         return httpSecurity.build();
-    }
-    /**
-     * BCrypt密码编码
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

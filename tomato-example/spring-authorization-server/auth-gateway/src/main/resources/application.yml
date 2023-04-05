@@ -1,0 +1,152 @@
+server:
+  port: 9000
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    csrf:
+      enabled: true
+    urls:
+      - { name: 'uac', url: '/uac/v3/api-docs' }
+      - { name: 'cpc', url: '/cpc/v3/api-docs' }
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+secure:
+  gray-ip:
+    enable: true
+  gray-version:
+    enable: false
+  ignore:
+    urls:
+      - /oauth2/**
+      - /uac/v3/api-docs/**
+      - /swagger-ui.html
+      - /webjars/**
+      - /v3/api-docs/**
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          client-id: client
+          client-secret: secret
+          # 用于检查访问令牌的URL。当资源服务器收到一个访问令牌时，
+          # 它可以向授权服务器发送一个introspection请求来验证该访问令牌是否有效。
+          # 如果访问令牌有效，则授权服务器将返回一个JSON响应，其中包含有关访问令牌的信息，
+          # 例如访问令牌的过期时间、访问令牌是否被撤销等等。
+          # 使用introspection-uri参数可以提高系统的安全性，因为它可以使资源服务器能够对访问令牌进行更严格的验证，从而避免了访问令牌被恶意用户利用的风险。此外，introspection-uri还可以帮助资源服务器在访问令牌过期或被撤销时更快地做出反应，从而保护系统的安全性。
+          introspection-uri: http://localhost:9001/oauth2/introspect
+        jwt:
+          # 负载均衡问题 TODO
+          # 配置公钥地址，利用公钥鉴权
+          jwk-set-uri: lb://auth2-server/oauth2/jwks
+  cloud:
+    nacos:
+      username: @nacos.username@
+      password: @nacos.password@
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            # 允许携带认证信息
+            allow-credentials: true
+            # 允许跨域的源,设置*为全部
+            allowedOriginPatterns: "*"
+            # 允许跨域的method,默认为GET和OPTIONS,设置*为全部
+            allowedMethods: "*"
+            # 允许跨域请求里的head字段,设置*为全部
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: false
+      # 默认过滤器（对所有route均生效）
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+        - name: RequestRateLimiter
+          args:
+            # 令牌桶的速度为每秒100个，相当于QPS
+            redis-rate-limiter.replenishRate: 100
+            # 桶内能装200个令牌,相当于峰值，要注意的是:第1秒从桶内能取20个,但是第2秒只能取到100个了,因为入桶速度是每秒100个
+            redis-rate-limiter.burstCapacity: 200
+            # 每个请求需要的令牌数
+            redis-rate-limiter.requestedTokens: 1
+            # 使用SpEL表达式从Spring容器中获取Bean对象
+            key-resolver: "#{@pathKeyResolver}"
+        - name: Retry
+          args:
+            # 重试次数
+            retries: 3
+            # 遇到什么样的返回状态才重试，取值参考：org.springframework.http.HttpStatus
+            statuses: BAD_GATEWAY
+            # 那些类型的方法会才重试（GET、POST等）取值参考：org.springframework.http.HttpMethod
+            methods: GET,POST
+            # 遇到什么样的series值才重试，取值参考：org.springframework.http.HttpStatus.Series
+            # SERVER_ERROR，值是 5，也就是 5XX（5 开头的状态码）
+            series: SERVER_ERROR
+            # 重试策略
+            backoff:
+              firstBackoff: 10ms
+              maxBackoff: 50ms
+              factor: 2
+              basedOnPreviousValue: false
+      routes:
+        - id: auth2-client
+          order: -1
+          uri: lb://auth2-client
+          filters:
+            - AddRequestHeader=version,release
+            - RewritePath=/cms/(?<segment>.*),/$\{segment}
+          predicates:
+            - Method=GET,POST
+            - Path=/auth2-client/**
+        - id: auth2-server
+          order: -1
+          uri: lb://auth2-server
+          filters:
+            - AddRequestHeader=version,release
+            - RewritePath=/oauth2/(?<segment>.*),/$\{segment}
+          predicates:
+            - Method=GET,POST
+            - Path=/oauth2/**
+  data:
+    redis:
+      client-type: lettuce
+      cluster:
+        max-redirects: 5
+        nodes:
+          - redis:6379
+          - redis:6380
+          - redis:6381
+          - redis:6382
+          - redis:6383
+          - redis:6384
+      timeOut: 6000
+      database: 1
+      lettuce:
+        pool:
+          max-active: 8 #连接池最大连接数（使用负值表示没有限制） 默认 8
+          max-idle: 8 #连接池中的最大空闲连接 默认 8
+          max-wait: -1 #连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+          min-idle: 0 #连接池中的最小空闲连接 默认 0
+
+  config:
+    import:
+      - nacos:application-@profiles.active@.yml
+      - nacos:${spring.application.name}-@profiles.active@.yml
+  application:
+    name: oauth2-gateway
