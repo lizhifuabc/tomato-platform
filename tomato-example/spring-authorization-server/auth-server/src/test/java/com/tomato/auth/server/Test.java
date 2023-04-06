@@ -16,19 +16,18 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 public class Test {
 
-    private static final String REDIRECT_URI = "https://www.baidu.com";
+    private static final String redirectUri = "http://127.0.0.1/login/oauth2/code/messaging-client-oidc";
 
     private static final String AUTHORIZATION_REQUEST = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
             .queryParam("response_type", "code")
-            .queryParam("client_id", "client")
-            .queryParam("scope", "message.read") // message.read
-            .queryParam("state", "some-state")
-            .queryParam("redirect_uri", REDIRECT_URI)
+            .queryParam("client_id", "messaging-client")
+            .queryParam("scope", "openid message.read message.write")
+            .queryParam("state", "state")
+            .queryParam("redirect_uri", redirectUri)
             .toUriString();
 
     public static void main(String[] args) {
-        System.out.println("http://localhost:9001"+AUTHORIZATION_REQUEST);
-        System.out.println("http://localhost:9000/auth2-server"+AUTHORIZATION_REQUEST);
+        System.out.println("http://localhost:9000"+AUTHORIZATION_REQUEST);
     }
 }
