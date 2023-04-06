@@ -1,6 +1,7 @@
 package com.tomato.auth.server.config;
 
 import com.tomato.auth.server.support.CustomJwtTokenCustomizer;
+import com.tomato.auth.server.support.FormIdentityLoginConfigurer;
 import com.tomato.auth.server.support.handler.CustomAuthenticationFailureHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,7 +52,8 @@ public class AuthorizationServerConfiguration {
         RequestMatcher endpointsMatcher = configurer.getEndpointsMatcher();
 
         // 授权码登录的登录页个性化
-        DefaultSecurityFilterChain securityFilterChain = httpSecurity.securityMatcher(endpointsMatcher).build();
+         DefaultSecurityFilterChain securityFilterChain = httpSecurity.securityMatcher(endpointsMatcher).apply(new FormIdentityLoginConfigurer()).and().build();
+
         return securityFilterChain;
     }
     /**

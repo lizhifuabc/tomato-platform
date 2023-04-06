@@ -1,5 +1,7 @@
 package com.tomato.auth.server.config;
 
+import com.tomato.auth.server.support.FormIdentityLoginConfigurer;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -13,8 +15,8 @@ import org.springframework.security.web.SecurityFilterChain;
  * @author lizhifu
  * @since 2023/4/4
  */
-@Configuration
 @EnableWebSecurity
+@Slf4j
 public class DefaultSecurityConfiguration {
     /**
      * 授权服务器的过滤器链
@@ -24,13 +26,13 @@ public class DefaultSecurityConfiguration {
      */
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        //开放自定义的部分端点
-        // http.authorizeHttpRequests().requestMatchers("/token/*").permitAll();
+        log.info("授权服务器的过滤器链");
+        // 开放自定义的部分端点
+        http.authorizeHttpRequests().requestMatchers("/token/**").permitAll();
         //其它任意接口都需认证
         http.authorizeHttpRequests().anyRequest().authenticated();
         // 允许iframe嵌入，避免iframe同源无法登录 & 表单登录个性化
-        http.headers().frameOptions().sameOrigin();
-        //.and().apply(new FormIdentityLoginConfigurer());
+        http.headers().frameOptions().sameOrigin().and().apply(new FormIdentityLoginConfigurer());
         // 处理 UsernamePasswordAuthenticationToken
         // http.authenticationProvider(new UserDetailsAuthenticationProvider());
         return http.build();
@@ -46,6 +48,7 @@ public class DefaultSecurityConfiguration {
     @Bean
     @Order(0)
     public SecurityFilterChain resources(HttpSecurity httpSecurity) throws Exception {
+        log.info("暴露静态资源");
         // 开放端点:spring actuator 监控等等
         httpSecurity.authorizeHttpRequests().requestMatchers("/actuator/**", "/css/**", "/error").permitAll();
         // 其它任意接口都需认证
