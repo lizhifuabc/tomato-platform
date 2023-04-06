@@ -424,16 +424,4 @@
             <!--  业务代码 end -->
         </dependencies>
     </dependencyManagement>
-
-    <!--  maven 依赖的下载是从 repositories 中获取的 -->
-    <repositories>
-        <repository>
-            <id>public</id>
-            <name>aliyun nexus</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
 </project>
