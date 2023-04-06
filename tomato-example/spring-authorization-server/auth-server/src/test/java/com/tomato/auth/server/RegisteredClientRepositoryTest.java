@@ -72,9 +72,11 @@ public class RegisteredClientRepositoryTest {
                         redirectUris.add("https://www.baidu.com")
                 )
                 // 客户端申请的作用域，也可以理解这个客户端申请访问用户的哪些信息
-                .scopes(scopes -> scopes.addAll(Arrays.asList(OidcScopes.OPENID, OidcScopes.PROFILE,"read","write")))
+                .scope(OidcScopes.OPENID)
+                .scope(OidcScopes.PROFILE)
+                .scope("message.read")
+                .scope("message.write")
 
-                /*.scopes(scopes -> scopes.addAll(Arrays.asList(OidcScopes.OPENID, OidcScopes.PROFILE)))*/
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)//jwt需要透明令牌
                         // accessToken 的有效期
