@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 public class Test {
 
-    private static final String redirectUri = "http://127.0.0.1/login/oauth2/code/messaging-client-oidc";
+    private static final String REDIRECT_URI = "http://127.0.0.1:8080/login/oauth2/code/messaging-client-oidc";
 
     private static final String AUTHORIZATION_REQUEST = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
@@ -24,7 +24,7 @@ public class Test {
             .queryParam("client_id", "messaging-client")
             .queryParam("scope", "openid message.read message.write")
             .queryParam("state", "state")
-            .queryParam("redirect_uri", redirectUri)
+            .queryParam("redirect_uri", REDIRECT_URI)
             .toUriString();
 
     public static void main(String[] args) {
