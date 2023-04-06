@@ -1,0 +1,1 @@
+客户端Client：面向用户的操作入口；向Server请求token，携带token访问Resource；
