@@ -1,4 +1,4 @@
-package com.tomato.gateway.handler;
+package com.tomato.gateway.web.handler;
 
 import com.wf.captcha.ArithmeticCaptcha;
 import com.wf.captcha.base.Captcha;

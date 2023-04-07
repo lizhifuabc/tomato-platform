@@ -1,6 +1,6 @@
-package com.tomato.gateway.config;
+package com.tomato.gateway.web.config;
 
-import com.tomato.gateway.handler.CodeHandler;
+import com.tomato.gateway.web.handler.CodeHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
