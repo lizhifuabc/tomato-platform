@@ -1,8 +1,10 @@
 package com.tomato.order.controller.controller;
 
+import com.tomato.domain.resp.SingleResp;
 import com.tomato.order.client.dto.OrderQueryDTO;
 import com.tomato.order.client.dto.OrderQueryResultDTO;
 import com.tomato.order.client.service.OrderClientService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +24,7 @@ public class OrderQueryController {
         this.orderClientService = orderClientService;
     }
     @RequestMapping("/order/query/merchant")
-    public OrderQueryResultDTO queryOrderMerchant(OrderQueryDTO orderQueryDTO) {
-        // TODO hmac
-        return orderClientService.queryOrderMerchant(orderQueryDTO);
+    public SingleResp<OrderQueryResultDTO> queryOrderMerchant(@Valid OrderQueryDTO orderQueryDTO) {
+        return SingleResp.of(orderClientService.queryOrderMerchant(orderQueryDTO));
     }
-
 }
