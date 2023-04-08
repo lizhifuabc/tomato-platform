@@ -1,6 +1,6 @@
 package com.tomato.web.aop;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tomato.jackson.utils.JacksonUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -22,12 +22,6 @@ import java.util.UUID;
 @Aspect
 @EnableAspectJAutoProxy
 public class ControllerParamJoinPoint {
-    private final ObjectMapper objectMapper;
-    public ControllerParamJoinPoint(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
-
-
     @Pointcut("@within(org.springframework.web.bind.annotation.RestController)")
     public void controllerClasses() {}
     @Pointcut("execution(* *(..))")
@@ -60,10 +54,6 @@ public class ControllerParamJoinPoint {
         if (Objects.isNull(obj)) {
             return null;
         }
-       try {
-            return objectMapper.writeValueAsString(obj);
-        } catch (Exception e) {
-            return "toJsonString error"+e.getMessage();
-        }
+        return JacksonUtils.toJson(obj);
     }
 }
