@@ -12,18 +12,11 @@ import java.time.LocalDateTime;
  * 实体继承映射类基础,保存实体的通用属性
  *
  * @author lizhifu
- * @date 2022/11/25
+ * @since  2022/11/25
  */
 @MappedSuperclass//实体继承映射
 @EntityListeners(value = AuditingEntityListener.class)
 public abstract class JpaBaseEntity implements Serializable {
-    /**
-     * ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="id")
-    private Long id;
     /**
      * 创建时间
      */
@@ -65,13 +58,5 @@ public abstract class JpaBaseEntity implements Serializable {
 
     public void setVersion(Integer version) {
         this.version = version;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
