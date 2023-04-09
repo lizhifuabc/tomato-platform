@@ -21,7 +21,7 @@ import java.util.Optional;
  *
  * @author lizhifu
  */
-@NoRepositoryBean
+@NoRepositoryBean // 表示该接口不是一个 JPA 仓库（Repository）接口，不会被 Spring Data JPA 自动实现
 public interface BaseRepository<E, ID extends Serializable> extends JpaRepository<E, ID>, JpaSpecificationExecutor<E> {
 
     @QueryHints(@QueryHint(name = AvailableHints.HINT_CACHEABLE, value = "true"))

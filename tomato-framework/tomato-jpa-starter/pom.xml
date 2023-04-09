@@ -21,10 +21,6 @@
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-domain</artifactId>
-        </dependency>
     </dependencies>
 
 </project>
