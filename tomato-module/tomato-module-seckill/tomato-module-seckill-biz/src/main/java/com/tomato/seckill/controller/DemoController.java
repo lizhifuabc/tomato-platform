@@ -1,6 +1,6 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.RemoteGoodsService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class DemoController {
 
     @GetMapping("/demo")
     public String demo(){
-        SingleResp<GoodsInfoResp> goodsInfoRespSingleResp = remoteGoodsService.queryGoodsInfo(1L);
+        Resp<GoodsInfoResp> goodsInfoRespSingleResp = remoteGoodsService.queryGoodsInfo(1L);
         log.info("goodsInfoRespSingleResp:{}",goodsInfoRespSingleResp);
         return goodsInfoRespSingleResp.getData().getGoodsName();
     }

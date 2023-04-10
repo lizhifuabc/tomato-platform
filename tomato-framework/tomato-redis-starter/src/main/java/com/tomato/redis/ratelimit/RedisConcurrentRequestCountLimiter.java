@@ -1,9 +1,8 @@
 package com.tomato.redis.ratelimit;
 
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.redis.domain.req.RedisConcurrentRequestCountLimiterReq;
 import com.tomato.redis.domain.resp.RedisConcurrentRequestCountLimiterResp;
-import com.tomato.redis.domain.resp.RedisRateLimiterResp;
 import jakarta.validation.Valid;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.RedisScript;
@@ -27,7 +26,7 @@ public class RedisConcurrentRequestCountLimiter {
         this.stringRedisTemplate = stringRedisTemplate;
         this.script = script;
     }
-    public SingleResp<RedisConcurrentRequestCountLimiterResp> isAllowed(@Valid RedisConcurrentRequestCountLimiterReq req){
+    public Resp<RedisConcurrentRequestCountLimiterResp> isAllowed(@Valid RedisConcurrentRequestCountLimiterReq req){
         // 设置 keys
         List<String> keys = getKeys(req.getId());
         Long results = this.stringRedisTemplate.execute(this.script, keys, req.getCount() + "", req.getInterval() + "");
@@ -36,7 +35,7 @@ public class RedisConcurrentRequestCountLimiter {
                 .allowed(results >= 1L)
                 .tokensUsed(results)
                 .build();
-        return SingleResp.of(resp);
+        return Resp.of(resp);
     }
     private List<String> getKeys(String id) {
         // redis 集群的时候 `{}` 包裹的内容会被哈希到同一个哈希槽中

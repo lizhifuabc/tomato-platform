@@ -1,6 +1,6 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.domain.resp.MultiResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.seckill.domain.req.SeckillGoodsInfoQueryReq;
 import com.tomato.seckill.domain.resp.SeckillGoodsInfoResp;
 import jakarta.validation.Valid;
@@ -21,9 +21,9 @@ public class SeckillGoodsQueryController {
      * @param queryReq 查询请求
      */
     @PostMapping("/seckill/goods/info/list")
-    public MultiResp<List<SeckillGoodsInfoResp>> querySeckillGoodsInfoListByActivityId(
+    public Resp<List<SeckillGoodsInfoResp>> querySeckillGoodsInfoListByActivityId(
             @RequestBody @Valid SeckillGoodsInfoQueryReq queryReq){
 
-        return MultiResp.of(null);
+        return Resp.of(null);
     }
 }

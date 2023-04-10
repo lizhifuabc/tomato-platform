@@ -1,6 +1,6 @@
 package com.tomato.seckill.manager.cache;
 
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.RemoteGoodsService;
 import com.tomato.seckill.constant.RedisConstant;
@@ -44,7 +44,7 @@ public class SeckillGoodsInfoCache {
             // 删除 key
             stringRedisTemplate.delete(redisKey);
 
-            SingleResp<GoodsInfoResp> resp = remoteGoodsService.queryGoodsInfo(seckillGoodsEntity.getGoodsId());
+            Resp<GoodsInfoResp> resp = remoteGoodsService.queryGoodsInfo(seckillGoodsEntity.getGoodsId());
             if (!resp.isSuccess()) {
                 log.error("秒杀商品基本信息查询失败,seckillGoodsId:{},resp:{}", seckillGoodsId, resp);
                 return;

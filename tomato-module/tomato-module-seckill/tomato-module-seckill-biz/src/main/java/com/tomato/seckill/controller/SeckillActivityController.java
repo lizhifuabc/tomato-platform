@@ -1,6 +1,6 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.seckill.domain.req.SeckillActivityCreateReq;
 import com.tomato.seckill.service.SeckillActivityService;
 import org.springframework.validation.annotation.Validated;
@@ -35,8 +35,8 @@ public class SeckillActivityController {
      * @return 创建秒杀活动结果
      */
     @PostMapping("/seckill/activity/create")
-    public SingleResp create(@Validated @RequestBody SeckillActivityCreateReq seckillActivityCreateReq){
+    public Resp create(@Validated @RequestBody SeckillActivityCreateReq seckillActivityCreateReq){
         seckillActivityService.create(seckillActivityCreateReq);
-        return SingleResp.buildSuccess();
+        return Resp.buildSuccess();
     }
 }

@@ -1,8 +1,6 @@
 package com.tomato.goods.feign;
 
-import com.tomato.domain.resp.MultiResp;
-import com.tomato.domain.resp.SingleResp;
-import com.tomato.goods.domain.entity.GoodsInfoEntity;
+import com.tomato.domain.resp.Resp;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.factory.RemoteGoodsFallbackFactory;
 import jakarta.validation.constraints.NotNull;
@@ -30,7 +28,7 @@ public interface RemoteGoodsService {
      * @return 商品信息
      */
     @GetMapping("/goods/query/{id}")
-    SingleResp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id);
+    Resp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id);
 
     /**
      * 批量查询商品
@@ -38,5 +36,5 @@ public interface RemoteGoodsService {
      * @return
      */
     @PostMapping("/goods/query/list")
-    MultiResp<GoodsInfoResp> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids);
+    Resp<GoodsInfoResp> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids);
 }

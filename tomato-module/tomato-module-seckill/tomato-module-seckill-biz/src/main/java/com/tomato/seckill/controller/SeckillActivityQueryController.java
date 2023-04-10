@@ -1,6 +1,6 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.domain.resp.MultiResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.seckill.dao.SeckillActivityDao;
 import com.tomato.seckill.domain.entity.SeckillActivityEntity;
 import com.tomato.seckill.domain.resp.SeckillActivityQueryResp;
@@ -33,10 +33,10 @@ public class SeckillActivityQueryController extends BaseController {
      * @return 秒杀活动列表
      */
     @GetMapping("/seckill/activity/list")
-    public MultiResp querySeckillActivityList(){
+    public Resp querySeckillActivityList(){
         // 获取秒杀活动列表
         LocalDateTime start = LocalDateTime.now();
         List<SeckillActivityEntity> entityList = seckillActivityDao.selectByStartTime(start);
-        return MultiResp.of(copyList(entityList, SeckillActivityQueryResp.class));
+        return Resp.of(copyList(entityList, SeckillActivityQueryResp.class));
     }
 }

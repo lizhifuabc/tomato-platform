@@ -1,7 +1,6 @@
 package com.tomato.sys.login.controller;
 
-import com.tomato.domain.resp.Result;
-import com.tomato.domain.resp.SingleResult;
+import com.tomato.domain.resp.Resp;
 import com.tomato.security.constant.RequestHeaderConstant;
 import com.tomato.sys.domain.req.LoginReq;
 import com.tomato.sys.domain.resp.LoginResp;
@@ -29,13 +28,13 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public SingleResult<LoginResp> login(@Valid @RequestBody LoginReq loginReq) {
+    public Resp<LoginResp> login(@Valid @RequestBody LoginReq loginReq) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        SingleResult<LoginResp> singleResp = loginService.login(loginReq, IpUtil.getClientIp(request));
+        Resp<LoginResp> singleResp = loginService.login(loginReq, IpUtil.getClientIp(request));
         return singleResp;
     }
     @GetMapping("/login/logout")
-    public Result logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
-        return Result.buildSuccess();
+    public Resp logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
+        return Resp.buildSuccess();
     }
 }

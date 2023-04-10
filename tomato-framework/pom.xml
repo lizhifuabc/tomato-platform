@@ -30,5 +30,6 @@
         <module>tomato-lock</module>
         <module>tomato-feign</module>
         <module>tomato-redis-base-starter</module>
+        <module>tomato-springdoc-starter</module>
     </modules>
 </project>

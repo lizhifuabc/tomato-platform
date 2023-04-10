@@ -1,6 +1,6 @@
 package com.tomato.sys.login.service;
 
-import com.tomato.domain.resp.SingleResult;
+import com.tomato.domain.resp.Resp;
 import com.tomato.security.token.LoginDeviceEnum;
 import com.tomato.security.token.TokenService;
 import com.tomato.sys.domain.entity.SysMenuEntity;
@@ -45,19 +45,19 @@ public class LoginService {
         this.sysMenuDao = sysMenuDao;
     }
 
-    public SingleResult<LoginResp> login(LoginReq loginReq, String ip) {
+    public Resp<LoginResp> login(LoginReq loginReq, String ip) {
         SysUserEntity sysUserEntity = sysUserDao.selectByLoginName(loginReq.getLoginName());
         // 校验账号是否存在
         if(null == sysUserEntity){
-            return SingleResult.buildFailure("登录失败，账号或密码不正确");
+            return Resp.buildFailure("登录失败，账号或密码不正确");
         }
         // 校验密码
         if(!passwordEncoder.matches(loginReq.getLoginPwd(), sysUserEntity.getLoginPwd())){
-            return SingleResult.buildFailure("登录失败，账号或密码不正确");
+            return Resp.buildFailure("登录失败，账号或密码不正确");
         }
         // 校验是否禁用
         if (sysUserEntity.getDisabledFlag()) {
-            return SingleResult.buildFailure("登录失败，账号已被禁用");
+            return Resp.buildFailure("登录失败，账号已被禁用");
         }
         String token = tokenService.generateToken(sysUserEntity.getId(),loginReq.getLoginName(), LoginDeviceEnum.PC);
         List<SysMenuEntity> select = sysMenuDao.select();
@@ -67,7 +67,7 @@ public class LoginService {
                 .token(token)
                 .menuList(sysMenuRespList)
                 .build();
-        return SingleResult.of(loginResp);
+        return Resp.of(loginResp);
     }
 
     /**

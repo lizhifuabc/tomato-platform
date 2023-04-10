@@ -1,7 +1,7 @@
 package com.tomato.goods.controller;
 
-import com.tomato.domain.resp.MultiResp;
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.goods.dao.GoodsInfoDao;
 import com.tomato.goods.domain.entity.GoodsInfoEntity;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
@@ -31,9 +31,9 @@ public class GoodsInfoQueryController extends BaseController {
      * @param id 商品id
      */
     @GetMapping("/goods/query/{id}")
-    public SingleResp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id) {
+    public Resp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id) {
         GoodsInfoEntity goodsInfo =  goodsInfoDao.selectById(id);
-        return SingleResp.of(copy(goodsInfo, GoodsInfoResp.class));
+        return Resp.of(copy(goodsInfo, GoodsInfoResp.class));
     }
 
     /**
@@ -42,8 +42,8 @@ public class GoodsInfoQueryController extends BaseController {
      * @return
      */
     @PostMapping("/goods/query/list")
-     public MultiResp<GoodsInfoResp> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids) {
+     public Resp<GoodsInfoResp> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids) {
          List<GoodsInfoEntity> goodsInfo =  goodsInfoDao.selectBatchByIds(ids);
-         return MultiResp.of(copyList(goodsInfo, GoodsInfoResp.class));
+         return Resp.of(copyList(goodsInfo, GoodsInfoResp.class));
      }
 }

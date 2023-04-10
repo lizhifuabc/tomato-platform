@@ -1,6 +1,6 @@
 package com.tomato.seckill.service.cache;
 
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.redis.domain.req.RedisRateLimiterReq;
 import com.tomato.redis.domain.resp.RedisRateLimiterResp;
 import com.tomato.redis.ratelimit.RedisRateLimiter;
@@ -27,7 +27,7 @@ public class RedisRateLimiterTest {
                 .burstCapacity(100)
                 .requestedTokens(1)
                 .build();
-        SingleResp<RedisRateLimiterResp> allowed = redisRateLimiter.isAllowed(redisRateLimiterReq);
+        Resp<RedisRateLimiterResp> allowed = redisRateLimiter.isAllowed(redisRateLimiterReq);
         System.out.println(allowed);
     }
 }

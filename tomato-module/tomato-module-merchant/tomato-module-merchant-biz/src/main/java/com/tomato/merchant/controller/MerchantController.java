@@ -1,6 +1,6 @@
 package com.tomato.merchant.controller;
 
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.merchant.domain.req.MerchantInfoReq;
 import com.tomato.merchant.domain.resp.MerchantInfoResp;
 import jakarta.validation.Valid;
@@ -24,7 +24,7 @@ public class MerchantController {
      * @return
      */
     @PostMapping("/merchant/checkMerchant")
-    public SingleResp<MerchantInfoResp> checkMerchant(@Valid @RequestBody MerchantInfoReq merchantInfoReq){
-        return SingleResp.of(null);
+    public Resp<MerchantInfoResp> checkMerchant(@Valid @RequestBody MerchantInfoReq merchantInfoReq){
+        return Resp.of(null);
     }
 }

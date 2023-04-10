@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <scope>provided</scope><!-- provided: 编译和测试的环境,provide将不会被打包到lib目录下 -->
+            <!-- provided: 编译和测试的环境,provide将不会被打包到lib目录下 -->
         </dependency>
     </dependencies>
     <build>

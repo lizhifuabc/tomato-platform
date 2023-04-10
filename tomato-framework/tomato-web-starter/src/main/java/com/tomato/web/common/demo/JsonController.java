@@ -1,7 +1,6 @@
 package com.tomato.web.common.demo;
 
 import com.tomato.domain.resp.Resp;
-import com.tomato.domain.resp.SingleResp;
 import com.tomato.web.common.demo.entity.Demo;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ public class JsonController {
      */
     @GetMapping(value = "demo1")
     public Resp demo1(@RequestBody Demo demo) {
-        return SingleResp.of(demo);
+        return Resp.of(demo);
     }
     /**
      * GET请求 传参没有注解修饰,?传参方式可传值,参数名为入参的属性名称
@@ -32,8 +31,8 @@ public class JsonController {
      * @return
      */
     @GetMapping(value = "demo2")
-    public Resp  demo2(@RequestParam(value = "demo", required = false) String demo) {
-        return SingleResp.of(demo);
+    public Resp demo2(@RequestParam(value = "demo", required = false) String demo) {
+        return Resp.of(demo);
     }
     /**
      * POST请求,实体必须用@RequestBody注解修饰
@@ -42,7 +41,7 @@ public class JsonController {
      * @return
      */
     @PostMapping(value = "demo3")
-    public Resp  demo3(@RequestBody Demo demo) {
-        return SingleResp.of(demo);
+    public Resp demo3(@RequestBody Demo demo) {
+        return Resp.of(demo);
     }
 }

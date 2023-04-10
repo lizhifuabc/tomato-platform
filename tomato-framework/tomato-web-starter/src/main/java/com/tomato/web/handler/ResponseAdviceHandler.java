@@ -9,8 +9,6 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import java.util.Optional;
-
 import static com.tomato.domain.resp.code.CommonRespCode.INTERNAL_SERVER_ERROR;
 
 /**

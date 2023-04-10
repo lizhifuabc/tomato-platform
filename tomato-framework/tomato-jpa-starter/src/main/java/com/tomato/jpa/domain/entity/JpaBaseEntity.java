@@ -22,19 +22,19 @@ public abstract class JpaBaseEntity implements Serializable {
      */
     @Column(name = "create_time",nullable = false,updatable = false)
     @CreatedDate
-    private LocalDateTime createTime;
+    private LocalDateTime createTime = LocalDateTime.now();
     /**
      * 最后更新时间
      */
     @Column(name = "update_time",nullable = false)
     @LastModifiedDate
-    private LocalDateTime updateTime;
+    private LocalDateTime updateTime = LocalDateTime.now();
     /**
      * 版本号
      */
     @Column(name = "version",nullable = false,columnDefinition="int default 0",insertable = false)
     @Version
-    private Integer version;
+    private Integer version = 0;
 
     public LocalDateTime getCreateTime() {
         return createTime;

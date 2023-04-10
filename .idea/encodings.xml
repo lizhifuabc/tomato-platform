@@ -23,6 +23,8 @@
     <file url="file://$PROJECT_DIR$/tomato-example/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-captcha-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-captcha-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-crypto/src/main/java" charset="UTF-8" />
@@ -59,6 +61,8 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-redis-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-security-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-security-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-springdoc-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-springdoc-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-validator-starter/src/main/java" charset="UTF-8" />
@@ -177,5 +181,7 @@
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-sys/tomato-module-sys-boot/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-sys/tomato-module-sys-cas/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-sys/tomato-module-sys-cas/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-sys/tomato-module-sys-infrastructure/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-sys/tomato-module-sys-infrastructure/src/main/resources" charset="UTF-8" />
   </component>
 </project>

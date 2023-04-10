@@ -1,7 +1,7 @@
 package com.tomato.seckill.service;
 
 import com.tomato.domain.exception.BusinessException;
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.redis.domain.req.RedisConcurrentRequestCountLimiterReq;
 import com.tomato.redis.domain.resp.RedisConcurrentRequestCountLimiterResp;
 import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;
@@ -47,7 +47,7 @@ public class SeckillRedisCheckService {
                 .count(1)
                 .interval(5)
                 .build();
-        SingleResp<RedisConcurrentRequestCountLimiterResp> allowed = redisConcurrentRequestCountLimiter.isAllowed(userIp);
+        Resp<RedisConcurrentRequestCountLimiterResp> allowed = redisConcurrentRequestCountLimiter.isAllowed(userIp);
         if(allowed.isSuccess() && allowed.getData().isAllowed()){
             return;
         }

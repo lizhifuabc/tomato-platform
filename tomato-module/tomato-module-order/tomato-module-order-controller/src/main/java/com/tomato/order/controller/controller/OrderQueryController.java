@@ -1,6 +1,6 @@
 package com.tomato.order.controller.controller;
 
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.order.client.dto.OrderQueryDTO;
 import com.tomato.order.client.dto.OrderQueryResultDTO;
 import com.tomato.order.client.service.OrderClientService;
@@ -24,7 +24,7 @@ public class OrderQueryController {
         this.orderClientService = orderClientService;
     }
     @RequestMapping("/order/query/merchant")
-    public SingleResp<OrderQueryResultDTO> queryOrderMerchant(@Valid OrderQueryDTO orderQueryDTO) {
-        return SingleResp.of(orderClientService.queryOrderMerchant(orderQueryDTO));
+    public Resp<OrderQueryResultDTO> queryOrderMerchant(@Valid OrderQueryDTO orderQueryDTO) {
+        return Resp.of(orderClientService.queryOrderMerchant(orderQueryDTO));
     }
 }

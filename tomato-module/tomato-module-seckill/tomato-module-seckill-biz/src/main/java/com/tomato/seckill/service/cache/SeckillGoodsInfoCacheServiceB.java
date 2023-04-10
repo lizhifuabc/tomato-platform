@@ -1,7 +1,5 @@
 package com.tomato.seckill.service.cache;
 
-import com.tomato.domain.resp.MultiResp;
-import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.RemoteGoodsService;
 import com.tomato.lock.core.exe.DistributedLockExe;
 import com.tomato.seckill.constant.RedisConstant;

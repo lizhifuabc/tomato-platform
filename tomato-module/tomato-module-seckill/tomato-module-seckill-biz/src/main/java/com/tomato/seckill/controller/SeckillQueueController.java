@@ -1,6 +1,6 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.domain.resp.SingleResp;
+import com.tomato.domain.resp.Resp;
 import com.tomato.seckill.constant.SeckillResultEnum;
 import com.tomato.seckill.domain.req.SeckillUserReq;
 import com.tomato.seckill.domain.resp.SeckillResp;
@@ -29,9 +29,9 @@ public class SeckillQueueController {
      * @return 用户秒杀
      */
     @PostMapping("/seckill/queue/user/seckill")
-    public SingleResp<SeckillResp> seckill(@Validated @RequestBody SeckillUserReq seckillUserReq){
+    public Resp<SeckillResp> seckill(@Validated @RequestBody SeckillUserReq seckillUserReq){
         SeckillResp seckillResp = new SeckillResp();
         seckillResp.setSeckillResult(SeckillResultEnum.SUCCESS.getValue());
-        return SingleResp.of(seckillResp);
+        return Resp.of(seckillResp);
     }
 }

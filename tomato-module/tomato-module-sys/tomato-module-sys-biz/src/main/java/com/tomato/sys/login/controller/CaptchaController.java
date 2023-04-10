@@ -2,7 +2,7 @@ package com.tomato.sys.login.controller;
 
 import com.tomato.captcha.domain.CaptchaResp;
 import com.tomato.captcha.service.CaptchaService;
-import com.tomato.domain.resp.SingleResult;
+import com.tomato.domain.resp.Resp;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +21,7 @@ public class CaptchaController {
     }
 
     @GetMapping("/captcha/getCaptcha")
-    public SingleResult<CaptchaResp> getCaptcha() {
-        return SingleResult.of(captchaService.generateCaptcha());
+    public Resp<CaptchaResp> getCaptcha() {
+        return Resp.of(captchaService.generateCaptcha());
     }
 }

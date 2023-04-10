@@ -1,6 +1,6 @@
 package com.tomato.sys.user.controller;
 
-import com.tomato.domain.resp.Result;
+import com.tomato.domain.resp.Resp;
 import com.tomato.sys.domain.req.SysUserCreateReq;
 import com.tomato.sys.user.service.SysUserService;
 import com.tomato.web.common.BaseController;
@@ -28,7 +28,7 @@ public class SysUserController extends BaseController {
      * @return
      */
     @PostMapping("/sys/user/create")
-    public Result createSysUser(@Valid @RequestBody SysUserCreateReq sysUserCreateReq) {
+    public Resp createSysUser(@Valid @RequestBody SysUserCreateReq sysUserCreateReq) {
         return sysUserService.createSysUser(sysUserCreateReq);
     }
     /**
@@ -37,7 +37,7 @@ public class SysUserController extends BaseController {
      * @return 成功
      */
     @GetMapping("/sys/user/update/disabled/{id}")
-    public Result updateDisableFlag(@PathVariable Long id) {
-        return Result.buildSuccess();
+    public Resp updateDisableFlag(@PathVariable Long id) {
+        return Resp.buildSuccess();
     }
 }

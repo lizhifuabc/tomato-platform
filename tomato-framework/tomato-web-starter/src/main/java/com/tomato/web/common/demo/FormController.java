@@ -1,7 +1,6 @@
 package com.tomato.web.common.demo;
 
 import com.tomato.domain.resp.Resp;
-import com.tomato.domain.resp.SingleResp;
 import com.tomato.web.common.demo.entity.Demo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +25,7 @@ public class FormController {
      */
     @GetMapping(value = "demo1")
     public Resp demo1(Demo demo) {
-        return SingleResp.of(demo);
+        return Resp.of(demo);
     }
 
     /**
@@ -37,7 +36,7 @@ public class FormController {
      */
     @GetMapping(value = "demo2")
     public Resp demo2(@RequestParam(value = "demo", required = false) String demo) {
-        return SingleResp.of(demo);
+        return Resp.of(demo);
     }
 
     /**
@@ -48,7 +47,7 @@ public class FormController {
      * @return
      */
     @PostMapping(value = "demo3")
-    public Resp demo3(Demo demo,@RequestParam("files") MultipartFile[] files) {
+    public Resp demo3(Demo demo, @RequestParam("files") MultipartFile[] files) {
         return Resp.buildSuccess();
     }
 }
