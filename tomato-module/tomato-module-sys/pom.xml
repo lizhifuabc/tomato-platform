@@ -14,6 +14,8 @@
     <modules>
         <module>tomato-module-sys-biz</module>
         <module>tomato-module-sys-base</module>
+        <module>tomato-module-sys-infrastructure</module>
+        <module>tomato-module-sys-boot</module>
     </modules>
 
     <properties>
