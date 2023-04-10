@@ -6,25 +6,9 @@ import java.util.Objects;
  * 枚举类
  * @author lizhifu
  */
-public interface BaseEnum {
-
-    /**
-     * 获取枚举类的值
-     *
-     * @return
-     */
-    Object getValue();
-
-    /**
-     * 获取枚举类的说明
-     *
-     * @return String
-     */
-    String getDesc();
-
+public interface BaseEnum<T> extends EnumValue<T>, EnumDesc {
     /**
      * 比较参数是否与枚举类的value相同
-     *
      * @param value
      * @return boolean
      */
@@ -38,7 +22,7 @@ public interface BaseEnum {
      * @param baseEnum
      * @return boolean
      */
-    default boolean equals(BaseEnum baseEnum) {
+    default boolean equals(BaseEnum<T> baseEnum) {
         return Objects.equals(getValue(), baseEnum.getValue()) && Objects.equals(getDesc(), baseEnum.getDesc());
     }
 }
