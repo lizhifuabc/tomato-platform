@@ -1,7 +1,7 @@
 package com.tomato.validator.annotation;
 
 
-import com.tomato.domain.type.BaseEnum;
+import com.tomato.domain.enums.BaseEnum;
 import com.tomato.validator.validator.EnumValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

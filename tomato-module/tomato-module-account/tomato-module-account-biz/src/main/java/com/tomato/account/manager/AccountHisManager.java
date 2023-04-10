@@ -4,7 +4,7 @@ import com.tomato.account.dao.AccountHisDao;
 import com.tomato.account.domain.bo.AccountHisBO;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.domain.type.CommonStatusEnum;
+import com.tomato.domain.enums.CommonStatusEnum;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

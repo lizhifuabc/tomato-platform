@@ -1,6 +1,6 @@
 package com.tomato.security.token;
 
-import com.tomato.domain.type.BaseEnum;
+import com.tomato.domain.enums.BaseEnum;
 
 /**
  * 登录设备

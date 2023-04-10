@@ -8,7 +8,7 @@ import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTargetTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
-import com.tomato.domain.type.YesNoTypeEnum;
+import com.tomato.domain.enums.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

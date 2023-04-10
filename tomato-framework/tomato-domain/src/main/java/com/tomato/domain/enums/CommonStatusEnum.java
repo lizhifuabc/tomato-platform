@@ -1,4 +1,4 @@
-package com.tomato.domain.type;
+package com.tomato.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.tomato.order.domain.constant;
 
-import com.tomato.domain.type.BaseEnum;
+import com.tomato.domain.enums.BaseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
