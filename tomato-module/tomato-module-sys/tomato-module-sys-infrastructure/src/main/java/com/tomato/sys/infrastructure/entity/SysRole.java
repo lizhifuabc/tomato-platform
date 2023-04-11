@@ -1,6 +1,5 @@
 package com.tomato.sys.infrastructure.entity;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.tomato.sys.infrastructure.base.BaseSysEntity;
 import jakarta.persistence.*;
@@ -23,7 +22,7 @@ import java.util.Set;
  * @author lizhifu
  */
 @Entity
-@Table(name = "sys_role", uniqueConstraints = {@UniqueConstraint(columnNames = {"role_code"})},
+@Table(name = "t_sys_role", uniqueConstraints = {@UniqueConstraint(columnNames = {"role_code"})},
         indexes = {@Index(name = "sys_role_rcd_idx", columnList = "role_code")})
 public class SysRole extends BaseSysEntity {
     @Id
@@ -45,7 +44,7 @@ public class SysRole extends BaseSysEntity {
     private Boolean roleStatus = Boolean.TRUE;
     /**
      * 用户 - 角色关系定义:
-     * primary key (role_id, permission_id)
+     * primary key (role_id, menu_id)
      * 覆盖索引：如果联合索引包含了所有需要查询的列，那么即使没有使用联合索引的第一个列，MySQL 仍然可以使用该索引来优化查询，并从索引中获取需要的数据，这种情况称为 "Covering Index"。
      * 存在索引覆盖扫描的情况：如果查询中只涉及到联合索引的一部分列，而剩余的列已经被索引覆盖扫描到了，那么即使没有使用联合索引的第一个列，MySQL 仍然可以使用该索引来优化查询。
      * 最左前缀匹配：如果查询中只涉及到联合索引的前面几列，并且这些列组成了联合索引的最左前缀，那么即使没有使用联合索引的第一个列，MySQL 仍然可以使用该索引来优化查询。
@@ -54,12 +53,12 @@ public class SysRole extends BaseSysEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    @JoinTable(name = "sys_role_permission",
+    @JoinTable(name = "t_sys_role_menu",
             joinColumns = {@JoinColumn(name = "role_id",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))},
-            inverseJoinColumns = {@JoinColumn(name = "permission_id",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))},
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"role_id", "permission_id"})},
-            indexes = {@Index(name = "sys_role_permission_rid_idx", columnList = "role_id"), @Index(name = "sys_role_permission_pid_idx", columnList = "permission_id")})
-    private Set<SysPermission> permissions = new HashSet<>();
+            inverseJoinColumns = {@JoinColumn(name = "menu_id",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))},
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"role_id", "menu_id"})},
+            indexes = {@Index(name = "sys_role_permission_rid_idx", columnList = "role_id"), @Index(name = "sys_role_menu_id_idx", columnList = "menu_id")})
+    private Set<SysMenu> permissions = new HashSet<>();
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -76,15 +75,6 @@ public class SysRole extends BaseSysEntity {
     public int hashCode() {
         return Objects.hashCode(roleId);
     }
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("roleId", roleId)
-                .add("roleCode", roleCode)
-                .add("roleName", roleName)
-                .toString();
-    }
-
     public Long getRoleId() {
         return roleId;
     }
@@ -117,11 +107,11 @@ public class SysRole extends BaseSysEntity {
         this.roleStatus = roleStatus;
     }
 
-    public Set<SysPermission> getPermissions() {
+    public Set<SysMenu> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(Set<SysPermission> permissions) {
+    public void setPermissions(Set<SysMenu> permissions) {
         this.permissions = permissions;
     }
 }

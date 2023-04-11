@@ -19,7 +19,7 @@ import java.util.Set;
  * @author lizhifu
  */
 @Entity
-@Table(name = "sys_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_name"})},
+@Table(name = "t_sys_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_name"})},
         indexes = {@Index(name = "sys_user_id_idx", columnList = "user_id"), @Index(name = "sys_user_unm_idx", columnList = "user_name")})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId") // 避免循环引用
 public class SysUser extends BaseSysEntity {
@@ -64,24 +64,12 @@ public class SysUser extends BaseSysEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    @JoinTable(name = "sys_user_role",
+    @JoinTable(name = "t_sys_user_role",
             joinColumns = {@JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))},
             inverseJoinColumns = {@JoinColumn(name = "role_id",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))},
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})},
             indexes = {@Index(name = "sys_user_role_uid_idx", columnList = "user_id"), @Index(name = "sys_user_role_rid_idx", columnList = "role_id")})
     private Set<SysRole> roles = new HashSet<>();
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("userId", userId)
-                .add("userName", userName)
-                .add("password", password)
-                .add("nickName", nickName)
-                .add("phoneNumber", phoneNumber)
-                .add("avatar", avatar)
-                .add("email", email)
-                .toString();
-    }
     public Long getUserId() {
         return userId;
     }
