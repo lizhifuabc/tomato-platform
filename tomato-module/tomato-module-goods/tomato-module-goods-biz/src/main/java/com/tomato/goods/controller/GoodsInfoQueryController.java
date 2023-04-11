@@ -42,8 +42,8 @@ public class GoodsInfoQueryController extends BaseController {
      * @return
      */
     @PostMapping("/goods/query/list")
-     public Resp<GoodsInfoResp> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids) {
+     public Resp<List<GoodsInfoResp>> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids) {
          List<GoodsInfoEntity> goodsInfo =  goodsInfoDao.selectBatchByIds(ids);
-         return Resp.of(copyList(goodsInfo, GoodsInfoResp.class));
+        return Resp.of(copyList(goodsInfo, GoodsInfoResp.class));
      }
 }
