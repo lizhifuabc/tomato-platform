@@ -31,5 +31,6 @@
         <module>tomato-feign</module>
         <module>tomato-redis-base-starter</module>
         <module>tomato-springdoc-starter</module>
+        <module>tomato-idempotent-starter</module>
     </modules>
 </project>
