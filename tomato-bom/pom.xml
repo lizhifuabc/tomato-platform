@@ -70,6 +70,9 @@
         <!-- 验证码 -->
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <nashorn.version>15.4</nashorn.version>
+        <!-- Spring Authorization Server -->
+        <!-- https://spring.io/projects/spring-authorization-server -->
+        <spring.authorization.server.version>1.0.1</spring.authorization.server.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -173,7 +176,11 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-oauth2-authorization-server</artifactId>
+                <version>${spring.authorization.server.version}</version>
+            </dependency>
             <dependency>
                 <groupId>me.ahoo.cosid</groupId>
                 <artifactId>cosid-core</artifactId>
