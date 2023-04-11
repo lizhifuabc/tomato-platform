@@ -61,12 +61,21 @@ public class AuthorizationServerConfig {
 		return http.build();
 	}
 
+	/**
+	 * oauth2 用于第三方认证，RegisteredClientRepository 主要用于管理第三方（每个第三方就是一个客户端）
+	 * @param jdbcTemplate 数据库操作
+	 * @return RegisteredClientRepository
+	 */
 	@Bean
 	public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
 		return new JdbcRegisteredClientRepository(jdbcTemplate);
 	}
 	// @formatter:on
-
+	/**
+	 * 用于给access_token签名使用。
+	 *
+	 * @return JWKSource
+	 */
 	@Bean
 	public JWKSource<SecurityContext> jwkSource() {
 		RSAKey rsaKey = Jwks.generateRsa();
@@ -78,7 +87,10 @@ public class AuthorizationServerConfig {
 	public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
 		return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
 	}
-
+	/**
+	 * 配置Authorization Server实例
+	 * @return AuthorizationServerSettings
+	 */
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
 		return AuthorizationServerSettings.builder().build();
