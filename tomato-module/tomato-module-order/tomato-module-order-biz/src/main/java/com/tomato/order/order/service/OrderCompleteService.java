@@ -1,9 +1,8 @@
 package com.tomato.order.order.service;
 
-import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.order.domain.constant.OrderStatusEnum;
 import com.tomato.order.domain.entity.OrderEntity;
-import com.tomato.order.domain.resp.OrderQueryResp;
 import com.tomato.order.order.dao.OrderDao;
 import com.tomato.order.order.manager.OrderManager;
 import org.springframework.stereotype.Service;

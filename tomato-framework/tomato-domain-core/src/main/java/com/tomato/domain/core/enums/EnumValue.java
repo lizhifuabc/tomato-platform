@@ -1,4 +1,4 @@
-package com.tomato.domain.enums;
+package com.tomato.domain.core.enums;
 
 /**
  * 枚举值接口

@@ -8,7 +8,7 @@ import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
 import com.tomato.account.service.AccountWorkService;
 import com.tomato.account.util.SettleDayUtil;
-import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.core.exception.BusinessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

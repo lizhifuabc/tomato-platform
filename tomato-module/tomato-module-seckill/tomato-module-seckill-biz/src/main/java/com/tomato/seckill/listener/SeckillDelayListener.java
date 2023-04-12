@@ -1,7 +1,7 @@
 //package com.tomato.seckill.listener;
 //
 //import com.rabbitmq.client.Channel;
-//import com.tomato.domain.exception.BusinessException;
+//import com.tomato.domain.core.exception.BusinessException;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.amqp.core.Message;
 //import org.springframework.amqp.rabbit.annotation.RabbitListener;

@@ -1,13 +1,13 @@
-package com.tomato.domain.enums;
+package com.tomato.domain.core.enums;
 
 /**
  * 是否枚举
  * 0-否, 1-是
  *
  * @author lizhifu
- * @date 2022/12/2
+ * @since  2022/12/2
  */
-public enum YesNoTypeEnum implements BaseEnum{
+public enum YesNoTypeEnum implements BaseEnum<Integer>{
     /**
      * 1 是
      */

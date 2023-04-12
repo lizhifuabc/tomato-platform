@@ -2,13 +2,12 @@ package com.tomato.notice.manager;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.notice.dao.NoticeRecordDao;
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import com.tomato.notice.domain.req.NoticeCreateReq;
 import com.tomato.web.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 /**

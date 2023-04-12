@@ -10,7 +10,7 @@ import com.tomato.account.manager.AccountHisManager;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.manager.AccountSettleControlManager;
 import com.tomato.account.manager.AccountSettleRecordManager;
-import com.tomato.domain.enums.CommonStatusEnum;
+import com.tomato.domain.core.enums.CommonStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

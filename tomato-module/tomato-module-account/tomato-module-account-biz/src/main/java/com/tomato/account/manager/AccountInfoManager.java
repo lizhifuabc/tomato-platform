@@ -5,7 +5,7 @@ import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountCreateReq;
-import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.web.util.BeanUtil;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.tomato.seckill.service;
 
-import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.seckill.dao.SeckillActivityDao;
 import com.tomato.seckill.dao.SeckillGoodsDao;
 import com.tomato.seckill.dao.SeckillUserDao;

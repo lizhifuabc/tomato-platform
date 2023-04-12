@@ -2,7 +2,7 @@ package com.tomato.captcha.service;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.tomato.captcha.domain.CaptchaResp;
-import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.core.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Base64Utils;
 

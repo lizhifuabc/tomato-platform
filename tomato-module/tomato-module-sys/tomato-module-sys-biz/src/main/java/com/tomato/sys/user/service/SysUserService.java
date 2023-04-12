@@ -1,7 +1,7 @@
 package com.tomato.sys.user.service;
 
 import com.tomato.domain.resp.Resp;
-import com.tomato.domain.resp.code.CommonRespCode;
+import com.tomato.domain.core.constants.CommonRespCode;
 import com.tomato.sys.domain.entity.SysUserEntity;
 import com.tomato.sys.domain.req.SysUserCreateReq;
 import com.tomato.sys.user.dao.SysUserDao;

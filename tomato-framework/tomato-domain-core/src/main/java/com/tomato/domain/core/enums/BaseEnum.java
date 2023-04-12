@@ -1,4 +1,4 @@
-package com.tomato.domain.enums;
+package com.tomato.domain.core.enums;
 
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ import java.util.Objects;
 public interface BaseEnum<T> extends EnumValue<T>, EnumDesc {
     /**
      * 比较参数是否与枚举类的value相同
-     * @param value
+     * @param value 参数
      * @return boolean
      */
     default boolean equalsValue(Object value) {
@@ -19,7 +19,7 @@ public interface BaseEnum<T> extends EnumValue<T>, EnumDesc {
     /**
      * 比较枚举类是否相同
      *
-     * @param baseEnum
+     * @param baseEnum 枚举类
      * @return boolean
      */
     default boolean equals(BaseEnum<T> baseEnum) {

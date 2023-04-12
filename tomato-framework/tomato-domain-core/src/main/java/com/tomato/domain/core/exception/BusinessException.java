@@ -1,6 +1,6 @@
-package com.tomato.domain.exception;
+package com.tomato.domain.core.exception;
 
-import com.tomato.domain.resp.code.RespCode;
+import com.tomato.domain.core.constants.RespCode;
 
 /**
  * 业务逻辑异常,全局异常拦截后统一返回ResponseCodeConst.SYSTEM_ERROR

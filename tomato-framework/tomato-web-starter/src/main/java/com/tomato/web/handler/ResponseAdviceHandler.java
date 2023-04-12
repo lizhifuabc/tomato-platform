@@ -9,7 +9,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import static com.tomato.domain.resp.code.CommonRespCode.INTERNAL_SERVER_ERROR;
+import static com.tomato.domain.core.constants.CommonRespCode.INTERNAL_SERVER_ERROR;
 
 /**
  * Controller 返回的内容在 HttpMessageConverter 进行类型转换之前拦截，进行相应的处理操作后，再将结果返回给客户端

@@ -1,6 +1,6 @@
 package com.tomato.seckill.manager;
 
-import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.seckill.dao.SeckillUserDao;
 import com.tomato.seckill.dao.SeckillUserDetailDao;
 import com.tomato.seckill.domain.bo.UpdateSeckillRemainingBO;

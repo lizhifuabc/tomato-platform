@@ -1,6 +1,6 @@
 package com.tomato.seckill.constant;
 
-import com.tomato.domain.enums.BaseEnum;
+import com.tomato.domain.core.enums.BaseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

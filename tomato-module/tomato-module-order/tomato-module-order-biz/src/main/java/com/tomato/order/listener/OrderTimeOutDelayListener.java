@@ -1,7 +1,7 @@
 package com.tomato.order.listener;
 
 import com.rabbitmq.client.Channel;
-import com.tomato.domain.exception.BusinessException;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.order.domain.constant.OrderStatusEnum;
 import com.tomato.order.domain.constant.RabbitMqConstant;
 import com.tomato.order.order.domain.bo.OrderDelayBO;
