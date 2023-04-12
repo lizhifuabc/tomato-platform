@@ -1,7 +1,8 @@
 package com.tomato.order.controller.controller;
 
 import com.tomato.domain.resp.Resp;
-import com.tomato.order.client.dto.OrderQueryDTO;
+import com.tomato.order.client.dto.OrderQueryByMerchantDTO;
+import com.tomato.order.client.dto.OrderQueryByOrderNoDTO;
 import com.tomato.order.client.dto.OrderQueryResultDTO;
 import com.tomato.order.client.service.OrderClientService;
 import jakarta.validation.Valid;
@@ -24,7 +25,11 @@ public class OrderQueryController {
         this.orderClientService = orderClientService;
     }
     @RequestMapping("/order/query/merchant")
-    public Resp<OrderQueryResultDTO> queryOrderMerchant(@Valid OrderQueryDTO orderQueryDTO) {
-        return Resp.of(orderClientService.queryOrderMerchant(orderQueryDTO));
+    public Resp<OrderQueryResultDTO> queryOrderMerchant(@Valid OrderQueryByMerchantDTO orderQueryByMerchantDTO) {
+        return Resp.of(orderClientService.queryOrderMerchant(orderQueryByMerchantDTO));
+    }
+    @RequestMapping("/order/query/orderNo")
+    public Resp<Void> queryOrderNo(@Valid OrderQueryByOrderNoDTO orderQueryByMerchantDTO) {
+        return Resp.buildSuccess();
     }
 }

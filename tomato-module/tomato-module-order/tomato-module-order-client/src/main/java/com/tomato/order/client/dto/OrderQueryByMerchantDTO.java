@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class OrderQueryDTO extends BaseDTO {
+public class OrderQueryByMerchantDTO extends BaseDTO {
     /**
      * 交易商户订单号
      */

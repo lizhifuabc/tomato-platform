@@ -1,6 +1,6 @@
 package com.tomato.order.facade.impl;
 
-import com.tomato.order.client.dto.OrderQueryDTO;
+import com.tomato.order.client.dto.OrderQueryByMerchantDTO;
 import com.tomato.order.client.dto.OrderQueryResultDTO;
 import com.tomato.order.client.service.OrderClientService;
 import com.tomato.order.domain.domain.OrderQueryResultDomain;
@@ -24,8 +24,8 @@ public class OrderClientServiceImpl implements OrderClientService {
     }
 
     @Override
-    public OrderQueryResultDTO queryOrderMerchant(OrderQueryDTO orderQueryDTO) {
-        OrderQueryResultDomain orderQueryResultDomain = orderQueryService.queryOrderMerchant(orderFacadeAdapter.convertQuery(orderQueryDTO));
+    public OrderQueryResultDTO queryOrderMerchant(OrderQueryByMerchantDTO orderQueryByMerchantDTO) {
+        OrderQueryResultDomain orderQueryResultDomain = orderQueryService.queryOrderMerchant(orderFacadeAdapter.convertQuery(orderQueryByMerchantDTO));
         return orderFacadeAdapter.convertQuery(orderQueryResultDomain);
     }
 }

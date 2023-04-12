@@ -1,6 +1,6 @@
 package com.tomato.order.facade.adapter;
 
-import com.tomato.order.client.dto.OrderQueryDTO;
+import com.tomato.order.client.dto.OrderQueryByMerchantDTO;
 import com.tomato.order.client.dto.OrderQueryResultDTO;
 import com.tomato.order.domain.domain.OrderQueryDomain;
 import com.tomato.order.domain.domain.OrderQueryResultDomain;
@@ -24,10 +24,10 @@ public class OrderFacadeAdapter {
     }
     /**
      * dto -> domain
-     * @param orderQueryDTOn
+     * @param orderQueryByMerchantDTOn
      * @return
      */
-    public OrderQueryDomain convertQuery(OrderQueryDTO orderQueryDTOn) {
+    public OrderQueryDomain convertQuery(OrderQueryByMerchantDTO orderQueryByMerchantDTOn) {
         return null;
     }
 }

@@ -1,6 +1,6 @@
 package com.tomato.order.client.service;
 
-import com.tomato.order.client.dto.OrderQueryDTO;
+import com.tomato.order.client.dto.OrderQueryByMerchantDTO;
 import com.tomato.order.client.dto.OrderQueryResultDTO;
 
 /**
@@ -10,5 +10,5 @@ import com.tomato.order.client.dto.OrderQueryResultDTO;
  * @since 2023/4/7
  */
 public interface OrderClientService {
-    OrderQueryResultDTO queryOrderMerchant(OrderQueryDTO orderQueryDTO);
+    OrderQueryResultDTO queryOrderMerchant(OrderQueryByMerchantDTO orderQueryByMerchantDTO);
 }
