@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.AbstractConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 
 /**
  * @author lizhifu
@@ -14,12 +15,17 @@ public class RabbitTemplateConfig implements InitializingBean {
 
     private final RabbitTemplate rabbitTemplate;
 
-    public RabbitTemplateConfig(RabbitTemplate rabbitTemplate) {
+    private final RabbitProperties rabbitProperties;
+
+    public RabbitTemplateConfig(RabbitTemplate rabbitTemplate, RabbitProperties rabbitProperties) {
         this.rabbitTemplate = rabbitTemplate;
+        this.rabbitProperties = rabbitProperties;
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        logger.info("[RabbitMQ]配置信息: {}", rabbitProperties);
+
         AbstractConnectionFactory connectionFactory = (AbstractConnectionFactory) rabbitTemplate.getConnectionFactory();
         logger.info("[RabbitMQ]连接地址: {}", connectionFactory.getHost());
         logger.info("[RabbitMQ]连接端口: {}", connectionFactory.getPort());
@@ -42,12 +48,12 @@ public class RabbitTemplateConfig implements InitializingBean {
         logger.info("[RabbitMQ]是否为发布确认模式: {}", connectionFactory.isPublisherConfirms());
 
 
-        logger.info("RabbitTemplate已初始化，连接工厂为: {}", connectionFactory);
-        logger.info("RabbitTemplate是否使用发布者连接进行关联: {}", rabbitTemplate.isUsePublisherConnection() ? "是" : "否");
-        logger.info("RabbitTemplate的消息转换器为: {}", rabbitTemplate.getMessageConverter());
-        logger.info("RabbitTemplate的接收后处理器为: {}", rabbitTemplate.getAfterReceivePostProcessors());
-        logger.info("RabbitTemplate是否开启事务: {}", rabbitTemplate.isChannelTransacted() ? "是" : "否");
-        logger.info("RabbitTemplate是否使用发布者连接进行关联: {}", rabbitTemplate.isUsePublisherConnection() ? "是" : "否");
-        logger.info("RabbitTemplate的接收后处理器为: {}", rabbitTemplate.getAfterReceivePostProcessors());
+        logger.info("[RabbitMQ]RabbitTemplate已初始化，连接工厂为: {}", connectionFactory);
+        logger.info("[RabbitMQ]RabbitTemplate是否使用发布者连接进行关联: {}", rabbitTemplate.isUsePublisherConnection() ? "是" : "否");
+        logger.info("[RabbitMQ]RabbitTemplate的消息转换器为: {}", rabbitTemplate.getMessageConverter());
+        logger.info("[RabbitMQ]RabbitTemplate的接收后处理器为: {}", rabbitTemplate.getAfterReceivePostProcessors());
+        logger.info("[RabbitMQ]RabbitTemplate是否开启事务: {}", rabbitTemplate.isChannelTransacted() ? "是" : "否");
+        logger.info("[RabbitMQ]RabbitTemplate是否使用发布者连接进行关联: {}", rabbitTemplate.isUsePublisherConnection() ? "是" : "否");
+        logger.info("[RabbitMQ]RabbitTemplate的接收后处理器为: {}", rabbitTemplate.getAfterReceivePostProcessors());
     }
 }

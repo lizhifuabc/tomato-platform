@@ -11,6 +11,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -57,7 +58,7 @@ public class RabbitConfig{
     }
 
     @Bean
-    public RabbitTemplateConfig rabbitThreadPoolMonitor(RabbitTemplate rabbitTemplate){
-        return new RabbitTemplateConfig(rabbitTemplate);
+    public RabbitTemplateConfig rabbitThreadPoolMonitor(RabbitTemplate rabbitTemplate, RabbitProperties rabbitProperties){
+        return new RabbitTemplateConfig(rabbitTemplate, rabbitProperties);
     }
 }
