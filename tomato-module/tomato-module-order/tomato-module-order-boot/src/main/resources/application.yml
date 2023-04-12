@@ -1,0 +1,23 @@
+# 端口号
+server:
+  port: 9998
+
+spring:
+  application:
+    # 应用名称，用于注册到注册中心，pom.xml中的artifactId
+    name: @artifactId@
+  cloud:
+    nacos:
+      username: @nacos.username@
+      password: @nacos.password@
+      discovery:
+        # 注册中心地址,dns解析 127.0.0.1  tomato-nacos
+        server-addr: ${NACOS_HOST:tomato-nacos}:${NACOS_PORT:8848}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+  config:
+    import:
+      # 从nacos中获取配置
+      - optional:nacos:application-@profiles.active@.yml
+      # 从nacos中获取配置
+      - optional:nacos:${spring.application.name}-@profiles.active@.yml

@@ -1,0 +1,28 @@
+# spring配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tomato-order?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: tomato
+    password: tomato
+  data:
+    redis:
+      host: ${REDIS_HOST:tomato-redis}
+# MyBatis配置
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.tomato.order.infrastructure
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath:mapper/*Mapper.xml
+  configuration:
+    # 开启驼峰命名转换
+    mapUnderscoreToCamelCase: true
+    # 设置日志实现类
+    logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 加载全局的配置文件
+  # configLocation: classpath:mybatis/mybatis-config.xml
+
+# 基础配置
+tomato:
+  web:
+    controller-point-enable=true: true
