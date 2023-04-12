@@ -15,6 +15,7 @@
         <module>tomato-module-pay-boot</module>
         <module>tomato-module-pay-application</module>
         <module>tomato-module-pay-infrastructure</module>
+        <module>tomato-module-pay-domain</module>
     </modules>
 
 </project>

@@ -2,6 +2,7 @@ package com.tomato.order.domain.entity;
 
 import com.tomato.domain.core.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
  * @author lizhifu
  * @date 2022/12/2
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class OrderEntity extends BaseEntity {
     /**

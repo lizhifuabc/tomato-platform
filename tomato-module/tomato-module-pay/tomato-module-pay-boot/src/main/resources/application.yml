@@ -21,3 +21,10 @@ spring:
       - optional:nacos:application-@profiles.active@.yml
       # 从nacos中获取配置
       - optional:nacos:${spring.application.name}-@profiles.active@.yml
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+

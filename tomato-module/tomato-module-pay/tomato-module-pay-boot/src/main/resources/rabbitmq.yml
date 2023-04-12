@@ -1,0 +1,19 @@
+spring:
+  rabbitmq:
+    addresses: # RabbitMQ 地址列表，用逗号隔开，格式为 host:port，可指定多个，用逗号隔开
+    username: # 连接 RabbitMQ 的用户名
+    password: # 连接 RabbitMQ 的密码
+    virtual-host: # 连接 RabbitMQ 的虚拟主机名称，默认为 /
+    connection-timeout: # 连接 RabbitMQ 的超时时间，默认为 60000 毫秒
+    requested-heartbeat: # 客户端向 RabbitMQ 发送心跳请求的时间间隔，单位为秒，0 表示禁用心跳，默认为 60 秒
+    connection-timeout: # 连接 RabbitMQ 的超时时间，单位为毫秒，默认为 60000 毫秒
+    requested-channel-max: # 客户端请求创建的最大信道数量，默认为 2047
+    requested-frame-max: # 客户端请求的最大帧大小，单位为字节，默认为 0（表示不限制）
+    automatic-recovery-enabled: # 是否启用自动重连机制，默认为 true
+    network-recovery-interval: # 自动重连的间隔时间，单位为毫秒，默认为 5000 毫秒
+    topology-recovery-enabled: # 是否启用拓扑恢复，默认为 true
+    publisher-confirms: # 是否启用发布确认，默认为 false
+    publisher-returns: # 是否启用发送失败后的返回机制，默认为 false
+    listener:
+      simple:
+        concurrency: # 消息监听器的并发数量，默认为 1

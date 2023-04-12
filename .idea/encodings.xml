@@ -173,6 +173,8 @@
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay/tomato-module-pay-application/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay/tomato-module-pay-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay/tomato-module-pay-boot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay/tomato-module-pay-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay/tomato-module-pay-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay/tomato-module-pay-infrastructure/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay/tomato-module-pay-infrastructure/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay/tomato-pay-interface/src/main/java" charset="UTF-8" />
