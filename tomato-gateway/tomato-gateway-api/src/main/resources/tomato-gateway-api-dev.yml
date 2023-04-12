@@ -1,5 +1,19 @@
-# spring配置
 spring:
-  data:
-    redis:
-      host: ${REDIS_HOST:tomato-redis}
+  redis:
+    host: localhost
+    port: 6379
+    password:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      routes:
+        # 代码生成
+        - id: tomato-module-order-boot
+          uri: lb://tomato-module-order-boot
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix=1
