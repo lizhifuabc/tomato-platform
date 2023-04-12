@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 8090
 
 logging:
   level:
@@ -7,3 +7,18 @@ logging:
     org.springframework.web: INFO
     org.springframework.security: INFO
     org.springframework.security.oauth2: INFO
+#    org.springframework.boot.autoconfigure: DEBUG
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          client-id: client
+          client-secret: secret
+          # 令牌自省端点，用于验证令牌是否有效
+          introspection-uri: http://localhost:9000/oauth2/introspect
+        jwt:
+          issuer-uri: http://localhost:9000
+          # 配置公钥地址，利用公钥鉴权
+          jwk-set-uri: http://localhost:9000/oauth2/jwks

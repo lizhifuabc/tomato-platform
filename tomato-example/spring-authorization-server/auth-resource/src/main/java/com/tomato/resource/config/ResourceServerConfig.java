@@ -10,19 +10,22 @@ import org.springframework.security.web.SecurityFilterChain;
  * 资源服务器配置
  * @author lizhifu
  */
-@EnableWebSecurity
-@Configuration(proxyBeanMethods = false)
+//@EnableWebSecurity
+//@Configuration(proxyBeanMethods = false)
 public class ResourceServerConfig {
 
+	// @formatter:off
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-			.securityMatcher("/hello/**")
+				.securityMatcher("/messages/**")
 				.authorizeHttpRequests()
-					.requestMatchers("/hello/**").hasAuthority("SCOPE_message.read")
-					.and()
-			.oauth2ResourceServer()
+				.requestMatchers("/messages/**").hasAuthority("SCOPE_message.read")
+				.and()
+				.oauth2ResourceServer()
 				.jwt();
 		return http.build();
 	}
+	// @formatter:on
+
 }

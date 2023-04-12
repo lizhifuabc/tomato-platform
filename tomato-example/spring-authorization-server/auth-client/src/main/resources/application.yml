@@ -5,9 +5,9 @@ logging:
   level:
     root: INFO
     org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
-#    org.springframework.boot.autoconfigure: DEBUG
+    org.springframework.security: trace
+    org.springframework.security.oauth2: trace
+    org.springframework.boot.autoconfigure: trace
 
 spring:
   thymeleaf:
@@ -41,6 +41,7 @@ spring:
             client-name: messaging-client-client-credentials
         provider:
           spring:
+            # 授权服务器的地址,颁发者uri
             issuer-uri: http://localhost:9000
 
 messages:
