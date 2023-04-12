@@ -1,4 +1,6 @@
-package com.tomato.domain.entity;
+package com.tomato.domain.core.entity;
+
+import com.tomato.domain.core.Entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -11,9 +13,9 @@ import java.time.LocalDateTime;
  * update_time 字段 datetime 类型，默认值 current_timestamp, on update current_timestamp
  *
  * @author lizhifu
- * @date 2022/11/24
+ * @since  2022/11/24
  */
-public abstract class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable, Entity {
     /**
      * 主键
      */
