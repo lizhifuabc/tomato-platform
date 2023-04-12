@@ -1,6 +1,7 @@
 package com.tomato.pay.domain.event;
 
 import com.tomato.domain.core.DomainEvent;
+import lombok.Data;
 
 /**
  * 支付结果事件
@@ -8,6 +9,7 @@ import com.tomato.domain.core.DomainEvent;
  * @author lizhifu
  * @since 2023/4/12
  */
+@Data
 public class PayResultEvent implements DomainEvent {
     /**
      * 支付状态
