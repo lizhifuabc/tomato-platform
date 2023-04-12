@@ -31,6 +31,8 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-crypto/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/tomato-application-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/tomato-application-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/tomato-domain-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/tomato-domain-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-domain/src/main/java" charset="UTF-8" />
