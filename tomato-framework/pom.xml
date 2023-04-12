@@ -32,6 +32,6 @@
         <module>tomato-redis-base-starter</module>
         <module>tomato-springdoc-starter</module>
         <module>tomato-idempotent-starter</module>
-        <module>tomato-domain-core</module>
+        <module>tomato-ddd</module>
     </modules>
 </project>
