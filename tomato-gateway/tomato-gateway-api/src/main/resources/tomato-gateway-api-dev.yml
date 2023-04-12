@@ -1,0 +1,5 @@
+# spring配置
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOST:tomato-redis}

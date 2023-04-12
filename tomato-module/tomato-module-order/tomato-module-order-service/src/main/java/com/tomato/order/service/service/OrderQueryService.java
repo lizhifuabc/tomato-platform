@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  *  订单查询
  *
  * @author lizhifu
- * @date 2022/12/1
+ * @since  2022/12/1
  */
 @Service
 public class OrderQueryService {
@@ -24,8 +24,8 @@ public class OrderQueryService {
 
     /**
      * 查询订单 TODO 返回 optional
-     * @param orderQueryDomain
-     * @return
+     * @param orderQueryDomain 订单查询参数
+     * @return 订单信息
      */
     public OrderQueryResultDomain queryOrderMerchant(OrderQueryDomain orderQueryDomain){
         OrderInfoEntity orderInfoEntity = orderInfoEntityMapper.selectByMerchant(orderQueryDomain.getMerchantNo(), orderQueryDomain.getMerchantOrderNo());

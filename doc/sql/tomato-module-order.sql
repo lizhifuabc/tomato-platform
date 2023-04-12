@@ -1,38 +1,3 @@
-# t_order_sharding_group
-drop table if exists `t_order_sharding_group`;
-create table`t_order_sharding_group` (
-   `id`         bigint(20)      unsigned not null auto_increment,
-   `name`       varchar(36)     not null comment '名称',
-   `start_id`   bigint(20)      unsigned not null comment '开始ID',
-   `end_id`     bigint(20)      unsigned not null comment '结束ID',
-   primary key (`id`) using btree
-) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = 'sharding-group表';
-
-drop table if exists `t_order_shard`;
-create table`t_order_shard` (
-    `id`         bigint(20)      unsigned not null auto_increment,
-    `name`       varchar(36)     not null comment '名称',
-    `group_id`   bigint(20)      unsigned not null comment 'group_id',
-    `hash_value`       varchar(36)     not null comment 'hash值',
-    primary key (`id`) using btree
-) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = 'sharding-group表';
-
-
-# 商户维度表：字段少
-# 1 解决商户编号+商户订单号查询问题
-# 2 防重问题
-# 分库分表策略：
-drop table if exists `t_order_merchant`;
-create table`t_order_merchant` (
-  `id`                bigint(20) unsigned not null auto_increment,
-  `merchant_no`       varchar(16)     not null comment '商户编号',
-  `merchant_order_no` varchar(36)     not null comment '商户订单号',
-  `shard_sign`        varchar(16)     not null comment '库号_表号',
-  `create_time`       datetime not null default current_timestamp comment '创建时间',
-  primary key (`id`) using btree,
-  unique key uk_merchant_no_merchant_order_no (`merchant_no`,`merchant_order_no`) using btree
-) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = '商户维度表';
-
 # 订单表 bigint(20),数据库显示的时候只能显示20位数字
 drop table if exists `t_order_info`;
 create table`t_order_info` (
