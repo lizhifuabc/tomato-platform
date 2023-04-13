@@ -32,6 +32,7 @@ public class PayResultProduct {
             if (confirm.isAck()) {
                 log.info("支付结果通知消息发送成功，Keys：{}，消息内容：{}", correlationData.getId(), payResultEvent);
             } else {
+                // TODO 重试或者记录日志，报警，人工处理，或者其他处理方式
                 log.error("支付结果通知消息发送失败，Keys：{}，消息内容：{}", correlationData.getId(), payResultEvent);
             }
         });
