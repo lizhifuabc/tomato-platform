@@ -2,7 +2,7 @@ package com.tomato.rabbitmq.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tomato.jackson.config.JacksonConfiguration;
-import com.tomato.rabbitmq.monitor.RabbitTemplateConfig;
+import com.tomato.rabbitmq.monitor.RabbitInfoLog;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +58,7 @@ public class RabbitConfig{
     }
 
     @Bean
-    public RabbitTemplateConfig rabbitThreadPoolMonitor(RabbitTemplate rabbitTemplate, RabbitProperties rabbitProperties){
-        return new RabbitTemplateConfig(rabbitTemplate, rabbitProperties);
+    public RabbitInfoLog rabbitThreadPoolMonitor(RabbitTemplate rabbitTemplate, RabbitProperties rabbitProperties){
+        return new RabbitInfoLog(rabbitTemplate, rabbitProperties);
     }
 }
