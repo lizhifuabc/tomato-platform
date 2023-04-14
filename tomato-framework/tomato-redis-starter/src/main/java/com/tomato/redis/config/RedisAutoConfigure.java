@@ -1,7 +1,5 @@
 package com.tomato.redis.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tomato.jackson.module.JavaTimeModule;
 import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;
 import com.tomato.redis.ratelimit.RedisRateLimiter;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,11 +7,9 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
-import org.springframework.data.redis.serializer.*;
 import org.springframework.scripting.support.ResourceScriptSource;
 
 import java.util.List;
