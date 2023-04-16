@@ -32,3 +32,9 @@ CREATE DATABASE IF NOT EXISTS `tomato-order` DEFAULT CHARACTER SET utf8mb4 DEFAU
 -- 支付库
 -- ----------------------------
 CREATE DATABASE IF NOT EXISTS `tomato-pay` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
+
+
+-- ----------------------------
+-- 通知库
+-- ----------------------------
+CREATE DATABASE IF NOT EXISTS `tomato_notice` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;

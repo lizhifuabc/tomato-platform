@@ -18,7 +18,7 @@ import java.util.Map;
  * @since 2022/12/20
  */
 @Configuration
-public class NoticeDelayConfig {
+public class NoticeMqDelayConfig {
     /**
      * RabbitMQ插件 rabbitmq_delayed_message_exchange
      * <a href="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange">延时插件</a>

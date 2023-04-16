@@ -1,5 +1,3 @@
-drop schema if exists `tomato_notice`;
-create schema `tomato_notice`;
 use `tomato_notice`;
 # 通知记录表
 DROP TABLE IF EXISTS `t_notice_record`;

@@ -1,5 +1,6 @@
 package com.tomato.web.config;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,10 @@ import org.springframework.web.client.RestTemplate;
 @AutoConfiguration
 @Slf4j
 public class RestTemplateConfig {
+    @PostConstruct
+    public void postConstruct() {
+        log.info("tomato-web-starter RestTemplateConfig Auto Configure.");
+    }
     /**
      * 默认使用JDK 自带的HttpURLConnection作为底层实现
      *

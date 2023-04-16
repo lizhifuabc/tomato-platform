@@ -31,23 +31,4 @@ public class RabbitMQConfig {
     public FanoutExchange payExchange() {
         return new FanoutExchange(PayMqConstant.PAY_RESULT_EXCHANGE);
     }
-
-    @Bean
-    public Queue orderQueue() {
-        return new Queue(PayMqConstant.PAY_RESULT_ORDER_QUEUE);
-    }
-
-    @Bean
-    public Queue noticeQueue() {
-        return new Queue(PayMqConstant.PAY_RESULT_NOTICE_QUEUE);
-    }
-
-    @Bean
-    public Binding orderBinding() {
-        return BindingBuilder.bind(orderQueue()).to(payExchange());
-    }
-    @Bean
-    public Binding noticeBinding() {
-        return BindingBuilder.bind(noticeQueue()).to(payExchange());
-    }
 }
