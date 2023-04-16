@@ -26,5 +26,6 @@
         <module>tomato-module-gen</module>
         <module>tomato-module-demo</module>
         <module>tomato-module-pay</module>
+        <module>tomato-module-agent</module>
     </modules>
 </project>
