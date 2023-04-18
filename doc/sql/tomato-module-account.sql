@@ -1,27 +1,49 @@
-# 账户信息
+# 账户信息 TODO 手续费配置（例如提款需要手续费，结算不需要）
 drop table if exists `t_account_info`;
 create table `t_account_info` (
-  `id`                      bigint(20)      not null auto_increment             comment '自增主键',
-  `account_no`              varchar(36)     not null                            comment '账户编号',
-  `account_his_serial`      bigint(20)      not null default 0                  comment '账户历史流水顺序号',
-  `account_manage_serial`   bigint(20)      not null default 0                  comment '账户管理顺序号',
-  `account_type`            varchar(36)     not null                            comment '账户类型',
-  `merchant_no`             varchar(50)     not null                            comment '商户编号',
-  `balance`                 decimal(16,2)   not null default 0                  comment '余额',
-  `out_reserve_balance`     decimal(16,2)   not null default 0                  comment '风险预存期外余额',
-  `out_reserve_date`        date            not null default (current_date)       comment '风险预存期外余额更新日期',
-  `yesterday_balance`       decimal(16,2)   not null default 0                  comment '上日账户余额',
-  `frozen_balance`          decimal(16,2)   not null default 0                  comment '冻结金额',
-  `last_trad_time`          datetime                                            comment '上一次交易日期',
-  `account_status`          varchar(36)     not null                            comment '账户状态',
+  `id`                      bigint(20)      not null auto_increment                 comment '自增主键',
+  `account_no`              varchar(36)     not null                                comment '账户编号',
+  `account_his_serial`      bigint(20)      not null default 0                      comment '账户历史流水顺序号',
+  `account_manage_serial`   bigint(20)      not null default 0                      comment '账户管理顺序号',
+  `account_type`            varchar(36)     not null                                comment '账户类型',
+  `merchant_no`             varchar(50)     not null                                comment '商户编号',
+  `balance`                 decimal(16,2)   not null default 0                      comment '余额',
+  `out_reserve_balance`     decimal(16,2)   not null default 0                      comment '风险预存期外余额',
+  `out_reserve_date`        date            not null default (current_date)         comment '风险预存期外余额更新日期',
+  `yesterday_balance`       decimal(16,2)   not null default 0                      comment '上日账户余额',
+  `frozen_balance`          decimal(16,2)   not null default 0                      comment '冻结金额',
+  `last_trad_time`          datetime                                                comment '上一次交易日期',
+  `account_status`          varchar(36)     not null default 'ACCOUNT_AVAILABLE'    comment '账户状态',
 
-  `version`                 int             not null default 0                  comment '乐观锁',
+  `version`                 int             not null default 0                      comment '乐观锁',
   `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
   `create_time`             datetime        not null default current_timestamp comment '创建时间',
   primary key (`id`),
   unique key `uniq_merchant_no_account_type` (`merchant_no`,`account_type`),
   unique key `uniq_account_no` (`account_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户信息';
+
+insert into `t_account_info` (account_no, account_type, merchant_no)
+values ('10000', 'SETTLEMENT', '1000001');
+
+# 账户手续费配置
+drop table if exists `t_account_rate`;
+create table `t_account_rate` (
+    `id`                      bigint(20)      not null auto_increment             comment '自增主键',
+    `account_no`              varchar(36)     not null                            comment '账户编号',
+    `merchant_no`             varchar(50)     not null                            comment '商户编号',
+    `rate`                    decimal(16,2)   not null                            comment '费率',
+    `rate_type`               varchar(36)     not null                            comment '费率类型',
+
+    `version`                 int             not null default 0                  comment '乐观锁',
+    `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
+    `create_time`             datetime        not null default current_timestamp comment '创建时间',
+    primary key (`id`),
+    unique key `uniq_account_no` (`account_no`,`rate_type`)
+) engine=innodb auto_increment=1 default charset=utf8 comment '账户手续费配置';
+
+insert into `t_account_rate` (account_no, merchant_no, rate, rate_type)
+values ('10000', '1000001', 0.01, 'TRAD');
 
 # 异步入账账户
 drop table if exists `t_account_async`;
@@ -52,29 +74,32 @@ create table `t_account_manage_his`
     primary key (`id`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户管理历史表';
 
-# 账户历史 TODO 唯一性索引 第三方流水号 商户订单号 设计方式
+# 账户历史
 DROP TABLE IF EXISTS `t_account_his`;
 CREATE TABLE `t_account_his` (
     `id`                         bigint(20)      not null auto_increment             comment '自增主键',
     `account_his_serial`         bigint(20)                                          comment '账户历史流水顺序号',
     `account_no`                 varchar(36)     not null                            comment '账户编号',
     `merchant_no`                varchar(50)     not null                            comment '商户编号',
-    `merchant_order_no`          varchar(36)                                         comment '商户订单号(冗余)',
-    `third_no`                   varchar(50)     not null                            comment '第三方流水号',
-    `before_balance`             decimal(16,2)                                       comment '发生前余额',
-    `after_balance`              decimal(16,2)                                       comment '发生后余额',
+    `merchant_order_no`          varchar(36)     not null                            comment '商户订单号(同一个商户唯一)',
+    `sys_no`                     varchar(50)     not null                            comment '系统流水号（唯一）',
+    `before_balance`             decimal(16,2)   not null                            comment '发生前余额',
+    `after_balance`              decimal(16,2)   not null                            comment '发生后余额',
     `amount`                     decimal(16,2)   not null                            comment '发生金额',
-    `amount_free`                decimal(16,2)   not null default 0                  comment '手续费',
+    `amount_free`                decimal(16,2)   not null                            comment '手续费',
+    `amount_rate`                decimal(16,2)   not null                            comment '费率快照',
     `account_his_type`           varchar(36)     not null                            comment '账户历史类型',
-    `complete_time`              datetime                                            comment '入账完成时间',
-    `account_status`             varchar(36)     not null default 'SUCCESS'          comment '入账状态',
+    `complete_time`              datetime                                            comment '完成时间',
+    `account_his_status`         varchar(36)     not null                            comment '账户历史状态',
+    `remark`                     varchar(256)    default null                        comment '备注',
 
     `version`                   int default 0 not null comment '乐观锁',
     `update_time`               datetime not null default current_timestamp on update current_timestamp comment '更新时间',
     `create_time`               datetime not null default current_timestamp comment '创建时间',
     primary key (`id`),
     index (`create_time`),
-    unique key `uniq_account_third_no` (`merchant_no`,`third_no`)
+    unique key `uniq_account_merchant` (`merchant_no`,`merchant_order_no`),
+    unique key `uniq_account_third_no` (`sys_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '账户历史';
 
 # 账户结算规则

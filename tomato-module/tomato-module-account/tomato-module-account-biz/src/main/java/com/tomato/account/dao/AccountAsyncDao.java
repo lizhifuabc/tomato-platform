@@ -15,7 +15,7 @@ import java.util.List;
 public interface AccountAsyncDao {
     /**
      * 查询
-     * @return
+     * @return List<AccountAsyncEntity> 账户信息
      */
-    public List<AccountAsyncEntity> select();
+    List<AccountAsyncEntity> select();
 }

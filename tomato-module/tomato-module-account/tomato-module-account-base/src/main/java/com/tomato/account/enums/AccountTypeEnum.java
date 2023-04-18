@@ -12,7 +12,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum AccountTypeEnum implements BaseEnum {
+public enum AccountTypeEnum implements BaseEnum<String> {
     /**
      * 结算
      */

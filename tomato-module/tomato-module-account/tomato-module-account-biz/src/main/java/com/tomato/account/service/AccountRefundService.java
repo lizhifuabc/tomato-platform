@@ -46,7 +46,7 @@ public class AccountRefundService {
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void settleRefund(AccountRefundBO accountRefundBO){
         log.info("账户发起退款start:[{}]", accountRefundBO);
-        AccountHisEntity accountHisEntity = accountHisDao.selectByThirdNo(accountRefundBO.getMerchantNo(), accountRefundBO.getOrgThirdNo());
+        AccountHisEntity accountHisEntity = accountHisDao.selectBySysNo(accountRefundBO.getMerchantNo(), accountRefundBO.getOrgThirdNo());
         // 原账户历史不存在，此时存在风险
         if (Objects.isNull(accountHisEntity)){
             log.error("原账户历史不存在[{}]",accountRefundBO);
@@ -69,10 +69,9 @@ public class AccountRefundService {
         // 创建账户历史
         AccountHisBO accountHisBO = new AccountHisBO();
         accountHisBO.setAccountNo(accountInfoEntity.getAccountNo());
-        accountHisBO.setThirdNo(AccountHisTypeEnum.REFUND.getValue() + ":" + accountRefundBO.getOrgThirdNo());
+        accountHisBO.setSysNo(AccountHisTypeEnum.REFUND.getValue() + ":" + accountRefundBO.getOrgThirdNo());
         accountHisBO.setAccountHisType(AccountHisTypeEnum.REFUND.getValue());
         accountHisBO.setAmount(accountBalanceBO.getAmount());
-        accountHisBO.setAmountFree(BigDecimal.ZERO);
         accountHisManager.insert(accountInfoEntity,accountHisBO);
 
         // 更改结算记录为失败 TODO 是否更改结算控制

@@ -32,7 +32,7 @@ public @interface CheckEnum {
     /**
      * 枚举类对象 必须实现BaseEnum接口
      *
-     * @return
+     * @return Class
      */
     Class<? extends BaseEnum> value();
 

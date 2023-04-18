@@ -16,7 +16,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class AccountAsyncInitService implements InitializingBean {
-    private static final ConcurrentHashMap<String,AccountAsyncEntity> map = new ConcurrentHashMap();
+    private static final ConcurrentHashMap<String,AccountAsyncEntity> MAP = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String,AccountAsyncEntity> MERCHANT_MAP = new ConcurrentHashMap<>();
     private final AccountAsyncDao accountAsyncDao;
 
     public AccountAsyncInitService(AccountAsyncDao accountAsyncDao) {
@@ -25,16 +26,21 @@ public class AccountAsyncInitService implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        // TODO 从数据库加载，动态更新
         List<AccountAsyncEntity> select = accountAsyncDao.select();
         select.forEach(accountAsyncEntity->{
-            map.putIfAbsent(accountAsyncEntity.getAccountNo(),accountAsyncEntity);
+            MAP.putIfAbsent(accountAsyncEntity.getAccountNo(),accountAsyncEntity);
+            MERCHANT_MAP.putIfAbsent(accountAsyncEntity.getMerchantNo(),accountAsyncEntity);
         });
     }
 
     public List<String> accountList(){
-        return map.keySet().stream().toList();
+        return MAP.keySet().stream().toList();
     }
     public boolean check(String accountNo){
-        return map.containsKey(accountNo);
+        return MAP.containsKey(accountNo);
+    }
+    public boolean checkMerchantNo(String merchantNo){
+        return MERCHANT_MAP.containsKey(merchantNo);
     }
 }

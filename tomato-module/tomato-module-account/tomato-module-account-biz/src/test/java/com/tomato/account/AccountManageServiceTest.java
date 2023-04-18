@@ -1,6 +1,6 @@
 package com.tomato.account;
 
-import com.tomato.account.enums.AccountStatusEnum;
+import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.domain.req.AccountCancelledReq;
 import com.tomato.account.domain.req.AccountCreateReq;
@@ -29,14 +29,10 @@ public class AccountManageServiceTest {
         accountManageService.createAccount(accountCreateReq);
 
         AccountFreezeReq accountFreezeReq = new AccountFreezeReq();
-        accountFreezeReq.setAccountType(accountCreateReq.getAccountType());
-        accountFreezeReq.setMerchantNo(accountCreateReq.getMerchantNo());
-        accountFreezeReq.setAccountStatus(AccountStatusEnum.ACCOUNT_FROZEN.getValue());
+        accountFreezeReq.setAccountStatus(AccountStatusTypeEnum.ACCOUNT_FROZEN.getValue());
         accountManageService.freezeOrUnfreeze(accountFreezeReq);
 
         AccountCancelledReq accountCancelledReq = new AccountCancelledReq();
-        accountCancelledReq.setAccountType(accountCreateReq.getAccountType());
-        accountCancelledReq.setMerchantNo(accountCreateReq.getMerchantNo());
         accountManageService.cancelledAccount(accountCancelledReq);
     }
 }

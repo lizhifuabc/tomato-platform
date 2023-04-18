@@ -1,6 +1,6 @@
 package com.tomato.account.manager;
 
-import com.tomato.account.enums.AccountStatusEnum;
+import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.entity.AccountInfoEntity;
@@ -40,7 +40,7 @@ public class AccountInfoManager {
         AccountInfoEntity accountInfoEntity = BeanUtil.copy(accountCreateReq, AccountInfoEntity.class);
         accountInfoEntity.setAccountNo(accountNoManager.nextStringValue(accountCreateReq.getMerchantNo()));
         // 默认活动中
-        accountInfoEntity.setAccountStatus(AccountStatusEnum.ACCOUNT_AVAILABLE.getValue());
+        accountInfoEntity.setAccountStatus(AccountStatusTypeEnum.ACCOUNT_AVAILABLE.getValue());
         accountInfoDao.insert(accountInfoEntity);
         return accountInfoEntity;
     }

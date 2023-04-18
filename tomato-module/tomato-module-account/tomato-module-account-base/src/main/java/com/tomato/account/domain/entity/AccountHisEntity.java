@@ -2,6 +2,7 @@ package com.tomato.account.domain.entity;
 
 import com.tomato.domain.core.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -10,18 +11,11 @@ import java.time.LocalDateTime;
  * 账户历史表
  *
  * @author lizhifu
- * @date 2022/6/7
+ * @since  2022/6/7
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class AccountHisEntity extends BaseEntity {
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
-    /**
-     * 商户订单号
-     */
-    private String merchantOrderNo;
     /**
      * 账户历史流水顺序号
      */
@@ -31,6 +25,21 @@ public class AccountHisEntity extends BaseEntity {
      * 账户编号
      */
     private String accountNo;
+
+    /**
+     * 商户编号
+     */
+    private String merchantNo;
+
+    /**
+     * 商户订单号(同一个商户唯一)
+     */
+    private String merchantOrderNo;
+
+    /**
+     * 系统流水号（唯一）
+     */
+    private String sysNo;
 
     /**
      * 发生前余额
@@ -46,28 +55,34 @@ public class AccountHisEntity extends BaseEntity {
      * 发生金额
      */
     private BigDecimal amount;
+
     /**
      * 手续费
      */
     private BigDecimal amountFree;
 
     /**
-     * 第三方流水号
+     * 费率快照
      */
-    private String thirdNo;
+    private BigDecimal amountRate;
 
     /**
-     * 类型
+     * 账户历史类型
      */
     private String accountHisType;
 
     /**
-     * 入账完成时间
+     * 完成时间
      */
     private LocalDateTime completeTime;
 
     /**
-     * 入账状态
+     * 账户历史状态
      */
-    private String accountStatus;
+    private String accountHisStatus;
+
+    /**
+     * 备注
+     */
+    private String remark;
 }

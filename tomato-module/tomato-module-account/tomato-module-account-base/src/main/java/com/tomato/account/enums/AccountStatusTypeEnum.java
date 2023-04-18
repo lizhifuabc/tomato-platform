@@ -10,7 +10,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum AccountStatusEnum implements BaseEnum {
+public enum AccountStatusTypeEnum implements BaseEnum<String> {
 
 	/**
 	 * 活动中

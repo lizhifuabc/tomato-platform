@@ -1,7 +1,7 @@
 package com.tomato.account.service;
 
 import com.tomato.account.constant.AccountRespCode;
-import com.tomato.account.enums.AccountStatusEnum;
+import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.domain.core.exception.BusinessException;
 
@@ -52,7 +52,7 @@ public class AccountCheckService {
      * 是否可以收款
      */
     public static void checkAdd(String accountStatus){
-        if (accountStatus.equals(AccountStatusEnum.ACCOUNT_AVAILABLE.getValue()) || accountStatus.equals(AccountStatusEnum.ACCOUNT_FREEZE_DEBIT.getValue())){
+        if (accountStatus.equals(AccountStatusTypeEnum.ACCOUNT_AVAILABLE.getValue()) || accountStatus.equals(AccountStatusTypeEnum.ACCOUNT_FREEZE_DEBIT.getValue())){
              return;
         }else {
             throw new BusinessException(AccountRespCode.ACCOUNT_STATUS_NOT_ACTIVE);
@@ -62,7 +62,7 @@ public class AccountCheckService {
      * 是否可以收款
      */
     public static void checkDeduct(String accountStatus){
-        if (accountStatus.equals(AccountStatusEnum.ACCOUNT_AVAILABLE.getValue()) || accountStatus.equals(AccountStatusEnum.ACCOUNT_FREEZE_CREDIT.getValue())){
+        if (accountStatus.equals(AccountStatusTypeEnum.ACCOUNT_AVAILABLE.getValue()) || accountStatus.equals(AccountStatusTypeEnum.ACCOUNT_FREEZE_CREDIT.getValue())){
             return;
         }else {
             throw new BusinessException(AccountRespCode.ACCOUNT_STATUS_NOT_ACTIVE);

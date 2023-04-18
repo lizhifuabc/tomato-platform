@@ -17,28 +17,12 @@ import java.time.LocalDateTime;
 @Mapper
 public interface AccountHisDao {
     /**
-     * 查询账户历史表  分库分表，需要增加 accountNo,或者定制 accountHisId 也作为分表字段
-     * @param id id
-     * @return 账户历史
-     */
-    AccountHisEntity selectById(@Param("id") Long id, @Param("accountNo") String accountNo);
-
-    /**
      * 查询账户历史表
      * @param merchantNo 商编
-     * @param thirdNo 第三方流水号
+     * @param sysNo 系统流水号（唯一）
      * @return 账户历史
      */
-    AccountHisEntity selectByThirdNo(@Param("merchantNo") String merchantNo,@Param("thirdNo") String thirdNo);
-
-    /**
-     * 查询账户历史
-     * @param accountNo
-     * @param thirdNo
-     * @return
-     */
-    @Select("select count(*) from account_his where account_no = #{accountNo} and third_no = #{thirdNo} limit 1")
-    boolean checkThirdNo(@Param("accountNo") String accountNo,@Param("thirdNo") String thirdNo);
+    AccountHisEntity selectBySysNo(@Param("merchantNo") String merchantNo, @Param("sysNo") String sysNo);
     /**
      * 新增账户历史表
      *

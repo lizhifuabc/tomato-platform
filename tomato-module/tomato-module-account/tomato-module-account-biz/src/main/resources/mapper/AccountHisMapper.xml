@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.account.dao.AccountHisDao">
-
-    <select id="selectById" parameterType="map" resultType="AccountHisEntity">
-        select * from t_account_his where id = #{id} and account_no = #{accountNo}
-    </select>
-
     <insert id="insert" parameterType="AccountHisEntity">
         insert into
-            t_account_his(account_no,merchant_no,amount,third_no,account_his_type,account_status,account_his_serial
+            t_account_his(account_no,merchant_no,amount,sys_no,account_his_type,account_his_status,account_his_serial,amount_free,amount_rate,merchant_order_no
                 <if test="null != beforeBalance">
                     ,before_balance
                 </if>
@@ -20,15 +13,9 @@
                 <if test="null != completeTime">
                     ,complete_time
                 </if>
-                <if test="null != merchantOrderNo">
-                    ,merchant_order_no
-                </if>
-                <if test="null != amountFree">
-                    ,amount_free
-                </if>
             )
         values
-            (#{accountNo},#{merchantNo},#{amount},#{thirdNo},#{accountHisType}, #{accountStatus}, #{accountHisSerial}
+            (#{accountNo},#{merchantNo},#{amount},#{sysNo},#{accountHisType}, #{accountHisStatus}, #{accountHisSerial}, #{amountFree}, #{amountRate},#{merchantOrderNo}
                 <if test="null != beforeBalance">
                     ,#{beforeBalance}
                 </if>
@@ -38,36 +25,30 @@
                 <if test="null != completeTime">
                     ,#{completeTime}
                 </if>
-                <if test="null != merchantOrderNo">
-                    ,#{merchantOrderNo}
-                </if>
-                <if test="null != amountFree">
-                    ,#{amountFree}
-                </if>
             )
     </insert>
 
-    <select id="selectByThirdNo" parameterType="map" resultType="AccountHisEntity">
-        select * from t_account_his where third_no = #{thirdNo} and merchant_no = #{merchantNo}
+    <select id="selectBySysNo" parameterType="map" resultType="AccountHisEntity">
+        select * from t_account_his where sys_no = #{thirdNo} and merchant_no = #{merchantNo}
     </select>
 
     <update id="updateAccountStatusBatch" parameterType="AccountHisUpdateBatchBO">
         UPDATE
             t_account_his
         set
-            account_status = 'SUCCESS',version = version + 1,before_balance = #{beforeBalance},after_balance = #{afterBalance},complete_time = now(),
+            account_his_status = 'SUCCESS',version = version + 1,before_balance = #{beforeBalance},after_balance = #{afterBalance},complete_time = now(),
             account_his_serial = #{accountHisSerial}
         WHERE id in
         <foreach collection="accountHisIdList" item="id" index="index" open="(" close=")" separator=",">
             #{id}
         </foreach>
-         and account_status = 'DEAL' and account_no = #{accountNo}
+         and account_his_status = 'DEAL' and account_no = #{accountNo}
     </update>
 
     <select id="selectDeal" parameterType = "map" resultType = "AccountHisDealBO">
-        select group_concat(id) as accountHisIds,sum(amount) as sum
+        select group_concat(id) as accountHisIds,sum(amount - t_account_his.amount_free) as sum
         from t_account_his
-        where account_no = #{accountNo} and account_status = 'DEAL'
+        where account_no = #{accountNo} and account_his_status = 'DEAL'
     </select>
 
     <!-- 账户历史汇总  -->

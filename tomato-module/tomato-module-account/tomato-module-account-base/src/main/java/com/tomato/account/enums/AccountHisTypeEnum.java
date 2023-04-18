@@ -8,11 +8,11 @@ import lombok.Getter;
  * 账户历史类型
  *
  * @author lizhifu
- * @date 2022/7/14
+ * @since  2022/7/14
  */
 @AllArgsConstructor
 @Getter
-public enum AccountHisTypeEnum implements BaseEnum {
+public enum AccountHisTypeEnum implements BaseEnum<String> {
     /**
      * 结算
      */
