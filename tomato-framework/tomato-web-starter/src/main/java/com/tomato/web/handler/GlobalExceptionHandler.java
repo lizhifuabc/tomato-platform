@@ -27,7 +27,7 @@ import static com.tomato.domain.core.constants.CommonRespCode.INTERNAL_SERVER_ER
  * 全局异常处理器
  *
  * @author lizhifu
- * @date 2022/12/7
+ * @since  2022/12/7
  */
 @Slf4j
 @RestControllerAdvice // 全局拦截异常注解 @RestControllerAdvice = @ControllerAdvice + @ResponseBody
@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
      */
     @ResponseBody
     @ExceptionHandler(BusinessException.class)
-    public Resp businessExceptionHandler(BusinessException e) {
+    public Resp<Void> businessExceptionHandler(BusinessException e) {
         log.error("全局业务异常,URL:{}", getCurrentRequestUrl(), e);
         return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), e.getMessage());
     }
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
      */
     @ResponseBody
     @ExceptionHandler({TypeMismatchException.class, BindException.class})
-    public Resp paramExceptionHandler(Exception e) {
+    public Resp<Void> paramExceptionHandler(Exception e) {
         if (e instanceof BindException) {
             if (e instanceof MethodArgumentNotValidException) {
                 List<FieldError> fieldErrors = ((MethodArgumentNotValidException) e).getBindingResult().getFieldErrors();
@@ -66,7 +66,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.OK)
-    public Resp otherExceptionHandler(HttpServletRequest req, Throwable throwable) {
+    public Resp<Void> otherExceptionHandler(HttpServletRequest req, Throwable throwable) {
         log.error("[otherExceptionHandler]", throwable);
         return Resp.buildFailure(INTERNAL_SERVER_ERROR.code(),INTERNAL_SERVER_ERROR.msg());
     }

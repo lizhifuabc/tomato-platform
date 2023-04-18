@@ -14,6 +14,7 @@ create table `t_account_info` (
   `frozen_balance`          decimal(16,2)   not null default 0                      comment '冻结金额',
   `last_trad_time`          datetime                                                comment '上一次交易日期',
   `account_status`          varchar(36)     not null default 'ACCOUNT_AVAILABLE'    comment '账户状态',
+  `remark`                  varchar(50)                                             comment '备注',
 
   `version`                 int             not null default 0                      comment '乐观锁',
   `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
@@ -23,8 +24,11 @@ create table `t_account_info` (
   unique key `uniq_account_no` (`account_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户信息';
 
-insert into `t_account_info` (account_no, account_type, merchant_no)
-values ('10000', 'SETTLEMENT', '1000001');
+insert into `t_account_info` (account_no, account_type, merchant_no,remark)
+values ('10000', 'SETTLEMENT', '100000','异步入账账户');
+
+insert into `t_account_info` (account_no, account_type, merchant_no,remark)
+values ('10001', 'SETTLEMENT', '100001','正常入账账户');
 
 # 账户手续费配置
 drop table if exists `t_account_rate`;
@@ -43,7 +47,10 @@ create table `t_account_rate` (
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户手续费配置';
 
 insert into `t_account_rate` (account_no, merchant_no, rate, rate_type)
-values ('10000', '1000001', 0.01, 'TRAD');
+values ('10000', '100000', 0.01, 'TRAD');
+
+insert into `t_account_rate` (account_no, merchant_no, rate, rate_type)
+values ('10001', '100001', 0.01, 'TRAD');
 
 # 异步入账账户
 drop table if exists `t_account_async`;
@@ -58,6 +65,9 @@ create table `t_account_async` (
     primary key (`id`),
     unique key `uniq_account_no` (`account_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '异步入账账户';
+
+insert into `t_account_async` (account_no, merchant_no)
+values ('10000', '100000');
 
 -- 账户管理历史表
 drop table if exists `t_account_manage_his`;
@@ -83,8 +93,8 @@ CREATE TABLE `t_account_his` (
     `merchant_no`                varchar(50)     not null                            comment '商户编号',
     `merchant_order_no`          varchar(36)     not null                            comment '商户订单号(同一个商户唯一)',
     `sys_no`                     varchar(50)     not null                            comment '系统流水号（唯一）',
-    `before_balance`             decimal(16,2)   not null                            comment '发生前余额',
-    `after_balance`              decimal(16,2)   not null                            comment '发生后余额',
+    `before_balance`             decimal(16,2)   default null                        comment '发生前余额',
+    `after_balance`              decimal(16,2)   default null                        comment '发生后余额',
     `amount`                     decimal(16,2)   not null                            comment '发生金额',
     `amount_free`                decimal(16,2)   not null                            comment '手续费',
     `amount_rate`                decimal(16,2)   not null                            comment '费率快照',
