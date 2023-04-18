@@ -6,13 +6,17 @@ import com.tomato.domain.core.constants.RespCode;
  * 统一错误码
  *
  * @author lizhifu
- * @date 2022/11/22
+ * @since  2022/11/22
  */
 public interface CommonRespCode {
     /**
      * 系统异常
      */
     RespCode INTERNAL_SERVER_ERROR = new RespCode("500", "系统异常");
+    /**
+     * 数据重复
+     */
+    RespCode DUPLICATE_KEY_SERVER_ERROR = new RespCode("501", "数据重复");
     /**
      * 成功
      */

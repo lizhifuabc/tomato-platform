@@ -2,6 +2,7 @@ package com.tomato.idempotent.strategy;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
@@ -11,6 +12,7 @@ import java.util.HashMap;
  * @author lizhifu
  * @since 2023/4/11
  */
+@Component
 public class IdempotentStrategyFactory implements InitializingBean {
     private final ApplicationContext applicationContext;
     private final HashMap<String, IdempotentStrategy> strategyMap = new HashMap<>();

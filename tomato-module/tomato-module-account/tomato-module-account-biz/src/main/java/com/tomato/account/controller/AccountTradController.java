@@ -4,6 +4,7 @@ import com.tomato.account.domain.req.AccountTradReq;
 import com.tomato.account.service.AccountAsyncInitService;
 import com.tomato.account.service.trad.AccountTradService;
 import com.tomato.domain.resp.Resp;
+import com.tomato.idempotent.annotation.Idempotent;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -33,6 +34,7 @@ public class AccountTradController {
      * @return Resp 账户入账结果
      */
     @PostMapping("/account/trad")
+    @Idempotent(timeout = 60)
     @Schema(description = "账户入账")
     public Resp<Void> trad(@Validated @RequestBody AccountTradReq accountTradReq){
         log.info("账户入账 start :{}",accountTradReq);

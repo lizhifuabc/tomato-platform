@@ -40,6 +40,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-dynamic-thread-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-idempotent-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

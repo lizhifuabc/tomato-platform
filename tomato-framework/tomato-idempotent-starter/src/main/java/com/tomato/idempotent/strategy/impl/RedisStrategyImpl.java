@@ -1,9 +1,11 @@
 package com.tomato.idempotent.strategy.impl;
 
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.idempotent.annotation.Idempotent;
 import com.tomato.idempotent.strategy.IdempotentStrategy;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,6 +18,7 @@ import java.util.Objects;
  * @author lizhifu
  * @since 2023/4/11
  */
+@Service
 public class RedisStrategyImpl implements IdempotentStrategy {
     private final StringRedisTemplate redisTemplate;
     public RedisStrategyImpl(StringRedisTemplate redisTemplate) {
@@ -26,10 +29,10 @@ public class RedisStrategyImpl implements IdempotentStrategy {
     public void execute(JoinPoint joinPoint, Idempotent idempotent) {
         String methodName = joinPoint.getSignature().toString();
         String argsStr = Arrays.toString(joinPoint.getArgs());
-        String redisKey = methodName + argsStr;
-        Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent(Objects.requireNonNull(md5Encode(redisKey)), "", idempotent.timeout(), idempotent.timeUnit());
+        String redisKey = md5Encode(methodName + argsStr);
+        Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent(Objects.requireNonNull(redisKey), "", idempotent.timeout(), idempotent.timeUnit());
         if (Boolean.FALSE.equals(aBoolean)) {
-            throw new RuntimeException(idempotent.message());
+            throw new BusinessException(idempotent.message());
         }
     }
 

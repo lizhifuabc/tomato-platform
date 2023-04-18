@@ -42,6 +42,15 @@ public class GlobalExceptionHandler {
         return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), e.getMessage());
     }
     /**
+     * 唯一性索引异常
+     */
+//    @ResponseBody
+//    @ExceptionHandler(DuplicateKeyException.class)
+//    public Resp<Void> duplicateKeyException(DuplicateKeyException e) {
+//        log.error("唯一性索引异常,URL:{}", getCurrentRequestUrl(), e);
+//        return Resp.buildFailure(CommonRespCode.DUPLICATE_KEY_SERVER_ERROR.code(), CommonRespCode.DUPLICATE_KEY_SERVER_ERROR.msg());
+//    }
+    /**
      * json 格式错误 缺少请求体
      */
     @ResponseBody

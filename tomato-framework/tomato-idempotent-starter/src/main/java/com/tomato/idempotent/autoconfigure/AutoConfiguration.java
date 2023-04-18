@@ -2,7 +2,9 @@ package com.tomato.idempotent.autoconfigure;
 
 import com.tomato.idempotent.aspect.IdempotentAspect;
 import com.tomato.idempotent.properties.IdempotentProperties;
+import com.tomato.idempotent.strategy.IdempotentStrategy;
 import com.tomato.idempotent.strategy.IdempotentStrategyFactory;
+import com.tomato.idempotent.strategy.impl.RedisStrategyImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -10,6 +12,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * 自动配置
@@ -32,5 +35,9 @@ public class AutoConfiguration implements InitializingBean {
     @Bean
     public IdempotentStrategyFactory idempotentStrategyFactory(ApplicationContext applicationContext){
         return new IdempotentStrategyFactory(applicationContext);
+    }
+    @Bean
+    public IdempotentStrategy idempotentStrategy(StringRedisTemplate redisTemplate){
+        return new RedisStrategyImpl(redisTemplate);
     }
 }

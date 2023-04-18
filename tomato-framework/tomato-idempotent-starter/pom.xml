@@ -20,6 +20,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-redis-base-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-domain-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
