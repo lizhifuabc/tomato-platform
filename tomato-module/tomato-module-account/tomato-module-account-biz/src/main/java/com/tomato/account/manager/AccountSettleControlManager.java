@@ -60,9 +60,9 @@ public class AccountSettleControlManager {
 
     /**
      * 更新账户结算控制:计算下一个结算日
-     * @param accountSettleEntity
-     * @param accountSettleControlEntity
-     * @param accountSettleRecordEntity
+     * @param accountSettleEntity 结算数据
+     * @param accountSettleControlEntity 结算控制数据
+     * @param accountSettleRecordEntity 结算记录数据
      */
     public void updateSettleControl(AccountSettleEntity accountSettleEntity,
                                     AccountSettleControlEntity accountSettleControlEntity,
@@ -90,8 +90,8 @@ public class AccountSettleControlManager {
     }
     /**
      * 更新账户结算控制:计算下一个结算日
-     * @param accountSettleEntity
-     * @param accountSettleControlEntity
+     * @param accountSettleEntity 结算数据
+     * @param accountSettleControlEntity 结算控制数据
      */
     public void updateSettleControl(AccountSettleEntity accountSettleEntity,
                                     AccountSettleControlEntity accountSettleControlEntity){
