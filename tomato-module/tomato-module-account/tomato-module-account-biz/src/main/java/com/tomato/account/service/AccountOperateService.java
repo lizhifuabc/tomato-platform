@@ -71,7 +71,7 @@ public class AccountOperateService {
         AccountCheckService.checkAccountExist(account);
         if(AccountStatusTypeEnum.ACCOUNT_CANCELLED.getValue().equals(account.getAccountStatus())){
             log.info("账户已经注销,直接返回, accountNo:{}", accountCancelledReq.getAccountNo());
-            return;
+            throw new BusinessException(AccountRespCode.ACCOUNT_CANCEL_FAIL);
         }
         //2.检查余额是否为0
         if (BigDecimal.ZERO.compareTo(account.getBalance()) != 0) {
