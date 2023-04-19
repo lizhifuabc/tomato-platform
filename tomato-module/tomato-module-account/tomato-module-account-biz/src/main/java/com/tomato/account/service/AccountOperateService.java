@@ -28,11 +28,11 @@ import java.math.BigDecimal;
  */
 @Service
 @Slf4j
-public class AccountManageService {
+public class AccountOperateService {
     private final AccountInfoManager accountInfoManager;
     private final AccountInfoDao accountInfoDao;
     private final AccountManageHisDao accountManageHisDao;
-    public AccountManageService(AccountInfoManager accountInfoManager, AccountInfoDao accountInfoDao, AccountManageHisDao accountManageHisDao) {
+    public AccountOperateService(AccountInfoManager accountInfoManager, AccountInfoDao accountInfoDao, AccountManageHisDao accountManageHisDao) {
         this.accountInfoManager = accountInfoManager;
         this.accountInfoDao = accountInfoDao;
         this.accountManageHisDao = accountManageHisDao;

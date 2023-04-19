@@ -8,7 +8,7 @@ import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTargetTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
-import com.tomato.account.service.AccountManageService;
+import com.tomato.account.service.AccountOperateService;
 import com.tomato.account.service.AccountSettleManagerService;
 import com.tomato.domain.core.enums.YesNoTypeEnum;
 import jakarta.annotation.Resource;
@@ -26,7 +26,7 @@ import java.math.BigDecimal;
 @SpringBootTest
 public class AccountFlowTest {
     @Resource
-    AccountManageService accountManageService;
+    AccountOperateService accountOperateService;
     @Resource
     AccountSettleManagerService accountSettleManagerService;
     @Test
@@ -35,7 +35,7 @@ public class AccountFlowTest {
         AccountCreateReq accountCreateReq = new AccountCreateReq();
         accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
         accountCreateReq.setMerchantNo("10202301010004121");
-        AccountInfoEntity account = accountManageService.createAccount(accountCreateReq);
+        AccountInfoEntity account = accountOperateService.createAccount(accountCreateReq);
         // 创建结算
         AccountSettleManagerCreateReq accountSettleManagerCreateReq = new AccountSettleManagerCreateReq();
         accountSettleManagerCreateReq.setAccountNo(account.getAccountNo());
