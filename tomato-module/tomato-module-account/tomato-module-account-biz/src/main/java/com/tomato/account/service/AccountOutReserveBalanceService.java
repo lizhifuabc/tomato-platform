@@ -40,6 +40,7 @@ public class AccountOutReserveBalanceService {
      */
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void exe(String accountNo,LocalDate exeLocalDate){
+        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]",accountNo,exeLocalDate);
         // 账户查询
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountNo);
         // 例如：
@@ -47,15 +48,14 @@ public class AccountOutReserveBalanceService {
         // 风险预存期：2天
         // 风内账务历史：2023年01月10 <=  创建历史
         // 风内账务历史：当前时间 - （风险预存期 - 1） <=  创建历史
-        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]",accountNo,exeLocalDate);
         // 结算规则
         AccountSettleEntity accountSettle = accountSettleDao.selectByAccountNo(accountNo);
         if(null == accountSettle){
-            log.warn("计算账户风险预存期外余额不存在有效的结算记录,账户号:"+accountNo);
+            log.warn("计算账户风险预存期外余额不存在有效的结算记录,账户号:{}",accountNo);
             return;
         }
         if(null == accountSettle.getReserveDays()){
-            log.warn("计算账户风险预存期外余额不存在风险预存期,账户号:"+accountNo);
+            log.warn("计算账户风险预存期外余额不存在风险预存期,账户号:{}",accountNo);
             return;
         }
         // 风险预存期内日期

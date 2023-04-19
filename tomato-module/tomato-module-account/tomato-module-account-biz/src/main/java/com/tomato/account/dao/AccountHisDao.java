@@ -51,7 +51,7 @@ public interface AccountHisDao {
      * @param accountNo 账号
      * @param start 创建时间开始
      * @param end 创建时间结束
-     * @return
+     * @return 日汇总账户待结算金额
      */
     AccountHisCollectResBO collect(@Param("accountNo") String accountNo, @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 }

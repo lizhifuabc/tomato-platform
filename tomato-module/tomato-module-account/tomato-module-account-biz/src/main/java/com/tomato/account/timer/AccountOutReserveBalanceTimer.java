@@ -39,14 +39,7 @@ public class AccountOutReserveBalanceTimer {
         int pageIndex = 0;
         LocalDate exeLocalDate = LocalDate.now();
         while (true){
-            List<String> accountList = null;
-            try {
-                // TODO 是否增加账户状态筛选
-                accountList = accountInfoDao.selectAllAccount(pageIndex, PAGE_SIZE);
-            }catch (Exception e){
-                log.error("账户风险预存期外余额定时定时执行出现异常",e);
-            }
-
+            List<String> accountList = accountInfoDao.selectAllAccount(pageIndex, PAGE_SIZE);
             // 查询无结果
             if (accountList == null || accountList.isEmpty()){
                 break;
