@@ -24,12 +24,6 @@ create table `t_account_info` (
   unique key `uniq_account_no` (`account_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户信息';
 
-insert into `t_account_info` (account_no, account_type, merchant_no,remark)
-values ('10000', 'SETTLEMENT', '100000','异步入账账户');
-
-insert into `t_account_info` (account_no, account_type, merchant_no,remark)
-values ('10001', 'SETTLEMENT', '100001','正常入账账户');
-
 # 账户手续费配置
 drop table if exists `t_account_rate`;
 create table `t_account_rate` (
@@ -46,11 +40,6 @@ create table `t_account_rate` (
     unique key `uniq_account_no` (`account_no`,`rate_type`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '账户手续费配置';
 
-insert into `t_account_rate` (account_no, merchant_no, rate, rate_type)
-values ('10000', '100000', 0.01, 'TRAD');
-
-insert into `t_account_rate` (account_no, merchant_no, rate, rate_type)
-values ('10001', '100001', 0.01, 'TRAD');
 
 # 异步入账账户
 drop table if exists `t_account_async`;
@@ -66,8 +55,6 @@ create table `t_account_async` (
     unique key `uniq_account_no` (`account_no`)
 ) engine=innodb auto_increment=1 default charset=utf8 comment '异步入账账户';
 
-insert into `t_account_async` (account_no, merchant_no)
-values ('10000', '100000');
 
 -- 账户管理历史表
 drop table if exists `t_account_manage_his`;

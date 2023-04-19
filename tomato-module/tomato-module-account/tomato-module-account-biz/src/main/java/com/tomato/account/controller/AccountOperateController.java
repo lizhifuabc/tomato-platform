@@ -5,8 +5,8 @@ import com.tomato.account.domain.req.AccountCreateReq;
 import com.tomato.account.domain.req.AccountFreezeReq;
 import com.tomato.account.service.AccountOperateService;
 import com.tomato.domain.resp.Resp;
+import com.tomato.idempotent.annotation.Idempotent;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +34,7 @@ public class AccountOperateController {
      * @return void
      */
     @PostMapping("/account/create")
+    @Idempotent
     @Operation(summary = "创建账户", description = "创建账户")
     public Resp<Void> createAccount(@Valid @RequestBody AccountCreateReq accountCreateReq){
         accountOperateService.createAccount(accountCreateReq);

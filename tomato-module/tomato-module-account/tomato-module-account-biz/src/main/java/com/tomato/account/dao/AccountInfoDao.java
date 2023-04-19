@@ -20,8 +20,8 @@ public interface AccountInfoDao {
     /**
      * 查询账户
      *
-     * @param accountNo
-     * @return
+     * @param accountNo 账户编号
+     * @return 账户
      */
     AccountInfoEntity selectByAccountNo(@Param("accountNo") String accountNo);
 
@@ -57,19 +57,19 @@ public interface AccountInfoDao {
 
     /**
      * 冻结金额
-     * @param accountNo
-     * @param amount
-     * @param version
-     * @return
+     * @param accountNo 账户编号
+     * @param amount 金额
+     * @param version 版本
+     * @return 结果
      */
     int freeze(@Param("accountNo") String accountNo, @Param("amount") BigDecimal amount,@Param("version") Integer version);
 
     /**
      * 更新风险预存期外余额
-     * @param accountNo
-     * @param outReserveBalance
-     * @param version
-     * @return
+     * @param accountNo 账户编号
+     * @param outReserveBalance 风险预存期外余额
+     * @param version 版本
+     * @return 结果
      */
     int updateOutReserveBalance(@Param("accountNo") String accountNo,
                                 @Param("outReserveBalance") BigDecimal outReserveBalance,
@@ -77,16 +77,16 @@ public interface AccountInfoDao {
                                 @Param("outReserveDate")LocalDate outReserveDate);
     /**
      * 插入
-     * @param AccountInfoEntity
+     * @param accountInfoEntity 账户
      */
-    void insert(AccountInfoEntity AccountInfoEntity);
+    void insert(AccountInfoEntity accountInfoEntity);
 
     /**
      * 更新账户状态
      * @param accountNo 账户编号
      * @param accountStatus 状态
      * @param version 版本
-     * @return
+     * @return 更新条数
      */
     int updateAccountStatus(@Param("accountNo") String accountNo, @Param("accountStatus") String accountStatus,@Param("version") Integer version);
 
@@ -94,6 +94,7 @@ public interface AccountInfoDao {
      * 查询所有账户
      * @param pageIndex 当前页码
      * @param pageSize 查询数量
+     * @return 账户列表
      */
     List<String> selectAllAccount(@Param("pageIndex") int pageIndex,
                                   @Param("pageSize") int pageSize);

@@ -31,4 +31,11 @@ public class AccountCreateReq {
     @CheckEnum(value = AccountTypeEnum.class, message = "账户类型错误")
     @Schema(description = "账户类型")
     private String accountType;
+
+    /**
+     * 备注
+     */
+    @Schema(description = "备注")
+    @Length(max = 50, message = "备注长度不能超过50位")
+    private String remark;
 }

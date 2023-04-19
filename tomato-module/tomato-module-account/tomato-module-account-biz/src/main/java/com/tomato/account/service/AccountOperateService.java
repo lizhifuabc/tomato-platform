@@ -54,7 +54,7 @@ public class AccountOperateService {
         AccountManageHisEntity accountManageHisEntity = new AccountManageHisEntity();
         accountManageHisEntity.setAccountNo(account.getAccountNo());
         accountManageHisEntity.setAccountManageSerial(0L);
-        accountManageHisEntity.setBeforeValue("status:null");
+        accountManageHisEntity.setBeforeValue("status:init");
         accountManageHisEntity.setAfterValue("status:"+account.getAccountStatus());
         accountManageHisDao.insert(accountManageHisEntity);
         return account;
