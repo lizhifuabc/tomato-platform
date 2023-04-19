@@ -35,7 +35,7 @@ public class AccountSettleController {
      * @return Resp 账户结算规则结果
      */
     @PostMapping("/account/settle/init")
-    @Idempotent(timeout = 60)
+    @Idempotent
     @Operation(summary = "账户结算规则初始化",description = "账户结算规则初始化")
     public Resp<Void> init(@Validated @RequestBody AccountSettleCreateReq accountSettleCreateReq){
         log.info("账户结算规则 start :{}",accountSettleCreateReq);

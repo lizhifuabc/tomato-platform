@@ -6,6 +6,7 @@ import com.tomato.account.domain.req.AccountSettleCreateReq;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.manager.AccountSettleControlManager;
 import com.tomato.account.manager.AccountSettleManager;
+import com.tomato.web.util.BeanUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,10 @@ public class AccountSettleManagerService {
         // 检查账户是否存在
         AccountCheckService.checkAccountExist(accountInfoEntity);
         // 创建账户结算基本信息
-        AccountSettleEntity accountSettleEntity = accountSettleManager.create(accountSettleCreateReq, accountInfoEntity);
+        AccountSettleEntity accountSettleEntity = BeanUtil.copy(accountSettleCreateReq,AccountSettleEntity.class);
+        accountSettleEntity.setAccountNo(accountInfoEntity.getAccountNo());
+        accountSettleEntity.setMerchantNo(accountInfoEntity.getMerchantNo());
+        accountSettleManager.create(accountSettleEntity);
         // 创建账户结算控制
         accountSettleControlManager.create(accountSettleEntity);
     }

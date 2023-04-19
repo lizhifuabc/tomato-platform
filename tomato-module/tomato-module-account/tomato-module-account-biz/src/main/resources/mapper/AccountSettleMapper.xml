@@ -23,21 +23,6 @@
             <if test="null != reserveDays">
                 reserve_days,
             </if>
-            <if test="null != minAmount">
-                min_amount,
-            </if>
-            <if test="null != settleFeeFlag">
-                settle_fee_flag,
-            </if>
-            <if test="null != limitSettleFee">
-                limit_settle_fee,
-            </if>
-            <if test="null != settleRate">
-                settle_rate,
-            </if>
-            <if test="null != maxSettleFee">
-                max_settle_fee,
-            </if>
             <if test="null != maxSettleDays">
                 max_settle_days,
             </if>
@@ -69,21 +54,6 @@
             </if>
             <if test="null != reserveDays">
                 #{reserveDays},
-            </if>
-            <if test="null != minAmount">
-                #{minAmount},
-            </if>
-            <if test="null != settleFeeFlag">
-                #{settleFeeFlag},
-            </if>
-            <if test="null != limitSettleFee">
-                #{limitSettleFee},
-            </if>
-            <if test="null != settleRate">
-                #{settleRate},
-            </if>
-            <if test="null != maxSettleFee">
-                #{maxSettleFee},
             </if>
             <if test="null != maxSettleDays">
                 #{maxSettleDays},

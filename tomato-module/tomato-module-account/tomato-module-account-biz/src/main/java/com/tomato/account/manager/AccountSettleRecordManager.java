@@ -1,10 +1,8 @@
 package com.tomato.account.manager;
 
 import com.tomato.account.dao.AccountSettleRecordDao;
-import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.domain.entity.AccountSettleControlEntity;
-import com.tomato.account.domain.entity.AccountSettleEntity;
-import com.tomato.account.domain.entity.AccountSettleRecordEntity;
+import com.tomato.account.domain.entity.*;
+import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.domain.core.enums.CommonStatusEnum;
 import com.tomato.domain.core.enums.YesNoTypeEnum;
@@ -14,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * 账户结算记录
@@ -25,9 +24,10 @@ import java.time.LocalDate;
 @Slf4j
 public class AccountSettleRecordManager {
     private final AccountSettleRecordDao accountSettleRecordDao;
-
-    public AccountSettleRecordManager(AccountSettleRecordDao accountSettleRecordDao) {
+    private final AccountRateManager accountRateManager;
+    public AccountSettleRecordManager(AccountSettleRecordDao accountSettleRecordDao, AccountRateManager accountRateManager) {
         this.accountSettleRecordDao = accountSettleRecordDao;
+        this.accountRateManager = accountRateManager;
     }
     public AccountSettleRecordEntity create(AccountSettleControlEntity accountSettleControl,
                                              AccountInfoEntity accountInfoEntity,
@@ -37,12 +37,6 @@ public class AccountSettleRecordManager {
         if(!accountInfoEntity.getOutReserveDate().isEqual(settleDate)){
             log.error("账号[{}]:[{}]尚未更新风险预存期外余额:[{}]",accountInfoEntity.getAccountNo(),settleDate,accountInfoEntity.getAccountNo());
             throw new BusinessException("今日尚未更新风险预存期外余额");
-        }
-        // 小于最小结算金额
-        if(accountInfoEntity.getOutReserveBalance().compareTo(accountSettleEntity.getMinAmount()) < 0){
-            log.warn("小于最小结算金额:[{}]",accountInfoEntity.getAccountNo());
-            // 插入失败结算记录
-            return createFail(accountSettleControl,settleDate,"小于最小结算金额，等待下一个结算日");
         }
         return createSuccess(accountSettleControl,accountInfoEntity,accountSettleEntity,settleDate);
     }
@@ -72,22 +66,13 @@ public class AccountSettleRecordManager {
         AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,settleDate);
         accountSettleRecordEntity.setSettleStatus(CommonStatusEnum.SUCCESS.getValue());
         // 计算手续费
-        if (accountSettleEntity.getSettleFeeFlag().equals(YesNoTypeEnum.YES.getValue())) {
-            // 基础手续费
-            accountSettleRecordEntity.setSettleAmount(accountInfoEntity.getOutReserveBalance());
-            accountSettleRecordEntity.setSettleRate(accountSettleEntity.getSettleRate());
-            // 计算手续费
-            BigDecimal settleFee = BigDecimalUtil.multiply(accountInfoEntity.getOutReserveBalance(), accountSettleRecordEntity.getSettleRate());
-            accountSettleRecordEntity.setSettleFee(settleFee);
-            // 手续费 >= 封顶手续费
-            if(settleFee.compareTo(accountSettleEntity.getMaxSettleFee()) >= 0){
-                accountSettleRecordEntity.setSettleFee(accountSettleEntity.getMaxSettleFee());
-            }
-            // 手续费 <= 客户不承担手续费限额 TODO 是否设置最小起征点
-            if(settleFee.compareTo(accountSettleEntity.getLimitSettleFee()) >= 0){
-                accountSettleRecordEntity.setSettleFee(BigDecimal.ZERO);
-            }
-        }
+        AccountRateEntity rate = accountRateManager.getRate(accountInfoEntity.getAccountNo(), AccountHisTypeEnum.SETTLEMENT.getValue()).orElseThrow(() -> new BusinessException("账户费率不存在"));
+        // 基础手续费
+        accountSettleRecordEntity.setSettleAmount(accountInfoEntity.getOutReserveBalance());
+        accountSettleRecordEntity.setSettleRate(rate.getRate());
+        // 计算手续费
+        BigDecimal settleFee = BigDecimalUtil.multiply(accountInfoEntity.getOutReserveBalance(), accountSettleRecordEntity.getSettleRate());
+        accountSettleRecordEntity.setSettleFee(settleFee);
         // 插入
         accountSettleRecordDao.insert(accountSettleRecordEntity);
         return accountSettleRecordEntity;

@@ -44,31 +44,6 @@ public class AccountSettleEntity extends BaseEntity {
     private Integer reserveDays;
 
     /**
-     * 最小结算金额
-     */
-    private BigDecimal minAmount;
-
-    /**
-     * 是否承担划款手续费标志:0-否， 1-是
-     */
-    private Integer settleFeeFlag;
-
-    /**
-     * 客户不承担手续费限额
-     */
-    private BigDecimal limitSettleFee;
-
-    /**
-     * 结算手续费率
-     */
-    private BigDecimal settleRate;
-
-    /**
-     * 封顶手续费
-     */
-    private BigDecimal maxSettleFee;
-
-    /**
      * 最大结算天数
      */
     private Integer maxSettleDays;

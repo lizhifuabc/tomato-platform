@@ -34,7 +34,7 @@ public class AccountSettleControlManager {
      * @param accountSettleEntity 结算数据
      */
     public void create(AccountSettleEntity accountSettleEntity){
-
+        // 基础信息
         AccountSettleControlEntity accountSettleControlEntity = new AccountSettleControlEntity();
         accountSettleControlEntity.setAccountSettleId(accountSettleEntity.getId());
         accountSettleControlEntity.setAccountNo(accountSettleEntity.getAccountNo());

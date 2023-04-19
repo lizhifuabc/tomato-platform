@@ -6,6 +6,7 @@ import com.tomato.account.enums.SettleTypeEnum;
 import com.tomato.validator.annotation.CheckEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -53,6 +54,7 @@ public class AccountSettleCreateReq {
      * 风险预存期
      */
     @Min(value = 1,message = "风险预存期最小为1")
+    @Max(value = 3,message = "风险预存期最大为3")
     @NotNull
     @Schema(description = "风险预存期")
     private Integer reserveDays;

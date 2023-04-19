@@ -31,12 +31,9 @@ public class AccountSettleManager {
 
     /**
      * 创建账户结算规则
-     * @param accountSettleCreateReq 账户结算规则
+     * @param accountSettleEntity 账户结算规则
      */
-    public AccountSettleEntity create(AccountSettleCreateReq accountSettleCreateReq, AccountInfoEntity accountInfo){
-        AccountSettleEntity accountSettleEntity = BeanUtil.copy(accountSettleCreateReq,AccountSettleEntity.class);
-        accountSettleEntity.setAccountNo(accountInfo.getAccountNo());
-        accountSettleEntity.setMerchantNo(accountInfo.getMerchantNo());
+    public AccountSettleEntity create(AccountSettleEntity accountSettleEntity){
         // 自动结算（定期结算）
         if(accountSettleEntity.getSettleType().equals(SettleTypeEnum.AUTO_SETTLEMENT.getValue())){
             // 升序
@@ -47,10 +44,6 @@ public class AccountSettleManager {
         // 默认最大结算天数 Integer.MAX_VALUE,预留，是否手动结算，选择日期
         if(accountSettleEntity.getMaxSettleDays() == null || accountSettleEntity.getMaxSettleDays() == 0){
             accountSettleEntity.setMaxSettleDays(Integer.MAX_VALUE);
-        }
-        // 默认结算到目标账户类型为银行卡
-        if(StringUtils.isBlank(accountSettleEntity.getSettleTargetType())){
-            accountSettleEntity.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
         }
         // 保存结算规则
         accountSettleEntity.setCreateTime(LocalDateTime.now());
