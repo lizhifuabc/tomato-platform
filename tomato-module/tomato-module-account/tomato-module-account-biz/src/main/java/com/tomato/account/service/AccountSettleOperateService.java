@@ -60,6 +60,7 @@ public class AccountSettleOperateService {
         AccountSettleEntity accountSettleEntity = BeanUtil.copy(accountSettleCreateReq,AccountSettleEntity.class);
         accountSettleEntity.setVersion(dao.getVersion());
         accountSettleManager.updateByAccountNo(accountSettleEntity);
+        // TODO 自动结算更改为自助结算，是否可以
         // 更新账户结算控制
         AccountSettleControlEntity accountSettleControl = accountSettleControlManager.selectByAccountNo(accountSettleCreateReq.getAccountNo()).orElseThrow(() -> new BusinessException("账户结算规则控制不存在"));
         accountSettleControlManager.updateSettleControl(accountSettleEntity,accountSettleControl);
