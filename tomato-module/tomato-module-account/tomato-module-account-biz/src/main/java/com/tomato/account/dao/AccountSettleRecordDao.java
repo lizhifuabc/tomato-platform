@@ -1,8 +1,11 @@
 package com.tomato.account.dao;
 
+import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountSettleRecordEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.time.LocalDate;
 
 /**
  * 账户结算记录
@@ -17,11 +20,11 @@ public interface AccountSettleRecordDao {
      * @param accountSettleRecordEntity 账户结算记录
      */
     void insert(AccountSettleRecordEntity accountSettleRecordEntity);
-
     /**
-     * 查询
-     * @param id id
-     * @return
+     * 根据账号和结算日期查询
+     * @param accountNo 账号
+     * @param settleDate 结算日期
+     * @return 实体
      */
-    AccountSettleRecordEntity selectById(@Param("id") Long id);
+    AccountSettleRecordEntity selectByAccountNoAndSettleDate(@Param("accountNo") String accountNo,@Param("settleDate") LocalDate settleDate);
 }

@@ -25,4 +25,10 @@ public interface AccountSettleDao {
      * @return 实体
      */
     AccountSettleEntity selectByAccountNo(@Param("accountNo") String accountNo);
+
+    /**
+     * 更新
+     * @param accountSettleEntity 账户结算规则
+     */
+    int updateByAccountNo(AccountSettleEntity accountSettleEntity);
 }

@@ -12,6 +12,7 @@ import com.tomato.domain.core.exception.BusinessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * 账户结算控制
@@ -86,5 +87,41 @@ public class AccountSettleControlManager {
         if(count <= 0){
             throw new BusinessException("在更新结算控制的时候出现乐观锁异常");
         }
+    }
+    /**
+     * 更新账户结算控制:计算下一个结算日
+     * @param accountSettleEntity
+     * @param accountSettleControlEntity
+     */
+    public void updateSettleControl(AccountSettleEntity accountSettleEntity,
+                                    AccountSettleControlEntity accountSettleControlEntity){
+        // 情况1：当日是结算日，尚未结算，当前时间为结算日
+        // 情况2：当日是结算日，已经结算，当前时间为结算日
+        // 情况3：当日是非结算日，当前时间为结算日
+        LocalDate currentSettleDate = LocalDate.now();
+
+        // 结算周期计算
+        CycleTypeEnum cycleTypeEnum = CycleTypeEnum.fromValue(accountSettleEntity.getCycleType());
+        LocalDate nextSettleDate = SettleDayUtil.settleDate(
+                accountSettleEntity.getCycleData().split(","),
+                currentSettleDate,
+                cycleTypeEnum,
+                accountSettleEntity.getReserveDays()
+        );
+        // 是否节假日
+        nextSettleDate = accountWorkService.nextWorkDay(nextSettleDate,cycleTypeEnum);
+
+        int count = accountSettleControlDao.updateSettleControl(
+                accountSettleControlEntity.getId(),
+                nextSettleDate,
+                null,
+                accountSettleControlEntity.getVersion()
+        );
+        if(count <= 0){
+            throw new BusinessException("在更新结算控制的时候出现乐观锁异常");
+        }
+    }
+    public Optional<AccountSettleControlEntity> selectByAccountNo(String accountNo) {
+        return Optional.ofNullable(accountSettleControlDao.selectByAccountNo(accountNo));
     }
 }

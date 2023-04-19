@@ -64,7 +64,15 @@
         </trim>
     </insert>
 
-    <select id="selectById" resultType="AccountSettleRecordEntity">
-        select * from t_account_settle_record where id = #{id}
+    <select id="selectByAccountNoAndSettleDate" resultType="AccountSettleRecordEntity">
+        select
+            *
+        from
+            t_account_settle_record
+        where
+            account_no = #{accountNo}
+            and settle_date = #{settleDate}
     </select>
+
+
 </mapper>

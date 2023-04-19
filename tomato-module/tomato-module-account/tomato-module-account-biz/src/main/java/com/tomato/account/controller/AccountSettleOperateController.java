@@ -42,4 +42,19 @@ public class AccountSettleOperateController {
         log.info("账户结算规则 end :{}",accountSettleCreateReq);
         return Resp.buildSuccess();
     }
+
+    /**
+     * 更改账户结算规则
+     * @param accountSettleCreateReq 更改账户结算规则
+     * @return Resp 更改账户结算规则
+     */
+    @PostMapping("/account/settle/update")
+    @Idempotent
+    @Operation(summary = "更改账户结算规则",description = "更改账户结算规则")
+    public Resp<Void> update(@Validated @RequestBody AccountSettleCreateReq accountSettleCreateReq){
+        log.info("更改账户结算规则 start :{}",accountSettleCreateReq);
+        accountSettleOperateService.update(accountSettleCreateReq);
+        log.info("更改账户结算规则 end :{}",accountSettleCreateReq);
+        return Resp.buildSuccess();
+    }
 }

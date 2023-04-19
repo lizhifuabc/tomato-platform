@@ -69,7 +69,9 @@
         set
             version = version + 1,
             next_settle_date = #{nextSettleDate},
-            settle_record_id = #{settleRecordId}
+            <if test="null != settleRecordId">
+                settle_record_id = #{settleRecordId},
+            </if>
         where
             id = #{id} and version = #{version}
     </update>

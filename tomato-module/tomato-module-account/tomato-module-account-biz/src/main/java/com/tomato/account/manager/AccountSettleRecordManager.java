@@ -33,6 +33,11 @@ public class AccountSettleRecordManager {
                                              AccountInfoEntity accountInfoEntity,
                                              AccountSettleEntity accountSettleEntity,
                                              LocalDate settleDate){
+        AccountSettleRecordEntity dao = accountSettleRecordDao.selectByAccountNoAndSettleDate(accountSettleControl.getAccountNo(),settleDate);
+        if (dao != null) {
+            log.error("账号[{}]:[{}]已结算",accountInfoEntity.getAccountNo(),settleDate);
+            throw new BusinessException("今日已结算");
+        }
         // 风险预存期外余额更新时间 != 当前时间，即今日尚未更新风险预存期外余额
         if(!accountInfoEntity.getOutReserveDate().isEqual(settleDate)){
             log.error("账号[{}]:[{}]尚未更新风险预存期外余额:[{}]",accountInfoEntity.getAccountNo(),settleDate,accountInfoEntity.getAccountNo());

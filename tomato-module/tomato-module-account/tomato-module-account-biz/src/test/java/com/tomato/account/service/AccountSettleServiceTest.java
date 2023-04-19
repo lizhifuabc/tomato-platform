@@ -28,12 +28,11 @@ public class AccountSettleServiceTest {
     AccountInfoDao accountInfoDao;
     @Test
     public void settle(){
-        LocalDate nextSettleDate = LocalDate.of(2023,1,18);
-        String merchantNo = "10202301010004121";
+        String merchantNo = "1234";
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
         AccountSettleControlEntity accountSettleControlEntity = accountSettleControlDao.selectByAccountNo(accountInfoEntity.getAccountNo());
 
-        accountSettleService.settle(nextSettleDate,accountSettleControlEntity);
+        accountSettleService.settle(LocalDate.now(),accountSettleControlEntity);
 
         ThreadUtil.sleep(1000);
     }

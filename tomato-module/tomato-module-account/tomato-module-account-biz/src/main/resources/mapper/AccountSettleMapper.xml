@@ -73,4 +73,33 @@
     <select id="selectByAccountNo" resultType="AccountSettleEntity">
         select * from t_account_settle where account_no = #{accountNo}
     </select>
+
+    <update id="updateByAccountNo" parameterType="AccountSettleEntity">
+        update t_account_settle
+        <set>
+            <if test="null != settleType and '' != settleType">
+                settle_type = #{settleType},
+            </if>
+            <if test="null != cycleType and '' != cycleType">
+                cycle_type = #{cycleType},
+            </if>
+            <if test="null != cycleData and '' != cycleData">
+                cycle_data = #{cycleData},
+            </if>
+            <if test="null != reserveDays">
+                reserve_days = #{reserveDays},
+            </if>
+            <if test="null != maxSettleDays">
+                max_settle_days = #{maxSettleDays},
+            </if>
+            <if test="null != settleTargetType and '' != settleTargetType">
+                settle_target_type = #{settleTargetType},
+            </if>
+            <if test="null != remark and '' != remark">
+                remark = #{remark},
+            </if>
+            version = version + 1
+        </set>
+        where account_no = #{accountNo} and version = #{version}
+    </update>
 </mapper>

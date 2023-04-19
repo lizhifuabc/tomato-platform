@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * 账户结算规则
@@ -50,5 +51,24 @@ public class AccountSettleManager {
         accountSettleDao.insert(accountSettleEntity);
         log.info("设置结算规则, merchantNo:{}, id:{}", accountSettleEntity.getMerchantNo(),accountSettleEntity.getId());
         return accountSettleEntity;
+    }
+
+    /**
+     * 查询
+     * @param accountNo 账号
+     * @return 账户结算规则
+     */
+    public Optional<AccountSettleEntity> selectByAccountNo(String accountNo) {
+        return Optional.ofNullable(accountSettleDao.selectByAccountNo(accountNo));
+    }
+    /**
+     * 更新 + 乐观锁
+     * @param accountSettleEntity 账户结算规则
+     */
+    public void updateByAccountNo(AccountSettleEntity accountSettleEntity){
+        int count = accountSettleDao.updateByAccountNo(accountSettleEntity);
+        if(count == 0){
+            throw new RuntimeException("更新账户结算规则失败");
+        }
     }
 }
