@@ -22,10 +22,6 @@ public enum AccountHisTypeEnum implements BaseEnum<String> {
      */
     TRAD("TRAD", "交易"),
     /**
-     * 转账
-     */
-    TRANS("TRANS", "转账"),
-    /**
      * 退款
      */
     REFUND("REFUND", "退款"),

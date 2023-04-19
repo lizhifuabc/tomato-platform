@@ -4,6 +4,8 @@ import com.tomato.account.domain.entity.AccountRateEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 账户费率
  *
@@ -19,4 +21,21 @@ public interface AccountRateDao {
      * @return AccountRateEntity 账户费率
      */
     AccountRateEntity selectByAccountNo(@Param("accountNo") String accountNo,@Param("rateType") String rateType);
+    /**
+     * 查询所有
+     * @param accountNo 账户编号
+     * @return AccountRateEntity 账户费率
+     */
+    List<AccountRateEntity> selectByAccountNoList(@Param("accountNo") String accountNo);
+
+    /**
+     * 删除
+     * @param accountNo 账户编号
+     */
+    void deleteByAccountNo(@Param("accountNo") String accountNo);
+    /**
+     * 批量新增
+     * @param list 账户费率
+     */
+    void batchInsert(List<AccountRateEntity> list);
 }

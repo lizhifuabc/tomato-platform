@@ -7,6 +7,29 @@
             *
         from
             t_account_rate
-        where account_no = #{accountNo} and rate_type = #{rateType}
+        where
+            account_no = #{accountNo} and rate_type = #{rateType}
     </select>
+
+    <select id="selectByAccountNoList" resultType="AccountRateEntity">
+        select
+            *
+        from
+            t_account_rate
+        where
+            account_no = #{accountNo}
+    </select>
+
+    <delete id="deleteByAccountNo">
+        delete from t_account_rate where account_no = #{accountNo}
+    </delete>
+
+    <insert id="batchInsert" parameterType="AccountRateEntity">
+        insert into
+            t_account_rate (account_no,merchant_no, rate_type, rate)
+        values
+            <foreach collection="list" item="item" index="index" separator=",">
+                (#{item.accountNo},#{item.merchantNo},#{item.rateType},#{item.rate})
+            </foreach>
+    </insert>
 </mapper>
