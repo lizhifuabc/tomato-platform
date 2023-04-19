@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 
 /**
  * 账户操作
@@ -112,5 +113,9 @@ public class AccountInfoManager {
             accountBalanceBO.setLastTradTime(now);
         }
         account.setAccountHisSerial(account.getAccountHisSerial() + 1);
+    }
+
+    public Optional<AccountInfoEntity> selectByMerchantNo(String merchantNo, String accountType) {
+        return Optional.ofNullable(accountInfoDao.selectByMerchantNo(merchantNo, accountType));
     }
 }

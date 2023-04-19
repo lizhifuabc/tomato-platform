@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  *  账户管理操作
@@ -30,11 +31,9 @@ import java.math.BigDecimal;
 @Slf4j
 public class AccountOperateService {
     private final AccountInfoManager accountInfoManager;
-    private final AccountInfoDao accountInfoDao;
     private final AccountManageHisDao accountManageHisDao;
-    public AccountOperateService(AccountInfoManager accountInfoManager, AccountInfoDao accountInfoDao, AccountManageHisDao accountManageHisDao) {
+    public AccountOperateService(AccountInfoManager accountInfoManager,AccountManageHisDao accountManageHisDao) {
         this.accountInfoManager = accountInfoManager;
-        this.accountInfoDao = accountInfoDao;
         this.accountManageHisDao = accountManageHisDao;
     }
 
@@ -46,10 +45,12 @@ public class AccountOperateService {
     public AccountInfoEntity createAccount(AccountCreateReq accountCreateReq){
         // 1.检查是否已经创建账户(不解决并发问题)
         // 这个地方是检查该商编是否已经存在账户，所以这个地方不能使用通过账户号来查询
-        AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountCreateReq.getMerchantNo(),accountCreateReq.getAccountType());
-        AccountCheckService.checkAccountNotExist(account);
+        Optional<AccountInfoEntity> optional = accountInfoManager.selectByMerchantNo(accountCreateReq.getMerchantNo(),accountCreateReq.getAccountType());
+        optional.ifPresent(accountInfoEntity -> {
+            throw new BusinessException(AccountRespCode.ACCOUNT_ALREADY_EXIST);
+        });
         // 2.创建账户
-        account = accountInfoManager.create(accountCreateReq);
+        AccountInfoEntity account = accountInfoManager.create(accountCreateReq);
         // 3.创建账户管理记录
         AccountManageHisEntity accountManageHisEntity = new AccountManageHisEntity();
         accountManageHisEntity.setAccountNo(account.getAccountNo());
@@ -66,7 +67,7 @@ public class AccountOperateService {
      */
     public void cancelledAccount(AccountCancelledReq accountCancelledReq) {
         //1.检查是否已经注销账户
-        AccountInfoEntity account = accountInfoDao.selectByAccountNo(accountCancelledReq.getAccountNo());
+        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountCancelledReq.getAccountNo());
         AccountCheckService.checkAccountExist(account);
         if(AccountStatusTypeEnum.ACCOUNT_CANCELLED.getValue().equals(account.getAccountStatus())){
             log.info("账户已经注销,直接返回, accountNo:{}", accountCancelledReq.getAccountNo());
@@ -95,7 +96,7 @@ public class AccountOperateService {
      */
     public void freezeOrUnfreeze(AccountFreezeReq accountFreezeReq) {
         // 1.检查账户是否存在
-        AccountInfoEntity account = accountInfoDao.selectByAccountNo(accountFreezeReq.getAccountNo());
+        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountFreezeReq.getAccountNo());
         AccountCheckService.checkAccountExist(account);
         if(AccountStatusTypeEnum.ACCOUNT_CANCELLED.name().equals(account.getAccountStatus())){
             throw new BusinessException(AccountRespCode.ACCOUNT_STATUS_NOT_ACTIVE);

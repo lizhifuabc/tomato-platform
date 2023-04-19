@@ -68,4 +68,8 @@ public class AccountInfoEntity extends BaseEntity {
      * 账户状态
      */
     private String accountStatus;
+    /**
+     * 备注
+     */
+    private String remark;
 }

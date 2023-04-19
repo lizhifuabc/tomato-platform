@@ -41,14 +41,6 @@ public class AccountCheckService {
         }
     }
     /**
-     * 检查账户是否存在
-     */
-    public static void checkAccountNotExist(AccountInfoEntity accountInfoEntity){
-        if(accountInfoEntity != null){
-            throw new BusinessException(AccountRespCode.ACCOUNT_ALREADY_EXIST);
-        }
-    }
-    /**
      * 是否可以收款
      */
     public static void checkAdd(String accountStatus){
