@@ -48,7 +48,7 @@ public class AccountRateManager {
         // 新增
         StringBuilder sb = new StringBuilder();
         List<AccountRateEntity> list = new ArrayList<>();
-        accountRateReqList.getAccountRateReqList().forEach(accountRateReq -> {
+        accountRateReqList.getAccountRateBaseReqList().forEach(accountRateReq -> {
             AccountRateEntity accountRateEntity = new AccountRateEntity();
             accountRateEntity.setAccountNo(accountRateReqList.getAccountNo());
             accountRateEntity.setRateType(accountRateReq.getRateType());

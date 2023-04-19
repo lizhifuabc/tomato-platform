@@ -10,7 +10,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum SettleTargetTypeEnum implements BaseEnum {
+public enum SettleTargetTypeEnum implements BaseEnum<String> {
 	/**
 	 * 银行卡账户
 	 */

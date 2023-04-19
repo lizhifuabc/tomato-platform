@@ -1,9 +1,7 @@
 package com.tomato.account.domain.req;
 
 import com.tomato.account.enums.AccountHisTypeEnum;
-import com.tomato.account.enums.AccountTypeEnum;
 import com.tomato.validator.annotation.CheckEnum;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -18,7 +16,7 @@ import java.math.BigDecimal;
  */
 @Data
 @Tag(name = "账户费率")
-public class AccountRateReq {
+public class AccountRateBaseReq {
     /**
      * 费率
      */

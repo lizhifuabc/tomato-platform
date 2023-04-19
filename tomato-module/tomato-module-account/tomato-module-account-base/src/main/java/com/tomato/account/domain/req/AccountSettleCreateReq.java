@@ -1,10 +1,16 @@
 package com.tomato.account.domain.req;
 
+import com.tomato.account.enums.CycleTypeEnum;
+import com.tomato.account.enums.SettleTargetTypeEnum;
+import com.tomato.account.enums.SettleTypeEnum;
+import com.tomato.validator.annotation.CheckEnum;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.math.BigDecimal;
 
 /**
  * 账户结算规则
@@ -13,20 +19,34 @@ import java.math.BigDecimal;
  * @since 2023/1/8
  */
 @Data
+@Tag(name = "账户结算规则")
 public class AccountSettleCreateReq {
+    /**
+     * 账户编号
+     */
+    @NotBlank(message = "账户编号不能为空")
+    @Schema(description = "账户编号")
+    private String accountNo;
     /**
      * 结算类型
      */
+    @NotBlank(message = "结算类型不能为空")
+    @Schema(description = "结算类型")
+    @CheckEnum(value = SettleTypeEnum.class,message = "结算类型不正确")
     private String settleType;
 
     /**
      * 结算周期
      */
+    @NotBlank(message = "结算周期不能为空")
+    @Schema(description = "结算周期")
+    @CheckEnum(value = CycleTypeEnum.class,message = "结算周期不正确")
     private String cycleType;
 
     /**
      * 结算周期数据
      */
+    @Schema(description = "结算周期数据")
     private String cycleData;
 
     /**
@@ -34,44 +54,27 @@ public class AccountSettleCreateReq {
      */
     @Min(value = 1,message = "风险预存期最小为1")
     @NotNull
+    @Schema(description = "风险预存期")
     private Integer reserveDays;
-
-    /**
-     * 最小结算金额
-     */
-    private BigDecimal minAmount;
-
-    /**
-     * 是否承担划款手续费标志:0-否， 1-是
-     */
-    private Integer settleFeeFlag;
-
-    /**
-     * 客户不承担手续费限额
-     */
-    private BigDecimal limitSettleFee;
-
-    /**
-     * 结算手续费率
-     */
-    private BigDecimal settleRate;
-
-    /**
-     * 封顶手续费
-     */
-    private BigDecimal maxSettleFee;
 
     /**
      * 最大结算天数
      */
+    @Min(value = 1,message = "最大结算天数最小为1")
+    @NotNull
+    @Schema(description = "最大结算天数")
     private Integer maxSettleDays;
 
     /**
      * 结算到目标账户类型
      */
+    @NotBlank(message = "结算到目标账户类型不能为空")
+    @Schema(description = "结算到目标账户类型")
+    @CheckEnum(value = SettleTargetTypeEnum.class,message = "结算到目标账户类型不正确")
     private String settleTargetType;
     /**
      * 备注
      */
+    @Schema(description = "备注")
     private String remark;
 }

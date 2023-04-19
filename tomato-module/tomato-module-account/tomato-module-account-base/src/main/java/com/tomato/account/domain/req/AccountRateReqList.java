@@ -30,5 +30,5 @@ public class AccountRateReqList {
     @Size(min = 1, message = "账户费率明细不能为空")
     @Schema(description = "账户费率明细")
     @Valid
-    private List<AccountRateReq> accountRateReqList;
+    private List<AccountRateBaseReq> accountRateBaseReqList;
 }

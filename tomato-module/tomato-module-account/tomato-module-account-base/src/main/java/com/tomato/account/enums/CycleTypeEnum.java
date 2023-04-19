@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 @AllArgsConstructor
 @Getter
-public enum CycleTypeEnum implements BaseEnum {
+public enum CycleTypeEnum implements BaseEnum<String> {
 	/**
 	 * 月结:每个月几号结算
 	 * 1-30

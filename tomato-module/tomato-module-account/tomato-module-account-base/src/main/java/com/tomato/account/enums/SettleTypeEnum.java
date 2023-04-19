@@ -10,7 +10,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum SettleTypeEnum implements BaseEnum {
+public enum SettleTypeEnum implements BaseEnum<String> {
 	/**
 	 * 自动结算（定期结算）
 	 */

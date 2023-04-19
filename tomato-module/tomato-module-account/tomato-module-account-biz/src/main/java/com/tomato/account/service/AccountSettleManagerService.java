@@ -2,7 +2,7 @@ package com.tomato.account.service;
 
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountSettleEntity;
-import com.tomato.account.domain.req.AccountSettleManagerCreateReq;
+import com.tomato.account.domain.req.AccountSettleCreateReq;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.manager.AccountSettleControlManager;
 import com.tomato.account.manager.AccountSettleManager;
@@ -30,15 +30,15 @@ public class AccountSettleManagerService {
 
     /**
      * 账号结算控制
-     * @param accountSettleManagerCreateReq 账号结算控制
+     * @param accountSettleCreateReq 账号结算控制
      */
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public void create(AccountSettleManagerCreateReq accountSettleManagerCreateReq){
-        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountSettleManagerCreateReq.getAccountNo());
+    public void create(AccountSettleCreateReq accountSettleCreateReq){
+        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountSettleCreateReq.getAccountNo());
         // 检查账户是否存在
         AccountCheckService.checkAccountExist(accountInfoEntity);
         // 创建账户结算基本信息
-        AccountSettleEntity accountSettleEntity = accountSettleManager.create(accountSettleManagerCreateReq.getAccountSettleCreateReq(), accountInfoEntity);
+        AccountSettleEntity accountSettleEntity = accountSettleManager.create(accountSettleCreateReq, accountInfoEntity);
         // 创建账户结算控制
         accountSettleControlManager.create(accountSettleEntity);
     }

@@ -1,4 +1,4 @@
-# 账户信息 TODO 手续费配置（例如提款需要手续费，结算不需要）
+# 账户信息
 drop table if exists `t_account_info`;
 create table `t_account_info` (
   `id`                      bigint(20)      not null auto_increment                 comment '自增主键',
@@ -110,13 +110,6 @@ create table `t_account_settle` (
    `cycle_type`              varchar(36)     default 'WEEK_WORK'                 comment '结算周期，默认:周结：每周几结算,工作日，顺延一天，默认周末休息',
    `cycle_data`              varchar(36)     default '1,2,3,4,5'                 comment '结算周期数据(自动结算必须),默认:1,2,3,4,5',
    `reserve_days`            int             default 1                           comment '风险预存期',
-   `min_amount`              decimal(16,2)   not null default 0                  comment '最小结算金额',
-
-   `settle_fee_flag`         bit             not null default 1                  comment '是否承担划款手续费标志:0-否, 1-是',
-   `settle_rate`             decimal(16,2)   not null default 0                  comment '结算手续费率',
-
-   `limit_settle_fee`        decimal(16,2)   not null default 0                  comment '客户不承担手续费限额(多少以内免手续费)',
-   `max_settle_fee`          decimal(16,2)   not null default 0                  comment '封顶手续费',
 
    `max_settle_days`         int             not null                            comment '最大结算天数',
 
