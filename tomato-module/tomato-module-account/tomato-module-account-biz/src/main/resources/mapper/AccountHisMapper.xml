@@ -54,9 +54,10 @@
     <!-- 账户历史汇总  -->
     <select id="collect" parameterType="map" resultType="AccountHisCollectResBO">
         select
-            ifnull(sum(amount),0) as "totalAmount",
+            ifnull(sum(amount - t_account_his.amount_free),0) as "totalAmount",
             count(id) as "totalCount"
-        from t_account_his
+        from
+            t_account_his
         where
             account_no = #{accountNo}
             and <![CDATA[ create_time <= #{end} and create_time >= #{start}]]>

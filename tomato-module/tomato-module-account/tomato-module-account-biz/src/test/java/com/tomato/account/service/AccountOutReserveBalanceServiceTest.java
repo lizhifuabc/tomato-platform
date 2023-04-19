@@ -26,6 +26,6 @@ public class AccountOutReserveBalanceServiceTest {
         LocalDate exe = LocalDate.of(2023,1,18);
         String merchantNo = "1234";
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
-        accountOutReserveBalanceService.exe(accountInfoEntity.getAccountNo(),exe);
+        accountOutReserveBalanceService.exe(accountInfoEntity.getAccountNo());
     }
 }

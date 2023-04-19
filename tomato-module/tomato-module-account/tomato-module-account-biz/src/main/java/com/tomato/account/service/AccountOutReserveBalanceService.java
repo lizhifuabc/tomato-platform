@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
@@ -35,11 +36,12 @@ public class AccountOutReserveBalanceService {
 
     /**
      * 计算账户风险预存期外余额 TODO 异步执行 TODO 分页
+     * 公式：风险预存期外余额 = 账户余额 - 风险预存期内的账户入账 + 风险预存期内的账户出账
      * @param accountNo 账号
-     * @param exeLocalDate 执行日期，默认当前日期
      */
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public void exe(String accountNo,LocalDate exeLocalDate){
+    public void exe(String accountNo){
+        LocalDate exeLocalDate = LocalDate.now();
         log.info("账户[{}]计算账户风险预存期外余额的日期[{}]",accountNo,exeLocalDate);
         // 账户查询
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountNo);
@@ -58,15 +60,23 @@ public class AccountOutReserveBalanceService {
             log.warn("计算账户风险预存期外余额不存在风险预存期,账户号:{}",accountNo);
             return;
         }
-        // 风险预存期内日期
-        LocalDate inDate = exeLocalDate.minusDays(accountSettle.getReserveDays() - 1);
         // 风险预存期内的账户入账 TODO
         // 所有的扣款都先扣风险预存期外的钱，日结通出款过程中风险预存期外的钱可能会成为负值，代扣代发、结算在扣款前已经做了金额校验
         // 情况1，退款 ：当天扣款，第二天才退款，此时风外的钱是否应该增加；因为扣款时扣的是风外的钱才能成功。
         // 情况2，提现 ：是否允许提取风外的钱，有个提取比例，和T0或者D0不同的是，还是存在风外、风内的钱；类似日结通产品
-        log.info("查询账户历史:开始时间[{}]结束时间[{}]",inDate.atTime(LocalTime.MIN),exeLocalDate.atTime(LocalTime.MAX));
-        AccountHisCollectResBO collect = accountHisDao.collect(accountNo,inDate.atTime(LocalTime.MIN), exeLocalDate.atTime(LocalTime.MAX));
-        log.info("查询账户历史:开始时间[{}]结束时间[{}],结果:[{}]",inDate.atTime(LocalTime.MIN),exeLocalDate.atTime(LocalTime.MAX),collect);
+
+        // 风险预存期内日期
+        // 计算规则：当前时间 - （风险预存期 - 1）
+        // 例如：风险预存期：2天，当前时间：2023年01月11日，此时 2023年01月11日 和 2023年01月10 为风险预存期内的日期
+        // 即：2023年01月11日 - （2 - 1） = 2023年01月10日
+        LocalDate start = exeLocalDate.minusDays(accountSettle.getReserveDays() - 1);
+        LocalDateTime startDate = start.atTime(LocalTime.MIN);
+        LocalDateTime endDate = exeLocalDate.atTime(LocalTime.MAX);
+
+        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]",accountNo,startDate,endDate);
+        AccountHisCollectResBO collect = accountHisDao.collect(accountNo,startDate, endDate);
+        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]，结果:{}",accountNo,startDate,endDate,collect);
+
         // 账户余额 - 账户历史金额
         // TODO 是否存在未入账的账户历史，如果存在，此时余额是少的，此时计算是有问题的。
         BigDecimal amount = accountInfoEntity.getBalance().subtract(collect.getTotalAmount());

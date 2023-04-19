@@ -47,7 +47,8 @@ public interface AccountHisDao {
     AccountHisDealBO selectDeal(@Param("accountNo") String accountNo);
 
     /**
-     * 日汇总账户待结算金额
+     * 金额汇总
+     * 根据创建时间进行汇总：不关注账户状态（异步入账的情况）
      * @param accountNo 账号
      * @param start 创建时间开始
      * @param end 创建时间结束

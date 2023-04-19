@@ -37,7 +37,6 @@ public class AccountOutReserveBalanceTimer {
         log.info("账户风险预存期外余额定时定时执行start:[{}]", LocalDateTime.now());
         // 当前页码
         int pageIndex = 0;
-        LocalDate exeLocalDate = LocalDate.now();
         while (true){
             List<String> accountList = accountInfoDao.selectAllAccount(pageIndex, PAGE_SIZE);
             // 查询无结果
@@ -46,7 +45,7 @@ public class AccountOutReserveBalanceTimer {
             }
             accountList.forEach(accountNo ->{
                 try {
-                    accountOutReserveBalanceService.exe(accountNo,exeLocalDate);
+                    accountOutReserveBalanceService.exe(accountNo);
                 }catch (Exception e){
                     log.error("账户[{}]风险预存期外余额定时出现异常",accountNo,e);
                 }
