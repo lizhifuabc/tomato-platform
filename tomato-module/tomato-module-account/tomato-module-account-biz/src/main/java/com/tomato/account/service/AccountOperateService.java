@@ -93,8 +93,9 @@ public class AccountOperateService {
     /**
      * 冻结解冻
      * @param accountFreezeReq 冻结解冻
+     * @param accountStatus 冻结解冻状态
      */
-    public void freezeOrUnfreeze(AccountFreezeReq accountFreezeReq) {
+    public void freezeOrUnfreeze(AccountFreezeReq accountFreezeReq,String accountStatus) {
         // 1.检查账户是否存在
         AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountFreezeReq.getAccountNo());
         AccountCheckService.checkAccountExist(account);
@@ -102,13 +103,13 @@ public class AccountOperateService {
             throw new BusinessException(AccountRespCode.ACCOUNT_STATUS_NOT_ACTIVE);
         }
         // 2.冻结或者解冻
-        accountInfoManager.updateAccountStatus(account.getAccountNo(), accountFreezeReq.getAccountStatus(),account.getVersion());
+        accountInfoManager.updateAccountStatus(account.getAccountNo(), accountStatus,account.getVersion());
         // 3.创建账户管理记录
         AccountManageHisEntity accountManageHisEntity = new AccountManageHisEntity();
         accountManageHisEntity.setAccountNo(account.getAccountNo());
         accountManageHisEntity.setAccountManageSerial(account.getAccountManageSerial() + 1);
         accountManageHisEntity.setBeforeValue("status:" + account.getAccountStatus());
-        accountManageHisEntity.setAfterValue("status:" + accountFreezeReq.getAccountStatus());
+        accountManageHisEntity.setAfterValue("status:" + accountStatus);
         accountManageHisDao.insert(accountManageHisEntity);
     }
 }

@@ -29,8 +29,7 @@ public class AccountOperateServiceTest {
         accountOperateService.createAccount(accountCreateReq);
 
         AccountFreezeReq accountFreezeReq = new AccountFreezeReq();
-        accountFreezeReq.setAccountStatus(AccountStatusTypeEnum.ACCOUNT_FROZEN.getValue());
-        accountOperateService.freezeOrUnfreeze(accountFreezeReq);
+        accountOperateService.freezeOrUnfreeze(accountFreezeReq,AccountStatusTypeEnum.ACCOUNT_FROZEN.getValue());
 
         AccountCancelledReq accountCancelledReq = new AccountCancelledReq();
         accountOperateService.cancelledAccount(accountCancelledReq);

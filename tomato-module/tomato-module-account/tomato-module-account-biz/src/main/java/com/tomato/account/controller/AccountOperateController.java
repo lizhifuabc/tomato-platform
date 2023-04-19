@@ -3,6 +3,7 @@ package com.tomato.account.controller;
 import com.tomato.account.domain.req.AccountCancelledReq;
 import com.tomato.account.domain.req.AccountCreateReq;
 import com.tomato.account.domain.req.AccountFreezeReq;
+import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.service.AccountOperateService;
 import com.tomato.domain.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;
@@ -52,25 +53,47 @@ public class AccountOperateController {
         return Resp.buildSuccess();
     }
     /**
-     * 冻结账户
-     * @param accountFreezeReq 冻结账户
+     * 冻结止收
+     * @param accountFreezeReq 冻结止收
      * @return void
      */
-    @PostMapping("/account/freeze")
-    @Operation(summary = "冻结账户", description = "冻结账户")
-    public Resp<Void> freeze(@Valid @RequestBody AccountFreezeReq accountFreezeReq){
-        accountOperateService.freezeOrUnfreeze(accountFreezeReq);
+    @PostMapping("/account/freeze/credit")
+    @Operation(summary = "冻结止收", description = "冻结止收")
+    public Resp<Void> freezeCredit(@Valid @RequestBody AccountFreezeReq accountFreezeReq){
+        accountOperateService.freezeOrUnfreeze(accountFreezeReq,AccountStatusTypeEnum.ACCOUNT_FREEZE_CREDIT.getValue());
         return Resp.buildSuccess();
     }
     /**
-     * 解冻账户
-     * @param accountFreezeReq 解冻账户
+     * 冻结止付
+     * @param accountFreezeReq 冻结止付
      * @return void
      */
-    @PostMapping("/account/unfreeze")
-    @Operation(summary = "解冻账户", description = "解冻账户")
+    @PostMapping("/account/freeze/debit")
+    @Operation(summary = "冻结止付", description = "冻结止付")
+    public Resp<Void> freezeDebit(@Valid @RequestBody AccountFreezeReq accountFreezeReq){
+        accountOperateService.freezeOrUnfreeze(accountFreezeReq, AccountStatusTypeEnum.ACCOUNT_FREEZE_DEBIT.getValue());
+        return Resp.buildSuccess();
+    }
+    /**
+     * 完全冻结
+     * @param accountFreezeReq 完全冻结
+     * @return void
+     */
+    @PostMapping("/account/freeze/freeze")
+    @Operation(summary = "完全冻结", description = "完全冻结")
+    public Resp<Void> freeze(@Valid @RequestBody AccountFreezeReq accountFreezeReq){
+        accountOperateService.freezeOrUnfreeze(accountFreezeReq, AccountStatusTypeEnum.ACCOUNT_FROZEN.getValue());
+        return Resp.buildSuccess();
+    }
+    /**
+     * 解冻
+     * @param accountFreezeReq 解冻
+     * @return void
+     */
+    @PostMapping("/account/freeze/unfreeze")
+    @Operation(summary = "解冻", description = "解冻")
     public Resp<Void> unfreeze(@Valid @RequestBody AccountFreezeReq accountFreezeReq){
-        accountOperateService.freezeOrUnfreeze(accountFreezeReq);
+        accountOperateService.freezeOrUnfreeze(accountFreezeReq, AccountStatusTypeEnum.ACCOUNT_AVAILABLE.getValue());
         return Resp.buildSuccess();
     }
 }
