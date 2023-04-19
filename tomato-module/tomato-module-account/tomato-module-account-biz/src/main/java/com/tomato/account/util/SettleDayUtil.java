@@ -36,11 +36,11 @@ public class SettleDayUtil {
         return nextSettleDate;
     }
     /**
-     *
-     * @param cycleData
-     * @param nextSettle
-     * @param cycleTypeEnum
-     * @return
+     * 下一结算日计算
+     * @param cycleData 结算日设置
+     * @param nextSettle 当前值
+     * @param cycleTypeEnum 周期类型
+     * @return 下一结算日
      */
     private static LocalDate nextSettleDate(String[] cycleData, LocalDate nextSettle,CycleTypeEnum cycleTypeEnum){
         log.info("下一结算日计算，周期类型：{}, 结算日设置：{}, 当前值：{}",cycleTypeEnum,cycleData,nextSettle);

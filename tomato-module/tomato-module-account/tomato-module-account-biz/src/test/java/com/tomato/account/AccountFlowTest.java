@@ -9,7 +9,7 @@ import com.tomato.account.enums.CycleTypeEnum;
 import com.tomato.account.enums.SettleTargetTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
 import com.tomato.account.service.AccountOperateService;
-import com.tomato.account.service.AccountSettleManagerService;
+import com.tomato.account.service.AccountSettleOperateService;
 import com.tomato.domain.core.enums.YesNoTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class AccountFlowTest {
     @Resource
     AccountOperateService accountOperateService;
     @Resource
-    AccountSettleManagerService accountSettleManagerService;
+    AccountSettleOperateService accountSettleOperateService;
     @Test
     public void test(){
         // 创建账户
@@ -56,6 +56,6 @@ public class AccountFlowTest {
         accountSettleCreateReq.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
 
         accountSettleManagerCreateReq.setAccountSettleCreateReq(accountSettleCreateReq);
-        accountSettleManagerService.create(accountSettleManagerCreateReq);
+        accountSettleOperateService.create(accountSettleManagerCreateReq);
     }
 }

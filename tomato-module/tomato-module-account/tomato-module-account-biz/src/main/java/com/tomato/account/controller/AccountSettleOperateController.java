@@ -1,8 +1,7 @@
 package com.tomato.account.controller;
 
 import com.tomato.account.domain.req.AccountSettleCreateReq;
-import com.tomato.account.manager.AccountRateManager;
-import com.tomato.account.service.AccountSettleManagerService;
+import com.tomato.account.service.AccountSettleOperateService;
 import com.tomato.domain.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @Tag(name = "账户结算规则", description = "账户结算规则")
-public class AccountSettleController {
-    private final AccountSettleManagerService accountSettleManagerService;
+public class AccountSettleOperateController {
+    private final AccountSettleOperateService accountSettleOperateService;
 
-    public AccountSettleController(AccountSettleManagerService accountSettleManagerService) {
-        this.accountSettleManagerService = accountSettleManagerService;
+    public AccountSettleOperateController(AccountSettleOperateService accountSettleOperateService) {
+        this.accountSettleOperateService = accountSettleOperateService;
     }
 
     /**
@@ -39,7 +38,7 @@ public class AccountSettleController {
     @Operation(summary = "账户结算规则初始化",description = "账户结算规则初始化")
     public Resp<Void> init(@Validated @RequestBody AccountSettleCreateReq accountSettleCreateReq){
         log.info("账户结算规则 start :{}",accountSettleCreateReq);
-        accountSettleManagerService.create(accountSettleCreateReq);
+        accountSettleOperateService.create(accountSettleCreateReq);
         log.info("账户结算规则 end :{}",accountSettleCreateReq);
         return Resp.buildSuccess();
     }

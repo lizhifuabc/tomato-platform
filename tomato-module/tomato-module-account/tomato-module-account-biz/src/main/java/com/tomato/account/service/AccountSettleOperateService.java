@@ -18,12 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2023/1/8
  */
 @Service
-public class AccountSettleManagerService {
+public class AccountSettleOperateService {
     private final AccountSettleManager accountSettleManager;
     private final AccountInfoManager accountInfoManager;
     private final AccountSettleControlManager accountSettleControlManager;
 
-    public AccountSettleManagerService(AccountSettleManager accountSettleManager, AccountInfoManager accountInfoManager, AccountSettleControlManager accountSettleControlManager) {
+    public AccountSettleOperateService(AccountSettleManager accountSettleManager, AccountInfoManager accountInfoManager, AccountSettleControlManager accountSettleControlManager) {
         this.accountSettleManager = accountSettleManager;
         this.accountInfoManager = accountInfoManager;
         this.accountSettleControlManager = accountSettleControlManager;
