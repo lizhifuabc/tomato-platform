@@ -33,7 +33,5 @@ public class AccountSettleServiceTest {
         AccountSettleControlEntity accountSettleControlEntity = accountSettleControlDao.selectByAccountNo(accountInfoEntity.getAccountNo());
 
         accountSettleService.settle(LocalDate.now(),accountSettleControlEntity.getAccountNo());
-
-        ThreadUtil.sleep(1000);
     }
 }
