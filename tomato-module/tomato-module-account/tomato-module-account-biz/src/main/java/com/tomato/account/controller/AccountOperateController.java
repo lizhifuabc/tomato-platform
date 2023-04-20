@@ -4,6 +4,7 @@ import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountCancelledReq;
 import com.tomato.account.domain.req.AccountCreateReq;
 import com.tomato.account.domain.req.AccountFreezeReq;
+import com.tomato.account.domain.resp.AccountCreateResp;
 import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.service.AccountOperateService;
 import com.tomato.domain.resp.Resp;
@@ -38,9 +39,11 @@ public class AccountOperateController {
     @PostMapping("/account/create")
     @Idempotent
     @Operation(summary = "创建账户", description = "创建账户")
-    public Resp<String> createAccount(@Valid @RequestBody AccountCreateReq accountCreateReq){
+    public Resp<AccountCreateResp> createAccount(@Valid @RequestBody AccountCreateReq accountCreateReq){
         AccountInfoEntity account = accountOperateService.createAccount(accountCreateReq);
-        return Resp.of(account.getAccountNo());
+        AccountCreateResp accountCreateResp = new AccountCreateResp();
+        accountCreateResp.setAccountNo(account.getAccountNo());
+        return Resp.of(accountCreateResp);
     }
     /**
      * 注销账户
