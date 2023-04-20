@@ -37,7 +37,7 @@ public class AccountSettleTimer {
         List<AccountSettleControlEntity> list = accountSettleControlDao.selectSettleAccount(nextSettleDate);
         list.forEach(accountSettleControlEntity -> {
             try{
-                accountSettleService.settle(nextSettleDate,accountSettleControlEntity);
+                accountSettleService.settle(nextSettleDate,accountSettleControlEntity.getAccountNo());
             }catch (Exception e){
                 log.error("账户[{}]结算定时出现异常",accountSettleControlEntity.getAccountNo(),e);
             }

@@ -47,12 +47,14 @@ public class AccountSettleService {
     /**
      * 账户结算
      * @param settleDate 指定结算日
-     * @param accountSettleControl 账户结算控制
+     * @param accountNo 账户编号
      */
     @Async("asyncTaskExecutorAccount")
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public void settle(LocalDate settleDate,AccountSettleControlEntity accountSettleControl){
-        log.info("下次结算日期等于[{}]的账户[{}]开始结算",settleDate,accountSettleControl.getAccountNo());
+    public void settle(LocalDate settleDate,String accountNo){
+        log.info("下次结算日期等于[{}]的账户[{}]开始结算",settleDate,accountNo);
+        // 查询账户结算控制
+        AccountSettleControlEntity accountSettleControl = accountSettleControlManager.selectByAccountNo(accountNo).orElseThrow(()->new RuntimeException("账户结算控制不存在"));
         // 查询账户信息
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountSettleControl.getAccountNo());
         // 结算信息
