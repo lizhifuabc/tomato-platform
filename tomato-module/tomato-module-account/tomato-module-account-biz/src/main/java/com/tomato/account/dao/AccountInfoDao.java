@@ -29,6 +29,7 @@ public interface AccountInfoDao {
      * 查询账户
      *
      * @param merchantNo 商编
+     * @param accountType 账户类型
      * @return 账户
      */
     AccountInfoEntity selectByMerchantNo(@Param("merchantNo") String merchantNo,@Param("accountType") String accountType);
@@ -69,6 +70,7 @@ public interface AccountInfoDao {
      * @param accountNo 账户编号
      * @param outReserveBalance 风险预存期外余额
      * @param version 版本
+     * @param outReserveDate 风险预存期外日期
      * @return 结果
      */
     int updateOutReserveBalance(@Param("accountNo") String accountNo,
