@@ -59,7 +59,7 @@ public class AccountInfoManager {
      */
     public void add(AccountBalanceBO accountBalanceBO,AccountInfoEntity account){
         baseAccount(accountBalanceBO,account);
-        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) < 0){
+        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) <= 0){
             throw new BusinessException("金额错误");
         }
         int count = accountInfoDao.add(accountBalanceBO);
@@ -90,7 +90,7 @@ public class AccountInfoManager {
      */
     public void deduct(AccountBalanceBO accountBalanceBO, AccountInfoEntity account) {
         baseAccount(accountBalanceBO,account);
-        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) > 0){
+        if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) >= 0){
             throw new BusinessException("金额错误");
         }
         int count = accountInfoDao.deduct(accountBalanceBO);
