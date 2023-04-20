@@ -1,12 +1,14 @@
 package com.tomato.account.timer;
 
 import com.tomato.account.dao.AccountSettleControlDao;
+import com.tomato.account.domain.entity.AccountSettleControlEntity;
 import com.tomato.account.service.AccountSettleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 账户结算定时
@@ -31,12 +33,13 @@ public class AccountSettleTimer {
     public void run() {
         LocalDate nextSettleDate = LocalDate.now();
         log.info("账户结算定时，指定结算日期start:[{}]",nextSettleDate);
-        // TODO 去除手动结算账户，下次结算日 <= 当前日期 循环结算
-        accountSettleControlDao.selectSettleAccount(nextSettleDate).forEach(accountNo->{
+        // 自动结算账户，下次结算日 <= 当前日期 循环结算
+        List<AccountSettleControlEntity> list = accountSettleControlDao.selectSettleAccount(nextSettleDate);
+        list.forEach(accountSettleControlEntity -> {
             try{
-                accountSettleService.settle(nextSettleDate,accountNo);
+                accountSettleService.settle(nextSettleDate,accountSettleControlEntity);
             }catch (Exception e){
-                log.error("账户[{}]结算定时出现异常",accountNo,e);
+                log.error("账户[{}]结算定时出现异常",accountSettleControlEntity.getAccountNo(),e);
             }
         });
         log.info("账户结算定时，指定结算日期end:[{}]",nextSettleDate);
