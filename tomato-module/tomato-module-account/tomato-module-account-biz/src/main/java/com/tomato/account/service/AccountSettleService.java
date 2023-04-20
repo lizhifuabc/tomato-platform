@@ -59,7 +59,7 @@ public class AccountSettleService {
         AccountSettleEntity accountSettleEntity = accountSettleDao.selectByAccountNo(accountSettleControl.getAccountNo());
 
         // 创建结算记录
-        AccountSettleRecordEntity accountSettleRecordEntity = accountSettleRecordManager.create(accountSettleControl, accountInfoEntity, accountSettleEntity, settleDate);
+        AccountSettleRecordEntity accountSettleRecordEntity = accountSettleRecordManager.create(accountSettleControl, accountInfoEntity, settleDate);
         log.info("下次结算日期等于[{}]的账户[{}]创建结算记录，数据为[{}]",settleDate,accountSettleControl.getAccountNo(),accountSettleRecordEntity.getId());
 
         // 更新结算控制：账户结算记录ID、下次结算日期

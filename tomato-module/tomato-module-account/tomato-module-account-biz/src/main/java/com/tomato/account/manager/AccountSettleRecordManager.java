@@ -29,7 +29,6 @@ public class AccountSettleRecordManager {
     }
     public AccountSettleRecordEntity create(AccountSettleControlEntity accountSettleControl,
                                              AccountInfoEntity accountInfoEntity,
-                                             AccountSettleEntity accountSettleEntity,
                                              LocalDate settleDate){
         AccountSettleRecordEntity dao = accountSettleRecordDao.selectByAccountNoAndSettleDate(accountSettleControl.getAccountNo(),settleDate);
         if (dao != null) {
@@ -41,7 +40,7 @@ public class AccountSettleRecordManager {
             log.error("账号[{}]:[{}]尚未更新风险预存期外余额:[{}]",accountInfoEntity.getAccountNo(),settleDate,accountInfoEntity.getAccountNo());
             throw new BusinessException("今日尚未更新风险预存期外余额");
         }
-        return createSuccess(accountSettleControl,accountInfoEntity,accountSettleEntity,settleDate);
+        return createSuccess(accountSettleControl,accountInfoEntity,settleDate);
     }
     private AccountSettleRecordEntity createFail(AccountSettleControlEntity accountSettleControl,LocalDate settleDate,String settleRemark){
         AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,settleDate);
@@ -56,16 +55,16 @@ public class AccountSettleRecordManager {
     }
 
     private AccountSettleRecordEntity createInit(AccountSettleControlEntity accountSettleControl,LocalDate settleDate){
-        AccountSettleRecordEntity accountSettleRecordEntity = new AccountSettleRecordEntity();
-        accountSettleRecordEntity.setAccountNo(accountSettleControl.getAccountNo());
-        accountSettleRecordEntity.setMerchantNo(accountSettleControl.getMerchantNo());
-        accountSettleRecordEntity.setAccountSettleId(accountSettleControl.getAccountSettleId());
+        AccountSettleRecordEntity settleRecord = new AccountSettleRecordEntity();
+        settleRecord.setAccountNo(accountSettleControl.getAccountNo());
+        settleRecord.setMerchantNo(accountSettleControl.getMerchantNo());
+        settleRecord.setAccountSettleId(accountSettleControl.getAccountSettleId());
         // 这里不能使用结算控制的时间，防止数据已经被其他更新
-        accountSettleRecordEntity.setSettleDate(settleDate);
-        return accountSettleRecordEntity;
+        settleRecord.setSettleDate(settleDate);
+        return settleRecord;
     }
 
-    private AccountSettleRecordEntity createSuccess(AccountSettleControlEntity accountSettleControl, AccountInfoEntity accountInfoEntity, AccountSettleEntity accountSettleEntity,LocalDate settleDate){
+    private AccountSettleRecordEntity createSuccess(AccountSettleControlEntity accountSettleControl, AccountInfoEntity accountInfoEntity, LocalDate settleDate){
         AccountSettleRecordEntity accountSettleRecordEntity = createInit(accountSettleControl,settleDate);
         accountSettleRecordEntity.setSettleStatus(CommonStatusEnum.SUCCESS.getValue());
         // 计算手续费
