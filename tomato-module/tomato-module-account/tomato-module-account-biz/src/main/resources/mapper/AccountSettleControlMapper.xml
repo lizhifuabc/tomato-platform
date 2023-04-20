@@ -37,11 +37,16 @@
     <select id="selectSettleAccount" resultType="AccountSettleControlEntity">
         <![CDATA[
         select
-            *
+            control.*
         from
-            t_account_settle_control
+            t_account_settle_control control
+        join
+            t_account_settle settle
+        on
+            control.account_settle_id = settle.id
         where
-            next_settle_date <= #{nextSettleDate}
+            control.next_settle_date <= #{nextSettleDate}
+            and settle.settle_type = 'AUTO_SETTLEMENT'
         ]]>
     </select>
 

@@ -63,8 +63,9 @@ public class AccountSettleControlManager {
      * @param accountSettleEntity 结算数据
      * @param accountSettleControlEntity 结算控制数据
      * @param accountSettleRecordEntity 结算记录数据
+     * @return 下一个结算日
      */
-    public void updateSettleControl(AccountSettleEntity accountSettleEntity,
+    public LocalDate updateSettleControl(AccountSettleEntity accountSettleEntity,
                                     AccountSettleControlEntity accountSettleControlEntity,
                                     AccountSettleRecordEntity accountSettleRecordEntity){
         // 结算周期计算
@@ -87,6 +88,7 @@ public class AccountSettleControlManager {
         if(count <= 0){
             throw new BusinessException("在更新结算控制的时候出现乐观锁异常");
         }
+        return nextSettleDate;
     }
     /**
      * 更新账户结算控制:计算下一个结算日
