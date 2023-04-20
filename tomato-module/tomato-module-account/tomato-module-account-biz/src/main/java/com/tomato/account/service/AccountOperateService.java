@@ -41,7 +41,7 @@ public class AccountOperateService {
      * @param accountCreateReq 账户创建
      */
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public AccountInfoEntity createAccount(AccountCreateReq accountCreateReq){
+    public void createAccount(AccountCreateReq accountCreateReq){
         // 1.检查是否已经创建账户(不解决并发问题)
         // 这个地方是检查该商编是否已经存在账户，所以这个地方不能使用通过账户号来查询
         Optional<AccountInfoEntity> optional = accountInfoManager.selectByMerchantNo(accountCreateReq.getMerchantNo(),accountCreateReq.getAccountType());
@@ -57,7 +57,6 @@ public class AccountOperateService {
         accountManageHisEntity.setBeforeValue("status:init");
         accountManageHisEntity.setAfterValue("status:"+account.getAccountStatus());
         accountManageHisDao.insert(accountManageHisEntity);
-        return account;
     }
 
     /**
