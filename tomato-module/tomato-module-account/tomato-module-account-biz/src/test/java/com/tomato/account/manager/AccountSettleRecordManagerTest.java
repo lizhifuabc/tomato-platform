@@ -35,6 +35,6 @@ public class AccountSettleRecordManagerTest {
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
         AccountSettleEntity accountSettleEntity = accountSettleDao.selectByAccountNo(accountInfoEntity.getAccountNo());
         AccountSettleControlEntity accountSettleControl = accountSettleControlDao.selectById(1L);
-        accountSettleRecordManager.create(accountSettleControl,accountInfoEntity,LocalDate.now());
+        accountSettleRecordManager.create(accountSettleControl,accountInfoEntity);
     }
 }

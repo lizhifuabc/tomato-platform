@@ -1,5 +1,8 @@
 package com.tomato.account.service;
 
+import com.tomato.account.dao.AccountRateDao;
+import com.tomato.account.domain.entity.AccountRateEntity;
+import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.dao.AccountManageHisDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;
@@ -16,6 +19,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -31,9 +36,11 @@ import java.util.Optional;
 public class AccountOperateService {
     private final AccountInfoManager accountInfoManager;
     private final AccountManageHisDao accountManageHisDao;
-    public AccountOperateService(AccountInfoManager accountInfoManager,AccountManageHisDao accountManageHisDao) {
+    private final AccountRateDao accountRateDao;
+    public AccountOperateService(AccountInfoManager accountInfoManager, AccountManageHisDao accountManageHisDao, AccountRateDao accountRateDao) {
         this.accountInfoManager = accountInfoManager;
         this.accountManageHisDao = accountManageHisDao;
+        this.accountRateDao = accountRateDao;
     }
 
     /**
@@ -50,13 +57,31 @@ public class AccountOperateService {
         });
         // 2.创建账户
         AccountInfoEntity account = accountInfoManager.create(accountCreateReq);
-        // 3.创建账户管理记录
+        // 3.创建默认费率
+        List<AccountRateEntity> list = new ArrayList<>();
+        AccountRateEntity accountRateEntity = new AccountRateEntity();
+        accountRateEntity.setAccountNo(account.getAccountNo());
+        accountRateEntity.setMerchantNo(account.getMerchantNo());
+        accountRateEntity.setRate(new BigDecimal("0"));
+        accountRateEntity.setRateType(AccountHisTypeEnum.TRAD.getValue());
+        list.add(accountRateEntity);
+
+        accountRateEntity = new AccountRateEntity();
+        accountRateEntity.setAccountNo(account.getAccountNo());
+        accountRateEntity.setMerchantNo(account.getMerchantNo());
+        accountRateEntity.setRate(new BigDecimal("0"));
+        accountRateEntity.setRateType(AccountHisTypeEnum.SETTLEMENT.getValue());
+        list.add(accountRateEntity);
+        accountRateDao.batchInsert(list);
+
+        // 4.创建账户管理记录
         AccountManageHisEntity accountManageHisEntity = new AccountManageHisEntity();
         accountManageHisEntity.setAccountNo(account.getAccountNo());
         accountManageHisEntity.setAccountManageSerial(0L);
-        accountManageHisEntity.setBeforeValue("status:init");
-        accountManageHisEntity.setAfterValue("status:"+account.getAccountStatus());
+        accountManageHisEntity.setBeforeValue("STATUS<INIT>;RATE<INIT>");
+        accountManageHisEntity.setAfterValue("STATUS<"+account.getAccountStatus()+">RATE<SETTLEMENT:0;TRAD:0;REFUND:0;>");
         accountManageHisDao.insert(accountManageHisEntity);
+
         return account;
     }
 

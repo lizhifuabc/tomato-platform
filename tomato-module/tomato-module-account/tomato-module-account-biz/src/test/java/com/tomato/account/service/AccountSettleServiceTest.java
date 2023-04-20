@@ -32,6 +32,6 @@ public class AccountSettleServiceTest {
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
         AccountSettleControlEntity accountSettleControlEntity = accountSettleControlDao.selectByAccountNo(accountInfoEntity.getAccountNo());
 
-        accountSettleService.settle(LocalDate.now(),accountSettleControlEntity.getAccountNo());
+        accountSettleService.settle(accountSettleControlEntity.getAccountNo());
     }
 }

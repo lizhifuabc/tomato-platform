@@ -28,8 +28,8 @@ public class AccountSettleRecordManager {
         this.accountRateManager = accountRateManager;
     }
     public AccountSettleRecordEntity create(AccountSettleControlEntity accountSettleControl,
-                                             AccountInfoEntity accountInfoEntity,
-                                             LocalDate settleDate){
+                                             AccountInfoEntity accountInfoEntity){
+        LocalDate settleDate = accountSettleControl.getNextSettleDate();
         AccountSettleRecordEntity dao = accountSettleRecordDao.selectByAccountNoAndSettleDate(accountSettleControl.getAccountNo(),settleDate);
         if (dao != null) {
             log.error("账号[{}]:[{}]已结算",accountInfoEntity.getAccountNo(),settleDate);

@@ -22,6 +22,8 @@ public class SettleDayUtil {
         System.out.println(nextSettleDateByWeek(cycleData,LocalDate.now()) );
     }
     public static LocalDate settleDate(String[] cycleData, LocalDate nextSettle,CycleTypeEnum cycleTypeEnum,int reserveDay){
+        // 下次结算日<当前日期，取当前日期
+        nextSettle = nextSettle.isBefore(LocalDate.now()) ? LocalDate.now() : nextSettle;
         LocalDate nextSettleDate = nextSettleDate(cycleData,nextSettle,cycleTypeEnum);
         // 风险时间 = 下次结算时间 - （风险预存期 + 1）
         // 防止长久未结算的情况
