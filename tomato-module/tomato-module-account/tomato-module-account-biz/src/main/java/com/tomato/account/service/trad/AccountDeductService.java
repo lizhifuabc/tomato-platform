@@ -6,7 +6,6 @@ import com.tomato.account.domain.bo.AccountHisBO;
 import com.tomato.account.domain.dto.AccountTradDto;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountHisManager;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.service.AccountCheckService;
@@ -54,7 +53,6 @@ public class AccountDeductService implements AccountTradService{
 
         // 4.创建账户历史
         AccountHisBO accountHisBO = BeanUtil.copy(accountTradDto,AccountHisBO.class);
-        accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountHisBO);
 
         // 3.执行账户出款
@@ -83,7 +81,6 @@ public class AccountDeductService implements AccountTradService{
         AccountCheckService.checkDeduct(account.getAccountStatus());
         // 4.创建账户历史
         AccountHisBO accountHisBO = BeanUtil.copy(accountTradDto,AccountHisBO.class);
-        accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountHisBO);
         log.info("账户扣款 async end,{},accountHisEntity:{}",accountTradDto, accountHisEntity);
     }

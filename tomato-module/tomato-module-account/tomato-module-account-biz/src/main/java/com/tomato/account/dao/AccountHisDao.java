@@ -52,7 +52,11 @@ public interface AccountHisDao {
      * @param accountNo 账号
      * @param start 创建时间开始
      * @param end 创建时间结束
+     * @param accountHisType 账户历史类型
      * @return 日汇总账户待结算金额
      */
-    AccountHisCollectResBO collect(@Param("accountNo") String accountNo, @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
+    AccountHisCollectResBO collect(@Param("accountNo") String accountNo,
+                                   @Param("start") LocalDateTime start,
+                                   @Param("end") LocalDateTime end,
+                                   @Param("accountHisType") String accountHisType);
 }

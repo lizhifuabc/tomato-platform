@@ -1,14 +1,11 @@
 package com.tomato.account.service.trad;
 
 import com.tomato.account.constant.AccountRespCode;
-import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.bo.AccountHisBO;
 import com.tomato.account.domain.dto.AccountTradDto;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.domain.req.AccountTradReq;
-import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountHisManager;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.service.AccountCheckService;
@@ -18,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Validator;
 
 import java.math.BigDecimal;
 
@@ -48,7 +44,6 @@ public class AccountAddService implements AccountTradService {
 
         // 创建账户历史
         AccountHisBO accountHisBO = BeanUtil.copy(accountTradDto,AccountHisBO.class);
-        accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountHisBO);
 
         // 执行账户入账
@@ -68,7 +63,6 @@ public class AccountAddService implements AccountTradService {
         baseCheck(accountTradDto,account);
         // 2.创建账户历史
         AccountHisBO accountHisBO = BeanUtil.copy(accountTradDto,AccountHisBO.class);
-        accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountHisBO);
         log.info("账户入账 async end,{},accountHisEntity:{}",accountTradDto, accountHisEntity);
     }

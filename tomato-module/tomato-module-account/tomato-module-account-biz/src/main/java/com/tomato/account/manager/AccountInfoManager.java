@@ -37,6 +37,12 @@ public class AccountInfoManager {
     public Optional<AccountInfoEntity> selectByAccountNo(String accountNo){
         return Optional.ofNullable(accountInfoDao.selectByAccountNo(accountNo));
     }
+    /**
+     * 创建账户
+     *
+     * @param accountCreateReq 账户创建
+     * @return 账户实体
+     */
     public AccountInfoEntity create(AccountCreateReq accountCreateReq) {
         AccountInfoEntity accountInfoEntity = BeanUtil.copy(accountCreateReq, AccountInfoEntity.class);
         accountInfoEntity.setAccountNo(accountNoManager.nextStringValue(accountCreateReq.getMerchantNo()));

@@ -60,6 +60,7 @@
             t_account_his
         where
             account_no = #{accountNo}
+            and account_his_type = #{accountHisType}
             and <![CDATA[ create_time <= #{end} and create_time >= #{start}]]>
     </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.tomato.account.controller;
 
+import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountCancelledReq;
 import com.tomato.account.domain.req.AccountCreateReq;
 import com.tomato.account.domain.req.AccountFreezeReq;
@@ -37,9 +38,9 @@ public class AccountOperateController {
     @PostMapping("/account/create")
     @Idempotent
     @Operation(summary = "创建账户", description = "创建账户")
-    public Resp<Void> createAccount(@Valid @RequestBody AccountCreateReq accountCreateReq){
-        accountOperateService.createAccount(accountCreateReq);
-        return Resp.buildSuccess();
+    public Resp<String> createAccount(@Valid @RequestBody AccountCreateReq accountCreateReq){
+        AccountInfoEntity account = accountOperateService.createAccount(accountCreateReq);
+        return Resp.of(account.getAccountNo());
     }
     /**
      * 注销账户

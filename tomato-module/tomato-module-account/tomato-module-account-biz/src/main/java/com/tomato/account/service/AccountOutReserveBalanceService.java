@@ -1,11 +1,13 @@
 package com.tomato.account.service;
 
 import com.tomato.account.dao.AccountHisDao;
-import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.dao.AccountSettleDao;
 import com.tomato.account.domain.bo.AccountHisCollectResBO;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountSettleEntity;
+import com.tomato.account.enums.AccountHisTypeEnum;
+import com.tomato.account.manager.AccountInfoManager;
+import com.tomato.account.manager.AccountOutReserveBalanceManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -27,16 +29,27 @@ import java.time.LocalTime;
 public class AccountOutReserveBalanceService {
     private final AccountSettleDao accountSettleDao;
     private final AccountHisDao accountHisDao;
-    private final AccountInfoDao accountInfoDao;
-    public AccountOutReserveBalanceService(AccountSettleDao accountSettleDao, AccountHisDao accountHisDao, AccountInfoDao accountInfoDao) {
+    private final AccountOutReserveBalanceManager accountOutReserveBalanceManager;
+    private final AccountInfoManager accountInfoManager;
+    public AccountOutReserveBalanceService(AccountSettleDao accountSettleDao, AccountHisDao accountHisDao, AccountOutReserveBalanceManager accountOutReserveBalanceManager, AccountInfoManager accountInfoManager) {
         this.accountSettleDao = accountSettleDao;
         this.accountHisDao = accountHisDao;
-        this.accountInfoDao = accountInfoDao;
+        this.accountOutReserveBalanceManager = accountOutReserveBalanceManager;
+        this.accountInfoManager = accountInfoManager;
     }
 
     /**
      * 计算账户风险预存期外余额 TODO 异步执行 TODO 分页
      * 公式：风险预存期外余额 = 账户余额 - 风险预存期内的账户入账 + 风险预存期内的账户出账
+     * <p>示例：当天时间：2023-04-20；风险预存期：1天；费率：0.1；
+     * 交易1：2023-04-20 11:11:11 100元 手续费：10元
+     * 交易2：2023-04-19 11:11:11 100元 手续费：10元
+     * 交易3：2023-04-18 11:11:11 100元 手续费：10元
+     * 交易4：2023-04-17 11:11:11 100元 手续费：10元
+     * 此时：余额：360；风险预存期外余额：360 - 90 = 270；
+     * 2023-04-20 提现 100元，手续费 40，余额：360 - （100+40）= 220；风险预存期外余额：270 - （100+40） = 130；
+     * 此时重新定时计算风外金额 = 余额（200） - 风险预存期内的账户金额（-50） - 风险预存期外余额（130）= 20
+     * </p>
      * @param accountNo 账号
      */
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
@@ -44,7 +57,7 @@ public class AccountOutReserveBalanceService {
         LocalDate exeLocalDate = LocalDate.now();
         log.info("账户[{}]计算账户风险预存期外余额的日期[{}]",accountNo,exeLocalDate);
         // 账户查询
-        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountNo);
+        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountNo).orElseThrow(() -> new RuntimeException("账户不存在"));
         // 例如：
         // 当前时间：2023年01月11日
         // 风险预存期：2天
@@ -74,10 +87,11 @@ public class AccountOutReserveBalanceService {
         LocalDateTime endDate = exeLocalDate.atTime(LocalTime.MAX);
 
         log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]",accountNo,startDate,endDate);
-        // 风内：交易
-        AccountHisCollectResBO collect = accountHisDao.collect(accountNo,startDate, endDate);
-        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]，结果:{}",accountNo,startDate,endDate,collect);
-
+        // 风内：
+        // 加款：交易、退款
+        // 扣款：提现、结算
+        // 只统计加款里面的交易，退款不算收入；
+        AccountHisCollectResBO collect = accountHisDao.collect(accountNo,startDate, endDate, AccountHisTypeEnum.TRAD.getValue());
         // 账户余额 - 账户历史金额
         // TODO 是否存在未入账的账户历史，如果存在，此时余额是少的，此时计算是有问题的。
         BigDecimal amount = accountInfoEntity.getBalance().subtract(collect.getTotalAmount());
@@ -85,6 +99,8 @@ public class AccountOutReserveBalanceService {
             log.error("账户[{}]风险预存期外余额小于0，查看是否存在未入账的账户历史",accountNo);
             return;
         }
-        accountInfoDao.updateOutReserveBalance(accountInfoEntity.getAccountNo(),amount,accountInfoEntity.getVersion(),exeLocalDate);
+        accountOutReserveBalanceManager.updateOutReserveBalance(accountInfoEntity.getAccountNo(),amount,accountInfoEntity.getVersion(),exeLocalDate);
+
+        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]，结果:{}",accountNo,startDate,endDate,collect);
     }
 }
