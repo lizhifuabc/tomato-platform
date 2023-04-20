@@ -1,9 +1,13 @@
 package com.tomato.account.controller;
 
+import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.domain.dto.AccountTradDto;
+import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountTradReq;
+import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.service.AccountAsyncInitService;
 import com.tomato.account.service.trad.AccountTradService;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.domain.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;
 import com.tomato.web.common.BaseController;
@@ -31,6 +35,8 @@ public class AccountTradController extends BaseController {
     private AccountTradService accountTradService;
     @Resource
     private AccountAsyncInitService accountAsyncInitService;
+    @Resource
+    private AccountInfoManager accountInfoManager;
     /**
      * 账户入账
      * @param accountTradReq 入账请求
@@ -43,6 +49,9 @@ public class AccountTradController extends BaseController {
         log.info("账户入账 start :{}",accountTradReq);
         boolean async = accountAsyncInitService.checkMerchantNo(accountTradReq.getMerchantNo());
         AccountTradDto accountTradDto = copy(accountTradReq, AccountTradDto.class);
+        AccountInfoEntity account = accountInfoManager.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType())
+                .orElseThrow(() -> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
+        accountTradDto.setAccountNo(account.getAccountNo());
         if(async){
             accountTradService.exeAsync(accountTradDto);
         }else {
