@@ -32,7 +32,7 @@ public class AccountSettleTimer {
         LocalDate nextSettleDate = LocalDate.now();
         log.info("账户结算定时，指定结算日期start:[{}]",nextSettleDate);
         // TODO 去除手动结算账户，下次结算日 <= 当前日期 循环结算
-        accountSettleControlDao.selectAccount(nextSettleDate).forEach(accountNo->{
+        accountSettleControlDao.selectSettleAccount(nextSettleDate).forEach(accountNo->{
             try{
                 accountSettleService.settle(nextSettleDate,accountNo);
             }catch (Exception e){

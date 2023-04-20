@@ -8,10 +8,8 @@
 
 - [x] 账户异步入账服务定时：AccountTradAsyncTimer
 
-- [x] 账户结算定时
-- [x] 风险预存期外余额定时
-
-
+- [x] 账户结算定时：AccountSettleTimer
+- [x] 风险预存期外余额定时：AccountOutReserveBalanceTimer
 
 账户基本操作：
 

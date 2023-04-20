@@ -34,14 +34,14 @@
         </trim>
     </insert>
 
-    <select id="selectAccount" resultType="AccountSettleControlEntity">
+    <select id="selectSettleAccount" resultType="AccountSettleControlEntity">
         <![CDATA[
         select
             *
         from
             t_account_settle_control
         where
-            next_settle_date = #{nextSettleDate}
+            next_settle_date <= #{nextSettleDate}
         ]]>
     </select>
 
