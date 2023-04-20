@@ -34,8 +34,8 @@ public class AccountInfoManager {
      * @param accountNo 账户
      * @return 账户实体
      */
-    public AccountInfoEntity selectByAccountNo(String accountNo){
-        return accountInfoDao.selectByAccountNo(accountNo);
+    public Optional<AccountInfoEntity> selectByAccountNo(String accountNo){
+        return Optional.ofNullable(accountInfoDao.selectByAccountNo(accountNo));
     }
     public AccountInfoEntity create(AccountCreateReq accountCreateReq) {
         AccountInfoEntity accountInfoEntity = BeanUtil.copy(accountCreateReq, AccountInfoEntity.class);
@@ -84,7 +84,7 @@ public class AccountInfoManager {
     }
 
     /**
-     * 扣款
+     * 扣款:扣除风外金额
      * @param accountBalanceBO 账户金额操作
      * @param account 账户
      */

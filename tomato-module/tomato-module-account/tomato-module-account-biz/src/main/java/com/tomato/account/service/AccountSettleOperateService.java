@@ -1,5 +1,6 @@
 package com.tomato.account.service;
 
+import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountSettleControlEntity;
 import com.tomato.account.domain.entity.AccountSettleEntity;
@@ -37,9 +38,7 @@ public class AccountSettleOperateService {
      */
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void create(AccountSettleCreateReq accountSettleCreateReq){
-        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountSettleCreateReq.getAccountNo());
-        // 检查账户是否存在
-        AccountCheckService.checkAccountExist(accountInfoEntity);
+        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountSettleCreateReq.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         // 创建账户结算基本信息
         AccountSettleEntity accountSettleEntity = BeanUtil.copy(accountSettleCreateReq,AccountSettleEntity.class);
         accountSettleEntity.setAccountNo(accountInfoEntity.getAccountNo());

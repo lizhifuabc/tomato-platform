@@ -1,8 +1,10 @@
 package com.tomato.account.service.trad;
 
+import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.bo.AccountHisBO;
+import com.tomato.account.domain.dto.AccountTradDto;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountTradReq;
@@ -10,11 +12,13 @@ import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountHisManager;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.service.AccountCheckService;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.web.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 import java.math.BigDecimal;
 
@@ -27,29 +31,23 @@ import java.math.BigDecimal;
 @Service("accountAddService")
 @Slf4j
 public class AccountAddService implements AccountTradService {
-    private final AccountInfoDao accountInfoDao;
     private final AccountInfoManager accountInfoManager;
     private final AccountHisManager accountHisManager;
 
-    public AccountAddService(AccountInfoDao accountInfoDao, AccountInfoManager accountInfoManager, AccountHisManager accountHisManager) {
-        this.accountInfoDao = accountInfoDao;
+    public AccountAddService(AccountInfoManager accountInfoManager, AccountHisManager accountHisManager) {
         this.accountInfoManager = accountInfoManager;
         this.accountHisManager = accountHisManager;
     }
 
-    /**
-     * 账户加钱
-     * @param accountTradReq 账户加钱
-     */
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
-    public void exe(AccountTradReq accountTradReq){
-        log.info("账户入账 start,{}", accountTradReq);
-        AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType());
+    public void exe(AccountTradDto accountTradDto){
+        log.info("账户入账 start,{}", accountTradDto);
+        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountTradDto.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         // 基础校验
-        baseCheck(accountTradReq,account);
+        baseCheck(accountTradDto,account);
 
         // 创建账户历史
-        AccountHisBO accountHisBO = BeanUtil.copy(accountTradReq,AccountHisBO.class);
+        AccountHisBO accountHisBO = BeanUtil.copy(accountTradDto,AccountHisBO.class);
         accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountHisBO);
 
@@ -59,38 +57,34 @@ public class AccountAddService implements AccountTradService {
         accountBalanceBO.setVersion(account.getVersion());
         accountBalanceBO.setAmount(accountHisEntity.getAmount().subtract(accountHisEntity.getAmountFree()));
         accountInfoManager.add(accountBalanceBO,account);
-        log.info("账户入账 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
+        log.info("账户入账 end,{},accountHisEntity:{}",accountTradDto, accountHisEntity);
     }
 
-    /**
-     * 账户加钱--只创建账户历史
-     * @param accountTradReq 账户加钱
-     */
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
-    public void exeAsync(AccountTradReq accountTradReq){
-        log.info("账户入账 async start,{}", accountTradReq);
-        AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType());
+    public void exeAsync(AccountTradDto accountTradDto){
+        log.info("账户入账 async start,{}", accountTradDto);
+        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountTradDto.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         // 1.基础校验
-        baseCheck(accountTradReq,account);
+        baseCheck(accountTradDto,account);
         // 2.创建账户历史
-        AccountHisBO accountHisBO = BeanUtil.copy(accountTradReq,AccountHisBO.class);
+        AccountHisBO accountHisBO = BeanUtil.copy(accountTradDto,AccountHisBO.class);
         accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountHisBO);
-        log.info("账户入账 async end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
+        log.info("账户入账 async end,{},accountHisEntity:{}",accountTradDto, accountHisEntity);
     }
 
     /**
      * 基础校验
-     * @param accountTradReq 账户加钱
+     * @param accountTradDto 账户加钱
      * @param account 账户信息
      */
-    private void baseCheck(AccountTradReq accountTradReq,AccountInfoEntity account){
+    private void baseCheck(AccountTradDto accountTradDto, AccountInfoEntity account){
         // 1.检查账户是否存在
         AccountCheckService.checkAccountExist(account);
         // 2.是否可以收款
         AccountCheckService.checkAdd(account.getAccountStatus());
         // 3.校验交易金额
-        if (accountTradReq.getAmount().compareTo(BigDecimal.ZERO) == 0) {
+        if (accountTradDto.getAmount().compareTo(BigDecimal.ZERO) == 0) {
             throw new IllegalArgumentException("交易金额错误");
         }
     }

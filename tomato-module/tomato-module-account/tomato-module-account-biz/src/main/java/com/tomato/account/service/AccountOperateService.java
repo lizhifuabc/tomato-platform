@@ -1,7 +1,6 @@
 package com.tomato.account.service;
 
 import com.tomato.account.enums.AccountStatusTypeEnum;
-import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.dao.AccountManageHisDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountManageHisEntity;
@@ -67,8 +66,7 @@ public class AccountOperateService {
      */
     public void cancelledAccount(AccountCancelledReq accountCancelledReq) {
         //1.检查是否已经注销账户
-        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountCancelledReq.getAccountNo());
-        AccountCheckService.checkAccountExist(account);
+        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountCancelledReq.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         if(AccountStatusTypeEnum.ACCOUNT_CANCELLED.getValue().equals(account.getAccountStatus())){
             log.info("账户已经注销,直接返回, accountNo:{}", accountCancelledReq.getAccountNo());
             throw new BusinessException(AccountRespCode.ACCOUNT_CANCEL_FAIL);
@@ -97,8 +95,7 @@ public class AccountOperateService {
      */
     public void freezeOrUnfreeze(AccountFreezeReq accountFreezeReq,String accountStatus) {
         // 1.检查账户是否存在
-        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountFreezeReq.getAccountNo());
-        AccountCheckService.checkAccountExist(account);
+        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountFreezeReq.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         if(AccountStatusTypeEnum.ACCOUNT_CANCELLED.name().equals(account.getAccountStatus())){
             throw new BusinessException(AccountRespCode.ACCOUNT_STATUS_NOT_ACTIVE);
         }

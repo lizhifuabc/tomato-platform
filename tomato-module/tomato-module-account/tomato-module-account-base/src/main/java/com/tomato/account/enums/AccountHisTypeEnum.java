@@ -26,7 +26,7 @@ public enum AccountHisTypeEnum implements BaseEnum<String> {
      */
     REFUND("REFUND", "退款"),
     /**
-     * 提现
+     * 提现（默认提现在风内）
      */
     CASH("CASH", "提现"),
     ;

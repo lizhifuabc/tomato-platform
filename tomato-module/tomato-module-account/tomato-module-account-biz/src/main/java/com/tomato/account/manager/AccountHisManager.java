@@ -68,7 +68,7 @@ public class AccountHisManager {
 
         AccountRateEntity rate = accountRateManager.getRate(account.getAccountNo(), accountHisBO.getAccountHisType()).orElseThrow(() -> new BusinessException("账户费率不存在"));
         accountHisEntity.setAmountRate(rate.getRate());
-        accountHisEntity.setAmountFree(BigDecimalUtil.multiply(accountHisBO.getAmount(),rate.getRate()));
+        accountHisEntity.setAmountFree(BigDecimalUtil.multiply(accountHisBO.getAmount().abs(),rate.getRate()));
 
         accountHisEntity.setMerchantOrderNo(accountHisBO.getMerchantOrderNo());
         accountHisEntity.setMerchantNo(account.getMerchantNo());

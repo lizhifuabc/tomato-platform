@@ -1,10 +1,12 @@
 package com.tomato.account.controller;
 
+import com.tomato.account.domain.dto.AccountTradDto;
 import com.tomato.account.domain.req.AccountTradReq;
 import com.tomato.account.service.AccountAsyncInitService;
 import com.tomato.account.service.trad.AccountTradService;
 import com.tomato.domain.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;
+import com.tomato.web.common.BaseController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @Tag(name = "账户入账", description = "账户入账")
-public class AccountTradController {
+public class AccountTradController extends BaseController {
     @Resource(name = "accountAddService")
     private AccountTradService accountTradService;
     @Resource
@@ -40,10 +42,11 @@ public class AccountTradController {
     public Resp<Void> trad(@Validated @RequestBody AccountTradReq accountTradReq){
         log.info("账户入账 start :{}",accountTradReq);
         boolean async = accountAsyncInitService.checkMerchantNo(accountTradReq.getMerchantNo());
+        AccountTradDto accountTradDto = copy(accountTradReq, AccountTradDto.class);
         if(async){
-            accountTradService.exeAsync(accountTradReq);
+            accountTradService.exeAsync(accountTradDto);
         }else {
-            accountTradService.exe(accountTradReq);
+            accountTradService.exe(accountTradDto);
         }
         log.info("账户入账 end :{}",accountTradReq);
         return Resp.buildSuccess();

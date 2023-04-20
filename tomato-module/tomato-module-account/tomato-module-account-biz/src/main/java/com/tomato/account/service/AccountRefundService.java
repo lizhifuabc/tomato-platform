@@ -1,5 +1,6 @@
 package com.tomato.account.service;
 
+import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.dao.AccountHisDao;
 import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.bo.AccountHisBO;
@@ -58,7 +59,7 @@ public class AccountRefundService {
             throw new BusinessException("原账户历史类型错误");
         }
         // 查询账户信息
-        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountHisEntity.getAccountNo());
+        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountHisEntity.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         // 账户加款
         AccountBalanceBO accountBalanceBO = new AccountBalanceBO();
         accountBalanceBO.setAccountNo(accountInfoEntity.getAccountNo());

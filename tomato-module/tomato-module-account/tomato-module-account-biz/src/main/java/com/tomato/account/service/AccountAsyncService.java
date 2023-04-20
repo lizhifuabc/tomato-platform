@@ -1,5 +1,6 @@
 package com.tomato.account.service;
 
+import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.dao.AccountHisDao;
 import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.bo.AccountHisUpdateBatchBO;
@@ -32,7 +33,7 @@ public class AccountAsyncService {
 
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void async(AccountHisUpdateBatchBO accountHisUpdateBatchDO){
-        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountHisUpdateBatchDO.getAccountNo());
+        AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountHisUpdateBatchDO.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
 
         AccountBalanceBO accountBalanceBO = new AccountBalanceBO();
         accountBalanceBO.setAccountNo(accountInfoEntity.getAccountNo());

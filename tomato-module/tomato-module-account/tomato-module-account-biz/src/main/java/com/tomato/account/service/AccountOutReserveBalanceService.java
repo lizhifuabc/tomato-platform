@@ -74,6 +74,7 @@ public class AccountOutReserveBalanceService {
         LocalDateTime endDate = exeLocalDate.atTime(LocalTime.MAX);
 
         log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]",accountNo,startDate,endDate);
+        // 风内：交易
         AccountHisCollectResBO collect = accountHisDao.collect(accountNo,startDate, endDate);
         log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]，结果:{}",accountNo,startDate,endDate,collect);
 

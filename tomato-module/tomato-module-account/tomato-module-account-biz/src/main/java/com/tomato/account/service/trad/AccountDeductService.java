@@ -1,15 +1,16 @@
 package com.tomato.account.service.trad;
 
-import com.tomato.account.dao.AccountInfoDao;
+import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.bo.AccountHisBO;
+import com.tomato.account.domain.dto.AccountTradDto;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.domain.req.AccountTradReq;
 import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountHisManager;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.service.AccountCheckService;
+import com.tomato.domain.core.exception.BusinessException;
 import com.tomato.web.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,34 +28,32 @@ import java.math.BigDecimal;
 @Service("accountDeductService")
 @Slf4j
 public class AccountDeductService implements AccountTradService{
-    private final AccountInfoDao accountInfoDao;
     private final AccountInfoManager accountInfoManager;
     private final AccountHisManager accountHisManager;
-    public AccountDeductService(AccountInfoDao accountInfoDao, AccountInfoManager accountInfoManager, AccountHisManager accountHisManager) {
-        this.accountInfoDao = accountInfoDao;
+    public AccountDeductService(AccountInfoManager accountInfoManager, AccountHisManager accountHisManager) {
         this.accountInfoManager = accountInfoManager;
         this.accountHisManager = accountHisManager;
     }
 
     /**
      * 账户扣款
-     * @param accountTradReq 账户扣款
+     * @param accountTradDto 账户扣款
      */
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
-    public void exe(AccountTradReq accountTradReq){
-        log.info("账户扣款 start,{}", accountTradReq);
-        AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType());
+    public void exe(AccountTradDto accountTradDto){
+        log.info("账户扣款 start,{}", accountTradDto);
+        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountTradDto.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         // 1.检查账户是否存在
         AccountCheckService.checkAccountExist(account);
         // 2.余额校验
-        AccountCheckService.checkBalance(account,accountTradReq.getAmount());
+        AccountCheckService.checkBalance(account,accountTradDto.getAmount());
         // 3.校验交易金额
-        validateAmount(accountTradReq.getAmount());
+        validateAmount(accountTradDto.getAmount());
         // 2.是否可以出款
         AccountCheckService.checkDeduct(account.getAccountStatus());
 
         // 4.创建账户历史
-        AccountHisBO accountHisBO = BeanUtil.copy(accountTradReq,AccountHisBO.class);
+        AccountHisBO accountHisBO = BeanUtil.copy(accountTradDto,AccountHisBO.class);
         accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insert(account,accountHisBO);
 
@@ -64,29 +63,29 @@ public class AccountDeductService implements AccountTradService{
         accountBalanceBO.setVersion(account.getVersion());
         accountBalanceBO.setAmount(accountHisEntity.getAmount().subtract(accountHisEntity.getAmountFree()));
         accountInfoManager.deduct(accountBalanceBO,account);
-        log.info("账户扣款 end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
+        log.info("账户扣款 end,{},accountHisEntity:{}",accountTradDto, accountHisEntity);
     }
     /**
      * 账户扣款-只创建账户历史
-     * @param accountTradReq 账户扣款
+     * @param accountTradDto 账户扣款
      */
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=Exception.class)
-    public void exeAsync(AccountTradReq accountTradReq){
-        log.info("账户扣款 async start,{}", accountTradReq);
-        AccountInfoEntity account = accountInfoDao.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType());
+    public void exeAsync(AccountTradDto accountTradDto){
+        log.info("账户扣款 async start,{}", accountTradDto);
+        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountTradDto.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         // 1.检查账户是否存在
         AccountCheckService.checkAccountExist(account);
         // 2.余额校验
-        AccountCheckService.checkBalance(account,accountTradReq.getAmount());
+        AccountCheckService.checkBalance(account,accountTradDto.getAmount());
         // 3.校验交易金额
-        validateAmount(accountTradReq.getAmount());
+        validateAmount(accountTradDto.getAmount());
         // 2.是否可以出款
         AccountCheckService.checkDeduct(account.getAccountStatus());
         // 4.创建账户历史
-        AccountHisBO accountHisBO = BeanUtil.copy(accountTradReq,AccountHisBO.class);
+        AccountHisBO accountHisBO = BeanUtil.copy(accountTradDto,AccountHisBO.class);
         accountHisBO.setAccountHisType(AccountHisTypeEnum.TRAD.getValue());
         AccountHisEntity accountHisEntity = accountHisManager.insertAsync(account,accountHisBO);
-        log.info("账户扣款 async end,{},accountHisEntity:{}",accountTradReq, accountHisEntity);
+        log.info("账户扣款 async end,{},accountHisEntity:{}",accountTradDto, accountHisEntity);
     }
     /**
      * 验证交易金额
