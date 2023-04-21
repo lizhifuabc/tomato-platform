@@ -1,6 +1,6 @@
 package com.tomato.sys.login.controller;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.security.constant.RequestHeaderConstant;
 import com.tomato.sys.domain.req.LoginReq;
 import com.tomato.sys.domain.resp.LoginResp;

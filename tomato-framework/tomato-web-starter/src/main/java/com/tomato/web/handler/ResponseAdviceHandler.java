@@ -1,6 +1,6 @@
 package com.tomato.web.handler;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

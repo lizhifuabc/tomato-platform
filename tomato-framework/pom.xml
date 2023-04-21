@@ -12,7 +12,6 @@
     <artifactId>tomato-framework</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>tomato-domain</module>
         <module>tomato-web-starter</module>
         <module>tomato-mybatis-starter</module>
         <module>tomato-util</module>

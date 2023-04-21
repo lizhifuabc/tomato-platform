@@ -1,7 +1,7 @@
 package com.tomato.seckill.service;
 
 import com.tomato.common.exception.BusinessException;
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.redis.domain.req.RedisConcurrentRequestCountLimiterReq;
 import com.tomato.redis.domain.resp.RedisConcurrentRequestCountLimiterResp;
 import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;

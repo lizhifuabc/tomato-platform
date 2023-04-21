@@ -7,7 +7,7 @@ import com.tomato.account.domain.req.AccountFreezeReq;
 import com.tomato.account.domain.resp.AccountCreateResp;
 import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.service.AccountOperateService;
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

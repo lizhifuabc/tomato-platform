@@ -1,6 +1,6 @@
 package com.tomato.web.common.demo;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.web.common.demo.entity.Demo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -334,11 +334,6 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
-                <artifactId>tomato-domain</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.tomato</groupId>
                 <artifactId>tomato-domain-core</artifactId>
                 <version>${revision}</version>
             </dependency>

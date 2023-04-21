@@ -1,6 +1,6 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.seckill.domain.req.SeckillActivityCreateReq;
 import com.tomato.seckill.service.SeckillActivityService;
 import org.springframework.validation.annotation.Validated;

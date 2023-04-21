@@ -17,10 +17,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-        <!--  TODO 怎么去除下面的依赖      -->
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-domain</artifactId>
+            <artifactId>tomato-common</artifactId>
         </dependency>
     </dependencies>
 

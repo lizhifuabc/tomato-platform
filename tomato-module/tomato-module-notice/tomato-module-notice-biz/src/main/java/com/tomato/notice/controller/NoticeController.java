@@ -1,6 +1,6 @@
 package com.tomato.notice.controller;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.notice.domain.req.NoticeCreateReq;
 import com.tomato.notice.service.NoticeRecordService;
 import org.springframework.validation.annotation.Validated;

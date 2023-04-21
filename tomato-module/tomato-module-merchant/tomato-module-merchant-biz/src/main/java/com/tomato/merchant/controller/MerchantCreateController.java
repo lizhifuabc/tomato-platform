@@ -1,6 +1,6 @@
 package com.tomato.merchant.controller;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.merchant.domain.req.MerchantCreateReq;
 import com.tomato.merchant.service.MerchantService;
 import jakarta.validation.Valid;

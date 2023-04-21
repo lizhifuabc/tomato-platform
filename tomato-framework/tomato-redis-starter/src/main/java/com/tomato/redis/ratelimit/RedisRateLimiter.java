@@ -1,6 +1,6 @@
 package com.tomato.redis.ratelimit;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.redis.domain.req.RedisRateLimiterReq;
 import com.tomato.redis.domain.resp.RedisRateLimiterResp;
 import jakarta.validation.Valid;

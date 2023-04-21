@@ -9,7 +9,7 @@ import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.service.AccountAsyncInitService;
 import com.tomato.account.service.trad.AccountTradService;
 import com.tomato.common.exception.BusinessException;
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;
 import com.tomato.web.common.BaseController;
 import io.swagger.v3.oas.annotations.Operation;

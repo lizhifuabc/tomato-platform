@@ -2,7 +2,7 @@ package com.tomato.sys.login.controller;
 
 import com.tomato.captcha.domain.CaptchaResp;
 import com.tomato.captcha.service.CaptchaService;
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

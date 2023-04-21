@@ -1,6 +1,6 @@
 package com.tomato.sys.user.controller;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.sys.domain.req.SysUserCreateReq;
 import com.tomato.sys.user.service.SysUserService;
 import com.tomato.web.common.BaseController;

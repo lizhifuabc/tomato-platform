@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-domain</artifactId>
+            <artifactId>tomato-common</artifactId>
         </dependency>
 
         <dependency>

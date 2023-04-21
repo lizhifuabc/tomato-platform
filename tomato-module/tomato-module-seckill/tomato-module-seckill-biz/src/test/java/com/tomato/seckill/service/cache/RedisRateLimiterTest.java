@@ -1,6 +1,6 @@
 package com.tomato.seckill.service.cache;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.redis.domain.req.RedisRateLimiterReq;
 import com.tomato.redis.domain.resp.RedisRateLimiterResp;
 import com.tomato.redis.ratelimit.RedisRateLimiter;

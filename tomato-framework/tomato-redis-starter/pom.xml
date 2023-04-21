@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-domain</artifactId>
+            <artifactId>tomato-common</artifactId>
         </dependency>
 
         <!-- provided 用在编译和测试时，没有传递性       -->

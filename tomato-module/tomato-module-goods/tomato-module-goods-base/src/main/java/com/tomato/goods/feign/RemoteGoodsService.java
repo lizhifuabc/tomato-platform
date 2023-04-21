@@ -1,6 +1,6 @@
 package com.tomato.goods.feign;
 
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.factory.RemoteGoodsFallbackFactory;
 import jakarta.validation.constraints.NotNull;
