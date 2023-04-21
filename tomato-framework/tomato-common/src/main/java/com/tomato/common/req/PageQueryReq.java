@@ -4,7 +4,7 @@ package com.tomato.common.req;
  * 分页查询请求
  *
  * @author lizhifu
- * @date 2022/11/21
+ * @since  2022/11/21
  */
 public class PageQueryReq {
     /**

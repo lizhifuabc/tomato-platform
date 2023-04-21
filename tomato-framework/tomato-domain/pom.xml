@@ -22,10 +22,5 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-domain-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-springdoc-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>

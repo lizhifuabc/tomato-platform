@@ -1,6 +1,6 @@
 package com.tomato.sys;
 
-import com.tomato.security.token.LoginDeviceEnum;
+import com.tomato.security.enums.LoginDeviceEnum;
 import com.tomato.security.token.TokenService;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;

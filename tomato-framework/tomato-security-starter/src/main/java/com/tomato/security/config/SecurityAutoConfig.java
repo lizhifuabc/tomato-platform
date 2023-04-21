@@ -4,6 +4,7 @@ import com.tomato.security.token.TokenService;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,7 +27,7 @@ public class SecurityAutoConfig {
         return new BCryptPasswordEncoder();
     }
     @Bean
-    public TokenService tokenService(){
-        return new TokenService();
+    public TokenService tokenService(StringRedisTemplate stringRedisTemplate){
+        return new TokenService(stringRedisTemplate);
     }
 }

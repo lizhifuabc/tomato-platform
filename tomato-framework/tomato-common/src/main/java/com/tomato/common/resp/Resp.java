@@ -1,7 +1,7 @@
 package com.tomato.common.resp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.tomato.domain.core.constants.CommonRespCode;
+import com.tomato.common.constants.CommonRespCode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

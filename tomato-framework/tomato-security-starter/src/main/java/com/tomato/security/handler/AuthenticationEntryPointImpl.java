@@ -1,7 +1,7 @@
 package com.tomato.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tomato.domain.resp.Resp;
+import com.tomato.common.resp.Resp;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

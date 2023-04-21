@@ -1,22 +1,33 @@
-package com.tomato.security.token;
+package com.tomato.security.enums;
 
-import com.tomato.domain.core.enums.BaseEnum;
+
+import com.tomato.common.enums.BaseEnum;
 
 /**
  * 登录设备
  *
  * @author lizhifu
  */
-public enum LoginDeviceEnum implements BaseEnum {
-
+public enum LoginDeviceEnum implements BaseEnum<Integer> {
+    /**
+     * 电脑端
+     */
     PC(1, "电脑端"),
-
+    /**
+     * 安卓
+     */
     ANDROID(2, "安卓"),
-
+    /**
+     * 苹果
+     */
     APPLE(3, "苹果"),
-
+    /**
+     * H5
+     */
     H5(4, "H5"),
-
+    /**
+     * 微信小程序
+     */
     WX_MP(5, "微信小程序");
 
     LoginDeviceEnum(Integer value, String desc) {

@@ -1,7 +1,7 @@
 package com.tomato.sys.login.service;
 
 import com.tomato.domain.resp.Resp;
-import com.tomato.security.token.LoginDeviceEnum;
+import com.tomato.security.enums.LoginDeviceEnum;
 import com.tomato.security.token.TokenService;
 import com.tomato.sys.domain.entity.SysMenuEntity;
 import com.tomato.sys.domain.entity.SysUserEntity;
