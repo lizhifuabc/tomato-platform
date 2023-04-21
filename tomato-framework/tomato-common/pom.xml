@@ -5,20 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-ddd</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>tomato-framework</artifactId>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-application-core</artifactId>
+    <artifactId>tomato-common</artifactId>
 
     <dependencies>
+        <!-- lombok 依赖 -->
         <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-springdoc-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-domain-core</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 

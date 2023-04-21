@@ -314,6 +314,11 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-redis-base-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
@@ -350,11 +355,6 @@
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-account-base</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.tomato</groupId>
-                <artifactId>tomato-application-core</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

@@ -1,6 +1,4 @@
-package com.tomato.domain.core.entity;
-
-import com.tomato.domain.core.Entity;
+package com.tomato.common.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

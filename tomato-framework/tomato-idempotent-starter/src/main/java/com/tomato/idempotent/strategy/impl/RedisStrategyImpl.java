@@ -1,6 +1,6 @@
 package com.tomato.idempotent.strategy.impl;
 
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.exception.BusinessException;
 import com.tomato.idempotent.annotation.Idempotent;
 import com.tomato.idempotent.strategy.IdempotentStrategy;
 import org.aspectj.lang.JoinPoint;

@@ -17,10 +17,6 @@
             <artifactId>tomato-module-pay-infrastructure</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-application-core</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

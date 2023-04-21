@@ -1,6 +1,6 @@
 package com.tomato.domain.resp;
 
-import com.tomato.domain.core.constants.CommonRespCode;
+import com.tomato.common.constants.CommonRespCode;
 
 /**
  * 页面返回数据

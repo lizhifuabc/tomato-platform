@@ -1,6 +1,4 @@
-package com.tomato.domain.core.constants;
-
-import com.tomato.domain.core.constants.RespCode;
+package com.tomato.common.constants;
 
 /**
  * 统一错误码

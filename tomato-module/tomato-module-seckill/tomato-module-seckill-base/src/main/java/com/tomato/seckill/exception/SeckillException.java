@@ -1,6 +1,6 @@
 package com.tomato.seckill.exception;
 
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.exception.BusinessException;
 
 /**
  * 秒杀异常

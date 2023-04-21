@@ -8,7 +8,7 @@ import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountSettleControlManager;
 import com.tomato.account.manager.AccountSettleRecordManager;
 import com.tomato.account.service.trad.AccountTradService;
-import com.tomato.domain.core.enums.CommonStatusEnum;
+import com.tomato.common.enums.CommonStatusEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

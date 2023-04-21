@@ -1,6 +1,6 @@
 package com.tomato.order.infrastructure.entity;
 
-import com.tomato.domain.core.entity.BaseEntity;
+import com.tomato.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

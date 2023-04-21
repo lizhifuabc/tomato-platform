@@ -1,6 +1,6 @@
 package com.tomato.merchant.dao;
 
-import com.tomato.domain.core.enums.YesNoTypeEnum;
+import com.tomato.common.enums.YesNoTypeEnum;
 import com.tomato.merchant.domain.entity.MerchantInfo;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;

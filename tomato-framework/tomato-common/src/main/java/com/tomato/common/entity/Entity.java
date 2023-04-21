@@ -1,4 +1,4 @@
-package com.tomato.domain.core;
+package com.tomato.common.entity;
 
 /**
  * Entity 实体：是指具有唯一标识的具体业务对象，比如用户、订单、商品等。

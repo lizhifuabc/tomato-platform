@@ -5,8 +5,8 @@ import com.tomato.account.domain.bo.AccountHisBO;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountRateEntity;
-import com.tomato.domain.core.enums.CommonStatusEnum;
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.enums.CommonStatusEnum;
+import com.tomato.common.exception.BusinessException;
 import com.tomato.util.lang.BigDecimalUtil;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
 package com.tomato.web.handler;
 
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.exception.BusinessException;
 import com.tomato.domain.resp.Resp;
-import com.tomato.domain.core.constants.CommonRespCode;
+import com.tomato.common.constants.CommonRespCode;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
@@ -21,7 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.tomato.domain.core.constants.CommonRespCode.INTERNAL_SERVER_ERROR;
+import static com.tomato.common.constants.CommonRespCode.INTERNAL_SERVER_ERROR;
 
 /**
  * 全局异常处理器

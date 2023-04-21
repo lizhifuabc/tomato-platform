@@ -12,8 +12,8 @@
     <artifactId>tomato-domain-core</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-common</artifactId>
         </dependency>
     </dependencies>
 </project>

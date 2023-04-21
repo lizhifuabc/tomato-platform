@@ -1,6 +1,6 @@
 package com.tomato.account.constant;
 
-import com.tomato.domain.core.constants.RespCode;
+import com.tomato.common.constants.RespCode;
 
 /**
  * 账户相关异常类

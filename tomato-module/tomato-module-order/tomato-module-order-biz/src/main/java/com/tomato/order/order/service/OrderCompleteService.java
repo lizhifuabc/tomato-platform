@@ -1,6 +1,6 @@
 package com.tomato.order.order.service;
 
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.exception.BusinessException;
 import com.tomato.order.domain.constant.OrderStatusEnum;
 import com.tomato.order.domain.entity.OrderEntity;
 import com.tomato.order.order.dao.OrderDao;

@@ -1,6 +1,6 @@
 package com.tomato.seckill.manager;
 
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.exception.BusinessException;
 import com.tomato.seckill.constant.RedisConstant;
 import com.tomato.seckill.dao.SeckillGoodsDao;
 import com.tomato.seckill.domain.entity.SeckillGoodsEntity;

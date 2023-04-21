@@ -1,7 +1,7 @@
 package com.tomato.notice.mq;
 
 import com.rabbitmq.client.Channel;
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.exception.BusinessException;
 import com.tomato.notice.constant.RabbitMqConstant;
 import com.tomato.notice.service.NoticeSendService;
 import jakarta.annotation.Resource;

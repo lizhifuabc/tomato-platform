@@ -1,4 +1,4 @@
-package com.tomato.application.core.resp;
+package com.tomato.common.resp;
 
 import com.tomato.domain.core.constants.CommonRespCode;
 

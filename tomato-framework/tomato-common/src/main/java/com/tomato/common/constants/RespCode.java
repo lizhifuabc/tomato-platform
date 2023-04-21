@@ -1,4 +1,4 @@
-package com.tomato.domain.core.constants;
+package com.tomato.common.constants;
 
 /**
  * 错误码

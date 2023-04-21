@@ -13,7 +13,6 @@
 
     <modules>
         <module>tomato-domain-core</module>
-        <module>tomato-application-core</module>
     </modules>
 
 </project>

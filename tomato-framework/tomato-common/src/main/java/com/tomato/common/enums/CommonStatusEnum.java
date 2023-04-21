@@ -1,4 +1,4 @@
-package com.tomato.domain.core.enums;
+package com.tomato.common.enums;
 
 
 /**

@@ -3,7 +3,7 @@ package com.tomato.account.service;
 import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.exception.BusinessException;
 
 import java.math.BigDecimal;
 

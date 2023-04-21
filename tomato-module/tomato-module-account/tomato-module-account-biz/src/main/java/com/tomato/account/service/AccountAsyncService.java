@@ -6,7 +6,7 @@ import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.bo.AccountHisUpdateBatchBO;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.manager.AccountInfoManager;
-import com.tomato.domain.core.exception.BusinessException;
+import com.tomato.common.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
