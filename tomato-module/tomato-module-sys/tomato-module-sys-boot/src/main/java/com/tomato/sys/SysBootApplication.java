@@ -18,9 +18,7 @@ import org.springframework.core.env.Environment;
  */
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "系统服务 API", version = "1.0-SNAPSHOT", description = "系统服务 Information"),
-		servers = {@Server(url = "http://localhost:8001")}, security = @SecurityRequirement(name = "Bearer access_token"))
-@SecurityScheme(name = "Bearer access_token", scheme = "bearer", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER,
-		description = "直接将有效的access_token填入下方，后续该access_token将作为Bearer access_token")
+		servers = {@Server(url = "http://localhost:8001")})
 public class SysBootApplication {
 
 	public static void main(String[] args) {
