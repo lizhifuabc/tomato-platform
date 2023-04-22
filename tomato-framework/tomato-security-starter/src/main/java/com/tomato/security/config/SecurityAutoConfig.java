@@ -19,8 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityAutoConfig {
     /**
      * Spring Security 加密器 BCryptPasswordEncoder
-     *
-     * @see <a href="http://stackabuse.com/password-encoding-with-spring-security/">Password Encoding with Spring Security</a>
      */
     @Bean
     public PasswordEncoder passwordEncoder() {

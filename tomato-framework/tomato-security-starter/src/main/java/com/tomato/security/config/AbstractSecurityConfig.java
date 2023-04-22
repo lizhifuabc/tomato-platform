@@ -12,7 +12,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.filter.CorsFilter;
 
 import java.util.function.BiFunction;
 
@@ -23,8 +22,6 @@ import java.util.function.BiFunction;
  * @since 2022/12/16
  */
 public abstract class AbstractSecurityConfig {
-    @Resource
-    private CorsFilter defaultCorsFilter;
     /**
      * Token获取用户信息
      *
@@ -54,31 +51,34 @@ public abstract class AbstractSecurityConfig {
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         // 配置
         httpSecurity
-                // 开启跨域，不能同时开启跨域配置
-//                .cors().and()
-                // CSRF禁用，不使用session
+                // 禁用basic明文验证
+                .httpBasic().disable()
+                // 前后端分离架构不需要csrf保护
                 .csrf().disable()
+                // 禁用默认登录页
+                .formLogin().disable()
+                // 禁用默认登出页
+                .logout().disable()
+                // 设置异常的EntryPoint，如果不设置，默认使用Http403ForbiddenEntryPoint
+                .exceptionHandling(exceptions->exceptions
+                        .authenticationEntryPoint(new AuthenticationEntryPointImpl())
+                        .accessDeniedHandler(new AccessDeniedHandlerImpl())
+                )
                 // 基于 token 机制，所以不需要 Session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .headers().frameOptions().disable().and()
-                // 认证失败处理类 、权限不够处理器
-                .exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl())
-                .accessDeniedHandler(new AccessDeniedHandlerImpl());
-
-        // 设置请求权限
-        httpSecurity.authorizeHttpRequests()
-                // 静态资源，可匿名访问
-                .requestMatchers(HttpMethod.GET, "/*.html", "/*/*.html", "/*/*.css", "/*/*.js","/v3/api-docs").permitAll()
-                // 免登录的 URL 列表,忽略的url
-                .requestMatchers(securityProperties.getPermitAllUrls().toArray(new String[0])).permitAll()
-                .and()
-                // 所有请求需要身份认证
-                .authorizeHttpRequests()
-                .anyRequest().authenticated()
-        ;
-        // 添加 Token Filter
-        httpSecurity.addFilterBefore(new TokenAuthenticationFilter(this.userFunction()), UsernamePasswordAuthenticationFilter.class);
-        httpSecurity.addFilterBefore(defaultCorsFilter, TokenAuthenticationFilter.class);
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(authorizeHttpRequests->authorizeHttpRequests
+                        // 允许所有OPTIONS请求
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // 允许直接访问授权登录接口
+                        .requestMatchers(HttpMethod.POST, "/web/authenticate").permitAll()
+                        // 允许 SpringMVC 的默认错误地址匿名访问
+                        .requestMatchers("/error").permitAll()
+                        // 免登录的 URL 列表,忽略的url
+                        .requestMatchers(securityProperties.getPermitAllUrls().toArray(new String[0])).permitAll()
+                        // 允许任意请求被已登录用户访问，不检查Authority
+                        .anyRequest().authenticated())
+                // 加我们自定义的过滤器，替代UsernamePasswordAuthenticationFilter
+                .addFilterBefore(new TokenAuthenticationFilter(this.userFunction()), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 }
