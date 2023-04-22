@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-authorization-server</module>
+        <module>spring-security</module>
     </modules>
 
     <properties>

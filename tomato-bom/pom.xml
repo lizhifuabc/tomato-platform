@@ -16,7 +16,7 @@
         <!-- maven 全局版本号管理 -->
         <revision>1.0-SNAPSHOT</revision>
         <!-- spring boot / spring cloud 统一依赖管理 -->
-        <spring.boot.version>3.0.6</spring.boot.version>
+        <spring.boot.version>3.0.5</spring.boot.version>
         <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.version>2022.0.2</spring.cloud.version>
         <spring.cloud.alibaba.version>2022.0.0.0-RC1</spring.cloud.alibaba.version>
