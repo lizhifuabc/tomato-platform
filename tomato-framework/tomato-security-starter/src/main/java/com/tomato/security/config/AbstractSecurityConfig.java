@@ -30,7 +30,7 @@ public abstract class AbstractSecurityConfig {
     /**
      * Token获取用户信息
      *
-     * @return
+     * @return UserDetails
      */
     protected abstract BiFunction<String, HttpServletRequest, UserDetails> userFunction();
     @Resource
@@ -54,7 +54,7 @@ public abstract class AbstractSecurityConfig {
      */
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        // 登出
+        // 配置
         httpSecurity
                 // 开启跨域，不能同时开启跨域配置
 //                .cors().and()
@@ -63,9 +63,8 @@ public abstract class AbstractSecurityConfig {
                 // 基于 token 机制，所以不需要 Session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .headers().frameOptions().disable().and()
-                // 认证失败处理类
+                // 认证失败处理类 、权限不够处理器
                 .exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointImpl())
-                // 权限不够处理器
                 .accessDeniedHandler(new AccessDeniedHandlerImpl());
 
         // 设置请求权限
