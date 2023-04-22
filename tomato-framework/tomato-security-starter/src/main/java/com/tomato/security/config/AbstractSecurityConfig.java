@@ -5,10 +5,8 @@ import com.tomato.security.handler.AccessDeniedHandlerImpl;
 import com.tomato.security.handler.AuthenticationEntryPointImpl;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -73,7 +71,6 @@ public abstract class AbstractSecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/*.html", "/*/*.html", "/*/*.css", "/*/*.js","/v3/api-docs").permitAll()
                 // 免登录的 URL 列表,忽略的url
                 .requestMatchers(securityProperties.getPermitAllUrls().toArray(new String[0])).permitAll()
-                // ②：每个项目的自定义规则
                 .and()
                 // 所有请求需要身份认证
                 .authorizeHttpRequests()
