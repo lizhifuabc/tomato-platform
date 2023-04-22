@@ -14,11 +14,8 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-jpa-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-jackson-starter</artifactId>
+            <artifactId>tomato-module-sys-domain</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
@@ -28,11 +25,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <scope>provided </scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

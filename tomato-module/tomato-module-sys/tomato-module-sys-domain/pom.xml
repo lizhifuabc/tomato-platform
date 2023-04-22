@@ -9,32 +9,30 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-sys-boot</artifactId>
+    <artifactId>tomato-module-sys-domain</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-sys-infrastructure</artifactId>
-            <version>${project.version}</version>
+            <artifactId>tomato-domain-core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-sys-application</artifactId>
-            <version>${project.version}</version>
+            <artifactId>tomato-springdoc-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-starter</artifactId>
+            <artifactId>tomato-jackson-starter</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-validator-starter</artifactId>
+            <artifactId>tomato-jpa-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
+    </dependencies>
 </project>

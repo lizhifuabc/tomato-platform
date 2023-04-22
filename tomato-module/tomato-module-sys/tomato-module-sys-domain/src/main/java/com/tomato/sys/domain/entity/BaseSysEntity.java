@@ -1,4 +1,4 @@
-package com.tomato.sys.infrastructure.base;
+package com.tomato.sys.domain.entity;
 
 import com.tomato.jpa.domain.entity.JpaBaseEntity;
 import jakarta.persistence.Column;

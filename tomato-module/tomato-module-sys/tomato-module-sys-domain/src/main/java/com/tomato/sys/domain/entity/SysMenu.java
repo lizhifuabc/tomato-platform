@@ -1,7 +1,6 @@
-package com.tomato.sys.infrastructure.entity;
+package com.tomato.sys.domain.entity;
 
 import com.google.common.base.Objects;
-import com.tomato.sys.infrastructure.base.BaseSysEntity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 

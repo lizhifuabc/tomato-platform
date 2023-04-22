@@ -1,7 +1,7 @@
 package com.tomato.sys.infrastructure.security;
 
 import com.tomato.security.token.TokenService;
-import com.tomato.sys.infrastructure.entity.SysUser;
+import com.tomato.sys.domain.entity.SysUser;
 import com.tomato.sys.infrastructure.repository.SysUserRepository;
 import com.tomato.sys.infrastructure.security.user.LoginUserDetails;
 import jakarta.servlet.http.HttpServletRequest;

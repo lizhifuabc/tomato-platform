@@ -1,7 +1,9 @@
 package com.tomato.sys.controller;
 
+import com.tomat.sys.application.service.SysUserLoginService;
+import com.tomat.sys.application.service.UserLoginService;
 import com.tomato.common.resp.Resp;
-import com.tomato.sys.form.LoginForm;
+import com.tomat.sys.application.req.LoginReq;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,10 +20,16 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  */
 @RestController
 @Tag(name = "登录相关", description = "登录相关")
-public class LoginController {
+public class SysUserLoginController {
+    private final SysUserLoginService sysUserLoginService;
+
+    public SysUserLoginController(SysUserLoginService sysUserLoginService) {
+        this.sysUserLoginService = sysUserLoginService;
+    }
+
     @PostMapping("/login")
     @Operation(summary = "登录", description = "登录")
-    public Resp<Void> login(@Valid @RequestBody LoginForm loginForm) {
+    public Resp<Void> login(@Valid @RequestBody LoginReq loginReq) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return Resp.buildSuccess();
     }

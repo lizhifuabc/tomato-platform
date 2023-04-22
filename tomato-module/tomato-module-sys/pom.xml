@@ -17,6 +17,7 @@
         <module>tomato-module-sys-infrastructure</module>
         <module>tomato-module-sys-boot</module>
         <module>tomato-module-sys-application</module>
+        <module>tomato-module-sys-domain</module>
     </modules>
 
     <properties>

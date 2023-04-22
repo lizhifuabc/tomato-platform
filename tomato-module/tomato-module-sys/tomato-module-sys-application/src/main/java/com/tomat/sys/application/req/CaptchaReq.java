@@ -1,4 +1,4 @@
-package com.tomato.sys.form;
+package com.tomat.sys.application.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +10,7 @@ import lombok.Data;
  * @author lizhifu
  */
 @Data
-public class CaptchaForm {
+public class CaptchaReq {
 
     @Schema(description = "验证码")
     @NotBlank(message = "验证码不能为空")

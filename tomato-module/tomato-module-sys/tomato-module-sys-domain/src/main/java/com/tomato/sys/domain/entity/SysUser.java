@@ -1,9 +1,7 @@
-package com.tomato.sys.infrastructure.entity;
+package com.tomato.sys.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.google.common.base.MoreObjects;
-import com.tomato.sys.infrastructure.base.BaseSysEntity;
 import jakarta.persistence.*;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Index;

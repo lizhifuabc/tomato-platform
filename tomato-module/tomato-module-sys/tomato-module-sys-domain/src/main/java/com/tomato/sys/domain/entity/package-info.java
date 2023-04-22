@@ -7,4 +7,4 @@
  * @author lizhifu
  * @since 2023/4/9
  */
-package com.tomato.sys.infrastructure.entity;
+package com.tomato.sys.domain.entity;

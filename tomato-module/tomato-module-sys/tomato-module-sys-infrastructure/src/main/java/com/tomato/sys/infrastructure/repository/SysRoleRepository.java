@@ -1,7 +1,7 @@
 package com.tomato.sys.infrastructure.repository;
 
 import com.tomato.jpa.domain.repository.BaseRepository;
-import com.tomato.sys.infrastructure.entity.SysRole;
+import com.tomato.sys.domain.entity.SysRole;
 
 /**
  * SysRoleRepository

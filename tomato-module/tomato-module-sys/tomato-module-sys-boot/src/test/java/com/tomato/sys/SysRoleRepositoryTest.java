@@ -1,6 +1,6 @@
 package com.tomato.sys;
 
-import com.tomato.sys.infrastructure.entity.SysRole;
+import com.tomato.sys.domain.entity.SysRole;
 import com.tomato.sys.infrastructure.repository.SysRoleRepository;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
