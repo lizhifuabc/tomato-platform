@@ -41,8 +41,8 @@ public class SecurityAutoConfig {
      * @param config AuthenticationConfiguration
      * @return AuthenticationManager
      */
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+//        return config.getAuthenticationManager();
+//    }
 }

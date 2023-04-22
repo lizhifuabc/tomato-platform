@@ -19,17 +19,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserLoginServiceImpl implements SysUserLoginService {
     private final SysUserService sysUserService;
-    private final AuthenticationManager authenticationManager;
-    public SysUserLoginServiceImpl(SysUserService sysUserService, AuthenticationManager authenticationManager) {
+//    private final AuthenticationManager authenticationManager;
+    public SysUserLoginServiceImpl(SysUserService sysUserService) {
         this.sysUserService = sysUserService;
-        this.authenticationManager = authenticationManager;
     }
 
     @Override
     public void login(SysLoginDTO sysLoginDTO) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(sysLoginDTO.getUsername(), sysLoginDTO.getPassword()));
-        LoginUserDetails loginUserDetails = (LoginUserDetails) authentication.getPrincipal();
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(sysLoginDTO.getUsername(), sysLoginDTO.getPassword()));
+//        LoginUserDetails loginUserDetails = (LoginUserDetails) authentication.getPrincipal();
         // 根据用户名从数据库中查询到对应的用户实体对象，并进行密码验证。
         SysUser sysUser = sysUserService.getUserByUserName(sysLoginDTO.getUsername()).orElseThrow(() -> new RuntimeException("用户不存在"));
         // 调用 Infrastructure 层的 VerificationCodeService 进行验证码验证
