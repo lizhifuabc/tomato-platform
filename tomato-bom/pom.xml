@@ -425,11 +425,6 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
-                <artifactId>tomato-module-sys-base</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.tomato</groupId>
                 <artifactId>tomato-validator-starter</artifactId>
                 <version>${revision}</version>
             </dependency>

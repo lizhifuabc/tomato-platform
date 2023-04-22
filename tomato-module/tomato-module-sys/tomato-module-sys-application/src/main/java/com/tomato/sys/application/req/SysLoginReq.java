@@ -1,4 +1,4 @@
-package com.tomat.sys.application.req;
+package com.tomato.sys.application.req;
 
 import com.tomato.security.enums.LoginDeviceEnum;
 import com.tomato.validator.annotation.CheckEnum;
@@ -16,12 +16,12 @@ import org.hibernate.validator.constraints.Length;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LoginReq extends CaptchaReq {
+public class SysLoginReq extends CaptchaReq {
 
     @Schema(description = "登录名")
     @NotBlank(message = "登录名不能为空")
     @Length(max = 30, message = "登录账号最多30字符")
-    private String loginName;
+    private String username;
 
     @Schema(description = "密码")
     @NotBlank(message = "密码不能为空")

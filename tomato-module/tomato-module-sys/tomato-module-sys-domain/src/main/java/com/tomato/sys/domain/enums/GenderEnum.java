@@ -1,4 +1,4 @@
-package com.tomato.sys.constant;
+package com.tomato.sys.domain.enums;
 
 import com.tomato.common.enums.BaseEnum;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum GenderEnum implements BaseEnum {
+public enum GenderEnum implements BaseEnum<Integer> {
 
     /**
      * 0 未知

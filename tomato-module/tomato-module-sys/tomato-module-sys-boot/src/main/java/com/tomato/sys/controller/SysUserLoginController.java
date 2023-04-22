@@ -1,9 +1,11 @@
 package com.tomato.sys.controller;
 
-import com.tomat.sys.application.service.SysUserLoginService;
-import com.tomat.sys.application.service.UserLoginService;
+import com.tomato.sys.application.adapter.SysLoginAdapter;
+import com.tomato.sys.application.service.SysUserLoginService;
 import com.tomato.common.resp.Resp;
-import com.tomat.sys.application.req.LoginReq;
+import com.tomato.sys.application.req.SysLoginReq;
+import com.tomato.security.constant.RequestHeaderConstant;
+import com.tomato.web.common.BaseController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +22,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  */
 @RestController
 @Tag(name = "登录相关", description = "登录相关")
-public class SysUserLoginController {
+public class SysUserLoginController extends BaseController {
     private final SysUserLoginService sysUserLoginService;
 
     public SysUserLoginController(SysUserLoginService sysUserLoginService) {
@@ -29,8 +31,13 @@ public class SysUserLoginController {
 
     @PostMapping("/login")
     @Operation(summary = "登录", description = "登录")
-    public Resp<Void> login(@Valid @RequestBody LoginReq loginReq) {
+    public Resp<Void> login(@Valid @RequestBody SysLoginReq sysLoginReq) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        sysUserLoginService.login(SysLoginAdapter.convert(sysLoginReq));
+        return Resp.buildSuccess();
+    }
+    @GetMapping("/login/logout")
+    public Resp<Void> logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
         return Resp.buildSuccess();
     }
 }

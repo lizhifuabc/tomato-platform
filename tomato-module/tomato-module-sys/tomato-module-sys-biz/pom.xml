@@ -14,10 +14,6 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-sys-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
             <artifactId>tomato-security-starter</artifactId>
         </dependency>
         <dependency>
