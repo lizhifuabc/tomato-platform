@@ -1,34 +1,42 @@
 package com.tomato.security.filter;
 
+import com.tomato.security.token.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.function.BiFunction;
 
 import static com.tomato.security.constant.RequestHeaderConstant.AUTHORIZATION_BEARER;
 import static com.tomato.security.constant.RequestHeaderConstant.TOKEN;
 
 /**
- * 不能加 @Component，否则对应ignoreUrl的相关请求 将会进入此Filter，并会覆盖CorsFilter
- * <p>Token 过滤器，验证 token 的有效性</p>
+ * 每次请求的 Security 过滤类。执行jwt有效性检查，
+ * 如果失败，不会设置 SecurityContextHolder 信息，会进入 AuthenticationEntryPoint
  * <p>验证通过后，获得 LoginUser 信息，并加入到 Spring Security 上下文</p>
  * @author lizhifu
  * @since 2022/12/16
  */
+@Slf4j
+@Component
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private final BiFunction<String,HttpServletRequest, UserDetails> userFunction;
-    public TokenAuthenticationFilter(BiFunction<String, HttpServletRequest, UserDetails> userFunction) {
+    private final TokenService tokenService;
+    public TokenAuthenticationFilter(BiFunction<String, HttpServletRequest, UserDetails> userFunction, TokenService tokenService) {
         this.userFunction = userFunction;
+        this.tokenService = tokenService;
     }
 
     @Override
@@ -36,20 +44,30 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         // 消息头 token
         String token = getToken(request);
+        log.info("token校验:{}",token);
         if(ObjectUtils.isEmpty(token)){
+            chain.doFilter(request, response);
+            return;
+        }
+        Map<String, Object> decryptedToken = tokenService.decryptToken(token);
+        log.info("token解密:{}",decryptedToken);
+        boolean checked = tokenService.checkRedisToken(decryptedToken, token);
+        log.info("token校验结果:{}",checked);
+        if(!checked){
+            // 校验 Token 不通过时，考虑到一些接口是无需登录的，所以直接返回 null 即可
             chain.doFilter(request, response);
             return;
         }
         // 清理 spring security，
         // 若未给予spring security 上下文用户授权，授权失败 AuthenticationEntryPointImpl
         //  SecurityContextHolder.clearContext(); TODO
-        // TODO
         UserDetails userDetails = userFunction.apply(token,request);
         if(null != userDetails){
             // 创建 Authentication，并设置到上下文
             // 创建 UsernamePasswordAuthenticationToken 对象
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            // 后续的过滤器中，可以通过 WebAuthenticationDetailsSource 获取到用户的 IP 等信息
             authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             // TODO 额外设置到 request 中，用于 ApiAccessLogFilter 可以获取到用户编号；

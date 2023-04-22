@@ -10,7 +10,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Map;
@@ -21,7 +20,6 @@ import java.util.concurrent.TimeUnit;
  *
  * @author lizhifu
  */
-@Component
 @Slf4j
 public class TokenService {
     private static final long HOUR_TIME_MILLI = 60 * 60 * 1000;
@@ -36,7 +34,6 @@ public class TokenService {
     public TokenService(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
     }
-
     /**
      * 生成Token，并存入redis
      *
@@ -113,14 +110,22 @@ public class TokenService {
         String redisKey = this.redisKey(userId, device);
         stringRedisTemplate.delete(redisKey);
     }
-
+    /**
+     * 校验token
+     * @param token token
+     * @return 校验token
+     */
+    public boolean checkRedisToken(String token) {
+        Map<String, Object> tokenData = this.decryptToken(token);
+        return this.checkRedisToken(tokenData, token);
+    }
     /**
      * 校验token
      * @param tokenData 解析后的token
      * @param token token
      * @return 校验token
      */
-    private boolean checkRedisToken(Map<String, Object> tokenData, String token) {
+    public boolean checkRedisToken(Map<String, Object> tokenData, String token) {
         Long userId = tokenData.get(JwtConstant.CLAIM_ID_KEY) == null ? null : Long.valueOf(tokenData.get(JwtConstant.CLAIM_ID_KEY).toString());
         Integer device = tokenData.get(JwtConstant.CLAIM_DEVICE_KEY) == null ? null : Integer.valueOf(tokenData.get(JwtConstant.CLAIM_DEVICE_KEY).toString());
         if (userId == null || device == null) {

@@ -3,6 +3,7 @@ package com.tomato.security.config;
 import com.tomato.security.filter.TokenAuthenticationFilter;
 import com.tomato.security.handler.AccessDeniedHandlerImpl;
 import com.tomato.security.handler.AuthenticationEntryPointImpl;
+import com.tomato.security.token.TokenService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +31,8 @@ public abstract class AbstractSecurityConfig {
     protected abstract BiFunction<String, HttpServletRequest, UserDetails> userFunction();
     @Resource
     private SecurityProperties securityProperties;
+    @Resource
+    private TokenService tokenService;
     /**
      * 配置 URL 的安全配置
      * <p>
@@ -69,16 +72,14 @@ public abstract class AbstractSecurityConfig {
                 .authorizeHttpRequests(authorizeHttpRequests->authorizeHttpRequests
                         // 允许所有OPTIONS请求
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        // 允许直接访问授权登录接口
-                        .requestMatchers(HttpMethod.POST, "/web/authenticate").permitAll()
                         // 允许 SpringMVC 的默认错误地址匿名访问
                         .requestMatchers("/error").permitAll()
                         // 免登录的 URL 列表,忽略的url
                         .requestMatchers(securityProperties.getPermitAllUrls().toArray(new String[0])).permitAll()
                         // 允许任意请求被已登录用户访问，不检查Authority
                         .anyRequest().authenticated())
-                // 加我们自定义的过滤器，替代UsernamePasswordAuthenticationFilter
-                .addFilterBefore(new TokenAuthenticationFilter(this.userFunction()), UsernamePasswordAuthenticationFilter.class);
+                // 自定义的过滤器，替代UsernamePasswordAuthenticationFilter
+                .addFilterBefore(new TokenAuthenticationFilter(this.userFunction(),tokenService), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 }
