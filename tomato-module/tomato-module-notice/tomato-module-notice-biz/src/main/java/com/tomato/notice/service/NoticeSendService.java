@@ -5,6 +5,7 @@ import com.tomato.notice.domain.bo.NoticeDelayBO;
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import com.tomato.notice.manager.NoticeRecordManager;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,10 +42,12 @@ public class NoticeSendService {
         //            "code": "FAIL",
         //                "message": "失败"
         //        }
+        HttpEntity<String> entity = new HttpEntity<>(noticeRecordEntity.getNoticeParam(), headers);
+
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(
                 noticeRecordEntity.getNoticeUrl(),
-                noticeRecordEntity.getNoticeParam(), String.class);
-
+                entity,
+                String.class);
         if(responseEntity.getStatusCode().is2xxSuccessful() && NoticeRecordState.SUCCESS.equalsIgnoreCase(responseEntity.getBody())){
             noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_SUCCESS,responseEntity.getBody());
         }else {

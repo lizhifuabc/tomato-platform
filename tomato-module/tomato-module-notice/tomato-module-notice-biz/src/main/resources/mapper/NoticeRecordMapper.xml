@@ -60,11 +60,7 @@
     </update>
     <select id="selectById" resultType="NoticeRecordEntity">
         select
-            id,notice_url,
-            notice_result,
-            notice_count,notice_count_limit,
-            last_notice_time,
-            state
+            *
         from
             t_notice_record
         where id = #{id}
