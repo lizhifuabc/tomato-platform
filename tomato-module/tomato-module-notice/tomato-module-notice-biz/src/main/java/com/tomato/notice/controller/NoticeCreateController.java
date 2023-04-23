@@ -5,6 +5,7 @@ import com.tomato.notice.domain.req.NoticeCreateReq;
 import com.tomato.notice.service.NoticeRecordService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2023/1/5
  */
 @RestController
+@Slf4j
 @Tag(name = "通知收单", description = "通知收单")
 public class NoticeCreateController {
     private final NoticeRecordService noticeRecordService;

@@ -14,5 +14,6 @@
     <modules>
         <module>tomato-module-notice-biz</module>
         <module>tomato-module-notice-base</module>
+        <module>tomato-module-notice-merchant</module>
     </modules>
 </project>
