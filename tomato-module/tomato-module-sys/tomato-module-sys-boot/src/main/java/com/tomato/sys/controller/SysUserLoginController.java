@@ -29,14 +29,14 @@ public class SysUserLoginController extends BaseController {
         this.sysUserLoginService = sysUserLoginService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/sys/user/login")
     @Operation(summary = "登录", description = "登录")
     public Resp<Void> login(@Valid @RequestBody SysLoginReq sysLoginReq) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         sysUserLoginService.login(SysLoginAdapter.convert(sysLoginReq));
         return Resp.buildSuccess();
     }
-    @GetMapping("/login/logout")
+    @GetMapping("sys/user/logout")
     public Resp<Void> logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
         return Resp.buildSuccess();
     }

@@ -1,5 +1,7 @@
 package com.tomato.security.config;
 
+import com.tomato.security.filter.CustomLoginFilter;
+import com.tomato.security.handler.CustomAuthenticationHandler;
 import com.tomato.security.token.TokenService;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -35,14 +37,4 @@ public class SecurityAutoConfig {
     public TokenService tokenService(StringRedisTemplate stringRedisTemplate){
         return new TokenService(stringRedisTemplate);
     }
-    /**
-     * 登录时需要调用AuthenticationManager.authenticate执行一次校验
-     *
-     * @param config AuthenticationConfiguration
-     * @return AuthenticationManager
-     */
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-//        return config.getAuthenticationManager();
-//    }
 }

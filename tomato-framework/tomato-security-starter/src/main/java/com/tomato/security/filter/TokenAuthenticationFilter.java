@@ -31,6 +31,7 @@ import static com.tomato.security.constant.RequestHeaderConstant.TOKEN;
  */
 @Slf4j
 @Component
+@Deprecated
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private final BiFunction<String,HttpServletRequest, UserDetails> userFunction;
     private final TokenService tokenService;

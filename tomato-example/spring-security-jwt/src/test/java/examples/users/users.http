@@ -1,0 +1,32 @@
+POST http://localhost:8080/api/authenticate
+Content-Type: application/x-www-form-urlencoded
+
+user_name=admin&password=123456
+
+> {% client.global.set("auth_token", response.body.data.token); %}
+
+###
+GET http://localhost:8080/api/current_user
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+POST http://localhost:8080/api/refresh_token
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{}
+
+> {% client.global.set("auth_token", response.body.data.token); %}
+###
+POST http://localhost:8080/api/users/add_user
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "username": "test",
+  "nickname": "测试账号",
+  "password": "123456"
+}
+
+###
