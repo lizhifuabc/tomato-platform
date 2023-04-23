@@ -16,7 +16,7 @@
 ![消费.png](doc%2Fimage%2F%E6%B6%88%E8%B4%B9.png)
 支付业务：
 
-![资金流2.png](doc%2Fimage%2F%E8%B5%84%E9%87%91%E6%B5%812.png)![消费.png](doc%2Fimage%2F%E6%B6%88%E8%B4%B9.png)
+![资金流2.png](doc%2Fimage%2F%E8%B5%84%E9%87%91%E6%B5%812.png)
 
 ## 账户系统
 
