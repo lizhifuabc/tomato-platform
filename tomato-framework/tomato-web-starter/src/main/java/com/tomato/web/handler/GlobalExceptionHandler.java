@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(BusinessException.class)
     public Resp<Void> businessExceptionHandler(BusinessException e) {
-        log.error("全局业务异常,URL:{}", getCurrentRequestUrl(), e);
+        log.error("全局业务异常,URL:{},异常信息:{}", getCurrentRequestUrl(), e.getMessage());
         return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), e.getMessage());
     }
     /**
