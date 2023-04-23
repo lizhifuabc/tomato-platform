@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public class NoticeCreateReq {
      */
     @NotBlank
     @Schema(description = "商户编号")
+    @Length(max = 16)
     private String merchantNo;
 
     /**

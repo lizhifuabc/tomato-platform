@@ -18,7 +18,7 @@ CREATE TABLE `t_notice_record` (
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
    `create_time` datetime not null default current_timestamp comment '创建时间',
    PRIMARY KEY (`id`),
-   index index_merchant_no_merchant_order_no (`merchant_no`,`merchant_order_no`) using btree,
+   unique index index_merchant_no_merchant_order_no (`merchant_no`,`merchant_order_no`) using btree,
    index index_order_no (`order_no`) using btree,
    index index_create_time (`last_notice_time`) using btree
 ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8mb4 COMMENT='通知记录表';

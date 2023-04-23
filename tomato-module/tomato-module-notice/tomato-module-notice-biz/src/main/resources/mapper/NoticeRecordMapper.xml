@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tomato.notice.dao.NoticeRecordDao">
-    <sql id="Base_Column_List">
-                id,
-                order_no,
-                merchant_no,
-                merchant_order_no,
-                app_no,
-                notice_url,
-                res_result,
-                notice_count,
-                notice_count_limit,
-                state,
-                last_notice_time,
-                version,
-                update_time,
-                create_time
-    </sql>
+<mapper namespace="com.tomato.notice.mapper.NoticeRecordMapper">
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="NoticeRecordEntity">
         INSERT INTO t_notice_record
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -84,5 +68,15 @@
         from
             t_notice_record
         where id = #{id}
+    </select>
+
+    <select id="selectByMerchant" resultType="NoticeRecordEntity">
+        select
+            *
+        from
+            t_notice_record
+        where
+            merchant_no = #{merchantNo}
+           and merchant_order_no = #{merchantOrderNo}
     </select>
 </mapper>

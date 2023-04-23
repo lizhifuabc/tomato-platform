@@ -1,4 +1,4 @@
-package com.tomato.notice.dao;
+package com.tomato.notice.mapper;
 
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,10 +11,10 @@ import org.apache.ibatis.annotations.Param;
  * @since 2023/1/4
  */
 @Mapper
-public interface NoticeRecordDao {
+public interface NoticeRecordMapper {
     /**
      * 插入
-     * @param noticeRecordEntity
+     * @param noticeRecordEntity 通知记录
      */
     void insert(NoticeRecordEntity noticeRecordEntity);
     /**
@@ -34,4 +34,11 @@ public interface NoticeRecordDao {
      * @return
      */
     NoticeRecordEntity selectById(@Param("id") Long id);
+    /**
+     * 根据商户号和商户订单号查询
+     * @param merchantNo 商户号
+     * @param merchantOrderNo 商户订单号
+     * @return NoticeRecordEntity
+     */
+    NoticeRecordEntity selectByMerchant(@Param("merchantNo") String merchantNo,@Param("merchantOrderNo") String merchantOrderNo);
 }
