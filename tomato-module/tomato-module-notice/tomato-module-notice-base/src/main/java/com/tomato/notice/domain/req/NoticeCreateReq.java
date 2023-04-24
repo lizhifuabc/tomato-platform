@@ -25,12 +25,12 @@ public class NoticeCreateReq {
      * http请求方式
      */
     @Schema(description = "http请求方式")
-    @NotNull
+    @NotNull(message = "http请求方式不能为空")
     private HttpMethod httpMethod;
     /**
      * 规则编码
      */
-    @NotBlank
+    @NotBlank(message = "规则编码不能为空")
     @Schema(description = "规则编码")
     private String ruleCode;
     /**

@@ -40,11 +40,11 @@ public class NoticeCreateController {
     @PostMapping("/notice/create/async")
     @Operation(summary = "异步通知收单", description = "异步通知收单")
     public Resp<Void> createNoticeAsync(@Validated @RequestBody NoticeCreateReq noticeCreateReq){
-        log.info("通知收单 merchantNo:{},merchantOrderNo:{},ruleCode:{}",noticeCreateReq.getMerchantNo(),
+        log.info("异步通知收单 merchantNo:{},merchantOrderNo:{},ruleCode:{}",noticeCreateReq.getMerchantNo(),
                 noticeCreateReq.getMerchantOrderNo(),noticeCreateReq.getRuleCode());
         // TODO 通知规则校验
         // TODO 商户通知黑名单：三个级别：1：直接返回，2：抛出异常，3：保存到数据库
-        noticeRecordService.createNotice(noticeCreateReq);
+        noticeRecordService.createNoticeAsync(noticeCreateReq);
         return Resp.buildSuccess();
     }
 }
