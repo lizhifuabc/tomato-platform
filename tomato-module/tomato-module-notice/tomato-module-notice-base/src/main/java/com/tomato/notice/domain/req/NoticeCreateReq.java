@@ -5,8 +5,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.http.HttpMethod;
 
 import java.util.Map;
 
@@ -19,6 +21,18 @@ import java.util.Map;
 @Data
 @Tag(name = "通知收单", description = "通知收单")
 public class NoticeCreateReq {
+    /**
+     * http请求方式
+     */
+    @Schema(description = "http请求方式")
+    @NotNull
+    private HttpMethod httpMethod;
+    /**
+     * 规则编码
+     */
+    @NotBlank
+    @Schema(description = "规则编码")
+    private String ruleCode;
     /**
      * 订单号
      */

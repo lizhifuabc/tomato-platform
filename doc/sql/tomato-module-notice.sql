@@ -23,6 +23,28 @@ CREATE TABLE `t_notice_record` (
    index index_create_time (`last_notice_time`) using btree
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知记录表';
 
+# 通知规则
+drop table if exists `t_notice_rule`;
+create table `t_notice_rule`(
+   `id`                bigint primary key not null auto_increment comment '主键',
+   `rule_code`         varchar(50)       not null       comment '规则编码',
+   `rule_name`         varchar(50)       not null        comment '规则名称',
+   `max_retry_times`   smallint          comment '最大重试次数',
+   `retry_delay`       smallint          comment '重试延迟阀值',
+   `http_method`       varchar(32)       comment 'http方法',
+   `handler`           varchar(200)      comment '响应处理器',
+   `handler_char_set`  varchar(50)       comment '处理器字符集',
+   `handler_params`    varchar(200)      comment '响应处理器参数',
+   `desc`              varchar(200)      comment '规则描述',
+   `biz_code`          varchar(50)       comment' 所属业务',
+   `response_code`     varchar(64)       comment '响应码',
+   `computer_room`     varchar(32)       comment '机房',
+   `io`                char(1)           comment '流请求',
+   `version` int default 0 not null comment '乐观锁',
+   `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
+   `create_time` datetime not null default current_timestamp comment '创建时间'
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知规则';
+
 # 通知记录历史
 DROP TABLE IF EXISTS `t_notice_record_history`;
 CREATE TABLE `t_notice_record_history` (

@@ -20,9 +20,15 @@ public class NoticeRecordService {
         this.noticeSendService = noticeSendService;
     }
     public void createNotice(NoticeCreateReq noticeCreateReq){
-        // 创建通知记录
+        // 创建通知记录，如果已经存在则不创建；存在则发送通知
         NoticeRecordEntity noticeRecordEntity = noticeRecordManager.selectByMerchant(noticeCreateReq.getMerchantNo(),noticeCreateReq.getMerchantOrderNo())
                 .orElseGet(() -> noticeRecordManager.createNotice(noticeCreateReq));
         noticeSendService.send(noticeRecordEntity.getId());
+    }
+    public void createNoticeAsync(NoticeCreateReq noticeCreateReq){
+        // 创建通知记录，如果已经存在则不创建；存在则发送通知
+        NoticeRecordEntity noticeRecordEntity = noticeRecordManager.selectByMerchant(noticeCreateReq.getMerchantNo(),noticeCreateReq.getMerchantOrderNo())
+                .orElseGet(() -> noticeRecordManager.createNotice(noticeCreateReq));
+        noticeSendService.sendAsync(noticeRecordEntity.getId());
     }
 }
