@@ -11,6 +11,8 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import reactor.core.Disposable;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 /**
  * WebClient
  *
@@ -34,6 +36,7 @@ public class WebClientTest {
                 .retrieve()
                 //响应数据类型转换
                 .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(3))
                 .doOnError(throwable -> {
                     System.out.println("发送通知失败"+throwable.getMessage());
                 }).subscribe(result -> {
