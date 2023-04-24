@@ -60,7 +60,6 @@ public class NoticeSendService {
             noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_SUCCESS,body);
         }else {
             noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,body);
-            // TODO 重发通知到MQ
             // 通知次数 >= 最大通知次数时
             if(noticeRecordEntity.getNoticeCount() >= noticeRecordEntity.getNoticeCountLimit()){
                 return;

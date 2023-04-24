@@ -28,7 +28,7 @@ public class NoticeRabbitService {
     /**
      * 通知
      *
-     * @param noticeDelayBO
+     * @param noticeDelayBO 通知延迟
      */
     public void delayNotice(NoticeDelayBO noticeDelayBO) {
         log.info("准备发送延迟订单到MQ：{}", noticeDelayBO);

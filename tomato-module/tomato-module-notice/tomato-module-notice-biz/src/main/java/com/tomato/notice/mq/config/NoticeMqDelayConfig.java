@@ -37,7 +37,7 @@ public class NoticeMqDelayConfig {
     }
     /**
      * 创建一个队列
-     * @return
+     * @return Queue
      */
     @Bean
     public Queue orderDelayQueue() {
@@ -48,7 +48,7 @@ public class NoticeMqDelayConfig {
     }
     /**
      * 绑定队列到自定义交换机
-     * @return
+     * @return Binding
      */
     @Bean
     public Binding bindingOrderDelay() {
