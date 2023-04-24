@@ -43,15 +43,23 @@ public class NoticeSendService {
         //                "message": "失败"
         //        }
         HttpEntity<String> entity = new HttpEntity<>(noticeRecordEntity.getNoticeParam(), headers);
-
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(
-                noticeRecordEntity.getNoticeUrl(),
-                entity,
-                String.class);
-        if(responseEntity.getStatusCode().is2xxSuccessful() && NoticeRecordState.SUCCESS.equalsIgnoreCase(responseEntity.getBody())){
-            noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_SUCCESS,responseEntity.getBody());
+        boolean success;
+        String body;
+        try {
+            ResponseEntity<String> responseEntity = restTemplate.postForEntity(
+                    noticeRecordEntity.getNoticeUrl(),
+                    entity,
+                    String.class);
+            success = responseEntity.getStatusCode().is2xxSuccessful() && NoticeRecordState.SUCCESS.equalsIgnoreCase(responseEntity.getBody());
+            body = responseEntity.getBody();
+        }catch (Exception e){
+            body = e.getMessage();
+            success = false;
+        }
+        if(success){
+            noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_SUCCESS,body);
         }else {
-            noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,responseEntity.getBody());
+            noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,body);
             // TODO 重发通知到MQ
             // 通知次数 >= 最大通知次数时
             if(noticeRecordEntity.getNoticeCount() >= noticeRecordEntity.getNoticeCountLimit()){

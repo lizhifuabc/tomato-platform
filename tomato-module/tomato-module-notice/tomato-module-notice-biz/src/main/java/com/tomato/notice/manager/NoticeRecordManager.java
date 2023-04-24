@@ -1,13 +1,15 @@
 package com.tomato.notice.manager;
 
 import com.tomato.jackson.utils.JacksonUtils;
+import com.tomato.notice.domain.entity.NoticeRecordHistoryEntity;
+import com.tomato.notice.mapper.NoticeRecordHistoryMapper;
 import com.tomato.notice.mapper.NoticeRecordMapper;
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import com.tomato.notice.domain.req.NoticeCreateReq;
 import com.tomato.web.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -21,8 +23,10 @@ import java.util.Optional;
 @Slf4j
 public class NoticeRecordManager {
     private final NoticeRecordMapper noticeRecordMapper;
-    public NoticeRecordManager(NoticeRecordMapper noticeRecordMapper) {
+    private final NoticeRecordHistoryMapper noticeRecordHistoryMapper;
+    public NoticeRecordManager(NoticeRecordMapper noticeRecordMapper, NoticeRecordHistoryMapper noticeRecordHistoryMapper) {
         this.noticeRecordMapper = noticeRecordMapper;
+        this.noticeRecordHistoryMapper = noticeRecordHistoryMapper;
     }
 
     public NoticeRecordEntity createNotice(NoticeCreateReq noticeCreateReq){
@@ -31,8 +35,13 @@ public class NoticeRecordManager {
         noticeRecordMapper.insert(noticeRecordEntity);
         return noticeRecordEntity;
     }
+    @Transactional(rollbackFor = Exception.class)
     public void noticeResult(Long id, Byte state, String noticeResult){
         noticeRecordMapper.updateNoticeResult(id,state,noticeResult);
+        NoticeRecordHistoryEntity noticeRecordHistoryEntity = new NoticeRecordHistoryEntity();
+        noticeRecordHistoryEntity.setNoticeRecordId(id);
+        noticeRecordHistoryEntity.setNoticeResult(noticeResult);
+        noticeRecordHistoryMapper.insert(noticeRecordHistoryEntity);
     }
     /**
      * 根据 ID 查询

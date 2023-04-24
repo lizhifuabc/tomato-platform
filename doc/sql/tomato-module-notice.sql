@@ -21,4 +21,15 @@ CREATE TABLE `t_notice_record` (
    unique index index_merchant_no_merchant_order_no (`merchant_no`,`merchant_order_no`) using btree,
    index index_order_no (`order_no`) using btree,
    index index_create_time (`last_notice_time`) using btree
-) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8mb4 COMMENT='通知记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知记录表';
+
+# 通知记录历史
+DROP TABLE IF EXISTS `t_notice_record_history`;
+CREATE TABLE `t_notice_record_history` (
+   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '通知记录历史ID',
+   `notice_record_id` BIGINT(20) NOT NULL COMMENT '通知记录ID',
+   `notice_result` text comment '通知响应结果',
+   `create_time` datetime not null default current_timestamp comment '创建时间',
+   PRIMARY KEY (`id`),
+   index index_notice_record_id (`notice_record_id`) using btree
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知记录历史';

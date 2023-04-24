@@ -2,6 +2,7 @@ package com.tomato.notice.domain.entity;
 
 import com.tomato.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
  * @author lizhifu
  * @since 2023/1/4
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class NoticeRecordEntity extends BaseEntity {
     /**
