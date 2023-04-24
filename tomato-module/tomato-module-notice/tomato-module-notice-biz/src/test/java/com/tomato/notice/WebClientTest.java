@@ -30,13 +30,13 @@ public class WebClientTest {
 
     public static void test() throws InterruptedException {
         webClient.post()
-                .uri("http://test-cn222.your-api-server.com")
+                .uri("http://localhost:9800/receive")
                 .body(BodyInserters.fromValue("{\"m\": \"12334523\", \"hmac\": \"12334523\"}"))
                 // 获取响应体
                 .retrieve()
                 //响应数据类型转换
                 .bodyToMono(String.class)
-                .timeout(Duration.ofSeconds(3))
+                .timeout(Duration.ofSeconds(1))
                 .doOnError(throwable -> {
                     System.out.println("发送通知失败"+throwable.getMessage());
                 }).subscribe(result -> {

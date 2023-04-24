@@ -15,6 +15,8 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.scheduler.Schedulers;
 
+import java.util.Objects;
+
 /**
  * 发送http请求
  *
@@ -89,7 +91,8 @@ public class NoticeSendService {
                 //  当任务数量超过队列容量时，会触发线程池的饱和策略，比如说抛出异常或者丢弃任务。
                 .publishOn(Schedulers.boundedElastic())
                 .doOnError(throwable -> {
-                    noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,throwable.getMessage());
+                    String msg = Objects.isNull(throwable.getMessage()) ? throwable.getMessage() : throwable.getCause().toString();
+                    noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,msg);
                     // 通知次数 >= 最大通知次数时
                     if(noticeRecordEntity.getNoticeCount() >= noticeRecordEntity.getNoticeCountLimit()){
                         return;
