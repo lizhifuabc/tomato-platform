@@ -15,6 +15,7 @@
         <module>spring-authorization-server</module>
         <module>spring-security</module>
         <module>spring-security-jwt</module>
+        <module>micrometer-prometheus</module>
     </modules>
 
     <properties>
