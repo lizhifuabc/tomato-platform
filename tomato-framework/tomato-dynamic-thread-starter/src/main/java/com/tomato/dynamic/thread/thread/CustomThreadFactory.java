@@ -1,5 +1,7 @@
 package com.tomato.dynamic.thread.thread;
 
+import org.springframework.lang.NonNull;
+
 import java.util.concurrent.ThreadFactory;
 
 /**
@@ -26,7 +28,7 @@ public class CustomThreadFactory extends CustomThreadCreator implements ThreadFa
 
 
 	@Override
-	public Thread newThread(Runnable runnable) {
+	public Thread newThread(@NonNull Runnable runnable) {
 		return createThread(runnable);
 	}
 
