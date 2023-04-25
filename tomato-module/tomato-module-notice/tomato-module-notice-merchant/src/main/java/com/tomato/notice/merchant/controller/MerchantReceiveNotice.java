@@ -21,10 +21,12 @@ public class MerchantReceiveNotice {
     public String receive(@RequestBody Map<String, String> map, HttpServletRequest request){
         log.info("商户通知接收map:{}",map);
         // 随机睡眠 10 秒
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        if(Math.random() > 0.5){
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
         // 随机返回失败
         if(Math.random() > 0.5){

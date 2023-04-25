@@ -10,6 +10,8 @@ import org.springframework.web.reactive.function.client.WebClientRequestExceptio
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.Disposable;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
 
@@ -25,8 +27,10 @@ public class WebClientTest {
                 .defaultHeader(HttpHeaders.ACCEPT_CHARSET, "UTF-8")
                 .build();
     public static void main(String[] args) throws InterruptedException {
-        test();
+        Scheduler scheduler = Schedulers.boundedElastic();
     }
+
+
 
     public static void test() throws InterruptedException {
         webClient.post()
