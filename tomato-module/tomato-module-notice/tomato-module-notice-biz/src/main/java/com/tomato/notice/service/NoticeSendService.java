@@ -1,7 +1,6 @@
 package com.tomato.notice.service;
 
 import com.tomato.notice.constant.NoticeRecordState;
-import com.tomato.notice.domain.bo.NoticeDelayBO;
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import com.tomato.notice.manager.NoticeRecordManager;
 import lombok.extern.slf4j.Slf4j;
@@ -28,12 +27,12 @@ import java.util.Objects;
 public class NoticeSendService {
     private final RestTemplate restTemplate;
     private final NoticeRecordManager noticeRecordManager;
-    private final NoticeRabbitService noticeRabbitService;
+    private final NoticeResultService noticeResultService;
     private final WebClient webClient;
-    public NoticeSendService(RestTemplate restTemplate, NoticeRecordManager noticeRecordManager, NoticeRabbitService noticeRabbitService, WebClient webClient) {
+    public NoticeSendService(RestTemplate restTemplate, NoticeRecordManager noticeRecordManager,NoticeResultService noticeResultService, WebClient webClient) {
         this.restTemplate = restTemplate;
         this.noticeRecordManager = noticeRecordManager;
-        this.noticeRabbitService = noticeRabbitService;
+        this.noticeResultService = noticeResultService;
         this.webClient = webClient;
     }
     public void send(Long id){
@@ -62,17 +61,9 @@ public class NoticeSendService {
             success = false;
         }
         if(success){
-            noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_SUCCESS,body);
+            noticeResultService.success(noticeRecordEntity,body);
         }else {
-            noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,body);
-            // 通知次数 >= 最大通知次数时
-            if(noticeRecordEntity.getNoticeCount() >= noticeRecordEntity.getNoticeCountLimit()){
-                return;
-            }
-            NoticeDelayBO noticeDelayBO = new NoticeDelayBO();
-            noticeDelayBO.setNoticeCount(noticeRecordEntity.getNoticeCount());
-            noticeDelayBO.setId(noticeRecordEntity.getId());
-            noticeRabbitService.delayNotice(noticeDelayBO);
+            noticeResultService.fail(noticeRecordEntity,body);
         }
     }
     public void sendAsync(Long id){
@@ -92,17 +83,9 @@ public class NoticeSendService {
                 .publishOn(Schedulers.boundedElastic())
                 .doOnError(throwable -> {
                     String msg = Objects.isNull(throwable.getMessage()) ? throwable.getCause().toString() : throwable.getMessage();
-                    noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,msg);
-                    // 通知次数 >= 最大通知次数时
-                    if(noticeRecordEntity.getNoticeCount() >= noticeRecordEntity.getNoticeCountLimit()){
-                        return;
-                    }
-                    NoticeDelayBO noticeDelayBO = new NoticeDelayBO();
-                    noticeDelayBO.setNoticeCount(noticeRecordEntity.getNoticeCount());
-                    noticeDelayBO.setId(noticeRecordEntity.getId());
-                    noticeRabbitService.delayNotice(noticeDelayBO);
+                    noticeResultService.fail(noticeRecordEntity,msg);
                 }).subscribe(result -> {
-                    noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_SUCCESS,result);
+                    noticeResultService.success(noticeRecordEntity,result);
                 });
     }
 }
