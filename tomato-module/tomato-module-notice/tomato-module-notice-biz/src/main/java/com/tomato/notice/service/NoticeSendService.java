@@ -13,7 +13,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.scheduler.Schedulers;
+import reactor.util.retry.Retry;
 
+import java.time.Duration;
 import java.util.Objects;
 
 /**
@@ -63,7 +65,7 @@ public class NoticeSendService {
         if(success){
             noticeResultService.success(noticeRecordEntity,body);
         }else {
-            noticeResultService.fail(noticeRecordEntity,body);
+            noticeResultService.failMQ(noticeRecordEntity,body);
         }
     }
     public void sendAsync(Long id){
@@ -77,6 +79,14 @@ public class NoticeSendService {
                 .retrieve()
                 //响应数据类型转换
                 .bodyToMono(String.class)
+                // 重试3次
+                .retryWhen(Retry.backoff(6, Duration.ofSeconds(30))
+                        .doAfterRetry(retrySignal -> {
+                            log.info("重试次数：{}，异常信息：{}", retrySignal.totalRetriesInARow(), retrySignal.failure().getMessage());
+                            noticeResultService.fail(noticeRecordEntity,retrySignal.failure().getMessage());
+                        })
+                        .filter(throwable -> throwable instanceof Exception)
+                        .onRetryExhaustedThrow((retryBackoffSpec, retrySignal) -> new RuntimeException("重试3次失败")))
                 // 异步处理:将后续的操作切换到一个由 boundedElastic 线程池维护的线程中执行
                 // TODO boundedElastic 线程池使用的是有界的队列，可以防止线程数无限增长，从而避免资源耗尽的风险。
                 //  当任务数量超过队列容量时，会触发线程池的饱和策略，比如说抛出异常或者丢弃任务。

@@ -23,7 +23,7 @@ public class NoticeResultService {
         this.noticeRabbitService = noticeRabbitService;
     }
 
-    public void fail(NoticeRecordEntity noticeRecordEntity,String msg){
+    public void failMQ(NoticeRecordEntity noticeRecordEntity,String msg){
         noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,msg);
         // 通知次数 >= 最大通知次数时
         if(noticeRecordEntity.getNoticeCount() >= noticeRecordEntity.getNoticeCountLimit()){
@@ -33,6 +33,16 @@ public class NoticeResultService {
         noticeDelayBO.setNoticeCount(noticeRecordEntity.getNoticeCount());
         noticeDelayBO.setId(noticeRecordEntity.getId());
         noticeRabbitService.delayNotice(noticeDelayBO);
+    }
+    public void fail(NoticeRecordEntity noticeRecordEntity,String msg){
+        noticeRecordManager.noticeResult(noticeRecordEntity.getId(), NoticeRecordState.STATE_FAIL,msg);
+        // 通知次数 >= 最大通知次数时
+        if(noticeRecordEntity.getNoticeCount() >= noticeRecordEntity.getNoticeCountLimit()){
+            return;
+        }
+        NoticeDelayBO noticeDelayBO = new NoticeDelayBO();
+        noticeDelayBO.setNoticeCount(noticeRecordEntity.getNoticeCount());
+        noticeDelayBO.setId(noticeRecordEntity.getId());
     }
 
     /**
