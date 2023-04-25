@@ -42,7 +42,8 @@ create table `t_notice_rule`(
    `io`                char(1)           comment '流请求',
    `version` int default 0 not null comment '乐观锁',
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
-   `create_time` datetime not null default current_timestamp comment '创建时间'
+   `create_time` datetime not null default current_timestamp comment '创建时间',
+    unique index index_rule_code (`rule_code`) using btree
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知规则';
 
 # 通知记录历史
