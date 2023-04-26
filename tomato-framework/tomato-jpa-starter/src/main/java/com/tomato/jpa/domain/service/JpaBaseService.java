@@ -1,6 +1,6 @@
 package com.tomato.jpa.domain.service;
 
-import com.tomato.jpa.domain.entity.base.JpaEntity;
+import com.tomato.common.entity.Entity;
 import com.tomato.jpa.domain.repository.BaseJpaRepository;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author lizhifu
  * @since 2023/4/26
  */
-interface JpaBaseService<E extends JpaEntity, ID extends Serializable> {
+interface JpaBaseService<E extends Entity, ID extends Serializable> {
     /**
      * 获取Repository
      *

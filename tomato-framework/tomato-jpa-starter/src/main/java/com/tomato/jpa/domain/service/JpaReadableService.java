@@ -1,7 +1,6 @@
 package com.tomato.jpa.domain.service;
 
-import com.tomato.jpa.domain.entity.base.JpaEntity;
-import com.tomato.jpa.domain.repository.BaseJpaRepository;
+import com.tomato.common.entity.Entity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +18,7 @@ import java.util.Optional;
  * @param <E>  实体
  * @param <ID> ID
  */
-public interface JpaReadableService< E extends JpaEntity, ID extends Serializable> extends JpaBaseService<E, ID> {
+public interface JpaReadableService< E extends Entity, ID extends Serializable> extends JpaBaseService<E, ID> {
 
     /**
      * 根据ID查询

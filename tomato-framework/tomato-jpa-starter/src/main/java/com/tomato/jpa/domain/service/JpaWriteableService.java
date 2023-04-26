@@ -1,6 +1,7 @@
 package com.tomato.jpa.domain.service;
 
-import com.tomato.jpa.domain.entity.base.JpaEntity;
+
+import com.tomato.common.entity.Entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @param <E>  实体
  * @param <ID> ID
  */
-public interface JpaWriteableService<E extends JpaEntity, ID extends Serializable> extends JpaBaseService<E, ID>{
+public interface JpaWriteableService<E extends Entity, ID extends Serializable> extends JpaBaseService<E, ID>{
 
     /**
      * 删除数据
