@@ -33,5 +33,6 @@
         <module>tomato-idempotent-starter</module>
         <module>tomato-ddd</module>
         <module>tomato-common</module>
+        <module>tomato-tracing-starter</module>
     </modules>
 </project>

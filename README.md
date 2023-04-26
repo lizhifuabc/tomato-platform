@@ -2,6 +2,33 @@
 
 仅用于学习。
 
+## 模块介绍
+
+```
+tomato-platform
+├── XXXXXX -- XXXXXX
+└── tomato-framework -- 系统公共模块
+     ├── tomato-tracing-starter -- 基于Micrometer、Zipkin分布式链路追踪
+     ├── XXXXXX -- XXXXXX
+     ├── XXXXXX -- XXXXXX
+     ├── XXXXXX -- XXXXXX
+     ├── XXXXXX -- XXXXXX
+     ├── XXXXXX -- XXXXXX
+     └── XXXXXX
+├── XXXXXX -- XXXXXX
+├── XXXXXX -- XXXXXX
+└── XXXXXX -- XXXXXX
+     └── XXXXXX -- XXXXXX
+     └── XXXXXX -- XXXXXX
+└── XXXXXX
+     └── XXXXXX -- XXXXXX
+     ├── XXXXXX -- XXXXXX
+     ├── XXXXXX -- XXXXXX
+     └── XXXXXX -- XXXXXX
+```
+
+
+
 ## 涉及角色
 
 1. 聚合支付平台（支付平台）
