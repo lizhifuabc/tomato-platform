@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * <p>属性复制</p>
  * <p>属性校验</p>
  * @author lizhifu
- * @date 2022/12/13
+ * @since  2022/12/13
  */
 public class BeanUtil {
     /**
@@ -38,8 +38,8 @@ public class BeanUtil {
      *
      * @param source 源 要复制的对象
      * @param target 目标 复制到此对象
-     * @param <T>
-     * @return
+     * @param <T>   目标对象类型
+     * @return T
      */
     public static <T> T copy(Object source, Class<T> target) {
         if (source == null || target == null) {
@@ -57,11 +57,11 @@ public class BeanUtil {
     /**
      * 复制list
      *
-     * @param source
-     * @param target
-     * @param <T>
-     * @param <K>
-     * @return
+     * @param source 源
+     * @param target 目标
+     * @param <T>   源对象类型
+     * @param <K>  目标对象类型
+     * @return List<K>
      */
     public static <T, K> List<K> copyList(List<T> source, Class<K> target) {
         if (null == source || source.isEmpty()) {
@@ -74,7 +74,7 @@ public class BeanUtil {
      * 手动验证对象 Model的属性
      * 需要配合 hibernate-validator 校验注解
      *
-     * @param t
+     * @param t  要验证的对象
      * @return String 返回null代表验证通过，否则返回错误的信息
      */
     public static <T> String verify(T t) {
@@ -85,7 +85,7 @@ public class BeanUtil {
             return null;
         }
         // 返回错误信息
-        List<String> messageList = validate.stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
+        List<String> messageList = validate.stream().map(ConstraintViolation::getMessage).toList();
         return messageList.toString();
     }
 }
