@@ -10,15 +10,15 @@ package com.tomato.mybatis.mapper;
 public interface BaseMapper<T> {
     /**
      * 插入
-     * @param record
-     * @return
+     * @param record 插入对象
+     * @return 插入条数
      */
     int insert(T record);
 
     /**
      * 插入
-     * @param record
-     * @return
+     * @param record 插入对象
+     * @return 插入条数
      */
     int insertSelective(T record);
 
