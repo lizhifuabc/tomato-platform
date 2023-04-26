@@ -5,21 +5,17 @@ import com.tomato.common.resp.Resp;
 import com.tomato.common.constants.CommonRespCode;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.TypeMismatchException;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.tomato.common.constants.CommonRespCode.INTERNAL_SERVER_ERROR;
 
@@ -37,46 +33,32 @@ public class GlobalExceptionHandler {
      */
     @ResponseBody
     @ExceptionHandler(BusinessException.class)
-    public Resp<Void> businessExceptionHandler(BusinessException e) {
-        log.error("全局业务异常,URL:{},异常信息:{}", getCurrentRequestUrl(), e.getMessage());
-        return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), e.getMessage());
+    public Resp<Void> businessExceptionHandler(HttpServletRequest request,BusinessException ex) {
+        if (ex.getCause() != null) {
+            log.error("全局异常处理器BusinessException：[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex, ex.getCause());
+            return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), ex.getMessage());
+        }
+        log.error("全局异常处理器BusinessException：[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex.toString());
+        return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), ex.getMessage());
     }
-    /**
-     * 唯一性索引异常
-     */
-//    @ResponseBody
-//    @ExceptionHandler(DuplicateKeyException.class)
-//    public Resp<Void> duplicateKeyException(DuplicateKeyException e) {
-//        log.error("唯一性索引异常,URL:{}", getCurrentRequestUrl(), e);
-//        return Resp.buildFailure(CommonRespCode.DUPLICATE_KEY_SERVER_ERROR.code(), CommonRespCode.DUPLICATE_KEY_SERVER_ERROR.msg());
-//    }
     /**
      * json 格式错误 缺少请求体
      */
     @ResponseBody
-    @ExceptionHandler({TypeMismatchException.class, BindException.class})
-    public Resp<Void> paramExceptionHandler(Exception e) {
-        if (e instanceof BindException) {
-            if (e instanceof MethodArgumentNotValidException) {
-                List<FieldError> fieldErrors = ((MethodArgumentNotValidException) e).getBindingResult().getFieldErrors();
-                List<String> msgList = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.toList());
-                return Resp.buildFailure(CommonRespCode.FAIL.code(), String.join(",", msgList));
-            }
-
-            List<FieldError> fieldErrors = ((BindException) e).getFieldErrors();
-            List<String> error = fieldErrors.stream().map(field -> field.getField() + ":" + field.getRejectedValue()).collect(Collectors.toList());
-            String errorMsg = CommonRespCode.FAIL.msg() + ":" + error;
-            return Resp.buildFailure(CommonRespCode.FAIL.code(), errorMsg);
-        }
-        return Resp.buildFailure(CommonRespCode.FAIL.code(),CommonRespCode.FAIL.msg());
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Resp<Void> validExceptionHandler(HttpServletRequest request,MethodArgumentNotValidException ex) {
+        BindingResult bindingResult = ex.getBindingResult();
+        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        List<String> error = fieldErrors.stream().map(field -> field.getField() + ":" + field.getRejectedValue()).toList();
+        log.error("全局异常处理器MethodArgumentNotValidException：[{}] {} [ex] {}", request.getMethod(), getCurrentRequestUrl(), error);
+        return Resp.buildFailure(CommonRespCode.FAIL.code(), String.valueOf(error));
     }
     /**
      * 其他所有 Exception
      */
     @ExceptionHandler(value = Exception.class)
-    @ResponseStatus(HttpStatus.OK)
-    public Resp<Void> otherExceptionHandler(HttpServletRequest req, Throwable throwable) {
-        log.error("[otherExceptionHandler]", throwable);
+    public Resp<Void> otherExceptionHandler(HttpServletRequest request, Throwable throwable) {
+        log.error("全局异常处理器Exception：[{}] {} ", request.getMethod(), getCurrentRequestUrl(), throwable);
         return Resp.buildFailure(INTERNAL_SERVER_ERROR.code(),INTERNAL_SERVER_ERROR.msg());
     }
     /**
