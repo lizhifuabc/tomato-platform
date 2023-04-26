@@ -1,30 +1,25 @@
 package com.tomato.idempotent.annotation;
 
 import java.lang.annotation.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 表单重复提交注解
  *
  * @author lizhifu
  */
-@Inherited
-@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Documented
+@Target(ElementType.METHOD)
 public @interface RepeatSubmit {
 
     /**
-     * 间隔时间(ms)，小于此时间视为重复提交
+     * 重复提交间隔时间/毫秒
      * 默认1秒
      */
-    int interval() default 1000;
-
-    TimeUnit timeUnit() default TimeUnit.MILLISECONDS;
+    int value() default 1000;
 
     /**
-     * 提示消息 支持国际化 格式为 {code}
+     * 最长间隔30s
      */
-    String message() default "{repeat.submit.message}";
+    int MAX_INTERVAL = 30000;
 
 }
