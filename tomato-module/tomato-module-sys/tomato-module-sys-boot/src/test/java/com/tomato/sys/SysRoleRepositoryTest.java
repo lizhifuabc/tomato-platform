@@ -1,7 +1,7 @@
 package com.tomato.sys;
 
 import com.tomato.sys.domain.entity.SysRole;
-import com.tomato.sys.infrastructure.repository.SysRoleRepository;
+import com.tomato.sys.infrastructure.repository.SysRoleJpaRepository;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @SpringBootTest
 public class SysRoleRepositoryTest {
     @Resource
-    private SysRoleRepository sysRoleRepository;
+    private SysRoleJpaRepository sysRoleRepository;
 
     @Test
     public void test(){

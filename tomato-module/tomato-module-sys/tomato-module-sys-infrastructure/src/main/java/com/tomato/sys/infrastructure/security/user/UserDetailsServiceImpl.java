@@ -2,7 +2,7 @@ package com.tomato.sys.infrastructure.security.user;
 
 import com.tomato.security.token.TokenService;
 import com.tomato.sys.domain.entity.SysUser;
-import com.tomato.sys.infrastructure.repository.SysUserRepository;
+import com.tomato.sys.infrastructure.repository.SysUserJpaRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
     private final TokenService tokenService;
-    private final SysUserRepository sysUserRepository;
+    private final SysUserJpaRepository sysUserRepository;
 
-    public UserDetailsServiceImpl(TokenService tokenService, SysUserRepository sysUserRepository) {
+    public UserDetailsServiceImpl(TokenService tokenService, SysUserJpaRepository sysUserRepository) {
         this.tokenService = tokenService;
         this.sysUserRepository = sysUserRepository;
     }

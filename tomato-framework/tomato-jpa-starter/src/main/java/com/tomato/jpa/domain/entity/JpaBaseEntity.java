@@ -1,11 +1,11 @@
 package com.tomato.jpa.domain.entity;
 
+import com.tomato.jpa.domain.entity.base.JpaAbstractEntity;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -15,8 +15,10 @@ import java.time.LocalDateTime;
  * @since  2022/11/25
  */
 @MappedSuperclass//实体继承映射
+// AuditingEntityListener会自动检查实体类中是否定义了@CreatedBy、
+// @CreatedDate、@LastModifiedBy、@LastModifiedDate等注解，如果存在这些注解，则自动设置对应的元数据信息。
 @EntityListeners(value = AuditingEntityListener.class)
-public abstract class JpaBaseEntity implements Serializable {
+public abstract class JpaBaseEntity extends JpaAbstractEntity {
     /**
      * 创建时间
      */

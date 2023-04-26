@@ -1,13 +1,13 @@
 package com.tomato.sys.infrastructure.repository;
 
-import com.tomato.jpa.domain.repository.BaseRepository;
+import com.tomato.jpa.domain.repository.BaseJpaRepository;
 import com.tomato.sys.domain.entity.SysUser;
 
 /**
  * SysUserRepository
  * @author lizhifu
  */
-public interface SysUserRepository extends BaseRepository<SysUser, String> {
+public interface SysUserJpaRepository extends BaseJpaRepository<SysUser, String> {
     /**
      * 根据用户名查找SysUser
      *

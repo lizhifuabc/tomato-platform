@@ -1,6 +1,6 @@
 package com.tomato.sys.infrastructure.repository;
 
-import com.tomato.jpa.domain.repository.BaseRepository;
+import com.tomato.jpa.domain.repository.BaseJpaRepository;
 import com.tomato.sys.domain.entity.SysRole;
 
 /**
@@ -8,6 +8,6 @@ import com.tomato.sys.domain.entity.SysRole;
  *
  * @author lizhifu
  */
-public interface SysRoleRepository extends BaseRepository<SysRole, String> {
+public interface SysRoleJpaRepository extends BaseJpaRepository<SysRole, String> {
 
 }

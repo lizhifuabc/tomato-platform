@@ -2,7 +2,7 @@ package com.tomato.sys.infrastructure.impl;
 
 import com.tomato.sys.domain.entity.SysUser;
 import com.tomato.sys.domain.service.SysUserService;
-import com.tomato.sys.infrastructure.repository.SysUserRepository;
+import com.tomato.sys.infrastructure.repository.SysUserJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,9 +15,9 @@ import java.util.Optional;
  */
 @Service
 public class SysUserServiceImpl implements SysUserService {
-    private final SysUserRepository sysUserRepository;
+    private final SysUserJpaRepository sysUserRepository;
 
-    public SysUserServiceImpl(SysUserRepository sysUserRepository) {
+    public SysUserServiceImpl(SysUserJpaRepository sysUserRepository) {
         this.sysUserRepository = sysUserRepository;
     }
 
