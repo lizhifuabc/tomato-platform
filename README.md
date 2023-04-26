@@ -4,7 +4,7 @@
 
 ## 模块介绍
 
-```
+```text
 tomato-platform
 ├── XXXXXX -- XXXXXX
 └── tomato-framework -- 系统公共模块
@@ -17,8 +17,8 @@ tomato-platform
      └── XXXXXX
 ├── XXXXXX -- XXXXXX
 ├── XXXXXX -- XXXXXX
-└── XXXXXX -- XXXXXX
-     └── XXXXXX -- XXXXXX
+└── tomato-example -- 示例代码
+     └── spring-boot-tracing --  基于Micrometer、Zipkin分布式链路追踪例子
      └── XXXXXX -- XXXXXX
 └── XXXXXX
      └── XXXXXX -- XXXXXX
@@ -26,8 +26,6 @@ tomato-platform
      ├── XXXXXX -- XXXXXX
      └── XXXXXX -- XXXXXX
 ```
-
-
 
 ## 涉及角色
 
