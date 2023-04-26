@@ -3,7 +3,6 @@ package com.tomato.web.jpa.controller.service;
 import com.tomato.common.entity.AbstractEntity;
 import com.tomato.common.resp.Resp;
 import com.tomato.jpa.domain.service.BaseWriteableService;
-import com.tomato.web.core.controller.Controller;
 
 import java.io.Serializable;
 
@@ -13,7 +12,8 @@ import java.io.Serializable;
  * @author lizhifu
  * @since 2023/4/26
  */
-public interface BaseWriteableControllerService<E extends AbstractEntity, ID extends Serializable>  extends Controller, BaseControllerService {
+public interface BaseWriteableController<E extends AbstractEntity, ID extends Serializable>
+        extends BaseController {
     /**
      * 获取Service
      *

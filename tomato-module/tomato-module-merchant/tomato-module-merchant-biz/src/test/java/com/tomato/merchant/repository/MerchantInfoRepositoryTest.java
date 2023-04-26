@@ -1,4 +1,4 @@
-package com.tomato.merchant.dao;
+package com.tomato.merchant.repository;
 
 import com.tomato.common.enums.YesNoTypeEnum;
 import com.tomato.merchant.domain.entity.MerchantInfo;
@@ -13,9 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @date 2022/11/25
  */
 @SpringBootTest
-public class MerchantInfoDaoTest {
+public class MerchantInfoRepositoryTest {
     @Resource
-    MerchantInfoDao merchantInfoDao;
+    MerchantInfoRepository merchantInfoRepository;
 
     @Test
     public void test(){
@@ -26,7 +26,7 @@ public class MerchantInfoDaoTest {
         merchantInfo.setMerchantStatus(YesNoTypeEnum.YES.getValue());
         merchantInfo.setEmail("123");
         merchantInfo.setPhone("123");
-        merchantInfoDao.save(merchantInfo);
+        merchantInfoRepository.save(merchantInfo);
     }
 
 }

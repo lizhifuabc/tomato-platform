@@ -14,11 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-jpa-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-core</artifactId>
+            <artifactId>tomato-web-jpa-starter</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -2,6 +2,7 @@ package com.tomato.web.jpa.controller.service;
 
 import com.tomato.common.entity.Entity;
 import com.tomato.common.resp.Resp;
+import com.tomato.web.core.controller.Controller;
 import org.springframework.data.domain.Page;
 
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Map;
  * @author lizhifu
  * @since 2023/4/26
  */
-public interface BaseControllerService {
+interface BaseController extends Controller {
     /**
      * 数据分页对象转换为统一响应实体
      *

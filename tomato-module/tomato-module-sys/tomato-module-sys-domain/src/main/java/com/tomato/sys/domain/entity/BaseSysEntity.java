@@ -1,6 +1,6 @@
 package com.tomato.sys.domain.entity;
 
-import com.tomato.jpa.domain.entity.JpaBaseEntity;
+import com.tomato.jpa.domain.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import org.hibernate.annotations.Comment;
@@ -14,7 +14,7 @@ import org.springframework.data.annotation.LastModifiedBy;
  * @since 2023/4/9
  */
 @MappedSuperclass//实体继承映射
-public abstract class BaseSysEntity extends JpaBaseEntity {
+public abstract class BaseSysEntity extends BaseEntity {
     @Column(name = "create_by", length = 64)
     @CreatedBy
     @Comment("创建人")

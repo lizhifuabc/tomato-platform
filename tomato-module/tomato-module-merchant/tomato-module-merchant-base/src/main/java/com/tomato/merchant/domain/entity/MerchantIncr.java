@@ -1,9 +1,7 @@
 package com.tomato.merchant.domain.entity;
 
-import com.tomato.jpa.domain.entity.JpaBaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.tomato.jpa.domain.entity.BaseEntity;
+import jakarta.persistence.*;
 import lombok.Data;
 
 /**
@@ -14,11 +12,31 @@ import lombok.Data;
  */
 @Entity
 @Table(name = "t_merchant_incr")
-@Data
-public class MerchantIncr extends JpaBaseEntity {
+public class MerchantIncr extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     /**
      * 商户号
      */
     @Column
     private Long merchantNo;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getMerchantNo() {
+        return merchantNo;
+    }
+
+    public void setMerchantNo(Long merchantNo) {
+        this.merchantNo = merchantNo;
+    }
 }

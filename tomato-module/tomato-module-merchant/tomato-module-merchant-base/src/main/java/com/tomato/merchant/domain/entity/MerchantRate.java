@@ -1,6 +1,6 @@
 package com.tomato.merchant.domain.entity;
 
-import com.tomato.jpa.domain.entity.JpaBaseEntity;
+import com.tomato.jpa.domain.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,12 +13,16 @@ import java.math.BigDecimal;
  * @author lizhifu
  * @date 2022/11/25
  */
-@Data
 @Entity
 @Table(name = "t_merchant_rate",uniqueConstraints = {
         @UniqueConstraint(columnNames={"merchantNo", "payType"})
 })
-public class MerchantRate extends JpaBaseEntity {
+public class MerchantRate extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     /**
      * 商户编号
      */
@@ -42,4 +46,44 @@ public class MerchantRate extends JpaBaseEntity {
      */
     @Column(nullable = false)
     private Integer payType;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMerchantNo() {
+        return merchantNo;
+    }
+
+    public void setMerchantNo(String merchantNo) {
+        this.merchantNo = merchantNo;
+    }
+
+    public BigDecimal getRate() {
+        return rate;
+    }
+
+    public void setRate(BigDecimal rate) {
+        this.rate = rate;
+    }
+
+    public Integer getMerchantRateStatus() {
+        return merchantRateStatus;
+    }
+
+    public void setMerchantRateStatus(Integer merchantRateStatus) {
+        this.merchantRateStatus = merchantRateStatus;
+    }
+
+    public Integer getPayType() {
+        return payType;
+    }
+
+    public void setPayType(Integer payType) {
+        this.payType = payType;
+    }
 }

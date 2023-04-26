@@ -10,7 +10,7 @@ import lombok.Data;
  * 商户创建
  *
  * @author lizhifu
- * @date 2022/12/13
+ * @since  2022/12/13
  */
 @Data
 public class MerchantCreateReq {

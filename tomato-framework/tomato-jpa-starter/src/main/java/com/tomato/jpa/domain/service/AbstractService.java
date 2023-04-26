@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @param <E>  实体
  * @param <ID> ID
  */
-public abstract class AbstractService< E extends Entity, ID extends Serializable> implements BaseReadableService<E, ID>, BaseWriteableService<E, ID> {
+public abstract class AbstractService< E extends Entity, ID extends Serializable>
+        implements BaseReadableService<E, ID>, BaseWriteableService<E, ID> {
 
 }

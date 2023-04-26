@@ -1,8 +1,16 @@
 package com.tomato.merchant.controller;
 
 import com.tomato.common.resp.Resp;
+import com.tomato.jpa.domain.service.BaseReadableService;
+import com.tomato.jpa.domain.service.BaseWriteableService;
+import com.tomato.merchant.domain.entity.MerchantInfo;
 import com.tomato.merchant.domain.req.MerchantCreateReq;
-import com.tomato.merchant.service.MerchantService;
+import com.tomato.merchant.service.MerchantInfoService;
+import com.tomato.web.core.util.BeanUtil;
+import com.tomato.web.jpa.controller.AbstractBaseController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,20 +21,34 @@ import org.springframework.web.bind.annotation.RestController;
  * 商户创建
  *
  * @author lizhifu
- * @date 2022/12/13
+ * @since  2022/12/13
  */
 @RestController
 @RequestMapping
-public class MerchantCreateController {
-    private final MerchantService merchantService;
+@Tags({
+        @Tag(name = "商户创建"),
+})
+public class MerchantCreateController extends AbstractBaseController<MerchantInfo,Long> {
+    private final MerchantInfoService merchantInfoService;
 
-    public MerchantCreateController(MerchantService merchantService) {
-        this.merchantService = merchantService;
+    public MerchantCreateController(MerchantInfoService merchantInfoService) {
+        this.merchantInfoService = merchantInfoService;
     }
 
     @PostMapping("/merchant/create")
-    public Resp create(@Valid @RequestBody MerchantCreateReq merchantCreateReq){
-        merchantService.createMerchant(merchantCreateReq);
-        return Resp.buildSuccess();
+    @Operation(summary = "商户创建", description = "商户创建")
+    public Resp<MerchantInfo> create(@Valid @RequestBody MerchantCreateReq merchantCreateReq){
+        MerchantInfo merchantInfo = BeanUtil.copy(merchantCreateReq, MerchantInfo.class);
+        return Resp.of(merchantInfoService.save(merchantInfo));
+    }
+
+    @Override
+    public BaseReadableService<MerchantInfo, Long> getReadableService() {
+        return this.merchantInfoService;
+    }
+
+    @Override
+    public BaseWriteableService<MerchantInfo, Long> getWriteableService() {
+        return this.merchantInfoService;
     }
 }

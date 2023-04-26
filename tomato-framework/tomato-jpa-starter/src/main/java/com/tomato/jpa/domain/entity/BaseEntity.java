@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 // AuditingEntityListener会自动检查实体类中是否定义了@CreatedBy、
 // @CreatedDate、@LastModifiedBy、@LastModifiedDate等注解，如果存在这些注解，则自动设置对应的元数据信息。
 @EntityListeners(value = AuditingEntityListener.class)
-public abstract class JpaBaseEntity extends AbstractEntity {
+public abstract class BaseEntity extends AbstractEntity {
     /**
      * 创建时间
      */

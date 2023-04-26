@@ -1,19 +1,24 @@
 package com.tomato.merchant.domain.entity;
 
-import com.tomato.jpa.domain.entity.JpaBaseEntity;
+import com.tomato.jpa.domain.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 商户信息
  *
  * @author lizhifu
- * @date 2022/11/25
+ * @since  2022/11/25
  */
 @Entity
 @Table(name = "t_merchant_info",indexes = {@Index(name = "index_phone_search",columnList = "phoneSearch")})
-@Data
-public class MerchantInfo extends JpaBaseEntity {
+public class MerchantInfo extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     /**
      * 商户号
      */
@@ -51,4 +56,68 @@ public class MerchantInfo extends JpaBaseEntity {
      */
     @Column(nullable = false,columnDefinition = "tinyint(0) not null default 0",insertable = false)
     private Integer merchantStatus;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMerchantNo() {
+        return merchantNo;
+    }
+
+    public void setMerchantNo(String merchantNo) {
+        this.merchantNo = merchantNo;
+    }
+
+    public String getMerchantName() {
+        return merchantName;
+    }
+
+    public void setMerchantName(String merchantName) {
+        this.merchantName = merchantName;
+    }
+
+    public String getMerchantShortName() {
+        return merchantShortName;
+    }
+
+    public void setMerchantShortName(String merchantShortName) {
+        this.merchantShortName = merchantShortName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhoneSearch() {
+        return phoneSearch;
+    }
+
+    public void setPhoneSearch(String phoneSearch) {
+        this.phoneSearch = phoneSearch;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getMerchantStatus() {
+        return merchantStatus;
+    }
+
+    public void setMerchantStatus(Integer merchantStatus) {
+        this.merchantStatus = merchantStatus;
+    }
 }
