@@ -1,5 +1,6 @@
 package com.tomato.merchant.service;
 
+import com.tomato.common.exception.BusinessException;
 import com.tomato.jpa.domain.repository.BaseJpaRepository;
 import com.tomato.jpa.domain.service.AbstractService;
 import com.tomato.merchant.domain.entity.MerchantInfo;
@@ -25,6 +26,12 @@ public class MerchantInfoService extends AbstractService<MerchantInfo,Long> {
     }
     @Override
     public MerchantInfo save(MerchantInfo merchantInfo){
+        merchantInfoRepository.findByEmail(merchantInfo.getEmail()).ifPresent(e->{
+            throw new BusinessException("邮箱已存在");
+        });
+        merchantInfoRepository.findByPhone(merchantInfo.getPhone()).ifPresent(e->{
+            throw new BusinessException("手机号已存在");
+        });
         merchantInfo.setPhone(merchantSecurityManager.security(merchantInfo.getPhone()));
         merchantInfo.setPhoneSearch(merchantSecurityManager.phone(merchantInfo.getPhone()));
         merchantInfo.setMerchantNo(merchantNoService.nextStringValue());
