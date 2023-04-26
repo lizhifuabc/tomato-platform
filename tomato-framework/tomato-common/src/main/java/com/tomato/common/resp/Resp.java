@@ -49,7 +49,17 @@ public class Resp<T> {
         resp.setMsg(CommonRespCode.SUCCESS.msg());
         return resp;
     }
-
+    /**
+     * 成功
+     * @return Result
+     */
+    public static Resp<Void> buildSuccess(String msg) {
+        Resp<Void> resp = new Resp<>();
+        resp.setSuccess(true);
+        resp.setCode(CommonRespCode.SUCCESS.code());
+        resp.setMsg(msg);
+        return resp;
+    }
     public static <T> Resp<T> of(T data) {
         Resp<T> response = new Resp<>();
         response.setSuccess(true);

@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-starter</artifactId>
+            <artifactId>tomato-web-core</artifactId>
         </dependency>
         <!-- 排除 spring-boot-starter-webflux -->
         <dependency>

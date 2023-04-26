@@ -5,7 +5,7 @@ import com.tomato.account.domain.entity.AccountBankCardEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountBankCardCreateReq;
 import com.tomato.common.enums.YesNoTypeEnum;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
 /**

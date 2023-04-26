@@ -1,6 +1,0 @@
-com.tomato.web.util.SpringContextUtil
-com.tomato.web.config.CorsFilterConfig
-com.tomato.web.config.AutoConfiguration
-com.tomato.web.handler.GlobalExceptionHandler
-com.tomato.web.handler.ResponseAdviceHandler
-com.tomato.web.config.RestTemplateConfig

@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-starter</artifactId>
+            <artifactId>tomato-web-core</artifactId>
         </dependency>
     </dependencies>
 </project>

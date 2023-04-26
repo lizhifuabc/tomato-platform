@@ -6,7 +6,7 @@ import com.tomato.account.domain.entity.AccountSettleEntity;
 import com.tomato.account.domain.req.AccountSettleCreateReq;
 import com.tomato.account.enums.SettleTargetTypeEnum;
 import com.tomato.account.enums.SettleTypeEnum;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

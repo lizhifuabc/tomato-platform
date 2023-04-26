@@ -10,7 +10,7 @@ import com.tomato.account.manager.AccountHisManager;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.service.AccountCheckService;
 import com.tomato.common.exception.BusinessException;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

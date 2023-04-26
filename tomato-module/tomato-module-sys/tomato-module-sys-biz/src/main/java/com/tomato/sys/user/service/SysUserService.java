@@ -6,7 +6,7 @@ import com.tomato.sys.domain.entity.SysUserEntity;
 import com.tomato.sys.domain.req.SysUserCreateReq;
 import com.tomato.sys.user.dao.SysUserDao;
 import com.tomato.sys.user.manager.SysUserManager;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
 /**

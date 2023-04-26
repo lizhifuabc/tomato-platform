@@ -9,7 +9,7 @@ import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.manager.AccountSettleControlManager;
 import com.tomato.account.manager.AccountSettleManager;
 import com.tomato.common.exception.BusinessException;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

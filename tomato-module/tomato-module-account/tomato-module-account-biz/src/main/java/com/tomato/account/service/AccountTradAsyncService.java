@@ -3,7 +3,7 @@ package com.tomato.account.service;
 import com.tomato.account.dao.AccountHisDao;
 import com.tomato.account.domain.bo.AccountHisDealBO;
 import com.tomato.account.domain.bo.AccountHisUpdateBatchBO;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

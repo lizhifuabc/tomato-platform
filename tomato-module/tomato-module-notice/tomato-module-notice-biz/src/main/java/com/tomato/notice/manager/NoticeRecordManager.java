@@ -6,7 +6,7 @@ import com.tomato.notice.mapper.NoticeRecordHistoryMapper;
 import com.tomato.notice.mapper.NoticeRecordMapper;
 import com.tomato.notice.domain.entity.NoticeRecordEntity;
 import com.tomato.notice.domain.req.NoticeCreateReq;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

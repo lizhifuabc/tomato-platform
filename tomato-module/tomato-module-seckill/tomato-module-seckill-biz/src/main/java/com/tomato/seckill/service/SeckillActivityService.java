@@ -3,7 +3,7 @@ package com.tomato.seckill.service;
 import com.tomato.seckill.dao.SeckillActivityDao;
 import com.tomato.seckill.domain.entity.SeckillActivityEntity;
 import com.tomato.seckill.domain.req.SeckillActivityCreateReq;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
 /**

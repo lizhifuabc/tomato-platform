@@ -29,7 +29,7 @@
         <!-- web 依赖 -->
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-starter</artifactId>
+            <artifactId>tomato-web-core</artifactId>
         </dependency>
         <!-- mybatis 服务依赖 -->
         <dependency>

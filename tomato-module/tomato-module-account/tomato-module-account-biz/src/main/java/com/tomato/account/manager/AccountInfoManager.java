@@ -6,7 +6,7 @@ import com.tomato.account.domain.bo.AccountBalanceBO;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.req.AccountCreateReq;
 import com.tomato.common.exception.BusinessException;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

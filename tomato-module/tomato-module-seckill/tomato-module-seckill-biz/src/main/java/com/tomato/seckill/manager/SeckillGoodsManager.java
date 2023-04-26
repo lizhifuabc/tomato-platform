@@ -4,7 +4,7 @@ import com.tomato.common.resp.Resp;
 import com.tomato.seckill.dao.SeckillGoodsDao;
 import com.tomato.seckill.domain.entity.SeckillGoodsEntity;
 import com.tomato.seckill.domain.req.SeckillGoodsCreateListReq;
-import com.tomato.web.util.BeanUtil;
+import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
