@@ -29,7 +29,7 @@ public class MerchantInfoService extends AbstractService<MerchantInfo,Long> {
         merchantInfoRepository.findByEmail(merchantInfo.getEmail()).ifPresent(e->{
             throw new BusinessException("邮箱已存在");
         });
-        merchantInfoRepository.findByPhone(merchantInfo.getPhone()).ifPresent(e->{
+        merchantInfoRepository.findByPhone(merchantSecurityManager.security(merchantInfo.getPhone())).ifPresent(e->{
             throw new BusinessException("手机号已存在");
         });
         merchantInfo.setPhone(merchantSecurityManager.security(merchantInfo.getPhone()));
