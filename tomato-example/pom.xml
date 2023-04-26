@@ -17,6 +17,7 @@
         <module>spring-security-jwt</module>
         <module>micrometer-prometheus</module>
         <module>bytebuddy-agent</module>
+        <module>spring-boot-tracing</module>
     </modules>
 
     <properties>
