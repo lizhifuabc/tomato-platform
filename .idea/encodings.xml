@@ -39,6 +39,10 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-captcha-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-captcha-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-cloud/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-cloud/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-cloud/tomato-cloud-alibaba-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-cloud/tomato-cloud-alibaba-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-crypto/src/main/java" charset="UTF-8" />

@@ -9,7 +9,8 @@ tomato-platform
 ├── XXXXXX -- XXXXXX
 └── tomato-framework -- 系统公共模块
      ├── tomato-tracing-starter -- 基于Micrometer、Zipkin分布式链路追踪
-     ├── XXXXXX -- XXXXXX
+     ├── tomato-cloud -- cloud 配套组件
+     			├── tomato-cloud-alibaba-starter -- alibaba 配套组件
      ├── XXXXXX -- XXXXXX
      ├── XXXXXX -- XXXXXX
      ├── XXXXXX -- XXXXXX
