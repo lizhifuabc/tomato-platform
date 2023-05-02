@@ -1,6 +1,7 @@
 package com.tomato.common.resp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tomato.common.constants.CommonRespCode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @Schema(title = "统一响应返回实体", description = "所有Rest接口统一返回的实体定义")
 public class Resp<T> {
     @Schema(title = "返回数据")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
     @Schema(title = "是否成功")
@@ -34,8 +36,8 @@ public class Resp<T> {
     @Schema(title = "链路追踪TraceId")
     private String traceId;
 
-    @Schema(title = "响应时间戳", pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Schema(title = "响应时间戳")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     private LocalDateTime timestamp = LocalDateTime.now();
 
     /**
