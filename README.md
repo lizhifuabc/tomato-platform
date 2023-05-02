@@ -2,6 +2,16 @@
 
 仅用于学习。
 
+spring 官方文档记录：
+
+[Spring | Home](https://spring.io/)
+
+[Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
+
+[Spring Cloud](https://docs.spring.io/spring-cloud/docs/current/reference/htmlsingle/)
+
+[Spring Cloud Gateway](https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/)
+
 ## 模块介绍
 
 ```text
