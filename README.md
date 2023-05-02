@@ -11,6 +11,7 @@ tomato-platform
      ├── tomato-tracing-starter -- 基于Micrometer、Zipkin分布式链路追踪
      ├── tomato-cloud -- cloud 配套组件
      			├── tomato-cloud-alibaba-starter -- alibaba 配套组件
+     			├── tomato-cloud-feign-stater -- feign 相关依赖
      ├── XXXXXX -- XXXXXX
      ├── XXXXXX -- XXXXXX
      ├── XXXXXX -- XXXXXX
