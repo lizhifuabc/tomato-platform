@@ -355,6 +355,11 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-cloud-alibaba-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-lock-core</artifactId>
                 <version>${revision}</version>
             </dependency>

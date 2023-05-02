@@ -17,7 +17,8 @@ tomato-platform
      ├── XXXXXX -- XXXXXX
      ├── XXXXXX -- XXXXXX
      └── XXXXXX
-├── XXXXXX -- XXXXXX
+├── tomato-gateway -- 网关服务
+		 ├── tomato-gateway-web -- 系统服务网关[9999]
 ├── XXXXXX -- XXXXXX
 └── tomato-example -- 示例代码
      └── spring-boot-tracing --  基于Micrometer、Zipkin分布式链路追踪例子
