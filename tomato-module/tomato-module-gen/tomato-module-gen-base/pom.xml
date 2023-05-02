@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-feign</artifactId>
+            <artifactId>tomato-cloud-feign-stater</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
