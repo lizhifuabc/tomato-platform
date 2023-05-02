@@ -13,5 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>tomato-cloud-alibaba-starter</module>
+        <module>tomato-cloud-feign</module>
     </modules>
 </project>
