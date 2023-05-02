@@ -20,9 +20,9 @@ tomato-platform
 └── tomato-example -- 示例代码
      └── spring-boot-tracing --  基于Micrometer、Zipkin分布式链路追踪例子
      └── XXXXXX -- XXXXXX
-└── XXXXXX
+└── tomato-module -- 业务模块
      └── XXXXXX -- XXXXXX
-     ├── XXXXXX -- XXXXXX
+     ├── tomato-module-monitor -- 基于 Spring Boot Admin 监控服务[9996]
      ├── XXXXXX -- XXXXXX
      └── XXXXXX -- XXXXXX
 ```
