@@ -5,7 +5,7 @@ import com.tomato.sys.application.service.SysUserLoginService;
 import com.tomato.common.resp.Resp;
 import com.tomato.sys.application.req.SysLoginReq;
 import com.tomato.security.constant.RequestHeaderConstant;
-import com.tomato.web.common.BaseController;
+import com.tomato.web.core.common.BaseController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
