@@ -9,14 +9,14 @@ import java.util.List;
  * AccountHisUpdateDO
  *
  * @author lizhifu
- * @date 2022/6/7
+ * @since  2022/6/7
  */
 @Data
 public class AccountHisUpdateBatchBO extends AccountHisDealBO{
     /**
      * 账户历史表ID
      */
-    private List accountHisIdList;
+    private List<String> accountHisIdList;
     /**
      * 账号
      */

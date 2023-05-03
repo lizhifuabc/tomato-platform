@@ -9,7 +9,7 @@ import java.util.List;
  * 查询未入账的账户历史返回
  *
  * @author lizhifu
- * @date 2022/6/28
+ * @since  2022/6/28
  */
 @Data
 public class AccountHisDealBO {

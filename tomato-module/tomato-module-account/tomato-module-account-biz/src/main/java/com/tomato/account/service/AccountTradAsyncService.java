@@ -27,10 +27,10 @@ public class AccountTradAsyncService {
     @Async("asyncTaskExecutorAccount")
     public void exe(String accountNo){
         AccountHisDealBO accountHisDealBO = accountHisDao.selectDeal(accountNo);
-        log.info("账户异步入账服务 accountNo:{},accountHisDealBO:{}",accountNo,accountHisDealBO);
         if(accountHisDealBO == null){
             return;
         }
+        log.info("账户异步入账服务 accountNo:{},accountHisDealBO:{}",accountNo,accountHisDealBO.getSum());
         AccountHisUpdateBatchBO accountHisUpdateBatchDO = BeanUtil.copy(accountHisDealBO,AccountHisUpdateBatchBO.class);
         accountHisUpdateBatchDO.setAccountNo(accountNo);
         accountAsyncService.async(accountHisUpdateBatchDO);

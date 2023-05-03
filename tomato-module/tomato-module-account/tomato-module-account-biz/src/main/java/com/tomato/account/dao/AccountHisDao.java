@@ -33,16 +33,16 @@ public interface AccountHisDao {
 
     /**
      * 批量更新账户历史状态  分库分表，需要增加 accountNo,或者定制 accountHisId 也作为分表字段
-     * @param accountHisUpdateBatchDO
-     * @return
+     * @param accountHisUpdateBatchDO 账户历史
+     * @return 更新数量
      */
     int updateAccountStatusBatch(AccountHisUpdateBatchBO accountHisUpdateBatchDO);
 
     /**
      * 查询未入账的账户历史
      * account_status = 'DEAL'
-     * @param accountNo
-     * @return
+     * @param accountNo 账号
+     * @return 账户历史
      */
     AccountHisDealBO selectDeal(@Param("accountNo") String accountNo);
 

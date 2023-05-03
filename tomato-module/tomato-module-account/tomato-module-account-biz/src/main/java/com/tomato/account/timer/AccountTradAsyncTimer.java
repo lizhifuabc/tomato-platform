@@ -29,18 +29,17 @@ public class AccountTradAsyncTimer {
      */
     @Scheduled(cron="0 0/1 * * * ?")
     public void run() {
-        log.info("异步入账开始:{}", LocalDateTime.now());
+        log.info("账户异步入账定时:{}", LocalDateTime.now());
         // 查询所有需要异步入账的账户
         List<String> accountList = accountAsyncInitService.accountList();
         // 执行异步入账
-        for (String s : accountList) {
-            log.info("异步入账[{}]",s);
+        for (String accountNo : accountList) {
+            log.info("账户异步入账服务 accountNo:{}",accountNo);
             try {
-                accountTradAsyncService.exe(s);
+                accountTradAsyncService.exe(accountNo);
             } catch (Exception e) {
-                log.error("异步入账[{}]异常",s, e);
+                log.error("账户异步入账服务异常 accountNo:{}",accountNo,e);
             }
         }
-        log.info("异步入账结束:{}", LocalDateTime.now());
     }
 }
