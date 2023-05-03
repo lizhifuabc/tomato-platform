@@ -66,6 +66,28 @@
     <!--  maven 依赖的下载是从 repositories 中获取的 -->
     <repositories>
         <repository>
+            <id>ali-repository</id> <!-- 阿里远程仓库唯一标识符 -->
+            <url>https://maven.aliyun.com/repository/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>tencent-repository</id> <!-- 腾讯远程仓库唯一标识符 -->
+            <url>http://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>huawei-repository</id> <!-- 华为远程仓库唯一标识符 -->
+            <url>https://repo.huaweicloud.com/repository/maven/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
             <!-- 远程仓库唯一标识符 -->
             <id>spring-milestones</id>
             <!--描述 -->
@@ -89,6 +111,27 @@
     </repositories>
     <!-- mvn clean install site  命令能够成功处理 -->
     <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun-repository</id>
+            <url>https://maven.aliyun.com/repository/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>tencent-repository</id>
+            <url>http://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>huawei-repository</id>
+            <url>https://repo.huaweicloud.com/repository/maven/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
         <pluginRepository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
