@@ -12,27 +12,6 @@
     <artifactId>tomato-gateway-web</artifactId>
 
     <dependencies>
-        <!--gateway 网关依赖,内置webflux 依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-cloud-alibaba-starter</artifactId>
-        </dependency>
-
-        <!-- LB 扩展 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-        </dependency>
-        <!--caffeine 替换LB 默认缓存实现-->
-        <dependency>
-            <groupId>com.github.ben-manes.caffeine</groupId>
-            <artifactId>caffeine</artifactId>
-        </dependency>
         <!--  验证码          -->
         <dependency>
             <groupId>com.github.whvcse</groupId>
@@ -43,15 +22,10 @@
             <groupId>org.openjdk.nashorn</groupId>
             <artifactId>nashorn-core</artifactId>
         </dependency>
-        <!--  lombok          -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-gateway-stater</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

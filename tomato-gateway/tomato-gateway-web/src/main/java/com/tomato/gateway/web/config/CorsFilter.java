@@ -21,10 +21,9 @@ import java.util.Optional;
  * @author lizhifu
  * @since 2023/5/2
  */
-@Configuration
+@Deprecated
 public class CorsFilter {
     private static final String MAX_AGE = "18000L";
-    @Bean
     public WebFilter corsFilter() {
         return (ServerWebExchange ctx, WebFilterChain chain) -> {
             ServerHttpRequest request = ctx.getRequest();

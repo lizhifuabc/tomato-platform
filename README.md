@@ -22,26 +22,27 @@ spring 官方文档记录：
 tomato-platform
 ├── XXXXXX -- XXXXXX
 └── tomato-framework -- 系统公共模块
-     ├── tomato-tracing-starter -- 基于Micrometer、Zipkin分布式链路追踪
-     ├── tomato-cloud -- cloud 配套组件
-     			├── tomato-cloud-alibaba-starter -- alibaba 配套组件
-     			├── tomato-cloud-feign-stater -- feign 相关依赖
-     ├── XXXXXX -- XXXXXX
-     ├── XXXXXX -- XXXXXX
-     ├── XXXXXX -- XXXXXX
-     ├── XXXXXX -- XXXXXX
-     └── XXXXXX
+├     ├── tomato-tracing-starter -- 基于Micrometer、Zipkin分布式链路追踪
+├     ├── tomato-cloud -- cloud 配套组件
+├     			├── tomato-cloud-alibaba-starter -- alibaba 配套组件
+├     			├── tomato-cloud-feign-stater -- feign 相关依赖
+├     ├── XXXXXX -- XXXXXX
+├     ├── XXXXXX -- XXXXXX
+├     ├── XXXXXX -- XXXXXX
+├     ├── XXXXXX -- XXXXXX
+├     └── XXXXXX
 ├── tomato-gateway -- 网关服务
-		 ├── tomato-gateway-web -- 系统服务网关[9999]
+├    ├── tomato-gateway-core -- 服务网关核心依赖
+├		 ├── tomato-gateway-web -- 系统服务网关[9999]
 ├── XXXXXX -- XXXXXX
 └── tomato-example -- 示例代码
-     └── spring-boot-tracing --  基于Micrometer、Zipkin分布式链路追踪例子
-     └── XXXXXX -- XXXXXX
+├    └── spring-boot-tracing --  基于Micrometer、Zipkin分布式链路追踪例子
+├     └── XXXXXX -- XXXXXX
 └── tomato-module -- 业务模块
-     └── XXXXXX -- XXXXXX
-     ├── tomato-module-monitor -- 基于 Spring Boot Admin 监控服务[9996]
-     ├── XXXXXX -- XXXXXX
-     └── XXXXXX -- XXXXXX
+├     └── XXXXXX -- XXXXXX
+├     ├── tomato-module-monitor -- 基于 Spring Boot Admin 监控服务[9996]
+├     ├── XXXXXX -- XXXXXX
+├     └── XXXXXX -- XXXXXX
 ```
 
 ## 涉及角色

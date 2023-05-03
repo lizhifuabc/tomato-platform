@@ -16,6 +16,7 @@
     <modules>
         <module>tomato-gateway-api</module>
         <module>tomato-gateway-web</module>
+        <module>tomato-gateway-stater</module>
     </modules>
     <artifactId>tomato-gateway</artifactId>
 
