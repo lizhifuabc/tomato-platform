@@ -73,7 +73,7 @@
         <nashorn.version>15.4</nashorn.version>
         <!-- Spring Authorization Server -->
         <!-- https://spring.io/projects/spring-authorization-server -->
-        <spring.authorization.server.version>1.0.1</spring.authorization.server.version>
+        <spring-security-oauth2-authorization-server.version>1.1.0-RC1</spring-security-oauth2-authorization-server.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -180,7 +180,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-authorization-server</artifactId>
-                <version>${spring.authorization.server.version}</version>
+                <version>${spring-security-oauth2-authorization-server.version}</version>
             </dependency>
             <dependency>
                 <groupId>me.ahoo.cosid</groupId>
