@@ -39,7 +39,7 @@ tomato-platform
 ├    └── spring-boot-tracing --  基于Micrometer、Zipkin分布式链路追踪例子
 ├     └── XXXXXX -- XXXXXX
 └── tomato-module -- 业务模块
-├     └── XXXXXX -- XXXXXX
+├     └── tomato-module-account -- 账户服务[9080]
 ├     ├── tomato-module-monitor -- 基于 Spring Boot Admin 监控服务[9996]
 ├     ├── XXXXXX -- XXXXXX
 ├     └── XXXXXX -- XXXXXX

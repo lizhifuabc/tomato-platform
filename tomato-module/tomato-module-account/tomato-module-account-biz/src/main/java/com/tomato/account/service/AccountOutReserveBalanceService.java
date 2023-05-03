@@ -54,7 +54,7 @@ public class AccountOutReserveBalanceService {
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void exe(String accountNo){
         LocalDate exeLocalDate = LocalDate.now();
-        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]",accountNo,exeLocalDate);
+        log.info("计算账户风险预存期外余额：开始：账户：{}，日期：{}",accountNo,exeLocalDate);
         // 账户查询
         AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountNo).orElseThrow(() -> new RuntimeException("账户不存在"));
         // 例如：
@@ -65,11 +65,11 @@ public class AccountOutReserveBalanceService {
         // 结算规则
         AccountSettleEntity accountSettle = accountSettleDao.selectByAccountNo(accountNo);
         if(null == accountSettle){
-            log.warn("计算账户风险预存期外余额不存在有效的结算记录,账户号:{}",accountNo);
+            log.error("计算账户风险预存期外余额：失败：账户：{}，日期：{}，不存在有效的结算记录",accountNo,exeLocalDate);
             return;
         }
         if(null == accountSettle.getReserveDays()){
-            log.warn("计算账户风险预存期外余额不存在风险预存期,账户号:{}",accountNo);
+            log.error("计算账户风险预存期外余额：失败：账户：{}，日期：{}，不存在风险预存期",accountNo,exeLocalDate);
             return;
         }
         // 风险预存期内的账户入账 TODO
@@ -85,7 +85,7 @@ public class AccountOutReserveBalanceService {
         LocalDateTime startDate = start.atTime(LocalTime.MIN);
         LocalDateTime endDate = exeLocalDate.atTime(LocalTime.MAX);
 
-        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]",accountNo,startDate,endDate);
+        log.info("计算账户风险预存期外余额：查询账户历史：账户：{}，开始日期：{}，结束日期：{}",accountNo,startDate,endDate);
         // 风内：
         // 加款：交易、退款
         // 扣款：提现、结算
@@ -95,11 +95,11 @@ public class AccountOutReserveBalanceService {
         // TODO 是否存在未入账的账户历史，如果存在，此时余额是少的，此时计算是有问题的。
         BigDecimal amount = accountInfoEntity.getBalance().subtract(collect.getTotalAmount());
         if(amount.compareTo(BigDecimal.ZERO) < 0){
-            log.error("账户[{}]风险预存期外余额小于0，查看是否存在未入账的账户历史",accountNo);
+            log.error("计算账户风险预存期外余额：失败：账户：{}，开始日期：{}，结束日期：{}，风险预存期外余额小于0，查看是否存在未入账的账户历史",accountNo,startDate,endDate);
             return;
         }
         accountOutReserveBalanceManager.updateOutReserveBalance(accountInfoEntity.getAccountNo(),amount,accountInfoEntity.getVersion(),exeLocalDate);
 
-        log.info("账户[{}]计算账户风险预存期外余额的日期[{}]，[{}]，结果:{}",accountNo,startDate,endDate,collect);
+        log.info("计算账户风险预存期外余额：成功：账户：{}，开始日期：{}，结束日期：{}，统计结果：{}",accountNo,startDate,endDate,collect);
     }
 }
