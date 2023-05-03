@@ -39,7 +39,6 @@ public class AccountAsyncService {
         accountBalanceBO.setAccountNo(accountInfoEntity.getAccountNo());
         accountBalanceBO.setVersion(accountInfoEntity.getVersion());
         accountBalanceBO.setAmount(accountHisUpdateBatchDO.getSum());
-
         if(accountBalanceBO.getAmount().compareTo(BigDecimal.ZERO) < 0 ){
             // 扣款
             accountInfoManager.deduct(accountBalanceBO,accountInfoEntity);
@@ -47,7 +46,7 @@ public class AccountAsyncService {
             // 加款
             accountInfoManager.add(accountBalanceBO,accountInfoEntity);
         }
-
+        // 金额为0，此时虽然不需要更新账户余额，但是需要更新账户历史表状态
         accountHisUpdateBatchDO.setBeforeBalance(accountInfoEntity.getBalance());
         accountHisUpdateBatchDO.setAfterBalance(accountInfoEntity.getBalance().add(accountHisUpdateBatchDO.getSum()));
         accountHisUpdateBatchDO.setAccountHisIdList(Arrays.asList(accountHisUpdateBatchDO.getAccountHisIds().split(",")));
