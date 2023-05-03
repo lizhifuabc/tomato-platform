@@ -63,6 +63,13 @@ tomato-platform
 
 ## 账户系统
 
+账户入账：
+
+![trade.png](doc%2Fimage%2Ftrade.png)
+
+
+
+
 定时相关：
 
 - [x] 账户异步入账服务定时：AccountTradAsyncTimer
