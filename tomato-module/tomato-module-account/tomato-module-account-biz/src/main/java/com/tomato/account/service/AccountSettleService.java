@@ -12,11 +12,11 @@ import com.tomato.common.enums.CommonStatusEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 账号结算控制
@@ -45,14 +45,14 @@ public class AccountSettleService {
      * @param accountNo 账户编号
      * @return 下次结算日
      */
-    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     public LocalDate settle(String accountNo){
-        log.info("开始结算账户[{}]",accountNo);
+        log.info("账户结算：开始：账户：{}，日期：{}",accountNo, LocalDateTime.now());
         // 查询账户结算控制
         AccountSettleControlEntity accountSettleControl = accountSettleControlManager.selectByAccountNo(accountNo).orElseThrow(()->new RuntimeException("账户结算控制不存在"));
         // 下次结算日期大于当前日期，证明已经结算过了,不结算
         if (accountSettleControl.getNextSettleDate().isAfter(LocalDate.now())){
-            log.error("下次结算日期等于[{}]的账户[{}]已经结算",accountSettleControl.getNextSettleDate(),accountNo);
+            log.error("账户结算：结束：账户：{}，账户已经结算，下次结算日期：{}",accountNo, accountSettleControl.getNextSettleDate());
             return accountSettleControl.getNextSettleDate();
         }
         // 查询账户信息
@@ -66,7 +66,7 @@ public class AccountSettleService {
         // 结算金额 > 0 && 结算状态为 SUCCESS
         if (accountSettleRecordEntity.getSettleAmount().compareTo(BigDecimal.ZERO) > 0
                 && accountSettleRecordEntity.getSettleStatus().equals(CommonStatusEnum.SUCCESS.getValue())){
-            // TODO 是否需要异步出款
+            // 同步扣款
             AccountTradDto accountTradDto = new AccountTradDto();
             accountTradDto.setAccountNo(accountNo);
             accountTradDto.setRemark("自动结算扣款");

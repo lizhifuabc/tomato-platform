@@ -37,7 +37,7 @@
     <select id="selectSettleAccount" resultType="AccountSettleControlEntity">
         <![CDATA[
         select
-            control.*
+            control.account_no
         from
             t_account_settle_control control
         join

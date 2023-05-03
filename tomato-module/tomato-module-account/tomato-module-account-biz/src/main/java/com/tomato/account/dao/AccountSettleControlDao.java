@@ -22,11 +22,11 @@ public interface AccountSettleControlDao {
     void insert(AccountSettleControlEntity accountSettleControlEntity);
 
     /**
-     * 查询需要结算的账户
+     * 查询需要结算的账户:账户类型：自动结算，下次结算日 <= 当前日期
      * @param nextSettleDate 下次结算日期
-     * @return 结算控制记录集合
+     * @return 账户列表
      */
-    List<AccountSettleControlEntity> selectSettleAccount(@Param("nextSettleDate") LocalDate nextSettleDate);
+    List<String> selectSettleAccount(@Param("nextSettleDate") LocalDate nextSettleDate);
 
     /**
      * 查询

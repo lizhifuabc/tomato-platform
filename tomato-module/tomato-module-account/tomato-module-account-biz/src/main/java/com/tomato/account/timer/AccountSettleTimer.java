@@ -32,17 +32,18 @@ public class AccountSettleTimer {
     @Scheduled(cron="0 0 2 * * ?")
     public void run() {
         LocalDate nextSettleDate = LocalDate.now();
-        log.info("账户结算定时，指定结算日期start:[{}]",nextSettleDate);
-        // 自动结算账户，下次结算日 <= 当前日期 循环结算
-        List<AccountSettleControlEntity> list = accountSettleControlDao.selectSettleAccount(nextSettleDate);
-        list.forEach(accountSettleControlEntity -> {
+        log.info("账户结算定时，结算日期start:[{}]",nextSettleDate);
+        // 查询需要结算的账户:账户类型：自动结算，下次结算日 <= 当前日期 循环结算
+        List<String> list = accountSettleControlDao.selectSettleAccount(nextSettleDate);
+        list.forEach(accountNo -> {
             try{
-                LocalDate settle = accountSettleService.settle(accountSettleControlEntity.getAccountNo());
-                log.info("账户[{}]结算定时，下一次结算日期:[{}]",accountSettleControlEntity.getAccountNo(),settle);
+                log.info("账户结算定时：开始：账户：{}",accountNo);
+                LocalDate settle = accountSettleService.settle(accountNo);
+                log.info("账户结算定时：结束：账户：{}，下一次结算日期：{}",accountNo,settle);
             }catch (Exception e){
-                log.error("账户[{}]结算定时出现异常",accountSettleControlEntity.getAccountNo(),e);
+                log.error("账户结算定时：异常：账户：{}",accountNo,e);
             }
         });
-        log.info("账户结算定时，指定结算日期end:[{}]",nextSettleDate);
+        log.info("账户结算定时，结算日期end:[{}]",nextSettleDate);
     }
 }

@@ -32,9 +32,6 @@ public class AccountSettleTimerTest {
     AccountInfoDao accountInfoDao;
     @Test
     public void test(){
-        String merchantNo = "1234";
-        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
-        AccountSettleControlEntity accountSettleControlEntity = accountSettleControlDao.selectByAccountNo(accountInfoEntity.getAccountNo());
         accountSettleTimer.run();
     }
 }
