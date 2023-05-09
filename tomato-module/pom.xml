@@ -27,5 +27,6 @@
         <module>tomato-module-demo</module>
         <module>tomato-module-pay</module>
         <module>tomato-module-agent</module>
+        <module>tomato-module-auth</module>
     </modules>
 </project>

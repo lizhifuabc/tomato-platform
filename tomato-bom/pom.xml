@@ -74,6 +74,7 @@
         <!-- Spring Authorization Server -->
         <!-- https://spring.io/projects/spring-authorization-server -->
         <spring-security-oauth2-authorization-server.version>1.1.0-RC1</spring-security-oauth2-authorization-server.version>
+        <spring-security.version>6.1.0-RC1</spring-security.version>
     </properties>
     <dependencyManagement>
         <dependencies>

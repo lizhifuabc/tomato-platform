@@ -127,6 +127,8 @@
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-agent/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-agent/tomato-module-agent-boot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-agent/tomato-module-agent-boot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-auth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-channel/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-channel/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-demo/src/main/java" charset="UTF-8" />

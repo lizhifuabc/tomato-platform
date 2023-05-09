@@ -1,14 +1,10 @@
 package com.tomato.security.config;
 
-import com.tomato.security.filter.CustomLoginFilter;
-import com.tomato.security.handler.CustomAuthenticationHandler;
 import com.tomato.security.token.TokenService;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
