@@ -66,7 +66,7 @@ public class AuthorizationServerConfig {
                 .exceptionHandling(exceptions ->
                         // 基于登录页面的认证方案入口，通过配置获取loginFormUrl（对应登录地址），未通过身份验证时重定向到登录页面
                         // 对应UsernamePasswordAuthenticationFilter过滤器类。
-                        exceptions.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login2"))
+                        exceptions.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
                 )
                 // 资源服务器配置
                 .oauth2ResourceServer(oauth2ResourceServer ->
