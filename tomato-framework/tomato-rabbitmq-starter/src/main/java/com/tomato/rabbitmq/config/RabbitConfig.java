@@ -25,7 +25,7 @@ public class RabbitConfig{
     private static final Logger log = LoggerFactory.getLogger(JacksonConfiguration.class);
     @PostConstruct
     public void init(){
-        log.info("tomato-rabbitmq-starter Auto Configure.");
+        log.info("tomato-rabbitmq-starter 自动装配");
     }
     /**
      * 用于将消息序列化为 JSON 格式

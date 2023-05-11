@@ -24,8 +24,8 @@ tomato-platform
 └── tomato-framework -- 系统公共模块
 ├     ├── tomato-tracing-starter -- 基于Micrometer、Zipkin分布式链路追踪
 ├     ├── tomato-cloud -- cloud 配套组件
-├     			├── tomato-cloud-alibaba-starter -- alibaba 配套组件
-├     			├── tomato-cloud-feign-stater -- feign 相关依赖
+├     ├		├── tomato-cloud-alibaba-starter -- alibaba 配套组件
+├     ├		├── tomato-cloud-feign-stater -- feign 相关依赖
 ├     ├── XXXXXX -- XXXXXX
 ├     ├── XXXXXX -- XXXXXX
 ├     ├── XXXXXX -- XXXXXX
@@ -41,7 +41,7 @@ tomato-platform
 └── tomato-module -- 业务模块
 ├     └── tomato-module-account -- 账户服务[9080]
 ├     ├── tomato-module-monitor -- 基于 Spring Boot Admin 监控服务[9996]
-├     ├── XXXXXX -- XXXXXX
+├     ├── tomato-module-notice  -- 通知系统[9996]
 ├     └── XXXXXX -- XXXXXX
 ```
 
