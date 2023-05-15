@@ -12,6 +12,8 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/tomato-framework/tomato-ddd/tomato-application-core/pom.xml" />
+        <option value="$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-base/pom.xml" />
+        <option value="$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-biz/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-module-sys/tomato-module-sys-base/pom.xml" />
       </set>
     </option>

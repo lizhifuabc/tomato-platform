@@ -5,21 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-platform</artifactId>
-        <version>${revision}</version>
+        <artifactId>tomato-example</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-example</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>spring-authorization-server</module>
-        <module>spring-security</module>
-        <module>spring-security-jwt</module>
-        <module>micrometer-prometheus</module>
-        <module>bytebuddy-agent</module>
-        <module>spring-boot-tracing</module>
-        <module>spring-boot-layer</module>
-    </modules>
+    <artifactId>spring-boot-layer</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
