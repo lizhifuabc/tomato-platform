@@ -2,7 +2,6 @@ package com.tomato.notice.dto.converter;
 
 import com.tomato.notice.dto.resp.ThreadPoolStatsResp;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -12,8 +11,9 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @since 2023/5/15
  */
 public class ThreadPoolConverter {
-    public static ThreadPoolStatsResp convertCommon(ThreadPoolExecutor executor) {
+    public static ThreadPoolStatsResp convert(ThreadPoolExecutor executor) {
         return ThreadPoolStatsResp.builder()
+                .poolName(executor.getClass().getSimpleName())
                 .corePoolSize(executor.getCorePoolSize())
                 .maximumPoolSize(executor.getMaximumPoolSize())
                 .poolSize(executor.getPoolSize())

@@ -1,6 +1,11 @@
 package com.tomato.notice.controller;
 
 import com.tomato.common.resp.Resp;
+import com.tomato.notice.dto.converter.ThreadPoolConverter;
+import com.tomato.notice.dto.resp.ThreadPoolStatsResp;
+import jakarta.annotation.Resource;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.Disposable;
@@ -18,19 +23,17 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 public class NoticeMonitorController {
-
+    @Resource
+    private TaskExecutor asyncTaskExecutor;
     /**
      * 线程池统计信息
      * @return Resp
      */
     @RequestMapping("/notice/threadPoolStats")
-    public Resp<Void> getThreadPoolStats(){
-        Scheduler scheduler = Schedulers.boundedElastic();
-        Disposable disposable = scheduler.schedule(() -> {
-            ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) scheduler;
-            System.out.println("线程池中线程数目："+threadPoolExecutor.getPoolSize()+"，队列中等待执行的任务数目："+
-                    threadPoolExecutor.getQueue().size()+"，已执行玩别的任务数目："+threadPoolExecutor.getCompletedTaskCount());
-        }, 0, TimeUnit.SECONDS);
-        return Resp.buildSuccess();
+    public Resp<ThreadPoolStatsResp> getThreadPoolStats(){
+        // Scheduler scheduler = Schedulers.boundedElastic();
+        ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor) asyncTaskExecutor;
+        ThreadPoolStatsResp convert = ThreadPoolConverter.convert(executor.getThreadPoolExecutor());
+        return Resp.of(convert);
     }
 }

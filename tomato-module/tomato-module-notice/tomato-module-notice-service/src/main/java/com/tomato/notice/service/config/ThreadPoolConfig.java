@@ -1,6 +1,7 @@
 package com.tomato.notice.service.config;
 
 import com.tomato.notice.service.thread.CustomThreadPoolExecutor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,17 +17,15 @@ import java.util.concurrent.TimeUnit;
  * @since 2023/5/15
  */
 @Configuration
-public class WebClientThreadPoolConfig {
-    private static final int CORE_POOL_SIZE = (Integer) Optional.ofNullable(System.getProperty("reactor.schedulers.defaultBoundedElasticSize")).map(Integer::parseInt).orElseGet(() -> {
-        return 10 * Runtime.getRuntime().availableProcessors();
-    });
-    private static final int QUEUE_SIZE = (Integer)Optional.ofNullable(System.getProperty("reactor.schedulers.defaultBoundedElasticQueueSize")).map(Integer::parseInt).orElse(100000);
-    private static final int MAX_POOL_SIZE = (Integer)Optional.ofNullable(System.getProperty("reactor.schedulers.defaultBoundedElasticSize")).map(Integer::parseInt).orElseGet(() -> {
-        return 10 * Runtime.getRuntime().availableProcessors();
-    });
+@Slf4j
+public class ThreadPoolConfig {
+    private static final int CORE_POOL_SIZE = 10 * Runtime.getRuntime().availableProcessors();
+    private static final int QUEUE_SIZE = 100000;
+    private static final int MAX_POOL_SIZE = CORE_POOL_SIZE * 2;
     private static final int KEEP_ALIVE_TIME = 60;
     @Bean
     public CustomThreadPoolExecutor customThreadPoolExecutor() {
+        log.info("初始化线程池,corePoolSize:{},maxPoolSize:{},queueSize:{}",CORE_POOL_SIZE,MAX_POOL_SIZE,QUEUE_SIZE);
         CustomThreadPoolExecutor customThreadPoolExecutor = new CustomThreadPoolExecutor(
                 CORE_POOL_SIZE,
                 MAX_POOL_SIZE,
