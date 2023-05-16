@@ -1,6 +1,5 @@
 package com.tomato.order.infrastructure.mapper;
 
-import com.tomato.mybatis.mapper.BaseMapper;
 import com.tomato.order.infrastructure.entity.OrderInfoEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @since 2023/4/7
  */
 @Repository
-public interface OrderInfoEntityMapper extends BaseMapper<OrderInfoEntity> {
+public interface OrderInfoEntityMapper {
     /**
      * 订单查询
      * @param merchantNo 商户编号
