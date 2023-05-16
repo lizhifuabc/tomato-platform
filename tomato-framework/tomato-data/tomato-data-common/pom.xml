@@ -5,17 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-framework</artifactId>
+        <artifactId>tomato-data</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-jpa-starter</artifactId>
+    <artifactId>tomato-data-common</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
         <!-- mysql 驱动 -->
         <dependency>
             <groupId>com.mysql</groupId>

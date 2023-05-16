@@ -13,10 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>tomato-web-starter</module>
-        <module>tomato-mybatis-starter</module>
         <module>tomato-util</module>
         <module>tomato-dynamic-thread-starter</module>
-        <module>tomato-jpa-starter</module>
         <module>tomato-validator-starter</module>
         <module>tomato-redis-starter</module>
         <module>tomato-jackson-starter</module>
@@ -34,5 +32,6 @@
         <module>tomato-common</module>
         <module>tomato-tracing-starter</module>
         <module>tomato-cloud</module>
+        <module>tomato-data</module>
     </modules>
 </project>
