@@ -33,5 +33,6 @@
         <module>tomato-tracing-starter</module>
         <module>tomato-cloud</module>
         <module>tomato-data</module>
+        <module>tomato-monitor</module>
     </modules>
 </project>
