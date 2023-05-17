@@ -5,7 +5,7 @@ import com.tomato.common.resp.Resp;
 import com.tomato.goods.dao.GoodsInfoDao;
 import com.tomato.goods.domain.entity.GoodsInfoEntity;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
-import com.tomato.web.common.BaseController;
+import com.tomato.web.core.common.BaseController;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.web.bind.annotation.*;
