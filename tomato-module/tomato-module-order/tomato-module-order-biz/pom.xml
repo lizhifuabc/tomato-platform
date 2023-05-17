@@ -14,6 +14,10 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
+            <artifactId>tomato-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
             <artifactId>tomato-web-core</artifactId>
         </dependency>
         <dependency>
