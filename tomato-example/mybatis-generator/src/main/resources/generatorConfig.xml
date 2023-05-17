@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!-- 使用已有的配置文件 -->
+    <properties resource="application.properties"></properties>
+    <!-- 数据库驱动 -->
+    <classPathEntry location="/Users/lizhifu/Documents/yeepay/Document/yeepay/m2_repoyeeyk/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar"/>
+    <!-- 数据库驱动 -->
+    <context id="mysql" targetRuntime="MyBatis3">
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
+        </jdbcConnection>
+
+        <!-- 非必须，类型处理器，在数据库类型和java类型之间的转换控制 -->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- Entity Java Class -->
+        <javaModelGenerator targetPackage="com.tomato.mybatis.generator.entity" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- Mapper Java Class -->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- Mapper XML File -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.tomato.mybatis.generator.mapper"  targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- 需要生成的数据库表 -->
+        <table schema="tomato_notice" tableName="t_notice_rule" domainObjectName="NoticeRule" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true">
+        </table>
+
+    </context>
+</generatorConfiguration>

@@ -19,6 +19,8 @@
         <module>bytebuddy-agent</module>
         <module>spring-boot-tracing</module>
         <module>spring-boot-layer</module>
+        <module>maven-pom</module>
+        <module>mybatis-generator</module>
     </modules>
 
     <properties>
