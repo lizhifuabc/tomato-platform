@@ -12,6 +12,12 @@
     <artifactId>tomato-mybatis-starter</artifactId>
 
     <dependencies>
+        <!-- Java EE 标准中的一部分，它通过提供提供一套对象关系模型（ORM）来帮助在开发应用过程中高效的管理关系型数据,
+               目前比较成熟的 JPA 实现有 Hibernate -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
         <!-- mybatis https://github.com/mybatis/spring-boot-starter -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

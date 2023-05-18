@@ -17,6 +17,10 @@
             <artifactId>tomato-module-notice-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-mybatis-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

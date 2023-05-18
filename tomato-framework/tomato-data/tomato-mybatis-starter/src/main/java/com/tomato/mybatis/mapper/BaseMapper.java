@@ -1,45 +1,17 @@
 package com.tomato.mybatis.mapper;
 
+import com.tomato.mybatis.mapper.mapper.*;
 
 /**
- * 基础mapper
+ * 通用Mapper，实现基本功能
  *
  * @author lizhifu
- * @since 2023/3/23
+ * @param <ID>  主键类型
+ * @param <T>  实体类型
  */
-public interface BaseMapper<T> {
-    /**
-     * 插入
-     * @param record 插入对象
-     * @return 插入条数
-     */
-    int insert(T record);
-
-    /**
-     * 插入
-     * @param record 插入对象
-     * @return 插入条数
-     */
-    int insertSelective(T record);
-
-    /**
-     * 根据主键查询
-     * @param id
-     * @return
-     */
-    T selectByPrimaryKey(Long id);
-
-    /**
-     * 根据主键更新
-     * @param record
-     * @return
-     */
-    int updateByPrimaryKeySelective(T record);
-
-    /**
-     * 根据主键更新
-     * @param record
-     * @return
-     */
-    int updateByPrimaryKey(T record);
+public interface BaseMapper<T, ID> extends CountMapper<T, ID>,
+        DeleteMapper<T, ID>,
+        InsertMapper<T, ID>,
+        UpdateMapper<T, ID>,
+        SelectMapper<T, ID> {
 }

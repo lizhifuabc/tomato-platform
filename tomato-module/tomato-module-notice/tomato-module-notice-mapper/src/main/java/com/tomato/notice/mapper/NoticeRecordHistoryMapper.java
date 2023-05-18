@@ -1,5 +1,6 @@
 package com.tomato.notice.mapper;
 
+import com.tomato.mybatis.mapper.BaseMapper;
 import com.tomato.notice.entity.NoticeRecordHistoryEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,10 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023/4/24
  */
 @Mapper
-public interface NoticeRecordHistoryMapper {
-    /**
-     * 插入
-     * @param noticeRecordHistoryEntity 通知记录历史
-     */
-    void insert(NoticeRecordHistoryEntity noticeRecordHistoryEntity);
+public interface NoticeRecordHistoryMapper extends BaseMapper<NoticeRecordHistoryEntity, Long> {
+
 }

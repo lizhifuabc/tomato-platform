@@ -1,6 +1,7 @@
 package com.tomato.notice.entity;
 
 import com.tomato.common.entity.BaseEntity;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,5 +13,6 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Table(name = "t_notice_rule")
 public class NoticeRuleEntity extends BaseEntity {
 }
