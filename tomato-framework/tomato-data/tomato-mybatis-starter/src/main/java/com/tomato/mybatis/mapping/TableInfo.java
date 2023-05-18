@@ -213,7 +213,7 @@ public class TableInfo {
      * @return        参数格式
      */
     public static String bindParameter(Field field) {
-        return "#{" + field.getName() + "}";
+        return "#{criteria." + field.getName() + "}";
     }
 
     /**

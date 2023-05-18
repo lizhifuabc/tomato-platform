@@ -27,7 +27,7 @@ public interface SelectMapper<T, ID> extends Mapper<T, ID> {
     /**
      * 查询所有实体
      *
-     * @param orderBy  排序
+     * @param orderBy  排序 如：id desc
      * @return   实体list
      */
     @SelectProvider(type = SelectAllSqlProvider.class, method = "sql")
@@ -44,10 +44,11 @@ public interface SelectMapper<T, ID> extends Mapper<T, ID> {
     /**
      * 根据实体条件查询符合条件的实体list
      * @param criteria  条件实体
+     * @param orderBy   排序 如：id desc
      * @return          list
      */
     @SelectProvider(type = SelectByCriteriaSqlProvider.class, method = "sql")
-    List<T> selectByCriteria(T criteria);
+    List<T> selectByCriteria(@Param("orderBy") String orderBy,@Param("criteria") T criteria);
 
     /**
      * 根据条件查询单个数据
@@ -55,6 +56,6 @@ public interface SelectMapper<T, ID> extends Mapper<T, ID> {
      * @param criteria  实体条件
      * @return          实体对象
      */
-    @SelectProvider(type = SelectByCriteriaSqlProvider.class, method = "sql")
-    Optional<T> selectOneByCriteria(T criteria);
+    @SelectProvider(type = SelectOneByCriteriaSqlProvider.class, method = "sql")
+    Optional<T> selectOneByCriteria(@Param("criteria") T criteria);
 }

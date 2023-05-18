@@ -2,12 +2,11 @@ package com.tomato.mybatis.mapper.provider;
 
 import com.tomato.mybatis.mapping.TableInfo;
 import com.tomato.mybatis.util.ReflectionUtils;
-import com.tomato.mybatis.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.builder.annotation.ProviderContext;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.util.Map;
 import java.util.stream.Stream;
 
 /**
@@ -15,19 +14,16 @@ import java.util.stream.Stream;
  * @author lizhifu
  */
 @Slf4j
-public class SelectByCriteriaSqlProvider extends BaseSqlProviderSupport {
+public class SelectOneByCriteriaSqlProvider extends BaseSqlProviderSupport {
     /**
      * sql
-     * @param criteria  entity 条件
+     * @param params  params 条件
      * @param context context
      * @return  sql
      */
-    public String sql(@Param("orderBy") String orderBy,@Param("criteria") Object criteria, ProviderContext context) {
+    public String sql(Map params, ProviderContext context) {
+        Object criteria = params.get("criteria");
         TableInfo table = tableInfo(context);
-        if (StringUtils.isEmpty(orderBy)) {
-            orderBy = table.primaryKeyColumn + " DESC";
-        }
-        final String finalOrderBy = orderBy;
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
             SQL sql = new SQL()
                     .SELECT(table.selectColumns)
@@ -37,8 +33,8 @@ public class SelectByCriteriaSqlProvider extends BaseSqlProviderSupport {
                             .map(TableInfo::assignParameter)
                             .toArray(String[]::new)
                     )
-                    .ORDER_BY(finalOrderBy);
-            log.info("selectByCriteria sql:\n{}",sql.toString());
+                    .ORDER_BY(table.primaryKeyColumn + " DESC");
+            log.info("selectOneByCriteria sql:\n{}",sql.toString());
             return sql.toString();
         });
     }

@@ -24,5 +24,15 @@ public class NoticeRecordHistoryMapperTest {
         noticeRecordHistoryMapper.selectByPrimaryKey(2L).ifPresent(System.out::println);
 
         noticeRecordHistoryMapper.selectByPrimaryKeyIn(List.of(1L,2L)).forEach(System.out::println);
+
+        noticeRecordHistoryMapper.selectAll("id desc").forEach(System.out::println);
+
+        NoticeRecordHistoryEntity entity = new NoticeRecordHistoryEntity();
+
+        entity.setId(5L);
+        noticeRecordHistoryMapper.selectOneByCriteria(entity).ifPresent(System.out::println);
+
+        entity.setNoticeRecordId(3L);
+        noticeRecordHistoryMapper.selectByCriteria("id desc",entity).forEach(System.out::println);
     }
 }

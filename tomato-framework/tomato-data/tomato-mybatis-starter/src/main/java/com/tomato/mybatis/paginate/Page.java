@@ -17,6 +17,9 @@ public class Page<T> implements Serializable {
 
     private List<T> records = Collections.emptyList();
     private int pageNumber = INIT_VALUE;
+    /**
+     * 分页数
+     */
     private int pageSize = INIT_VALUE;
     private long totalPage = INIT_VALUE;
     private long totalRow = INIT_VALUE;
