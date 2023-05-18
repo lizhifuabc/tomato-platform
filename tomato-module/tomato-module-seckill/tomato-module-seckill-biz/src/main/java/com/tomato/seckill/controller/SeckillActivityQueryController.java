@@ -4,7 +4,7 @@ import com.tomato.common.resp.Resp;
 import com.tomato.seckill.dao.SeckillActivityDao;
 import com.tomato.seckill.domain.entity.SeckillActivityEntity;
 import com.tomato.seckill.domain.resp.SeckillActivityQueryResp;
-import com.tomato.web.common.BaseController;
+import com.tomato.web.core.common.BaseController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
