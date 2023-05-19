@@ -22,6 +22,13 @@ public class NoticeRecordHistoryMapperTest {
 
     @Test
     public void test() {
+        // 统计相关测试
+        System.out.println("统计:"+noticeRecordHistoryMapper.count());
+
+        NoticeRecordHistoryEntity count = new NoticeRecordHistoryEntity();
+        count.setNoticeRecordId(3L);
+        System.out.println("统计:"+noticeRecordHistoryMapper.countByCriteria(count));
+
         // 插入相关测试
         NoticeRecordHistoryEntity insert1 = new NoticeRecordHistoryEntity();
         insert1.setNoticeRecordId(1L);

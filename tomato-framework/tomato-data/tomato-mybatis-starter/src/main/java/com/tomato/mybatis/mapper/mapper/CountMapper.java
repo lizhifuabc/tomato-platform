@@ -3,6 +3,7 @@ package com.tomato.mybatis.mapper.mapper;
 import com.tomato.mybatis.mapper.Mapper;
 import com.tomato.mybatis.mapper.provider.CountByCriteriaSqlProvider;
 import com.tomato.mybatis.mapper.provider.CountSqlProvider;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 
 /**
@@ -28,5 +29,5 @@ public interface CountMapper<T, ID> extends Mapper<T, ID> {
      * @return    数量
      */
     @SelectProvider(type = CountByCriteriaSqlProvider.class, method = "sql")
-    long countByCriteria(T criteria);
+    long countByCriteria(@Param("criteria") T criteria);
 }

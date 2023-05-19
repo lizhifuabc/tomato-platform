@@ -15,11 +15,10 @@ import java.util.stream.Stream;
 public class CountSqlProvider extends BaseSqlProviderSupport {
     /**
      * sql
-     * @param criteria  entity 条件
      * @param context context
      * @return  sql
      */
-    public String sql(Object criteria, ProviderContext context) {
+    public String sql(ProviderContext context) {
         TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
             SQL sql = new SQL()
