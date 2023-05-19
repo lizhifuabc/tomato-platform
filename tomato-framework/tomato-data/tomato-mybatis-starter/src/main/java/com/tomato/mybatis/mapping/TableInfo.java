@@ -68,6 +68,16 @@ public class TableInfo {
     }
 
     /**
+     * 获取主键的where条件，如 id = #{id}
+     *
+     * @return  主键where条件
+     */
+    public String getPrimaryKeyEntityWhere() {
+        String pk = this.primaryKeyColumn;
+        return pk + " = #{criteria." + pk + "}";
+    }
+
+    /**
      * 获取TableInfo的简单工厂
      *
      * @param mapperType mapper类型

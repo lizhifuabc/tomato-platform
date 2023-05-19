@@ -3,6 +3,7 @@ package com.tomato.mybatis.mapper.mapper;
 import com.tomato.mybatis.mapper.Mapper;
 import com.tomato.mybatis.mapper.provider.UpdateSelectiveSqlProvider;
 import com.tomato.mybatis.mapper.provider.UpdateSqlProvider;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.UpdateProvider;
 
 /**
@@ -19,7 +20,7 @@ public interface UpdateMapper<T, ID> extends Mapper<T, ID> {
      * @return         影响条数
      */
     @UpdateProvider(type = UpdateSqlProvider.class, method = "sql")
-    int updateByPrimaryKey(T entity);
+    int updateByPrimaryKey(@Param("criteria") T entity);
 
     /**
      * 根据主键id更新实体，若实体field为null，则对应数据库的字段不更新
@@ -28,5 +29,5 @@ public interface UpdateMapper<T, ID> extends Mapper<T, ID> {
      * @return        影响条数
      */
     @UpdateProvider(type = UpdateSelectiveSqlProvider.class, method = "sql")
-    int updateByPrimaryKeySelective(T entity);
+    int updateByPrimaryKeySelective(@Param("criteria")T entity);
 }

@@ -22,6 +22,20 @@ public class NoticeRecordHistoryMapperTest {
 
     @Test
     public void test() {
+        // 更新相关测试
+        NoticeRecordHistoryEntity update = new NoticeRecordHistoryEntity();
+        update.setId(6L);
+        update.setCreateTime(LocalDateTime.now());
+        update.setNoticeRecordId(1L);
+        System.out.println("更新:" + noticeRecordHistoryMapper.updateByPrimaryKey(update));
+
+        NoticeRecordHistoryEntity update2 = new NoticeRecordHistoryEntity();
+        update2.setId(7L);
+        update2.setCreateTime(LocalDateTime.now());
+        update2.setNoticeRecordId(1L);
+        System.out.println("更新:" + noticeRecordHistoryMapper.updateByPrimaryKeySelective(update2));
+
+
         // 删除相关测试
         System.out.println("删除:" + noticeRecordHistoryMapper.deleteByPrimaryKey(2L));
 
