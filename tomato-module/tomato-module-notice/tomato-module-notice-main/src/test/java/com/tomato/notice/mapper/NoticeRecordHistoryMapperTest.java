@@ -22,6 +22,15 @@ public class NoticeRecordHistoryMapperTest {
 
     @Test
     public void test() {
+        // 删除相关测试
+        System.out.println("删除:" + noticeRecordHistoryMapper.deleteByPrimaryKey(2L));
+
+        NoticeRecordHistoryEntity delete = new NoticeRecordHistoryEntity();
+        delete.setNoticeRecordId(3L);
+        System.out.println("删除:" + noticeRecordHistoryMapper.deleteByCriteria(delete));
+
+        System.out.println("删除:" + noticeRecordHistoryMapper.logicDeleteByPrimaryKey(4L));
+
         // 统计相关测试
         System.out.println("统计:"+noticeRecordHistoryMapper.count());
 

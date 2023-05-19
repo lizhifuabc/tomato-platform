@@ -5,6 +5,7 @@ import com.tomato.mybatis.mapper.provider.DeleteByCriteriaSqlProvider;
 import com.tomato.mybatis.mapper.provider.DeleteSqlProvider;
 import com.tomato.mybatis.mapper.provider.LogicDeleteSqlProvider;
 import org.apache.ibatis.annotations.DeleteProvider;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.UpdateProvider;
 
 /**
@@ -39,5 +40,5 @@ public interface DeleteMapper<T, ID> extends Mapper<T, ID> {
      * @return  影响条数
      */
     @DeleteProvider(type = DeleteByCriteriaSqlProvider.class, method = "sql")
-    int deleteByCriteria(T criteria);
+    int deleteByCriteria(@Param("criteria") T criteria);
 }

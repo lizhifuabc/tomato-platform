@@ -7,6 +7,7 @@ import org.apache.ibatis.jdbc.SQL;
 
 /**
  * 逻辑删除
+ * TODO 字段定制
  * @author lizhifu
  */
 @Slf4j
