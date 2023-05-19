@@ -21,10 +21,10 @@ public class SelectOneByCriteriaSqlProvider extends BaseSqlProviderSupport {
      * @param context context
      * @return  sql
      */
-    public String sql(Map params, ProviderContext context) {
-        Object criteria = params.get("criteria");
+    public String sql(Map<String,Object> params, ProviderContext context) {
         TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            Object criteria = params.get("criteria");
             SQL sql = new SQL()
                     .SELECT(table.selectColumns)
                     .FROM(table.tableName)

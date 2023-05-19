@@ -25,19 +25,18 @@ public class BatchInsertSqlProvider extends BaseSqlProviderSupport {
      */
     public String sql(Map<String, Object> param, ProviderContext context) {
         TableInfo table = tableInfo(context);
-        @SuppressWarnings("unchecked")
-        int size = ((List<Object>)param.get("entities")).size();
-        // 构造 ( #{entities[1-->数组索引].fieldName}, #{entities[1].fieldName2})
-        String value = "(" + String.join(",", Stream.of(table.fields)
-                .map(field -> "#{entities[${index}]." + field.getName() + "}").toArray(String[]::new)) + ")";
-        String[] values = new String[size];
-        Map<String, Object> fillIndex = new HashMap<>(2);
-        for (int i = 0; i < size; i++) {
-            fillIndex.put("index", i);
-            values[i] = PlaceholderResolver.getDefaultResolver().resolveByMap(value, fillIndex);
-        }
-
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), val -> {
+            @SuppressWarnings("unchecked")
+            int size = ((List<Object>)param.get("entities")).size();
+            // 构造 ( #{entities[1-->数组索引].fieldName}, #{entities[1].fieldName2})
+            String value = "(" + String.join(",", Stream.of(table.fields)
+                    .map(field -> "#{entities[${index}]." + field.getName() + "}").toArray(String[]::new)) + ")";
+            String[] values = new String[size];
+            Map<String, Object> fillIndex = new HashMap<>(2);
+            for (int i = 0; i < size; i++) {
+                fillIndex.put("index", i);
+                values[i] = PlaceholderResolver.getDefaultResolver().resolveByMap(value, fillIndex);
+            }
             SQL sql = new SQL()
                     .INSERT_INTO(table.tableName)
                     .INTO_COLUMNS(table.columns);

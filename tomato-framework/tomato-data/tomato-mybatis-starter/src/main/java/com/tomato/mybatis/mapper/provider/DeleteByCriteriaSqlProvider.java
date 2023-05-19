@@ -22,9 +22,9 @@ public class DeleteByCriteriaSqlProvider extends BaseSqlProviderSupport {
      * @return  sql
      */
     public String sql(Map<String, Object> params, ProviderContext context) {
-        Object criteria = params.get("criteria");
         TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            Object criteria = params.get("criteria");
             SQL sql = new SQL()
                     .DELETE_FROM(table.tableName)
                     .WHERE(Stream.of(table.fields)

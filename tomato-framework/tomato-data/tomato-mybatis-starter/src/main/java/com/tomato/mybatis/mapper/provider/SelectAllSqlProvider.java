@@ -20,15 +20,15 @@ public class SelectAllSqlProvider extends BaseSqlProviderSupport {
      */
     public String sql(String orderBy, ProviderContext context) {
         TableInfo table = tableInfo(context);
-        SQL sql = new SQL()
-                .SELECT(table.selectColumns)
-                .FROM(table.tableName);
         if (StringUtils.isEmpty(orderBy)) {
             orderBy = table.primaryKeyColumn + " DESC";
         }
-        String res = sql.ORDER_BY(orderBy).toString();
-
+        final String finalOrderBy = orderBy;
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            SQL sql = new SQL()
+                    .SELECT(table.selectColumns)
+                    .FROM(table.tableName);
+            String res = sql.ORDER_BY(finalOrderBy).toString();
             log.info("select all sql:\n{}",res);
             return res;
         });

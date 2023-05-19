@@ -25,12 +25,10 @@ public class InsertSelectiveSqlProvider extends BaseSqlProviderSupport {
     public String sql(Map<String, Object> params, ProviderContext context) {
         Object criteria = params.get("criteria");
         TableInfo table = tableInfo(context);
-
-        Field[] notNullFields = Stream.of(table.fields)
-                .filter(field -> ReflectionUtils.getFieldValue(field, criteria) != null && !table.primaryKeyColumn.equals(TableInfo.columnName(field)))
-                .toArray(Field[]::new);
-
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), val -> {
+            Field[] notNullFields = Stream.of(table.fields)
+                    .filter(field -> ReflectionUtils.getFieldValue(field, criteria) != null && !table.primaryKeyColumn.equals(TableInfo.columnName(field)))
+                    .toArray(Field[]::new);
             SQL sql = new SQL()
                     .INSERT_INTO(table.tableName)
                     .INTO_COLUMNS(TableInfo.columns(notNullFields))
