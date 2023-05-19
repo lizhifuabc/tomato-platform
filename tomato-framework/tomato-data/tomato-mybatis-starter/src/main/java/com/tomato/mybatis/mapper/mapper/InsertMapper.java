@@ -23,18 +23,18 @@ public interface InsertMapper<T, ID> extends Mapper<T, ID> {
      * @return  影响条数
      */
     @InsertProvider(type = InsertSqlProvider.class, method = "sql")
-    @Options(useGeneratedKeys = true, keyColumn = TableInfo.DEFAULT_PRIMARY_KEY)
-    int insert(T entity);
+    @Options(useGeneratedKeys = true, keyColumn = TableInfo.DEFAULT_PRIMARY_KEY, keyProperty = TableInfo.DEFAULT_PRIMARY_KEY)
+    int insert(@Param("criteria") T entity);
 
     /**
      * 插入新对象（只设置非空字段）,并返回主键id值(id通过实体获取)
      *
-     * @param entity 实体对象
+     * @param criteria 实体对象
      * @return  影响条数
      */
     @InsertProvider(type = InsertSelectiveSqlProvider.class, method = "sql")
-    @Options(useGeneratedKeys = true, keyColumn = TableInfo.DEFAULT_PRIMARY_KEY)
-    int insertSelective(T entity);
+    @Options(useGeneratedKeys = true, keyColumn = TableInfo.DEFAULT_PRIMARY_KEY, keyProperty = TableInfo.DEFAULT_PRIMARY_KEY)
+    int insertSelective(@Param("criteria") T criteria);
 
     /**
      * 批量插入实体

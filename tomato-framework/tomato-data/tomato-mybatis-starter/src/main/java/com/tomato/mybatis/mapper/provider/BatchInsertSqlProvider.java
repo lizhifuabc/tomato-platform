@@ -42,7 +42,7 @@ public class BatchInsertSqlProvider extends BaseSqlProviderSupport {
                     .INSERT_INTO(table.tableName)
                     .INTO_COLUMNS(table.columns);
             String res = sql.toString() + " VALUES " + String.join(",", values);
-            log.info("batch insert sql:{}",res);
+            log.info("batch insert sql:\n{}",res);
             return res;
         });
     }

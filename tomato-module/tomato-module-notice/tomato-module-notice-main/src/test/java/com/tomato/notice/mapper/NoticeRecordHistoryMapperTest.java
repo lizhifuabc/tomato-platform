@@ -5,6 +5,7 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,30 @@ public class NoticeRecordHistoryMapperTest {
 
     @Test
     public void test() {
+        // 插入相关测试
+        NoticeRecordHistoryEntity insert1 = new NoticeRecordHistoryEntity();
+        insert1.setNoticeRecordId(1L);
+        insert1.setCreateTime(LocalDateTime.now());
+        noticeRecordHistoryMapper.insertSelective(insert1);
+        System.out.println("返回ID："+insert1.getId());
+
+        NoticeRecordHistoryEntity insert = new NoticeRecordHistoryEntity();
+        insert.setNoticeRecordId(1L);
+        insert.setCreateTime(LocalDateTime.now());
+        noticeRecordHistoryMapper.insert(insert);
+        System.out.println("返回ID："+insert.getId());
+
+        NoticeRecordHistoryEntity batch1 = new NoticeRecordHistoryEntity();
+        batch1.setNoticeRecordId(1L);
+        batch1.setCreateTime(LocalDateTime.now());
+
+        NoticeRecordHistoryEntity batch2 = new NoticeRecordHistoryEntity();
+        batch2.setNoticeRecordId(1L);
+        batch2.setCreateTime(LocalDateTime.now());
+        noticeRecordHistoryMapper.batchInsert(List.of(batch1,batch2));
+
+
+        // 查询相关测试
         noticeRecordHistoryMapper.selectByPrimaryKey(2L).ifPresent(System.out::println);
 
         noticeRecordHistoryMapper.selectByPrimaryKeyIn(List.of(1L,2L)).forEach(System.out::println);
