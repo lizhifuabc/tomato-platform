@@ -13,5 +13,6 @@ public interface BaseMapper<T, ID> extends CountMapper<T, ID>,
         DeleteMapper<T, ID>,
         InsertMapper<T, ID>,
         UpdateMapper<T, ID>,
+        PageMapper<T, ID>,
         SelectMapper<T, ID> {
 }

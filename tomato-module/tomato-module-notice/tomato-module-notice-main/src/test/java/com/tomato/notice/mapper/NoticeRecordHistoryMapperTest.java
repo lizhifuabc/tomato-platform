@@ -1,7 +1,9 @@
 package com.tomato.notice.mapper;
 
+import com.tomato.mybatis.paginate.Page;
 import com.tomato.notice.entity.NoticeRecordHistoryEntity;
 import jakarta.annotation.Resource;
+import org.apache.ibatis.session.RowBounds;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -22,6 +24,11 @@ public class NoticeRecordHistoryMapperTest {
 
     @Test
     public void test() {
+        // 分页查询
+        RowBounds rowBounds = new RowBounds(0, 10);
+        Page page = new Page(1, 10);
+        noticeRecordHistoryMapper.selectPageByCriteria("id desc",page,new NoticeRecordHistoryEntity()).forEach(System.out::println);
+
         // 更新相关测试
         NoticeRecordHistoryEntity update = new NoticeRecordHistoryEntity();
         update.setId(6L);

@@ -1,6 +1,7 @@
 package com.tomato.notice.mapper;
 
 import com.tomato.mybatis.mapper.BaseMapper;
+import com.tomato.mybatis.mapper.mapper.PageMapper;
 import com.tomato.notice.entity.NoticeRecordHistoryEntity;
 import org.apache.ibatis.annotations.Mapper;
 
