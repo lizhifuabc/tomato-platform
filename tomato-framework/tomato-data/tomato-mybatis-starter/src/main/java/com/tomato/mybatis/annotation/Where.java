@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * <p>
  * 示例：@Where(clause="del_flag = 0 ")
  *
- * @author cjbi
+ * @author lizhifu
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
