@@ -16,7 +16,7 @@
         <!-- maven 全局版本号管理 -->
         <revision>1.0-SNAPSHOT</revision>
         <!-- spring boot / spring cloud 统一依赖管理 -->
-        <spring.boot.version>3.0.6</spring.boot.version>
+        <spring.boot.version>3.1.0</spring.boot.version>
         <spring-security-cas.version>5.8.3</spring-security-cas.version>
         <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
         <spring-boot-admin.version>3.0.3</spring-boot-admin.version>
