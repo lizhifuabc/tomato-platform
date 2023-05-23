@@ -1,11 +1,11 @@
 package com.tomato.mybatis.mapping;
 
 import com.tomato.mybatis.annotation.NoColumn;
-import com.tomato.mybatis.annotation.PrimaryKey;
 import com.tomato.mybatis.mapper.BaseMapper;
 import com.tomato.mybatis.util.CollectionUtils;
 import com.tomato.mybatis.util.ReflectionUtils;
 import com.tomato.mybatis.util.StringUtils;
+import jakarta.persistence.Id;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -183,13 +183,13 @@ public class TableInfo {
     }
 
     /**
-     * 如果fields中含有@Primary的字段，则返回该字段名为主键，否则默认'id'为主键名
+     * 如果fields中含有@ID的字段，则返回该字段名为主键，否则默认'id'为主键名
      *
      * @param fields entityClass所有fields
      * @return 主键column(驼峰转为下划线)
      */
     public static String primaryKeyColumn(Field[] fields) {
-        return Stream.of(fields).filter(field -> field.isAnnotationPresent(PrimaryKey.class))
+        return Stream.of(fields).filter(field -> field.isAnnotationPresent(Id.class))
                 .findFirst()    //返回第一个primaryKey的field
                 .map(TableInfo::columnName)
                 .orElse(DEFAULT_PRIMARY_KEY);
