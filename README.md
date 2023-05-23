@@ -42,6 +42,8 @@ tomato-platform
 ├     └── tomato-module-account -- 账户服务[9080]
 ├     ├── tomato-module-monitor -- 基于 Spring Boot Admin 监控服务[9996]
 ├     ├── tomato-module-notice  -- 通知系统[9996]
+├     ├── tomato-module-pay     -- 支付通道[9998]
+├     ├── tomato-module-pay-monitor  -- 支付通道监控[9997]
 ├     └── XXXXXX -- XXXXXX
 ```
 

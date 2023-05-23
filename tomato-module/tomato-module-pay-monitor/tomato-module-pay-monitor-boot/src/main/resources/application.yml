@@ -1,0 +1,8 @@
+# 端口号
+server:
+  port: 9997
+
+spring:
+  application:
+    # 应用名称，用于注册到注册中心，pom.xml中的artifactId
+    name: @artifactId@
