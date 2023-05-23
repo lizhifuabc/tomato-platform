@@ -1,6 +1,7 @@
 package com.tomato.jackson.config;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.StreamReadConstraints;
 import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -12,6 +13,7 @@ import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -33,6 +35,15 @@ public class JacksonConfiguration {
 		log.info("tomato-jackson-starter 自动装配");
 	}
 
+	/**
+	 * 2.15 中显着的更改是引入了处理限制，以防止恶意输入导致的内存问题。
+	 * @return Jackson2ObjectMapperBuilderCustomizer
+	 */
+	@Bean
+	Jackson2ObjectMapperBuilderCustomizer customStreamReadConstraints() {
+		return (builder) -> builder.postConfigurer((objectMapper) -> objectMapper.getFactory()
+				.setStreamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(2000).build()));
+	}
 	/**
 	 * 如果没有手动定义ObjectMapper类型的Bean，
 	 * 那么它会自动创建一个名为"jacksonObjectMapper"的默认Bean，并注册到Spring容器中
