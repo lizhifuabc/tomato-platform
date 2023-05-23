@@ -24,9 +24,14 @@ public class NoticeRecordHistoryMapperTest {
 
     @Test
     public void test() {
+        Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
+
+        noticeRecordHistoryMapper.selectAll(sort).forEach(System.out::println);
+
+
+
         // 分页查询
         RowBounds rowBounds = new RowBounds(0, 10);
-        Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
         Page page = new Page(1, 10, sort);
         noticeRecordHistoryMapper.selectPageByCriteria(page,new NoticeRecordHistoryEntity()).forEach(System.out::println);
 
@@ -87,8 +92,6 @@ public class NoticeRecordHistoryMapperTest {
         noticeRecordHistoryMapper.selectByPrimaryKey(2L).ifPresent(System.out::println);
 
         noticeRecordHistoryMapper.selectByPrimaryKeyIn(List.of(1L,2L)).forEach(System.out::println);
-
-        noticeRecordHistoryMapper.selectAll("id desc").forEach(System.out::println);
 
         NoticeRecordHistoryEntity entity = new NoticeRecordHistoryEntity();
 

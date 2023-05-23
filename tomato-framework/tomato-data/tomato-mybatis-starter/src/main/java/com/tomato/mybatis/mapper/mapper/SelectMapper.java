@@ -1,5 +1,6 @@
 package com.tomato.mybatis.mapper.mapper;
 
+import com.tomato.mybatis.domain.Sort;
 import com.tomato.mybatis.mapper.Mapper;
 import com.tomato.mybatis.mapper.provider.*;
 import org.apache.ibatis.annotations.Param;
@@ -27,11 +28,11 @@ public interface SelectMapper<T, ID> extends Mapper<T, ID> {
     /**
      * 查询所有实体
      *
-     * @param orderBy  排序 如：id desc
+     * @param sort  排序
      * @return   实体list
      */
     @SelectProvider(type = SelectAllSqlProvider.class, method = "sql")
-    List<T> selectAll(String orderBy);
+    List<T> selectAll(Sort sort);
 
     /**
      * 根据id列表查询实体列表
