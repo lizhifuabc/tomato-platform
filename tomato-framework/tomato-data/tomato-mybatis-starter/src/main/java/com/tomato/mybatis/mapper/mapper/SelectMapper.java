@@ -43,13 +43,13 @@ public interface SelectMapper<T, ID> extends Mapper<T, ID> {
     List<T> selectByPrimaryKeyIn(@Param("ids") List<ID> ids);
 
     /**
-     * 根据实体条件查询符合条件的实体list
+     * 根据实体条件查询
      * @param criteria  条件实体
-     * @param orderBy   排序 如：id desc
+     * @param sort     排序
      * @return          list
      */
     @SelectProvider(type = SelectByCriteriaSqlProvider.class, method = "sql")
-    List<T> selectByCriteria(@Param("orderBy") String orderBy,@Param("criteria") T criteria);
+    List<T> selectByCriteria(@Param("sort") Sort sort,@Param("criteria") T criteria);
 
     /**
      * 根据条件查询单个数据

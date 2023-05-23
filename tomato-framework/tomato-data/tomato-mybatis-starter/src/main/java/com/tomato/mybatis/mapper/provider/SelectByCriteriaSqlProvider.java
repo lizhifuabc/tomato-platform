@@ -1,5 +1,6 @@
 package com.tomato.mybatis.mapper.provider;
 
+import com.tomato.mybatis.domain.Sort;
 import com.tomato.mybatis.mapping.TableInfo;
 import com.tomato.mybatis.util.ReflectionUtils;
 import com.tomato.mybatis.util.StringUtils;
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.builder.annotation.ProviderContext;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -22,13 +24,9 @@ public class SelectByCriteriaSqlProvider extends BaseSqlProviderSupport {
      * @param context context
      * @return  sql
      */
-    public String sql(@Param("orderBy") String orderBy,@Param("criteria") Object criteria, ProviderContext context) {
-        TableInfo table = tableInfo(context);
-        if (StringUtils.isEmpty(orderBy)) {
-            orderBy = table.primaryKeyColumn + " DESC";
-        }
-        final String finalOrderBy = orderBy;
+    public String sql(@Param("sort") Sort sort, @Param("criteria") Object criteria, ProviderContext context) {
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            TableInfo table = tableInfo(context);
             SQL sql = new SQL()
                     .SELECT(table.selectColumns)
                     .FROM(table.tableName)
@@ -37,7 +35,7 @@ public class SelectByCriteriaSqlProvider extends BaseSqlProviderSupport {
                             .map(TableInfo::assignParameter)
                             .toArray(String[]::new)
                     )
-                    .ORDER_BY(finalOrderBy);
+                    .ORDER_BY(orderBySql(sort));
             log.info("selectByCriteria sql:\n{}",sql.toString());
             return sql.toString();
         });

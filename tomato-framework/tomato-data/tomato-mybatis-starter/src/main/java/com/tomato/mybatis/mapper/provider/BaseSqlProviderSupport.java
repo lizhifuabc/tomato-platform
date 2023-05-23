@@ -1,11 +1,13 @@
 package com.tomato.mybatis.mapper.provider;
 
+import com.tomato.mybatis.domain.Sort;
 import com.tomato.mybatis.mapping.TableInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.builder.annotation.ProviderContext;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * sql provider 抽象类
@@ -36,5 +38,9 @@ public abstract class BaseSqlProviderSupport {
     }
     static String getCacheKey(ProviderContext context) {
         return context.getMapperType().getSimpleName() + ":" + context.getMapperMethod().getName();
+    }
+
+    protected String orderBySql(Sort sort) {
+        return sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
     }
 }

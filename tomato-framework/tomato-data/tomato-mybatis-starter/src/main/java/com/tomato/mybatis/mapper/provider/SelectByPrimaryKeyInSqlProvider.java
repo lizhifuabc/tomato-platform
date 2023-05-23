@@ -16,8 +16,8 @@ import java.util.Map;
 @Slf4j
 public class SelectByPrimaryKeyInSqlProvider extends BaseSqlProviderSupport {
     public String sql(Map<String, Object> params, ProviderContext context) {
-        TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            TableInfo table = tableInfo(context);
             @SuppressWarnings("unchecked")
             List<Object> ids = (List<Object>)params.get("ids");
             SQL sql = new SQL()
