@@ -190,7 +190,7 @@ public class TableInfo {
      */
     public static String primaryKeyColumn(Field[] fields) {
         return Stream.of(fields).filter(field -> field.isAnnotationPresent(Id.class))
-                .findFirst()    //返回第一个primaryKey的field
+                .findFirst()    //返回第一个 Id 的field
                 .map(TableInfo::columnName)
                 .orElse(DEFAULT_PRIMARY_KEY);
     }

@@ -19,9 +19,9 @@ public interface PageMapper<T, ID> extends Mapper<T, ID> {
     /**
      * 根据实体条件查询符合条件的实体list
      * @param criteria  条件实体
-     * @param orderBy   排序 如：id desc
+     * @param page      分页对象
      * @return          list
      */
     @SelectProvider(type = SelectPageByCriteriaSqlProvider.class, method = "sql")
-    List<T> selectPageByCriteria(@Param("orderBy") String orderBy, @Param("page") Page page, @Param("criteria") T criteria);
+    List<T> selectPageByCriteria(@Param("page") Page page, @Param("criteria") T criteria);
 }

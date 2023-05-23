@@ -21,6 +21,6 @@ public class AutoConfiguration implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        log.info("tomato-springdoc-starter Auto Configure.");
+        log.info("tomato-springdoc-starter 自动装配");
     }
 }

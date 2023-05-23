@@ -1,5 +1,6 @@
 package com.tomato.notice.mapper;
 
+import com.tomato.mybatis.domain.Sort;
 import com.tomato.mybatis.paginate.Page;
 import com.tomato.notice.entity.NoticeRecordHistoryEntity;
 import jakarta.annotation.Resource;
@@ -9,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * NoticeRecordHistoryMapper
@@ -26,8 +26,9 @@ public class NoticeRecordHistoryMapperTest {
     public void test() {
         // 分页查询
         RowBounds rowBounds = new RowBounds(0, 10);
-        Page page = new Page(1, 10);
-        noticeRecordHistoryMapper.selectPageByCriteria("id desc",page,new NoticeRecordHistoryEntity()).forEach(System.out::println);
+        Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
+        Page page = new Page(1, 10, sort);
+        noticeRecordHistoryMapper.selectPageByCriteria(page,new NoticeRecordHistoryEntity()).forEach(System.out::println);
 
         // 更新相关测试
         NoticeRecordHistoryEntity update = new NoticeRecordHistoryEntity();
