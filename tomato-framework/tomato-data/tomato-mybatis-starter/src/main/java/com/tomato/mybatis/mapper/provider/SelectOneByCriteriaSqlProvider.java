@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * @author lizhifu
  */
 @Slf4j
-public class SelectOneByCriteriaSqlProvider extends BaseSqlProviderSupport {
+public class SelectOneByCriteriaSqlProvider extends AbstractSqlProviderSupport {
     /**
      * sql
      * @param params  params 条件
@@ -22,8 +22,8 @@ public class SelectOneByCriteriaSqlProvider extends BaseSqlProviderSupport {
      * @return  sql
      */
     public String sql(Map<String,Object> params, ProviderContext context) {
-        TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            TableInfo table = tableInfo(context);
             Object criteria = params.get("criteria");
             SQL sql = new SQL()
                     .SELECT(table.selectColumns)

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @since 2023/5/18
  */
 @Slf4j
-public abstract class BaseSqlProviderSupport {
+public abstract class AbstractSqlProviderSupport {
     /**
      * key -> mapper class   value -> tableInfo
      */

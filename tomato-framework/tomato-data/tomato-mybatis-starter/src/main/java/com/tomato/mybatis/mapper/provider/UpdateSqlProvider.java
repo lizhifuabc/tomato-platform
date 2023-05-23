@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  * @since 2023/5/18
  */
 @Slf4j
-public class UpdateSqlProvider extends BaseSqlProviderSupport {
+public class UpdateSqlProvider extends AbstractSqlProviderSupport {
     /**
      * sql
      * @param params  params
@@ -23,9 +23,9 @@ public class UpdateSqlProvider extends BaseSqlProviderSupport {
      * @return  sql
      */
     public String sql(Map<String, Object> params, ProviderContext context) {
-        Object criteria = params.get("criteria");
-        TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            Object criteria = params.get("criteria");
+            TableInfo table = tableInfo(context);
             SQL sql = new SQL()
                     .UPDATE(table.tableName)
                     .SET(Stream.of(table.fields)

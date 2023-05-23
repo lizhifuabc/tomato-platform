@@ -12,15 +12,15 @@ import java.util.stream.Stream;
  * @author lizhifu
  */
 @Slf4j
-public class InsertSqlProvider extends BaseSqlProviderSupport {
+public class InsertSqlProvider extends AbstractSqlProviderSupport {
     /**
      * sql
      * @param context context
      * @return  sql
      */
     public String sql(ProviderContext context) {
-        TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            TableInfo table = tableInfo(context);
             SQL sql = new SQL()
                     .INSERT_INTO(table.tableName)
                     .INTO_COLUMNS(table.columns)

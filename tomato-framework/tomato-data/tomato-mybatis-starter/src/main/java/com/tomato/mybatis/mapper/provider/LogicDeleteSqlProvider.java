@@ -11,10 +11,10 @@ import org.apache.ibatis.jdbc.SQL;
  * @author lizhifu
  */
 @Slf4j
-public class LogicDeleteSqlProvider extends BaseSqlProviderSupport {
+public class LogicDeleteSqlProvider extends AbstractSqlProviderSupport {
     public String sql(ProviderContext context) {
-        TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            TableInfo table = tableInfo(context);
             SQL sql = new SQL()
                     .UPDATE(table.tableName)
                     .SET("is_deleted = 1")

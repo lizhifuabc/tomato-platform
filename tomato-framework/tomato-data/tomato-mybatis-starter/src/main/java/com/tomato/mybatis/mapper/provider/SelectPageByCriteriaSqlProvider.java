@@ -7,10 +7,8 @@ import com.tomato.mybatis.util.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.builder.annotation.ProviderContext;
 import org.apache.ibatis.jdbc.SQL;
-import org.apache.ibatis.session.RowBounds;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -19,7 +17,7 @@ import java.util.stream.Stream;
  * @author lizhifu
  */
 @Slf4j
-public class SelectPageByCriteriaSqlProvider extends BaseSqlProviderSupport {
+public class SelectPageByCriteriaSqlProvider extends AbstractSqlProviderSupport {
     /**
      * sql
      * @param params  param 条件
@@ -32,8 +30,6 @@ public class SelectPageByCriteriaSqlProvider extends BaseSqlProviderSupport {
             Page page = (Page) params.get("page");
             TableInfo table = tableInfo(context);
             Sort sort = page.getSort();
-            String finalOrderBy = sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
-
             SQL sql = new SQL()
                     .SELECT(table.selectColumns)
                     .FROM(table.tableName)
@@ -42,7 +38,7 @@ public class SelectPageByCriteriaSqlProvider extends BaseSqlProviderSupport {
                             .map(TableInfo::assignParameter)
                             .toArray(String[]::new)
                     )
-                    .ORDER_BY(finalOrderBy)
+                    .ORDER_BY(orderBySql(sort))
                     .getSelf().OFFSET(page.getOffset()).LIMIT(page.getLimit());
             log.info("select page criteria sql:\n{}",sql.toString());
             return sql.toString();

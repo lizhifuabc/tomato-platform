@@ -10,10 +10,10 @@ import org.apache.ibatis.jdbc.SQL;
  * @author lizhifu
  */
 @Slf4j
-public class DeleteSqlProvider extends BaseSqlProviderSupport {
+public class DeleteSqlProvider extends AbstractSqlProviderSupport {
     public String sql(ProviderContext context) {
-        TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+            TableInfo table = tableInfo(context);
             SQL sql = new SQL()
                     .DELETE_FROM(table.tableName)
                     .WHERE(table.primaryKeyColumn + " = #{id}");

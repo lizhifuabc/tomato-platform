@@ -1,7 +1,6 @@
 package com.tomato.mybatis.mapper.provider;
 
 import com.tomato.mybatis.mapping.TableInfo;
-import com.tomato.mybatis.util.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.builder.annotation.ProviderContext;
 import org.apache.ibatis.jdbc.SQL;
@@ -14,7 +13,7 @@ import java.util.Map;
  * @author lizhifu
  */
 @Slf4j
-public class SelectByPrimaryKeyInSqlProvider extends BaseSqlProviderSupport {
+public class SelectByPrimaryKeyInSqlProvider extends AbstractSqlProviderSupport {
     public String sql(Map<String, Object> params, ProviderContext context) {
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
             TableInfo table = tableInfo(context);

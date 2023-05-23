@@ -3,13 +3,11 @@ package com.tomato.mybatis.mapper.provider;
 import com.tomato.mybatis.domain.Sort;
 import com.tomato.mybatis.mapping.TableInfo;
 import com.tomato.mybatis.util.ReflectionUtils;
-import com.tomato.mybatis.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.builder.annotation.ProviderContext;
 import org.apache.ibatis.jdbc.SQL;
 
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -17,7 +15,7 @@ import java.util.stream.Stream;
  * @author lizhifu
  */
 @Slf4j
-public class SelectByCriteriaSqlProvider extends BaseSqlProviderSupport {
+public class SelectByCriteriaSqlProvider extends AbstractSqlProviderSupport {
     /**
      * sql
      * @param criteria  entity 条件

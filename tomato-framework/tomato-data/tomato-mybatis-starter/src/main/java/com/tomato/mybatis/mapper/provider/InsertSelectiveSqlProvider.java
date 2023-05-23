@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  * @author lizhifu
  */
 @Slf4j
-public class InsertSelectiveSqlProvider extends BaseSqlProviderSupport {
+public class InsertSelectiveSqlProvider extends AbstractSqlProviderSupport {
     /**
      * sql
      * @param params  params 条件
@@ -23,9 +23,9 @@ public class InsertSelectiveSqlProvider extends BaseSqlProviderSupport {
      * @return  sql
      */
     public String sql(Map<String, Object> params, ProviderContext context) {
-        Object criteria = params.get("criteria");
-        TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), val -> {
+            Object criteria = params.get("criteria");
+            TableInfo table = tableInfo(context);
             Field[] notNullFields = Stream.of(table.fields)
                     .filter(field -> ReflectionUtils.getFieldValue(field, criteria) != null && !table.primaryKeyColumn.equals(TableInfo.columnName(field)))
                     .toArray(Field[]::new);

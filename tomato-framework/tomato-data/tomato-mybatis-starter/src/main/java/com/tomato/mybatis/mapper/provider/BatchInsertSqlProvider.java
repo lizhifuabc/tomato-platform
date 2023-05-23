@@ -16,7 +16,7 @@ import java.util.stream.Stream;
  * @author lizhifu
  */
 @Slf4j
-public class BatchInsertSqlProvider extends BaseSqlProviderSupport {
+public class BatchInsertSqlProvider extends AbstractSqlProviderSupport {
     /**
      * sql
      * @param param  mybatis @Param注解绑定的param map
@@ -24,8 +24,8 @@ public class BatchInsertSqlProvider extends BaseSqlProviderSupport {
      * @return  sql
      */
     public String sql(Map<String, Object> param, ProviderContext context) {
-        TableInfo table = tableInfo(context);
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), val -> {
+            TableInfo table = tableInfo(context);
             @SuppressWarnings("unchecked")
             int size = ((List<Object>)param.get("entities")).size();
             // 构造 ( #{entities[1-->数组索引].fieldName}, #{entities[1].fieldName2})
