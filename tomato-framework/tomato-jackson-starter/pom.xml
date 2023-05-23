@@ -18,6 +18,7 @@
             <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
         <!-- 生产配置元数据。optional: 依赖是可选的，不会被依赖传递      -->
+        <!--  自动生成YML配置关联JSON文件  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

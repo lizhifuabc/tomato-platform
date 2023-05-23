@@ -9,8 +9,6 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import jakarta.annotation.PostConstruct;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -24,7 +22,6 @@ import java.util.function.Function;
  * @author lizhifu
  */
 public class JacksonUtils {
-    private static final Logger logger = LoggerFactory.getLogger(JacksonUtils.class);
     private static ObjectMapper OBJECT_MAPPER;
     private final ObjectMapper objectMapper;
 
@@ -39,7 +36,6 @@ public class JacksonUtils {
             return;
         }
         OBJECT_MAPPER = this.objectMapper;
-        logger.info("JacksonUtils init success!");
     }
 
     public static ObjectMapper objectMapper() {
@@ -54,8 +50,7 @@ public class JacksonUtils {
         try {
             return objectMapper().writeValueAsString(domain);
         } catch (JsonProcessingException e) {
-            logger.error("Jackson json processing error, when to json! {}", e.getMessage());
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
@@ -67,8 +62,7 @@ public class JacksonUtils {
         try {
             return objectMapper().readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            logger.error("Jackson json processing error, when to object with value type! {}", e.getMessage());
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,8 +70,7 @@ public class JacksonUtils {
         try {
             return objectMapper().readValue(content, typeReference);
         } catch (JsonProcessingException e) {
-            logger.error("Jackson json processing error, when to object with type reference! {}", e.getMessage());
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
@@ -85,8 +78,7 @@ public class JacksonUtils {
         try {
             return objectMapper().readValue(content, javaType);
         } catch (JsonProcessingException e) {
-            logger.error("Jackson json processing error, when to object with java type! {}", e.getMessage());
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
@@ -119,8 +111,7 @@ public class JacksonUtils {
         try {
             return objectMapper().readTree(content);
         } catch (JsonProcessingException e) {
-            logger.error("Jackson json processing error, when to node with string! {}", e.getMessage());
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
@@ -128,8 +119,7 @@ public class JacksonUtils {
         try {
             return objectMapper().readTree(jsonParser);
         } catch (IOException e) {
-            logger.error("Jackson io error, when to node with json parser! {}", e.getMessage());
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
@@ -137,8 +127,7 @@ public class JacksonUtils {
         try {
             return objectMapper().createParser(content);
         } catch (IOException e) {
-            logger.error("Jackson io error, when create parser! {}", e.getMessage());
-            return null;
+            throw new RuntimeException(e);
         }
     }
 

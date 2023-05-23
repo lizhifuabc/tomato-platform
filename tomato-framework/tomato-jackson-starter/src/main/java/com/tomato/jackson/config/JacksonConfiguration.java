@@ -30,7 +30,7 @@ public class JacksonConfiguration {
 	private static final Logger log = LoggerFactory.getLogger(JacksonConfiguration.class);
 	@PostConstruct
 	public void postConstruct() {
-		log.info("tomato-jackson-starter Auto Configure.");
+		log.info("tomato-jackson-starter 自动装配");
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class JacksonConfiguration {
 		objectMapper.registerModule(new Jdk8Module());
 		objectMapper.registerModule(new JavaTimeModule());
 
-		log.info("tomato-jackson-starter objectMapper Auto Configure.");
+		log.info("tomato-jackson-starter objectMapper 自动装配");
 		return objectMapper;
 	}
 	/**
@@ -79,7 +79,7 @@ public class JacksonConfiguration {
 	 */
 	@Bean
 	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(ObjectMapper objectMapper) {
-		log.info("tomato-jackson-starter mappingJackson2HttpMessageConverter Auto Configure.");
+		log.info("tomato-jackson-starter mappingJackson2HttpMessageConverter 自动装配");
 		return new MappingJackson2HttpMessageConverter(objectMapper);
 	}
 	/**
@@ -88,7 +88,7 @@ public class JacksonConfiguration {
 	 */
 	@Bean
 	public JacksonUtils jacksonUtils(ObjectMapper objectMapper) {
-		log.info("tomato-jackson-starter jacksonUtils Auto Configure.");
+		log.info("tomato-jackson-starter jacksonUtils 自动装配");
 		return new JacksonUtils(objectMapper);
 	}
 }
