@@ -2,7 +2,33 @@
 server:
   port: 9997
 
+
 spring:
   application:
     # 应用名称，用于注册到注册中心，pom.xml中的artifactId
     name: @artifactId@
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    # 动态创建和绑定队列、交换机的配置
+    rabbitInfoList:
+      # 正常队列
+      - routing-key: test
+        consumer: payMonitorConsumerService
+        autoAck: false
+        queue:
+          name: test
+          dead-letter-exchange: dead
+          dead-letter-routing-key: dead
+          arguments:
+            # 1分钟(测试)，单位毫秒
+            x-message-ttl: 3000
+        exchange:
+          name: test
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tomato-pay?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: tomato
+    password: tomato

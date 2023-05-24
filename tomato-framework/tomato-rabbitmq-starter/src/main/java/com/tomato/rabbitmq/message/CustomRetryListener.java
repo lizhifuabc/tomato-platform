@@ -1,5 +1,6 @@
 package com.tomato.rabbitmq.message;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.retry.RetryCallback;
 import org.springframework.retry.RetryContext;
 
@@ -18,7 +19,9 @@ public interface CustomRetryListener {
      * @param <E> 异常
      * @param <T> 回调
      */
-    public <E extends Throwable, T> void lastRetry(RetryContext context, RetryCallback<T,E> callback, Throwable throwable);
+    default  <E extends Throwable, T> void lastRetry(RetryContext context, RetryCallback<T,E> callback, Throwable throwable){
+
+    }
 
     /**
      * 每次失败的回调
@@ -28,5 +31,7 @@ public interface CustomRetryListener {
      * @param <E> 异常
      * @param <T> 回调
      */
-    public <E extends Throwable, T> void onRetry(RetryContext context, RetryCallback<T,E> callback, Throwable throwable);
+    default  <E extends Throwable, T> void onRetry(RetryContext context, RetryCallback<T,E> callback, Throwable throwable){
+
+    }
 }

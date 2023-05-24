@@ -6,19 +6,15 @@
     <parent>
         <groupId>com.tomato</groupId>
         <artifactId>tomato-module-pay-monitor</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-pay-monitor-boot</artifactId>
+    <artifactId>tomato-module-pay-monitor-application</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-pay-monitor-application</artifactId>
+            <artifactId>tomato-module-pay-monitor-infrastructure</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

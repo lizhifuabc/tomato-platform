@@ -12,19 +12,19 @@ import java.util.Map;
  * @since 2023/5/11
  */
 @Data
-public class RabbitDetailProperties {
+public class RabbitInfo {
     /**
      * 路由Key
      */
     private String routingKey;
 
     /**
-     * 生产者
+     * 生产者 service 名称
      */
     private String producer;
 
     /**
-     * 消费者
+     * 消费者 service 名称
      */
     private String consumer;
 
@@ -42,7 +42,10 @@ public class RabbitDetailProperties {
      * 交换机信息
      */
     private Exchange exchange;
-
+    /**
+     * 重试 bean name
+     */
+    private String retry;
     /**
      * 交换机信息
      */

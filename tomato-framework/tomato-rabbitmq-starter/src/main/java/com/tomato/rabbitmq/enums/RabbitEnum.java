@@ -12,15 +12,15 @@ public enum RabbitEnum implements BaseEnum<String> {
     /**
      * 队列名称
      */
-    QUEUE("xxx.{}.queue", "队列名称"),
+    QUEUE("tomato.%s.queue", "队列名称"),
     /**
      * 交换机名称
      */
-    EXCHANGE("xxx.{}.exchange", "交换机名称"),
+    EXCHANGE("tomato.%s.exchange", "交换机名称"),
     /**
      * 路由名称
      */
-    ROUTER_KEY("xxx.{}.key", "路由名称"),
+    ROUTER_KEY("tomato.%s.key", "路由名称"),
     ;
     RabbitEnum(String value, String desc) {
         this.value = value;

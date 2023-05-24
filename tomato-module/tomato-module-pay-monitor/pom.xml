@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>tomato-module-pay-monitor-boot</module>
+        <module>tomato-module-pay-monitor-infrastructure</module>
+        <module>tomato-module-pay-monitor-application</module>
     </modules>
 
     <properties>
