@@ -22,7 +22,6 @@
         <module>tomato-id-starter</module>
         <module>tomato-security-starter</module>
         <module>tomato-jwt-starter</module>
-        <module>tomato-rabbitmq-starter</module>
         <module>tomato-captcha-starter</module>
         <module>tomato-lock</module>
         <module>tomato-redis-base-starter</module>
@@ -34,5 +33,6 @@
         <module>tomato-cloud</module>
         <module>tomato-data</module>
         <module>tomato-monitor</module>
+        <module>tomato-mq</module>
     </modules>
 </project>

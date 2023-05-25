@@ -101,8 +101,10 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-monitor/tomato-monitor-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-monitor/tomato-monitor-prometheus/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-monitor/tomato-monitor-prometheus/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rabbitmq-starter/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rabbitmq-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-mq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-mq/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-mq/tomato-rabbitmq-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-mq/tomato-rabbitmq-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-redis-base-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-redis-base-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-redis-starter/src/main/java" charset="UTF-8" />
