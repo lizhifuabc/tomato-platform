@@ -97,6 +97,9 @@ public class RabbitCustomConfig implements SmartInitializingSingleton {
                 .consumer(consumerService)
                 .retryListener(customRetryListener)
                 .autoAck(rabbitInfo.getAutoAck())
+                .concurrentConsumers(rabbitInfo.getConcurrentConsumers())
+                .maxConcurrentConsumers(rabbitInfo.getMaxConcurrentConsumers())
+                .prefetchCount(rabbitInfo.getPrefetchCount())
                 .amqpAdmin(amqpAdmin)
                 .build();
         SimpleMessageListenerContainer container = factory.getObject();

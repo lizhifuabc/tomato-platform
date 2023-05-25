@@ -72,7 +72,19 @@ public class ConsumerContainerFactory implements FactoryBean<SimpleMessageListen
      * 是否自动确认
      */
     private Boolean autoAck;
-
+    /**
+     * 并发消费者数量
+     */
+    private int concurrentConsumers;
+    /**
+     * 最大并发消费者数量
+     */
+    private int maxConcurrentConsumers;
+    /**
+     * 消息预取（prefetch）：可以配置每个消费者从 RabbitMQ 中预先获取的消息数量，以控制消息的批量处理。
+     * 限制每次只消费一个(一个线程)，上面配置5，也就是能一次接收5个。
+     */
+    private int prefetchCount;
     /**
      * 消息消费的监听容器
      * @return SimpleMessageListenerContainer
@@ -87,11 +99,11 @@ public class ConsumerContainerFactory implements FactoryBean<SimpleMessageListen
         // 设置监听的队列，可以设置一个或多个队列。
         container.setQueues(queue);
         // 消息预取（prefetch）：可以配置每个消费者从 RabbitMQ 中预先获取的消息数量，以控制消息的批量处理。
-        container.setPrefetchCount(20);
+        container.setPrefetchCount(prefetchCount);
         // 并发消费：可以配置容器中的消费者线程数，以实现消息的并发消费。
-        container.setConcurrentConsumers(20);
+        container.setConcurrentConsumers(concurrentConsumers);
         // 设置最大并发消费者的数量，即最大的消息并发处理线程数。
-        container.setMaxConcurrentConsumers(100);
+        container.setMaxConcurrentConsumers(maxConcurrentConsumers);
         // 是否将被拒绝的消息重新入队列,设置为 false 时，表示如果消息被消费者拒绝，那么该消息将被视为已成功处理，不会重新放回队列
         // 仅在确认模式为 MANUAL 时生效。在 AUTO 确认模式下，被拒绝的消息会自动重新入队列。
         container.setDefaultRequeueRejected(Boolean.FALSE);

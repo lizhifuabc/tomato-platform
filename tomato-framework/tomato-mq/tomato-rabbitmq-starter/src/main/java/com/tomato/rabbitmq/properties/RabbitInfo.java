@@ -47,6 +47,19 @@ public class RabbitInfo {
      */
     private String retry;
     /**
+     * 并发消费者数量
+     */
+    private int concurrentConsumers = 20;
+    /**
+     * 最大并发消费者数量
+     */
+    private int maxConcurrentConsumers = 100;
+    /**
+     * 消息预取（prefetch）：可以配置每个消费者从 RabbitMQ 中预先获取的消息数量，以控制消息的批量处理。
+     * 限制每次只消费一个(一个线程)，上面配置5，也就是能一次接收5个。
+     */
+    private int prefetchCount = 20;
+    /**
      * 交换机信息
      */
     @Data
