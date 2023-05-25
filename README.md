@@ -32,12 +32,12 @@ tomato-platform
 ├     ├── tomato-rabbitmq-starter -- rabbitmq配置|动态队列、动态生产者，动态消费者绑定
 ├     └── XXXXXX
 ├── tomato-gateway -- 网关服务
-├    ├── tomato-gateway-core -- 服务网关核心依赖
-├		 ├── tomato-gateway-web -- 系统服务网关[9999]
+├     ├── tomato-gateway-core -- 服务网关核心依赖
+├		  ├── tomato-gateway-web -- 系统服务网关[9999]
 ├── XXXXXX -- XXXXXX
 └── tomato-example -- 示例代码
-├    └── spring-boot-tracing --  基于Micrometer、Zipkin分布式链路追踪例子
-├     └── XXXXXX -- XXXXXX
+├     └── spring-boot-tracing --  基于Micrometer、Zipkin分布式链路追踪例子
+├     └── spring-modulith -- Spring Boot的模块化应用程序示例
 └── tomato-module -- 业务模块
 ├     └── tomato-module-account -- 账户服务[9080]
 ├     ├── tomato-module-monitor -- 基于 Spring Boot Admin 监控服务[9996]
