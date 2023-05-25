@@ -21,6 +21,7 @@
         <module>spring-boot-layer</module>
         <module>maven-pom</module>
         <module>mybatis-generator</module>
+        <module>spring-modulith</module>
     </modules>
 
     <properties>

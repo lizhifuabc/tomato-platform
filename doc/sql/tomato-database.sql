@@ -60,3 +60,8 @@ CREATE DATABASE IF NOT EXISTS `tomato_merchant` DEFAULT CHARACTER SET utf8mb4 DE
 -- 授权中心
 -- ----------------------------
 CREATE DATABASE IF NOT EXISTS `tomato_oauth` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
+
+-- ----------------------------
+-- 基于JDBC的事件发布
+-- ----------------------------
+CREATE DATABASE IF NOT EXISTS `tomato_modulith` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;

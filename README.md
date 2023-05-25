@@ -29,7 +29,7 @@ tomato-platform
 ├     ├── tomato-data -- orm 相关
 ├     ├── ├── tomato-mybatis-starter -- 基于SqlProvider的 MyBatis 增强(简易)
 ├     ├── ├── XXXXXX -- XXXXXX
-├     ├── XXXXXX -- XXXXXX
+├     ├── tomato-rabbitmq-starter -- rabbitmq配置|动态队列、动态生产者，动态消费者绑定
 ├     └── XXXXXX
 ├── tomato-gateway -- 网关服务
 ├    ├── tomato-gateway-core -- 服务网关核心依赖
