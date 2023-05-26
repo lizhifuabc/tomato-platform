@@ -5,8 +5,8 @@ logging:
   level:
     root: INFO
     org.springframework.web: INFO
-    org.springframework.security: TRACE
-    org.springframework.security.oauth2: TRACE
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
 
 tomato:
   auth:
