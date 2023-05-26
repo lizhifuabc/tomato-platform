@@ -34,5 +34,7 @@
         <module>tomato-data</module>
         <module>tomato-monitor</module>
         <module>tomato-mq</module>
+        <module>tomato-rpc</module>
+        <module>tomato-cache</module>
     </modules>
 </project>
