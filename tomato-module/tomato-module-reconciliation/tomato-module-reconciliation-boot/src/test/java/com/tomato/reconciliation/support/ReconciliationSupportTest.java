@@ -1,10 +1,11 @@
-package com.tomato.reconciliation.utils;
+package com.tomato.reconciliation.support;
 
 import com.tomato.mybatis.domain.Sort;
 import com.tomato.reconciliation.dbinfo.internal.domain.DbInfo;
 import com.tomato.reconciliation.dbinfo.internal.mapper.DbInfoMapper;
 import com.tomato.reconciliation.task.internal.Task;
 import com.tomato.reconciliation.task.internal.mapper.TaskMapper;
+import com.tomato.reconciliation.utils.ExecuteQueryUtil;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +21,7 @@ import java.util.Optional;
  * @since 2023/5/27
  */
 @SpringBootTest
-public class ReconciliationUtilTest {
+public class ReconciliationSupportTest {
     @Resource
     TaskMapper taskMapper;
     @Resource
@@ -38,10 +39,10 @@ public class ReconciliationUtilTest {
             List<Map<String, Object>> downList = ExecuteQueryUtil.query(downDbInfo.get(), task.getDownTableSql());
             System.out.println("下游:"+downList);
 
-            ReconciliationUtil reconciliationUtil = new ReconciliationUtil(upList,downList,task);
-            reconciliationUtil.reconciliation();
-            System.out.println("对账结果上游："+reconciliationUtil.getUpMap());
-            System.out.println("对账结果下游"+reconciliationUtil.getDownMap());
+            ReconciliationSupport reconciliationSupport = new ReconciliationSupport(upList,downList,task);
+            reconciliationSupport.reconciliation();
+            System.out.println("对账结果上游："+ reconciliationSupport.getUpMap());
+            System.out.println("对账结果下游"+ reconciliationSupport.getDownMap());
         });
     }
 }

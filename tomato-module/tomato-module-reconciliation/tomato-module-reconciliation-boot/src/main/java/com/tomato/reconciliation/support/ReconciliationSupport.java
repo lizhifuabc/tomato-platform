@@ -1,17 +1,17 @@
-package com.tomato.reconciliation.utils;
+package com.tomato.reconciliation.support;
 
 import com.tomato.reconciliation.task.internal.Task;
 
 import java.util.*;
 
 /**
- * 对账核心工具类
+ * 对账核心类
  * TODO 分片对账
  *
  * @author lizhifu
  * @since 2023/5/27
  */
-public class ReconciliationUtil {
+public class ReconciliationSupport {
     private final List<Map<String, Object>> upList;
 
     private final List<Map<String, Object>> downList;
@@ -20,14 +20,14 @@ public class ReconciliationUtil {
     private final Map<String, Map<String, Object>> upMap;
     private final Task task;
 
-    public ReconciliationUtil(List<Map<String, Object>> upList, List<Map<String, Object>> downList, Task task) {
+    public ReconciliationSupport(List<Map<String, Object>> upList, List<Map<String, Object>> downList, Task task) {
         this.upList = upList;
         this.downList = downList;
         this.task = task;
         this.downMap = downMap();
         this.upMap = new HashMap<>();
     }
-    public ReconciliationUtil(List<Map<String, Object>> upList, Map<String, Map<String, Object>> downMap, Task task) {
+    public ReconciliationSupport(List<Map<String, Object>> upList, Map<String, Map<String, Object>> downMap, Task task) {
         this.upList = upList;
         this.downList = new ArrayList<>();
         this.task = task;
