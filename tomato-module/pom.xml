@@ -29,5 +29,6 @@
         <module>tomato-module-agent</module>
         <module>tomato-module-auth</module>
         <module>tomato-module-pay-monitor</module>
+        <module>tomato-module-reconciliation</module>
     </modules>
 </project>
