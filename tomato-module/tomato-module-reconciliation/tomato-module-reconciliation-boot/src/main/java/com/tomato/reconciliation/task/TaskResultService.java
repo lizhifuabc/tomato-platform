@@ -32,28 +32,35 @@ public class TaskResultService {
         Task task = reconciliationSupport.getTask();
         Map<String, Map<String, Object>> downMap = reconciliationSupport.getDownMap();
         Map<String, Map<String, Object>> upMap = reconciliationSupport.getUpMap();
-
-        // 循环 upMap
+        Set<String> downSet = downMap.keySet();
         Set<String> upSet = upMap.keySet();
+        // 循环 upMap
         List<TaskResult> upList = new ArrayList<>();
         for (String upKey : upSet) {
             TaskResult taskResult = new TaskResult();
             taskResult.setTaskId(task.getId());
             taskResult.setTaskSignValue(upKey);
             taskResult.setTaskValue(upMap.get(upKey).toString());
-            taskResult.setUnilateralType(UnilateralType.UP_ERROR.getValue());
+            if (downSet.contains(upKey)){
+                taskResult.setUnilateralType(UnilateralType.ALARM_ERROR.getValue());
+            }else {
+                taskResult.setUnilateralType(UnilateralType.UP_ERROR.getValue());
+            }
             taskResult.setTaskDate(taskDate);
             upList.add(taskResult);
         }
         // 循环 downMap
-        Set<String> downSet = downMap.keySet();
         List<TaskResult> downList = new ArrayList<>();
         for (String downKey : downSet) {
             TaskResult taskResult = new TaskResult();
             taskResult.setTaskId(task.getId());
             taskResult.setTaskSignValue(downKey);
             taskResult.setTaskValue(downMap.get(downKey).toString());
-            taskResult.setUnilateralType(UnilateralType.DOWN_ERROR.getValue());
+            if (upSet.contains(downKey)){
+                taskResult.setUnilateralType(UnilateralType.ALARM_ERROR.getValue());
+            }else {
+                taskResult.setUnilateralType(UnilateralType.DOWN_ERROR.getValue());
+            }
             taskResult.setTaskDate(taskDate);
             downList.add(taskResult);
         }
