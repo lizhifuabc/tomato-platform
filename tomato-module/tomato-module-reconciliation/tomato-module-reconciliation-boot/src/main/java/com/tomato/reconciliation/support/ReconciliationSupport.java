@@ -43,6 +43,10 @@ public class ReconciliationSupport {
         return upMap;
     }
 
+    public Task getTask() {
+        return task;
+    }
+
     /**
      * 对账
      */

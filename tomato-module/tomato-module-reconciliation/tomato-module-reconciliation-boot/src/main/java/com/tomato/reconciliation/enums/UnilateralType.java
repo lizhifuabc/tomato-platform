@@ -18,7 +18,7 @@ public enum UnilateralType implements BaseEnum<String> {
     /**
      * 下游单边
      */
-    DOWN_ERROR("下游单边","下游单边");
+    DOWN_ERROR("DOWN_ERROR","下游单边");
     private final String value;
 
     private final String desc;
