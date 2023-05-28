@@ -79,7 +79,7 @@ public class TaskResultService {
     }
 
     private void result(Task task,LocalDate taskDate) {
-        // TODO 内部数据进行核销
+        // TODO 内部数据进行核销,有些任务，例如 COUNT对账任务，不能核销
         TaskResult currentTaskResult = new TaskResult();
         currentTaskResult.setTaskId(task.getId());
         currentTaskResult.setTaskDate(taskDate);
