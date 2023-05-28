@@ -58,6 +58,10 @@ public class TaskResultService {
             downList.add(taskResult);
         }
         // TODO 事务大小优化，list 构建提出事务
+        TaskResult delete = new TaskResult();
+        delete.setTaskId(task.getId());
+        delete.setTaskDate(taskDate);
+        taskResultMapper.deleteByCriteria(delete);
         taskResultMapper.batchInsertSelective(upList);
         taskResultMapper.batchInsertSelective(downList);
     }
