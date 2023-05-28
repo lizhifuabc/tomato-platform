@@ -1,5 +1,7 @@
 package com.tomato.reconciliation.task;
 
+import com.tomato.mybatis.domain.Sort;
+import com.tomato.reconciliation.enums.TaskSysType;
 import com.tomato.reconciliation.enums.UnilateralType;
 import com.tomato.reconciliation.support.ReconciliationSupport;
 import com.tomato.reconciliation.task.internal.domain.Task;
@@ -47,6 +49,7 @@ public class TaskResultService {
                 taskResult.setUnilateralType(UnilateralType.UP_ERROR.getValue());
             }
             taskResult.setTaskDate(taskDate);
+            taskResult.setTaskSysType(TaskSysType.UP.getValue());
             upList.add(taskResult);
         }
         // 循环 downMap
@@ -62,6 +65,7 @@ public class TaskResultService {
                 taskResult.setUnilateralType(UnilateralType.DOWN_ERROR.getValue());
             }
             taskResult.setTaskDate(taskDate);
+            taskResult.setTaskSysType(TaskSysType.DOWN.getValue());
             downList.add(taskResult);
         }
         // TODO 事务大小优化，list 构建提出事务
@@ -71,5 +75,21 @@ public class TaskResultService {
         taskResultMapper.deleteByCriteria(delete);
         taskResultMapper.batchInsertSelective(upList);
         taskResultMapper.batchInsertSelective(downList);
+    }
+
+    private void result(Task task,LocalDate taskDate) {
+
+        TaskResult currentTaskResult = new TaskResult();
+        currentTaskResult.setTaskId(task.getId());
+        currentTaskResult.setTaskDate(taskDate);
+        Sort sort = Sort.by("id");
+        List<TaskResult> currentTaskResults = taskResultMapper.selectByCriteria(sort, currentTaskResult);
+        currentTaskResults.forEach(taskResult -> {
+            TaskResult oldTaskResult = new TaskResult();
+            oldTaskResult.setTaskId(task.getId());
+            oldTaskResult.setTaskSignValue(taskResult.getTaskSignValue());
+            oldTaskResult.setTaskDate(taskDate.minusDays(task.getTimeNumber()));
+            List<TaskResult> oldTaskResults = taskResultMapper.selectByCriteria(sort, oldTaskResult);
+        });
     }
 }

@@ -32,7 +32,11 @@ public class TaskResult extends BaseEntity {
      */
     private String unilateralType;
     /**
-     * 对账日期
+     * 任务数据查询日期
      */
     private LocalDate taskDate;
+    /**
+     * 系统上下游标识值
+     */
+    private String taskSysType;
 }

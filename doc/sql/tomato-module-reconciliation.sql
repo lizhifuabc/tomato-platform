@@ -30,6 +30,7 @@ CREATE TABLE `t_task` (
     `task_name`             varchar(255)    NOT NULL COMMENT '任务名称',
     `task_desc`             varchar(255)    NOT NULL COMMENT '任务描述',
     `task_sign`             varchar(126)    NOT NULL COMMENT '字段标识',
+    `time_number`           int             default 1 comment '时间差数量，自动核销对账明细',
 
     `up_table_sql`          varchar(255)    not null comment '上游表SQL',
     `up_db_info_id`         BIGINT(20)      not null comment '上游数据源ID',
@@ -57,14 +58,16 @@ CREATE TABLE `t_task_result` (
     `id`                      BIGINT(20)      NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `task_id`                 BIGINT(20)      not null comment '任务ID',
     `task_sign_value`         varchar(126)    NOT NULL COMMENT '字段标识值',
+    `task_sys_type`           varchar(126)    NOT NULL COMMENT '系统上下游标识值',
     `task_value`              text            NOT NULL COMMENT '数据明细值',
     `unilateral_type`         varchar(255)    not null comment '单边类型',
-    `task_date`               date            not null comment '任务日期',
+    `task_date`               date            not null comment '任务数据查询日期',
 
     `version`                 int             not null default 0                  comment '乐观锁',
     `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
     `create_time`             datetime        not null default current_timestamp comment '创建时间',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    unique key `task_id_task_sign_value_task_sys_type_task_date` (`task_id`, `task_sign_value`, `task_sys_type`, `task_date`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='对账任务执行结果';
 
 -- ----------------------------

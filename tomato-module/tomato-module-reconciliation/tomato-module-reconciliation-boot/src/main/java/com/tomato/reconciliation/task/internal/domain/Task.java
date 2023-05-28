@@ -17,6 +17,10 @@ public class Task extends BaseEntity {
     private String taskDesc;
 
     private String taskSign;
+    /**
+     * 时间差数量，自动核销对账明细时使用
+     */
+    private Integer timeNumber;
 
     private String upTableSql;
     private Long upDbInfoId;

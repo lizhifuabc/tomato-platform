@@ -20,9 +20,8 @@ public class TaskSqlAnalysis {
      * @param sql sql
      * @return sql
      */
-    public static String analysis(String sql) {
-        LocalDate today = LocalDate.now();
-        return sql.replaceAll(SqlConstant.MIN_CURRENT_TIME, LocalDateTime.of(today, LocalTime.MIN).format(DATE_TIME_FORMATTER))
-                    .replaceAll(SqlConstant.MAX_CURRENT_TIME, LocalDateTime.of(today, LocalTime.MAX).format(DATE_TIME_FORMATTER));
+    public static String analysis(String sql,LocalDate taskDate) {
+        return sql.replaceAll(SqlConstant.MIN_CURRENT_TIME, LocalDateTime.of(taskDate, LocalTime.MIN).format(DATE_TIME_FORMATTER))
+                    .replaceAll(SqlConstant.MAX_CURRENT_TIME, LocalDateTime.of(taskDate, LocalTime.MAX).format(DATE_TIME_FORMATTER));
     }
 }
