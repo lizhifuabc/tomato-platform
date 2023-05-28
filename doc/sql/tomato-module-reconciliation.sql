@@ -50,6 +50,11 @@ values ('对账任务1', '对账任务1', 'no',
         'select order_no as no,amount from t_demo1 where create_time >= \'#min_current_time\' and create_time <= \'#max_current_time\'',
         1, 'select sign_no as no,amount from t_demo2 where create_time >= \'#min_current_time\' and create_time <= \'#max_current_time\'', 2);
 
+insert into t_task (task_name, task_desc, task_sign, up_table_sql, up_db_info_id, down_table_sql, down_db_info_id)
+values ('COUNT对账任务', 'COUNT对账任务', 'no',
+        'select COUNT(*) as no from t_demo1 where create_time >= \'#min_current_time\' and create_time <= \'#max_current_time\'',
+        1, 'select COUNT(*) as no from t_demo2 where create_time >= \'#min_current_time\' and create_time <= \'#max_current_time\'', 2);
+
 -- ----------------------------
 -- 对账任务执行结果
 -- ----------------------------
