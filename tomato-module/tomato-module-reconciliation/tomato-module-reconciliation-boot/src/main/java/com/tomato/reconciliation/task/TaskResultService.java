@@ -13,10 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * TaskResult
@@ -73,8 +70,12 @@ public class TaskResultService {
         delete.setTaskId(task.getId());
         delete.setTaskDate(taskDate);
         taskResultMapper.deleteByCriteria(delete);
-        taskResultMapper.batchInsertSelective(upList);
-        taskResultMapper.batchInsertSelective(downList);
+        if(!upList.isEmpty()){
+            taskResultMapper.batchInsertSelective(upList);
+        }
+        if (!downList.isEmpty()){
+            taskResultMapper.batchInsertSelective(downList);
+        }
     }
 
     private void result(Task task,LocalDate taskDate) {

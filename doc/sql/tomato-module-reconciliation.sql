@@ -81,7 +81,7 @@ CREATE TABLE `t_demo1` (
      `create_time`             datetime        not null default current_timestamp comment '创建时间',
      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='demo1';
-insert into t_demo1 (order_no, amount) values ('1000', 100);
+insert into t_demo1 (order_no, amount,create_time) values ('1000', 100,'2023-05-26 11:00:00');
 insert into t_demo1 (order_no, amount) values ('1001', 200);
 insert into t_demo1 (order_no, amount) values ('1002', 300);
 insert into t_demo1 (order_no, amount) values ('1003', 400);
@@ -96,7 +96,7 @@ CREATE TABLE `t_demo2` (
     `create_time`             datetime        not null default current_timestamp comment '创建时间',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='demo2';
-insert into t_demo2 (sign_no, amount,create_time) values ('1000', 100,'2020-01-01 00:00:00');
+insert into t_demo2 (sign_no, amount,create_time) values ('1000', 100,'2023-05-27 11:00:00');
 insert into t_demo2 (sign_no, amount) values ('1001', 200.00);
 insert into t_demo2 (sign_no, amount) values ('1002', 300.01);
 insert into t_demo2 (sign_no, amount) values ('1003', 400.01);
