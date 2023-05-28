@@ -3,7 +3,7 @@ package com.tomato.reconciliation.support;
 import com.tomato.mybatis.domain.Sort;
 import com.tomato.reconciliation.dbinfo.internal.domain.DbInfo;
 import com.tomato.reconciliation.dbinfo.internal.mapper.DbInfoMapper;
-import com.tomato.reconciliation.task.internal.Task;
+import com.tomato.reconciliation.task.internal.domain.Task;
 import com.tomato.reconciliation.task.internal.mapper.TaskMapper;
 import com.tomato.reconciliation.utils.ExecuteQueryUtil;
 import jakarta.annotation.Resource;

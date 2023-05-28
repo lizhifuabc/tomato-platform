@@ -1,4 +1,4 @@
-package com.tomato.reconciliation.task.internal;
+package com.tomato.reconciliation.task.internal.domain;
 
 import com.tomato.common.entity.BaseEntity;
 import lombok.Data;

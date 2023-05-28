@@ -1,6 +1,6 @@
 package com.tomato.reconciliation.support;
 
-import com.tomato.reconciliation.task.internal.Task;
+import com.tomato.reconciliation.task.internal.domain.Task;
 
 import java.util.*;
 
