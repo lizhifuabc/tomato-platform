@@ -55,9 +55,11 @@ public class BatchInsertSqlProvider extends AbstractSqlProviderSupport {
      * @return  sql
      */
     public String sqlSelective(Map<String, Object> params, ProviderContext context) {
-        return SQL_CACHE.computeIfAbsent(getCacheKey(context), val -> {
-            Object entities = params.get("entities");
-            List<Object> list = (List<Object>) entities;
+        Object entities = params.get("entities");
+        List<Object> list = (List<Object>) entities;
+        // TODO 缓存需要添加size,此时存在问题，如果第一次插入的是2条数据，第二次插入的是3条数据，那么第二次插入的sql会被缓存
+        // TODO 如果数据比较多，那么缓存的sql会很多，需要考虑缓存的问题
+        return SQL_CACHE.computeIfAbsent(getCacheKey(context)+":"+list.size(), val -> {
             TableInfo table = tableInfo(context);
             Field[] notNullFields = Stream.of(table.fields)
                     .filter(field -> ReflectionUtils.getFieldValue(field, list.get(0)) != null && !table.primaryKeyColumn.equals(TableInfo.columnName(field)))
