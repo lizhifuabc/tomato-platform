@@ -44,4 +44,13 @@ public interface InsertMapper<T, ID> extends Mapper<T, ID> {
      */
     @InsertProvider(type = BatchInsertSqlProvider.class, method = "sql")
     int batchInsert(@Param("entities") List<T> entities);
+
+    /**
+     * 批量插入实体
+     *
+     * @param entities  实体列表
+     * @return          影响条数
+     */
+    @InsertProvider(type = BatchInsertSqlProvider.class, method = "sqlSelective")
+    int batchInsertSelective(@Param("entities") List<T> entities);
 }
