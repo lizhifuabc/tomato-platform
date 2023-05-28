@@ -45,7 +45,9 @@ CREATE TABLE `t_task` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='对账任务';
 
 insert into t_task (task_name, task_desc, task_sign, up_table_sql, up_db_info_id, down_table_sql, down_db_info_id)
-values ('对账任务1', '对账任务1', 'no', 'select order_no as no,amount from t_demo1', 1, 'select sign_no as no,amount from t_demo2', 2);
+values ('对账任务1', '对账任务1', 'no',
+        'select order_no as no,amount from t_demo1 where create_time >= \'#min_current_time\' and create_time <= \'#max_current_time\'',
+        1, 'select sign_no as no,amount from t_demo2 where create_time >= \'#min_current_time\' and create_time <= \'#max_current_time\'', 2);
 
 -- ----------------------------
 -- 对账任务执行结果
@@ -73,11 +75,13 @@ CREATE TABLE `t_demo1` (
      `id`                BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
      `order_no`          varchar(255) NOT NULL COMMENT '编号',
      `amount`            decimal(16,4) NOT NULL COMMENT '金额',
+     `create_time`             datetime        not null default current_timestamp comment '创建时间',
      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='demo1';
 insert into t_demo1 (order_no, amount) values ('1000', 100);
 insert into t_demo1 (order_no, amount) values ('1001', 200);
 insert into t_demo1 (order_no, amount) values ('1002', 300);
+insert into t_demo1 (order_no, amount) values ('1003', 400);
 -- ----------------------------
 -- demo2
 -- ----------------------------
@@ -86,9 +90,10 @@ CREATE TABLE `t_demo2` (
     `id`                BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `sign_no`           varchar(255) NOT NULL COMMENT '编号',
     `amount`            decimal(16,4) NOT NULL COMMENT '金额',
+    `create_time`             datetime        not null default current_timestamp comment '创建时间',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='demo2';
-insert into t_demo2 (sign_no, amount) values ('1000', 100);
+insert into t_demo2 (sign_no, amount,create_time) values ('1000', 100,'2020-01-01 00:00:00');
 insert into t_demo2 (sign_no, amount) values ('1001', 200.00);
 insert into t_demo2 (sign_no, amount) values ('1002', 300.01);
 insert into t_demo2 (sign_no, amount) values ('1003', 400.01);

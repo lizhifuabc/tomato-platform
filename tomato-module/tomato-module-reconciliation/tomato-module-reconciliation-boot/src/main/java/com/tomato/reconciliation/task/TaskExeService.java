@@ -35,10 +35,10 @@ public class TaskExeService {
         Optional<DbInfo> upDbInfo = dbInfoMapper.selectByPrimaryKey(task.getUpDbInfoId());
         Optional<DbInfo> downDbInfo = dbInfoMapper.selectByPrimaryKey(task.getDownDbInfoId());
 
-        List<Map<String, Object>> upList = ExecuteQueryUtil.query(upDbInfo.get(), task.getUpTableSql());
+        List<Map<String, Object>> upList = ExecuteQueryUtil.query(upDbInfo.get(), TaskSqlAnalysis.analysis(task.getUpTableSql()));
         log.info("执行对账任务:上游:{}",upList.size());
 
-        List<Map<String, Object>> downList = ExecuteQueryUtil.query(downDbInfo.get(), task.getDownTableSql());
+        List<Map<String, Object>> downList = ExecuteQueryUtil.query(downDbInfo.get(), TaskSqlAnalysis.analysis(task.getDownTableSql()));
         log.info("执行对账任务:下游:{}",downList.size());
 
         ReconciliationSupport reconciliationSupport = new ReconciliationSupport(upList,downList,task);
