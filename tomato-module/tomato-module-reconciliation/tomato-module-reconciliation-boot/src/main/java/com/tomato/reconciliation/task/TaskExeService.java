@@ -10,6 +10,7 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,7 +30,7 @@ public class TaskExeService {
     private DbInfoMapper dbInfoMapper;
     @Resource
     private TaskResultService taskResultService;
-    public void exe(Task task){
+    public void exe(Task task,LocalDate taskDate){
         log.info("执行对账任务:id:{},name:{}",task.getId(),task.getTaskName());
         Optional<DbInfo> upDbInfo = dbInfoMapper.selectByPrimaryKey(task.getUpDbInfoId());
         Optional<DbInfo> downDbInfo = dbInfoMapper.selectByPrimaryKey(task.getDownDbInfoId());
@@ -43,6 +44,6 @@ public class TaskExeService {
         ReconciliationSupport reconciliationSupport = new ReconciliationSupport(upList,downList,task);
         reconciliationSupport.reconciliation();
 
-        taskResultService.result(reconciliationSupport);
+        taskResultService.result(reconciliationSupport, taskDate);
     }
 }

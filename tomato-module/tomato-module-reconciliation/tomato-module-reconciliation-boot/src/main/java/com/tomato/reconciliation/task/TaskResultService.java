@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class TaskResultService {
     @Resource
     private TaskResultMapper taskResultMapper;
     @Transactional(rollbackFor = Exception.class)
-    public void result(ReconciliationSupport reconciliationSupport){
+    public void result(ReconciliationSupport reconciliationSupport, LocalDate taskDate){
         Task task = reconciliationSupport.getTask();
         Map<String, Map<String, Object>> downMap = reconciliationSupport.getDownMap();
         Map<String, Map<String, Object>> upMap = reconciliationSupport.getUpMap();
@@ -41,6 +42,7 @@ public class TaskResultService {
             taskResult.setTaskSignValue(upKey);
             taskResult.setTaskValue(upMap.get(upKey).toString());
             taskResult.setUnilateralType(UnilateralType.UP_ERROR.getValue());
+            taskResult.setTaskDate(taskDate);
             upList.add(taskResult);
         }
         // 循环 downMap
@@ -52,6 +54,7 @@ public class TaskResultService {
             taskResult.setTaskSignValue(downKey);
             taskResult.setTaskValue(downMap.get(downKey).toString());
             taskResult.setUnilateralType(UnilateralType.DOWN_ERROR.getValue());
+            taskResult.setTaskDate(taskDate);
             downList.add(taskResult);
         }
         // TODO 事务大小优化，list 构建提出事务

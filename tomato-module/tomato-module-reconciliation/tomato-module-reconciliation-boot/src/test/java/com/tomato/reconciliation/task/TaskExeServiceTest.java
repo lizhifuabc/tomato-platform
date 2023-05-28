@@ -8,6 +8,7 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class TaskExeServiceTest {
         Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
         List<Task> taskList = taskMapper.selectAll(sort);
         taskList.forEach(task -> {
-            taskExeService.exe(task);
+            taskExeService.exe(task, LocalDate.now());
         });
     }
 }

@@ -52,16 +52,17 @@ values ('对账任务1', '对账任务1', 'no', 'select order_no as no,amount fr
 -- ----------------------------
 DROP TABLE IF EXISTS `t_task_result`;
 CREATE TABLE `t_task_result` (
-  `id`                      BIGINT(20)      NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `task_id`                 BIGINT(20)      not null comment '任务ID',
-  `task_sign_value`         varchar(126)    NOT NULL COMMENT '字段标识值',
-  `task_value`              text            NOT NULL COMMENT '数据明细值',
-  `unilateral_type`         varchar(255)    not null comment '单边类型',
+    `id`                      BIGINT(20)      NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `task_id`                 BIGINT(20)      not null comment '任务ID',
+    `task_sign_value`         varchar(126)    NOT NULL COMMENT '字段标识值',
+    `task_value`              text            NOT NULL COMMENT '数据明细值',
+    `unilateral_type`         varchar(255)    not null comment '单边类型',
+    `task_date`               date            not null comment '任务日期',
 
-  `version`                 int             not null default 0                  comment '乐观锁',
-  `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
-  `create_time`             datetime        not null default current_timestamp comment '创建时间',
-  PRIMARY KEY (`id`)
+    `version`                 int             not null default 0                  comment '乐观锁',
+    `update_time`             datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
+    `create_time`             datetime        not null default current_timestamp comment '创建时间',
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='对账任务执行结果';
 
 -- ----------------------------
@@ -90,3 +91,4 @@ CREATE TABLE `t_demo2` (
 insert into t_demo2 (sign_no, amount) values ('1000', 100);
 insert into t_demo2 (sign_no, amount) values ('1001', 200.00);
 insert into t_demo2 (sign_no, amount) values ('1002', 300.01);
+insert into t_demo2 (sign_no, amount) values ('1003', 400.01);

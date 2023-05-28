@@ -4,6 +4,8 @@ import com.tomato.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.time.LocalDate;
+
 /**
  * 对账任务执行结果
  *
@@ -29,4 +31,8 @@ public class TaskResult extends BaseEntity {
      * 单边类型
      */
     private String unilateralType;
+    /**
+     * 对账日期
+     */
+    private LocalDate taskDate;
 }
