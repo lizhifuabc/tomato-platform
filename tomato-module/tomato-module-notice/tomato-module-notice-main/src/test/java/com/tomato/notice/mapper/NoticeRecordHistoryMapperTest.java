@@ -22,6 +22,12 @@ public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
     @Test
+    public void deleteByCriteria() {
+        NoticeRecordHistoryEntity delete = new NoticeRecordHistoryEntity();
+        delete.setNoticeRecordId(2L);
+        System.out.println("删除:" + noticeRecordHistoryMapper.deleteByCriteria(delete));
+    }
+    @Test
     public void insertSelective() {
         // 插入相关测试
         NoticeRecordHistoryEntity insert1 = new NoticeRecordHistoryEntity();

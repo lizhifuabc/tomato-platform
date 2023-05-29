@@ -5,6 +5,7 @@ import com.tomato.mybatis.mapping.TableInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.builder.annotation.ProviderContext;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -42,5 +43,24 @@ public abstract class AbstractSqlProviderSupport {
 
     protected String orderBySql(Sort sort) {
         return sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
+    }
+    /**
+     * 构建WHERE条件不能为null的SQL语句XML片段
+     *
+     * @param table 实体类映射
+     * @return SQL片段
+     */
+    protected String buildWhereNotNullXML(TableInfo table) {
+        Field[] fields = table.fields;
+        String[] columns = table.columns;
+        StringBuilder builder = new StringBuilder();
+        builder.append("\n<where>");
+        for (int i = 0; i < columns.length; i++) {
+            String column = columns[i];
+            Field field = fields[i];
+            builder.append(String.format("\n<if test='criteria.%s != null'> AND %s = #{criteria.%s}</if>", field.getName(), column, field.getName()));
+        }
+        builder.append("\n</where>");
+        return builder.toString();
     }
 }
