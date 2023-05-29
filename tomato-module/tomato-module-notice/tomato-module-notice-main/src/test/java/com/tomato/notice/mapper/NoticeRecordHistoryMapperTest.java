@@ -22,6 +22,14 @@ public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
     @Test
+    public void selectByCriteria() {
+        NoticeRecordHistoryEntity entity = new NoticeRecordHistoryEntity();
+
+        entity.setId(5L);
+        Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
+        noticeRecordHistoryMapper.selectByCriteria(sort,entity).forEach(System.out::println);
+    }
+    @Test
     public void countByCriteria() {
         NoticeRecordHistoryEntity count = new NoticeRecordHistoryEntity();
         count.setNoticeRecordId(2L);

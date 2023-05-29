@@ -23,7 +23,7 @@ public class DeleteByCriteriaSqlProvider extends AbstractSqlProviderSupport {
             TableInfo table = tableInfo(context);
             StringBuilder builder = new StringBuilder("<script>\n");
             builder.append(String.format("delete from \n%s", table.tableName));
-            builder.append(buildWhereNotNullXML(table));
+            builder.append(whereSql(table));
             builder.append("\n</script>");
             log.info("delete criteria sql:\n{}",builder);
             return builder.toString();

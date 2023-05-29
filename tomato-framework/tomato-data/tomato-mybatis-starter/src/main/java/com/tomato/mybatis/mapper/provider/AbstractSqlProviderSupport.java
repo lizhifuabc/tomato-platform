@@ -42,7 +42,7 @@ public abstract class AbstractSqlProviderSupport {
     }
 
     protected String orderBySql(Sort sort) {
-        return sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
+        return "\n order by " + sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
     }
     /**
      * 构建WHERE条件不能为null的SQL语句XML片段
@@ -50,7 +50,7 @@ public abstract class AbstractSqlProviderSupport {
      * @param table 实体类映射
      * @return SQL片段
      */
-    protected String buildWhereNotNullXML(TableInfo table) {
+    protected String whereSql(TableInfo table) {
         Field[] fields = table.fields;
         String[] columns = table.columns;
         StringBuilder builder = new StringBuilder();

@@ -23,7 +23,7 @@ public class CountByCriteriaSqlProvider extends AbstractSqlProviderSupport {
             TableInfo table = tableInfo(context);
             StringBuilder builder = new StringBuilder("<script>\n");
             builder.append(String.format("select COUNT(*) from \n%s", table.tableName));
-            builder.append(buildWhereNotNullXML(table));
+            builder.append(whereSql(table));
             builder.append("\n</script>");
             log.info("count criteria sql:\n{}",builder);
             return builder.toString();
