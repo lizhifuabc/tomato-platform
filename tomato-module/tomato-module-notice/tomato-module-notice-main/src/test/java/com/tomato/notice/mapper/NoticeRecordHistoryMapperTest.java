@@ -56,6 +56,12 @@ public class NoticeRecordHistoryMapperTest {
         noticeRecordHistoryMapper.insertSelective(insert1);
     }
     @Test
+    public void selectOneByCriteria() {
+        NoticeRecordHistoryEntity entity = new NoticeRecordHistoryEntity();
+        entity.setId(1114L);
+        noticeRecordHistoryMapper.selectOneByCriteria(entity).ifPresent(System.out::println);
+    }
+    @Test
     public void test() {
         NoticeRecordHistoryEntity entity = new NoticeRecordHistoryEntity();
 
