@@ -38,7 +38,7 @@ public class SelectPageByCriteriaSqlProvider extends AbstractSqlProviderSupport 
                             .map(TableInfo::assignParameter)
                             .toArray(String[]::new)
                     )
-                    .ORDER_BY(orderBySql(sort))
+                    .ORDER_BY(orderBySqlSimple(sort))
                     .getSelf().OFFSET(page.getOffset()).LIMIT(page.getLimit());
             log.info("select page criteria sql:\n{}",sql.toString());
             return sql.toString();

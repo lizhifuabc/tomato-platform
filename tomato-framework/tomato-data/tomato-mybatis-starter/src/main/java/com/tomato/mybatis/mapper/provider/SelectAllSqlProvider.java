@@ -24,7 +24,7 @@ public class SelectAllSqlProvider extends AbstractSqlProviderSupport {
             SQL sql = new SQL()
                     .SELECT(table.selectColumns)
                     .FROM(table.tableName);
-            String res = sql.ORDER_BY(orderBySql(sort)).toString();
+            String res = sql.ORDER_BY(orderBySqlSimple(sort)).toString();
             log.info("select all sql:\n{}",res);
             return res;
         });

@@ -44,6 +44,9 @@ public abstract class AbstractSqlProviderSupport {
     protected String orderBySql(Sort sort) {
         return "\n order by " + sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
     }
+    protected String orderBySqlSimple(Sort sort) {
+        return sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
+    }
     /**
      * 构建WHERE条件不能为null的SQL语句XML片段
      *
