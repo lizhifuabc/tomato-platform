@@ -21,7 +21,20 @@ import java.util.List;
 public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
+    @Test
+    public void insertSelective() {
+        // 插入相关测试
+        NoticeRecordHistoryEntity insert1 = new NoticeRecordHistoryEntity();
+        insert1.setNoticeRecordId(2L);
+        insert1.setNoticeResult("insertSelective1");
+        insert1.setId(1111L);
+        noticeRecordHistoryMapper.insertSelective(insert1);
+        System.out.println("insertSelective:返回ID："+insert1.getId());
 
+        insert1 = new NoticeRecordHistoryEntity();
+        insert1.setNoticeRecordId(2222L);
+        noticeRecordHistoryMapper.insertSelective(insert1);
+    }
     @Test
     public void test() {
         NoticeRecordHistoryEntity entity = new NoticeRecordHistoryEntity();
