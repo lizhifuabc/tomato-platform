@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 /**
  * 只能新非空字段 provider
+ * TODO version
  * @author lizhifu
  */
 @Slf4j
@@ -24,15 +25,13 @@ public class UpdateSelectiveSqlProvider extends AbstractSqlProviderSupport {
     public String sql(Map<String, Object> params, ProviderContext context) {
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
             TableInfo table = tableInfo(context);
-            Object criteria = params.get("criteria");
-            SQL sql = new SQL()
-                    .UPDATE(table.tableName)
-                    .SET(Stream.of(table.fields)
-                            .filter(field -> ReflectionUtils.getFieldValue(field, criteria) != null && !table.primaryKeyColumn.equals(TableInfo.columnName(field)))
-                            .map(TableInfo::assignParameter).toArray(String[]::new))
-                    .WHERE(table.getPrimaryKeyEntityWhere());
-            log.info("update selective sql:\n{}",sql.toString());
-            return sql.toString();
+            StringBuilder builder = new StringBuilder("<script>\n");
+            builder.append(String.format("UPDATE \n%s", table.tableName));
+            builder.append(updateSql(table));
+            builder.append("\nWHERE ").append(table.getPrimaryKeyEntityWhere());
+            builder.append("\n</script>");
+            log.info("update selective sql:\n{}",builder);
+            return builder.toString();
         });
     }
 }

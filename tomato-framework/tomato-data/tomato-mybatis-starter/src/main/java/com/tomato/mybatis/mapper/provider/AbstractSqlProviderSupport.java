@@ -66,4 +66,21 @@ public abstract class AbstractSqlProviderSupport {
         builder.append("\n</where>");
         return builder.toString();
     }
+    /**
+     * 更新非null的记录
+     * @param table 实体类映射
+     * @return SQL语句
+     */
+    public String updateSql(TableInfo table) {
+        Field[] fields = table.fields;
+        String[] columns = table.columns;
+        StringBuilder builder = new StringBuilder("\n<set>");
+        for (int i = 0; i < columns.length; i++) {
+            String column = columns[i];
+            Field field = fields[i];
+            builder.append(String.format("\n<if test='criteria.%s != null'>%s = #{criteria.%s},</if>", field.getName(), column, field.getName()));
+        }
+        builder.append("\n</set>");
+        return builder.toString();
+    }
 }

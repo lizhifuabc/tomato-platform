@@ -22,6 +22,15 @@ public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
     @Test
+    public void updateByPrimaryKeySelective() {
+        NoticeRecordHistoryEntity update2 = new NoticeRecordHistoryEntity();
+        update2.setId(1114L);
+        update2.setCreateTime(LocalDateTime.now());
+        update2.setNoticeRecordId(1L);
+        update2.setNoticeResult("跟下游对账成功");
+        System.out.println("更新:" + noticeRecordHistoryMapper.updateByPrimaryKeySelective(update2));
+    }
+    @Test
     public void selectByCriteria() {
         NoticeRecordHistoryEntity entity = new NoticeRecordHistoryEntity();
 
