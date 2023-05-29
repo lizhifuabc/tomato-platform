@@ -1,13 +1,10 @@
 package com.tomato.mybatis.mapper.provider;
 
 import com.tomato.mybatis.mapping.TableInfo;
-import com.tomato.mybatis.util.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.builder.annotation.ProviderContext;
-import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
-import java.util.stream.Stream;
 
 /**
  * 根据条件统计
@@ -24,15 +21,12 @@ public class CountByCriteriaSqlProvider extends AbstractSqlProviderSupport {
     public String sql(Map<String, Object> params, ProviderContext context) {
         return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
             TableInfo table = tableInfo(context);
-            Object criteria = params.get("criteria");
-            SQL sql = new SQL()
-                    .SELECT("COUNT(*)")
-                    .FROM(table.tableName)
-                    .WHERE(Stream.of(table.fields)
-                            .filter(field -> ReflectionUtils.getFieldValue(field, criteria) != null)
-                            .map(TableInfo::assignParameter).toArray(String[]::new));
-            log.info("count criteria sql:\n{}",sql.toString());
-            return sql.toString();
+            StringBuilder builder = new StringBuilder("<script>\n");
+            builder.append(String.format("select COUNT(*) from \n%s", table.tableName));
+            builder.append(buildWhereNotNullXML(table));
+            builder.append("\n</script>");
+            log.info("count criteria sql:\n{}",builder);
+            return builder.toString();
         });
     }
 }

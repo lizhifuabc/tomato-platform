@@ -22,6 +22,12 @@ public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
     @Test
+    public void countByCriteria() {
+        NoticeRecordHistoryEntity count = new NoticeRecordHistoryEntity();
+        count.setNoticeRecordId(2L);
+        System.out.println("统计:"+noticeRecordHistoryMapper.countByCriteria(count));
+    }
+    @Test
     public void deleteByCriteria() {
         NoticeRecordHistoryEntity delete = new NoticeRecordHistoryEntity();
         delete.setNoticeRecordId(2L);
