@@ -22,6 +22,14 @@ public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
     @Test
+    public void selectPageByCriteria() {
+        Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
+        // 分页查询
+        RowBounds rowBounds = new RowBounds(0, 10);
+        Page page = new Page(0, 10, sort);
+        noticeRecordHistoryMapper.selectPageByCriteria(page,new NoticeRecordHistoryEntity()).forEach(System.out::println);
+    }
+    @Test
     public void updateByPrimaryKeySelective() {
         NoticeRecordHistoryEntity update2 = new NoticeRecordHistoryEntity();
         update2.setId(1114L);

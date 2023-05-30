@@ -3,13 +3,10 @@ package com.tomato.mybatis.mapper.provider;
 import com.tomato.mybatis.domain.Sort;
 import com.tomato.mybatis.mapping.TableInfo;
 import com.tomato.mybatis.paginate.Page;
-import com.tomato.mybatis.util.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.builder.annotation.ProviderContext;
-import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
-import java.util.stream.Stream;
 
 
 /**
@@ -30,18 +27,14 @@ public class SelectPageByCriteriaSqlProvider extends AbstractSqlProviderSupport 
             Page page = (Page) params.get("page");
             TableInfo table = tableInfo(context);
             Sort sort = page.getSort();
-            SQL sql = new SQL()
-                    .SELECT(table.selectColumns)
-                    .FROM(table.tableName)
-                    .WHERE(Stream.of(table.fields)
-                            .filter(field -> ReflectionUtils.getFieldValue(field, criteria) != null)
-                            .map(TableInfo::assignParameter)
-                            .toArray(String[]::new)
-                    )
-                    .ORDER_BY(orderBySqlSimple(sort))
-                    .getSelf().OFFSET(page.getOffset()).LIMIT(page.getLimit());
-            log.info("select page criteria sql:\n{}",sql.toString());
-            return sql.toString();
+            StringBuilder builder = new StringBuilder("<script>\n");
+            builder.append(String.format("select \n%s \n from \n%s", String.join(",", table.selectColumns), table.tableName));
+            builder.append(whereSql(table));
+            builder.append(orderBySql(sort));
+            builder.append(limitSql());
+            builder.append("\n</script>");
+            log.info("select page criteria sql:\n{}",builder);
+            return builder.toString();
         });
     }
 }

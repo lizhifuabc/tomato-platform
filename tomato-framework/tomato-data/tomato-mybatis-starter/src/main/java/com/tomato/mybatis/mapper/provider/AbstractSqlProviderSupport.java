@@ -83,4 +83,8 @@ public abstract class AbstractSqlProviderSupport {
         builder.append("\n</set>");
         return builder.toString();
     }
+
+    public String limitSql() {
+        return "\n limit #{page.offset},#{page.limit}";
+    }
 }
