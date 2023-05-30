@@ -22,6 +22,11 @@ public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
     @Test
+    public void selectByPrimaryKeyIn() {
+        noticeRecordHistoryMapper.selectByPrimaryKeyIn(List.of(1L,2L)).forEach(System.out::println);
+        noticeRecordHistoryMapper.selectByPrimaryKeyIn(List.of(11L,12L)).forEach(System.out::println);
+    }
+    @Test
     public void selectPageByCriteria() {
         Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
         // 分页查询

@@ -87,4 +87,10 @@ public abstract class AbstractSqlProviderSupport {
     public String limitSql() {
         return "\n limit #{page.offset},#{page.limit}";
     }
+    public String inSql(){
+        return "\n<foreach collection='ids' item='id' open='(' separator=',' close=')'>#{id}</foreach>";
+    }
+    public String tableSql(TableInfo table) {
+        return String.format("select \n%s \n from \n%s", String.join(",", table.selectColumns), table.tableName);
+    }
 }
