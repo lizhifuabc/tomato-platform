@@ -3,6 +3,7 @@ package com.tomato.notice.mapper;
 import com.tomato.mybatis.domain.Sort;
 import com.tomato.mybatis.paginate.Page;
 import com.tomato.notice.entity.NoticeRecordHistoryEntity;
+import com.tomato.notice.entity.NoticeRuleEntity;
 import jakarta.annotation.Resource;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,39 @@ import java.util.List;
 public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
+    @Resource
+    NoticeRuleMapper noticeRuleMapper;
+    @Test
+    public void count() {
+        // 统计相关测试
+        System.out.println("统计:"+noticeRecordHistoryMapper.count());
+        System.out.println("统计:"+noticeRuleMapper.count());
+
+        NoticeRecordHistoryEntity count = new NoticeRecordHistoryEntity();
+        count.setNoticeRecordId(2L);
+        System.out.println("countByCriteria:"+noticeRecordHistoryMapper.countByCriteria(count));
+
+        NoticeRuleEntity noticeRule = new NoticeRuleEntity();
+        System.out.println("countByCriteria:"+noticeRuleMapper.countByCriteria(noticeRule));
+    }
+    @Test
+    public void updateByPrimaryKey() {
+        // 更新相关测试
+        NoticeRecordHistoryEntity update = new NoticeRecordHistoryEntity();
+        update.setId(6L);
+        update.setCreateTime(LocalDateTime.now());
+        update.setNoticeRecordId(1L);
+        System.out.println("更新:" + noticeRecordHistoryMapper.updateByPrimaryKey(update));
+    }
+    @Test
+    public void insert() {
+        NoticeRecordHistoryEntity insert = new NoticeRecordHistoryEntity();
+        insert.setNoticeRecordId(1L);
+        insert.setNoticeResult("insert");
+        insert.setCreateTime(LocalDateTime.now());
+        System.out.println("插入:" + noticeRecordHistoryMapper.insert(insert));
+    }
+
     @Test
     public void batchInsertSelective() {
         NoticeRecordHistoryEntity batch1 = new NoticeRecordHistoryEntity();
@@ -33,6 +67,19 @@ public class NoticeRecordHistoryMapperTest {
         batch2.setNoticeResult("batch2");
         batch2.setCreateTime(LocalDateTime.now());
         noticeRecordHistoryMapper.batchInsertSelective(List.of(batch1,batch2));
+    }
+    @Test
+    public void batchInsert() {
+        NoticeRecordHistoryEntity batch1 = new NoticeRecordHistoryEntity();
+        batch1.setNoticeRecordId(1L);
+        batch1.setNoticeResult("batchInsert1");
+        batch1.setCreateTime(LocalDateTime.now());
+
+        NoticeRecordHistoryEntity batch2 = new NoticeRecordHistoryEntity();
+        batch2.setNoticeRecordId(1L);
+        batch2.setNoticeResult("batchInsert2");
+        batch2.setCreateTime(LocalDateTime.now());
+        noticeRecordHistoryMapper.batchInsert(List.of(batch1,batch2));
     }
     @Test
     public void selectByPrimaryKeyIn() {
@@ -63,12 +110,6 @@ public class NoticeRecordHistoryMapperTest {
         entity.setId(5L);
         Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
         noticeRecordHistoryMapper.selectByCriteria(sort,entity).forEach(System.out::println);
-    }
-    @Test
-    public void countByCriteria() {
-        NoticeRecordHistoryEntity count = new NoticeRecordHistoryEntity();
-        count.setNoticeRecordId(2L);
-        System.out.println("统计:"+noticeRecordHistoryMapper.countByCriteria(count));
     }
     @Test
     public void deleteByCriteria() {
@@ -135,9 +176,6 @@ public class NoticeRecordHistoryMapperTest {
         System.out.println("删除:" + noticeRecordHistoryMapper.deleteByCriteria(delete));
 
         System.out.println("删除:" + noticeRecordHistoryMapper.logicDeleteByPrimaryKey(4L));
-
-        // 统计相关测试
-        System.out.println("统计:"+noticeRecordHistoryMapper.count());
 
         NoticeRecordHistoryEntity count = new NoticeRecordHistoryEntity();
         count.setNoticeRecordId(3L);
