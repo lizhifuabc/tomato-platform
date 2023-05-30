@@ -55,30 +55,23 @@ public class BatchInsertSqlProvider extends AbstractSqlProviderSupport {
      * @return  sql
      */
     public String sqlSelective(Map<String, Object> params, ProviderContext context) {
-        Object entities = params.get("entities");
-        List<Object> list = (List<Object>) entities;
-        // TODO 缓存需要添加size,此时存在问题，如果第一次插入的是2条数据，第二次插入的是3条数据，那么第二次插入的sql会被缓存
-        // TODO 如果数据比较多，那么缓存的sql会很多，需要考虑缓存的问题
-        return SQL_CACHE.computeIfAbsent(getCacheKey(context)+":"+list.size(), val -> {
+        return SQL_CACHE.computeIfAbsent(getCacheKey(context), val -> {
             TableInfo table = tableInfo(context);
-            Field[] notNullFields = Stream.of(table.fields)
-                    .filter(field -> ReflectionUtils.getFieldValue(field, list.get(0)) != null && !table.primaryKeyColumn.equals(TableInfo.columnName(field)))
-                    .toArray(Field[]::new);
-            // 构造 ( #{entities[1-->数组索引].fieldName}, #{entities[1].fieldName2})
-            String value = "(" + String.join(",", Stream.of(notNullFields)
-                    .map(field -> "#{entities[${index}]." + field.getName() + "}").toArray(String[]::new)) + ")";
-            String[] values = new String[list.size()];
-            Map<String, Object> fillIndex = new HashMap<>(2);
-            for (int i = 0; i < list.size(); i++) {
-                fillIndex.put("index", i);
-                values[i] = PlaceholderResolver.getDefaultResolver().resolveByMap(value, fillIndex);
+            Field[] fields = table.fields;
+            StringBuilder builder = new StringBuilder("<script>\n");
+            builder.append(String.format("INSERT INTO \n%s %s VALUES", table.tableName,insertColumnsSql(table)));
+            builder.append("\n<foreach collection=\"entities\" item=\"entity\" index=\"index\" separator=\",\">");
+            builder.append("\n<trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">");
+            for (Field field : fields) {
+                builder.append("\n<if test=\"entity.").append(field.getName()).append(" != null\">");
+                builder.append("\n").append("#{entity.").append(field.getName()).append("},");
+                builder.append("\n</if>");
             }
-            SQL sql = new SQL()
-                    .INSERT_INTO(table.tableName)
-                    .INTO_COLUMNS(TableInfo.columns(notNullFields));
-            String res = sql.toString() + " VALUES " + String.join(",", values);
-            log.info("batch insert selective sql:\n{}",res);
-            return res;
+            builder.append("\n</trim>");
+            builder.append("\n</foreach>");
+            builder.append("\n</script>");
+            log.info("batch insert selective sql:\n{}",builder);
+            return builder.toString();
         });
     }
 }

@@ -22,6 +22,19 @@ public class NoticeRecordHistoryMapperTest {
     @Resource
     NoticeRecordHistoryMapper noticeRecordHistoryMapper;
     @Test
+    public void batchInsertSelective() {
+        NoticeRecordHistoryEntity batch1 = new NoticeRecordHistoryEntity();
+        batch1.setNoticeRecordId(1L);
+        batch1.setNoticeResult("batch1");
+        batch1.setCreateTime(LocalDateTime.now());
+
+        NoticeRecordHistoryEntity batch2 = new NoticeRecordHistoryEntity();
+        batch2.setNoticeRecordId(1L);
+        batch2.setNoticeResult("batch2");
+        batch2.setCreateTime(LocalDateTime.now());
+        noticeRecordHistoryMapper.batchInsertSelective(List.of(batch1,batch2));
+    }
+    @Test
     public void selectByPrimaryKeyIn() {
         noticeRecordHistoryMapper.selectByPrimaryKeyIn(List.of(1L,2L)).forEach(System.out::println);
         noticeRecordHistoryMapper.selectByPrimaryKeyIn(List.of(11L,12L)).forEach(System.out::println);

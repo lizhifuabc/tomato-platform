@@ -93,4 +93,17 @@ public abstract class AbstractSqlProviderSupport {
     public String tableSql(TableInfo table) {
         return String.format("select \n%s \n from \n%s", String.join(",", table.selectColumns), table.tableName);
     }
+    public String insertColumnsSql(TableInfo table) {
+        Field[] fields = table.fields;
+        String[] columns = table.columns;
+        StringBuilder builder = new StringBuilder();
+        builder.append("\n<trim prefix='(' suffix=')' suffixOverrides=','>");
+        for (int i = 0; i < columns.length; i++) {
+            String column = columns[i];
+            Field field = fields[i];
+            builder.append(String.format("\n<if test='entities[0].%s != null'>%s,</if>", field.getName(), column));
+        }
+        builder.append("\n</trim>");
+        return builder.toString();
+    }
 }
