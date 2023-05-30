@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class RobinWeightLoadBalancer extends RobinLoadBalancer {
     @Override
-    protected ServiceMetadata doSelect(List<ServiceMetadata> list,String source, int hashCode) {
+    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
         list = weight(list);
-        return super.doSelect(list,source,hashCode);
+        return super.doChoose(list,source,hashCode);
     }
 }

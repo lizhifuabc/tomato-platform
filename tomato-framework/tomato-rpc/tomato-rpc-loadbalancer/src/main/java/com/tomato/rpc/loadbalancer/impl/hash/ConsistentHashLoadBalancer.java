@@ -23,7 +23,7 @@ public class ConsistentHashLoadBalancer extends AbsLoadBalancer {
      */
     private final static String VIRTUAL_NODE_SPLIT = "#";
     @Override
-    protected ServiceMetadata doSelect(List<ServiceMetadata> list, String source, int hashCode) {
+    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
         TreeMap<Integer, ServiceMetadata> ring = ring(list);
         return doSelect(ring, hashCode);
     }

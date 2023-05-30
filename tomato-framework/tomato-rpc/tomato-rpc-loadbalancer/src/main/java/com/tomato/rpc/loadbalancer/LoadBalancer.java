@@ -18,5 +18,5 @@ public interface LoadBalancer {
      * @param hashCode hash值
      * @return 可用的服务节点
      */
-    ServiceMetadata select(List<ServiceMetadata> list, String source, int hashCode);
+    ServiceMetadata choose(List<ServiceMetadata> list, String source, int hashCode);
 }

@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class SourceHashLoadBalancer extends AbsLoadBalancer {
     @Override
-    protected ServiceMetadata doSelect(List<ServiceMetadata> list,String source, int hashCode) {
+    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
         int resultHashCode = Math.abs(source.hashCode() + hashCode);
         return list.get(resultHashCode % list.size());
     }

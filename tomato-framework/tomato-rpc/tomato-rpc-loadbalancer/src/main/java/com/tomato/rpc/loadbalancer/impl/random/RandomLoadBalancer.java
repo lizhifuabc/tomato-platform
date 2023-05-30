@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class RandomLoadBalancer extends AbsLoadBalancer {
     @Override
-    protected ServiceMetadata doSelect(List<ServiceMetadata> list,String source, int hashCode) {
+    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
         return list.get(ThreadLocalRandom.current().nextInt(list.size()));
     }
 }

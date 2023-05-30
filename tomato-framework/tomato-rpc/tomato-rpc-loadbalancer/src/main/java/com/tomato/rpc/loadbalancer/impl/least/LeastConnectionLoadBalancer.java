@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class LeastConnectionLoadBalancer extends AbsLoadBalancer {
     @Override
-    protected ServiceMetadata doSelect(List<ServiceMetadata> list, String source, int hashCode) {
+    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
         // 获取所有服务器的连接数信息
         List<Integer> connections = list.stream()
                 .map(ServiceMetadata::getConnectionCount)

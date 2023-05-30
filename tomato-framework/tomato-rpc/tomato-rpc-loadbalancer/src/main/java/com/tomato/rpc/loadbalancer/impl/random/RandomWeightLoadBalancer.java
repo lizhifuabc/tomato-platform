@@ -12,11 +12,11 @@ import java.util.List;
  */
 public class RandomWeightLoadBalancer extends RandomLoadBalancer {
     @Override
-    protected ServiceMetadata doSelect(List<ServiceMetadata> list,String source, int hashCode) {
+    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
         // 根据权重重新生成服务元数据列表，权重越高的元数据，会在最终的列表中出现的次数越多
         // 比如：假设有两个服务元数据，权重分别为 1 和 2，那么重新生成的列表为 [0, 1, 1]
         // 这样就相当于将权重为 2 的服务元数据出现了两次，权重为 1 的服务元数据出现了一次
         list = weight(list);
-        return super.doSelect(list,source,hashCode);
+        return super.doChoose(list,source,hashCode);
     }
 }

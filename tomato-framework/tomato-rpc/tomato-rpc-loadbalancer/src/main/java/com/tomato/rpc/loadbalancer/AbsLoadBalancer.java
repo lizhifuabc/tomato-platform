@@ -13,14 +13,14 @@ import java.util.List;
  */
 public abstract class AbsLoadBalancer implements LoadBalancer{
     @Override
-    public ServiceMetadata select(List<ServiceMetadata> list,String source, int hashCode) {
+    public ServiceMetadata choose(List<ServiceMetadata> list, String source, int hashCode) {
         if (list == null || list.isEmpty()) {
             return null;
         }
         if (list.size() == 1) {
             return list.get(0);
         }
-        return doSelect(list,source,hashCode);
+        return doChoose(list,source,hashCode);
     }
 
     /**
@@ -30,7 +30,7 @@ public abstract class AbsLoadBalancer implements LoadBalancer{
      * @param hashCode hash值
      * @return 服务元数据
      */
-    protected abstract ServiceMetadata doSelect(List<ServiceMetadata> list,String source, int hashCode);
+    protected abstract ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode);
 
     protected List<ServiceMetadata> weight(List<ServiceMetadata> list){
         List<ServiceMetadata> serviceMetadataList = new ArrayList<>();

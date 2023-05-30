@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RobinLoadBalancer extends AbsLoadBalancer {
     private final AtomicInteger index = new AtomicInteger(0);
     @Override
-    protected ServiceMetadata doSelect(List<ServiceMetadata> list,String source, int hashCode) {
+    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
         // 获取当前指针位置
         int currentIndex = index.getAndIncrement();
         // 如果达到列表尾,将指针移至头部
