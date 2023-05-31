@@ -23,12 +23,12 @@ public class SysTenantServiceImpl implements SysTenantService {
     }
 
     @Override
-    public Optional<SysTenant> findByTenantId(String tenantId) {
+    public Optional<SysTenant> findByTenantId(Long tenantId) {
         return Optional.ofNullable(sysTenantJpaRepository.findByTenantId(tenantId));
     }
 
     @Override
-    public BaseJpaRepository<SysTenant, String> getRepository() {
+    public BaseJpaRepository<SysTenant, Long> getRepository() {
         return this.sysTenantJpaRepository;
     }
 }

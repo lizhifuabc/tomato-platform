@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tags({
         @Tag(name = "多租户")
 })
-public class SysTenantController extends AbstractBaseController<SysTenant, String> {
+public class SysTenantController extends AbstractBaseController<SysTenant, Long> {
 
     private final SysTenantService sysTenantService;
 
@@ -46,18 +46,18 @@ public class SysTenantController extends AbstractBaseController<SysTenant, Strin
             @Parameter(name = "tenantId", in = ParameterIn.PATH, required = true, description = "租户ID"),
     })
     @GetMapping("/tenant/{tenantId}")
-    public Resp<SysTenant> findByRoleCode(@PathVariable("tenantId") String tenantId) {
+    public Resp<SysTenant> findByRoleCode(@PathVariable("tenantId") Long tenantId) {
         SysTenant sysTenant = sysTenantService.findByTenantId(tenantId).orElseThrow(() -> new BusinessException("未找到租户信息"));
         return result(sysTenant);
     }
 
     @Override
-    public BaseReadableService<SysTenant, String> getReadableService() {
+    public BaseReadableService<SysTenant, Long> getReadableService() {
         return this.sysTenantService;
     }
 
     @Override
-    public BaseWriteableService<SysTenant, String> getWriteableService() {
+    public BaseWriteableService<SysTenant, Long> getWriteableService() {
         return this.sysTenantService;
     }
 }
