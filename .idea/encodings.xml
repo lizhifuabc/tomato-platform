@@ -123,6 +123,10 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-loadbalancer-zk/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-loadbalancer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-loadbalancer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-serialize/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-serialize/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-serialize/tomato-rpc-serialize-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-serialize/tomato-rpc-serialize-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-spi/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-spi/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-security-starter/src/main/java" charset="UTF-8" />
