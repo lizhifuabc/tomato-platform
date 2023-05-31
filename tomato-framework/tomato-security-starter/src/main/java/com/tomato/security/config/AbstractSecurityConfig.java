@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
@@ -66,21 +67,22 @@ public abstract class AbstractSecurityConfig {
         // 配置
         httpSecurity
                 // 禁用basic明文验证
-                .httpBasic().disable()
-                // 前后端分离架构不需要csrf保护
-                .csrf().disable()
+                .httpBasic(AbstractHttpConfigurer::disable)
+                // 禁用 csrf 保护
+                .csrf(AbstractHttpConfigurer::disable)
                 // 禁用默认登录页
-                .formLogin().disable()
+                .formLogin(AbstractHttpConfigurer::disable)
                 // 禁用默认登出页
-                .logout().disable()
+                .logout(AbstractHttpConfigurer::disable)
                 // 设置异常的EntryPoint，如果不设置，默认使用Http403ForbiddenEntryPoint
                 .exceptionHandling(exceptions->exceptions
                         .authenticationEntryPoint(customAuthenticationHandler)
                         .accessDeniedHandler(customAuthenticationHandler)
                 )
                 // 设置记住我服务
-                .rememberMe().rememberMeServices(customRememberMeServices)
-                .and()
+                .rememberMe(rememberMe->rememberMe
+                        .rememberMeServices(customRememberMeServices)
+                )
                 // 基于 token 机制，所以不需要 Session
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeHttpRequests->authorizeHttpRequests
