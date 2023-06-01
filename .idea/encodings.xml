@@ -73,6 +73,8 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-data/tomato-jpa-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-data/tomato-mybatis-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-data/tomato-mybatis-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-data/tomato-redis-integration-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-data/tomato-redis-integration-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-ddd/tomato-application-core/src/main/java" charset="UTF-8" />
