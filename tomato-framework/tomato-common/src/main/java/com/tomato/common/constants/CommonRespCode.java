@@ -7,6 +7,8 @@ package com.tomato.common.constants;
  * @since  2022/11/22
  */
 public interface CommonRespCode {
+    int SC_OK = 200;
+    int SC_INTERNAL_SERVER_ERROR = 500;
     /**
      * 系统异常
      */

@@ -24,12 +24,14 @@ public class Resp<T> {
     @Schema(title = "是否成功")
     private boolean success;
 
-    @Schema(title = "返回码")
+    @Schema(title = "自定义响应编码")
     private String code;
 
     @Schema(title = "返回信息")
     private String msg;
 
+    @Schema(title = "http状态码")
+    private int status;
     /**
      * 链路追踪TraceId TODO
      */
@@ -49,6 +51,7 @@ public class Resp<T> {
         resp.setSuccess(true);
         resp.setCode(CommonRespCode.SUCCESS.code());
         resp.setMsg(CommonRespCode.SUCCESS.msg());
+        resp.setStatus(CommonRespCode.SC_OK);
         return resp;
     }
     /**
@@ -59,16 +62,18 @@ public class Resp<T> {
         Resp<Void> resp = new Resp<>();
         resp.setSuccess(true);
         resp.setCode(CommonRespCode.SUCCESS.code());
+        resp.setStatus(CommonRespCode.SC_OK);
         resp.setMsg(msg);
         return resp;
     }
     public static <T> Resp<T> of(T data) {
-        Resp<T> response = new Resp<>();
-        response.setSuccess(true);
-        response.setCode(CommonRespCode.SUCCESS.code());
-        response.setMsg(CommonRespCode.SUCCESS.msg());
-        response.setData(data);
-        return response;
+        Resp<T> resp = new Resp<>();
+        resp.setSuccess(true);
+        resp.setCode(CommonRespCode.SUCCESS.code());
+        resp.setMsg(CommonRespCode.SUCCESS.msg());
+        resp.setStatus(CommonRespCode.SC_OK);
+        resp.setData(data);
+        return resp;
     }
 
     /**
@@ -82,6 +87,7 @@ public class Resp<T> {
         resp.setSuccess(false);
         resp.setCode(code);
         resp.setMsg(msg);
+        resp.setStatus(CommonRespCode.SC_INTERNAL_SERVER_ERROR);
         return resp;
     }
     /**
@@ -93,6 +99,7 @@ public class Resp<T> {
         Resp<T> resp = new Resp<>();
         resp.setSuccess(false);
         resp.setCode(CommonRespCode.INTERNAL_SERVER_ERROR.code());
+        resp.setStatus(CommonRespCode.SC_INTERNAL_SERVER_ERROR);
         resp.setMsg(msg);
         return resp;
     }
