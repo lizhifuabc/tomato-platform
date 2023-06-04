@@ -21,6 +21,16 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-cloud-alibaba-starter</artifactId>
         </dependency>
+        <!--  common 依赖     -->
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-common</artifactId>
+        </dependency>
+        <!--  jackson 依赖     -->
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-jackson-starter</artifactId>
+        </dependency>
         <!-- LB 扩展 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -30,11 +40,6 @@
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
-        </dependency>
-        <!--  lombok          -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
         <!--  SpringBoot集成Redis         -->
         <dependency>
