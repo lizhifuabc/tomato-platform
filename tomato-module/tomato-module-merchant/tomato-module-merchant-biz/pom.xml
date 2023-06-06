@@ -17,13 +17,22 @@
             <artifactId>tomato-module-merchant-base</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-util</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-util</artifactId>
+            <artifactId>tomato-cloud-feign-stater</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-cloud-alibaba-starter</artifactId>
+        </dependency>
+        <!--  test 相关依赖      -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

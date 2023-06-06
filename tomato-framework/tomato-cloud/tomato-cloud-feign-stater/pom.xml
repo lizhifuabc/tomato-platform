@@ -39,7 +39,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
-        <!-- okhttp 扩展 -->
+        <!-- OpenFeign 默认使用 Java 自带的 URLConnection,okhttp 扩展 -->
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-okhttp</artifactId>

@@ -12,6 +12,8 @@ spring 官方文档记录：
 
 [Spring Cloud Gateway](https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/)
 
+[Spring Cloud OpenFeign](https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/)
+
 ## 基础文档
 [多环境配置.md](doc%2F%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md)
 

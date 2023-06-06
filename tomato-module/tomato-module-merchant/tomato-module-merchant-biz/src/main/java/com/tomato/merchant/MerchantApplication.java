@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 @ImportResource(locations = {"classpath:bean.xml"})
 @EnableJpaAuditing // 开启时间的支持
-@OpenAPIDefinition(info = @Info(title = "账户服务 API", version = "1.0-SNAPSHOT", description = "账户服务 Information"),
+@OpenAPIDefinition(info = @Info(title = "商户服务 API", version = "1.0-SNAPSHOT", description = "商户服务 Information"),
 		servers = {@Server(url = "http://localhost:9999/")})
 public class MerchantApplication {
 
