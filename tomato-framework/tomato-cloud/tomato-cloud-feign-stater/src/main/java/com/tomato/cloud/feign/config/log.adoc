@@ -1,0 +1,19 @@
+= 局部配置 OpenFeign 日志级别
+
+[source]
+----
+//不需要加Configuration注解
+public class FeignConfig {
+@Bean
+public Logger.Level feignLogLevel(){
+//设置feign客户端的日志打印级别为FULL
+return Logger.Level.FULL;
+}
+}
+
+//configuration属性，值为Class,配置信息对名称为userprivilege的服务生效
+@Resource
+@FeignClient(name="XXX",fallback = XXX.class ,configuration = FeignConfig.class)
+public interface PrivilegeService {
+}
+----
