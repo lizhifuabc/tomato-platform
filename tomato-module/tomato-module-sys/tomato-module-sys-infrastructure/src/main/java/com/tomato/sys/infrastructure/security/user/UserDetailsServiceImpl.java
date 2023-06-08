@@ -45,7 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         SysUser sysUser = sysUserRepository.findByUserName(username);
         return LoginUserDetails.builder()
                 .authorities(buildAuthorities())
-                .loginName(sysUser.getUserName())
+                .loginName(sysUser.getUsername())
                 .build();
     }
     private Set<? extends GrantedAuthority> buildAuthorities() {

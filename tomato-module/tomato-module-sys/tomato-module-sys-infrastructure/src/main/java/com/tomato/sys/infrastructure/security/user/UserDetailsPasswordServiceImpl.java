@@ -39,7 +39,7 @@ public class UserDetailsPasswordServiceImpl implements UserDetailsPasswordServic
         sysUserRepository.findByUserId(sysUser.getUserId());
         return LoginUserDetails.builder()
                 .authorities(buildAuthorities())
-                .loginName(sysUser.getUserName())
+                .loginName(sysUser.getUsername())
                 .build();
     }
     private Set<? extends GrantedAuthority> buildAuthorities() {

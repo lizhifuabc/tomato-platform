@@ -30,7 +30,7 @@ public class SysUser extends BaseSysEntity {
 
     @Comment("用户名")
     @Column(name = "user_name", length = 128, unique = true)
-    private String userName;
+    private String username;
 
     @Comment("密码")
     @Column(name = "password", length = 256)
@@ -76,12 +76,12 @@ public class SysUser extends BaseSysEntity {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
