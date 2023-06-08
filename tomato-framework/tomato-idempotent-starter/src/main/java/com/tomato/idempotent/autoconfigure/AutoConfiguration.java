@@ -26,7 +26,7 @@ public class AutoConfiguration implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        log.info("tomato-idempotent-starter Auto Configure.");
+        log.info("tomato-idempotent-starter 自动装配");
     }
     @Bean
     public IdempotentAspect idempotentAspect(IdempotentStrategyFactory idempotentStrategyFactory){

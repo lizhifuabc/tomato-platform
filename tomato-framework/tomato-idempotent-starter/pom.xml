@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-domain-core</artifactId>
+            <artifactId>tomato-common</artifactId>
         </dependency>
     </dependencies>
 
