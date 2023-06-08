@@ -4,10 +4,6 @@ import com.tomato.sys.application.dto.SysLoginDTO;
 import com.tomato.sys.application.service.SysUserLoginService;
 import com.tomato.sys.domain.entity.SysUser;
 import com.tomato.sys.domain.service.SysUserService;
-import com.tomato.sys.infrastructure.security.user.LoginUserDetails;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 /**
