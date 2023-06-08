@@ -13,7 +13,7 @@ import org.springframework.data.annotation.LastModifiedBy;
  * @author lizhifu
  * @since 2023/4/9
  */
-@MappedSuperclass//实体继承映射
+@MappedSuperclass   //实体继承映射
 public abstract class BaseSysEntity extends BaseEntity {
     @Column(name = "create_by", length = 64)
     @CreatedBy
