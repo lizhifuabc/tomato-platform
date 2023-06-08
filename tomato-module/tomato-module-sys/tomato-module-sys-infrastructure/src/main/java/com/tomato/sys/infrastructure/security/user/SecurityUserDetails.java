@@ -13,8 +13,8 @@ import java.util.stream.Stream;
  * @author lizhifu
  * @since 2023/6/8
  */
-public class SecurityUser extends User {
-    public SecurityUser(SysUser sysUser) {
+public class SecurityUserDetails extends User {
+    public SecurityUserDetails(SysUser sysUser) {
         super(
                 sysUser.getUsername(),
                 sysUser.getPassword(),
