@@ -51,15 +51,12 @@ public class SysUser extends BaseSysEntity {
     @Comment("EMAIL")
     @Column(name = "email", length = 100)
     private String email;
-
-    @Comment("账户过期日期")
-    @Column(name = "account_expire_at")
-    private LocalDateTime accountExpireAt;
-
     @Comment("密码过期日期")
     @Column(name = "credentials_expire_at")
     private LocalDateTime credentialsExpireAt;
-
+    @Comment("是否启用")
+    @Column(name = "enabled")
+    private boolean enabled;
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "t_sys_user_role",
@@ -74,6 +71,14 @@ public class SysUser extends BaseSysEntity {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getUsername() {
@@ -122,14 +127,6 @@ public class SysUser extends BaseSysEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public LocalDateTime getAccountExpireAt() {
-        return accountExpireAt;
-    }
-
-    public void setAccountExpireAt(LocalDateTime accountExpireAt) {
-        this.accountExpireAt = accountExpireAt;
     }
 
     public LocalDateTime getCredentialsExpireAt() {

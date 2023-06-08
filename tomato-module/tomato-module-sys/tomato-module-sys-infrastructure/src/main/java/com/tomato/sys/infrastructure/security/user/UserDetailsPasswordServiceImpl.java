@@ -34,7 +34,7 @@ public class UserDetailsPasswordServiceImpl implements UserDetailsPasswordServic
      */
     @Override
     public UserDetails updatePassword(UserDetails user, String newPassword) {
-        final SysUser sysUser = sysUserRepository.findByUserName(user.getUsername());
+        final SysUser sysUser = sysUserRepository.findByUsername(user.getUsername());
         sysUser.setPassword(newPassword);
         sysUserRepository.findByUserId(sysUser.getUserId());
         return LoginUserDetails.builder()

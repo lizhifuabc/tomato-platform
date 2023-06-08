@@ -11,10 +11,10 @@ public interface SysUserJpaRepository extends BaseJpaRepository<SysUser, String>
     /**
      * 根据用户名查找SysUser
      *
-     * @param userName 用户名
+     * @param username 用户名
      * @return {@link SysUser}
      */
-    SysUser findByUserName(String userName);
+    SysUser findByUsername(String username);
 
     /**
      * 根据用户ID查找用户

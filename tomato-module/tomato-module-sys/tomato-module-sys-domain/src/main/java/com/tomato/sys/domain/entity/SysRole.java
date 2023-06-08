@@ -52,12 +52,12 @@ public class SysRole extends BaseSysEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    @JoinTable(name = "t_sys_role_menu",
+    @JoinTable(name = "t_sys_role_permission",
             joinColumns = {@JoinColumn(name = "role_id",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))},
-            inverseJoinColumns = {@JoinColumn(name = "menu_id",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))},
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"role_id", "menu_id"})},
-            indexes = {@Index(name = "sys_role_permission_rid_idx", columnList = "role_id"), @Index(name = "sys_role_menu_id_idx", columnList = "menu_id")})
-    private Set<SysMenu> permissions = new HashSet<>();
+            inverseJoinColumns = {@JoinColumn(name = "permission_id",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))},
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"role_id", "permission_id"})},
+            indexes = {@Index(name = "sys_role_permission_rid_idx", columnList = "role_id"), @Index(name = "sys_role_permission_id_idx", columnList = "permission_id")})
+    private Set<SysPermission> permissions = new HashSet<>();
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -106,11 +106,11 @@ public class SysRole extends BaseSysEntity {
         this.roleStatus = roleStatus;
     }
 
-    public Set<SysMenu> getPermissions() {
+    public Set<SysPermission> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(Set<SysMenu> permissions) {
+    public void setPermissions(Set<SysPermission> permissions) {
         this.permissions = permissions;
     }
 }
