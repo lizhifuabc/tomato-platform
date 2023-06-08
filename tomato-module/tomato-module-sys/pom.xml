@@ -12,7 +12,6 @@
     <artifactId>tomato-module-sys</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>tomato-module-sys-biz</module>
         <module>tomato-module-sys-infrastructure</module>
         <module>tomato-module-sys-boot</module>
         <module>tomato-module-sys-application</module>
