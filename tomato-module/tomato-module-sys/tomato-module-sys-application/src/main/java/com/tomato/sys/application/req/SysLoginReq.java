@@ -1,6 +1,6 @@
 package com.tomato.sys.application.req;
 
-import com.tomato.security.enums.LoginDeviceEnum;
+import com.tomato.sys.domain.enums.LoginDeviceEnum;
 import com.tomato.validator.annotation.CheckEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

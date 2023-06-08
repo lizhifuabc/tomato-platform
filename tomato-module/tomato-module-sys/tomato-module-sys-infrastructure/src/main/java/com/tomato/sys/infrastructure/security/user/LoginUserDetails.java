@@ -1,7 +1,6 @@
 package com.tomato.sys.infrastructure.security.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tomato.security.domain.LoginUser;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +17,7 @@ import java.util.Set;
  */
 @Data
 @Builder
-public class LoginUserDetails implements UserDetails, LoginUser {
+public class LoginUserDetails implements UserDetails {
     /**
      * token
      */

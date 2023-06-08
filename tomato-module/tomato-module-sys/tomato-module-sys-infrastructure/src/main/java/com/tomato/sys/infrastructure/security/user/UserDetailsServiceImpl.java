@@ -1,6 +1,5 @@
 package com.tomato.sys.infrastructure.security.user;
 
-import com.tomato.security.token.TokenService;
 import com.tomato.sys.domain.entity.SysUser;
 import com.tomato.sys.infrastructure.repository.SysUserJpaRepository;
 import org.springframework.security.core.Authentication;
@@ -18,11 +17,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
-    private final TokenService tokenService;
     private final SysUserJpaRepository sysUserRepository;
 
-    public UserDetailsServiceImpl(TokenService tokenService, SysUserJpaRepository sysUserRepository) {
-        this.tokenService = tokenService;
+    public UserDetailsServiceImpl(SysUserJpaRepository sysUserRepository) {
         this.sysUserRepository = sysUserRepository;
     }
     /**
