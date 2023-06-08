@@ -22,7 +22,8 @@ spring 官方文档记录：
 
 ```text
 tomato-platform
-├── XXXXXX -- XXXXXX
+├── spring-boot-cli-demo -- 基于 maven-archetype-plugin 脚手架
+├── tomato-bom -- 项目 POM 版本管理
 └── tomato-framework -- 系统公共模块
 ├     ├── tomato-tracing-starter -- 基于Micrometer、Zipkin分布式链路追踪
 ├     ├── tomato-cloud -- cloud 配套组件
