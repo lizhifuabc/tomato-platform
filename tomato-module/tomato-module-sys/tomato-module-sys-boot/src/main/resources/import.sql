@@ -1,1 +1,1 @@
-INSERT INTO `t_sys_user` (`enabled`, `credentials_expire_at`, `user_id`, `username`, `password`) VALUES (1, '2023-06-09 15:11:17', 1,'admin', 'admin');
+INSERT INTO `t_sys_user` (`enabled`, `credentials_expire_at`, `user_id`, `username`, `password`) VALUES (1, '2223-06-09 15:11:17', 1,'admin', '{bcrypt}$2a$10$wvku73Pz2.8hlbpAHWlpseN1xbdc9qfaJgNGRXh6Vsz.pu7//4dCy');

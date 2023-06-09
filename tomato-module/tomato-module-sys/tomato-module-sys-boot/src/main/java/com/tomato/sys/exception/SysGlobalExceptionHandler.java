@@ -3,7 +3,7 @@ package com.tomato.sys.exception;
 import com.tomato.common.resp.Resp;
 import com.tomato.web.core.handler.GlobalExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,9 +26,9 @@ public class SysGlobalExceptionHandler {
     public ResponseEntity<String> handleUsernameNotFoundException(UsernameNotFoundException e) {
         return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
-    @ExceptionHandler(value = BadCredentialsException.class)
+    @ExceptionHandler(value = AuthenticationException.class)
     @ResponseBody
-    public Resp<Void> handleBadCredentialsException(BadCredentialsException e) {
+    public Resp<Void> handleAuthenticationException(AuthenticationException e) {
         log.info("登录失败:{}",e.getLocalizedMessage());
         return Resp.buildFailure(String.valueOf(UNAUTHORIZED.value()),e.getLocalizedMessage());
     }
