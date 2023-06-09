@@ -22,19 +22,19 @@ public abstract class BaseEntity extends AbstractEntity {
     /**
      * 创建时间
      */
-    @Column(name = "create_time",nullable = false,updatable = false)
+    @Column(name = "create_time",nullable = false,updatable = false,columnDefinition="datetime not null default current_timestamp comment '创建时间'")
     @CreatedDate
     private LocalDateTime createTime = LocalDateTime.now();
     /**
      * 最后更新时间
      */
-    @Column(name = "update_time",nullable = false)
+    @Column(name = "update_time",nullable = false,columnDefinition="datetime not null default current_timestamp on update current_timestamp comment '更新时间'")
     @LastModifiedDate
     private LocalDateTime updateTime = LocalDateTime.now();
     /**
      * 版本号
      */
-    @Column(name = "version",nullable = false,columnDefinition="int default 0",insertable = false)
+    @Column(name = "version",nullable = false,columnDefinition="int default 0 not null comment '乐观锁'",insertable = false)
     @Version
     private Integer version = 0;
 
