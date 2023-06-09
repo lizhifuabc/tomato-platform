@@ -106,12 +106,6 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${spring.boot.mybatis.version}</version>
             </dependency>
-            <!-- 验证码相关 -->
-            <dependency>
-                <groupId>com.anji-plus</groupId>
-                <artifactId>spring-boot-starter-captcha</artifactId>
-                <version>${aj-captcha.version}</version>
-            </dependency>
             <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
             <dependency>
                 <groupId>org.redisson</groupId>
@@ -154,23 +148,12 @@
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons-beanutils.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webflux-ui</artifactId>
-                <version>${springdoc.version}</version>
-            </dependency>
             <!--   https://springdoc.org/v2/         -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc.v2.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-                <version>${springdoc.v2.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -203,12 +186,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${apache.commons.lang3.version}</version>
-            </dependency>
-            <!-- apache commons https://github.com/apache/commons-lang -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-crypto</artifactId>
-                <version>${apache.commons.crypto.version}</version>
             </dependency>
             <!-- druid -->
             <!-- https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter  -->
@@ -262,12 +239,6 @@
                 <artifactId>nimbus-jose-jwt</artifactId>
                 <version>${nimbus-jose-jwt.version}</version>
             </dependency>
-            <!-- shardingsphere 分库分表依赖 -->
-            <dependency>
-                <groupId>org.apache.shardingsphere</groupId>
-                <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
-                <version>${spring-boot.shardingsphere.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.apache.shardingsphere</groupId>
                 <artifactId>shardingsphere-jdbc-core</artifactId>
@@ -278,17 +249,6 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.velocity.tools</groupId>
-                <artifactId>velocity-tools-generic</artifactId>
-                <version>${velocity.version}</version>
-            </dependency>
-            <!--监控客户端-->
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring-boot-admin.version}</version>
             </dependency>
             <!--监控服务端-->
             <dependency>
@@ -426,11 +386,6 @@
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-merchant-base</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.tomato</groupId>
-                <artifactId>tomato-module-notice-base</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

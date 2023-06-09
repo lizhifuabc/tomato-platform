@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -22,6 +23,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  */
 @RestController
 @Tag(name = "登录相关", description = "登录相关")
+@Slf4j
 public class SysUserLoginController extends BaseController {
     private final SysUserLoginService sysUserLoginService;
 
@@ -32,11 +34,12 @@ public class SysUserLoginController extends BaseController {
     @PostMapping("/sys/user/login")
     @Operation(summary = "登录", description = "登录")
     public Resp<Void> login(@Valid @RequestBody SysLoginReq sysLoginReq) {
+        log.info("登录:{}",sysLoginReq);
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         sysUserLoginService.login(SysLoginAdapter.convert(sysLoginReq));
         return Resp.buildSuccess();
     }
-    @GetMapping("sys/user/logout")
+    @GetMapping("/sys/user/logout")
     public Resp<Void> logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
         return Resp.buildSuccess();
     }

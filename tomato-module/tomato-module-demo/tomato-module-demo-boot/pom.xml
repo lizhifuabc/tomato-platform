@@ -15,42 +15,42 @@
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-controller</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-util</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-domain</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-facade</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-client</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-infrastructure</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-integration</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!--服务注册/发现-->

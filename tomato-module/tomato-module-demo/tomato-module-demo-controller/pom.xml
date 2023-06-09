@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-facade</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- spring boot web 相关 -->

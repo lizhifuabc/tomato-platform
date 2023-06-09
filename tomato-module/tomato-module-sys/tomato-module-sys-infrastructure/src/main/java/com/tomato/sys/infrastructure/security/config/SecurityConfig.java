@@ -33,9 +33,10 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
-    String[] permitAll = new String[]{
-            "/api/v1/auth/**",
-            "/v2/api-docs",
+    private final String LOG_OUT_URL = "/sys/user/logout";
+    private final String[] permitAll = new String[]{
+            "/sys/user/login",
+            LOG_OUT_URL,
             "/v3/api-docs",
             "/v3/api-docs/**",
             "/swagger-resources",
@@ -59,7 +60,7 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(out -> out
-                        .logoutUrl("/api/v1/auth/logout")
+                        .logoutUrl(LOG_OUT_URL)
                         .addLogoutHandler(logoutHandler)
                         .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
                 )
