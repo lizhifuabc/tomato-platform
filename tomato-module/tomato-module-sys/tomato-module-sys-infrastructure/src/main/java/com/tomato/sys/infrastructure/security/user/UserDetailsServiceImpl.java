@@ -29,11 +29,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     public SysUser currentUser() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final String username = ((UserDetails) authentication.getPrincipal()).getUsername();
-        return sysUserRepository.findByUsername(username);
+        return sysUserRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser sysUser = sysUserRepository.findByUsername(username);
+        SysUser sysUser = sysUserRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("用户不存在"));;
         return new SecurityUserDetails(sysUser);
     }
 }

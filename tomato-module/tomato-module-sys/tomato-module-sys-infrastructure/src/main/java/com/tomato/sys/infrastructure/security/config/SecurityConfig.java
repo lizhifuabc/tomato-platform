@@ -49,7 +49,9 @@ public class SecurityConfig {
     };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        log.info("安全配置，securityFilterChain");
         http
+                // 关闭csrf,允许跨域
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
                     authorizationManagerRequestMatcherRegistry.requestMatchers(permitAll).permitAll();

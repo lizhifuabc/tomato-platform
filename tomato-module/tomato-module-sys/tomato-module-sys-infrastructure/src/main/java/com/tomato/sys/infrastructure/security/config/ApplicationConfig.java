@@ -1,5 +1,6 @@
 package com.tomato.sys.infrastructure.security.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @since 2023/6/8
  */
 @Configuration
+@Slf4j
 public class ApplicationConfig {
     private final UserDetailsService userDetailsService;
 
@@ -27,14 +29,13 @@ public class ApplicationConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+        log.info("密码加密方式配置，passwordEncoder");
         //return new BCryptPasswordEncoder();
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
     @Bean
     public UserDetailsService userDetailsService() {
-        // TODO  username -> repository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
-
-        return userDetailsService;
+        return  userDetailsService;
     }
     @Bean
     public AuthenticationProvider authenticationProvider() {

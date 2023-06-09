@@ -23,6 +23,6 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public Optional<SysUser> getUserByUserName(String userName) {
-        return Optional.ofNullable(sysUserRepository.findByUsername(userName));
+        return sysUserRepository.findByUsername(userName);
     }
 }

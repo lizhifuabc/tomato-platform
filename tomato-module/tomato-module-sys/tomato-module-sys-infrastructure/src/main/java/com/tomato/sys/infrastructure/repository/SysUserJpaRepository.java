@@ -3,6 +3,8 @@ package com.tomato.sys.infrastructure.repository;
 import com.tomato.jpa.domain.repository.BaseJpaRepository;
 import com.tomato.sys.domain.entity.SysUser;
 
+import java.util.Optional;
+
 /**
  * SysUserRepository
  * @author lizhifu
@@ -14,7 +16,7 @@ public interface SysUserJpaRepository extends BaseJpaRepository<SysUser, String>
      * @param username 用户名
      * @return {@link SysUser}
      */
-    SysUser findByUsername(String username);
+    Optional<SysUser> findByUsername(String username);
 
     /**
      * 根据用户ID查找用户

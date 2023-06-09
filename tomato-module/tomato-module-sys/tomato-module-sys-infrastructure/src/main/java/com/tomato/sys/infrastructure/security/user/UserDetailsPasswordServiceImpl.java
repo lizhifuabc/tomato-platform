@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -34,7 +35,7 @@ public class UserDetailsPasswordServiceImpl implements UserDetailsPasswordServic
      */
     @Override
     public UserDetails updatePassword(UserDetails user, String newPassword) {
-        final SysUser sysUser = sysUserRepository.findByUsername(user.getUsername());
+        final SysUser sysUser = sysUserRepository.findByUsername(user.getUsername()).orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
         sysUser.setPassword(newPassword);
         sysUserRepository.findByUserId(sysUser.getUserId());
         return LoginUserDetails.builder()
