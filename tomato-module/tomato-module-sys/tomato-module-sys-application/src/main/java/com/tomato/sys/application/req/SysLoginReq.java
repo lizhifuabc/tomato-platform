@@ -32,4 +32,12 @@ public class SysLoginReq extends CaptchaReq {
     @Schema(description = "登录终端")
     @CheckEnum(value = LoginDeviceEnum.class, required = true, message = "此终端不允许登录")
     private Integer loginDevice;
+
+    @Override
+    public String toString() {
+        return "SysLoginReq{" +
+                "username='" + username + '\'' +
+                ", loginDevice=" + loginDevice +
+                '}'+super.toString();
+    }
 }

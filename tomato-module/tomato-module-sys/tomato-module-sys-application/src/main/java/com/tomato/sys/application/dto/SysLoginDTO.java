@@ -26,4 +26,13 @@ public class SysLoginDTO {
      * 验证码key
      */
     private String captchaUuid;
+
+    @Override
+    public String toString() {
+        return "SysLoginDTO{" +
+                "username='" + username + '\'' +
+                ", captchaCode='" + captchaCode + '\'' +
+                ", captchaUuid='" + captchaUuid + '\'' +
+                '}';
+    }
 }

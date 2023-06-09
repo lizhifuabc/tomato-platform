@@ -3,6 +3,7 @@ package com.tomato.sys.infrastructure.security.config;
 import com.tomato.sys.domain.constants.RequestHeaderConstant;
 import com.tomato.sys.domain.entity.SysUser;
 import com.tomato.sys.infrastructure.repository.SysTokenRepository;
+import com.tomato.sys.infrastructure.security.user.SecurityUserDetails;
 import com.tomato.sys.infrastructure.security.user.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -42,22 +43,23 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         jwt = authHeader.substring(7);
         final String username = jwtService.extractUsername(jwt);
+        // 获取当前登录用户的Authentication对象 SecurityContextHolder.getContext().getAuthentication()
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            UserDetails userDetails = (UserDetails)authentication.getDetails();
-            SysUser sysUser = userDetailsService.currentUser();
+            SecurityUserDetails userDetails = (SecurityUserDetails) userDetailsService.loadUserByUsername(username);
 
-            boolean isTokenValid = tokenRepository.findBySysUser(sysUser)
+            boolean isTokenValid = tokenRepository.findBySysUser(userDetails.getSysUser())
                     .map(t -> !t.isExpired() && !t.isRevoked())
                     .orElse(false);
             if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
-                // 重新设置用户对象
+                // 基于用户信息构建一个认证令牌对象
+                // 该对象包含了用户信息以及用户权限等，和密码无关，可以保证安全性
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
                         userDetails.getAuthorities()
                 );
                 authToken.setDetails(userDetails);
+                // 该authToken对象设置到SecurityContext中,表示该用户已认证登录
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }

@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * @since 2023/6/8
  */
 public class SecurityUserDetails extends User {
-    private Long userId;
+    private SysUser sysUser;
     public SecurityUserDetails(SysUser sysUser) {
         super(
                 sysUser.getUsername(),
@@ -25,14 +25,14 @@ public class SecurityUserDetails extends User {
                 true,
                 sysUser.getRoles().stream().map(role -> role.getPermissions().stream().map(permission -> (GrantedAuthority) permission::getPermissionCode)).flatMap(Stream::distinct).toList()
         );
-        this.userId = sysUser.getUserId();
+        this.sysUser = sysUser;
     }
 
-    public Long getUserId() {
-        return userId;
+    public SysUser getSysUser() {
+        return sysUser;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setSysUser(SysUser sysUser) {
+        this.sysUser = sysUser;
     }
 }
