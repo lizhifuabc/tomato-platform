@@ -3,6 +3,7 @@ package com.tomato.sys.application.service.impl;
 import com.tomato.sys.application.dto.SysLoginDTO;
 import com.tomato.sys.application.resp.SysLoginResp;
 import com.tomato.sys.application.service.SysUserLoginService;
+import com.tomato.sys.domain.service.SysTokenService;
 import com.tomato.sys.domain.service.SysUserService;
 import com.tomato.sys.infrastructure.security.config.JwtService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +22,11 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class SysUserLoginServiceImpl implements SysUserLoginService {
-    private final SysUserService sysUserService;
+    private final SysTokenService sysTokenService;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    public SysUserLoginServiceImpl(SysUserService sysUserService, JwtService jwtService, AuthenticationManager authenticationManager) {
-        this.sysUserService = sysUserService;
+    public SysUserLoginServiceImpl(SysTokenService sysTokenService, JwtService jwtService, AuthenticationManager authenticationManager) {
+        this.sysTokenService = sysTokenService;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
     }
@@ -39,6 +40,7 @@ public class SysUserLoginServiceImpl implements SysUserLoginService {
         User user = (User) authentication.getPrincipal();
         String jwtToken = jwtService.generateToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
+        sysTokenService.saveToken(user.getUsername(),jwtToken,refreshToken);
         return SysLoginResp.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
     }
 }
