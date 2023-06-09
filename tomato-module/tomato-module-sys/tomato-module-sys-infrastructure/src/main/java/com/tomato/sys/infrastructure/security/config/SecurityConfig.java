@@ -1,9 +1,13 @@
 package com.tomato.sys.infrastructure.security.config;
 
+import com.tomato.common.resp.Resp;
+import com.tomato.jackson.utils.JacksonUtils;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +18,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+
+import java.nio.charset.StandardCharsets;
 
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.http.HttpMethod.DELETE;
@@ -66,7 +72,28 @@ public class SecurityConfig {
                         .addLogoutHandler(logoutHandler)
                         .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
                 )
+                .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            log.error("未授权", authException);
+                            exceptionHandling(response,Resp.buildFailure("401","未授权"));
+                        })
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            log.error("权限不足", accessDeniedException);
+                            exceptionHandling(response,Resp.buildFailure("403","权限不足"));
+                        }))
         ;
         return http.build();
+    }
+
+    private static void exceptionHandling(HttpServletResponse response,Resp<Void> resp){
+        try {
+            response.setContentType(MediaType.APPLICATION_JSON.toString());
+            response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+            response.getWriter().print(JacksonUtils.toJson(resp));
+            response.getWriter().flush();
+            response.getWriter().close();
+        }catch (Exception e){
+            log.error("exceptionHandling",e);
+        }
     }
 }

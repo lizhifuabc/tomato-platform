@@ -29,12 +29,7 @@ public class SysUserLoginServiceImpl implements SysUserLoginService {
     public void login(SysLoginDTO sysLoginDTO) {
         log.info("登录:{}",sysLoginDTO);
         // 调用 Spring Security 的 AuthenticationManager 进行用户名密码验证
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        sysLoginDTO.getUsername(),
-                        sysLoginDTO.getPassword()
-                )
-        );
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(sysLoginDTO.getUsername(),sysLoginDTO.getPassword()));
         // 生成access_token 和 refresh_token TODO
 
     }
