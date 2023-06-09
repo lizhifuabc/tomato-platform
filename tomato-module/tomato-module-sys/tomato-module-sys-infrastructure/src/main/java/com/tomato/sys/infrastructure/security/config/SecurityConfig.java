@@ -74,11 +74,10 @@ public class SecurityConfig {
                 )
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
                         .authenticationEntryPoint((request, response, authException) -> {
-                            log.error("未授权", authException);
                             exceptionHandling(response,Resp.buildFailure("401","未授权"));
                         })
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
-                            log.error("权限不足", accessDeniedException);
+                            log.warn("权限不足", accessDeniedException);
                             exceptionHandling(response,Resp.buildFailure("403","权限不足"));
                         }))
         ;
