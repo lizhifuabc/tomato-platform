@@ -14,6 +14,26 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 
 }
 
+<> 2023-06-09T162952.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
 <> 2023-06-09T155957.200.json
 
 ###
@@ -890,20 +910,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2023-03-22T203326.200.json
-
-###
-
-POST http://localhost:9997/goods/query/list
-Content-Type: application/json
-{:
-  "goodsIdList": [1,2]
-}:
-Content-Length: 0
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-03-22T203311.400.html
 
 ###
 

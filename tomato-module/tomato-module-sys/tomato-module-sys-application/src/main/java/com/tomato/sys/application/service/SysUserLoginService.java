@@ -1,6 +1,7 @@
 package com.tomato.sys.application.service;
 
 import com.tomato.sys.application.dto.SysLoginDTO;
+import com.tomato.sys.application.resp.SysLoginResp;
 
 /**
  * 登录
@@ -13,6 +14,7 @@ public interface SysUserLoginService {
      * 登录
      *
      * @param sysLoginDTO 登录
+     * @return SysLoginResp 登录返回
      */
-    public void login(SysLoginDTO sysLoginDTO);
+    public SysLoginResp login(SysLoginDTO sysLoginDTO);
 }

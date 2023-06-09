@@ -1,6 +1,7 @@
 package com.tomato.sys.controller;
 
 import com.tomato.sys.application.adapter.SysLoginAdapter;
+import com.tomato.sys.application.resp.SysLoginResp;
 import com.tomato.sys.application.service.SysUserLoginService;
 import com.tomato.common.resp.Resp;
 import com.tomato.sys.application.req.SysLoginReq;
@@ -33,11 +34,11 @@ public class SysUserLoginController extends BaseController {
 
     @PostMapping("/sys/user/login")
     @Operation(summary = "登录", description = "登录")
-    public Resp<Void> login(@Valid @RequestBody SysLoginReq sysLoginReq) {
+    public Resp<SysLoginResp> login(@Valid @RequestBody SysLoginReq sysLoginReq) {
         log.info("登录:{}",sysLoginReq);
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        sysUserLoginService.login(SysLoginAdapter.convert(sysLoginReq));
-        return Resp.buildSuccess();
+        SysLoginResp login = sysUserLoginService.login(SysLoginAdapter.convert(sysLoginReq));
+        return Resp.of(login);
     }
     @GetMapping("/sys/user/logout")
     public Resp<Void> logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
