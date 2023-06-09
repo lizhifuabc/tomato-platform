@@ -9,5 +9,5 @@ import com.tomato.sys.domain.entity.SysPermission;
  * @author lizhifu
  * @since 2023/4/21
  */
-public interface SysMenuJpaRepository extends BaseJpaRepository<SysPermission, String> {
+public interface SysPermissionRepository extends BaseJpaRepository<SysPermission, String> {
 }

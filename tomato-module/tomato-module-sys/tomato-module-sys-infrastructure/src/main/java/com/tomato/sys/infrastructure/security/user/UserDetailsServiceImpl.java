@@ -1,7 +1,7 @@
 package com.tomato.sys.infrastructure.security.user;
 
 import com.tomato.sys.domain.entity.SysUser;
-import com.tomato.sys.infrastructure.repository.SysUserJpaRepository;
+import com.tomato.sys.infrastructure.repository.SysUserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,9 +17,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
-    private final SysUserJpaRepository sysUserRepository;
+    private final SysUserRepository sysUserRepository;
 
-    public UserDetailsServiceImpl(SysUserJpaRepository sysUserRepository) {
+    public UserDetailsServiceImpl(SysUserRepository sysUserRepository) {
         this.sysUserRepository = sysUserRepository;
     }
     /**

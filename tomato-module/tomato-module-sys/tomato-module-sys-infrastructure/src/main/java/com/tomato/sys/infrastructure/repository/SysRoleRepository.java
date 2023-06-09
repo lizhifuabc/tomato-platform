@@ -8,6 +8,6 @@ import com.tomato.sys.domain.entity.SysRole;
  *
  * @author lizhifu
  */
-public interface SysRoleJpaRepository extends BaseJpaRepository<SysRole, String> {
+public interface SysRoleRepository extends BaseJpaRepository<SysRole, String> {
 
 }

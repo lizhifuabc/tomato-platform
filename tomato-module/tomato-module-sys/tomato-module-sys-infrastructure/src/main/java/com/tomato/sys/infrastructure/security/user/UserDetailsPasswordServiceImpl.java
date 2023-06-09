@@ -1,7 +1,7 @@
 package com.tomato.sys.infrastructure.security.user;
 
 import com.tomato.sys.domain.entity.SysUser;
-import com.tomato.sys.infrastructure.repository.SysUserJpaRepository;
+import com.tomato.sys.infrastructure.repository.SysUserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class UserDetailsPasswordServiceImpl implements UserDetailsPasswordService {
-    private final SysUserJpaRepository sysUserRepository;
+    private final SysUserRepository sysUserRepository;
 
-    public UserDetailsPasswordServiceImpl(SysUserJpaRepository sysUserRepository) {
+    public UserDetailsPasswordServiceImpl(SysUserRepository sysUserRepository) {
         this.sysUserRepository = sysUserRepository;
     }
 

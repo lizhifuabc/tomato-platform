@@ -5,14 +5,10 @@ import com.tomato.sys.domain.entity.SysUser;
 import com.tomato.sys.domain.enums.TokenType;
 import com.tomato.sys.domain.service.SysTokenService;
 import com.tomato.sys.infrastructure.repository.SysTokenRepository;
-import com.tomato.sys.infrastructure.repository.SysUserJpaRepository;
-import com.tomato.sys.infrastructure.security.user.UserDetailsServiceImpl;
-import jakarta.persistence.EntityManager;
+import com.tomato.sys.infrastructure.repository.SysUserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 /**
  * token
@@ -23,8 +19,8 @@ import java.util.Optional;
 @Service
 public class SysTokenServiceImpl implements SysTokenService {
     private final SysTokenRepository sysTokenRepository;
-    private final SysUserJpaRepository sysUserRepository;
-    public SysTokenServiceImpl(SysTokenRepository sysTokenRepository, SysUserJpaRepository sysUserRepository) {
+    private final SysUserRepository sysUserRepository;
+    public SysTokenServiceImpl(SysTokenRepository sysTokenRepository, SysUserRepository sysUserRepository) {
         this.sysTokenRepository = sysTokenRepository;
         this.sysUserRepository = sysUserRepository;
     }

@@ -9,7 +9,7 @@ import java.util.Optional;
  * SysUserRepository
  * @author lizhifu
  */
-public interface SysUserJpaRepository extends BaseJpaRepository<SysUser, String> {
+public interface SysUserRepository extends BaseJpaRepository<SysUser, String> {
     /**
      * 根据用户名查找SysUser
      *
