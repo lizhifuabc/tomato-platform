@@ -1,0 +1,1 @@
+INSERT INTO `t_sys_user` (`enabled`, `credentials_expire_at`, `user_id`, `username`, `password`) VALUES (1, '2023-06-09 15:11:17', 1,'admin', 'admin');

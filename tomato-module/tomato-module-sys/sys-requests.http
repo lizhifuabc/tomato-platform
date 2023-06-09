@@ -3,8 +3,8 @@ POST http://localhost:8001/sys/user/login
 Content-Type: application/json
 
 {
-  "username": "username11",
-  "password": "123456",
+  "username": "admin",
+  "password": "admin",
   "captchaCode": "123456",
   "captchaUuid": "123456",
   "loginDevice": 1

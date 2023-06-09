@@ -17,8 +17,8 @@ import java.util.Set;
  * @author lizhifu
  */
 @Entity
-@Table(name = "t_sys_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_name"})},
-        indexes = {@Index(name = "sys_user_id_idx", columnList = "user_id"), @Index(name = "sys_user_unm_idx", columnList = "user_name")})
+@Table(name = "t_sys_user", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})},
+        indexes = {@Index(name = "sys_user_id_idx", columnList = "user_id"), @Index(name = "sys_user_unm_idx", columnList = "username")})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId") // 避免循环引用
 public class SysUser extends BaseSysEntity {
 
@@ -29,11 +29,11 @@ public class SysUser extends BaseSysEntity {
     private Long userId;
 
     @Comment("用户名")
-    @Column(name = "user_name", length = 128, unique = true)
+    @Column(name = "username", length = 128, unique = true, nullable = false)
     private String username;
 
     @Comment("密码")
-    @Column(name = "password", length = 256)
+    @Column(name = "password", length = 256, nullable = false)
     private String password;
 
     @Comment("昵称")
@@ -52,10 +52,10 @@ public class SysUser extends BaseSysEntity {
     @Column(name = "email", length = 100)
     private String email;
     @Comment("密码过期日期")
-    @Column(name = "credentials_expire_at")
+    @Column(name = "credentials_expire_at", nullable = false)
     private LocalDateTime credentialsExpireAt;
     @Comment("是否启用")
-    @Column(name = "enabled")
+    @Column(name = "enabled", nullable = false, columnDefinition = "bit(1) default 1")
     private boolean enabled;
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)

@@ -1,5 +1,25 @@
 POST http://localhost:8001/sys/user/login
 Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-09T150154.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
 Content-Length: 129
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
@@ -814,15 +834,6 @@ User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2023-03-22T114328.200.json
-
-###
-
-GET http://localhost:9998/seckill/activity/list
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-03-22T114225.200.json
 
 ###
 
