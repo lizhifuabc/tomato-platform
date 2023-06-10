@@ -59,7 +59,7 @@
         <!--  springdoc https://springdoc.org/     -->
         <springdoc.version>1.6.15</springdoc.version>
         <!--   https://springdoc.org/v2/     -->
-        <springdoc.v2.version>2.0.4</springdoc.v2.version>
+        <springdoc.v2.version>2.1.0</springdoc.v2.version>
         <!--   配置文件加解密 https://github.com/jasypt/jasypt     -->
         <jasypt.version>3.0.5</jasypt.version>
         <!--  代码生成模板      -->
