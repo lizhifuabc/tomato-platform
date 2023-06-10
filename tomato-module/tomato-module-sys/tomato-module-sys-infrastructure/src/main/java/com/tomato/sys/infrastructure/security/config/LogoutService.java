@@ -3,14 +3,11 @@ package com.tomato.sys.infrastructure.security.config;
 import com.tomato.sys.domain.constants.RequestHeaderConstant;
 import com.tomato.sys.infrastructure.repository.SysTokenRepository;
 import com.tomato.sys.infrastructure.repository.SysUserRepository;
-import com.tomato.sys.infrastructure.security.user.SecurityUserDetails;
-import com.tomato.sys.infrastructure.security.user.UserDetailsServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
