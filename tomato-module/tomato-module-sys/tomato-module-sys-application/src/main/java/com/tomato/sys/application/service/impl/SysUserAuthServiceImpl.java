@@ -3,10 +3,9 @@ package com.tomato.sys.application.service.impl;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.sys.application.dto.SysLoginDTO;
 import com.tomato.sys.application.resp.SysLoginResp;
-import com.tomato.sys.application.service.SysUserLoginService;
+import com.tomato.sys.application.service.SysUserAuthService;
 import com.tomato.sys.domain.entity.SysToken;
 import com.tomato.sys.domain.service.SysTokenService;
-import com.tomato.sys.domain.service.SysUserService;
 import com.tomato.sys.infrastructure.security.config.JwtService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,12 +24,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class SysUserLoginServiceImpl implements SysUserLoginService {
+public class SysUserAuthServiceImpl implements SysUserAuthService {
     private final SysTokenService sysTokenService;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public SysUserLoginServiceImpl(SysTokenService sysTokenService, JwtService jwtService, AuthenticationManager authenticationManager) {
+    public SysUserAuthServiceImpl(SysTokenService sysTokenService, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.sysTokenService = sysTokenService;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;

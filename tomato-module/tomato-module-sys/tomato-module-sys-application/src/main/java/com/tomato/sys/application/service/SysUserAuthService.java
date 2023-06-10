@@ -9,20 +9,20 @@ import com.tomato.sys.application.resp.SysLoginResp;
  * @author lizhifu
  * @since 2023/4/22
  */
-public interface SysUserLoginService {
+public interface SysUserAuthService {
     /**
      * 登录
      *
      * @param sysLoginDTO 登录
      * @return SysLoginResp 登录返回
      */
-    public SysLoginResp login(SysLoginDTO sysLoginDTO);
+    SysLoginResp login(SysLoginDTO sysLoginDTO);
 
     /**
      * 刷新token
      *
      * @param refreshToken refreshToken
-     * @return SysLoginResp 登录返回
+     * @return SysLoginResp 刷新token返回
      */
-    public SysLoginResp refreshToken(String refreshToken);
+    SysLoginResp refreshToken(String refreshToken);
 }

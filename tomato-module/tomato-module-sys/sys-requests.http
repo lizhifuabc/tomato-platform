@@ -1,5 +1,5 @@
 ### 登录
-POST http://localhost:8001/sys/user/login
+POST http://localhost:8001/sys/user/auth/login
 Content-Type: application/json
 
 {
@@ -17,11 +17,11 @@ GET http://localhost:8001
 Authorization: Bearer {{access_token}}
 
 ### 退出
-GET http://localhost:8001/sys/user/logout
+GET http://localhost:8001/sys/user/auth/logout
 Authorization: Bearer {{access_token}}
 
 ### 刷新token
-POST http://localhost:8001/token/refresh-token
+POST http://localhost:8001/sys/user/auth/refresh-token
 Authorization: Bearer {{refresh_token}}
 
 ### 修改密码

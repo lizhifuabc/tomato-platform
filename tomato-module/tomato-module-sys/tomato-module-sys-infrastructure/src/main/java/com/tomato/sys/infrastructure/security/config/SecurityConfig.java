@@ -21,8 +21,6 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import java.nio.charset.StandardCharsets;
 
-import static org.springframework.http.HttpMethod.*;
-import static org.springframework.http.HttpMethod.DELETE;
 
 /**
  * 权限
@@ -39,19 +37,11 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
-    private final String LOG_OUT_URL = "/sys/user/logout";
+    private final String LOG_OUT_URL = "/sys/user/auth/logout";
+    private final String LOG_IN_URL = "/sys/user/auth/login";
     private final String[] permitAll = new String[]{
-            "/sys/user/login",
-            LOG_OUT_URL,
-            "/v3/api-docs",
-            "/v3/api-docs/**",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui/**",
-            "/webjars/**",
-            "/swagger-ui.html"
+            LOG_IN_URL,
+            LOG_OUT_URL
     };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
