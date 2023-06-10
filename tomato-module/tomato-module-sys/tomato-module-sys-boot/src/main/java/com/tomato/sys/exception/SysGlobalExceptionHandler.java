@@ -3,6 +3,7 @@ package com.tomato.sys.exception;
 import com.tomato.common.resp.Resp;
 import com.tomato.web.core.handler.GlobalExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,11 @@ import static org.springframework.http.HttpStatus.*;
 @Slf4j
 @RestControllerAdvice
 public class SysGlobalExceptionHandler {
-    @ExceptionHandler(value = UsernameNotFoundException.class)
+    @ExceptionHandler(value = AccessDeniedException.class)
     @ResponseBody
-    public ResponseEntity<String> handleUsernameNotFoundException(UsernameNotFoundException e) {
-        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
+    public Resp<Void> handleAccessDeniedException(AccessDeniedException e) {
+        log.info("没有权限:{}",e.getLocalizedMessage());
+        return Resp.buildFailure(String.valueOf(UNAUTHORIZED.value()),e.getLocalizedMessage());
     }
     @ExceptionHandler(value = AuthenticationException.class)
     @ResponseBody

@@ -29,9 +29,9 @@ Authorization: Bearer {{refresh_token}}
 GET http://localhost:8080/sys/user/update/disabled/100
 
 ### 创建用户
-POST http://localhost:8080/sys/user/create
+POST http://localhost:8001/sys/user/add
 Content-Type: application/json
-Authorization: Bearer {{auth_token}}
+Authorization: Bearer {{access_token}}
 
 {
   "actualName": "李志福",
