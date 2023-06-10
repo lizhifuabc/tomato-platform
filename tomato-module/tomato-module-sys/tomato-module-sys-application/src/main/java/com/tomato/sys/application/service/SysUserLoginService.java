@@ -17,4 +17,12 @@ public interface SysUserLoginService {
      * @return SysLoginResp 登录返回
      */
     public SysLoginResp login(SysLoginDTO sysLoginDTO);
+
+    /**
+     * 刷新token
+     *
+     * @param refreshToken refreshToken
+     * @return SysLoginResp 登录返回
+     */
+    public SysLoginResp refreshToken(String refreshToken);
 }

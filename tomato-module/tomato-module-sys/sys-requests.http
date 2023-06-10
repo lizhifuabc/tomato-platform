@@ -10,7 +10,7 @@ Content-Type: application/json
   "loginDevice": 1
 
 }
-> {% client.global.set("access_token", response.body.data.access_token); %}
+> {% client.global.set("access_token", response.body.data.access_token);client.global.set("refresh_token", response.body.data.refresh_token); %}
 
 ### hello world
 GET http://localhost:8001
@@ -19,6 +19,11 @@ Authorization: Bearer {{access_token}}
 ### 退出
 GET http://localhost:8001/sys/user/logout
 Authorization: Bearer {{access_token}}
+
+### 刷新token
+POST http://localhost:8001/token/refresh-token
+Authorization: Bearer {{refresh_token}}
+
 
 ### 更新禁用/启用状态
 GET http://localhost:8080/sys/user/update/disabled/100

@@ -1,11 +1,16 @@
 package com.tomato.sys.infrastructure.impl;
 
+import com.tomato.common.exception.BusinessException;
 import com.tomato.sys.domain.entity.SysToken;
 import com.tomato.sys.domain.entity.SysUser;
 import com.tomato.sys.domain.enums.TokenType;
 import com.tomato.sys.domain.service.SysTokenService;
 import com.tomato.sys.infrastructure.repository.SysTokenRepository;
 import com.tomato.sys.infrastructure.repository.SysUserRepository;
+import com.tomato.sys.infrastructure.security.config.JwtService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,5 +41,11 @@ public class SysTokenServiceImpl implements SysTokenService {
         sysToken.setTokenType(TokenType.BEARER);
         sysToken.setToken(token);
         sysTokenRepository.save(sysToken);
+    }
+
+    @Override
+    public SysToken getToken(String username) {
+        SysUser sysUser = sysUserRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
+        return sysTokenRepository.findBySysUser(sysUser).orElseThrow(() -> new BusinessException("token不存在"));
     }
 }

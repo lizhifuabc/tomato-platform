@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -43,5 +44,15 @@ public class SysUserLoginController extends BaseController {
     @GetMapping("/sys/user/logout")
     public Resp<Void> logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
         return Resp.buildSuccess();
+    }
+    @PostMapping("/token/refresh-token")
+    public Resp<SysLoginResp> refreshToken(HttpServletRequest request,HttpServletRequest response) {
+        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        if (authHeader == null ||!authHeader.startsWith(RequestHeaderConstant.AUTHORIZATION_BEARER)) {
+            Resp.buildFailure("header token 不存在");
+        }
+        assert authHeader != null;
+        SysLoginResp sysLoginResp = sysUserLoginService.refreshToken(authHeader.substring(7));
+        return Resp.of(sysLoginResp);
     }
 }

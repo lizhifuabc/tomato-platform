@@ -1,8 +1,10 @@
 package com.tomato.sys.application.service.impl;
 
+import com.tomato.common.exception.BusinessException;
 import com.tomato.sys.application.dto.SysLoginDTO;
 import com.tomato.sys.application.resp.SysLoginResp;
 import com.tomato.sys.application.service.SysUserLoginService;
+import com.tomato.sys.domain.entity.SysToken;
 import com.tomato.sys.domain.service.SysTokenService;
 import com.tomato.sys.domain.service.SysUserService;
 import com.tomato.sys.infrastructure.security.config.JwtService;
@@ -10,7 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,6 +29,7 @@ public class SysUserLoginServiceImpl implements SysUserLoginService {
     private final SysTokenService sysTokenService;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
     public SysUserLoginServiceImpl(SysTokenService sysTokenService, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.sysTokenService = sysTokenService;
         this.jwtService = jwtService;
@@ -42,5 +47,23 @@ public class SysUserLoginServiceImpl implements SysUserLoginService {
         String refreshToken = jwtService.generateRefreshToken(user);
         sysTokenService.saveToken(user.getUsername(),jwtToken,refreshToken);
         return SysLoginResp.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
+    }
+
+    @Override
+    public SysLoginResp refreshToken(String refreshToken) {
+        String username = jwtService.extractUsername(refreshToken);
+        SysToken token = sysTokenService.getToken(username);
+        if(token.getToken().equals(refreshToken)){
+            throw new BusinessException("请使用refreshToken");
+        }
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        final UserDetails userDetails = ((UserDetails) authentication.getPrincipal());
+        boolean tokenValid = jwtService.isTokenValid(refreshToken, userDetails);
+        if(tokenValid){
+            String jwtToken = jwtService.generateToken(userDetails);
+            sysTokenService.saveToken(username,jwtToken,refreshToken);
+            return SysLoginResp.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
+        }
+        throw new BusinessException("refreshToken过期,请重新登录");
     }
 }

@@ -48,6 +48,7 @@ tomato-platform
 ├     ├── tomato-module-pay     -- 支付通道[9998]
 ├     ├── tomato-module-pay-monitor  -- 支付通道监控[9997]
 ├     └── tomato-module-reconciliation -- 对账中心[9995]
+├     └── tomato-module-sys -- 后台管理系统（RABC）[8001]
 ```
 
 ## 涉及角色
