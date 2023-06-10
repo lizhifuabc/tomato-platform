@@ -25,6 +25,17 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--  主要用于 构建插件的配置，放在这里会造成和猪POM不一致的问题，TODO      -->
+        <!-- spring boot 版本管理 -->
+        <spring.boot.version>3.1.0</spring.boot.version>
+        <!--  docker 相关配置 -->
+        <docker.plugin.version>0.32.0</docker.plugin.version>
+        <docker.host>http://xxx.xxx.x.xxxx:xxxx</docker.host>
+        <docker.registry>xxx.xxx.x.xxxx</docker.registry>
+        <docker.namespace>xxxxxx</docker.namespace>
+        <docker.username>username</docker.username>
+        <docker.password>password</docker.password>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -47,6 +58,59 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <!-- 子项目中通过显式的配置plugin和execution元素来使用插件。-->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
+                    <configuration>
+                        <!-- 最终构建文件名 -->
+                        <finalName>${project.build.finalName}</finalName>
+                        <!-- 开启分层jar的构建 -->
+                        <layers>
+                            <enabled>true</enabled>
+                        </layers>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <!-- 在package阶段执行repackage目标，解决jar中没有主清单属性 -->
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.plugin.version}</version>
+                    <configuration>
+                        <!-- Docker Remote Api-->
+                        <dockerHost>${docker.host}</dockerHost>
+                        <!-- Docker 镜像私服-->
+                        <registry>${docker.registry}</registry>
+                        <!-- 认证信息-->
+                        <authConfig>
+                            <push>
+                                <username>${docker.username}</username>
+                                <password>${docker.password}</password>
+                            </push>
+                        </authConfig>
+                        <images>
+                            <image>
+                                <!-- 镜像名称： 198.15.0.1231/library/xxxxx:2.6.3-->
+                                <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
+                                <build>
+                                    <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                                </build>
+                            </image>
+                        </images>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
     <profiles>
         <profile>
