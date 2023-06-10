@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Tag(name = "用户相关", description = "用户相关 API")
-public class SysUserController {
+public class SysUserManagerController {
     private final SysUserPasswordService sysUserPasswordService;
-    public SysUserController(SysUserPasswordService sysUserPasswordService) {
+    public SysUserManagerController(SysUserPasswordService sysUserPasswordService) {
         this.sysUserPasswordService = sysUserPasswordService;
     }
     @PostMapping("/sys/user/add")

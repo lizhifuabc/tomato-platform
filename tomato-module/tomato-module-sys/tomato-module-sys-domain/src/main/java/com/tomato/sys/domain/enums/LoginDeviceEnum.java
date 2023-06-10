@@ -35,8 +35,8 @@ public enum LoginDeviceEnum implements BaseEnum<Integer> {
         this.desc = desc;
     }
 
-    private Integer value;
-    private String desc;
+    private final Integer value;
+    private final String desc;
 
     @Override
     public Integer getValue() {
