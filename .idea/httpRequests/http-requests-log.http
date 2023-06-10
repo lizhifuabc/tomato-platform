@@ -1,3 +1,335 @@
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T164411.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T164343.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T164339.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T163830.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T163807.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T163757.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T163750.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T163721.200.json
+
+###
+
+POST http://localhost:8001/sys/user/updatePassword
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NTgxMiwiZXhwIjoxNjg2NDcyMjEyfQ.TKkOWpsUrjqK9sNe_HIC1Sik2y4TLe86-v04PqsGp40
+Content-Length: 67
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
+
+###
+
+POST http://localhost:8001/sys/user/updatePassword
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NTgxMiwiZXhwIjoxNjg2NDcyMjEyfQ.TKkOWpsUrjqK9sNe_HIC1Sik2y4TLe86-v04PqsGp40
+Content-Length: 67
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
+
+###
+
+POST http://localhost:8001/sys/user/updatePassword
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NTgxMiwiZXhwIjoxNjg2NDcyMjEyfQ.TKkOWpsUrjqK9sNe_HIC1Sik2y4TLe86-v04PqsGp40
+Content-Length: 67
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T163012.200.json
+
+###
+
+POST http://localhost:8001/sys/user/updatePassword
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NTcxNSwiZXhwIjoxNjg2NDcyMTE1fQ.I-CvK8zLuJsLBM_Wa_QtQMsgrJGLEimZvRcQwHyvH48
+Content-Length: 67
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
+
+<> 2023-06-10T162951.200.json
+
+###
+
+POST http://localhost:8001/sys/user/updatePassword
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NTcxNSwiZXhwIjoxNjg2NDcyMTE1fQ.I-CvK8zLuJsLBM_Wa_QtQMsgrJGLEimZvRcQwHyvH48
+Content-Length: 67
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
+
+<> 2023-06-10T162905.200.json
+
+###
+
+POST http://localhost:8001/sys/user/updatePassword
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NTcxNSwiZXhwIjoxNjg2NDcyMTE1fQ.I-CvK8zLuJsLBM_Wa_QtQMsgrJGLEimZvRcQwHyvH48
+Content-Length: 67
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
+
+<> 2023-06-10T162859.200.json
+
+###
+
+POST http://localhost:8001/sys/user/updatePassword
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NTcxNSwiZXhwIjoxNjg2OTkwNTE1fQ.HaRM0wqbuuXKNKJ8pEMWiC_wsigizp4P_OpIPrO1Tak
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NTcxNSwiZXhwIjoxNjg2NDcyMTE1fQ.I-CvK8zLuJsLBM_Wa_QtQMsgrJGLEimZvRcQwHyvH48
+Content-Length: 67
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
+
+<> 2023-06-10T162838.200.json
+
+###
+
+POST http://localhost:8001/sys/user/login
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
+
+<> 2023-06-10T162835.200.json
+
+###
+
+POST http://localhost:8001/sys/user/updatePassword
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NDM3MSwiZXhwIjoxNjg2OTg5MTcxfQ.2mIuyYeaK58YXNH9oCtCodVaJB6DaL8w2Vh2xraNebY
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NDM3MSwiZXhwIjoxNjg2NDcwNzcxfQ.nMqmy3J4FHm-MKx93C4cbR6oOTKnulWT-GTiyp5rozA
+Content-Length: 67
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
+
+<> 2023-06-10T162829.200.json
+
+###
+
 POST http://localhost:8001/sys/user/add
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4NDM3MSwiZXhwIjoxNjg2NDcwNzcxfQ.nMqmy3J4FHm-MKx93C4cbR6oOTKnulWT-GTiyp5rozA
@@ -522,216 +854,6 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2023-06-10T150936.200.json
-
-###
-
-GET http://localhost:8001/sys/user/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-###
-
-GET http://localhost:8001
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-10T150352.200.txt
-
-###
-
-GET http://localhost:8001/sys/user/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-###
-
-GET http://localhost:8001/sys/user/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-###
-
-GET http://localhost:8001
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-10T150211.200.txt
-
-###
-
-GET http://localhost:8001/sys/user/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-###
-
-GET http://localhost:8001/sys/user/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-###
-
-GET http://localhost:8001/login/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-10T150049.404.json
-
-###
-
-GET http://localhost:8001
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjM4MDQ0MSwiZXhwIjoxNjg2NDY2ODQxfQ.WuI-_GxLAZi57N6OkJ3gY6ph0eoXgBVtjQMrxk7pNFw
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-10T150045.200.txt
-
-###
-
-POST http://localhost:8001/sys/user/login
-Content-Type: application/json
-Content-Length: 123
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "username": "admin",
-  "password": "admin",
-  "captchaCode": "123456",
-  "captchaUuid": "123456",
-  "loginDevice": 1
-
-}
-
-<> 2023-06-10T150041.200.json
-
-###
-
-POST http://localhost:8001/sys/user/login
-Content-Type: application/json
-Content-Length: 123
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "username": "admin",
-  "password": "admin",
-  "captchaCode": "123456",
-  "captchaUuid": "123456",
-  "loginDevice": 1
-
-}
-
-<> 2023-06-09T233709.200.json
-
-###
-
-POST http://localhost:8001/sys/user/login
-Content-Type: application/json
-Content-Length: 123
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "username": "admin",
-  "password": "admin",
-  "captchaCode": "123456",
-  "captchaUuid": "123456",
-  "loginDevice": 1
-
-}
-
-<> 2023-06-09T233631.200.json
-
-###
-
-GET http://localhost:8001
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjMyNDU4OCwiZXhwIjoxNjg2NDEwOTg4fQ.S0tGUjZu3SaTAVTrRJLYX5BV2vELFYIvjGwr_g8AFEo
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-09T232954.200.txt
-
-###
-
-POST http://localhost:8001/sys/user/login
-Content-Type: application/json
-Content-Length: 123
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "username": "admin",
-  "password": "admin",
-  "captchaCode": "123456",
-  "captchaUuid": "123456",
-  "loginDevice": 1
-
-}
-
-<> 2023-06-09T232949.200.json
-
-###
-
-GET http://localhost:8001
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjMyNDAxNiwiZXhwIjoxNjg2NDEwNDE2fQ.2_EzQ0ofO45UZVhsXpajLJk7JmAI0Z3fj0jkNttdrJ4
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-09T232942.200.json
-
-###
-
-GET http://localhost:8001
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjMyNDAxNiwiZXhwIjoxNjg2NDEwNDE2fQ.2_EzQ0ofO45UZVhsXpajLJk7JmAI0Z3fj0jkNttdrJ4
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-09T232846.200.json
-
-###
-
-GET http://localhost:8001
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjMyNDAxNiwiZXhwIjoxNjg2NDEwNDE2fQ.2_EzQ0ofO45UZVhsXpajLJk7JmAI0Z3fj0jkNttdrJ4
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-09T232807.200.json
-
-###
-
-GET http://localhost:8001
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjMyNDAxNiwiZXhwIjoxNjg2NDEwNDE2fQ.2_EzQ0ofO45UZVhsXpajLJk7JmAI0Z3fj0jkNttdrJ4
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-09T232742.200.json
 
 ###
 

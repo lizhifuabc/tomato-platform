@@ -24,6 +24,15 @@ Authorization: Bearer {{access_token}}
 POST http://localhost:8001/token/refresh-token
 Authorization: Bearer {{refresh_token}}
 
+### 修改密码
+POST http://localhost:8001/sys/user/updatePassword
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "oldPassword": "李志福",
+  "newPassword": "12312qasdfasdf"
+}
 
 ### 更新禁用/启用状态
 GET http://localhost:8080/sys/user/update/disabled/100

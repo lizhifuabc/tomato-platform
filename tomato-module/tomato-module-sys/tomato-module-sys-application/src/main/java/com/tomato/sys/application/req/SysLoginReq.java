@@ -26,7 +26,6 @@ public class SysLoginReq extends CaptchaReq {
 
     @Schema(description = "密码")
     @NotBlank(message = "密码不能为空")
-    // @Pattern(regexp = "^[A-Za-z0-9.]{6,15}$", message = "请输入6-15位密码(数字|大小写字母|小数点)")
     private String password;
 
     @Schema(description = "登录终端")

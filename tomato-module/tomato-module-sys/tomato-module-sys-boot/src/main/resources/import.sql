@@ -5,5 +5,7 @@ insert into `t_sys_role` (`role_id`,`role_code`,`role_name`,`role_status`) value
 insert into `t_sys_user_role` (`user_id`,`role_id`) values (1,1);
 
 insert into `t_sys_permission` (`permission_id`,`permission_code`,`permission_name`) values (1,'sys:user:add','创建用户');
+insert into `t_sys_permission` (`permission_id`,`permission_code`,`permission_name`) values (2,'sys:user:updatePassword','修改密码');
 
 insert into `t_sys_role_permission` (`role_id`,`permission_id`) values (1,1);
+insert into `t_sys_role_permission` (`role_id`,`permission_id`) values (1,2);

@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -21,9 +22,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Slf4j
 public class ApplicationConfig {
     private final UserDetailsService userDetailsService;
-
-    public ApplicationConfig(UserDetailsService userDetailsService) {
+    private final UserDetailsPasswordService userDetailsPasswordSerivce;
+    public ApplicationConfig(UserDetailsService userDetailsService, UserDetailsPasswordService userDetailsPasswordSerivce) {
         this.userDetailsService = userDetailsService;
+        this.userDetailsPasswordSerivce = userDetailsPasswordSerivce;
     }
 
     @Bean
@@ -41,6 +43,8 @@ public class ApplicationConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
+        // 配置密码自动升级服务
+        authProvider.setUserDetailsPasswordService(userDetailsPasswordSerivce);
         return authProvider;
     }
     @Bean
