@@ -17,7 +17,7 @@ GET http://localhost:8001
 Authorization: Bearer {{access_token}}
 
 ### 退出
-GET http://localhost:8080/login/logout
+GET http://localhost:8001/sys/user/logout
 Authorization: Bearer {{access_token}}
 
 ### 更新禁用/启用状态
