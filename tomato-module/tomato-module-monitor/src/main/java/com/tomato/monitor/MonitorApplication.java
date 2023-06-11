@@ -8,10 +8,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 启动类
+ * @author lizhifu
  */
 @EnableAdminServer
-@EnableDiscoveryClient
 @SpringBootApplication
+@EnableDiscoveryClient
 @Slf4j
 public class MonitorApplication {
 	public static void main(String[] args) {
