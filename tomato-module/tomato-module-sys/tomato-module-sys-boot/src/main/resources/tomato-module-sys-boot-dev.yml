@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tomato_sys?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
+    username: tomato
+    password: tomato
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+# security 相关配置
+application:
+  security:
+    jwt:
+      secret-key: tomato
+      # 1 天
+      expiration: 86400000
+      refresh-token:
+        # 7 天
+        expiration: 604800000

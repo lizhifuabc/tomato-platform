@@ -14,7 +14,29 @@ spring 官方文档记录：
 
 [Spring Cloud OpenFeign](https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/)
 
+## 技术框架
+
+- 持久层框架： Spring Data Jpa & Mybatis
+- API 网关：Spring Cloud Gateway
+- 服务注册&发现和配置中心: Alibaba Nacos
+- 服务消费：Spring Cloud OpenFeign & RestTemplate & OkHttps
+- 负载均衡：Spring Cloud Loadbalancer
+- 服务熔断&降级&限流：Alibaba Sentinel、Spring Cloud Circuitbreaker Resilience4j
+- 服务监控：Spring Boot Admin
+- 权限框架：Spring Security
+- 消息队列：RabbitMQ
+- 链路跟踪：Skywalking、Zipkin
+- 分布式事务：Seata
+- 数据缓存：JetCache (Redis + Caffeine) 多级缓存
+- 数据库： MySQL
+- JSON 序列化：Jackson
+- 文件服务：阿里云 OSS/Minio
+- 数据调试（ TODO）：p6spy
+- 日志中心（ TODO）：ELK
+- 日志收集（ TODO）：Logstash Logback Encoder
+
 ## 基础文档
+
 [多环境配置.md](doc%2F%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md)
 
 

@@ -41,7 +41,10 @@ public class SecurityConfig {
     private final String LOG_IN_URL = "/sys/user/auth/login";
     private final String[] permitAll = new String[]{
             LOG_IN_URL,
-            LOG_OUT_URL
+            LOG_OUT_URL,
+            "/error/**",
+            // actuator
+            "/actuator/**",
     };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -64,7 +67,7 @@ public class SecurityConfig {
                 )
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
                         .authenticationEntryPoint((request, response, authException) -> {
-                            exceptionHandling(response,Resp.buildFailure("401","未授权"));
+                            exceptionHandling(response,Resp.buildFailure("401","未授权:"+request.getRequestURI()));
                         })
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
                             log.warn("权限不足", accessDeniedException);
