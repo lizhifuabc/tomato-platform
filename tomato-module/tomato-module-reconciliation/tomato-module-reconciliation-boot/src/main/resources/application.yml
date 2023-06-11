@@ -15,7 +15,7 @@ spring:
     import:
       - optional:nacos:application-@profiles.active@.yml
       - optional:nacos:${spring.application.name}-@profiles.active@.yml
-      - optional:application-common.yml
+      - optional:nacos:application-common.yml
   boot:
     admin:
       client:

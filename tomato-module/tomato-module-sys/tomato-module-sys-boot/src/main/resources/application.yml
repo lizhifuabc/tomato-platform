@@ -21,6 +21,6 @@ spring:
       - optional:nacos:application-@profiles.active@.yml
       # 从nacos中获取配置
       - optional:nacos:${spring.application.name}-@profiles.active@.yml
-      - optional:application-common.yml
+      - optional:nacos:application-common.yml
 
 
