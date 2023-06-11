@@ -4,11 +4,19 @@ logging:
     level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
 # 暴露监控端点
 management:
+  info:
+    env:
+      enabled: true
   endpoints:
     web:
       exposure:
         ## yml文件中存在特殊字符，必须用单引号包含，否则启动报错
         include: '*'
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: ALWAYS
   # trace 配置（100%）
   tracing:
     sampling:
