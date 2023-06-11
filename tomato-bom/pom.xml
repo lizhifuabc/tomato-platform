@@ -19,7 +19,7 @@
         <spring.boot.version>3.1.0</spring.boot.version>
         <spring-security-cas.version>5.8.3</spring-security-cas.version>
         <spring-boot-admin.version>3.0.4</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
-        <spring.cloud.version>2022.0.2</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
+        <spring.cloud.version>2022.0.3</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.alibaba.version>2022.0.0.0-RC2</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.1</spring.boot.mybatis.version>
@@ -254,6 +254,12 @@
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <!--监控客户端-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
                 <version>${spring-boot-admin.version}</version>
             </dependency>
             <!--  业务代码 start -->
