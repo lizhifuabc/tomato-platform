@@ -1,2 +1,6 @@
-tomato:
-  demo: demo
+spring:
+  boot:
+    admin:
+      client:
+        # 要注册的Spring Boot管理服务器的URL。
+        url: http://localhost:9994
