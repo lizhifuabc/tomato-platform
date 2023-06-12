@@ -39,7 +39,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         jwt = authHeader.substring(7);
         final String username = jwtService.extractUsername(jwt);
-        // 获取当前登录用户的Authentication对象 SecurityContextHolder.getContext().getAuthentication()
+        // 获取当前登录用户的Authentication对象 SecurityContextHolder.getContext().getAuthentication()，
+        // 如果该对象为null，表示当前用户本机未认证，需要将authToken对象设置到SecurityContext中
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             SecurityUserDetails userDetails = (SecurityUserDetails) userDetailsService.loadUserByUsername(username);
 
