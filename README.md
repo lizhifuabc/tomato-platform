@@ -23,6 +23,7 @@ spring 官方文档记录：
 - 负载均衡：Spring Cloud Loadbalancer
 - 服务熔断&降级&限流：Alibaba Sentinel、Spring Cloud Circuitbreaker Resilience4j
 - 服务监控：Spring Boot Admin
+- 参数校验：Spring Validation
 - 权限框架：Spring Security
 - 消息队列：RabbitMQ
 - 链路跟踪：Skywalking、Zipkin

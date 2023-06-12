@@ -16,6 +16,7 @@
       <set>
         <option value="$PROJECT_DIR$/spring-boot-cli-demo-archetype/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-framework/tomato-common-stater/pom.xml" />
+        <option value="$PROJECT_DIR$/tomato-framework/tomato-data/tomato-tenant-starter/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-framework/tomato-ddd/tomato-application-core/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-loadbalancer-zk/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-spi/pom.xml" />
