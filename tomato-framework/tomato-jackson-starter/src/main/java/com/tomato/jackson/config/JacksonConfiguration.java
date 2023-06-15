@@ -57,7 +57,7 @@ public class JacksonConfiguration {
 		objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
 		// 设置为中国
 		objectMapper.setLocale(Locale.CHINA);
-		// 序列化时，日期的统一格式
+		// 序列化时，日期的统一格式（配置全局时间日期格式）
 		objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 		// 排序key
 		objectMapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
