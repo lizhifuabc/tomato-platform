@@ -16,14 +16,12 @@
         <module>tomato-util</module>
         <module>tomato-dynamic-thread-starter</module>
         <module>tomato-validator-starter</module>
-        <module>tomato-redis-starter</module>
         <module>tomato-jackson-starter</module>
         <module>tomato-crypto</module>
         <module>tomato-id-starter</module>
         <module>tomato-security-starter</module>
         <module>tomato-jwt-starter</module>
         <module>tomato-lock</module>
-        <module>tomato-redis-base-starter</module>
         <module>tomato-springdoc-starter</module>
         <module>tomato-idempotent-starter</module>
         <module>tomato-ddd</module>
@@ -36,5 +34,6 @@
         <module>tomato-rpc</module>
         <module>tomato-cache</module>
         <module>tomato-captcha</module>
+        <module>tomato-redis</module>
     </modules>
 </project>
