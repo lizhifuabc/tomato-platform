@@ -27,8 +27,15 @@ public class RedisAutoConfigure {
         return new RedisLockRegistry(factory, "REDIS-LOCK");
     }
 
+    /**
+     * RedisTemplate配置
+     * TODO 添加 @LoadBalanced 注解 service-product 实现客户端负载均衡
+     *
+     * @param factory RedisConnectionFactory
+     * @return RedisTemplate
+     */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+   public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         // 设置序列化
         redisTemplate.setKeySerializer(RedisSerializer.string());
