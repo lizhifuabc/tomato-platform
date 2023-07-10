@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>tomato-cache-core</module>
+        <module>tomato-cache-guava-starter</module>
     </modules>
 
 </project>
