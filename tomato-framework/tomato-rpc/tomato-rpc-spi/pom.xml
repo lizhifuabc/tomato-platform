@@ -5,18 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-framework</artifactId>
+        <artifactId>tomato-rpc</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-rpc</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-rpc-loadbalancer</module>
-        <module>tomato-rpc-common</module>
-        <module>tomato-rpc-serialize</module>
-        <module>tomato-rpc-spi</module>
-    </modules>
+    <artifactId>tomato-rpc-spi</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
