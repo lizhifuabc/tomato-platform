@@ -13,7 +13,7 @@ spring:
 application:
   security:
     jwt:
-      secret-key: tomato
+      secret-key: c1V2MXZpTFQ0dzRYMmN0WGFVaVl5UTZASKdlR1pJMFJiSE5T
       # 1 天
       expiration: 86400000
       refresh-token:
