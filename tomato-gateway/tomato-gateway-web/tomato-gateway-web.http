@@ -1,3 +1,27 @@
+### 动态路由查看
+GET http://localhost:9999/actuator/gateway/routes
+
+### 添加 route 信息
+POST http://localhost:9999/actuator/gateway/routes/qq-test1
+Content-Type: application/json
+
+{
+  "id": "qq-test1",
+  "predicates": [{
+    "name": "Path",
+    "args": {"_genkey_0":"/qq-test/**"}
+  },{
+    "name":"Weight",
+    "args":{ "_genkey_0":"qq-test","_genkey_1":"50"}
+  }],
+  "filters": ["StripPrefix=1"],
+  "uri": "http://localhost:8888",
+  "order": 0
+}
+
+### 刷新路由
+POST http://localhost:9999/actuator/gateway/refresh
+
 ### 登录
 POST http://localhost:9999/oauth/sys/user/auth/login
 Content-Type: application/json
