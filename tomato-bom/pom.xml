@@ -15,6 +15,7 @@
     <properties>
         <!-- maven 全局版本号管理 -->
         <revision>1.0-SNAPSHOT</revision>
+
         <!-- spring boot / spring cloud 统一依赖管理 -->
         <spring.boot.version>3.1.1</spring.boot.version>
         <spring-security-cas.version>5.8.3</spring-security-cas.version>
@@ -72,6 +73,14 @@
         <!-- 验证码 -->
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <nashorn.version>15.4</nashorn.version>
+
+        <!-- 阿里巴巴开源工具依赖：https://github.com/alibaba -->
+        <fastjson.version>1.2.83</fastjson.version>
+        <fastjson2.version>2.0.35</fastjson2.version>
+        <jetcache.version>2.7.3</jetcache.version>
+        <nacos.version>2.2.4</nacos.version>
+        <transmittable-thread-local.version>2.14.3</transmittable-thread-local.version> <!-- 提供ThreadLocal值的传递功能，解决异步执行时上下文传递的问题 https://github.com/alibaba/transmittable-thread-local -->
+
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -157,6 +166,11 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
