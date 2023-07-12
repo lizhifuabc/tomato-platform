@@ -50,3 +50,9 @@ spring:
       - optional:nacos:application-@profiles.active@.yml
       # 从nacos中获取配置
       - optional:nacos:${spring.application.name}-@profiles.active@.yml
+
+management:
+  endpoint:
+    gateway:
+      # 开启网关监控端点
+      enabled: true
