@@ -1,0 +1,12 @@
+### 登录
+POST http://localhost:9999/oauth/sys/user/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin",
+  "captchaCode": "123456",
+  "captchaUuid": "123456",
+  "loginDevice": 1
+
+}
