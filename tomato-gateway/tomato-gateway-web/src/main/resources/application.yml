@@ -15,7 +15,27 @@ spring:
         server-addr: ${NACOS_HOST:tomato-nacos}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
+    loadbalancer:
+      retry:
+        # 默认开启重试机制`
+        enabled: true
     gateway:
+      # 配置是服务发现和负载均衡
+      discovery:
+        locator:
+          # 启用DiscoveryClient的自动注入
+          # gateway 开启服务注册和发现的功能,spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务。
+          enabled: true
+          # 服务ID统一转换为小写,服务注册的时候，向注册中心注册时将服务名转成大写的，
+          # 比如以/service-hi/*的请求路径被路由转发到服务名为service-hi的服务上
+          lower-case-service-id: true
+          # url: http://www.baidu.com/
+          # path: demo/**
+          # 请求转发给http://www.baidu.com/** ,去除掉demo前缀
+          # 1去掉一级
+          filters:
+            - StripPrefix=1
+      # 路由配置
       routes:
         - id: oauth
           uri: lb://tomato-module-sys-boot
