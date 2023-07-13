@@ -3,15 +3,19 @@ package com.tomato.redis.redisson.semaphore;
 import org.redisson.api.RPermitExpirableSemaphore;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * TODO
+ * 基于Redisson的分布式可过期信号量工厂
  *
  * @author lizhifu
  * @since 2023/7/13
  */
+@ConditionalOnProperty(value = "spring.data.redis.redisson.enabled", havingValue = "true")
+@Component
 public class RedissonDistributedSemaphoreFactory implements DistributedSemaphoreFactory{
     @Autowired
     private RedissonClient redissonClient;
