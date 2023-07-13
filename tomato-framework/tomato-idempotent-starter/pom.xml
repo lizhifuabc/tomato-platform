@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-redis-base-starter</artifactId>
+            <artifactId>tomato-redis-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>

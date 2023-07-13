@@ -1,4 +1,4 @@
-package com.tomato.redis.base.utils;
+package com.tomato.redis.utils;
 
 import com.google.common.hash.Funnels;
 import com.google.common.hash.Hashing;

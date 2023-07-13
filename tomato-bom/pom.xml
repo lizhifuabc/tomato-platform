@@ -298,11 +298,6 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
-                <artifactId>tomato-redis-base-starter</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.tomato</groupId>
                 <artifactId>tomato-web-mybatis-starter</artifactId>
                 <version>${revision}</version>
             </dependency>

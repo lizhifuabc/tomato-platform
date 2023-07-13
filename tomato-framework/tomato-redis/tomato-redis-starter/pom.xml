@@ -17,24 +17,28 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-aop</artifactId>-->
-<!--        </dependency>-->
-        <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
+        <!-- Spring-Redis集成 https://docs.spring.io/spring-integration/ -->
         <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-data-30</artifactId>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-validator-starter</artifactId>
         </dependency>
+        <!--  jackson 依赖      -->
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-jackson-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-common</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
         <!-- provided 用在编译和测试时，没有传递性       -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
