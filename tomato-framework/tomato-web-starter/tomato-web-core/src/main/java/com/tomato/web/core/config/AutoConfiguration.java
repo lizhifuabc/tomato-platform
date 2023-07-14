@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 public class AutoConfiguration {
     @PostConstruct
     public void postConstruct() {
-        log.info("tomato-web-starter Auto Configure.");
+        log.info("tomato-web-starter 自动装配");
     }
     @Bean
     @ConditionalOnProperty(prefix = WebConstants.PROPERTY_PREFIX_WEB, name = "controller-point-enable", havingValue = "true")
