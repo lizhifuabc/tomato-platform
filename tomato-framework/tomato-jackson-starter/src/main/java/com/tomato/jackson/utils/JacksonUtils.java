@@ -11,10 +11,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import jakarta.annotation.PostConstruct;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 
 /**
@@ -59,6 +56,9 @@ public class JacksonUtils {
     }
 
     public static <T> T toObject(String content, Class<T> valueType) {
+        if (content == null) {
+            return null;
+        }
         try {
             return objectMapper().readValue(content, valueType);
         } catch (JsonProcessingException e) {
@@ -67,6 +67,9 @@ public class JacksonUtils {
     }
 
     public static <T> T toObject(String content, TypeReference<T> typeReference) {
+        if (content == null) {
+            return null;
+        }
         try {
             return objectMapper().readValue(content, typeReference);
         } catch (JsonProcessingException e) {
@@ -75,6 +78,9 @@ public class JacksonUtils {
     }
 
     public static <T> T toObject(String content, JavaType javaType) {
+        if (content == null) {
+            return null;
+        }
         try {
             return objectMapper().readValue(content, javaType);
         } catch (JsonProcessingException e) {
@@ -83,31 +89,49 @@ public class JacksonUtils {
     }
 
     public static <T> List<T> toList(String content, Class<T> clazz) {
+        if (content == null) {
+            return null;
+        }
         JavaType javaType = objectMapper().getTypeFactory().constructParametricType(List.class, clazz);
         return toObject(content, javaType);
     }
 
     public static <K, V> Map<K, V> toMap(String content, Class<K> keyClass, Class<V> valueClass) {
+        if (content == null) {
+            return null;
+        }
         JavaType javaType = objectMapper().getTypeFactory().constructMapType(Map.class, keyClass, valueClass);
         return toObject(content, javaType);
     }
 
     public static <T> Set<T> toSet(String content, Class<T> clazz) {
+        if (content == null) {
+            return null;
+        }
         JavaType javaType = getTypeFactory().constructCollectionLikeType(Set.class, clazz);
         return toObject(content, javaType);
     }
 
     public static <T> T[] toArray(String content, Class<T> clazz) {
+        if (content == null) {
+            return null;
+        }
         JavaType javaType = getTypeFactory().constructArrayType(clazz);
         return toObject(content, javaType);
     }
 
     public static <T> T[] toArray(String content) {
+        if (content == null) {
+            return null;
+        }
         return toObject(content, new TypeReference<T[]>() {
         });
     }
 
     public static JsonNode toNode(String content) {
+        if (content == null) {
+            return null;
+        }
         try {
             return objectMapper().readTree(content);
         } catch (JsonProcessingException e) {
@@ -124,6 +148,9 @@ public class JacksonUtils {
     }
 
     public static JsonParser createParser(String content) {
+        if (content == null) {
+            return null;
+        }
         try {
             return objectMapper().createParser(content);
         } catch (IOException e) {
