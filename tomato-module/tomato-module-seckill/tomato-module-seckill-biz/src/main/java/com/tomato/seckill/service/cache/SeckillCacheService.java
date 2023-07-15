@@ -2,7 +2,7 @@ package com.tomato.seckill.service.cache;
 
 import com.tomato.goods.feign.RemoteGoodsService;
 import com.tomato.lock.core.exe.DistributedLockExe;
-import com.tomato.seckill.constant.RedisConstant;
+import com.tomato.seckill.constant.CacheConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class SeckillCacheService {
      */
     public void cacheWarmUp(Long seckillActivityId){
         // 1. redis 分布式锁
-        String key = RedisConstant.SECKILL_GOODS_INFO + seckillActivityId;
+        String key = CacheConstant.SECKILL_GOODS_INFO + seckillActivityId;
         boolean resLock = (boolean) distributedLockExe.lock(key, 10,10);
         log.info("redis 分布式锁,key:{},resLock:{}",key,resLock);
 

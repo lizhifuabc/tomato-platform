@@ -351,6 +351,18 @@
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-biz/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-biz/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-infrastructure/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-infrastructure/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-interfaces/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-interfaces/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/seckill-goods-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-seckill/tomato-module-seckill-goods/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-sys/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-sys/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-sys/tomato-module-sys-application/src/main/java" charset="UTF-8" />

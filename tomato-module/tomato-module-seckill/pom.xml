@@ -14,5 +14,6 @@
     <modules>
         <module>tomato-module-seckill-biz</module>
         <module>tomato-module-seckill-base</module>
+        <module>tomato-module-seckill-goods</module>
     </modules>
 </project>

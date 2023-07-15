@@ -1,10 +1,9 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.seckill.constant.RedisConstant;
+import com.tomato.seckill.constant.CacheConstant;
 import com.tomato.seckill.domain.req.SeckillUserReq;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -48,8 +47,8 @@ public class SeckillUserController {
     @PostMapping("/seckill/user")
     public void seckill(@RequestBody @Valid SeckillUserReq seckillUserReq){
 
-        String goodsKey = RedisConstant.SECKILL_GOODS_SECKILL + seckillUserReq.getSeckillGoodsId();
-        String goodsUserKey = RedisConstant.SECKILL_GOODS_SECKILL_USER + seckillUserReq.getSeckillGoodsId();
+        String goodsKey = CacheConstant.SECKILL_GOODS_SECKILL + seckillUserReq.getSeckillGoodsId();
+        String goodsUserKey = CacheConstant.SECKILL_GOODS_SECKILL_USER + seckillUserReq.getSeckillGoodsId();
         log.info("用户抢购请求,seckillUserReq:{},goodsKey:{},goodsUserKey:{}",goodsKey,goodsUserKey,seckillUserReq);
 
         List<String> keys = Arrays.asList(goodsKey, goodsUserKey);

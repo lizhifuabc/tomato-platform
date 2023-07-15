@@ -292,7 +292,17 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-cache-guava-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-redis-redisson-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

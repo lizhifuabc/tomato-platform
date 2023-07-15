@@ -3,7 +3,7 @@ package com.tomato.seckill.manager.cache;
 import com.tomato.common.resp.Resp;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.RemoteGoodsService;
-import com.tomato.seckill.constant.RedisConstant;
+import com.tomato.seckill.constant.CacheConstant;
 import com.tomato.seckill.dao.SeckillGoodsDao;
 import com.tomato.seckill.domain.entity.SeckillGoodsEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ public class SeckillGoodsInfoCache {
      * @param seckillGoodsId 秒杀活动商品ID
      */
     public void saveSeckillGoodsInfo(Long seckillGoodsId) {
-        String redisKey = RedisConstant.SECKILL_GOODS_INFO + seckillGoodsId;
+        String redisKey = CacheConstant.SECKILL_GOODS_INFO + seckillGoodsId;
         SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectById(seckillGoodsId);
         try {
             // 删除 key
@@ -65,7 +65,7 @@ public class SeckillGoodsInfoCache {
      * @return 秒杀商品信息 {@link GoodsInfoResp }
      */
     public GoodsInfoResp getSeckillGoodsById(Long seckillGoodsId) {
-        String redisKey = RedisConstant.SECKILL_GOODS_INFO + seckillGoodsId;
+        String redisKey = CacheConstant.SECKILL_GOODS_INFO + seckillGoodsId;
         HashOperations<String, String, String> hashOps = stringRedisTemplate.opsForHash();
         Map<String, String> entries = hashOps.entries(redisKey);
         GoodsInfoResp goodsInfoResp = new GoodsInfoResp();

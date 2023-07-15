@@ -6,7 +6,19 @@ package com.tomato.seckill.constant;
  * @author lizhifu
  * @since 2023/3/17
  */
-public class RedisConstant {
+public class CacheConstant {
+    /**
+     * 秒杀活动key
+     */
+    public static final String SECKILL_ACTIVITY_CACHE_KEY = "SECKILL_ACTIVITY_CACHE_KEY";
+    /**
+     * 秒杀活动key过期时间
+     */
+    public static final Long SECKILL_ACTIVITY_CACHE_KEY_TIME_OUT = 5 * 60L;
+    /**
+     * 秒杀活动分布式锁key
+     */
+    public static final String SECKILL_ACTIVITY_UPDATE_CACHE_LOCK_KEY = "SECKILL_ACTIVITY_UPDATE_CACHE_LOCK_KEY";
     /**
      * 秒杀活动商品基本信息key
      */
