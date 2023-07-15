@@ -2,7 +2,6 @@ package com.tomato.redis.redisson.lock;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +13,12 @@ import java.util.concurrent.TimeUnit;
  * @author lizhifu
  * @since 2023/7/13
  */
-@Component
-@ConditionalOnProperty(value = "spring.data.redis.redisson.enabled", havingValue = "true")
 public class RedissonDistributedLockFactory implements DistributedLockFactory{
-    @Autowired
-    private RedissonClient redissonClient;
+    private final RedissonClient redissonClient;
+
+    public RedissonDistributedLockFactory(RedissonClient redissonClient) {
+        this.redissonClient = redissonClient;
+    }
 
     @Override
     public DistributedLock getLock(String key) {
