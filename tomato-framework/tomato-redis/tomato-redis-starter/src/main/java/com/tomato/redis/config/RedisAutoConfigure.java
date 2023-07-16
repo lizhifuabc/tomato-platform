@@ -1,18 +1,28 @@
 package com.tomato.redis.config;
 
+import com.tomato.redis.properties.ExtendRedisProperties;
 import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;
 import com.tomato.redis.ratelimit.RedisRateLimiter;
+import com.tomato.redis.service.DefaultTenantContextService;
+import com.tomato.redis.service.TenantContextService;
+import com.tomato.redis.support.TenantPrefixStringRedisSerializer;
+import com.tomato.redis.support.RedisTemplateCustomizer;
 import com.tomato.redis.utils.RedisBitMapUtils;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.integration.redis.util.RedisLockRegistry;
 import org.springframework.scripting.support.ResourceScriptSource;
 
@@ -25,6 +35,7 @@ import java.util.List;
  * @date 2022/12/9
  */
 @AutoConfiguration
+@EnableConfigurationProperties(ExtendRedisProperties.class)
 public class RedisAutoConfigure {
     /**
      * RedisLockRegistry锁机制
@@ -71,19 +82,72 @@ public class RedisAutoConfigure {
      * @param factory RedisConnectionFactory
      * @return RedisTemplate
      */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        // 设置序列化
-        redisTemplate.setKeySerializer(RedisSerializer.string());
-        // 设置hash key序列化方式
+    @Bean("redisTemplate")
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory,ObjectProvider<RedisTemplateCustomizer> customizers) {
+        RedisTemplate<String, Object> redisTemplate = prefixRedisTemplate(factory, customizers);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+
         redisTemplate.setHashKeySerializer(RedisSerializer.string());
-        // 设置value序列化方式
-        redisTemplate.setValueSerializer(RedisSerializer.java());
-        // 设置hash value序列化方式
-        redisTemplate.setHashValueSerializer(RedisSerializer.java());
-        redisTemplate.setConnectionFactory(factory);
+        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
         return redisTemplate;
+    }
+    /**
+     * 解析租户标识的 RedisTemplate
+     *
+     * @param redisConnectionFactory RedisConnectionFactory
+     * @param customizers            ObjectProvider<RedisTemplateCustomizer>
+     * @return RedisTemplate<String, Object>
+     */
+    @Bean("prefixRedisTemplate")
+    @ConditionalOnProperty(prefix = "spring.data.redis", name = "tenant", havingValue = "true", matchIfMissing = true)
+    public RedisTemplate<String, Object> prefixRedisTemplate(RedisConnectionFactory redisConnectionFactory,
+                                                       ObjectProvider<RedisTemplateCustomizer> customizers) {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+
+        redisTemplate.setKeySerializer(new TenantPrefixStringRedisSerializer(key -> tenantContextService().getTenant(key)));
+        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+
+        redisTemplate.setHashKeySerializer(RedisSerializer.string());
+        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+
+        customizers.orderedStream().forEach((customizer) -> customizer.customize(redisTemplate));
+        return redisTemplate;
+    }
+    /**
+     * 解析租户标识的 StringRedisTemplate
+     *
+     * @param redisConnectionFactory RedisConnectionFactory
+     * @return prefixStringRedisTemplate
+     */
+    @Bean("prefixStringRedisTemplate")
+    @ConditionalOnProperty(prefix = "spring.data.redis", name = "tenant", havingValue = "true", matchIfMissing = true)
+    public StringRedisTemplate prefixStringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        StringRedisTemplate stringRedisTemplate = new StringRedisTemplate(redisConnectionFactory);
+        stringRedisTemplate.setKeySerializer(new TenantPrefixStringRedisSerializer(key -> tenantContextService().getTenant(key)));
+        stringRedisTemplate.setValueSerializer(RedisSerializer.string());
+        stringRedisTemplate.setHashKeySerializer(RedisSerializer.string());
+        stringRedisTemplate.setHashValueSerializer(RedisSerializer.string());
+        return stringRedisTemplate;
+    }
+    /**
+     * 不解析标识的stringRedisTemplate
+     *
+     * @param redisConnectionFactory RedisConnectionFactory
+     * @return StringRedisTemplate
+     */
+    @Bean("stringRedisTemplate")
+    public StringRedisTemplate noneTenantStringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        StringRedisTemplate stringRedisTemplate = prefixStringRedisTemplate(redisConnectionFactory);
+        stringRedisTemplate.setKeySerializer(RedisSerializer.string());
+        return stringRedisTemplate;
+    }
+    @Bean
+    @ConditionalOnMissingBean(TenantContextService.class)
+    @ConditionalOnProperty(prefix = "spring.data.redis", name = "tenant", havingValue = "true", matchIfMissing = true)
+    TenantContextService tenantContextService(){
+        return new DefaultTenantContextService();
     }
     @Bean
     public RedisBitMapUtils redisUtil(StringRedisTemplate stringRedisTemplate) {
