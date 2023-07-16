@@ -5,18 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-framework</artifactId>
-        <version>${revision}</version>
+        <artifactId>tomato-data</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-data</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-data-common</module>
-        <module>tomato-mybatis-starter</module>
-        <module>tomato-jpa-starter</module>
-        <module>tomato-multi-tenancy-starter</module>
-    </modules>
+    <artifactId>tomato-multi-tenancy-starter</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
