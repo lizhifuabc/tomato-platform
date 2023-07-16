@@ -1,6 +1,6 @@
 package com.tomato.redis.config;
 
-import com.tomato.redis.properties.ExtendRedisProperties;
+import com.tomato.redis.properties.TencentRedisProperties;
 import com.tomato.redis.ratelimit.RedisConcurrentRequestCountLimiter;
 import com.tomato.redis.ratelimit.RedisRateLimiter;
 import com.tomato.redis.service.DefaultTenantContextService;
@@ -35,7 +35,7 @@ import java.util.List;
  * @date 2022/12/9
  */
 @AutoConfiguration
-@EnableConfigurationProperties(ExtendRedisProperties.class)
+@EnableConfigurationProperties(TencentRedisProperties.class)
 public class RedisAutoConfigure {
     /**
      * RedisLockRegistry锁机制
