@@ -11,16 +11,20 @@ import com.tomato.redis.utils.RedisBitMapUtils;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.cache.CacheProperties;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.integration.redis.util.RedisLockRegistry;
@@ -148,6 +152,37 @@ public class RedisAutoConfigure {
     @ConditionalOnProperty(prefix = "spring.data.redis", name = "tenant", havingValue = "true", matchIfMissing = true)
     TenantContextService tenantContextService(){
         return new DefaultTenantContextService();
+    }
+
+    /**
+     * 适配 spring cache Redis
+     * @param cacheProperties CacheProperties 缓存配置
+     * @return RedisCacheConfiguration 缓存配置
+     */
+    @Bean
+    @ConditionalOnExpression("'${spring.data.redis.tenant}' == 'true' and '${spring.cache.type}' == 'redis'")
+    public RedisCacheConfiguration createConfiguration(CacheProperties cacheProperties) {
+        CacheProperties.Redis redisProperties = cacheProperties.getRedis();
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
+
+        //key 序列化
+        config = config.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new TenantPrefixStringRedisSerializer(key -> tenantContextService().getTenant(key))));
+        //value 序列化
+        config = config.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+
+        if (redisProperties.getTimeToLive() != null) {
+            config = config.entryTtl(redisProperties.getTimeToLive());
+        }
+        if (redisProperties.getKeyPrefix() != null) {
+            config = config.prefixCacheNameWith(redisProperties.getKeyPrefix());
+        }
+        if (!redisProperties.isCacheNullValues()) {
+            config = config.disableCachingNullValues();
+        }
+        if (!redisProperties.isUseKeyPrefix()) {
+            config = config.disableKeyPrefix();
+        }
+        return config;
     }
     @Bean
     public RedisBitMapUtils redisUtil(StringRedisTemplate stringRedisTemplate) {
