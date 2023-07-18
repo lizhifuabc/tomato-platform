@@ -1,5 +1,6 @@
 package com.tomato.common.exception;
 
+import com.tomato.common.constants.CommonRespCode;
 import com.tomato.common.constants.RespCode;
 
 /**
@@ -7,28 +8,28 @@ import com.tomato.common.constants.RespCode;
  *
  * @author lizhifu
  */
-public class BusinessException extends RuntimeException {
+public class BusinessException extends AbstractException {
 
     public BusinessException() {
+        this(CommonRespCode.INTERNAL_SERVER_ERROR,null,null);
     }
 
     public BusinessException(RespCode respCode) {
-        super(respCode.msg());
+        this(respCode,null,null);
     }
 
     public BusinessException(String message) {
-        super(message);
+        this(CommonRespCode.INTERNAL_SERVER_ERROR,message,null);
     }
 
     public BusinessException(String message, Throwable cause) {
-        super(message, cause);
+        this(CommonRespCode.INTERNAL_SERVER_ERROR,message,cause);
     }
 
     public BusinessException(Throwable cause) {
-        super(cause);
+        this(CommonRespCode.INTERNAL_SERVER_ERROR,null,cause);
     }
-
-    public BusinessException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public BusinessException(RespCode respCode, String message, Throwable throwable) {
+        super(respCode, message, throwable);
     }
 }
