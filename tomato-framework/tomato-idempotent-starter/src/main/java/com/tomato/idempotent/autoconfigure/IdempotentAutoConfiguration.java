@@ -8,6 +8,7 @@ import com.tomato.idempotent.strategy.impl.RedisStrategyImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -18,11 +19,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * 自动配置
  * @author lizhifu
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @EnableConfigurationProperties(IdempotentProperties.class)
-public class AutoConfiguration implements InitializingBean {
+public class IdempotentAutoConfiguration implements InitializingBean {
 
-    private static final Logger log = LoggerFactory.getLogger(AutoConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(IdempotentAutoConfiguration.class);
 
     @Override
     public void afterPropertiesSet() throws Exception {

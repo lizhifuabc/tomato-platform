@@ -1,7 +1,7 @@
 package com.tomato.idempotent.aspect;
 
 import com.tomato.idempotent.annotation.Idempotent;
-import com.tomato.idempotent.autoconfigure.AutoConfiguration;
+import com.tomato.idempotent.autoconfigure.IdempotentAutoConfiguration;
 import com.tomato.idempotent.strategy.IdempotentStrategyFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 @Aspect
 public class IdempotentAspect {
     private final IdempotentStrategyFactory idempotentStrategyFactory;
-    private static final Logger log = LoggerFactory.getLogger(AutoConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(IdempotentAutoConfiguration.class);
 
     public IdempotentAspect(IdempotentStrategyFactory idempotentStrategyFactory) {
         this.idempotentStrategyFactory = idempotentStrategyFactory;

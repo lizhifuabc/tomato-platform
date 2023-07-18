@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -36,7 +37,7 @@ import java.util.List;
  * redis 配置类
  *
  * @author lizhifu
- * @date 2022/12/9
+ * @since  2022/12/9
  */
 @AutoConfiguration
 @EnableConfigurationProperties(TencentRedisProperties.class)
@@ -87,6 +88,7 @@ public class RedisAutoConfigure {
      * @return RedisTemplate
      */
     @Bean("redisTemplate")
+    @Primary
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory,ObjectProvider<RedisTemplateCustomizer> customizers) {
         RedisTemplate<String, Object> redisTemplate = prefixRedisTemplate(factory, customizers);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
@@ -125,7 +127,7 @@ public class RedisAutoConfigure {
      * @param redisConnectionFactory RedisConnectionFactory
      * @return prefixStringRedisTemplate
      */
-    @Bean("prefixStringRedisTemplate")
+    @Bean(name = "prefixStringRedisTemplate")
     @ConditionalOnProperty(prefix = "spring.data.redis", name = "tenant", havingValue = "true", matchIfMissing = true)
     public StringRedisTemplate prefixStringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate(redisConnectionFactory);
@@ -141,8 +143,9 @@ public class RedisAutoConfigure {
      * @param redisConnectionFactory RedisConnectionFactory
      * @return StringRedisTemplate
      */
-    @Bean("stringRedisTemplate")
-    public StringRedisTemplate noneTenantStringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    @Bean(name = "stringRedisTemplate")
+    @Primary
+    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         StringRedisTemplate stringRedisTemplate = prefixStringRedisTemplate(redisConnectionFactory);
         stringRedisTemplate.setKeySerializer(RedisSerializer.string());
         return stringRedisTemplate;

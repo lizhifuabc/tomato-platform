@@ -1,1 +1,1 @@
-com.tomato.idempotent.autoconfigure.AutoConfiguration
+com.tomato.idempotent.autoconfigure.IdempotentAutoConfiguration
