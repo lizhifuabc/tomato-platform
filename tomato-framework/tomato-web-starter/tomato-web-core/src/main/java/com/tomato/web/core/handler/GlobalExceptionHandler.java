@@ -20,13 +20,13 @@ import java.util.List;
 import static com.tomato.common.constants.CommonRespCode.INTERNAL_SERVER_ERROR;
 
 /**
- * 全局异常处理器
- *
+ * 全局异常处理器|
+ * <p>全局拦截异常注解:@RestControllerAdvice = @ControllerAdvice + @ResponseBody</p>
  * @author lizhifu
  * @since  2022/12/7
  */
 @Slf4j
-@RestControllerAdvice // 全局拦截异常注解 @RestControllerAdvice = @ControllerAdvice + @ResponseBody
+@RestControllerAdvice
 public class GlobalExceptionHandler {
     /**
      * 业务异常处理
@@ -35,10 +35,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public Resp<Void> businessExceptionHandler(HttpServletRequest request,BusinessException ex) {
         if (ex.getCause() != null) {
-            log.error("全局异常处理器BusinessException：[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex, ex.getCause());
+            log.error("全局异常处理器|BusinessException|[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex, ex.getCause());
             return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), ex.getMessage());
         }
-        log.error("全局异常处理器BusinessException：[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex.toString());
+        log.error("全局异常处理器|BusinessException|[{}] {} [ex] {}", request.getMethod(), request.getRequestURL().toString(), ex.toString());
         return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), ex.getMessage());
     }
     /**
@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
         BindingResult bindingResult = ex.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         List<String> error = fieldErrors.stream().map(field -> field.getField() + ":" + field.getRejectedValue()).toList();
-        log.error("全局异常处理器MethodArgumentNotValidException：[{}] {} [ex] {}", request.getMethod(), getCurrentRequestUrl(), error);
+        log.error("全局异常处理器|MethodArgumentNotValidException|[{}] {} [ex] {}", request.getMethod(), getCurrentRequestUrl(), error);
         return Resp.buildFailure(CommonRespCode.FAIL.code(), String.valueOf(error));
     }
     /**
@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public Resp<Void> otherExceptionHandler(HttpServletRequest request, Throwable throwable) {
-        log.error("全局异常处理器Exception：[{}] {} ", request.getMethod(), getCurrentRequestUrl(), throwable);
+        log.error("全局异常处理器|Exception|[{}] {} ", request.getMethod(), getCurrentRequestUrl(), throwable);
         return Resp.buildFailure(INTERNAL_SERVER_ERROR.code(),INTERNAL_SERVER_ERROR.msg());
     }
     /**

@@ -19,7 +19,7 @@ public class AbstractException extends RuntimeException {
     private final String code;
     private final String msg;
     public AbstractException(RespCode respCode, String message, Throwable throwable){
-        super(message,throwable);
+        super(Optional.ofNullable(message).orElse(respCode.msg()),throwable);
         this.code = respCode.code();
         this.msg = Optional.ofNullable(message).orElse(respCode.msg());
     }
