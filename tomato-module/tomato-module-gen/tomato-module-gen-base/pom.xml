@@ -21,8 +21,8 @@
             <artifactId>tomato-cloud-feign-stater</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-springdoc-starter</artifactId>
         </dependency>
     </dependencies>
 

@@ -44,10 +44,13 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-jackson-starter</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-tracing-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-springdoc-starter</artifactId>
         </dependency>
     </dependencies>
 
