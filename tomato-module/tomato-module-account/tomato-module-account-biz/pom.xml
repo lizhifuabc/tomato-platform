@@ -42,6 +42,10 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
+            <artifactId>tomato-tracing-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
             <artifactId>tomato-idempotent-starter</artifactId>
         </dependency>
     </dependencies>
