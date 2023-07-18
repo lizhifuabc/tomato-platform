@@ -6,7 +6,10 @@ import lombok.Getter;
 import java.util.Optional;
 
 /**
- * 抽象异常
+ * 抽象异常 TODO
+ * <p> ClientException（客户端异常）
+ * <p> BusinessException（业务逻辑异常）
+ * <p> RemoteException（第三方服务异常
  *
  * @author lizhifu
  * @since 2023/7/18
