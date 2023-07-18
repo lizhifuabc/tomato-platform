@@ -16,6 +16,6 @@ public class AutoConfiguration {
     private static final Logger log = LoggerFactory.getLogger(AutoConfiguration.class);
     @PostConstruct
     public void postConstruct() {
-        log.info("tomato-gateway-stater 自动配置");
+        log.info("tomato-gateway-starter 自动配置");
     }
 }

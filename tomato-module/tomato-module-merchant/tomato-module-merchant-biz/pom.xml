@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-cloud-feign-stater</artifactId>
+            <artifactId>tomato-cloud-feign-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>

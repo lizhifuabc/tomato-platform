@@ -337,7 +337,7 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
-                <artifactId>tomato-cloud-feign-stater</artifactId>
+                <artifactId>tomato-cloud-feign-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

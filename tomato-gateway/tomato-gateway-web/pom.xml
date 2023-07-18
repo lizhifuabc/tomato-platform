@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-gateway-stater</artifactId>
+            <artifactId>tomato-gateway-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
