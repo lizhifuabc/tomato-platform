@@ -12,10 +12,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 项目启动类
+ * 1. @SpringBootApplication 标注启动配置类
+ * 2. @EnableAsync 开启异步支持
+ * 3. @EnableScheduling 开启定时任务支持
+ * 4. @OpenAPIDefinition 开启swagger支持
  * @author lizhifu
  */
 @SpringBootApplication
-@EnableAsync // 开启异步支持
+@EnableAsync
 @EnableScheduling
 @OpenAPIDefinition(info = @Info(title = "账户服务 API", version = "1.0-SNAPSHOT", description = "账户服务 Information"),
 		servers = {@Server(url = "http://localhost:9080/")})
