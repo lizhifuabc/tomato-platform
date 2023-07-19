@@ -13,17 +13,28 @@
     <description>基础 bom 文件，项目依赖版本管理</description>
 
     <properties>
-        <!-- maven 全局版本号管理 -->
-        <revision>1.0-SNAPSHOT</revision>
+        <!-- 项目基本配置 -->
+        <revision>1.0-SNAPSHOT</revision> <!-- maven 全局版本号管理 -->
+        <java.version>17</java.version>
+        <resource.delimiter>@</resource.delimiter>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- spring boot / spring cloud 统一依赖管理 -->
         <spring.boot.version>3.1.1</spring.boot.version>
         <spring-security-cas.version>5.8.3</spring-security-cas.version>
-        <spring-boot-admin.version>3.1.0</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
+        <spring-boot-admin.version>3.1.1</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
         <spring.cloud.version>2022.0.3</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.alibaba.version>2022.0.0.0-RC2</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
         <spring-security-oauth2-authorization-server.version>1.1.1</spring-security-oauth2-authorization-server.version> <!-- Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
-        <spring-security.version>6.1.0-RC1</spring-security.version>
+
+        <!--Maven Plugin 组件统一依赖管理-->
+        <mapstruct-processor.version>1.5.5.Final</mapstruct-processor.version> <!-- https://mapstruct.org/，MapStruct代码生成的处理器插件 -->
+        <archetype-packaging.verison>3.2.1</archetype-packaging.verison> <!-- https://maven.apache.org/archetype/maven-archetype-plugin/ ， 用于创建项目模板。这个插件负责把Archetype项目打包成可发布的形式-->
+        <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version> <!-- https://maven.apache.org/plugins/maven-gpg-plugin/ ，用于对Maven项目进行签名 -->
+        <maven-archetype-plugin.version>3.2.1</maven-archetype-plugin.version> <!-- https://maven.apache.org/archetype/maven-archetype-plugin/ ， 用于创建项目模板。这个插件负责把Archetype项目打包成可发布的形式-->
 
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.1</spring.boot.mybatis.version>
@@ -449,4 +460,88 @@
             <!--  业务代码 end -->
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <resources>
+            <!-- 配置 src/main/resources 为资源文件 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <extensions>
+            <!-- 用于打包 -->
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>${archetype-packaging.verison}</version>
+            </extension>
+        </extensions>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <!--指定了编译源代码和目标字节码版本为与当前项目中设置的 Java 版本相同-->
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <!--指定了编译源代码时使用的字符编码-->
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <!--开启编译时的警告提示-->
+                        <showWarnings>true</showWarnings>
+                        <!--用于配置注解处理器的路径-->
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct-processor.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-configuration-processor</artifactId>
+                                <version>${spring.boot.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-autoconfigure-processor</artifactId>
+                                <version>${spring.boot.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <!--Maven 在执行构建时将不会执行任何测试-->
+                        <skipTests>true</skipTests>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <propertiesEncoding>UTF-8</propertiesEncoding>
+                        <!--  不会应用默认的排除规则  -->
+                        <addDefaultExcludes>false</addDefaultExcludes>
+                        <!--  配置文件的分隔符  -->
+                        <delimiters>
+                            <delimiter>${resource.delimiter}</delimiter>
+                        </delimiters>
+                        <!--  不使用默认的分隔符                      -->
+                        <useDefaultDelimiters>false</useDefaultDelimiters>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
