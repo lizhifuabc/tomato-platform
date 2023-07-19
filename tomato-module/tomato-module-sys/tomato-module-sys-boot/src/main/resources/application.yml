@@ -13,6 +13,8 @@ spring:
       discovery:
         # 注册中心地址,dns解析 127.0.0.1  tomato-nacos
         server-addr: ${NACOS_HOST:tomato-nacos}:${NACOS_PORT:8848}
+        metadata:
+          version: 1.0 # 指定版本号
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
   config:
@@ -23,4 +25,19 @@ spring:
       - optional:nacos:${spring.application.name}-@profiles.active@.yml
       - optional:nacos:application-common.yml
 
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+server:
+  port: 8001
 
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 8002

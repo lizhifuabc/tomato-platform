@@ -25,6 +25,7 @@ POST http://localhost:9999/actuator/gateway/refresh
 ### 登录
 POST http://localhost:9999/oauth/sys/user/auth/login
 Content-Type: application/json
+headers:{userId: 1111111}
 
 {
   "username": "admin",

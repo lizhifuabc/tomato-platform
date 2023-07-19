@@ -1,0 +1,24 @@
+gray:
+  enabled: true #灰度功能总开关
+  services:
+    - serviceId: tomato-module-sys-boot #服务名
+      weightEnabled: true #权重开关
+      versions:
+        - version: 2.0 #灰度版本号
+          headerParam: #白名单匹配
+            disturbanceHash: 1
+            userId: 1111111,222222
+          weight: 0 # 权重值 0到100
+        - version: 1.0 #灰度版本号
+          headerParam: #白名单匹配
+            disturbanceHash: 2
+            userId: 333333,4444444
+          weight: 0 # 权重值 0到100
+    - serviceId: tomato-module-sys-boot-demo1 #服务名
+      weightEnabled: true #权重开关
+      versions:
+        - version: 2.0 #灰度版本号
+          headerParam: #白名单匹配
+            disturbanceHash: 3
+            userId: 1111111,222222
+          weight: 0 # 权重值 0到100
