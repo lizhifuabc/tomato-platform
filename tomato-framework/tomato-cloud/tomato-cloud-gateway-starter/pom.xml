@@ -36,6 +36,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-cloud-alibaba-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-tracing-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
