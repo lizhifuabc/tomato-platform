@@ -90,7 +90,10 @@
         <nacos.version>2.2.4</nacos.version>
         <transmittable-thread-local.version>2.14.3</transmittable-thread-local.version> <!-- 提供ThreadLocal值的传递功能，解决异步执行时上下文传递的问题 https://github.com/alibaba/transmittable-thread-local -->
         <cola.version>4.3.2</cola.version> <!--  COLA：干净的面向对象分层体系结构 https://github.com/alibaba/COLA/ -->
-        <spring.boot.druid.version>1.2.16</spring.boot.druid.version>         <!-- druid 版本管理 -->         <!-- https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter  -->
+        <spring.boot.druid.version>1.2.16</spring.boot.druid.version>  <!-- druid 版本管理  https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter  -->
+
+        <!--  其他第三方依赖      -->
+        <com.deepoove.poi.version>1.12.1</com.deepoove.poi.version> <!--  poi 依赖:https://github.com/Sayi/poi-tl -->
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -176,6 +179,11 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.deepoove</groupId>
+                <artifactId>poi-tl</artifactId>
+                <version>${com.deepoove.poi.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
