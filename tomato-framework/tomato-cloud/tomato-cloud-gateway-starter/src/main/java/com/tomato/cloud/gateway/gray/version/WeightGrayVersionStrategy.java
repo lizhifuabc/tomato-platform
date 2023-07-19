@@ -1,5 +1,6 @@
 package com.tomato.cloud.gateway.gray.version;
 
+import com.tomato.cloud.gateway.filter.FilterOrder;
 import com.tomato.cloud.gateway.gray.constant.GrayMetadataConstant;
 import com.tomato.cloud.gateway.gray.constant.HeaderConstant;
 import com.tomato.cloud.gateway.gray.properties.GrayProperties;
@@ -67,6 +68,6 @@ public class WeightGrayVersionStrategy implements GrayVersionStrategy {
      */
     @Override
     public int getOrder() {
-        return 1;
+        return FilterOrder.WEIGHT_GRAY_VERSION;
     }
 }

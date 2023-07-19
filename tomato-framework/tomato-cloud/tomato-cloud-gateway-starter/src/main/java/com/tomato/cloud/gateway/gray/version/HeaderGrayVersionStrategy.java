@@ -1,15 +1,14 @@
 package com.tomato.cloud.gateway.gray.version;
 
+import com.tomato.cloud.gateway.filter.FilterOrder;
 import com.tomato.cloud.gateway.gray.constant.GrayMetadataConstant;
 import com.tomato.cloud.gateway.gray.constant.HeaderConstant;
 import com.tomato.cloud.gateway.gray.properties.GrayProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.loadbalancer.RequestData;
-import org.springframework.http.HttpHeaders;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 根据请求头参数获取灰度版本
@@ -48,6 +47,6 @@ public class HeaderGrayVersionStrategy implements GrayVersionStrategy {
      */
     @Override
     public int getOrder() {
-        return 0;
+        return FilterOrder.HEADER_GRAY_VERSION;
     }
 }
