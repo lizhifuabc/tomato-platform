@@ -47,6 +47,6 @@ public class HeaderGrayVersionStrategy implements GrayVersionStrategy {
      */
     @Override
     public int getOrder() {
-        return FilterOrder.HEADER_GRAY_VERSION;
+        return FilterOrder.HEADER_GRAY_VERSION_ORDER;
     }
 }

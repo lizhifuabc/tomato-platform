@@ -1,1 +1,2 @@
 com.tomato.cloud.gateway.gray.GrayAutoConfiguration
+com.tomato.cloud.gateway.GatewayAutoConfiguration

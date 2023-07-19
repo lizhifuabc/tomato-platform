@@ -68,6 +68,6 @@ public class WeightGrayVersionStrategy implements GrayVersionStrategy {
      */
     @Override
     public int getOrder() {
-        return FilterOrder.WEIGHT_GRAY_VERSION;
+        return FilterOrder.WEIGHT_GRAY_VERSION_ORDER;
     }
 }
