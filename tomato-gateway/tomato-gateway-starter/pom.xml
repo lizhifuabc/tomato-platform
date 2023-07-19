@@ -17,11 +17,6 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-cloud-gateway-starter</artifactId>
         </dependency>
-        <!--  jackson 依赖     -->
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-jackson-starter</artifactId>
-        </dependency>
         <!--caffeine 替换LB 默认缓存实现-->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
