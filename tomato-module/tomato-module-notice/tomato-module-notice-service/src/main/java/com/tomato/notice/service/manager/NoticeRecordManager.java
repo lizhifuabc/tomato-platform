@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.BeanUtils;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 /**
@@ -28,8 +30,13 @@ public class NoticeRecordManager {
         this.noticeRecordMapper = noticeRecordMapper;
         this.noticeRecordHistoryMapper = noticeRecordHistoryMapper;
     }
-
+    /**
+     * 创建通知记录
+     * @param noticeCreateReq 通知记录
+     * @return NoticeRecordEntity 通知记录
+     */
     public NoticeRecordEntity createNotice(NoticeCreateReq noticeCreateReq){
+        // 创建通知记录
         NoticeRecordEntity noticeRecordEntity = new NoticeRecordEntity();
         BeanUtils.copyProperties(noticeCreateReq, noticeRecordEntity);
         noticeRecordEntity.setHttpMethod(noticeCreateReq.getHttpMethod().toString());
@@ -37,13 +44,31 @@ public class NoticeRecordManager {
         noticeRecordMapper.insertSelective(noticeRecordEntity);
         return noticeRecordEntity;
     }
-    @Transactional(rollbackFor = Exception.class)
-    public void noticeResult(Long id, Byte state, String noticeResult){
-        noticeRecordMapper.updateNoticeResult(id,state,noticeResult);
+
+    /**
+     * 创建通知记录历史
+     * @param noticeRecordEntity 通知记录
+     * @return NoticeRecordHistoryEntity 通知记录历史
+     */
+    public NoticeRecordHistoryEntity createNoticeHis(NoticeRecordEntity noticeRecordEntity){
         NoticeRecordHistoryEntity noticeRecordHistoryEntity = new NoticeRecordHistoryEntity();
-        noticeRecordHistoryEntity.setNoticeRecordId(id);
-        noticeRecordHistoryEntity.setNoticeResult(noticeResult);
+        noticeRecordHistoryEntity.setNoticeRecordId(noticeRecordEntity.getId());
+        noticeRecordHistoryEntity.setCreateTime(LocalDateTime.now());
         noticeRecordHistoryMapper.insertSelective(noticeRecordHistoryEntity);
+        return noticeRecordHistoryEntity;
+    }
+    /**
+     * 通知结果
+     * @param noticeRecordHistoryEntity 通知记录历史
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void noticeResult(NoticeRecordHistoryEntity noticeRecordHistoryEntity){
+        // 更新通知记录
+        noticeRecordMapper.updateNoticeResult(noticeRecordHistoryEntity.getNoticeRecordId(),noticeRecordHistoryEntity.getState(),noticeRecordHistoryEntity.getNoticeResult());
+        // 更新通知记录历史
+        noticeRecordHistoryEntity.setCompleteTime(LocalDateTime.now());
+        noticeRecordHistoryEntity.setCostTime(noticeRecordHistoryEntity.getCreateTime().until(noticeRecordHistoryEntity.getCompleteTime(), ChronoUnit.MILLIS));
+        noticeRecordHistoryMapper.updateByPrimaryKeySelective(noticeRecordHistoryEntity);
     }
     /**
      * 根据 ID 查询

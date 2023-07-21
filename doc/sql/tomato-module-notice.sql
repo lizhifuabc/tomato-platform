@@ -15,6 +15,7 @@ CREATE TABLE `t_notice_record` (
    `notice_count_limit` INT(11) NOT NULL DEFAULT '6' COMMENT '最大通知次数, 默认6次',
    `state` TINYINT(6) NOT NULL DEFAULT '1' COMMENT '通知状态,1-通知中,2-通知成功,3-通知失败',
    `last_notice_time` DATETIME not null default current_timestamp COMMENT '最后一次通知时间',
+   -- `last_notice_record_history` BIGINT(20) default NULL COMMENT '最后一次通知记录历史ID',
    `version` int default 0 not null comment '乐观锁',
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
    `create_time` datetime not null default current_timestamp comment '创建时间',
@@ -53,7 +54,10 @@ CREATE TABLE `t_notice_record_history` (
    `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '通知记录历史ID',
    `notice_record_id` BIGINT(20) NOT NULL COMMENT '通知记录ID',
    `notice_result` text comment '通知响应结果',
-   `create_time` datetime not null default current_timestamp comment '创建时间',
+   `state` TINYINT(6) NOT NULL DEFAULT '1' COMMENT '通知状态,1-通知中,2-通知成功,3-通知失败',
+   `cost_time` int  comment '通知耗时',
+   `create_time` datetime not null default current_timestamp comment '通知时间',
+   `complete_time` datetime default null comment '通知完成时间',
    PRIMARY KEY (`id`),
    index index_notice_record_id (`notice_record_id`) using btree
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知记录历史';

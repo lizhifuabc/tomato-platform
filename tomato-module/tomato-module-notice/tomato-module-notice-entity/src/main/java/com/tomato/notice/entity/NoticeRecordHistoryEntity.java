@@ -30,7 +30,19 @@ public class NoticeRecordHistoryEntity {
     private String noticeResult;
 
     /**
-     * 创建时间
+     * 通知时间
      */
     private LocalDateTime createTime;
+    /**
+     * 通知完成时间
+     */
+    private LocalDateTime completeTime;
+    /**
+     * 耗时
+     */
+    private Long costTime;
+    /**
+     * 通知状态，1-通知中，2-通知成功，3-通知失败
+     */
+    private Byte state;
 }

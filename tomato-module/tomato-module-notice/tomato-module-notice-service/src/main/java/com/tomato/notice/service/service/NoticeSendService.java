@@ -2,6 +2,7 @@ package com.tomato.notice.service.service;
 
 import com.tomato.notice.common.constant.NoticeRecordState;
 import com.tomato.notice.entity.NoticeRecordEntity;
+import com.tomato.notice.entity.NoticeRecordHistoryEntity;
 import com.tomato.notice.service.manager.NoticeRecordManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
@@ -39,6 +40,8 @@ public class NoticeSendService {
     }
     public void send(Long id){
         NoticeRecordEntity noticeRecordEntity = noticeRecordManager.selectById(id);
+        // 创建通知历史记录
+        NoticeRecordHistoryEntity noticeHis = noticeRecordManager.createNoticeHis(noticeRecordEntity);
         // 请求头信息
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.valueOf("application/json;charset=UTF-8"));
@@ -63,14 +66,15 @@ public class NoticeSendService {
             success = false;
         }
         if(success){
-            noticeResultService.success(noticeRecordEntity,body);
+            noticeResultService.success(body,noticeHis);
         }else {
-            noticeResultService.failMQ(noticeRecordEntity,body);
+            noticeResultService.failMQ(noticeRecordEntity,body,noticeHis);
         }
-        return;
     }
     public void sendAsync(Long id){
         NoticeRecordEntity noticeRecordEntity = noticeRecordManager.selectById(id);
+        // 创建通知历史记录
+        NoticeRecordHistoryEntity noticeHis = noticeRecordManager.createNoticeHis(noticeRecordEntity);
         // webClient 发送post请求，并对错误进行处理
         // TODO webClient 重试方式进行优化??rabbitmq延迟队列
         webClient.post()
@@ -84,7 +88,7 @@ public class NoticeSendService {
                 .retryWhen(Retry.backoff(6, Duration.ofSeconds(30))
                         .doAfterRetry(retrySignal -> {
                             log.info("重试次数：{}，异常信息：{}", retrySignal.totalRetriesInARow(), retrySignal.failure().getMessage());
-                            noticeResultService.fail(noticeRecordEntity,retrySignal.failure().getMessage());
+                            noticeResultService.fail(retrySignal.failure().getMessage(),noticeHis);
                         })
                         .filter(throwable -> throwable instanceof Exception)
                         .onRetryExhaustedThrow((retryBackoffSpec, retrySignal) -> new RuntimeException("重试3次失败")))
@@ -94,9 +98,9 @@ public class NoticeSendService {
                 .publishOn(Schedulers.boundedElastic())
                 .doOnError(throwable -> {
                     String msg = Objects.isNull(throwable.getMessage()) ? throwable.getCause().toString() : throwable.getMessage();
-                    noticeResultService.fail(noticeRecordEntity,msg);
+                    noticeResultService.fail(msg,noticeHis);
                 }).subscribe(result -> {
-                    noticeResultService.success(noticeRecordEntity,result);
+                    noticeResultService.success(result,noticeHis);
                 });
     }
 }
