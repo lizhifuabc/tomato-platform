@@ -16,5 +16,6 @@
         <module>tomato-cloud-feign-starter</module>
         <module>tomato-cloud-gateway-starter</module>
         <module>tomato-cloud-sentinel-gateway-starter</module>
+        <module>tomato-cloud-sentinel-feign-starter</module>
     </modules>
 </project>
