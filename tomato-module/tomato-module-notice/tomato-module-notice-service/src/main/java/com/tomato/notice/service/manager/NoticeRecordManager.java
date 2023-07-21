@@ -32,8 +32,9 @@ public class NoticeRecordManager {
     public NoticeRecordEntity createNotice(NoticeCreateReq noticeCreateReq){
         NoticeRecordEntity noticeRecordEntity = new NoticeRecordEntity();
         BeanUtils.copyProperties(noticeCreateReq, noticeRecordEntity);
+        noticeRecordEntity.setHttpMethod(noticeCreateReq.getHttpMethod().toString());
         noticeRecordEntity.setNoticeParam(JacksonUtils.toJson(noticeCreateReq.getNoticeParam()));
-        noticeRecordMapper.insert(noticeRecordEntity);
+        noticeRecordMapper.insertSelective(noticeRecordEntity);
         return noticeRecordEntity;
     }
     @Transactional(rollbackFor = Exception.class)
@@ -42,7 +43,7 @@ public class NoticeRecordManager {
         NoticeRecordHistoryEntity noticeRecordHistoryEntity = new NoticeRecordHistoryEntity();
         noticeRecordHistoryEntity.setNoticeRecordId(id);
         noticeRecordHistoryEntity.setNoticeResult(noticeResult);
-        noticeRecordHistoryMapper.insert(noticeRecordHistoryEntity);
+        noticeRecordHistoryMapper.insertSelective(noticeRecordHistoryEntity);
     }
     /**
      * 根据 ID 查询

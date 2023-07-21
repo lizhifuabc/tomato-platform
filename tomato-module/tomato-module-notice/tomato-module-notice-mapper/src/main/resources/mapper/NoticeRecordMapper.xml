@@ -2,50 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.notice.mapper.NoticeRecordMapper">
-    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="NoticeRecordEntity">
-        INSERT INTO t_notice_record
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="null != orderNo and '' != orderNo">
-                order_no,
-            </if>
-            <if test="null != merchantNo and '' != merchantNo">
-                merchant_no,
-            </if>
-            <if test="null != merchantOrderNo and '' != merchantOrderNo">
-                merchant_order_no,
-            </if>
-            <if test="null != appNo and '' != appNo">
-                app_no,
-            </if>
-            <if test="null != noticeParam and '' != noticeParam">
-                notice_param,
-            </if>
-            <if test="null != noticeUrl and '' != noticeUrl">
-                notice_url
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="null != orderNo and '' != orderNo">
-                #{orderNo},
-            </if>
-            <if test="null != merchantNo and '' != merchantNo">
-                #{merchantNo},
-            </if>
-            <if test="null != merchantOrderNo and '' != merchantOrderNo">
-                #{merchantOrderNo},
-            </if>
-            <if test="null != appNo and '' != appNo">
-                #{appNo},
-            </if>
-            <if test="null != noticeParam and '' != noticeParam">
-                #{noticeParam},
-            </if>
-            <if test="null != noticeUrl and '' != noticeUrl">
-                #{noticeUrl}
-            </if>
-        </trim>
-    </insert>
-    
     <update id="updateNoticeResult" parameterType="map">
         update
             t_notice_record

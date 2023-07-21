@@ -67,6 +67,7 @@ public class NoticeSendService {
         }else {
             noticeResultService.failMQ(noticeRecordEntity,body);
         }
+        return;
     }
     public void sendAsync(Long id){
         NoticeRecordEntity noticeRecordEntity = noticeRecordManager.selectById(id);

@@ -1,6 +1,7 @@
 package com.tomato.notice.entity;
 
 import com.tomato.common.entity.BaseEntity;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Table(name = "t_notice_record")
 public class NoticeRecordEntity extends BaseEntity {
     /**
      * 订单号
@@ -31,9 +33,14 @@ public class NoticeRecordEntity extends BaseEntity {
     private String merchantOrderNo;
 
     /**
-     * 系统编号(对接多个系统使用)
+     * 规则编码
      */
-    private String appNo;
+    private String ruleCode;
+
+    /**
+     * http方法
+     */
+    private String httpMethod;
 
     /**
      * 通知地址
