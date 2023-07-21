@@ -193,6 +193,8 @@
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-web-starter/tomato-web-jpa-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-web-starter/tomato-web-mybatis-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-framework/tomato-web-starter/tomato-web-mybatis-starter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-web-starter/tomato-web-rest-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-framework/tomato-web-starter/tomato-web-rest-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-gateway/tomato-gateway-api/src/main/java" charset="UTF-8" />

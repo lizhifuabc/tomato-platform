@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-web-mybatis-starter</artifactId>
+            <artifactId>tomato-web-core</artifactId>
         </dependency>
 
         <!-- jMolecules -->
