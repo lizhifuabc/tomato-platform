@@ -15,7 +15,7 @@
         <!--gateway 网关依赖,内置webflux 依赖-->
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-cloud-gateway-starter</artifactId>
+            <artifactId>tomato-cloud-sentinel-gateway-starter</artifactId>
         </dependency>
         <!--caffeine 替换LB 默认缓存实现-->
         <dependency>

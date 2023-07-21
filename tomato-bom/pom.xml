@@ -301,6 +301,11 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-cloud-sentinel-gateway-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-lock-redis-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
