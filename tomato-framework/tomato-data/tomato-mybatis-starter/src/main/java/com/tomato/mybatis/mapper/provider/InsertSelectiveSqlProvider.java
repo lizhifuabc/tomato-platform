@@ -20,12 +20,13 @@ public class InsertSelectiveSqlProvider extends AbstractSqlProviderSupport {
      * @return  sql
      */
     public String sql(Map<String, Object> params, ProviderContext context) {
+        String cacheKey = getCacheKey(context);
         // 缓存需要添加size,此时存在问题，如果第一次插入的是2条数据，第二次插入的是3条数据，那么第二次插入的sql会被缓存
         // 如果数据比较多，那么缓存的sql会很多，需要考虑缓存的问题
-        return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+        return SQL_CACHE.computeIfAbsent(cacheKey, value -> {
             TableInfo table = tableInfo(context);
             String sql = insertSelective(table);
-            log.info("insert selective sql:\n{}",sql);
+            log.info("Mybatis通用Mapper|cacheKey:{}|insert selective sql:\n{}",cacheKey,sql);
             return sql;
         });
     }

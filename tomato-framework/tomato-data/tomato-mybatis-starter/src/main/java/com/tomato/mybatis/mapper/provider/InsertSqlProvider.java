@@ -19,13 +19,14 @@ public class InsertSqlProvider extends AbstractSqlProviderSupport {
      * @return  sql
      */
     public String sql(ProviderContext context) {
-        return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+        String cacheKey = getCacheKey(context);
+        return SQL_CACHE.computeIfAbsent(cacheKey, value -> {
             TableInfo table = tableInfo(context);
             SQL sql = new SQL()
                     .INSERT_INTO(table.tableName)
                     .INTO_COLUMNS(table.columns)
                     .INTO_VALUES(Stream.of(table.fields).map(TableInfo::bindParameter).toArray(String[]::new));
-            log.info("insert sql:{}",sql.toString());
+            log.info("Mybatis通用Mapper|cacheKey:{}|insert sql:\n{}",cacheKey,sql.toString());
             return sql.toString();
         });
     }
