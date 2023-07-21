@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.tomato</groupId>
+        <artifactId>tomato-cloud</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>tomato-cloud-sentinel-gateway-starter</artifactId>
+
+    <dependencies>
+        <!-- Sentinel核心依赖,提供流量控制、熔断降级、系统保护等能力,可以注解方式直接在业务代码中使用Sentinel -->
+        <!-- 面向业务代码使用Sentinel -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!-- 提供Sentinel对Spring Cloud Gateway的支持,支持在Spring Cloud Gateway中配置Sentinel的API限流等功能,实现网关流控,对路由请求进行控制 -->
+        <!-- 面向Spring Cloud Gateway使用Sentinel -->
+        <!-- spring-cloud-alibaba-sentinel-gateway 模块里的 Spring Cloud Gateway 自动化配置类生效       -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-cloud-gateway-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
