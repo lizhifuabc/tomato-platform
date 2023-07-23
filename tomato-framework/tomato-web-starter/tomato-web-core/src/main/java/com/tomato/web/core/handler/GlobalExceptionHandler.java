@@ -42,14 +42,14 @@ public class GlobalExceptionHandler {
         return Resp.buildFailure(CommonRespCode.INTERNAL_SERVER_ERROR.code(), ex.getMessage());
     }
     /**
-     * json 格式错误 缺少请求体
+     * 参数校验异常处理
      */
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Resp<Void> validExceptionHandler(HttpServletRequest request,MethodArgumentNotValidException ex) {
         BindingResult bindingResult = ex.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        List<String> error = fieldErrors.stream().map(field -> field.getField() + ":" + field.getRejectedValue()).toList();
+        List<String> error = fieldErrors.stream().map(field -> field.getField() + ":" + field.getRejectedValue()+":"+field.getDefaultMessage()).toList();
         log.error("全局异常处理器|MethodArgumentNotValidException|[{}] {} [ex] {}", request.getMethod(), getCurrentRequestUrl(), error);
         return Resp.buildFailure(CommonRespCode.FAIL.code(), String.valueOf(error));
     }
