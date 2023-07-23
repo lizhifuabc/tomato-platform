@@ -1,5 +1,6 @@
 package com.tomato.validator.validator;
 
+import com.tomato.common.util.RegexPool;
 import com.tomato.validator.annotation.Mobile;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -11,12 +12,10 @@ import java.util.regex.Pattern;
  * 手机号校验
  *
  * @author lizhifu
- * @date 2021/12/10
+ * @since  2021/12/10
  */
 public class MobileValidator implements ConstraintValidator<Mobile, String> {
-    private static final Pattern PHONE_PATTERN = Pattern.compile(
-            "^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$"
-    );
+    private static final Pattern PHONE_PATTERN = Pattern.compile(RegexPool.MOBILE);
 
     @Override
     public void initialize(Mobile constraintAnnotation) {
