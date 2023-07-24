@@ -4,6 +4,7 @@ import com.tomato.common.resp.Resp;
 import com.tomato.jpa.domain.service.BaseReadableService;
 import com.tomato.jpa.domain.service.BaseWriteableService;
 import com.tomato.merchant.domain.entity.MerchantInfo;
+import com.tomato.merchant.domain.entity.MerchantRate;
 import com.tomato.merchant.domain.req.MerchantCreateReq;
 import com.tomato.merchant.service.MerchantInfoService;
 import com.tomato.web.core.util.BeanUtil;
@@ -38,8 +39,7 @@ public class MerchantCreateController extends AbstractBaseController<MerchantInf
     @PostMapping("/merchant/create")
     @Operation(summary = "商户创建", description = "商户创建")
     public Resp<MerchantInfo> create(@Valid @RequestBody MerchantCreateReq merchantCreateReq){
-        MerchantInfo merchantInfo = BeanUtil.copy(merchantCreateReq, MerchantInfo.class);
-        return Resp.of(merchantInfoService.save(merchantInfo));
+        return Resp.of(merchantInfoService.save(merchantCreateReq));
     }
 
     @Override

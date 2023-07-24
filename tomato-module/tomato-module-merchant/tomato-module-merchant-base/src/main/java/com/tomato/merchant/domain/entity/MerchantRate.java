@@ -2,7 +2,6 @@ package com.tomato.merchant.domain.entity;
 
 import com.tomato.jpa.domain.entity.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.math.BigDecimal;
 
@@ -11,11 +10,11 @@ import java.math.BigDecimal;
  * TODO 商户费率通道关联
  *
  * @author lizhifu
- * @date 2022/11/25
+ * @since  2022/11/25
  */
 @Entity
 @Table(name = "t_merchant_rate",uniqueConstraints = {
-        @UniqueConstraint(columnNames={"merchantNo", "payType"})
+        @UniqueConstraint(columnNames={"merchant_no", "pay_type"})
 })
 public class MerchantRate extends BaseEntity {
     @Id
@@ -26,7 +25,7 @@ public class MerchantRate extends BaseEntity {
     /**
      * 商户编号
      */
-    @Column(length = 64,nullable = false)
+    @Column(length = 64,nullable = false,name = "merchant_no")
     private String merchantNo;
 
     /**
@@ -36,15 +35,15 @@ public class MerchantRate extends BaseEntity {
     private BigDecimal rate;
 
     /**
-     * 状态: 0-停用, 1-正常
+     * 是否停用: 0-否, 1-是
      */
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "tinyint(0) not null default 0",insertable = false)
     private Integer merchantRateStatus;
 
     /**
      * 支付方式
      */
-    @Column(nullable = false)
+    @Column(nullable = false,name = "pay_type")
     private Integer payType;
 
     public Long getId() {
