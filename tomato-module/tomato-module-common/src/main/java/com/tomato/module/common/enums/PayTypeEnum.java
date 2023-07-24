@@ -1,4 +1,4 @@
-package com.tomato.order.domain.constant;
+package com.tomato.module.common.enums;
 
 import com.tomato.common.enums.BaseEnum;
 import lombok.AllArgsConstructor;
@@ -8,11 +8,11 @@ import lombok.Getter;
  * 支付方式枚举
  *
  * @author lizhifu
- * @date 2022/12/2
+ * @since  2022/12/2
  */
 @AllArgsConstructor
 @Getter
-public enum PayTypeEnum implements BaseEnum {
+public enum PayTypeEnum implements BaseEnum<Integer> {
     /**
      * 1 微信扫码
      */

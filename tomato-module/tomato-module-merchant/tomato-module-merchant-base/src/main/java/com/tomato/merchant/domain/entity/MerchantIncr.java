@@ -2,7 +2,7 @@ package com.tomato.merchant.domain.entity;
 
 import com.tomato.jpa.domain.entity.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Data;
+import org.hibernate.annotations.Comment;
 
 /**
  * 序列号生成
@@ -22,6 +22,7 @@ public class MerchantIncr extends BaseEntity {
      * 商户号
      */
     @Column
+    @Comment("商户号")
     private Long merchantNo;
 
     public Long getId() {

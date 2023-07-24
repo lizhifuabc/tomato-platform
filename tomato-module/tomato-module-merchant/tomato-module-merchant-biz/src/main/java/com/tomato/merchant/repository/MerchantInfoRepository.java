@@ -24,4 +24,11 @@ public interface MerchantInfoRepository extends BaseJpaRepository<MerchantInfo,L
      * @return 商户信息
      */
     Optional<MerchantInfo> findByEmail(String email);
+
+    /**
+     * 根据商户号查询
+     * @param merchantNo 商户号
+     * @return 商户信息
+     */
+    Optional<MerchantInfo> findByMerchantNo(String merchantNo);
 }

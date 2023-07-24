@@ -7,4 +7,3 @@ tomato-module-order
 -tomato-module-order-infrastructure
 -tomato-module-order-integration
 -tomato-module-order-service
--tomato-module-order-util

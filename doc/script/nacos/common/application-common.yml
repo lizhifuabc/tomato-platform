@@ -24,3 +24,10 @@ management:
 server:
   # 开启优雅停机，默认IMMEDIATE是立即关机，graceful是等待处理完请求再关机
   shutdown: graceful
+
+spring:
+  # jackson 配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null

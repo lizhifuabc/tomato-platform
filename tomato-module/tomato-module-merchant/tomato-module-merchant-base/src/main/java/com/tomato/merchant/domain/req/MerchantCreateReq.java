@@ -39,10 +39,4 @@ public class MerchantCreateReq {
     @Pattern(regexp = RegexPool.EMAIL,message = "邮箱格式不正确")
     @NotBlank
     private String email;
-    /**
-     * 费率
-     */
-    @Valid
-    @NotEmpty(message = "费率不能为空")
-    private List<MerchantRateReq> merchantRateList;
 }

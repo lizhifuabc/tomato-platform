@@ -5,16 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module-order</artifactId>
+        <artifactId>tomato-module</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-order-util</artifactId>
+    <artifactId>tomato-module-common</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -20,5 +20,9 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-jackson-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-common</artifactId>
+        </dependency>
     </dependencies>
 </project>

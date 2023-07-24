@@ -4,6 +4,7 @@ import com.tomato.jpa.domain.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Comment;
 
 import java.util.List;
 
@@ -19,45 +20,47 @@ public class MerchantInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @Comment("主键")
     private Long id;
 
     /**
      * 商户号
      */
     @Column(length = 64,nullable = false,unique = true)
+    @Comment("商户号")
     private String merchantNo;
 
     /**
      * 商户名称
      */
     @Column(length = 64,nullable = false)
+    @Comment("商户名称")
     private String merchantName;
 
     /**
      * 商户简称
      */
     @Column(length = 32,nullable = false)
+    @Comment("商户简称")
     private String merchantShortName;
     /**
      * 手机号
      */
     @Column(length = 36,nullable = false,unique = true)
+    @Comment("手机号")
     private String phone;
     /**
      * 手机号后四位模糊搜素
      */
     @Column(length = 36,nullable = false)
+    @Comment("手机号后四位模糊搜素")
     private String phoneSearch;
     /**
      * 邮箱
      */
     @Column(length = 50,nullable = false,unique = true)
+    @Comment("邮箱")
     private String email;
-    /**
-     * 是否停用: 0-否, 1-是
-     */
-    @Column(nullable = false,columnDefinition = "tinyint(0) not null default 0",insertable = false)
-    private Integer merchantStatus;
 
     public Long getId() {
         return id;
@@ -113,13 +116,5 @@ public class MerchantInfo extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Integer getMerchantStatus() {
-        return merchantStatus;
-    }
-
-    public void setMerchantStatus(Integer merchantStatus) {
-        this.merchantStatus = merchantStatus;
     }
 }

@@ -9,12 +9,12 @@ package com.tomato.common.enums;
  */
 public enum YesNoTypeEnum implements BaseEnum<Integer>{
     /**
-     * 1 正确，是的，有
+     * 1 正确，是的，有，是
      */
     YES(1, "正确，是的，有"),
 
     /**
-     * 0 错误，不是的，没有
+     * 0 错误，不是的，没有，否
      */
     NO(0, "错误，不是的，没有"),
     ;

@@ -19,11 +19,6 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-order-util</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
             <artifactId>tomato-common</artifactId>
         </dependency>
     </dependencies>

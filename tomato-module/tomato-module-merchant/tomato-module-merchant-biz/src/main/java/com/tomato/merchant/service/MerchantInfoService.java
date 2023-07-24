@@ -26,16 +26,13 @@ import java.util.List;
 @Service
 @Slf4j
 public class MerchantInfoService extends AbstractService<MerchantInfo,Long> {
-    private final MerchantRateRepository merchantRateRepository;
     private final MerchantInfoRepository merchantInfoRepository;
     private final MerchantNoService merchantNoService;
     private final MerchantSecurityManager merchantSecurityManager;
-    public MerchantInfoService(MerchantInfoRepository merchantInfoRepository, MerchantNoService merchantNoService, MerchantSecurityManager merchantSecurityManager,
-                               MerchantRateRepository merchantRateRepository) {
+    public MerchantInfoService(MerchantInfoRepository merchantInfoRepository, MerchantNoService merchantNoService, MerchantSecurityManager merchantSecurityManager) {
         this.merchantInfoRepository = merchantInfoRepository;
         this.merchantNoService = merchantNoService;
         this.merchantSecurityManager = merchantSecurityManager;
-        this.merchantRateRepository = merchantRateRepository;
     }
     @Transactional(rollbackFor = Exception.class)
     public MerchantInfo save(MerchantCreateReq merchantCreateReq){
@@ -53,14 +50,6 @@ public class MerchantInfoService extends AbstractService<MerchantInfo,Long> {
         merchantInfo.setPhoneSearch(merchantSecurityManager.phone(merchantInfo.getPhone()));
         merchantInfo.setMerchantNo(merchantNo);
         merchantInfoRepository.save(merchantInfo);
-        // 保存商户费率
-        List<MerchantRate> merchantRateList = new ArrayList<>();
-        merchantCreateReq.getMerchantRateList().forEach(e->{
-            MerchantRate merchantRate = BeanUtil.copy(e, MerchantRate.class);
-            merchantRate.setMerchantNo(merchantNo);
-            merchantRateList.add(merchantRate);
-        });
-        merchantRateRepository.saveAll(merchantRateList);
         return merchantInfo;
     }
     @Override

@@ -14,7 +14,6 @@
     <modules>
         <module>tomato-module-order-base</module>
         <module>tomato-module-order-biz</module>
-        <module>tomato-module-order-util</module>
         <module>tomato-module-order-service</module>
         <module>tomato-module-order-integration</module>
         <module>tomato-module-order-infrastructure</module>
