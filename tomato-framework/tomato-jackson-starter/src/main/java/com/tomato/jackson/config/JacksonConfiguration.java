@@ -43,7 +43,7 @@ public class JacksonConfiguration {
 		return new MappingJackson2HttpMessageConverter(objectMapper);
 	}
 	@Bean
-	public CustomizerJackson2ObjectMapperBuilderCustomizer customizerJackson2ObjectMapperBuilderCustomizer() {
+	public CustomizerJackson2ObjectMapperBuilderCustomizer defaultObjectMapperBuilderCustomizer() {
 		return new CustomizerJackson2ObjectMapperBuilderCustomizer();
 	}
 
