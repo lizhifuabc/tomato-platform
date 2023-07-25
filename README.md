@@ -35,6 +35,7 @@ spring 官方文档记录：
 - 数据调试（ TODO）：p6spy
 - 日志中心（ TODO）：ELK
 - 日志收集（ TODO）：Logstash Logback Encoder
+- MySQL 同步 ES 方案（ TODO）：Canal（https://github.com/alibaba/canal）、dolphinscheduler（https://github.com/apache/dolphinscheduler）
 
 ## 基础文档
 
