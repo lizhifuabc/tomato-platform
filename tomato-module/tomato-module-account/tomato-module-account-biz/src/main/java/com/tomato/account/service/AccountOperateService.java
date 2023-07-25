@@ -89,6 +89,7 @@ public class AccountOperateService {
      * 注销账户
      * @param accountCancelledReq 注销账户
      */
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void cancelledAccount(AccountCancelledReq accountCancelledReq) {
         //1.检查是否已经注销账户
         AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountCancelledReq.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
@@ -118,6 +119,7 @@ public class AccountOperateService {
      * @param accountFreezeReq 冻结解冻
      * @param accountStatus 冻结解冻状态
      */
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void freezeOrUnfreeze(AccountFreezeReq accountFreezeReq,String accountStatus) {
         // 1.检查账户是否存在
         AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountFreezeReq.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));

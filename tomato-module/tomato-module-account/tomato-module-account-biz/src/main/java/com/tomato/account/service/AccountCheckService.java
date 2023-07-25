@@ -34,6 +34,7 @@ public class AccountCheckService {
     }
     /**
      * 检查账户是否存在
+     * @param accountInfoEntity 账户信息
      */
     public static void checkAccountExist(AccountInfoEntity accountInfoEntity){
         if(accountInfoEntity == null){
@@ -41,7 +42,8 @@ public class AccountCheckService {
         }
     }
     /**
-     * 是否可以收款
+     * 是否可以收款：活动中、冻结止付
+     * @param accountStatus 账户状态
      */
     public static void checkAdd(String accountStatus){
         if (accountStatus.equals(AccountStatusTypeEnum.ACCOUNT_AVAILABLE.getValue()) || accountStatus.equals(AccountStatusTypeEnum.ACCOUNT_FREEZE_DEBIT.getValue())){
@@ -51,7 +53,8 @@ public class AccountCheckService {
         }
     }
     /**
-     * 是否可以收款
+     * 是否可以扣款：活动中、冻结止收
+     * @param accountStatus 账户状态
      */
     public static void checkDeduct(String accountStatus){
         if (accountStatus.equals(AccountStatusTypeEnum.ACCOUNT_AVAILABLE.getValue()) || accountStatus.equals(AccountStatusTypeEnum.ACCOUNT_FREEZE_CREDIT.getValue())){
