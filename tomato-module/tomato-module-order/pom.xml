@@ -20,7 +20,7 @@
         <module>tomato-module-order-facade</module>
         <module>tomato-module-order-domain</module>
         <module>tomato-module-order-controller</module>
-        <module>tomato-module-order-boot</module>
+        <module>tomato-module-order-start</module>
         <module>tomato-module-order-client</module>
     </modules>
 </project>

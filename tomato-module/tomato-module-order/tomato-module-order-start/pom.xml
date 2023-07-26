@@ -9,7 +9,7 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-order-boot</artifactId>
+    <artifactId>tomato-module-order-start</artifactId>
 
     <dependencies>
         <dependency>

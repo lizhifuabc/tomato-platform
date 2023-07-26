@@ -311,8 +311,6 @@
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-biz/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-biz/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-boot/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-boot/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-controller/src/main/java" charset="UTF-8" />
@@ -327,6 +325,8 @@
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-integration/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-start/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-start/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-pay-monitor/src/main/java" charset="UTF-8" />
