@@ -33,7 +33,7 @@ public class Resp<T> {
     @Schema(title = "http状态码")
     private int status;
     /**
-     * 链路追踪TraceId TODO
+     * 链路追踪TraceId
      */
     @Schema(title = "链路追踪TraceId")
     private String traceId;

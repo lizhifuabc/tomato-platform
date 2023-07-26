@@ -1,4 +1,4 @@
-package com.tomato.common.constants;
+package com.tomato.common.resp;
 
 /**
  * 错误码
