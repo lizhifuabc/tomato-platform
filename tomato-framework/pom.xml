@@ -36,5 +36,6 @@
         <module>tomato-captcha</module>
         <module>tomato-redis</module>
         <module>tomato-banner-starter</module>
+        <module>tomato-pay</module>
     </modules>
 </project>
