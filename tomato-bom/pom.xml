@@ -97,7 +97,8 @@
 
         <!--  第三方支付相关依赖      -->
         <wx-java-mp.version>4.5.0</wx-java-mp.version> <!-- https://github.com/Wechat-Group/WxJava -->
-
+        <alipay-sdk.version>4.38.28.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
+        <bcprov.version>1.69</bcprov.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -183,6 +184,16 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk15to18</artifactId>
+                <version>${bcprov.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.binarywang</groupId>
