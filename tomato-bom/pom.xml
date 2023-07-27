@@ -94,6 +94,10 @@
 
         <!--  其他第三方依赖      -->
         <com.deepoove.poi.version>1.12.1</com.deepoove.poi.version> <!--  poi 依赖:https://github.com/Sayi/poi-tl -->
+
+        <!--  第三方支付相关依赖      -->
+        <wx-java-mp.version>4.5.0</wx-java-mp.version> <!-- https://github.com/Wechat-Group/WxJava -->
+
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -179,6 +183,16 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>wx-java-mp-spring-boot-starter</artifactId>
+                <version>${wx-java-mp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-pay</artifactId>
+                <version>${wx-java-mp.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.deepoove</groupId>
