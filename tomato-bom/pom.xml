@@ -99,6 +99,7 @@
         <wx-java-mp.version>4.5.0</wx-java-mp.version> <!-- https://github.com/Wechat-Group/WxJava -->
         <alipay-sdk.version>4.38.28.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
         <bcprov.version>1.69</bcprov.version>
+        <wechatpay.java.version>0.2.10</wechatpay.java.version> <!--微信支付官方包 https://github.com/wechatpay-apiv3/wechatpay-java -->
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -148,6 +149,11 @@
                 <groupId>com.aventrix.jnanoid</groupId>
                 <artifactId>jnanoid</artifactId>
                 <version>${jnanoid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.wechatpay-apiv3</groupId>
+                <artifactId>wechatpay-java</artifactId>
+                <version>${wechatpay.java.version}</version>
             </dependency>
             <!--  验证码          -->
             <dependency>
