@@ -25,9 +25,9 @@
         <!-- spring boot / spring cloud 统一依赖管理 -->
         <spring.boot.version>3.1.2</spring.boot.version>
         <spring-security-cas.version>5.8.3</spring-security-cas.version>
-        <spring-boot-admin.version>3.1.1</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
-        <spring.cloud.version>2022.0.3</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
-        <spring.cloud.alibaba.version>2022.0.0.0-RC2</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
+        <spring-boot-admin.version>3.1.3</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
+        <spring.cloud.version>2022.0.4</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
+        <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
         <spring-security-oauth2-authorization-server.version>1.1.1</spring-security-oauth2-authorization-server.version> <!-- Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
 
         <!--Maven Plugin 组件统一依赖管理-->
