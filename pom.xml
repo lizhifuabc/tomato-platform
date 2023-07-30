@@ -120,9 +120,17 @@
                 <profiles.active>dev</profiles.active>
                 <nacos.username>nacos</nacos.username>
                 <nacos.password>nacos</nacos.password>
+
+                <!--代码构建控制-->
+                <!--跳过构建源代码包-->
+                <skip.build.source.package>false</skip.build.source.package>
+                <!--不copy代码包到docker构建目录-->
+                <skip.copy.docker.resource>false</skip.copy.docker.resource>
+                <!--不执行git commit 构建-->
+                <skip.build.git.commit.info>false</skip.build.git.commit.info>
             </properties>
             <activation>
-                <!-- 默认环境 -->
+                <!--默认激活配置-->
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
