@@ -31,6 +31,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-mybatis-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
