@@ -23,7 +23,6 @@ public class MerchantInfoRepositoryTest {
         merchantInfo.setMerchantNo("12");
         merchantInfo.setMerchantName("12");
         merchantInfo.setMerchantShortName("12");
-        merchantInfo.setMerchantStatus(YesNoTypeEnum.YES.getValue());
         merchantInfo.setEmail("123");
         merchantInfo.setPhone("123");
         merchantInfoRepository.save(merchantInfo);
