@@ -2,7 +2,6 @@ package com.tomato.mybatis.util;
 
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,7 +17,7 @@ public final class ReflectionUtils {
      * 获取所有field字段，包含父类继承的
      *
      * @param clazz 字段所属类型
-     * @return
+     * @return 字段数组
      */
     public static Field[] getFields(Class<?> clazz) {
         return getFields(clazz, null);
@@ -45,35 +44,5 @@ public final class ReflectionUtils {
             clazz = clazz.getSuperclass();
         }
         return fields.toArray(new Field[0]);
-    }
-
-    /**
-     * 获取字段值
-     *
-     * @param field    字段
-     * @param target  字段所属实例对象
-     * @return        字段值
-     */
-    public static Object getFieldValue(Field field, Object target) {
-        makeAccessible(field);
-        try {
-            return field.get(target);
-        } catch (Exception e) {
-            throw new IllegalStateException(String.format("获取%s对象的%s字段值错误!"
-                    , target.getClass().getName(), field.getName()), e);
-        }
-    }
-
-    /**
-     * 设置字段为可见
-     *
-     * @param field
-     */
-    public static void makeAccessible(Field field) {
-        if ((!Modifier.isPublic(field.getModifiers()) ||
-                !Modifier.isPublic(field.getDeclaringClass().getModifiers()) ||
-                Modifier.isFinal(field.getModifiers())) && !field.isAccessible()) {
-            field.setAccessible(true);
-        }
     }
 }
