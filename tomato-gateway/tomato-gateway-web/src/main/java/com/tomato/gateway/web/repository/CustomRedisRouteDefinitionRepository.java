@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class RedisRouteDefinitionRepository implements RouteDefinitionRepository {
+public class CustomRedisRouteDefinitionRepository implements RouteDefinitionRepository {
     public static final String REDIS_GATEWAY_ROUTES = "gateway:routes";
     @Resource
     private RedisTemplate<String, RouteDefinition> redisTemplate;

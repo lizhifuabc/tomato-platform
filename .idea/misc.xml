@@ -20,6 +20,7 @@
         <option value="$PROJECT_DIR$/tomato-framework/tomato-ddd/tomato-application-core/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-rpc-loadbalancer-zk/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-spi/pom.xml" />
+        <option value="$PROJECT_DIR$/tomato-gateway/tomato-gateway-starter/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-demo/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-base/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-biz/pom.xml" />

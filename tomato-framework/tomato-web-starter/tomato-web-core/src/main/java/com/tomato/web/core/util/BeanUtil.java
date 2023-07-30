@@ -5,6 +5,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import org.springframework.beans.BeanUtils;
 
+import java.lang.reflect.Constructor;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -46,7 +47,10 @@ public class BeanUtil {
             return null;
         }
         try {
-            T newInstance = target.newInstance();
+            // 获取目标类的默认构造函数
+            Constructor<T> constructor = target.getDeclaredConstructor();
+            // 通过构造函数实例化对象
+            T newInstance = constructor.newInstance();
             BeanUtils.copyProperties(source, newInstance);
             return newInstance;
         } catch (Exception e) {

@@ -7,11 +7,19 @@ spring:
     # 应用名称，用于注册到注册中心，pom.xml中的artifactId
     name: @artifactId@
   cloud:
+    sentinel:
+      transport:
+        # sentinel传输端口
+        port: ${SENTINEL_PORT:8719}
+        # sentinel控制台地址
+        dashboard: ${SENTINEL_HOST:tomato-sentinel}:${SENTINEL_HOST:8080}
+      eager: true # 服务注启动，直接注册到 dashboard
     nacos:
       username: @nacos.username@
       password: @nacos.password@
       discovery:
         # 注册中心地址,dns解析 127.0.0.1  tomato-nacos
+        # 如果环境变量不存在,则使用默认值:NACOS_HOST默认是tomato-nacos,NACOS_PORT默认是8848
         server-addr: ${NACOS_HOST:tomato-nacos}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}

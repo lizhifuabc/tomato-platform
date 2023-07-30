@@ -30,6 +30,21 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-cloud-gateway-starter</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>compile</scope>
+            <!-- true：开启隐藏，当前依赖不会向其他工程传递，只保留给自己用； -->
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <scope>compile</scope>
+            <!-- true：开启隐藏，当前依赖不会向其他工程传递，只保留给自己用； -->
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
 </project>
