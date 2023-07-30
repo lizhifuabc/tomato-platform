@@ -264,11 +264,6 @@
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-api</artifactId>
-                <version>${jjwt-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-impl</artifactId>
                 <version>${jjwt-api.version}</version>
             </dependency>
@@ -504,88 +499,4 @@
             <!--  业务代码 end -->
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <resources>
-            <!-- 配置 src/main/resources 为资源文件 -->
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <extensions>
-            <!-- 用于打包 -->
-            <extension>
-                <groupId>org.apache.maven.archetype</groupId>
-                <artifactId>archetype-packaging</artifactId>
-                <version>${archetype-packaging.verison}</version>
-            </extension>
-        </extensions>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <!--指定了编译源代码和目标字节码版本为与当前项目中设置的 Java 版本相同-->
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <!--指定了编译源代码时使用的字符编码-->
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <!--开启编译时的警告提示-->
-                        <showWarnings>true</showWarnings>
-                        <!--用于配置注解处理器的路径-->
-                        <annotationProcessorPaths>
-                            <path>
-                                <groupId>org.projectlombok</groupId>
-                                <artifactId>lombok</artifactId>
-                            </path>
-                            <path>
-                                <groupId>org.mapstruct</groupId>
-                                <artifactId>mapstruct-processor</artifactId>
-                                <version>${mapstruct-processor.version}</version>
-                            </path>
-                            <path>
-                                <groupId>org.springframework.boot</groupId>
-                                <artifactId>spring-boot-configuration-processor</artifactId>
-                                <version>${spring.boot.version}</version>
-                            </path>
-                            <path>
-                                <groupId>org.springframework.boot</groupId>
-                                <artifactId>spring-boot-autoconfigure-processor</artifactId>
-                                <version>${spring.boot.version}</version>
-                            </path>
-                        </annotationProcessorPaths>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <!--Maven 在执行构建时将不会执行任何测试-->
-                        <skipTests>true</skipTests>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <configuration>
-                        <encoding>UTF-8</encoding>
-                        <propertiesEncoding>UTF-8</propertiesEncoding>
-                        <!--  不会应用默认的排除规则  -->
-                        <addDefaultExcludes>false</addDefaultExcludes>
-                        <!--  配置文件的分隔符  -->
-                        <delimiters>
-                            <delimiter>${resource.delimiter}</delimiter>
-                        </delimiters>
-                        <!--  不使用默认的分隔符                      -->
-                        <useDefaultDelimiters>false</useDefaultDelimiters>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 </project>
