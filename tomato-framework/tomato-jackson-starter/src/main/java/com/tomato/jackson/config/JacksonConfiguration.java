@@ -7,8 +7,13 @@ import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 
@@ -17,6 +22,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
  * @author lizhifu
  */
 @AutoConfiguration
+// @ConditionalOnClass({ObjectMapper.class})
+// @AutoConfigureBefore(JacksonAutoConfiguration.class)
 public class JacksonConfiguration {
 	private static final Logger log = LoggerFactory.getLogger(JacksonConfiguration.class);
 	@PostConstruct
@@ -48,12 +55,17 @@ public class JacksonConfiguration {
 	}
 
 	/**
-	 * jackson工具类
-	 * @return JacksonUtils
+	 * jackson 工具类，方便注入使用
 	 */
-	@Bean
-	public JacksonUtils jacksonUtils(ObjectMapper objectMapper) {
-		log.info("tomato-jackson-starter jacksonUtils 自动装配");
-		return new JacksonUtils(objectMapper);
+	@Configuration(proxyBeanMethods = false)
+	@ComponentScan({
+			"com.tomato.jackson.utils"
+	})
+	public static class JacksonUtilsConfiguration {
+
+		@PostConstruct
+		public void postConstruct() {
+			log.info("tomato-jackson-starter utils 自动装配");
+		}
 	}
 }

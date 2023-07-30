@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +20,7 @@ import java.util.function.Function;
  * Jackson 工具类
  * @author lizhifu
  */
+@Component
 public class JacksonUtils {
     private static ObjectMapper OBJECT_MAPPER;
     private final ObjectMapper objectMapper;
