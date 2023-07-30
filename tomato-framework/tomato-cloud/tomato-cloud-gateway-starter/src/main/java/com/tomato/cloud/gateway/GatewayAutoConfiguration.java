@@ -1,6 +1,7 @@
 package com.tomato.cloud.gateway;
 
 import com.tomato.cloud.gateway.handler.GatewayExceptionHandler;
+import io.micrometer.tracing.Tracer;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -25,8 +26,8 @@ public class GatewayAutoConfiguration {
     @Bean
     @Primary
     @Order(-2) // 保证优先级高于默认的 Spring Cloud Gateway 的 ErrorWebExceptionHandler 实现
-    public GatewayExceptionHandler gatewayExceptionHandler() {
+    public GatewayExceptionHandler gatewayExceptionHandler(Tracer tracer) {
         log.info("tomato-cloud-gateway-starter 网关统一异常处理");
-        return new GatewayExceptionHandler();
+        return new GatewayExceptionHandler(tracer);
     }
 }
