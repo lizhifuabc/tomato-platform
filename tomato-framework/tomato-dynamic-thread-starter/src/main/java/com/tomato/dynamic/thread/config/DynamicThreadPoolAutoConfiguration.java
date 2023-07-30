@@ -12,14 +12,14 @@ import java.util.concurrent.LinkedBlockingQueue;
  * 动态线程池自动装配
  *
  * @author lizhifu
- * @date 2022/12/4
+ * @since  2022/12/4
  */
 @AutoConfiguration
 @EnableConfigurationProperties(DynamicThreadPoolProperties.class)
 public class DynamicThreadPoolAutoConfiguration {
     /**
      * 内部监控线程池
-     * @return
+     * @return DynamicThreadPoolExecutor 线程池
      */
     @Bean("asyncNotifyTaskExecutor")
     public DynamicThreadPoolExecutor asyncNotifyTaskExecutor() {
@@ -28,7 +28,7 @@ public class DynamicThreadPoolAutoConfiguration {
                 2,
                 4,
                 60,
-                new LinkedBlockingQueue(4096),
+                new LinkedBlockingQueue<>(4096),
                 customThreadFactory
         );
     }
