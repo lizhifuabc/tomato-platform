@@ -57,8 +57,7 @@ public class ResponseAdviceHandler implements ResponseBodyAdvice<Object> {
         if(body instanceof Throwable){
             return Resp.buildFailure(INTERNAL_SERVER_ERROR.code(),INTERNAL_SERVER_ERROR.msg());
         }
-        if (body instanceof Resp) {
-            Resp resp = (Resp) body;
+        if (body instanceof Resp resp) {
             Span span = tracer.currentSpan();
             if (Objects.nonNull(span)) {
                 resp.setTraceId(span.context().traceId());
