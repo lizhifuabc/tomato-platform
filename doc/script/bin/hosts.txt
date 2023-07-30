@@ -1,2 +1,3 @@
 127.0.0.1  tomato-nacos
 127.0.0.1  tomato-redis
+127.0.0.1  tomato-sentinel
