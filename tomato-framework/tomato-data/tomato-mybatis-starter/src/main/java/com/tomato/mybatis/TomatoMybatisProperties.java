@@ -21,4 +21,14 @@ public class TomatoMybatisProperties {
      * 主键名
      */
     public static final String DEFAULT_PRIMARY_KEY = "id";
+
+    /**
+     * 是否启用慢SQL拦截
+     */
+    private boolean slowSql = false;
+
+    /**
+     * 慢SQL拦截阈值,单位毫秒
+     */
+    private long slowSqlMillis = 1000L;
 }

@@ -95,6 +95,7 @@ CREATE TABLE `t_account_his` (
     `create_time`               datetime not null default current_timestamp comment '创建时间',
     primary key (`id`),
     index (`create_time`),
+    index (`account_no`),
     unique key `uniq_account_merchant` (`merchant_no`,`merchant_order_no`),
     unique key `uniq_account_third_no` (`sys_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '账户历史';
