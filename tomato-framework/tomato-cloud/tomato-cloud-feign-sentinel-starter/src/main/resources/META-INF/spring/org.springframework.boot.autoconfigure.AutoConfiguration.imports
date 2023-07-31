@@ -1,1 +1,1 @@
-com.tomato.cloud.gateway.sentinel.GatewaySentinelAutoConfiguration
+com.tomato.cloud.feign.sentinel.FeignSentinelAutoConfiguration
