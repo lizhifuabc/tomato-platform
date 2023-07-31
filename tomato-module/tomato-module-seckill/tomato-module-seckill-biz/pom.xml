@@ -12,10 +12,6 @@
     <artifactId>tomato-module-seckill-biz</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
         <!--服务注册/发现-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

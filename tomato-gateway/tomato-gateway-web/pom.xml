@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-cloud-sentinel-gateway-starter</artifactId>
+            <artifactId>tomato-cloud-gateway-sentinel-starter</artifactId>
         </dependency>
         <!-- Redis基础依赖 -->
         <dependency>

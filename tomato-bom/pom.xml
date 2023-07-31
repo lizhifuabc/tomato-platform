@@ -327,7 +327,7 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
-                <artifactId>tomato-cloud-sentinel-gateway-starter</artifactId>
+                <artifactId>tomato-cloud-gateway-sentinel-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
@@ -388,6 +388,11 @@
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-cloud-feign-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-cloud-feign-sentinel-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

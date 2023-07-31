@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    openfeign:
+      # 如果应用属于计算密集型，CPU 负载长期超过 70%，因数据压缩、解压缩都需要 CPU 运算，
+      # 开启数据压缩功能反而会给 CPU 增加额外负担，导致系统性能降低，这是不可取的。
+      # 这种情况 建议不要开启数据的压缩功能
+      compression:
+        request:
+          enabled: true # 开启请求数据的压缩功能
+          mime-types: text/xml,application/xml,application/json  # 压缩类型
+          min-request-size: 2048 # 最小压缩值标准，当数据大于 1024 才会进行压缩
+        response:
+          enabled: true # 开启响应数据压缩功能
+      okhttp:       # okhttp 配置
+        enabled: true
+        # httpclient 配置
+#      httpclient:
+#        enabled: true
