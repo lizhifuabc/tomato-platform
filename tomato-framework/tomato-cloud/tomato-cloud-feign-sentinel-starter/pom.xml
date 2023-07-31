@@ -9,7 +9,7 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-cloud-sentinel-feign-starter</artifactId>
+    <artifactId>tomato-cloud-feign-sentinel-starter</artifactId>
 
     <dependencies>
         <!-- Sentinel核心依赖,提供流量控制、熔断降级、系统保护等能力,可以注解方式直接在业务代码中使用Sentinel -->
@@ -29,10 +29,6 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
             <scope>compile</scope>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-cloud-gateway-starter</artifactId>
         </dependency>
     </dependencies>
 

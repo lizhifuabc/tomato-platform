@@ -14,8 +14,8 @@
     <modules>
         <module>tomato-cloud-alibaba-starter</module>
         <module>tomato-cloud-feign-starter</module>
+        <module>tomato-cloud-feign-sentinel-starter</module>
         <module>tomato-cloud-gateway-starter</module>
-        <module>tomato-cloud-sentinel-gateway-starter</module>
-        <module>tomato-cloud-sentinel-feign-starter</module>
+        <module>tomato-cloud-gateway-sentinel-starter</module>
     </modules>
 </project>
