@@ -37,7 +37,7 @@
         <maven-archetype-plugin.version>3.2.1</maven-archetype-plugin.version> <!-- https://maven.apache.org/archetype/maven-archetype-plugin/ ， 用于创建项目模板。这个插件负责把Archetype项目打包成可发布的形式-->
 
         <!-- mybatis 版本管理 -->
-        <spring.boot.mybatis.version>3.0.1</spring.boot.mybatis.version>
+        <spring.boot.mybatis.version>3.0.2</spring.boot.mybatis.version>
 
         <!-- shardingsphere 分库分表依赖 -->
         <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
