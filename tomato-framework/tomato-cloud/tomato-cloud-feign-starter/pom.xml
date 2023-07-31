@@ -29,7 +29,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
-        <!-- OpenFeign 依赖-->
+        <!-- OpenFeign 客户端依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -39,11 +39,19 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
-        <!-- OpenFeign 默认使用 Java 自带的 URLConnection,okhttp 扩展 -->
+        <!-- OpenFeign 默认使用 Java 自带的 URLConnection 对象创建 HTTP 请求 -->
+        <!-- 底层通信组件更换为 Apache HttpClient、OKHttp 这样的专用通信组件，
+        基于这些组件自带的连接池，可以更好地对 HTTP 连接对象进行重用与管理。 -->
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-okhttp</artifactId>
         </dependency>
+        <!-- 或者添加 httpclient 框架依赖 -->
+<!--        <dependency>-->
+<!--            <groupId>io.github.openfeign</groupId>-->
+<!--            <artifactId>feign-httpclient</artifactId>-->
+<!--        </dependency>-->
+
         <!--caffeine 替换LB 默认缓存实现-->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
