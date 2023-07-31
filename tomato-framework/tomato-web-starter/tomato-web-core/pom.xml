@@ -48,10 +48,6 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-tracing-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-springdoc-starter</artifactId>
-        </dependency>
     </dependencies>
 
 </project>
