@@ -67,6 +67,15 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-jackson-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
