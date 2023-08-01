@@ -22,6 +22,7 @@
         <module>maven-pom</module>
         <module>mybatis-generator</module>
         <module>spring-modulith</module>
+        <module>util-example</module>
     </modules>
 
     <properties>
