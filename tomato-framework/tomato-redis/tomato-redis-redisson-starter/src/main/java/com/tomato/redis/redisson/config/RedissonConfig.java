@@ -1,23 +1,14 @@
 package com.tomato.redis.redisson.config;
 
 import com.tomato.redis.redisson.lock.RedissonDistributedLockFactory;
-import com.tomato.redis.redisson.properties.RedissonProperties;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
-import org.redisson.codec.JsonJacksonCodec;
-import org.redisson.config.ClusterServersConfig;
 import org.redisson.config.Config;
-import org.redisson.config.SentinelServersConfig;
-import org.redisson.config.SingleServerConfig;
 import org.redisson.spring.data.connection.RedissonConnectionFactory;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 

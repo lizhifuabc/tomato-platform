@@ -7,13 +7,13 @@ import org.redisson.config.SingleServerConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Redisson 配置
+ * Redisson 配置 TODO
  *
  * @author lizhifu
  * @since 2023/7/12
  */
 @Data
-@ConfigurationProperties(prefix = "spring.data.redis.redisson")
+// @ConfigurationProperties(prefix = "spring.data.redis.redisson")
 public class RedissonProperties {
     /**
      * Redisson 使用模式
