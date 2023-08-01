@@ -28,6 +28,8 @@ public class RedisStrategyImpl extends AbstractIdempotentStrategy {
         String methodName = joinPoint.getSignature().toString();
         String argsStr = Arrays.toString(joinPoint.getArgs());
         String redisKey = generateRequestKey(methodName + argsStr);
+        // 如果存在，说明已经请求过了
+        // 设置过期时间，防止死锁
         Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent(Objects.requireNonNull(redisKey), "", idempotent.timeout(), idempotent.timeUnit());
         if (Boolean.FALSE.equals(aBoolean)) {
             throw new BusinessException(idempotent.message());
