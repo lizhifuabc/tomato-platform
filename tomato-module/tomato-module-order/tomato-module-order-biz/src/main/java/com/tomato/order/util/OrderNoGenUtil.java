@@ -1,6 +1,6 @@
 package com.tomato.order.util;
 
-import com.tomato.util.StrUtil;
+
 
 /**
  * 订单编号生成策略
@@ -9,7 +9,7 @@ import com.tomato.util.StrUtil;
  * 时间戳+用户标识码+随机数
  * 1672579493068
  * @author lizhifu
- * @date 2022/12/1
+ * @since  2022/12/1
  */
 public class OrderNoGenUtil {
     /**
@@ -38,10 +38,11 @@ public class OrderNoGenUtil {
     public String genOrderNo(String merchantOrderNo,String merchantNo){
         long dbSuffix = HashShardingValueUtil.dbSuffix(merchantOrderNo,merchantNo,dbCount);
         long tableSuffix = HashShardingValueUtil.tableSuffix(merchantOrderNo,merchantNo,tableCount);
-        String no = orderSequence.nextId() +
-                StrUtil.fillAfter("0", String.valueOf(dbSuffix), 2) +
-                StrUtil.fillAfter("0", String.valueOf(tableSuffix), 2);
-        return no;
+        return String.join("",
+                String.valueOf(orderSequence.nextId()),
+                String.format("%02d", dbSuffix),
+                String.format("%02d", tableSuffix)
+        );
     }
 
     public static void main(String[] args) {
