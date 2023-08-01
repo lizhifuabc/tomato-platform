@@ -22,10 +22,6 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-order-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
             <artifactId>tomato-mybatis-starter</artifactId>
         </dependency>
         <dependency>

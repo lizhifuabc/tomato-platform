@@ -9,19 +9,18 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-order-infrastructure</artifactId>
-    <description>基础层核心是承载数据访问，entity实体对象承载在本层。</description>
+    <artifactId>tomato-module-order-application</artifactId>
 
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-mybatis-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-order-domain</artifactId>
+            <artifactId>tomato-module-order-infrastructure</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-
 </project>

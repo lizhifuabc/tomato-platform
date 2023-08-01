@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-order-facade</artifactId>
+            <artifactId>tomato-module-order-application</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -12,15 +12,11 @@
     <artifactId>tomato-module-order</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>tomato-module-order-base</module>
         <module>tomato-module-order-biz</module>
-        <module>tomato-module-order-service</module>
-        <module>tomato-module-order-integration</module>
         <module>tomato-module-order-infrastructure</module>
-        <module>tomato-module-order-facade</module>
         <module>tomato-module-order-domain</module>
         <module>tomato-module-order-controller</module>
         <module>tomato-module-order-start</module>
-        <module>tomato-module-order-client</module>
+        <module>tomato-module-order-application</module>
     </modules>
 </project>

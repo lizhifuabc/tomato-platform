@@ -1,9 +1,0 @@
-tomato-module-order
--tomato-module-order-boot
--tomato-module-order-client
--tomato-module-order-controller
--tomato-module-order-domain
--tomato-module-order-facade
--tomato-module-order-infrastructure
--tomato-module-order-integration
--tomato-module-order-service

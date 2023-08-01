@@ -1,10 +1,10 @@
 package com.tomato.order.controller.controller;
 
 import com.tomato.common.resp.Resp;
-import com.tomato.order.client.dto.OrderQueryByMerchantDTO;
-import com.tomato.order.client.dto.OrderQueryByOrderNoDTO;
-import com.tomato.order.client.dto.OrderQueryResultDTO;
-import com.tomato.order.client.service.OrderClientService;
+import com.tomato.order.application.req.OrderQueryByMerchantReq;
+import com.tomato.order.application.req.OrderQueryByOrderNoReq;
+import com.tomato.order.application.req.OrderQueryResultReq;
+import com.tomato.order.application.service.OrderClientService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +25,11 @@ public class OrderQueryController {
         this.orderClientService = orderClientService;
     }
     @RequestMapping("/order/query/merchant")
-    public Resp<OrderQueryResultDTO> queryOrderMerchant(@Valid OrderQueryByMerchantDTO orderQueryByMerchantDTO) {
+    public Resp<OrderQueryResultReq> queryOrderMerchant(@Valid OrderQueryByMerchantReq orderQueryByMerchantDTO) {
         return Resp.of(orderClientService.queryOrderMerchant(orderQueryByMerchantDTO));
     }
     @RequestMapping("/order/query/orderNo")
-    public Resp<Void> queryOrderNo(@Valid OrderQueryByOrderNoDTO orderQueryByMerchantDTO) {
+    public Resp<Void> queryOrderNo(@Valid OrderQueryByOrderNoReq orderQueryByMerchantDTO) {
         return Resp.buildSuccess();
     }
 }
