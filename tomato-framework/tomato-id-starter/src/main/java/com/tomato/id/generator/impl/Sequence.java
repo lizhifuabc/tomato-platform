@@ -2,7 +2,6 @@ package com.tomato.id.generator.impl;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.time.Instant;
@@ -116,11 +115,6 @@ public class Sequence {
     private static volatile InetAddress LOCAL_ADDRESS = null;
     private static final Pattern IP_PATTERN = Pattern.compile("\\d{1,3}(\\.\\d{1,3}){3,5}$");
 
-    public Sequence() {
-        this.datacenterId = getDatacenterId();
-        this.workerId = getMaxWorkerId(datacenterId);
-    }
-
     /**
      * 有参构造器
      *
@@ -164,23 +158,6 @@ public class Sequence {
         return id;
     }
 
-    /**
-     * 基于 MAC + PID 的 hashcode 获取16个低位
-     * <p>
-     * 可自定扩展
-     */
-    protected long getMaxWorkerId(long datacenterId) {
-        StringBuilder mpId = new StringBuilder();
-        mpId.append(datacenterId);
-        String name = ManagementFactory.getRuntimeMXBean().getName();
-        if (name != null && name.length() > 0) {
-            // GET jvmPid
-            mpId.append(name.split("@")[0]);
-        }
-
-        // MAC + PID 的 hashcode 获取16个低位
-        return (mpId.toString().hashCode() & 0xffff) % (maxWorkerId + 1);
-    }
     /**
      * 根据Snowflake的ID，获取机器id
      *
