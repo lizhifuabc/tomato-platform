@@ -24,6 +24,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-util</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
