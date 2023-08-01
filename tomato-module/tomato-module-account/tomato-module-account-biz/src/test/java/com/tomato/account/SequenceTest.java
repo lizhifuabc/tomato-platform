@@ -9,7 +9,7 @@ import com.tomato.id.generator.impl.Sequence;
  * @since 2023/1/1
  */
 public class SequenceTest {
-    private static Sequence sequence = new Sequence();
+    private static Sequence sequence = new Sequence(1,2);
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             Long id = sequence.nextId();
