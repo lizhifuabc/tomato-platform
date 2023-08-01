@@ -1,21 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.order.infrastructure.mapper.OrderInfoMapper">
-    <select id="selectByOrderNo" resultType="OrderInfoEntity">
+    <update id="updateOrderStatus">
+        update
+        t_order_info
+        set
+        version = version + 1,
+        order_status = #{updateOrderStatusDO.orderStatus}
+        <if test="updateOrderStatusDO.completeTime != null">,complete_time = #{updateOrderStatusDO.completeTime}</if>
+        where
+        order_no = #{updateOrderStatusDO.orderNo}
+        and version = #{updateOrderStatusDO.currentVersion}
+        and order_status = #{updateOrderStatusDO.expectOrderStatus}
+    </update>
+
+    <sql id="select_fields">
+        order_status,order_no,pay_type,complete_time,create_time,version,request_amount
+    </sql>
+
+    <select id="selectByOrderNo" resultType="com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO">
         select
-            *
+        <include refid="select_fields" />
+        from
+        t_order_info
+        where
+        order_no = #{orderNo}
+    </select>
+
+    <select id="selectByMerchant" resultType="com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO">
+        select
+        <include refid="select_fields" />
+        from
+        t_order_info
+        where
+        merchant_no = #{merchantNo} and merchant_order_no = #{merchantOrderNo}
+    </select>
+
+    <select id="selectByOrderNoBase" resultType="com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO">
+        select
+            order_status,order_no,pay_type,complete_time,create_time,version
         from
             t_order_info
         where
             order_no = #{orderNo}
     </select>
 
-    <select id="selectByMerchant" resultType="OrderInfoEntity">
+    <update id="updateOrderStatusTimeOut">
+        update
+            t_order_info
+        set
+            version = version + 1,
+            order_status = '${@com.tomato.order.domain.constant.OrderStatusEnum@TIMEOUT.value}',
+            complete_time = current_timestamp
+        where
+            timeout_time &lt;= current_timestamp
+          and order_status = '${@com.tomato.order.domain.constant.OrderStatusEnum@DEAL.value}'
+    </update>
+
+    <select id="selectByCreateTime" resultType="com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO">
         select
-            *
+            order_status,order_no,pay_type,create_time,version
         from
             t_order_info
         where
-            merchant_no = #{merchantNo} and merchant_order_no = #{merchantOrderNo}
+            create_time &gt;= #{createTime}
+          and order_status = #{orderStatus}
+        limit #{pageIndex},#{pageSize}
     </select>
 </mapper>

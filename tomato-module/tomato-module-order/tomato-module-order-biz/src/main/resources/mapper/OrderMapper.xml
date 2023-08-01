@@ -133,12 +133,12 @@
             t_order_info
         set
             version = version + 1,
-            order_status = #{updateOrderStatusBO.orderStatus}
-            <if test="updateOrderStatusBO.completeTime != null">,complete_time = #{updateOrderStatusBO.completeTime}</if>
+            order_status = #{updateOrderStatusDO.orderStatus}
+            <if test="updateOrderStatusDO.completeTime != null">,complete_time = #{updateOrderStatusDO.completeTime}</if>
         where
-            order_no = #{updateOrderStatusBO.orderNo}
-            and version = #{updateOrderStatusBO.currentVersion}
-            and order_status = #{updateOrderStatusBO.expectOrderStatus}
+            order_no = #{updateOrderStatusDO.orderNo}
+            and version = #{updateOrderStatusDO.currentVersion}
+            and order_status = #{updateOrderStatusDO.expectOrderStatus}
     </update>
 
     <sql id="select_fields">

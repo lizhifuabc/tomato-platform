@@ -1,4 +1,4 @@
-package com.tomato.order.demo;
+package com.tomato.order.application.demo;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * demo
  *
  * @author lizhifu
- * @date 2022/12/6
+ * @since  2022/12/6
  */
 @Service
 @Slf4j

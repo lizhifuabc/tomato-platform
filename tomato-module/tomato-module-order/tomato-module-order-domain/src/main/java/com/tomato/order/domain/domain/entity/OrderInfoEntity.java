@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 
 /**
@@ -135,6 +137,24 @@ public class OrderInfoEntity extends BaseEntity {
      * 渠道返回订单号
      */
     private String channelOrderNo;
+    /**
+     * hmac 签名
+     */
+    private String hmac;
+
+    /**
+     * 订单初始化
+     */
+    public void init(){
+        try {
+            InetAddress localHost = InetAddress.getLocalHost();
+            this.machineIp = localHost.getHostAddress();
+        } catch (UnknownHostException e) {
+            this.clientIp = "0.0.0.0";
+        }
+        // 订单 5 分钟失效
+        this.timeoutTime = LocalDateTime.now().plusMinutes(5);
+    }
 
     /**
      * 完成订单
@@ -163,5 +183,15 @@ public class OrderInfoEntity extends BaseEntity {
         this.orderStatus = OrderStatusEnum.DEAL.getValue();
         // version 由数据库维护，update时会自动加1
         // updateTime 由数据库维护,update时会自动更新
+    }
+
+    /**
+     * 校验hmac
+     * @param hmac hmac
+     */
+    public void checkHmac(String hmac){
+        if (!this.hmac.equals(hmac)) {
+            throw new BusinessException("hmac校验失败");
+        }
     }
 }

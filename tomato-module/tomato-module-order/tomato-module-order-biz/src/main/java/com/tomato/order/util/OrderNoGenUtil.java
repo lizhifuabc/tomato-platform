@@ -1,7 +1,5 @@
 package com.tomato.order.util;
 
-
-
 /**
  * 订单编号生成策略
  * 订单号 = 雪花|分库编号2位|分表编号2位|

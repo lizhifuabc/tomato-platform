@@ -1,4 +1,4 @@
-package com.tomato.order.order.domain.bo;
+package com.tomato.order.infrastructure.mapper.dataobject;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UpdateOrderStatusBO {
+public class UpdateOrderStatusDO {
     /**
      * 订单号
      */

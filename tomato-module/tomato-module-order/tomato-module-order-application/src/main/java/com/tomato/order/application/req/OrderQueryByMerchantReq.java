@@ -19,11 +19,4 @@ public class OrderQueryByMerchantReq extends BaseReq {
      */
     @NotBlank(message="商户订单号不能为为空！")
     private String merchantOrderNo;
-
-
-    /**
-     * 商户编号
-     */
-    @NotBlank(message="商户编号不能为为空！")
-    private String merchantNo;
 }

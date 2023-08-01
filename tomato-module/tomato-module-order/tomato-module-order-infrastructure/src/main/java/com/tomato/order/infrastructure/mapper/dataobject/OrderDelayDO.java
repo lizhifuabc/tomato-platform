@@ -1,4 +1,4 @@
-package com.tomato.order.order.domain.bo;
+package com.tomato.order.infrastructure.mapper.dataobject;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import lombok.Data;
  * @since 2022/12/26
  */
 @Data
-public class OrderDelayBO {
+public class OrderDelayDO {
     /**
      * 订单号
      */
