@@ -1,9 +1,6 @@
 package com.tomato.account;
 
 import com.tomato.id.generator.impl.Sequence;
-import com.tomato.util.date.LocalDateTimeUtil;
-
-import java.time.LocalDateTime;
 
 /**
  * Sequence

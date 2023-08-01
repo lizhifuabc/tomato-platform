@@ -5,7 +5,6 @@ import com.tomato.account.dao.AccountSettleControlDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountSettleControlEntity;
 import com.tomato.account.enums.AccountTypeEnum;
-import com.tomato.util.thread.ThreadUtil;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
