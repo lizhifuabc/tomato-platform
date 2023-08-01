@@ -77,8 +77,6 @@
         <jasypt.version>3.0.5</jasypt.version>
         <!--  代码生成模板      -->
         <velocity.version>2.3</velocity.version>
-        <!--   谷歌     -->
-        <guava.version>31.1-jre</guava.version>
         <!-- 验证码 -->
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <nashorn.version>15.4</nashorn.version>
@@ -100,6 +98,10 @@
         <alipay-sdk.version>4.38.28.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
         <bcprov.version>1.69</bcprov.version>
         <wechatpay.java.version>0.2.10</wechatpay.java.version> <!--微信支付官方包 https://github.com/wechatpay-apiv3/wechatpay-java -->
+
+        <!-- 常用工具包 -->
+        <hutool.version>6.0.0-M4</hutool.version> <!-- https://gitee.com/dromara/hutool -->
+        <guava.version>32.1.1-jre</guava.version> <!-- https://github.com/google/guava  -->
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -306,6 +308,11 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.dromara.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
             <!--监控服务端-->
             <dependency>
