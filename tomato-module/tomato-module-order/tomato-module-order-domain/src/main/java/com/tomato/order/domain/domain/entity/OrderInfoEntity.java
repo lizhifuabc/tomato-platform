@@ -1,6 +1,9 @@
 package com.tomato.order.domain.domain.entity;
 
 import com.tomato.common.entity.BaseEntity;
+import com.tomato.common.exception.BusinessException;
+import com.tomato.order.domain.constants.OrderStatusEnum;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,6 +19,7 @@ import java.time.LocalDateTime;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
 public class OrderInfoEntity extends BaseEntity {
     /**
      * 收单服务器ip
@@ -131,4 +135,33 @@ public class OrderInfoEntity extends BaseEntity {
      * 渠道返回订单号
      */
     private String channelOrderNo;
+
+    /**
+     * 完成订单
+     * @param orderStatus 订单状态
+     */
+    public void complete(OrderStatusEnum orderStatus){
+        // 判断订单状态只能是处理中或者初始化
+        if(!OrderStatusEnum.INIT.getValue().equals(this.orderStatus) && !OrderStatusEnum.DEAL.getValue().equals(this.orderStatus)){
+            throw new BusinessException("订单状态不正确");
+        }
+        this.orderStatus = orderStatus.getValue();
+        this.completeTime = LocalDateTime.now();
+        // version 由数据库维护，update时会自动加1
+        // updateTime 由数据库维护,update时会自动更新
+        // super.setVersion(getVersion() + 1);
+    }
+
+    /**
+     * 处理订单
+     */
+    public void deal(){
+        // 判断订单状态只能是初始化
+        if(!OrderStatusEnum.INIT.getValue().equals(this.orderStatus)){
+            throw new BusinessException("订单状态不正确");
+        }
+        this.orderStatus = OrderStatusEnum.DEAL.getValue();
+        // version 由数据库维护，update时会自动加1
+        // updateTime 由数据库维护,update时会自动更新
+    }
 }
