@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tags({
         @Tag(name = "商户交易"),
 })
+@Slf4j
 public class MerchantTradeController {
     private final MerchantTradeService merchantTradeService;
 
@@ -34,6 +36,7 @@ public class MerchantTradeController {
     @PostMapping("/merchant/trade")
     @Operation(summary = "商户交易", description = "商户交易")
     public Resp<MerchantTradResp> trade(@Valid @RequestBody MerchantTradReq merchantCreateReq){
+        log.info("商户交易:{}",merchantCreateReq);
         return Resp.of(merchantTradeService.trade(merchantCreateReq));
     }
 }
