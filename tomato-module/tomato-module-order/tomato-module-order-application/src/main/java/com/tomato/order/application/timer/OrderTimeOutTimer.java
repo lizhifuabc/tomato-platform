@@ -27,6 +27,7 @@ public class OrderTimeOutTimer {
      */
     @Scheduled(cron="0 0/1 * * * ?")
     public void start() {
+        log.info("订单过期定时任务 start");
         int updateCount = orderInfoRepository.updateTimeOutOrder();
         log.info("处理订单超时{}条", updateCount);
     }
