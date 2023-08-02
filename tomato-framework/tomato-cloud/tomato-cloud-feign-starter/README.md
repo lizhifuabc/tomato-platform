@@ -1,5 +1,7 @@
 # OpenFeign
 
+https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/
+
 Spring Cloud OpenFeign 声明式服务调用与负载均衡组件。底层基于 Netflix Feign。Netflix Feign 是 Netflix 设计的开源的声明式 WebService 客户端，用于简化服务间通信。
 
 Spring Cloud openfeign 对 Feign 进行了增强，使其支持 Spring MVC 注解，另外还整合了 Ribbon 和 Nacos，从而使得 Feign 的使用更加方便。
