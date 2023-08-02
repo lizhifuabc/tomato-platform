@@ -4,9 +4,7 @@ import com.tomato.common.entity.BaseEntity;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.order.domain.constants.OrderStatusEnum;
 import com.tomato.util.lang.BigDecimalUtil;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.net.InetAddress;
@@ -23,6 +21,8 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderInfoEntity extends BaseEntity {
     /**
      * 收单服务器ip
