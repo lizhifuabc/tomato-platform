@@ -25,6 +25,7 @@ public class MerchantInfoRepositoryTest {
         merchantInfo.setMerchantShortName("12");
         merchantInfo.setEmail("123");
         merchantInfo.setPhone("123");
+        merchantInfo.setPhoneSearch("123");
         merchantInfoRepository.save(merchantInfo);
     }
 

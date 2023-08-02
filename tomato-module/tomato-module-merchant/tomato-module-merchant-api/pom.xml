@@ -5,22 +5,29 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module</artifactId>
+        <artifactId>tomato-module-merchant</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>tomato-module-merchant</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-module-merchant-biz</module>
-        <module>tomato-module-merchant-base</module>
-        <module>tomato-module-merchant-api</module>
-    </modules>
+    <artifactId>tomato-module-merchant-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-merchant-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-cloud-feign-starter</artifactId>
+        </dependency>
+    </dependencies>
 </project>
