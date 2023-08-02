@@ -76,6 +76,14 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-jackson-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-tracing-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-micrometer</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
