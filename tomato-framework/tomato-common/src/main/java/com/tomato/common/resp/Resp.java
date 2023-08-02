@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tomato.common.constants.CommonRespCode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
  * @since  2022/11/21
  */
 @Data
+@NoArgsConstructor
 @Schema(title = "统一响应返回实体", description = "所有Rest接口统一返回的实体定义")
 public class Resp<T> {
     @Schema(title = "返回数据")
