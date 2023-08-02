@@ -22,6 +22,10 @@
             <artifactId>tomato-module-order-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-merchant-api</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

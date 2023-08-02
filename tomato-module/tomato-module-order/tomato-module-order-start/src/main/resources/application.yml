@@ -20,9 +20,18 @@ spring:
         server-addr: ${NACOS_HOST:tomato-nacos}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
+    openfeign:
+      client:
+        config:
+          default: # 项目全局feign配置
+            loggerLevel: full
   config:
     import:
       # 从nacos中获取配置
       - optional:nacos:application-@profiles.active@.yml
       # 从nacos中获取配置
       - optional:nacos:${spring.application.name}-@profiles.active@.yml
+      - optional:nacos:application-common.yml
+logging:
+  level:
+    com.tomato.merchant.api: debug # 这里是openfeign client 所在的包路径

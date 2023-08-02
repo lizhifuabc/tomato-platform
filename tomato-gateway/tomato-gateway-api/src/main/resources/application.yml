@@ -15,6 +15,14 @@ spring:
         server-addr: ${NACOS_HOST:tomato-nacos}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
+    gateway:
+      routes:
+        - id: merchant
+          uri: lb://tomato-module-merchant-biz
+          predicates:
+            - Path=/merchant/**
+          filters:
+            - StripPrefix=1
   config:
     import:
       # 从nacos中获取配置

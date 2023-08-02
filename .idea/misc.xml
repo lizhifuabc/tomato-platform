@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -9,6 +10,7 @@
         <option value="$PROJECT_DIR$/spring-boot-cli-demo/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-cli-archetype/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-cli-demo-archetype/pom.xml" />
+        <option value="$PROJECT_DIR$/tomato-module/tomato-module-merchant/tomato-module-merchant-api/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -21,6 +23,7 @@
         <option value="$PROJECT_DIR$/tomato-framework/tomato-rpc/tomato-spi/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-gateway/tomato-gateway-starter/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/tomato-module/tomato-module-merchant/tomato-module-merchant-domain/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-base/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-biz/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-base/pom.xml" />

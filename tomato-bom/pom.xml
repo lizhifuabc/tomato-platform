@@ -354,6 +354,11 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
+                <artifactId>tomato-module-merchant-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
                 <artifactId>tomato-cache-guava-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
