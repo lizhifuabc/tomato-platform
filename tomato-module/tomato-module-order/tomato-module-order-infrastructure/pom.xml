@@ -26,6 +26,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-merchant-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-rabbitmq-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

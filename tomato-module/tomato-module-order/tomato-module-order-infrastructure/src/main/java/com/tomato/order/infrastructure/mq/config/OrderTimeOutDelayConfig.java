@@ -1,7 +1,10 @@
-package com.tomato.order.config;
+package com.tomato.order.infrastructure.mq.config;
 
-import com.tomato.order.domain.constant.RabbitMqConstant;
-import org.springframework.amqp.core.*;
+import com.tomato.order.domain.constants.RabbitMqConstant;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.CustomExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.Exchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,7 +37,7 @@ public class OrderTimeOutDelayConfig {
     }
     /**
      * 创建一个队列
-     * @return
+     * @return Queue 队列
      */
     @Bean
     public Queue orderDelayQueue() {
@@ -45,7 +48,7 @@ public class OrderTimeOutDelayConfig {
     }
     /**
      * 绑定队列到自定义交换机
-     * @return
+     * @return Binding 绑定关系
      */
     @Bean
     public Binding bindingOrderDelay() {

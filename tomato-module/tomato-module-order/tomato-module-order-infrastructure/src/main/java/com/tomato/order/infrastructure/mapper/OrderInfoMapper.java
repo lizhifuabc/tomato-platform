@@ -1,8 +1,8 @@
 package com.tomato.order.infrastructure.mapper;
 
 import com.tomato.mybatis.mapper.BaseMapper;
-import com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO;
-import com.tomato.order.infrastructure.mapper.dataobject.UpdateOrderStatusDO;
+import com.tomato.order.infrastructure.dataobject.OrderInfoDO;
+import com.tomato.order.infrastructure.dataobject.UpdateOrderStatusDO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

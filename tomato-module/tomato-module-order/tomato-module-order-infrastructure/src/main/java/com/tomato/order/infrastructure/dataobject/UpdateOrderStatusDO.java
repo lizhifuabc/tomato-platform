@@ -1,4 +1,4 @@
-package com.tomato.order.infrastructure.mapper.dataobject;
+package com.tomato.order.infrastructure.dataobject;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

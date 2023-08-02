@@ -203,4 +203,20 @@ public class OrderInfoEntity extends BaseEntity {
             throw new BusinessException("hmac校验失败");
         }
     }
+
+    /**
+     * 订单是否最终状态
+     * @return boolean true 最终状态
+     */
+    public boolean finalStatus(){
+        return !OrderStatusEnum.INIT.getValue().equals(this.orderStatus) && !OrderStatusEnum.DEAL.getValue().equals(this.orderStatus);
+    }
+
+    /**
+     * 订单是否超时
+     * @return boolean true 超时
+     */
+    public boolean timeOut(){
+        return LocalDateTime.now().isAfter(this.timeoutTime);
+    }
 }

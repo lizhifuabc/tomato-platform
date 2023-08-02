@@ -3,7 +3,7 @@ package com.tomato.order.infrastructure.repository.impl;
 import com.tomato.order.domain.domain.entity.OrderInfoEntity;
 import com.tomato.order.domain.repository.OrderInfoRepository;
 import com.tomato.order.infrastructure.mapper.OrderInfoMapper;
-import com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO;
+import com.tomato.order.infrastructure.dataobject.OrderInfoDO;
 import com.tomato.web.core.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;

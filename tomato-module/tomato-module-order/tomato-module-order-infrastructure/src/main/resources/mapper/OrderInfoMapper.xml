@@ -18,7 +18,7 @@
         order_status,order_no,pay_type,complete_time,create_time,version,request_amount
     </sql>
 
-    <select id="selectByOrderNo" resultType="com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO">
+    <select id="selectByOrderNo" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
         select
         <include refid="select_fields" />
         from
@@ -27,7 +27,7 @@
         order_no = #{orderNo}
     </select>
 
-    <select id="selectByMerchant" resultType="com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO">
+    <select id="selectByMerchant" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
         select
         <include refid="select_fields" />
         from
@@ -36,7 +36,7 @@
         merchant_no = #{merchantNo} and merchant_order_no = #{merchantOrderNo}
     </select>
 
-    <select id="selectByOrderNoBase" resultType="com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO">
+    <select id="selectByOrderNoBase" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
         select
             order_status,order_no,pay_type,complete_time,create_time,version
         from
@@ -57,7 +57,7 @@
             and order_status = '${@com.tomato.order.domain.constants.OrderStatusEnum@DEAL.value}'
     </update>
 
-    <select id="selectByCreateTime" resultType="com.tomato.order.infrastructure.mapper.dataobject.OrderInfoDO">
+    <select id="selectByCreateTime" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
         select
             order_status,order_no,pay_type,create_time,version
         from
