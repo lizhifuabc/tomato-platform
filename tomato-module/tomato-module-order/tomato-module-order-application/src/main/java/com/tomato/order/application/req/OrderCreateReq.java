@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 
@@ -27,7 +28,7 @@ public class OrderCreateReq extends BaseReq {
     @Schema(description = "订单金额")
     @NotNull(message="订单金额不能为为空！")
     @DecimalMin(value = "0.01",message = "订单金额不能小于0.01")
-    @Digits(integer = 9, fraction=2, message = "费率格式不正确")
+    @Digits(integer = 9, fraction=2, message = "订单金额格式不正确")
     private BigDecimal requestAmount;
 
     /**
@@ -42,7 +43,7 @@ public class OrderCreateReq extends BaseReq {
      */
     @Schema(description = "商户订单号")
     @NotBlank(message="商户订单号不能为空！")
-    @Max(value = 32,message = "商户订单号不能超过32位")
+    @Length(max = 32,message = "商户订单号不能超过32位")
     private String merchantOrderNo;
 
     /**
@@ -56,7 +57,7 @@ public class OrderCreateReq extends BaseReq {
      */
     @Schema(description = "系统通知地址")
     @NotBlank(message="系统通知地址不能为空！")
-    @Max(value = 128,message = "系统通知地址不能超过128位")
+    @Length(max = 128,message = "系统通知地址不能超过128位")
     private String noticeSys;
 
     /**

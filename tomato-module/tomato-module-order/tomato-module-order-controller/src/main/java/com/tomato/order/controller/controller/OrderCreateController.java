@@ -37,7 +37,7 @@ public class OrderCreateController {
     @Operation(summary = "扫码收单", description = "扫码收单")
     @PostMapping("/order/create/scan")
     public Resp<OrderScanCreateResp> createScanOrder(@Valid @RequestBody OrderCreateReq orderCreateReq, HttpServletRequest request) {
-        OrderScanCreateResp orderScanCreateResp = orderCreateService.createScanOrder(orderCreateReq,"merchantKey",request.getRemoteAddr());
+        OrderScanCreateResp orderScanCreateResp = orderCreateService.createScanOrder(orderCreateReq,request.getRemoteAddr());
         return Resp.of(orderScanCreateResp);
     }
 }

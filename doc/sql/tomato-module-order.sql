@@ -21,7 +21,7 @@ create table`t_order_info` (
     `pay_type`   tinyint(1) unsigned not null comment '支付方式：1 微信扫码 、2 支付宝扫码',
 
     `merchant_order_no` varchar(36)    not null comment '商户订单号',
-    `merchant_no`       varchar(16)    not null comment '商户编号',
+    `merchant_no`       varchar(64)    not null comment '商户编号',
     `merchant_fee`      decimal(14,4)  not null comment '手续费',
     `merchant_rate`     decimal(14,4)  not null comment '商户手续费费率快照',
     `merchant_name`     varchar(256)   not null comment '商户名称(冗余字段)',

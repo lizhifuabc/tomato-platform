@@ -1,6 +1,9 @@
 package com.tomato.order.domain.domain.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -11,6 +14,9 @@ import java.math.BigDecimal;
  * @since 2023/8/1
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MerchantEntity {
     /**
      * 商户号

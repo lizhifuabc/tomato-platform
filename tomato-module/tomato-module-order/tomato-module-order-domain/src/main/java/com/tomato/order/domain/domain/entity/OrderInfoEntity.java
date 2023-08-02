@@ -3,6 +3,7 @@ package com.tomato.order.domain.domain.entity;
 import com.tomato.common.entity.BaseEntity;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.order.domain.constants.OrderStatusEnum;
+import com.tomato.util.lang.BigDecimalUtil;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -141,6 +142,10 @@ public class OrderInfoEntity extends BaseEntity {
      * hmac 签名
      */
     private String hmac;
+    /**
+     * 商户信息
+     */
+    private MerchantEntity merchantEntity;
 
     /**
      * 订单初始化
@@ -154,6 +159,10 @@ public class OrderInfoEntity extends BaseEntity {
         }
         // 订单 5 分钟失效
         this.timeoutTime = LocalDateTime.now().plusMinutes(5);
+        // 商户信息
+        this.merchantRate = merchantEntity.getTrxRate();
+        this.merchantName = merchantEntity.getMerchantName();
+        this.merchantFee = BigDecimalUtil.multiply(requestAmount,merchantRate);
     }
 
     /**
