@@ -26,6 +26,10 @@ server:
   shutdown: graceful
 
 spring:
+  cloud:
+    openfeign:
+      micrometer:
+        enabled: true # 开启feign的监控
   # jackson 配置
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
