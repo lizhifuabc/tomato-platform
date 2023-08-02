@@ -52,7 +52,7 @@ public interface OrderInfoMapper extends BaseMapper<OrderInfoDO,Long> {
      * TODO 分库分表
      * @return 更新条数
      */
-    int updateOrderStatusTimeOut();
+    int updateTimeOutOrder();
 
     /**
      * 订单查询

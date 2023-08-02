@@ -15,4 +15,10 @@ public interface OrderInfoRepository {
      * @param orderInfoEntity 订单新建
      */
     void createOrder(OrderInfoEntity orderInfoEntity);
+
+    /**
+     * 更新超时订单订单状态
+     * @return 更新条数
+     */
+    int updateTimeOutOrder();
 }

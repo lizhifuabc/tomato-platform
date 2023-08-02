@@ -35,3 +35,10 @@ spring:
 logging:
   level:
     com.tomato.merchant.api: debug # 这里是openfeign client 所在的包路径
+
+mybatis:
+  type-aliases-package: com.tomato.order.infrastructure.mapper.dataobject
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

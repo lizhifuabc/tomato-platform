@@ -27,4 +27,9 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
         BeanUtils.copyProperties(orderInfoEntity,orderInfoDO);
         orderInfoMapper.insertSelective(orderInfoDO);
     }
+
+    @Override
+    public int updateTimeOutOrder() {
+        return orderInfoMapper.updateTimeOutOrder();
+    }
 }
