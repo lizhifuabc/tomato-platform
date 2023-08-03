@@ -37,7 +37,14 @@
         </rollingPolicy>
         <encoder>
             <!-- pattern节点，用来设置日志的输入格式 -->
-            <pattern>%date [%thread] %-5level [%logger{50}] %file:%line - %msg%n</pattern>
+            <!-- pattern节点，用于定义日志输出格式的模式 -->
+            <!-- %date：输出日志的日期时间。 -->
+            <!-- [%thread]：输出线程名。 -->
+            <!-- %-5level：输出日志级别，%-5level表示输出的级别占据5个字符的宽度，左对齐，不足的部分使用空格填充。 -->
+            <!-- [%logger{50}]：输出日志的Logger名，最大宽度为50个字符。 -->
+            <!-- %file:%line：输出日志的发生位置，包括文件名和行号。 -->
+            <!-- %msg%n：输出日志消息和换行符。 -->
+            <pattern>%date [%thread] %-5level [${spring.application.name:-},%X{traceId:-},%X{spanId:-}] [%logger{50}] %file:%line - %msg%n</pattern>
             <!-- 记录日志的编码:此处设置字符集 - -->
             <charset>UTF-8</charset>
         </encoder>

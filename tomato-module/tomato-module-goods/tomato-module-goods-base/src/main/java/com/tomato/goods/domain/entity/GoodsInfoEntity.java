@@ -2,6 +2,7 @@ package com.tomato.goods.domain.entity;
 
 import com.tomato.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 商品信息实体
@@ -9,6 +10,7 @@ import lombok.Data;
  * @author lizhifu
  * @since 2023/3/21
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class GoodsInfoEntity extends BaseEntity {
     /**
