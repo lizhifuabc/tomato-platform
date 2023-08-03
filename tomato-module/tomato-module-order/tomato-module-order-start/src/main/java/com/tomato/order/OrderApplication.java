@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * 项目启动类
  * @author lizhifu
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.tomato"})
 @EnableAsync // 开启异步支持
 @EnableScheduling
 @EnableFeignClients(basePackages = {"com.tomato.merchant.api"})

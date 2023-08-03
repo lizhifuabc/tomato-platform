@@ -28,6 +28,9 @@ server:
 spring:
   cloud:
     openfeign:
+      # 开启 Feign Spring Cloud CircuitBreaker Fallbacks
+      circuitbreaker:
+        enabled: true
       micrometer:
         enabled: true # 开启feign的监控
   # jackson 配置
