@@ -44,6 +44,7 @@ public class OrderCreateService {
     public OrderScanCreateResp createScanOrder(OrderCreateReq orderCreateReq,String clientIp) {
         // TODO 是否需要异步，如果需要异步，需要考虑事务
         // TODO 是否会导致出现多余请求，是否可以将hmac校验提前
+        // TODO traceId 传递
         CompletableFuture<OrderInfoEntity> orderInfoFuture = CompletableFuture.supplyAsync(
                 () -> orderCreateComponent.createOrder(orderCreateReq, clientIp, OrderStatusEnum.DEAL),
                 AsyncConfiguration.COMMON_POOL);
