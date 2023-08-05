@@ -52,3 +52,26 @@ create table`t_order_info_extend` (
      primary key (`id`) using btree,
      unique key uk_order_no (`order_no`) using btree
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单表扩展';
+
+# 订单分表 TODO 看看后续是否放在nacos中
+drop table if exists `t_order_sharding_table`;
+create table`t_order_sharding_table` (
+  `id`              bigint(20)  unsigned not null   auto_increment,
+  `start_time`      datetime    not null            comment '开始时间',
+  `end_time`        datetime    not null            comment '结束时间',
+  primary key (`id`) using btree
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单分表';
+insert into t_order_sharding_table(start_time,end_time) values('2023-08-01 00:00:00','2023-08-31 23:59:59');
+insert into t_order_sharding_table(start_time,end_time) values('2023-09-01 00:00:00','2023-09-30 23:59:59');
+insert into t_order_sharding_table(start_time,end_time) values('2023-10-01 00:00:00','2023-10-31 23:59:59');
+insert into t_order_sharding_table(start_time,end_time) values('2023-11-01 00:00:00','2023-11-30 23:59:59');
+insert into t_order_sharding_table(start_time,end_time) values('2023-12-01 00:00:00','2023-12-31 23:59:59');
+
+# 订单分库 TODO 看看后续是否放在nacos中 TODO 可以增加时间段控制，这样可以控制订单的分库
+drop table if exists `t_order_sharding_db`;
+create table`t_order_sharding_db` (
+    `id`                    bigint(20)  unsigned not null   auto_increment,
+    `merchant_no_spilt`     varchar(64)    not null comment '商户编号后六位',
+    `sharding_db`           varchar(64)    not null comment '指定数据库名',
+    primary key (`id`) using btree
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单分库';

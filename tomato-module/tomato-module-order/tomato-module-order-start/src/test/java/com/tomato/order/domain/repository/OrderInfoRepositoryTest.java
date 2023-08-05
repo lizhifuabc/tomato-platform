@@ -26,4 +26,8 @@ public class OrderInfoRepositoryTest {
                 (0, 100, LocalDateTime.now().minusDays(1), OrderStatusEnum.TIMEOUT.getValue());
         System.out.println(orderList);
     }
+    @Test
+    public void selectByOrderNo() {
+        orderInfoRepository.selectByOrderNo("20210802100", "20210802100");
+    }
 }

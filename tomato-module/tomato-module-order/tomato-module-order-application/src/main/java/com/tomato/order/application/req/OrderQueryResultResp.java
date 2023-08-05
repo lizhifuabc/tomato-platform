@@ -1,8 +1,6 @@
 package com.tomato.order.application.req;
 
-import com.tomato.order.application.req.base.BaseReq;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
@@ -12,9 +10,8 @@ import java.math.BigDecimal;
  * @author lizhifu
  * @since 2023/4/7
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class OrderQueryResultReq extends BaseReq {
+public class OrderQueryResultResp {
     /**
      * 订单号
      */

@@ -1,7 +1,9 @@
 package com.tomato.order.application.service;
 
 import com.tomato.order.application.req.OrderQueryByMerchantReq;
-import com.tomato.order.application.req.OrderQueryResultReq;
+import com.tomato.order.application.req.OrderQueryByOrderNoReq;
+import com.tomato.order.application.req.OrderQueryResultResp;
+import com.tomato.order.domain.domain.entity.OrderInfoEntity;
 import com.tomato.order.domain.repository.OrderInfoRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,13 @@ public class OrderQueryService {
         this.orderInfoRepository = orderInfoRepository;
     }
 
-    public OrderQueryResultReq queryOrderMerchant(OrderQueryByMerchantReq orderQueryByMerchantDTO) {
+    public OrderQueryResultResp orderQueryByMerchant(OrderQueryByMerchantReq orderQueryByMerchantReq) {
+        OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByMerchant(orderQueryByMerchantReq.getMerchantNo(),orderQueryByMerchantReq.getMerchantOrderNo());
+        return null;
+    }
+
+    public OrderQueryResultResp orderQueryByOrderNo(OrderQueryByOrderNoReq orderQueryByOrderNoReq) {
+        OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByOrderNo(orderQueryByOrderNoReq.getMerchantNo(),orderQueryByOrderNoReq.getOrderNo());
         return null;
     }
 }

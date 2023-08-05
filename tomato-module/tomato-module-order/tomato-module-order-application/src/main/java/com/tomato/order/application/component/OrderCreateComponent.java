@@ -19,9 +19,12 @@ import org.springframework.stereotype.Component;
 public class OrderCreateComponent {
     private final OrderInfoRepository orderInfoRepository;
     private final MerchantService merchantService;
-    public OrderCreateComponent(OrderInfoRepository orderInfoRepository, MerchantService merchantService) {
+    private final OrderNoComponent orderNoComponent;
+
+    public OrderCreateComponent(OrderInfoRepository orderInfoRepository, MerchantService merchantService, OrderNoComponent orderNoComponent) {
         this.orderInfoRepository = orderInfoRepository;
         this.merchantService = merchantService;
+        this.orderNoComponent = orderNoComponent;
     }
 
     /**
@@ -46,7 +49,7 @@ public class OrderCreateComponent {
                 .extParam(orderCreateReq.getExtParam())
                 .clientIp(clientIp)
                 .hmac(orderCreateReq.getHmac())
-                .orderNo(System.currentTimeMillis()+"")
+                .orderNo(orderNoComponent.createOrderNo(orderCreateReq.getMerchantNo()))
                 .build();
         // 校验 hmac
         orderInfoEntity.checkHmac(HmacUtil.hmac(orderCreateReq,merchantEntity.getMerchantKey()));

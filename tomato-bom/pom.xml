@@ -41,7 +41,7 @@
 
         <!-- shardingsphere 分库分表依赖 -->
         <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
-        <shardingsphere.version>5.3.0</shardingsphere.version>
+        <shardingsphere.version>5.3.2</shardingsphere.version>
         <!-- 一个开源的第三方算法提供商  -->
         <bouncycastle.version>1.70</bouncycastle.version>
         <!-- apache 编解码库 https://github.com/apache/commons-codec -->
@@ -103,6 +103,7 @@
         <hutool.version>6.0.0-M4</hutool.version> <!-- https://gitee.com/dromara/hutool -->
         <guava.version>32.1.2-jre</guava.version> <!-- https://github.com/google/guava  -->
     </properties>
+    <!--在父pom中定义子pom需要的相关依赖 -->
     <dependencyManagement>
         <dependencies>
             <!--  spring boot 依赖管理 -->

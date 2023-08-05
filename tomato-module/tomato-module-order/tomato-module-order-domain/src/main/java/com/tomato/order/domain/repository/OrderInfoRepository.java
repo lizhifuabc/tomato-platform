@@ -21,6 +21,7 @@ public interface OrderInfoRepository {
 
     /**
      * 更新超时订单订单状态
+     * TODO 分库分表
      * @return 更新条数
      */
     int updateTimeOutOrder();
@@ -34,4 +35,20 @@ public interface OrderInfoRepository {
      * @return 订单
      */
     List<OrderInfoEntity> selectByCreateTime(int pageIndex, int pageSize, LocalDateTime createTime, String orderStatus);
+
+    /**
+     * 订单查询
+     * @param merchantNo 商户号
+     * @param orderNo 订单号
+     * @return 订单
+     */
+    OrderInfoEntity selectByOrderNo(String merchantNo, String orderNo);
+
+    /**
+     * 订单查询
+     * @param merchantNo 商户号
+     * @param merchantOrderNo 商户订单号
+     * @return 订单
+     */
+    OrderInfoEntity selectByMerchant(String merchantNo, String merchantOrderNo);
 }

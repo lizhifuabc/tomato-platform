@@ -42,4 +42,16 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
         List<OrderInfoDO> list = orderInfoMapper.selectByCreateTime(pageIndex, pageSize, createTime, orderStatus);
         return BeanUtil.copyList(list, OrderInfoEntity.class);
     }
+
+    @Override
+    public OrderInfoEntity selectByOrderNo(String merchantNo, String orderNo) {
+        OrderInfoDO orderInfoDO = orderInfoMapper.selectByOrderNo(merchantNo, orderNo);
+        return null;
+    }
+
+    @Override
+    public OrderInfoEntity selectByMerchant(String merchantNo, String merchantOrderNo) {
+        OrderInfoDO orderInfoDO = orderInfoMapper.selectByMerchant(merchantNo, merchantOrderNo);
+        return null;
+    }
 }

@@ -1,0 +1,32 @@
+dataSources:
+  ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/tomato_order_0?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: tomato
+    password: tomato
+
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/tomato_order_1?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: tomato
+    password: tomato
+
+rules:
+  - !SHARDING
+    tables:
+      t_order_info:
+        actualDataNodes: ds_${0..1}.t_order_info
+        databaseStrategy: # 分库策略
+          complex:
+            shardingColumns: merchant_no,order_no
+            shardingAlgorithmName: order_database_complex_mod
+    shardingAlgorithms:
+      order_database_complex_mod:
+        type: CLASS_BASED
+        props:
+          algorithmClassName: com.tomato.order.infrastructure.sharding.algorithm.DbShardingAlgorithm
+          strategy: complex
+props:
+  sql-show: true
