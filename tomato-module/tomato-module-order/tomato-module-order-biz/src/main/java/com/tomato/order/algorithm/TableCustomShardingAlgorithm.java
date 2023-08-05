@@ -72,10 +72,4 @@ public class TableCustomShardingAlgorithm implements ComplexKeysShardingAlgorith
         // 算法类型
         return "TABLE_CUSTOM_SHARDING";
     }
-
-    @Override
-    public Properties getProps() {
-        return props;
-    }
-
 }

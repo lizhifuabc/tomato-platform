@@ -69,10 +69,4 @@ public class CustomShardingAlgorithm implements ComplexKeysShardingAlgorithm<Str
         // 算法类型
         return "CUSTOM_SHARDING";
     }
-
-    @Override
-    public Properties getProps() {
-        return props;
-    }
-
 }
