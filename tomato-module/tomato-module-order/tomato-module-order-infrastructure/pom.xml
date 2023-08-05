@@ -28,6 +28,10 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-channel-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
             <artifactId>tomato-rabbitmq-starter</artifactId>
         </dependency>
         <dependency>

@@ -71,3 +71,8 @@ CREATE DATABASE IF NOT EXISTS `tomato_modulith` DEFAULT CHARACTER SET utf8mb4 DE
 -- 对账中心
 -- ----------------------------
 CREATE DATABASE IF NOT EXISTS `tomato_reconciliation` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
+
+-- ----------------------------
+-- 渠道库
+-- ----------------------------
+CREATE DATABASE IF NOT EXISTS `tomato_channel` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;

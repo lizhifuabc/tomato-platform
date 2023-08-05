@@ -10,17 +10,9 @@
     </parent>
 
     <artifactId>tomato-module-channel</artifactId>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-common</artifactId>
-        </dependency>
-    </dependencies>
-
+    <packaging>pom</packaging>
+    <modules>
+        <module>tomato-module-channel-api</module>
+        <module>tomato-module-channel-start</module>
+    </modules>
 </project>
