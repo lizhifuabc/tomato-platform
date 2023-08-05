@@ -28,7 +28,7 @@ public class OrderCreateComponent {
     }
 
     /**
-     * 订单新建
+     * 订单新建 TODO 分库之后是否需要加分布式锁
      * @param orderCreateReq 订单新建
      */
     public OrderInfoEntity createOrder(OrderCreateReq orderCreateReq, String clientIp,OrderStatusEnum orderStatusEnum) {
