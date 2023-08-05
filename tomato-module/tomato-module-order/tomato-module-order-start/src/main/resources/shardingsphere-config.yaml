@@ -22,6 +22,12 @@ rules:
           complex:
             shardingColumns: merchant_no,order_no
             shardingAlgorithmName: order_database_complex_mod
+      t_order_info_idx:
+        actualDataNodes: ds_${0..1}.t_order_info_idx
+        databaseStrategy: # 分库策略
+          complex:
+            shardingColumns: merchant_no,order_no
+            shardingAlgorithmName: order_database_complex_mod
     shardingAlgorithms:
       order_database_complex_mod:
         type: CLASS_BASED
