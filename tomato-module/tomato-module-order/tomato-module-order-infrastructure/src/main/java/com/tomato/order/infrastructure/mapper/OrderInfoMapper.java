@@ -37,7 +37,7 @@ public interface OrderInfoMapper extends BaseMapper<OrderInfoDO,Long> {
      * @param merchantNo 商户号
      * @return 订单信息
      */
-    OrderInfoDO selectByOrderNo(@Param("orderNo") String orderNo,@Param("merchantNo") String merchantNo);
+    OrderInfoDO selectByMerchantOrderNo(@Param("orderNo") String orderNo,@Param("merchantNo") String merchantNo);
 
     /**
      * 更新订单状态
@@ -45,14 +45,6 @@ public interface OrderInfoMapper extends BaseMapper<OrderInfoDO,Long> {
      * @return 更新条数
      */
     int updateOrderStatus(@Param("updateOrderStatusBO") UpdateOrderStatusDO updateOrderStatusDO);
-
-    /**
-     * 订单查询
-     * @param orderNo 订单号
-     * @return OrderEntity
-     */
-    OrderInfoDO selectByOrderNoBase(@Param("orderNo") String orderNo);
-
     /**
      * 超时订单状态更新
      * TODO 大数据量处理

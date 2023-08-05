@@ -9,7 +9,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,14 +29,14 @@ public class OrderQueryController {
         this.orderQueryService = orderQueryService;
     }
 
-    @RequestMapping("/order/query/merchant")
+    @PostMapping("/order/query/merchant")
     @Operation(summary = "商户号订单查询", description = "商户号订单查询")
-    public Resp<OrderQueryResultResp> queryOrderMerchant(@Valid OrderQueryByMerchantReq orderQueryByMerchantDTO) {
+    public Resp<OrderQueryResultResp> queryOrderMerchant(@Valid @RequestBody OrderQueryByMerchantReq orderQueryByMerchantDTO) {
         return Resp.of(orderQueryService.orderQueryByMerchant(orderQueryByMerchantDTO));
     }
-    @RequestMapping("/order/query/orderNo")
+    @PostMapping("/order/query/orderNo")
     @Operation(summary = "订单号查询", description = "订单号查询")
-    public Resp<OrderQueryResultResp> queryOrderNo(@Valid OrderQueryByOrderNoReq orderQueryByOrderNoReq) {
+    public Resp<OrderQueryResultResp> queryOrderNo(@Valid @RequestBody OrderQueryByOrderNoReq orderQueryByOrderNoReq) {
         return Resp.of(orderQueryService.orderQueryByOrderNo(orderQueryByOrderNoReq));
     }
 }

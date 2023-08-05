@@ -18,13 +18,13 @@
         order_status,order_no,pay_type,complete_time,create_time,version,request_amount
     </sql>
 
-    <select id="selectByOrderNo" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
+    <select id="selectByMerchantOrderNo" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
         select
         <include refid="select_fields" />
         from
         t_order_info
         where
-        order_no = #{orderNo}
+        order_no = #{orderNo} and merchant_no = #{merchantNo}
     </select>
 
     <select id="selectByMerchant" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
@@ -36,7 +36,7 @@
         merchant_no = #{merchantNo} and merchant_order_no = #{merchantOrderNo}
     </select>
 
-    <select id="selectByOrderNoBase" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
+    <select id="selectByOrderNo" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
         select
             order_status,order_no,pay_type,complete_time,create_time,version
         from

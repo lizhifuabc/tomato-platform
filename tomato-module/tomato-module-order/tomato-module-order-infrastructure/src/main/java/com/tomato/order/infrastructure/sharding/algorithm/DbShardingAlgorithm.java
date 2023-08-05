@@ -47,7 +47,7 @@ public class DbShardingAlgorithm implements ComplexKeysShardingAlgorithm<Compara
         // 其次使用orderNo分片
         String orderNoSharding = "order_no";
         Collection<Comparable<String>> orderNoCollection = columnNameAndShardingValuesMap.get(orderNoSharding);
-        if (orderNoCollection != null && !orderNoCollection.isEmpty()) {
+        if (orderNoCollection != null && !orderNoCollection.isEmpty() && merchantNoSpilt.isEmpty()) {
             merchantNoSpilt = ShardingConstant.orderNoSpilt(orderNoCollection.stream().findFirst().get().toString());
         }
         // 没有获取到分片值

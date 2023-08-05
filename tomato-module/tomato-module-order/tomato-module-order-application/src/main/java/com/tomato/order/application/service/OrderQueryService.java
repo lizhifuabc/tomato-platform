@@ -5,6 +5,7 @@ import com.tomato.order.application.req.OrderQueryByOrderNoReq;
 import com.tomato.order.application.req.OrderQueryResultResp;
 import com.tomato.order.domain.domain.entity.OrderInfoEntity;
 import com.tomato.order.domain.repository.OrderInfoRepository;
+import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,11 +24,14 @@ public class OrderQueryService {
 
     public OrderQueryResultResp orderQueryByMerchant(OrderQueryByMerchantReq orderQueryByMerchantReq) {
         OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByMerchant(orderQueryByMerchantReq.getMerchantNo(),orderQueryByMerchantReq.getMerchantOrderNo());
-        return null;
+        return convert(orderInfoEntity);
     }
 
     public OrderQueryResultResp orderQueryByOrderNo(OrderQueryByOrderNoReq orderQueryByOrderNoReq) {
         OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByOrderNo(orderQueryByOrderNoReq.getMerchantNo(),orderQueryByOrderNoReq.getOrderNo());
-        return null;
+        return convert(orderInfoEntity);
+    }
+    private OrderQueryResultResp convert(OrderInfoEntity orderInfoEntity){
+        return BeanUtil.copy(orderInfoEntity,OrderQueryResultResp.class);
     }
 }

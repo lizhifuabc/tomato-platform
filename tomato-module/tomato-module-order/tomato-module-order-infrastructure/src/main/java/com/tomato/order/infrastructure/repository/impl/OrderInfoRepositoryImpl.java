@@ -45,13 +45,16 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
 
     @Override
     public OrderInfoEntity selectByOrderNo(String merchantNo, String orderNo) {
-        OrderInfoDO orderInfoDO = orderInfoMapper.selectByOrderNo(merchantNo, orderNo);
-        return null;
+        OrderInfoDO orderInfoDO = orderInfoMapper.selectByMerchantOrderNo(orderNo,merchantNo);
+        return convert(orderInfoDO);
     }
 
     @Override
     public OrderInfoEntity selectByMerchant(String merchantNo, String merchantOrderNo) {
         OrderInfoDO orderInfoDO = orderInfoMapper.selectByMerchant(merchantNo, merchantOrderNo);
-        return null;
+        return convert(orderInfoDO);
+    }
+    private OrderInfoEntity convert(OrderInfoDO orderInfoDO) {
+        return BeanUtil.copy(orderInfoDO, OrderInfoEntity.class);
     }
 }
