@@ -44,14 +44,18 @@ create table`t_order_info` (
      index(`timeout_time`) using btree
 ) engine = innodb auto_increment = 1 character set = utf8mb4 collate = utf8mb4_unicode_ci comment = '订单表' row_format = dynamic;
 
-# 订单表扩展
-drop table if exists `t_order_info_extend`;
-create table`t_order_info_extend` (
-    `id` bigint(20) unsigned not null auto_increment,
-    `order_no` varchar(36) not null  comment '订单号',
-     primary key (`id`) using btree,
-     unique key uk_order_no (`order_no`) using btree
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单表扩展';
+# 订单索引表 TODO 暂时这样，后续优化是否需要 sharding_db sharding_table，或者说整张表去掉
+drop table if exists `t_order_info_idx`;
+create table`t_order_info_idx` (
+    `id`                    bigint(20) unsigned not null auto_increment,
+    `merchant_no`           varchar(64)    not null comment '商户编号',
+    `merchant_order_no`     varchar(36)    not null comment '商户订单号',
+    `order_no`              varchar(36) not null  comment '订单号',
+    `create_time`           datetime not null default current_timestamp comment '创建时间',
+    primary key (`id`) using btree,
+    unique key uk_merchant_no_merchant_order_no (`merchant_no`,`merchant_order_no`) using btree,
+    unique key uk_order_no (`order_no`) using btree
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单索引表';
 
 # 订单分表 TODO 看看后续是否放在nacos中
 drop table if exists `t_order_sharding_table`;
@@ -70,12 +74,11 @@ insert into t_order_sharding_table(start_time,end_time) values('2023-12-01 00:00
 # 订单分库 TODO 看看后续是否放在nacos中 TODO 可以增加时间段控制，这样可以控制订单的分库
 drop table if exists `t_order_sharding_db`;
 create table`t_order_sharding_db` (
-    `id`                    bigint(20)  unsigned not null   auto_increment,
-    `merchant_no_spilt`     varchar(64)    not null comment '商户编号后六位',
-    `sharding_db`           varchar(64)    not null comment '指定数据库名',
+    `id`                    bigint(20)      unsigned not null   auto_increment,
+    `merchant_no_spilt`     varchar(64)     not null comment '商户编号后六位',
+    `sharding_db`           varchar(64)     not null comment '指定数据库名',
     primary key (`id`) using btree,
     unique key uk_merchant_no_spilt (`merchant_no_spilt`) using btree
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单分库';
 
-insert into tomato_order_0.t_order_sharding_db(t_order_sharding_db.merchant_no_spilt,t_order_sharding_db.sharding_db) values('001001','ds_1');
-insert into tomato_order_1.t_order_sharding_db(t_order_sharding_db.merchant_no_spilt,t_order_sharding_db.sharding_db) values('001001','ds_1');
+insert into t_order_sharding_db(t_order_sharding_db.merchant_no_spilt,t_order_sharding_db.sharding_db) values('001001','ds_1');
