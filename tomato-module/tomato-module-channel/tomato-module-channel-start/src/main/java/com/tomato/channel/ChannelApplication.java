@@ -14,7 +14,7 @@ import org.springframework.core.env.Environment;
  */
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "渠道服务 API", version = "1.0-SNAPSHOT", description = "渠道服务 Information"),
-		servers = {@Server(url = "http://localhost:9999/")})
+		servers = {@Server(url = "http://localhost:9991/")})
 public class ChannelApplication {
 
 	public static void main(String[] args) {
