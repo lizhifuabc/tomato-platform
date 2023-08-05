@@ -48,7 +48,7 @@ public class OrderTimeOutDelayListener {
     public void delay(@Payload OrderDelayDO orderDelayDO, Message message, Channel channel, @Headers Map<String, Object> headers) throws IOException {
         log.info("监听器监听到延迟队列：订单 {}",orderDelayDO);
         try {
-            OrderInfoDO orderEntity = orderInfoMapper.selectByOrderNoBase(orderDelayDO.getOrderNo());
+            OrderInfoDO orderEntity = orderInfoMapper.selectByOrderNo(orderDelayDO.getOrderNo());
             UpdateOrderStatusDO updateOrderStatusDO = UpdateOrderStatusDO.builder()
                     .orderNo(orderDelayDO.getOrderNo())
                     .orderStatus(OrderStatusEnum.TIMEOUT.getValue())

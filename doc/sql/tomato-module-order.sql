@@ -73,5 +73,9 @@ create table`t_order_sharding_db` (
     `id`                    bigint(20)  unsigned not null   auto_increment,
     `merchant_no_spilt`     varchar(64)    not null comment '商户编号后六位',
     `sharding_db`           varchar(64)    not null comment '指定数据库名',
-    primary key (`id`) using btree
+    primary key (`id`) using btree,
+    unique key uk_merchant_no_spilt (`merchant_no_spilt`) using btree
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '订单分库';
+
+insert into tomato_order_0.t_order_sharding_db(t_order_sharding_db.merchant_no_spilt,t_order_sharding_db.sharding_db) values('001001','ds_1');
+insert into tomato_order_1.t_order_sharding_db(t_order_sharding_db.merchant_no_spilt,t_order_sharding_db.sharding_db) values('001001','ds_1');
