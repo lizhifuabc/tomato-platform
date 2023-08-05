@@ -16,5 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChannelEntity {
-
+    /**
+     * 扫码地址
+     */
+    private String scanUrl;
 }

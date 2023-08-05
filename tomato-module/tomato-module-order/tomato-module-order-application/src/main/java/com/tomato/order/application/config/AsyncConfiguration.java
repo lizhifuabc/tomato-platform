@@ -20,7 +20,7 @@ public class AsyncConfiguration implements AsyncConfigurer {
     /**
      * 默认不定长线程池
      */
-    private static final ThreadPoolExecutor COMMON_POOL = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+    public static final ThreadPoolExecutor COMMON_POOL = (ThreadPoolExecutor) Executors.newCachedThreadPool();
     /**
      * 自定义线程池
      * @return ThreadPoolTaskExecutor

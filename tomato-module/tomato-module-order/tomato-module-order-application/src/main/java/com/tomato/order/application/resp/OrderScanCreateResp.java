@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 扫描订单创建返回
+ * 扫码订单创建返回
  *
  * @author lizhifu
  * @since 2023/8/1
@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class OrderScanCreateResp extends OrderCreateResp{
     /**
-     * 扫描地址
+     * 扫码地址
      */
     private String scanUrl;
 }
