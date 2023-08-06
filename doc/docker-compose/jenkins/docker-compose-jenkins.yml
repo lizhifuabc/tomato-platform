@@ -1,5 +1,6 @@
 # 标准的 Jenkins Docker 部署文件,利用官方镜像来启动 Jenkins 服务
 # version:指定 Docker Compose版本,这里是3.8
+# https://hub.docker.com/r/jenkins/jenkins
 version: "3.8"
 # services:服务定义部分。其下面定义了一个名为jenkins的服务
 services:
@@ -22,13 +23,24 @@ services:
       TZ: "Asia/Shanghai"
     # volumes:数据卷挂载路径设置,将本机目录映射到容器目录 (下面映射可在容器中执行宿主机docker命令)
     # Jenkins 数据会保存到挂载的 /var/jenkins_home 目录,并可以使用本地的 Maven 缓存。
-    #
     volumes:
+      # 把宿主机上的 /usr/local/docker-volumes/jenkins/jenkins_home
+      # 目录挂载到了容器内的 /var/jenkins_home
+      # 作用是保存 Jenkins 的家目录数据,实现数据的持久化。否则 Jenkins 的数据是保存在容器内会丢失。
       - /usr/local/docker-volumes/jenkins/jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+      # 挂载 Docker 的 socket 文件,让容器内的 Jenkins 可以通过 /var/run/docker.sock
+      # 访问宿主机的 Docker 引擎。
+      # 这样 Jenkins 就可以在容器内使用 Docker 命令管理宿主机上的容器。
+      - /Users/lizhifu/.docker/run/docker.sock:/var/run/docker.sock
+      # 映射宿主机的 /usr/local 目录到容器内的 /home 目录
+      # 容器可以直接使用宿主机上的文件
       - /usr/local:/home
-      - /usr/local/maven-repository:/root/.m2
+      # 挂载宿主机的 maven 本地仓库目录到容器的 /root/.m2目录
+      # 容器就可以复用宿主机上 cached 的 maven 依赖,加速 Maven 的构建
+      - /Users/lizhifu/.m2/repository:/root/.m2
     # ports:端口映射,将 8080 和 50000 端口映射到宿主机
     ports:
+      # 访问端口：本机端口:容器端口
       - "8888:8080"
+      # 通信端口：本机端口:容器端口
       - "51000:50000"
