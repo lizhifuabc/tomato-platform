@@ -28,6 +28,8 @@ public class TraceIdThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
     private Runnable wrapTask(Runnable task) {
         Context context = Context.current();
         return () -> {
+            // 使用 OpenTelemetry 的 Context API，将当前线程绑定到 Context 中
+            // try 自动关闭 Scope，确保线程执行结束后，Context 能够自动从当前线程解绑
             try (Scope ignored = context.makeCurrent()) {
                 task.run();
             } finally {
