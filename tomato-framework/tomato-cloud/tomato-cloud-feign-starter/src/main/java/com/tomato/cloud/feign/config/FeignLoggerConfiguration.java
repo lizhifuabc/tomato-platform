@@ -1,8 +1,10 @@
 package com.tomato.cloud.feign.config;
 
+import feign.Feign;
 import feign.Logger;
 import feign.Request;
 import feign.Retryer;
+import feign.micrometer.MicrometerCapability;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -46,5 +48,12 @@ public class FeignLoggerConfiguration {
     @Bean
     public Retryer feignRetryer() {
         return new Retryer.Default();
+    }
+
+    @Bean
+    public Feign.Builder feignBuilder() {
+        return Feign.builder()
+                // 添加 MicrometerCapability
+                .addCapability(new MicrometerCapability());
     }
 }

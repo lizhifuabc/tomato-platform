@@ -4,10 +4,11 @@ import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import io.micrometer.tracing.Span;
 import io.micrometer.tracing.Tracer;
+import io.opentelemetry.context.Context;
+import io.opentelemetry.context.Scope;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 
-import java.util.Objects;
 
 /**
  * 自定义FeignRequestInterceptor,传递traceId
@@ -24,15 +25,18 @@ public class FeignRequestInterceptor implements RequestInterceptor {
     }
 
     @Override
-    public void apply(RequestTemplate template) {
-        Span span = tracer.currentSpan();
-        if (Objects.nonNull(span)) {
-//            String traceId = span.context().traceId();
-//            log.info("系统之间传递traceId:{}", traceId);
-//            template.header("Trace-Id", traceId);
-//            template.header("traceId", traceId);
-//            MDC.put("traceId", traceId);
-//            MDC.put("Trace-Id", traceId);
+    public void apply(RequestTemplate requestTemplate) {
+
+        // 从MDC中获取当前的Trace ID，并添加到请求头中
+        // 获取当前线程的 Context
+        Context context = Context.current();
+        // 设置当前线程的 MDC
+        try (Scope ignored = context.makeCurrent()) {
+//            String traceId = MDC.get("traceId");
+//            if (traceId != null) {
+//                log.info("需要传递traceId:{}", traceId);
+//                requestTemplate.header("traceId", traceId);
+//            }
         }
     }
 }
