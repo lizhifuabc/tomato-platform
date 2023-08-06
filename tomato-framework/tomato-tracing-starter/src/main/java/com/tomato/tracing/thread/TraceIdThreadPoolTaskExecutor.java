@@ -7,6 +7,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 /**
  * 自定义线程池
  *
@@ -14,10 +18,17 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @since 2023/8/6
  */
 @Slf4j
-public class TraceIdThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
+public class TraceIdThreadPoolTaskExecutor extends ThreadPoolExecutor {
     private final MeterRegistry meterRegistry;
 
+    /**
+     * 构造函数 传入 MeterRegistry 不定长线程池
+     * @param meterRegistry 注册表
+     */
     public TraceIdThreadPoolTaskExecutor(MeterRegistry meterRegistry) {
+        super(0, Integer.MAX_VALUE,
+                60L, TimeUnit.SECONDS,
+                new SynchronousQueue<>());
         this.meterRegistry = meterRegistry;
     }
     @Override
