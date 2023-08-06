@@ -12,6 +12,10 @@
     <artifactId>tomato-tracing-starter</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-common</artifactId>
+        </dependency>
         <!-- spring boot actuator 相关 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
