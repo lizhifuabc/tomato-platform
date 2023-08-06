@@ -24,3 +24,16 @@ docker exec -it -u root jenkins /bin/bash
 # 查看密码:671d33f166e4493ba2083418cdfeb8a9
 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
+
+
+
+## 其他
+
+Mac 下 Docker 没有 /var/run/docker.sock 目录：
+
+Mac 安装 docker desktop 客户端后，没有 /var/run/docker.sock 目录的解决方案。 运行以下命令：
+
+```shell
+sudo ln -s /Users/lizhifu/.docker/run/docker.sock /var/run/docker.sock
+```
+
