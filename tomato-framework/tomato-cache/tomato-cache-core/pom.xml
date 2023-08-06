@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.tomato</groupId>
         <artifactId>tomato-cache</artifactId>
-        <version>${revision}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>tomato-cache-core</artifactId>

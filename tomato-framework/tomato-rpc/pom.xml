@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.tomato</groupId>
         <artifactId>tomato-framework</artifactId>
-        <version>${revision}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>tomato-rpc</artifactId>
@@ -33,7 +33,7 @@
         <!-- SLF4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
+            <artifactId>slf4j-reload4j</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -6,7 +6,7 @@
 
     <groupId>com.tomato</groupId>
     <artifactId>tomato-platform</artifactId>
-    <version>${revision}</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>tomato-module</module>
@@ -17,8 +17,6 @@
     </modules>
     <name>${project.artifactId}</name>
     <properties>
-        <!-- maven 全局版本号管理 -->
-        <revision>1.0-SNAPSHOT</revision>
         <!-- java 版本管理 -->
         <java.version>17</java.version>
         <!-- Maven 相关配置 -->
@@ -43,7 +41,7 @@
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-bom</artifactId>
-                <version>${revision}</version>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

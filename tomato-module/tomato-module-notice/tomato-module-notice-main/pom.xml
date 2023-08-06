@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.tomato</groupId>
         <artifactId>tomato-module-notice</artifactId>
-        <version>${revision}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>tomato-module-notice-main</artifactId>

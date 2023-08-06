@@ -6,7 +6,7 @@
 
     <groupId>com.tomato</groupId>
     <artifactId>tomato-bom</artifactId>
-    <version>${revision}</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
@@ -14,7 +14,7 @@
 
     <properties>
         <!-- 项目基本配置 -->
-        <revision>1.0-SNAPSHOT</revision> <!-- maven 全局版本号管理 -->
+        <revision>${project.version}</revision> <!-- maven 全局版本号管理 -->
         <java.version>17</java.version>
         <resource.delimiter>@</resource.delimiter>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -331,193 +331,188 @@
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-bom</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-cloud-gateway-sentinel-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-lock-redis-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-tracing-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-idempotent-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-merchant-api</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-channel-api</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-cache-guava-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-common</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-redis-redisson-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-web-core</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-web-jpa-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-common</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-gen-base</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-domain-core</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-cloud-feign-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-cloud-feign-sentinel-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-cloud-alibaba-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-lock-core</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-cloud-gateway-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-account-base</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-springdoc-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-captcha-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-order-base</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <!-- 服务依赖 -->
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-seckill-base</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-mybatis-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-util</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-rabbitmq-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-dynamic-thread-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-security-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-jpa-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-monitor-prometheus</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.tomato</groupId>
-                <artifactId>tomato-module-merchant-base</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-jackson-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-goods-base</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-validator-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-redis-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-id-starter</artifactId>
-                <version>${revision}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <!--  业务代码 end -->
         </dependencies>

@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.tomato</groupId>
         <artifactId>tomato-module-demo</artifactId>
-        <version>${revision}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>tomato-module-demo-infrastructure</artifactId>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-demo-util</artifactId>
-            <version>${revision}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- mybatis https://github.com/mybatis/spring-boot-starter -->
