@@ -7,6 +7,8 @@
 
 https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#actuator.micrometer-tracing
 
+https://micrometer.io/docs/tracing
+
 https://zipkin.io/
 
 ## 启动
