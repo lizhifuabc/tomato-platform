@@ -2,6 +2,7 @@ package com.tomato.order.controller.exception;
 
 import com.tomato.common.resp.Resp;
 import com.tomato.web.core.handler.GlobalExceptionHandler;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,6 +24,13 @@ public class OrderGlobalExceptionHandler {
     @ResponseBody
     public Resp<Void> handleAccessDeniedException(SQLIntegrityConstraintViolationException e) {
         log.warn("数据重复:{}",e.getLocalizedMessage());
+        return Resp.buildFailure(String.valueOf(HttpStatus.ACCEPTED.value()),e.getLocalizedMessage());
+    }
+
+    @ExceptionHandler(value = FeignException.class)
+    @ResponseBody
+    public Resp<Void> feignException(FeignException e) {
+        log.error("远程调用异常:{}",e.getLocalizedMessage());
         return Resp.buildFailure(String.valueOf(HttpStatus.ACCEPTED.value()),e.getLocalizedMessage());
     }
 }
