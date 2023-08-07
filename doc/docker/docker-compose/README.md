@@ -8,5 +8,6 @@ docker-compose --version
 
 参考项目：https://gitee.com/zhengqingya/docker-compose
 
+docker exec -it rabbitmq /bin/bash 
 
 docker exec -it rabbitmq /bin/bash 
