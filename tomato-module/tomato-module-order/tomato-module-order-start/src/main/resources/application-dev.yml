@@ -1,0 +1,13 @@
+spring:
+  rabbitmq:
+    addresses: tomato-rabbitmq:5672
+    username: guest
+    password: guest
+    virtual-host: / # 指定了在RabbitMQ服务器上你的Spring Boot应用将会与之交互的虚拟主机。在你的配置中，它被设置为默认虚拟主机 /
+    publisher-returns: true # 启用了发布者返回（publisher returns）。当设置为 true 时，如果一条消息不能路由到任何队列，RabbitMQ代理将会发送一个确认通知。这可以帮助及早检测到无效的路由。
+    publisher-confirm-type: correlated # 发布者确认的类型，发布者确认将与各个单独的消息相关联
+    listener:
+      simple:
+        acknowledge-mode: manual # 简单消息监听容器的确认模式，这里是手动确认
+      direct:
+        acknowledge-mode: manual # 直连消息监听容器的确认模式，这里是手动确认

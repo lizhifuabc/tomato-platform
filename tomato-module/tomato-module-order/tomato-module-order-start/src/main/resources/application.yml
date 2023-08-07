@@ -3,6 +3,8 @@ server:
   port: 9998
 
 spring:
+  profiles:
+    active: @profiles.active@
   datasource:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
     url: jdbc:shardingsphere:classpath:shardingsphere-config.yaml
