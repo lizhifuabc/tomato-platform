@@ -11,5 +11,12 @@
         <property name="allowPublicKeyRetrieval" value="TRUE" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="docker" uuid="58bd9059-fde0-4b81-a7bb-ac48c4e80f41">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3308</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
