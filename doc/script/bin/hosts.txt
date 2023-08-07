@@ -1,4 +1,4 @@
-127.0.0.1  tomato-nacos
+192.168.31.156  tomato-nacos
 192.168.31.156  tomato-mysql
 192.168.31.156  tomato-zipkin
 127.0.0.1  tomato-redis
