@@ -4,6 +4,9 @@ logging:
     level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
 # 暴露监控端点
 management:
+  zipkin:
+    tracing:
+      endpoint: http://tomato-zipkin:9411/api/v2/spans
   info:
     env:
       enabled: true

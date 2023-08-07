@@ -29,3 +29,7 @@ spring:
       - optional:nacos:application-@profiles.active@.yml
       # 从nacos中获取配置
       - optional:nacos:${spring.application.name}-@profiles.active@.yml
+management:
+  zipkin:
+    tracing:
+      endpoint: http://tomato-zipkin:9411/api/v2/spans
