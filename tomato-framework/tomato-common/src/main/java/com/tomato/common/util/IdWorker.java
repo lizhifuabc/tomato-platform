@@ -27,9 +27,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class IdWorker {
 
     /**
-     * Start time cut (2020-05-03)
+     * Start time cut (2023-08-08 00:00:00)
      */
-    private final long twepoch = 1588435200000L;
+    private final long twepoch = 1691424000000L;
 
     /**
      * The number of bits occupied by workerId
@@ -108,6 +108,7 @@ public class IdWorker {
 
     /**
      * get next UUID(base on snowflake algorithm), which look like:
+     * 0 0000000000 00000000000000000000000000000000000000000 000000000000
      * highest 1 bit: always 0
      * next   10 bit: workerId
      * next   41 bit: timestamp
