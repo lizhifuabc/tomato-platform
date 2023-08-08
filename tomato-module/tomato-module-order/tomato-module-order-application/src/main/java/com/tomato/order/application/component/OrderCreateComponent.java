@@ -51,8 +51,8 @@ public class OrderCreateComponent {
                 .hmac(orderCreateReq.getHmac())
                 .orderNo(orderNoComponent.createOrderNo(orderCreateReq.getMerchantNo()))
                 .build();
-        // 校验 hmac
-        orderInfoEntity.checkHmac(HmacUtil.hmac(orderCreateReq,merchantEntity.getMerchantKey()));
+        // 校验 hmac TODO
+        // orderInfoEntity.checkHmac(HmacUtil.hmac(orderCreateReq,merchantEntity.getMerchantKey()));
         // 初始化订单实体
         orderInfoEntity.init();
         orderInfoRepository.createOrder(orderInfoEntity);
