@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.tomato.id;
+package com.tomato.common.util;
 
 import java.net.NetworkInterface;
 import java.util.Enumeration;
