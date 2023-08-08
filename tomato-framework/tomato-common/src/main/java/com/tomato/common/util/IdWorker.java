@@ -122,6 +122,14 @@ public class IdWorker {
     }
 
     /**
+     * 下一个id，字符串形式
+     * @return UUID
+     */
+    public String nextIdStr() {
+        return String.valueOf(nextId());
+    }
+
+    /**
      * block current thread if the QPS of acquiring UUID is too high
      * that current sequence space is exhausted
      */
