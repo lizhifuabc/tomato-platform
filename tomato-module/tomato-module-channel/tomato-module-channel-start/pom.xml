@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-channel-api</artifactId>
+            <artifactId>tomato-module-channel-vo</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

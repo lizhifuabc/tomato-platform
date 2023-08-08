@@ -1,6 +1,7 @@
 # 支付渠道 TODO 需要引入规则引擎
 CREATE TABLE t_pay_channel (
     channel_id                  bigint          AUTO_INCREMENT PRIMARY KEY COMMENT '支付渠道ID，唯一标识',
+    channel_no                  VARCHAR(36)     NOT NULL        COMMENT '支付渠道编号',
     channel_name                VARCHAR(100)    NOT NULL        COMMENT '支付渠道名称',
     channel_rate                DECIMAL(10, 2)  NOT NULL        COMMENT '支付渠道成本百分比，例如0.02表示2%',
     channel_description         VARCHAR(255)    default null    COMMENT '支付渠道描述',

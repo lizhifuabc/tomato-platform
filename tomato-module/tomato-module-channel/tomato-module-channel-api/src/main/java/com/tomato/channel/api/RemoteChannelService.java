@@ -1,8 +1,8 @@
 package com.tomato.channel.api;
 
 import com.tomato.channel.api.fallback.RemoteChannelServiceFallback;
-import com.tomato.channel.api.req.ChannelReq;
-import com.tomato.channel.api.resp.ChannelResp;
+import com.tomato.channel.vo.req.ChannelReq;
+import com.tomato.channel.vo.resp.ChannelScanResp;
 import com.tomato.common.resp.Resp;
 import com.tomato.module.common.constants.ServiceNameConstants;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -25,5 +25,5 @@ public interface RemoteChannelService {
      * @return 渠道交易
      */
     @RequestMapping(value = "/channel/trade", method = RequestMethod.POST)
-    Resp<ChannelResp> trade(@RequestBody ChannelReq channelReq);
+    Resp<ChannelScanResp> tradeScan(@RequestBody ChannelReq channelReq);
 }

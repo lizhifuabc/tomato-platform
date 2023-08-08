@@ -1,11 +1,12 @@
 package com.tomato.order.infrastructure.repository.impl;
 
 import com.tomato.channel.api.RemoteChannelService;
-import com.tomato.channel.api.req.ChannelReq;
-import com.tomato.channel.api.resp.ChannelResp;
+import com.tomato.channel.vo.req.ChannelReq;
+import com.tomato.channel.vo.resp.ChannelScanResp;
 import com.tomato.common.resp.Resp;
 import com.tomato.order.domain.domain.entity.ChannelEntity;
 import com.tomato.order.domain.repository.ChannelRepository;
+import com.tomato.web.core.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -29,11 +30,12 @@ public class ChannelRepositoryImpl implements ChannelRepository {
         ChannelReq channelReq = new ChannelReq();
         channelReq.setPayType(payType);
         channelReq.setMerchantNo(merchantNo);
-        Resp<ChannelResp> trade = remoteChannelService.trade(channelReq);
+        Resp<ChannelScanResp> trade = remoteChannelService.tradeScan(channelReq);
         if (trade.isSuccess()) {
-            ChannelResp data = trade.getData();
-            ChannelEntity re = new ChannelEntity();
-            return re;
+            ChannelScanResp data = trade.getData();
+            ChannelEntity channelEntity = new ChannelEntity();
+            BeanUtil.copyProperties(data, channelEntity);
+            return channelEntity;
         }
         throw new RuntimeException(trade.getMsg());
     }

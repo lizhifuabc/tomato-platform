@@ -9,17 +9,16 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-module-channel-api</artifactId>
+    <artifactId>tomato-module-channel-vo</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-cloud-feign-starter</artifactId>
+            <artifactId>tomato-module-common</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-module-channel-vo</artifactId>
-            <version>${project.version}</version>
+            <artifactId>tomato-validator-starter</artifactId>
         </dependency>
     </dependencies>
 

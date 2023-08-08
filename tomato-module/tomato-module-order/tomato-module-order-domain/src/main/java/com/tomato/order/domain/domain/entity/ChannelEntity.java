@@ -20,4 +20,8 @@ public class ChannelEntity {
      * 扫码地址
      */
     private String scanUrl;
+    /**
+     * 渠道编号
+     */
+    private String channelNo;
 }

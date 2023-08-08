@@ -1,4 +1,4 @@
-package com.tomato.channel.api.req;
+package com.tomato.channel.vo.req;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

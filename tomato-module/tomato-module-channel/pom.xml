@@ -14,5 +14,6 @@
     <modules>
         <module>tomato-module-channel-api</module>
         <module>tomato-module-channel-start</module>
+        <module>tomato-module-channel-vo</module>
     </modules>
 </project>
