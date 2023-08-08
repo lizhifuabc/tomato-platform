@@ -12,9 +12,12 @@ import java.util.Enumeration;
  */
 public class IdWorkerTest {
     public static void main(String[] args) throws Exception {
-        generateWorkerIdBaseOnMac();
         System.out.println("当前时间：" +System.currentTimeMillis());
         IdWorker idWorker = new IdWorker(187L);
+        for (int i = 0; i < 100; i++) {
+            long nextId = idWorker.nextId();
+            System.out.println("生成的ID：" + nextId);
+        }
         long nextId = idWorker.nextId();
         System.out.println("生成的ID：" + nextId);
 
