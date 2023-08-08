@@ -132,7 +132,7 @@ public class IdWorker {
      */
     public long nextId() {
         waitIfNecessary();
-        // 序列号的递增
+        // 序列号的递增，虽然 waitIfNecessary() 会判断是否溢出，高并发下还是会造成序列号的溢出
         long next = timestampAndSequence.incrementAndGet();
         // 比如序列号当前值是4095，下一个请求进来， 序列号+1溢出12位空间，序列号重新归零，而溢出的进位则加到时间戳上，从而让时间戳+1
         long timestampWithSequence = next & timestampAndSequenceMask;
