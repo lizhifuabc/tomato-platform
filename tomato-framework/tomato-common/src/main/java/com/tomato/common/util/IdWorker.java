@@ -200,7 +200,7 @@ public class IdWorker {
             byte[] mac = networkInterface.getHardwareAddress();
             return ((mac[4] & 0B11) << 8) | (mac[5] & 0xFF);
         }
-        throw new RuntimeException("no available mac found");
+        throw new RuntimeException("找不到可用的mac地址");
     }
 
     /**
