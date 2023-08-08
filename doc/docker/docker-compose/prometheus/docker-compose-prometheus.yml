@@ -1,0 +1,74 @@
+# 镜像版本请自行选择 https://hub.docker.com/search?q=&type=image
+version: "3"
+
+# 网桥 -> 方便相互通讯
+networks:
+  prometheus:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.22.0.0/24"
+
+services:
+  # 开源的系统监控和报警系统
+  prometheus:
+    image: prom/prometheus             # 原镜像`prom/prometheus:v2.34.0`
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    ports:
+      - "9090:9090"
+    depends_on:
+      - node-exporter
+    networks:
+      prometheus:
+        ipv4_address: 172.22.0.11
+
+  # 将指标数据推送到 Pushgateway
+  pushgateway:
+    image: prom/pushgateway
+    container_name: prometheus-pushgateway
+    restart: unless-stopped
+    ports:
+      - "9091:9091"
+    networks:
+      prometheus:
+        ipv4_address: 172.22.0.12
+  # 采集服务器层面的运行指标
+  node-exporter:
+    image: prom/node-exporter           # 原镜像`prom/node-exporter:v1.3.1`
+    container_name: prometheus-node-exporter
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+    networks:
+      prometheus:
+        ipv4_address: 172.22.0.22
+  # 用于UI展示
+  # https://grafana.com/docs/grafana/latest/installation/docker
+  grafana:
+    image: grafana/grafana               # 原镜像`grafana/grafana:8.0.0`
+    container_name: prometheus-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./prometheus/grafana/grafana.ini:/etc/grafana/grafana.ini" # 邮箱配置
+#      - "./prometheus/grafana/grafana-storage:/var/lib/grafana"
+#      - "./prometheus/grafana/public:/usr/share/grafana/public" # 这里面可处理汉化包 可参考 https://github.com/WangHL0927/grafana-chinese
+#      - "./prometheus/grafana/conf:/usr/share/grafana/conf"
+#      - "./prometheus/grafana/log:/var/log/grafana"
+#      - "/etc/localtime:/etc/localtime"
+    environment:
+      GF_EXPLORE_ENABLED: "true" # 启用 Explore 功能
+      GF_SECURITY_ADMIN_PASSWORD: "admin" # 设置登录密码
+      GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource,alexanderzobnin-zabbix-app" # 安装的插件
+      # 持久化到mysql数据库
+      GF_DATABASE_URL: "mysql://tomato:tomato@192.168.31.156:3306/grafana"
+    depends_on:
+      - prometheus
+    networks:
+      prometheus:
+        ipv4_address: 172.22.0.33 # 分配容器的 IPv4 地址

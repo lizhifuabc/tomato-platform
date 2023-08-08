@@ -5,3 +5,4 @@
 127.0.0.1  tomato-redis
 127.0.0.1  tomato-sentinel
 127.0.0.1  tomato-rabbitmq
+127.0.0.1 tomato-prometheus-pushgateway

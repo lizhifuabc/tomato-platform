@@ -42,3 +42,12 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#management:
+#  prometheus:
+#    metrics:
+#      export:
+#        pushgateway:
+#          enabled: true
+#          base-url: http://tomato-prometheus-pushgateway:9091
+#          job: tomato-module-order-start2

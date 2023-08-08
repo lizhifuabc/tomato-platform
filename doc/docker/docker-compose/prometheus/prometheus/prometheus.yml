@@ -1,0 +1,35 @@
+# 可参考 https://prometheus.io/docs/prometheus/latest/getting_started
+global:
+  # 指标采集间隔
+  scrape_interval: 10s
+  # 采集超时
+  scrape_timeout: 10s
+  # 指标评估间隔
+  evaluation_interval: 10m
+scrape_configs:
+  # springboot项目
+  - job_name: channel
+    # 采集间隔
+    scrape_interval: 5s
+    # 采集超时
+    scrape_timeout: 5s
+    # 指标路径
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets:
+          - 192.168.31.156:9991 # SpringBoot 应用的 IP 和端口
+          - 192.168.31.156:9998
+
+  # prometheus
+  - job_name: prometheus
+    static_configs:
+      - targets: ['prometheus:9090']  # Prometheus 本身的地址和端口
+        labels:
+          instance: prometheus
+
+  # 采集node exporter监控数据，即linux
+  - job_name: linux
+    static_configs:
+      - targets: ['node-exporter:9100'] # Node Exporter 的地址和端口
+        labels:
+          instance: localhost
