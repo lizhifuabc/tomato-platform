@@ -84,6 +84,7 @@ public class IdWorker {
 
     /**
      * mask that help to extract timestamp and sequence from a long
+     * 掩码，用于提取时间戳和序列号部分的位信息
      */
     private final long timestampAndSequenceMask = ~(-1L << (timestampBits + sequenceBits));
 
@@ -131,7 +132,9 @@ public class IdWorker {
      */
     public long nextId() {
         waitIfNecessary();
+        // 序列号的递增
         long next = timestampAndSequence.incrementAndGet();
+        // 比如序列号当前值是4095，下一个请求进来， 序列号+1溢出12位空间，序列号重新归零，而溢出的进位则加到时间戳上，从而让时间戳+1
         long timestampWithSequence = next & timestampAndSequenceMask;
         return workerId | timestampWithSequence;
     }
@@ -220,7 +223,7 @@ public class IdWorker {
         return (id >>> (timestampBits + sequenceBits)) & workerIdMask;
     }
     /**
-     * 根据 id 获取生成时间
+     * 根据 id 获取生成时间戳
      *
      * @param id 算法生成的id
      * @return 生成的时间
