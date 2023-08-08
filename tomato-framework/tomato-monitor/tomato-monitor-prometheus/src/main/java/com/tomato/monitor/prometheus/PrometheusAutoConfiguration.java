@@ -25,6 +25,7 @@ public class PrometheusAutoConfiguration {
     @Bean
     public MeterRegistryCustomizer<MeterRegistry> configurer(@Value("${spring.application.name}") String applicationName) {
         // # 为指标设置一个Tag，这里设置为应用名，Tag是Prometheus提供的一种能力，从而实现更加灵活的筛选
+        log.info("tomato-monitor-prometheus:{} 自动配置",applicationName);
         return (registry) -> registry.config().commonTags("application", applicationName);
     }
 }
