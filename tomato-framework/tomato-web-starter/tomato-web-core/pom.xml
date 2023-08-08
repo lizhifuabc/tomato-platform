@@ -48,6 +48,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-tracing-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-monitor-prometheus</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
