@@ -207,4 +207,29 @@ public class IdWorker {
     private long generateRandomWorkerId() {
         return new Random().nextInt(maxWorkerId + 1);
     }
+    /**
+     * 根据获 id 获取 workerId
+     *
+     * @param id 算法生成的id
+     * @return 所属机器的id
+     */
+    public long getWorkerId(long id) {
+        // 获取节点ID的掩码
+        long workerIdMask = ~(-1L << workerIdBits);
+        // 从ID中提取节点ID
+        return (id >>> (timestampBits + sequenceBits)) & workerIdMask;
+    }
+    /**
+     * 根据 id 获取生成时间
+     *
+     * @param id 算法生成的id
+     * @return 生成的时间
+     */
+    public long getTimeMillis(long id) {
+        // 获取时间戳的掩码
+        long timestampMask = ~(-1L << timestampBits);
+        // 从ID中提取时间戳
+        long timestamp = (id >>> sequenceBits) & timestampMask;
+        return timestamp + twepoch;
+    }
 }
