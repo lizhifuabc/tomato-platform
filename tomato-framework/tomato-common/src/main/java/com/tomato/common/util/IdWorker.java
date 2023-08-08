@@ -150,11 +150,19 @@ public class IdWorker {
     /**
      * block current thread if the QPS of acquiring UUID is too high
      * that current sequence space is exhausted
+     * 用来控制在高并发情况下，当序列号的空间耗尽时如何处理的逻辑。
+     * 它的作用是阻塞当前线程，以避免超过每秒查询限制（QPS），并等待序列号的空间得以恢复。
      */
     private void waitIfNecessary() {
+        // 获取当前的时间戳和序列号合并后的值。因为在 timestampAndSequence 中，时间戳和序列号合并成了一个长整数，
+        // 所以这里获取到的值包含了时间戳和序列号的信息。
         long currentWithSequence = timestampAndSequence.get();
+        // 通过右移操作，获取到当前的时间戳
         long current = currentWithSequence >>> sequenceBits;
+        // 获取当前时间相对于 twepoch 的最新时间戳
         long newest = getNewestTimestamp();
+        // 比较当前时间戳（提取自 currentWithSequence）是否大于等于最新时间戳（获取自 getNewestTimestamp()）。
+        // 如果当前时间戳超过了最新时间戳，说明序列号的空间已经耗尽，需要等待
         if (current >= newest) {
             try {
                 Thread.sleep(5);
