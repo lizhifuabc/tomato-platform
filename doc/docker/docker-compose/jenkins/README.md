@@ -6,7 +6,7 @@ https://www.jenkins.io/zh/
 
 1. 赋予权限(读、写、执行)：`chmod -R 777 ./jenkins`
 2. 启动：`docker-compose -f docker-compose-jenkins.yml -p jenkins up -d`
-3. 访问地址：`126.0.0.1:8888`
+3. 访问地址：`127.0.0.1:8888`
 
 命令解析：
 
