@@ -25,7 +25,7 @@
         <!-- spring boot / spring cloud 统一依赖管理 -->
         <spring.boot.version>3.1.2</spring.boot.version>
         <spring-security-cas.version>5.8.3</spring-security-cas.version>
-        <spring-boot-admin.version>3.1.3</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
+        <spring-boot-admin.version>3.1.4</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
         <spring.cloud.version>2022.0.4</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
         <spring-security-oauth2-authorization-server.version>1.1.1</spring-security-oauth2-authorization-server.version> <!-- Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
@@ -42,43 +42,25 @@
         <!-- shardingsphere 分库分表依赖 -->
         <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
         <shardingsphere.version>5.3.2</shardingsphere.version>
+
         <!-- 一个开源的第三方算法提供商  -->
         <bouncycastle.version>1.70</bouncycastle.version>
-        <!-- apache 编解码库 https://github.com/apache/commons-codec -->
-        <apache.commons.codec.version>1.15</apache.commons.codec.version>
-        <!-- apache commons https://github.com/apache/commons-lang -->
-        <apache.commons.lang3.version>3.12.0</apache.commons.lang3.version>
-        <!-- apache commons https://github.com/apache/commons-crypto -->
-        <apache.commons.crypto.version>1.1.0</apache.commons.crypto.version>
-        <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
-        <redisson.version>3.23.0</redisson.version>
-        <!--  jwt 相关      -->
-        <jjwt.version>0.9.1</jjwt.version>
+        <redisson.version>3.23.2</redisson.version> <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
+        <jjwt.version>0.9.1</jjwt.version>         <!--  jwt 相关      -->
         <jwks-rsa.version>0.9.0</jwks-rsa.version>
-        <!-- https://connect2id.com/products/nimbus-jose-jwt/examples       -->
-        <nimbus-jose-jwt.version>9.25.6</nimbus-jose-jwt.version>
+        <nimbus-jose-jwt.version>9.25.6</nimbus-jose-jwt.version> <!-- https://connect2id.com/products/nimbus-jose-jwt/examples       -->
         <jjwt-api.version>0.11.5</jjwt-api.version>
-        <!-- 验证码相关 -->
-        <aj-captcha.version>1.3.0</aj-captcha.version>
+        <aj-captcha.version>1.3.0</aj-captcha.version> <!-- 验证码相关 -->
         <kaptcha.version>2.3.2</kaptcha.version>
-        <!--   唯一ID生成类NanoId     -->
-        <jnanoid.version>2.0.0</jnanoid.version>
+        <jnanoid.version>2.0.0</jnanoid.version> <!--   唯一ID生成类NanoId     -->
         <cosid.version>1.16.0</cosid.version>
-        <!--   Apache Commons BeanUtils 库。
-            这个库提供了许多工具类和方法来简化 JavaBean 的操作，包括复制属性、转换数据类型、访问属性等等     -->
-        <commons-beanutils.version>1.9.4</commons-beanutils.version>
-        <!-- spring boot 项目检查插件 -->
-        <spring.checkstyle.plugin>0.0.38</spring.checkstyle.plugin>
-        <!--  springdoc https://springdoc.org/     -->
-        <springdoc.version>1.6.15</springdoc.version>
-        <!--   https://springdoc.org/v2/     -->
-        <springdoc.v2.version>2.1.0</springdoc.v2.version>
-        <!--   配置文件加解密 https://github.com/jasypt/jasypt     -->
-        <jasypt.version>3.0.5</jasypt.version>
-        <!--  代码生成模板      -->
-        <velocity.version>2.3</velocity.version>
-        <!-- 验证码 -->
-        <easy-captcha.version>1.6.2</easy-captcha.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version> <!--   Apache Commons BeanUtils 库-->
+        <spring.checkstyle.plugin>0.0.38</spring.checkstyle.plugin> <!-- spring boot 项目检查插件 -->
+        <springdoc.version>1.6.15</springdoc.version> <!--  springdoc https://springdoc.org/     -->
+        <springdoc.v2.version>2.1.0</springdoc.v2.version> <!--   https://springdoc.org/v2/     -->
+        <jasypt.version>3.0.5</jasypt.version> <!--   配置文件加解密 https://github.com/jasypt/jasypt     -->
+        <velocity.version>2.3</velocity.version>        <!--  代码生成模板      -->
+        <easy-captcha.version>1.6.2</easy-captcha.version>         <!-- 验证码 -->
         <nashorn.version>15.4</nashorn.version>
 
         <!-- 阿里巴巴开源工具依赖：https://github.com/alibaba -->
@@ -96,12 +78,15 @@
         <!--  第三方支付相关依赖      -->
         <wx-java-mp.version>4.5.0</wx-java-mp.version> <!-- https://github.com/Wechat-Group/WxJava -->
         <alipay-sdk.version>4.38.28.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
-        <bcprov.version>1.69</bcprov.version>
+        <bcprov.version>1.76</bcprov.version>
         <wechatpay.java.version>0.2.10</wechatpay.java.version> <!--微信支付官方包 https://github.com/wechatpay-apiv3/wechatpay-java -->
 
         <!-- 常用工具包 -->
-        <hutool.version>6.0.0-M4</hutool.version> <!-- https://gitee.com/dromara/hutool -->
+        <hutool.version>6.0.0-M5</hutool.version> <!-- https://gitee.com/dromara/hutool -->
         <guava.version>32.1.2-jre</guava.version> <!-- https://github.com/google/guava  -->
+        <apache.commons.codec.version>1.15</apache.commons.codec.version>  <!-- apache 编解码库 https://github.com/apache/commons-codec -->
+        <apache.commons.lang3.version>3.12.0</apache.commons.lang3.version> <!-- apache commons https://github.com/apache/commons-lang -->
+        <apache.commons.crypto.version>1.1.0</apache.commons.crypto.version> <!-- apache commons https://github.com/apache/commons-crypto -->
     </properties>
     <!--在父pom中定义子pom需要的相关依赖 -->
     <dependencyManagement>
