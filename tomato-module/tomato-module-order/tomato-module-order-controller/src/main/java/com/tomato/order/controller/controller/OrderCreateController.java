@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Slf4j
-@Tag(name = "订单创建", description = "订单创建")
+@Tag(name = "订单接口", description = "订单接口")
 public class OrderCreateController {
     private final OrderCreateService orderCreateService;
     public OrderCreateController(OrderCreateService orderCreateService) {
