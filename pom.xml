@@ -16,13 +16,19 @@
         <module>tomato-example</module>
     </modules>
     <name>${project.artifactId}</name>
+    <!-- ${basedir} 项目根目录 -->
+    <!-- ${project.build.directory} 构建目录，默认target -->
+    <!-- ${project.build.outputDirectory} 构建过程输出目录，默认target/classes -->
+    <!-- ${project.build.finalName} 名称，默认${project.artifactId}-${revision} -->
+    <!-- ${project.packaging} 打包类型，默认jar -->
+    <!-- ${project.xxx} 当前pom文件的任意节点的内容 如project.artifactId -->
     <properties>
-        <!-- java 版本管理 -->
-        <java.version>17</java.version>
         <!-- Maven 相关配置 -->
+        <java.version>17</java.version> <!-- java 版本管理 -->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding> <!-- 用于生成 Maven 项目报告的编码 -->
 
         <!--  主要用于 构建插件的配置，放在这里会造成和猪POM不一致的问题，TODO      -->
         <!-- spring boot 版本管理 -->
