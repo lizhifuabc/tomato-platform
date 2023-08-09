@@ -67,4 +67,12 @@ public class RabbitRepositoryImpl implements RabbitRepository {
                 },
                 correlationData);
     }
+
+    @Override
+    public void orderComplete(OrderInfoEntity orderInfoEntity) {
+        if (!orderInfoEntity.finalStatus()) {
+            log.info("订单尚未成功，不需要发送延迟订单到MQ：{}", orderInfoEntity.getOrderNo());
+            return;
+        }
+    }
 }

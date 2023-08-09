@@ -2,6 +2,14 @@
 
 https://www.jenkins.io/zh/
 
+[Jenkins](https://www.jenkins.io/)
+
+## 特点
+
+1. 仅仅一个java -jar jenkins.war，从官网下载该文件后，直接运行，无需额外的安装，更无需安装数据库；
+2. 提供友好的GUI配置界面；
+3. Jenkins能从代码仓库中获取并产生代码更新列表并 输出到编译输出信息中；
+
 ## 安装
 
 1. 赋予权限(读、写、执行)：`chmod -R 777 ./jenkins`
