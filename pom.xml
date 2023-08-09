@@ -51,10 +51,13 @@
     </dependencyManagement>
 
     <build>
+        <!-- 构建后的最终文件名 -->
         <finalName>${project.name}</finalName>
         <resources>
             <resource>
+                <!--   配置了资源文件的处理，指定了资源文件的目录             -->
                 <directory>src/main/resources</directory>
+                <!--  是否过滤资源文件，如果过滤，会将资源文件中的占位符替换为具体的值，如${project.version} -->
                 <filtering>true</filtering>
             </resource>
         </resources>
@@ -111,6 +114,17 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
     <profiles>
         <profile>
