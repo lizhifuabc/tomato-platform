@@ -1,0 +1,15 @@
+version: '3' # 使用 Docker Compose 版本 3
+services:
+  tomato-merchant:
+    build:  # 构建 Docker 镜像的设置
+      context: ./tomato-module-merchant/tomato-module-merchant-biz  # Dockerfile 所在的目录
+    restart: always # 容器退出时总是自动重启
+    image: tomato # 指定容器使用的镜像名称
+    container_name: tomato-merchant  # 指定容器的名称
+    networks:
+      - spring_cloud_default  # 将容器连接到名为 spring_cloud_default 的网络
+
+networks:
+  spring_cloud_default:  # 定义名为 spring_cloud_default 的网络
+    name:  spring_cloud_default # 指定网络的名称
+    driver: bridge # 使用 bridge 网络模式
