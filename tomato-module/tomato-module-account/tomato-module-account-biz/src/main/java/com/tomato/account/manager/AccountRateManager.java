@@ -7,7 +7,7 @@ import com.tomato.account.dao.AccountRateDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountManageHisEntity;
 import com.tomato.account.domain.entity.AccountRateEntity;
-import com.tomato.account.domain.req.AccountRateReqList;
+import com.tomato.account.vo.req.AccountRateReqList;
 import com.tomato.common.exception.BusinessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

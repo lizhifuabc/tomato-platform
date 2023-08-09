@@ -3,7 +3,7 @@ package com.tomato.account.controller;
 import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.domain.dto.AccountTradDto;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.domain.req.AccountCashReq;
+import com.tomato.account.vo.req.AccountCashReq;
 import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.service.AccountAsyncInitService;

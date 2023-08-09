@@ -1,8 +1,7 @@
 package com.tomato.account.manager;
 
 import com.tomato.account.enums.AccountTypeEnum;
-import com.tomato.account.domain.req.AccountCreateReq;
-import com.tomato.account.manager.AccountInfoManager;
+import com.tomato.account.vo.req.AccountCreateReq;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

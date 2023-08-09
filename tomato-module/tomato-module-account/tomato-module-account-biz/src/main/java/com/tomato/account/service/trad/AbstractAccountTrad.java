@@ -2,7 +2,7 @@ package com.tomato.account.service.trad;
 
 import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.domain.req.AccountTradReq;
+import com.tomato.account.vo.req.AccountTradReq;
 import com.tomato.account.service.AccountCheckService;
 
 import java.math.BigDecimal;

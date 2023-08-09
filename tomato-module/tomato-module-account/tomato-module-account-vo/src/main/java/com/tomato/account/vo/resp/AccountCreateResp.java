@@ -1,4 +1,4 @@
-package com.tomato.account.domain.resp;
+package com.tomato.account.vo.resp;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;

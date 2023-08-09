@@ -9,13 +9,21 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-module-account-base</artifactId>
+    <artifactId>tomato-module-account-api</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-account-vo</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-cloud-feign-starter</artifactId>
         </dependency>
     </dependencies>
 

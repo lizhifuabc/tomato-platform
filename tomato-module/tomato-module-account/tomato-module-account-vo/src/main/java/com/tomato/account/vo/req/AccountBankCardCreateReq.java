@@ -1,4 +1,4 @@
-package com.tomato.account.domain.req;
+package com.tomato.account.vo.req;
 
 import lombok.Data;
 

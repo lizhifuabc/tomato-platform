@@ -1,4 +1,4 @@
-package com.tomato.account.domain.req;
+package com.tomato.account.vo.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;

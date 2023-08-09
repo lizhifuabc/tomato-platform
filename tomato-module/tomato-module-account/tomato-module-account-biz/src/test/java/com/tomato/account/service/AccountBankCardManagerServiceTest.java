@@ -1,7 +1,7 @@
 package com.tomato.account.service;
 
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.domain.req.AccountBankCardCreateReq;
+import com.tomato.account.vo.req.AccountBankCardCreateReq;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

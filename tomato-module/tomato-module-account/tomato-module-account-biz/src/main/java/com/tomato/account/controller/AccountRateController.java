@@ -1,6 +1,6 @@
 package com.tomato.account.controller;
 
-import com.tomato.account.domain.req.AccountRateReqList;
+import com.tomato.account.vo.req.AccountRateReqList;
 import com.tomato.account.manager.AccountRateManager;
 import com.tomato.common.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;

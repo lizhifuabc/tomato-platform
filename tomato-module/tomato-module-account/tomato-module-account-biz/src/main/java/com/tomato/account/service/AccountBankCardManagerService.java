@@ -3,7 +3,7 @@ package com.tomato.account.service;
 import com.tomato.account.dao.AccountBankCardDao;
 import com.tomato.account.domain.entity.AccountBankCardEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.domain.req.AccountBankCardCreateReq;
+import com.tomato.account.vo.req.AccountBankCardCreateReq;
 import com.tomato.common.enums.YesNoTypeEnum;
 import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;

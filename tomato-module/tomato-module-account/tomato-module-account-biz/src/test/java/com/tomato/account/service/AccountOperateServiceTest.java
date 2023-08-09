@@ -2,10 +2,9 @@ package com.tomato.account.service;
 
 import com.tomato.account.enums.AccountStatusTypeEnum;
 import com.tomato.account.enums.AccountTypeEnum;
-import com.tomato.account.domain.req.AccountCancelledReq;
-import com.tomato.account.domain.req.AccountCreateReq;
-import com.tomato.account.domain.req.AccountFreezeReq;
-import com.tomato.account.service.AccountOperateService;
+import com.tomato.account.vo.req.AccountCancelledReq;
+import com.tomato.account.vo.req.AccountCreateReq;
+import com.tomato.account.vo.req.AccountFreezeReq;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

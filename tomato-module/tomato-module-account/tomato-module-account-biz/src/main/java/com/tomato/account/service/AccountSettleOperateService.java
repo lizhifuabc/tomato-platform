@@ -4,7 +4,7 @@ import com.tomato.account.constant.AccountRespCode;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountSettleControlEntity;
 import com.tomato.account.domain.entity.AccountSettleEntity;
-import com.tomato.account.domain.req.AccountSettleCreateReq;
+import com.tomato.account.vo.req.AccountSettleCreateReq;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.manager.AccountSettleControlManager;
 import com.tomato.account.manager.AccountSettleManager;

@@ -5,16 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-module</artifactId>
+        <artifactId>tomato-module-account</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-module-account</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tomato-module-account-biz</module>
-        <module>tomato-module-account-base</module>
-        <module>tomato-module-account-api</module>
-        <module>tomato-module-account-vo</module>
-    </modules>
+    <artifactId>tomato-module-account-vo</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-validator-starter</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

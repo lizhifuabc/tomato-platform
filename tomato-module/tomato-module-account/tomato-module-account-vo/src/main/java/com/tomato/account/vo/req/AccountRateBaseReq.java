@@ -1,4 +1,4 @@
-package com.tomato.account.domain.req;
+package com.tomato.account.vo.req;
 
 import com.tomato.account.enums.AccountHisTypeEnum;
 import com.tomato.validator.annotation.CheckEnum;
