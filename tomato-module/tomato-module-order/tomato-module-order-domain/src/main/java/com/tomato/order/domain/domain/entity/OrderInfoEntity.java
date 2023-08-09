@@ -10,6 +10,9 @@ import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 订单信息
@@ -143,6 +146,11 @@ public class OrderInfoEntity extends BaseEntity {
      */
     private String hmac;
     /**
+     * 期望订单状态，例如由支付中-->支付成功
+     * 那么期望订单状态就是支付中
+     */
+    private List<String> expectOrderStatus;
+    /**
      * 商户信息
      */
     private MerchantEntity merchantEntity;
@@ -164,36 +172,6 @@ public class OrderInfoEntity extends BaseEntity {
         this.merchantName = merchantEntity.getMerchantName();
         this.merchantFee = BigDecimalUtil.multiply(requestAmount,merchantRate);
     }
-
-    /**
-     * 完成订单
-     * @param orderStatus 订单状态
-     */
-    public void complete(OrderStatusEnum orderStatus){
-        // 判断订单状态只能是处理中或者初始化
-        if(!OrderStatusEnum.INIT.getValue().equals(this.orderStatus) && !OrderStatusEnum.DEAL.getValue().equals(this.orderStatus)){
-            throw new BusinessException("订单状态不正确");
-        }
-        this.orderStatus = orderStatus.getValue();
-        this.completeTime = LocalDateTime.now();
-        // version 由数据库维护，update时会自动加1
-        // updateTime 由数据库维护,update时会自动更新
-        // super.setVersion(getVersion() + 1);
-    }
-
-    /**
-     * 处理订单
-     */
-    public void deal(){
-        // 判断订单状态只能是初始化
-        if(!OrderStatusEnum.INIT.getValue().equals(this.orderStatus)){
-            throw new BusinessException("订单状态不正确");
-        }
-        this.orderStatus = OrderStatusEnum.DEAL.getValue();
-        // version 由数据库维护，update时会自动加1
-        // updateTime 由数据库维护,update时会自动更新
-    }
-
     /**
      * 校验hmac
      * @param hmac hmac
@@ -203,7 +181,6 @@ public class OrderInfoEntity extends BaseEntity {
             throw new BusinessException("hmac校验失败");
         }
     }
-
     /**
      * 订单是否最终状态
      * @return boolean true 最终状态
@@ -211,12 +188,76 @@ public class OrderInfoEntity extends BaseEntity {
     public boolean finalStatus(){
         return !OrderStatusEnum.INIT.getValue().equals(this.orderStatus) && !OrderStatusEnum.DEAL.getValue().equals(this.orderStatus);
     }
-
     /**
      * 订单是否超时
      * @return boolean true 超时
      */
-    public boolean timeOut(){
+    public boolean timeOutFlag(){
         return LocalDateTime.now().isAfter(this.timeoutTime);
+    }
+    /**
+     * 处理订单
+     */
+    public void deal(){
+        // 判断订单状态只能是初始化
+        if(!OrderStatusEnum.INIT.getValue().equals(this.orderStatus)){
+            throw new BusinessException("订单状态不正确");
+        }
+        this.orderStatus = OrderStatusEnum.DEAL.getValue();
+        this.expectOrderStatus = Collections.singletonList(OrderStatusEnum.INIT.getValue());
+    }
+
+    /**
+     * 订单成功
+     */
+    public void success() {
+        // 判断订单状态
+        if(!OrderStatusEnum.DEAL.getValue().equals(this.orderStatus)){
+            throw new BusinessException("订单状态不正确");
+        }
+        this.completeTime = LocalDateTime.now();
+        this.orderStatus = OrderStatusEnum.SUCCESS.getValue();
+        // version 由数据库维护，update时会自动加1
+        // TODO 超时后又支付成功的情况
+        this.expectOrderStatus = Collections.singletonList(OrderStatusEnum.DEAL.getValue());
+    }
+    /**
+     * 订单失败
+     */
+    public void fail() {
+        // 判断订单状态,只要不是终态都可以失败
+        if(!finalStatus()){
+            throw new BusinessException("订单状态不正确");
+        }
+        this.completeTime = LocalDateTime.now();
+        this.orderStatus = OrderStatusEnum.FAIL.getValue();
+        // version 由数据库维护，update时会自动加1
+        this.expectOrderStatus = Arrays.asList(OrderStatusEnum.DEAL.getValue(),OrderStatusEnum.INIT.getValue());
+    }
+    /**
+     * 订单取消
+     */
+    public void cancel() {
+        // 判断订单状态,只要不是最终状态都可以取消
+        if(!finalStatus()){
+            throw new BusinessException("订单状态不正确");
+        }
+        this.completeTime = LocalDateTime.now();
+        this.orderStatus = OrderStatusEnum.CANCEL.getValue();
+        // version 由数据库维护，update时会自动加1
+        this.expectOrderStatus = Arrays.asList(OrderStatusEnum.DEAL.getValue(),OrderStatusEnum.INIT.getValue());
+    }
+    /**
+     * 订单超时
+     */
+    public void timeout() {
+        // 判断订单状态,只要不是最终状态都可以取消
+        if(!finalStatus()){
+            throw new BusinessException("订单状态不正确");
+        }
+        this.completeTime = LocalDateTime.now();
+        this.orderStatus = OrderStatusEnum.TIMEOUT.getValue();
+        // version 由数据库维护，update时会自动加1
+        this.expectOrderStatus = Arrays.asList(OrderStatusEnum.DEAL.getValue(),OrderStatusEnum.INIT.getValue());
     }
 }

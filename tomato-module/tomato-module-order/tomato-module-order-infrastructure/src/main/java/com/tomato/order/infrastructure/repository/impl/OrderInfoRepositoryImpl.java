@@ -1,7 +1,9 @@
 package com.tomato.order.infrastructure.repository.impl;
 
+import com.tomato.common.exception.BusinessException;
 import com.tomato.order.domain.domain.entity.OrderInfoEntity;
 import com.tomato.order.domain.repository.OrderInfoRepository;
+import com.tomato.order.infrastructure.OrderAdapter;
 import com.tomato.order.infrastructure.dataobject.OrderInfoIdxDO;
 import com.tomato.order.infrastructure.mapper.OrderInfoIdxMapper;
 import com.tomato.order.infrastructure.mapper.OrderInfoMapper;
@@ -13,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static com.tomato.order.infrastructure.OrderAdapter.convert;
+import static com.tomato.order.infrastructure.OrderAdapter.convertUpdateOrderStatus;
 
 /**
  * 订单新建
@@ -30,11 +35,25 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
     }
 
     @Override
+    public int updateOrderStatus(OrderInfoEntity orderInfoEntity) {
+        int i = orderInfoMapper.updateOrderStatus(convertUpdateOrderStatus(orderInfoEntity));
+        // 更新条数必须 = 1，否则回滚
+        if(i != 1 ){
+            throw new BusinessException("更新订单状态失败");
+        }
+        return i;
+    }
+
+    @Override
+    public OrderInfoEntity selectByOrderNo(String orderNo) {
+        OrderInfoDO orderInfoDO = orderInfoMapper.selectByOrderNo(orderNo);
+        return OrderAdapter.convert(orderInfoDO);
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public void createOrder(OrderInfoEntity orderInfoEntity) {
-        OrderInfoDO orderInfoDO = new OrderInfoDO();
-        BeanUtils.copyProperties(orderInfoEntity,orderInfoDO);
-        orderInfoMapper.insertSelective(orderInfoDO);
+        orderInfoMapper.insertSelective(convert(orderInfoEntity));
 
         OrderInfoIdxDO orderInfoIdxDO = new OrderInfoIdxDO();
         BeanUtils.copyProperties(orderInfoEntity,orderInfoIdxDO);
@@ -49,7 +68,7 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
     @Override
     public List<OrderInfoEntity> selectByCreateTime(int pageIndex, int pageSize, LocalDateTime createTime, String orderStatus) {
         List<OrderInfoDO> list = orderInfoMapper.selectByCreateTime(pageIndex, pageSize, createTime, orderStatus);
-        return BeanUtil.copyList(list, OrderInfoEntity.class);
+        return OrderAdapter.convert(list);
     }
 
     @Override
@@ -62,8 +81,5 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
     public OrderInfoEntity selectByMerchant(String merchantNo, String merchantOrderNo) {
         OrderInfoDO orderInfoDO = orderInfoMapper.selectByMerchant(merchantNo, merchantOrderNo);
         return convert(orderInfoDO);
-    }
-    private OrderInfoEntity convert(OrderInfoDO orderInfoDO) {
-        return BeanUtil.copy(orderInfoDO, OrderInfoEntity.class);
     }
 }

@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,10 +51,11 @@ public class OrderTimeOutDelayListener {
         log.info("监听器监听到延迟队列：订单 {}",orderDelayDO);
         try {
             OrderInfoDO orderEntity = orderInfoMapper.selectByOrderNo(orderDelayDO.getOrderNo());
+            List<String> expectOrderStatus = Collections.singletonList(OrderStatusEnum.DEAL.getValue());
             UpdateOrderStatusDO updateOrderStatusDO = UpdateOrderStatusDO.builder()
                     .orderNo(orderDelayDO.getOrderNo())
                     .orderStatus(OrderStatusEnum.TIMEOUT.getValue())
-                    .expectOrderStatus(OrderStatusEnum.DEAL.getValue())
+                    .expectOrderStatus(expectOrderStatus)
                     .completeTime(LocalDateTime.now())
                     .currentVersion(orderEntity.getVersion())
                     .build();

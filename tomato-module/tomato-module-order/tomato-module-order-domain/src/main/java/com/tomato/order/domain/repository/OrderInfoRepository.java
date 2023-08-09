@@ -14,6 +14,18 @@ import java.util.List;
  */
 public interface OrderInfoRepository {
     /**
+     * 更新订单状态
+     * @param orderInfoEntity 更新订单状态
+     * @return 更新条数
+     */
+    int updateOrderStatus(OrderInfoEntity orderInfoEntity);
+    /**
+     * 订单查询
+     * @param orderNo 订单号
+     * @return 订单
+     */
+    OrderInfoEntity selectByOrderNo(String orderNo);
+    /**
      * 订单新建
      * @param orderInfoEntity 订单新建
      */

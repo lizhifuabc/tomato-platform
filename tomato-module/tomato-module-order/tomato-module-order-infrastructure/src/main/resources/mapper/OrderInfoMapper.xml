@@ -11,7 +11,10 @@
         where
         order_no = #{updateOrderStatusDO.orderNo}
         and version = #{updateOrderStatusDO.currentVersion}
-        and order_status = #{updateOrderStatusDO.expectOrderStatus}
+        and order_status in
+        <foreach collection="updateOrderStatusDO.expectOrderStatus" item="orderStatus" open="(" close=")" separator=",">
+            #{orderStatus}
+        </foreach>
     </update>
 
     <sql id="select_fields">

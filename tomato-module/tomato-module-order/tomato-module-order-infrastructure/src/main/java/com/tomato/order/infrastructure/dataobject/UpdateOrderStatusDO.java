@@ -6,12 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 更新订单状态
  *
  * @author lizhifu
- * @date 2022/12/2
+ * @since  2022/12/2
  */
 @Data
 @AllArgsConstructor
@@ -30,7 +31,7 @@ public class UpdateOrderStatusDO {
      * 期望订单状态，例如由支付中-->支付成功
      * 那么期望订单状态就是支付中
      */
-    private String expectOrderStatus;
+    private List<String> expectOrderStatus;
     /**
      * 当前版本号
      */

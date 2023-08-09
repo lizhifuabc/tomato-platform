@@ -44,7 +44,7 @@ public interface OrderInfoMapper extends BaseMapper<OrderInfoDO,Long> {
      * @param updateOrderStatusDO 更新订单状态
      * @return 更新条数
      */
-    int updateOrderStatus(@Param("updateOrderStatusBO") UpdateOrderStatusDO updateOrderStatusDO);
+    int updateOrderStatus(@Param("updateOrderStatusDO") UpdateOrderStatusDO updateOrderStatusDO);
     /**
      * 超时订单状态更新
      * TODO 大数据量处理
