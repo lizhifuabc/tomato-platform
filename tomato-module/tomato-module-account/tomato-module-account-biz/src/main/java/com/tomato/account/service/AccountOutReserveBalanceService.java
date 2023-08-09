@@ -5,7 +5,7 @@ import com.tomato.account.dao.AccountSettleDao;
 import com.tomato.account.domain.bo.AccountHisCollectResBO;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountSettleEntity;
-import com.tomato.account.enums.AccountHisTypeEnum;
+import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.account.manager.AccountOutReserveBalanceManager;
 import lombok.extern.slf4j.Slf4j;

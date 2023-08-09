@@ -1,8 +1,8 @@
 package com.tomato.account.vo.req;
 
-import com.tomato.account.enums.CycleTypeEnum;
-import com.tomato.account.enums.SettleTargetTypeEnum;
-import com.tomato.account.enums.SettleTypeEnum;
+import com.tomato.account.vo.enums.CycleTypeEnum;
+import com.tomato.account.vo.enums.SettleTargetTypeEnum;
+import com.tomato.account.vo.enums.SettleTypeEnum;
 import com.tomato.validator.annotation.CheckEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -4,7 +4,7 @@ import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.dao.AccountSettleDao;
 import com.tomato.account.domain.dto.AccountTradDto;
 import com.tomato.account.domain.entity.*;
-import com.tomato.account.enums.AccountHisTypeEnum;
+import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountSettleControlManager;
 import com.tomato.account.manager.AccountSettleRecordManager;
 import com.tomato.account.service.trad.AccountTradService;

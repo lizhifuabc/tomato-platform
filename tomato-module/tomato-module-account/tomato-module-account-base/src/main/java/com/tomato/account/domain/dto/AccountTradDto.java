@@ -1,7 +1,6 @@
 package com.tomato.account.domain.dto;
 
-import com.tomato.account.enums.AccountHisTypeEnum;
-import com.tomato.account.enums.AccountTypeEnum;
+import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.validator.annotation.CheckEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;

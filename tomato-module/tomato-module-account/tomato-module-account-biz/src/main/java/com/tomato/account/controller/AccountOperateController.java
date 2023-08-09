@@ -5,7 +5,7 @@ import com.tomato.account.vo.req.AccountCancelledReq;
 import com.tomato.account.vo.req.AccountCreateReq;
 import com.tomato.account.vo.req.AccountFreezeReq;
 import com.tomato.account.vo.resp.AccountCreateResp;
-import com.tomato.account.enums.AccountStatusTypeEnum;
+import com.tomato.account.vo.enums.AccountStatusTypeEnum;
 import com.tomato.account.service.AccountOperateService;
 import com.tomato.common.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;

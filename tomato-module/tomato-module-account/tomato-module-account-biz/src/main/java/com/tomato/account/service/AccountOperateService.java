@@ -2,8 +2,8 @@ package com.tomato.account.service;
 
 import com.tomato.account.dao.AccountRateDao;
 import com.tomato.account.domain.entity.AccountRateEntity;
-import com.tomato.account.enums.AccountHisTypeEnum;
-import com.tomato.account.enums.AccountStatusTypeEnum;
+import com.tomato.account.vo.enums.AccountHisTypeEnum;
+import com.tomato.account.vo.enums.AccountStatusTypeEnum;
 import com.tomato.account.dao.AccountManageHisDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountManageHisEntity;

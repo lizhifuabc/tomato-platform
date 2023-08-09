@@ -1,7 +1,7 @@
 package com.tomato.account;
 
 
-import com.tomato.account.enums.CycleTypeEnum;
+import com.tomato.account.vo.enums.CycleTypeEnum;
 import com.tomato.account.util.SettleDayUtil;
 
 import java.time.LocalDate;

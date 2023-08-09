@@ -1,6 +1,6 @@
 package com.tomato.account.manager;
 
-import com.tomato.account.enums.AccountTypeEnum;
+import com.tomato.account.vo.enums.AccountTypeEnum;
 import com.tomato.account.vo.req.AccountCreateReq;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;

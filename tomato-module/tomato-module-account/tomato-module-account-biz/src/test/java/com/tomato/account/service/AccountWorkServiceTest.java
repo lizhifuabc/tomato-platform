@@ -1,6 +1,6 @@
 package com.tomato.account.service;
 
-import com.tomato.account.enums.CycleTypeEnum;
+import com.tomato.account.vo.enums.CycleTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

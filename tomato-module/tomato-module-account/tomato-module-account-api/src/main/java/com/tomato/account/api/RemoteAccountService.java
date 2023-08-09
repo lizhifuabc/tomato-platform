@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * 远程 MERCHANT 服务
+ * 远程 Account 服务
  *
  * @author lizhifu
  * @since 2023/8/1

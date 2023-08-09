@@ -2,7 +2,7 @@ package com.tomato.account.service;
 
 import com.tomato.account.dao.AccountInfoDao;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.enums.AccountTypeEnum;
+import com.tomato.account.vo.enums.AccountTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

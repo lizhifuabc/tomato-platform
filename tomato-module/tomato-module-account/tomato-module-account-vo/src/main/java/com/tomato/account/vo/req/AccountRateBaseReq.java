@@ -1,6 +1,6 @@
 package com.tomato.account.vo.req;
 
-import com.tomato.account.enums.AccountHisTypeEnum;
+import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.validator.annotation.CheckEnum;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.*;

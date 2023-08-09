@@ -1,8 +1,8 @@
 package com.tomato.account.manager;
 
 import com.tomato.account.domain.entity.AccountSettleEntity;
-import com.tomato.account.enums.CycleTypeEnum;
-import com.tomato.account.enums.SettleTypeEnum;
+import com.tomato.account.vo.enums.CycleTypeEnum;
+import com.tomato.account.vo.enums.SettleTypeEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -7,7 +7,7 @@ import com.tomato.account.domain.bo.AccountHisBO;
 import com.tomato.account.domain.bo.AccountRefundBO;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import com.tomato.account.domain.entity.AccountInfoEntity;
-import com.tomato.account.enums.AccountHisTypeEnum;
+import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.account.manager.AccountHisManager;
 import com.tomato.account.manager.AccountInfoManager;
 import com.tomato.common.exception.BusinessException;

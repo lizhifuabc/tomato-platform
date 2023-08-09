@@ -2,7 +2,7 @@ package com.tomato.account.manager;
 
 import com.tomato.account.dao.AccountSettleDao;
 import com.tomato.account.domain.entity.AccountSettleEntity;
-import com.tomato.account.enums.SettleTypeEnum;
+import com.tomato.account.vo.enums.SettleTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

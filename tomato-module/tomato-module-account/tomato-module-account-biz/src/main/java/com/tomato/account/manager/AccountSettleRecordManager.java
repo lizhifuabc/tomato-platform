@@ -2,7 +2,7 @@ package com.tomato.account.manager;
 
 import com.tomato.account.dao.AccountSettleRecordDao;
 import com.tomato.account.domain.entity.*;
-import com.tomato.account.enums.AccountHisTypeEnum;
+import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.common.enums.CommonStatusEnum;
 import com.tomato.util.lang.BigDecimalUtil;
