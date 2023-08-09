@@ -85,35 +85,9 @@
                         </execution>
                     </executions>
                 </plugin>
-                <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>${docker.plugin.version}</version>
-                    <configuration>
-                        <!-- Docker Remote Api-->
-                        <dockerHost>${docker.host}</dockerHost>
-                        <!-- Docker 镜像私服-->
-                        <registry>${docker.registry}</registry>
-                        <!-- 认证信息-->
-                        <authConfig>
-                            <push>
-                                <username>${docker.username}</username>
-                                <password>${docker.password}</password>
-                            </push>
-                        </authConfig>
-                        <images>
-                            <image>
-                                <!-- 镜像名称： 198.15.0.1231/library/xxxxx:2.6.3-->
-                                <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
-                                <build>
-                                    <dockerFile>${project.basedir}/Dockerfile</dockerFile>
-                                </build>
-                            </image>
-                        </images>
-                    </configuration>
-                </plugin>
             </plugins>
         </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
