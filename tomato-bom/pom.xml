@@ -35,6 +35,7 @@
         <archetype-packaging.verison>3.2.1</archetype-packaging.verison> <!-- https://maven.apache.org/archetype/maven-archetype-plugin/ ， 用于创建项目模板。这个插件负责把Archetype项目打包成可发布的形式-->
         <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version> <!-- https://maven.apache.org/plugins/maven-gpg-plugin/ ，用于对Maven项目进行签名 -->
         <maven-archetype-plugin.version>3.2.1</maven-archetype-plugin.version> <!-- https://maven.apache.org/archetype/maven-archetype-plugin/ ， 用于创建项目模板。这个插件负责把Archetype项目打包成可发布的形式-->
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
 
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.2</spring.boot.mybatis.version>
