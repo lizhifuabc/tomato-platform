@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,8 @@ public class OrderTimeOutDelayListener {
         log.info("监听器监听到延迟队列：订单 {}",orderDelayDO);
         try {
             OrderInfoDO orderEntity = orderInfoMapper.selectByOrderNo(orderDelayDO.getOrderNo());
-            List<String> expectOrderStatus = Collections.singletonList(OrderStatusEnum.DEAL.getValue());
+            // TODO 看看怎么一道 domain 层
+            List<String> expectOrderStatus = Arrays.asList(OrderStatusEnum.DEAL.getValue(),OrderStatusEnum.INIT.getValue());
             UpdateOrderStatusDO updateOrderStatusDO = UpdateOrderStatusDO.builder()
                     .orderNo(orderDelayDO.getOrderNo())
                     .orderStatus(OrderStatusEnum.TIMEOUT.getValue())
