@@ -429,6 +429,11 @@
                 <artifactId>tomato-module-order-base</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>com.tomato</groupId>
+                <artifactId>tomato-module-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
             <!-- 服务依赖 -->
             <dependency>
                 <groupId>com.tomato</groupId>

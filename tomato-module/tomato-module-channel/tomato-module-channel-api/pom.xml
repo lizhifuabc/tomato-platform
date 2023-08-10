@@ -21,6 +21,10 @@
             <artifactId>tomato-module-channel-vo</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-common</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -10,6 +11,8 @@
         <option value="$PROJECT_DIR$/spring-boot-cli-archetype/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-cli-demo-archetype/pom.xml" />
         <option value="$PROJECT_DIR$/tomato-module/tomato-module-merchant/tomato-module-merchant-api/pom.xml" />
+        <option value="$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-biz/pom.xml" />
+        <option value="$PROJECT_DIR$/tomato-module/tomato-module-common/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

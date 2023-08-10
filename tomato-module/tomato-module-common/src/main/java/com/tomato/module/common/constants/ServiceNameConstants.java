@@ -1,4 +1,4 @@
-package com.tomato.common.constants;
+package com.tomato.module.common.constants;
 
 /**
  * 远程服务常量

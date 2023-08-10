@@ -1,6 +1,6 @@
 package com.tomato.order.application.req;
 
-import com.tomato.common.enums.PayTypeEnum;
+import com.tomato.module.common.enums.PayTypeEnum;
 import com.tomato.order.application.req.base.BaseReq;
 import com.tomato.validator.annotation.CheckEnum;
 import io.swagger.v3.oas.annotations.media.Schema;

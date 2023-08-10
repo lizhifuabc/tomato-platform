@@ -21,5 +21,9 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-cloud-feign-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-common</artifactId>
+        </dependency>
     </dependencies>
 </project>
