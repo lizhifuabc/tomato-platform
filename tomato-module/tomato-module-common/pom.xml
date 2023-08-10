@@ -18,6 +18,8 @@
         </dependency>
     </dependencies>
     <build>
-
+        <plugins>
+            <!-- 子项目特定的插件配置 -->
+        </plugins>
     </build>
 </project>
