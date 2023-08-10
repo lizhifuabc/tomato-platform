@@ -12,7 +12,6 @@
     <artifactId>tomato-module-order</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>tomato-module-order-biz</module>
         <module>tomato-module-order-infrastructure</module>
         <module>tomato-module-order-domain</module>
         <module>tomato-module-order-controller</module>
