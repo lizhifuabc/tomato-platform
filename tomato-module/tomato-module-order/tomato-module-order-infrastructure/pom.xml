@@ -38,6 +38,10 @@
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>shardingsphere-jdbc-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-account-api</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

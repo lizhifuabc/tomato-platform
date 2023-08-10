@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
  * @since  2022/6/7
  */
 @Data
+@Builder
 @Tag(name = "账户系统收单请求")
 public class AccountTradReq {
     /**
