@@ -3,7 +3,7 @@ package com.tomato.order.domain.domain.entity;
 import com.tomato.common.entity.BaseEntity;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.order.domain.constants.OrderStatusEnum;
-import com.tomato.util.lang.BigDecimalUtil;
+import com.tomato.common.util.BigDecimalUtil;
 import lombok.*;
 
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package com.tomato.util.lang;
+package com.tomato.common.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -76,7 +76,16 @@ public class BigDecimalUtil {
         BigDecimal b2 = BigDecimal.valueOf(v2);
         return b1.subtract(b2).doubleValue();
     }
-
+    /**
+     * 提供精确的减法运算
+     *
+     * @param v1 被减数
+     * @param v2 减数
+     * @return 两个参数的差
+     */
+    public static BigDecimal sub(BigDecimal v1, BigDecimal v2) {
+        return v1.subtract(v2).setScale(2, RoundingMode.HALF_UP);
+    }
     /**
      * 提供精确的减法运算。
      *

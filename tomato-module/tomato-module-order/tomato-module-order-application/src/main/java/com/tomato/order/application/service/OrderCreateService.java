@@ -9,11 +9,9 @@ import com.tomato.order.domain.constants.OrderStatusEnum;
 import com.tomato.order.domain.domain.entity.ChannelEntity;
 import com.tomato.order.domain.domain.entity.OrderInfoEntity;
 import com.tomato.order.domain.repository.ChannelRepository;
-import com.tomato.tracing.thread.TraceIdThreadPoolTaskExecutor;
 import com.tomato.web.core.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;

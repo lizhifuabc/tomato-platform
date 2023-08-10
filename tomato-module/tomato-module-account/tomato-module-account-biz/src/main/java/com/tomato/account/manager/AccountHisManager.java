@@ -7,7 +7,7 @@ import com.tomato.account.domain.entity.AccountInfoEntity;
 import com.tomato.account.domain.entity.AccountRateEntity;
 import com.tomato.common.enums.CommonStatusEnum;
 import com.tomato.common.exception.BusinessException;
-import com.tomato.util.lang.BigDecimalUtil;
+import com.tomato.common.util.BigDecimalUtil;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

@@ -5,7 +5,7 @@ import com.tomato.account.domain.entity.*;
 import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.common.enums.CommonStatusEnum;
-import com.tomato.util.lang.BigDecimalUtil;
+import com.tomato.common.util.BigDecimalUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

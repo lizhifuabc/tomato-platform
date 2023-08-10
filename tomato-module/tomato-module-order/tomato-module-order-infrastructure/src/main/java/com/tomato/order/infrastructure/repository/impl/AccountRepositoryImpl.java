@@ -1,6 +1,8 @@
 package com.tomato.order.infrastructure.repository.impl;
 
 import com.tomato.account.api.RemoteAccountService;
+import com.tomato.account.vo.enums.AccountHisTypeEnum;
+import com.tomato.account.vo.enums.AccountTypeEnum;
 import com.tomato.account.vo.req.AccountTradReq;
 import com.tomato.order.domain.domain.entity.AccountEntity;
 import com.tomato.order.domain.repository.AccountRepository;
@@ -29,6 +31,8 @@ public class AccountRepositoryImpl implements AccountRepository {
                 .amount(accountEntity.getAmount())
                 .sysNo(accountEntity.getSysNo())
                 .merchantOrderNo(accountEntity.getMerchantOrderNo())
+                .accountType(AccountTypeEnum.SETTLEMENT.getValue())
+                .accountHisType(AccountHisTypeEnum.TRAD.getValue())
                 .build();
         remoteAccountService.trad(accountTradReq);
     }
