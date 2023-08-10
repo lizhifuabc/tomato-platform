@@ -34,6 +34,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       # 映射宿主机的 /usr/local 目录到容器内的 /home 目录
       # 容器可以直接使用宿主机上的文件
+      # 比如可以使用宿主机的jdk,而不用在容器内安装jdk
       - /usr/local:/home
       # 挂载宿主机的 maven 本地仓库目录到容器的 /root/.m2目录
       # 容器就可以复用宿主机上 cached 的 maven 依赖,加速 Maven 的构建
