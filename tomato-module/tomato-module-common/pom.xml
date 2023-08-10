@@ -17,4 +17,7 @@
             <artifactId>tomato-common</artifactId>
         </dependency>
     </dependencies>
+    <build>
+
+    </build>
 </project>
