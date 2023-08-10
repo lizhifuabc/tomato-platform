@@ -3,7 +3,7 @@ package com.tomato.account.api;
 import com.tomato.account.api.fallback.RemoteAccountServiceFallback;
 import com.tomato.account.vo.req.AccountTradReq;
 import com.tomato.common.resp.Resp;
-import com.tomato.module.common.constants.ServiceNameConstants;
+import com.tomato.common.constants.ServiceNameConstants;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -376,11 +376,6 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
-                <artifactId>tomato-module-common</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.tomato</groupId>
                 <artifactId>tomato-module-gen-base</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>

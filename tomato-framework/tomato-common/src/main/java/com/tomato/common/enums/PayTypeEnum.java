@@ -1,4 +1,4 @@
-package com.tomato.module.common.enums;
+package com.tomato.common.enums;
 
 import com.tomato.common.enums.BaseEnum;
 import lombok.AllArgsConstructor;

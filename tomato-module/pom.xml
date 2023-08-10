@@ -30,7 +30,6 @@
         <module>tomato-module-auth</module>
         <module>tomato-module-pay-monitor</module>
         <module>tomato-module-reconciliation</module>
-        <module>tomato-module-common</module>
     </modules>
     <build>
         <finalName>${project.artifactId}</finalName>
