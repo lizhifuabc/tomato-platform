@@ -38,7 +38,7 @@ services:
       - /usr/local:/home
       # 挂载宿主机的 maven 本地仓库目录到容器的 /root/.m2目录
       # 容器就可以复用宿主机上 cached 的 maven 依赖,加速 Maven 的构建
-      - /Users/lizhifu/.m2/repository:/root/.m2
+      - /Users/lizhifu/.m2/repository:/root/.m2/repository
     # ports:端口映射,将 8080 和 50000 端口映射到宿主机
     ports:
       # 访问端口：本机端口:容器端口
