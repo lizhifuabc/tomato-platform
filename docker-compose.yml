@@ -8,6 +8,14 @@ services:
     container_name: tomato-merchant  # 指定容器的名称
     networks:
       - spring_cloud_default  # 将容器连接到名为 spring_cloud_default 的网络
+  tomato-account:
+    build: # 构建 Docker 镜像的设置
+      context: ./tomato-module/tomato-module-account/tomato-module-account-biz  # Dockerfile 所在的目录
+    restart: always # 容器退出时总是自动重启
+    image: tomato # 指定容器使用的镜像名称
+    container_name: tomato-account  # 指定容器的名称
+    networks:
+      - spring_cloud_default  # 将容器连接到名为 spring_cloud_default 的网络
 
 networks:
   spring_cloud_default:  # 定义名为 spring_cloud_default 的网络
