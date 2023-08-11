@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/example?characterEncoding=utf8&allowPublicKeyRetrieval=true&useConfigs=maxPerformance&rewriteBatchedStatements=true&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://tomato-mysql:3306/example?characterEncoding=utf8&allowPublicKeyRetrieval=true&useConfigs=maxPerformance&rewriteBatchedStatements=true&useSSL=false&serverTimezone=GMT%2B8
     username: example
     password: 1@34qWer
     type: com.alibaba.druid.pool.DruidDataSource
