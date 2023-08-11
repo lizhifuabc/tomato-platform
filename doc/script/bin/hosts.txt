@@ -1,4 +1,5 @@
 192.168.31.156  tomato-nacos
+192.168.31.156  tomato-monitor
 192.168.31.156  tomato-mysql
 # 使用的时候不要开VPN，如果开了VPN，直接使用IP访问(或者设置白名单)
 192.168.31.156  tomato-zipkin

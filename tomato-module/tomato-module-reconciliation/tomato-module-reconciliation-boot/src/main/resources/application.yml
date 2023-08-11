@@ -19,6 +19,6 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:9994
+        url: http://tomato-monitor:9994
 
 
