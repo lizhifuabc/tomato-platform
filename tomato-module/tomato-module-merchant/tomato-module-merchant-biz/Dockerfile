@@ -7,7 +7,7 @@ WORKDIR /tomato-module-merchant-biz
 # 指定应用程序的 JAR 文件路径
 ARG JAR_FILE=target/tomato-module-merchant-biz.jar
 # 将构建上下文中的应用程序 JAR 文件复制到容器内的 app.jar
-COPY ${JAR_FILE} app2.jar
+COPY ${JAR_FILE} app.jar
 # 声明容器将监听的端口号为
 EXPOSE 9999
 # 设置为 /dev/./urandom，以提高随机数生成的性能
@@ -15,4 +15,4 @@ ENV TZ=Asia/Shanghai JAVA_OPTS="-Xms128m -Xmx256m -Djava.security.egd=file:/dev/
 
 # 容器启动后,先睡眠3秒钟
 # 然后再执行java命令启动应用
-CMD sleep 3; java $JAVA_OPTS -jar app2.jar
+CMD sleep 3; java $JAVA_OPTS -jar app.jar
