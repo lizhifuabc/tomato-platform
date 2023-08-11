@@ -36,8 +36,8 @@ services:
     restart: always # 容器退出时总是自动重启
     image: tomato-monitor # 指定容器使用的镜像名称
     container_name: tomato-monitor  # 指定容器的名称
-    ports:
-      - "9994:9994" # 将容器的 9994 端口映射到主机的 9994 端口
+#    ports:
+#      - "9994:9994" # 将容器的 9994 端口映射到主机的 9994 端口
     networks:
       - spring_cloud_default  # 将容器连接到名为 spring_cloud_default 的网络
 networks:
