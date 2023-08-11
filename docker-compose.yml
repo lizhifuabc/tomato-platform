@@ -24,7 +24,14 @@ services:
     container_name: tomato-channel  # 指定容器的名称
     networks:
       - spring_cloud_default  # 将容器连接到名为 spring_cloud_default 的网络
-
+  tomato-monitor:
+    build:
+      context: ./tomato-module/tomato-module-monitor  # Dockerfile 所在的目录
+    restart: always # 容器退出时总是自动重启
+    image: tomato-monitor # 指定容器使用的镜像名称
+    container_name: tomato-monitor  # 指定容器的名称
+    networks:
+      - spring_cloud_default  # 将容器连接到名为 spring_cloud_default 的网络
 networks:
   spring_cloud_default:  # 定义名为 spring_cloud_default 的网络
     driver: bridge #  使用 bridge 网络模式
