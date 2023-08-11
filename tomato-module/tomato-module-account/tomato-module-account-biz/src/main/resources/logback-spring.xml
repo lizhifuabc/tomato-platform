@@ -36,7 +36,6 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-            <!-- pattern节点，用来设置日志的输入格式 -->
             <!-- pattern节点，用于定义日志输出格式的模式 -->
             <!-- %date：输出日志的日期时间。 -->
             <!-- [%thread]：输出线程名。 -->

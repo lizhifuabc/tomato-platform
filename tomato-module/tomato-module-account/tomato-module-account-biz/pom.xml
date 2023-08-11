@@ -45,6 +45,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-idempotent-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-cloud-alibaba-starter</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
