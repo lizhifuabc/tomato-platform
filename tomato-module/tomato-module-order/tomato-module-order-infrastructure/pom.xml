@@ -42,6 +42,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-account-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-notice-api</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

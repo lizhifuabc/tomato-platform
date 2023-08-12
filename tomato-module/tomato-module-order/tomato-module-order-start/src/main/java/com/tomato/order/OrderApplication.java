@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(scanBasePackages = {"com.tomato"})
 @EnableAsync // 开启异步支持
 @EnableScheduling
-@EnableFeignClients(basePackages = {"com.tomato.merchant.api","com.tomato.channel.api","com.tomato.account.api"})
+@EnableFeignClients(basePackages = {"com.tomato.merchant.api","com.tomato.channel.api","com.tomato.account.api","com.tomato.notice.api"})
 @MapperScan("com.tomato.order.infrastructure.mapper")
 public class OrderApplication {
 
