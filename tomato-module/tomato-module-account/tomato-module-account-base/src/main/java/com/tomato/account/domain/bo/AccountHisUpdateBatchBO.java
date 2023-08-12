@@ -1,6 +1,7 @@
 package com.tomato.account.domain.bo;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author lizhifu
  * @since  2022/6/7
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class AccountHisUpdateBatchBO extends AccountHisDealBO{
     /**
