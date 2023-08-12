@@ -41,18 +41,18 @@ public class RabbitRepositoryImpl implements RabbitRepository {
                 .timeoutTime(orderInfoEntity.getTimeoutTime())
                 .build();
         log.info("准备发送延迟订单到MQ：{}", orderDelayBO);
-        rabbitTemplate.setConfirmCallback(new RabbitTemplateConfirmReturn() {
-            @Override
-            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-                super.confirm(correlationData, ack, cause);
-            }
-        });
-        rabbitTemplate.setReturnsCallback(new RabbitTemplateReturnsCallback() {
-            @Override
-            public void returnedMessage(ReturnedMessage returned) {
-                super.returnedMessage(returned);
-            }
-        });
+//        rabbitTemplate.setConfirmCallback(new RabbitTemplateConfirmReturn() {
+//            @Override
+//            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+//                super.confirm(correlationData, ack, cause);
+//            }
+//        });
+//        rabbitTemplate.setReturnsCallback(new RabbitTemplateReturnsCallback() {
+//            @Override
+//            public void returnedMessage(ReturnedMessage returned) {
+//                super.returnedMessage(returned);
+//            }
+//        });
         // 数据发送到 exchange
         CorrelationData correlationData = new CorrelationData();
         rabbitTemplate.convertAndSend(

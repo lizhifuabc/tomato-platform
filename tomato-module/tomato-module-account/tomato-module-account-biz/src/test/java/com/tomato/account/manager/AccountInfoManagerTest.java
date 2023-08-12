@@ -21,7 +21,8 @@ public class AccountInfoManagerTest {
     public void test(){
         AccountCreateReq accountCreateReq = new AccountCreateReq();
         accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
-        accountCreateReq.setMerchantNo("10202301010004121");
+        accountCreateReq.setMerchantNo("10202307240001001");
+        accountCreateReq.setRemark("测试");
         accountInfoManager.create(accountCreateReq);
     }
 }

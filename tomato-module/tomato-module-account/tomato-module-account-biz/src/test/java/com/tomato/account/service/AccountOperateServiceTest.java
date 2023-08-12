@@ -24,7 +24,8 @@ public class AccountOperateServiceTest {
     public void test(){
         AccountCreateReq accountCreateReq = new AccountCreateReq();
         accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
-        accountCreateReq.setMerchantNo(String.valueOf(System.currentTimeMillis()));
+        accountCreateReq.setMerchantNo("10202307240001001");
+        accountCreateReq.setRemark("测试");
         accountOperateService.createAccount(accountCreateReq);
 
         AccountFreezeReq accountFreezeReq = new AccountFreezeReq();

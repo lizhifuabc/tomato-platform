@@ -6,5 +6,5 @@
 192.168.31.156  tomato-redis
 192.168.31.156  tomato-local
 127.0.0.1  tomato-sentinel
-127.0.0.1  tomato-rabbitmq
+192.168.31.156  tomato-rabbitmq
 127.0.0.1 tomato-prometheus-pushgateway
