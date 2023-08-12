@@ -3,7 +3,7 @@
 192.168.31.156  tomato-mysql
 # 使用的时候不要开VPN，如果开了VPN，直接使用IP访问(或者设置白名单)
 192.168.31.156  tomato-zipkin
-127.0.0.1  tomato-redis
+192.168.31.156  tomato-redis
 127.0.0.1  tomato-sentinel
 127.0.0.1  tomato-rabbitmq
 127.0.0.1 tomato-prometheus-pushgateway
