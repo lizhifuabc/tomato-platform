@@ -4,6 +4,7 @@ import com.tomato.account.api.RemoteAccountService;
 import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.account.vo.enums.AccountTypeEnum;
 import com.tomato.account.vo.req.AccountTradReq;
+import com.tomato.common.resp.Resp;
 import com.tomato.order.domain.domain.entity.AccountEntity;
 import com.tomato.order.domain.repository.AccountRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,10 @@ public class AccountRepositoryImpl implements AccountRepository {
                 .accountType(AccountTypeEnum.SETTLEMENT.getValue())
                 .accountHisType(AccountHisTypeEnum.TRAD.getValue())
                 .build();
-        remoteAccountService.trad(accountTradReq);
+        Resp<Void> trad = remoteAccountService.trad(accountTradReq);
+        if (!trad.isSuccess()) {
+            // TODO 重试或者记录日志
+            log.error("账户入账失败:{},流水号:{}",trad.getMsg(),accountEntity.getSysNo());
+        }
     }
 }

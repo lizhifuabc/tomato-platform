@@ -41,7 +41,7 @@
 
     <select id="selectByOrderNo" resultType="com.tomato.order.infrastructure.dataobject.OrderInfoDO">
         select
-            order_status,order_no,pay_type,complete_time,create_time,version
+            *
         from
             t_order_info
         where
