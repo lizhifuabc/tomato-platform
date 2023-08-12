@@ -313,6 +313,8 @@
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-monitor/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-base/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-base/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-biz/src/main/java" charset="UTF-8" />
@@ -325,14 +327,14 @@
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-dto/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-entity/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-entity/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-main/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-main/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-mapper/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-mapper/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-merchant/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-merchant/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-start/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-notice/tomato-module-notice-start/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tomato-module/tomato-module-order/tomato-module-order-application/src/main/java" charset="UTF-8" />

@@ -13,12 +13,13 @@
     <packaging>pom</packaging>
     <modules>
         <module>tomato-module-notice-merchant</module>
-        <module>tomato-module-notice-main</module>
+        <module>tomato-module-notice-start</module>
         <module>tomato-module-notice-common</module>
         <module>tomato-module-notice-controller</module>
         <module>tomato-module-notice-mapper</module>
         <module>tomato-module-notice-dto</module>
         <module>tomato-module-notice-entity</module>
         <module>tomato-module-notice-service</module>
+        <module>tomato-module-notice-api</module>
     </modules>
 </project>

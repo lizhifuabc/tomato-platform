@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-module-notice-main</artifactId>
+    <artifactId>tomato-module-notice-start</artifactId>
 
     <dependencies>
         <dependency>
@@ -20,10 +20,6 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-module-notice-controller</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-monitor-prometheus</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>

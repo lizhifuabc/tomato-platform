@@ -22,7 +22,7 @@ services:
       - spring_cloud_default  # 将容器连接到名为 spring_cloud_default 的网络
   tomato-notice:
     build: # 构建 Docker 镜像的设置
-      context: ./tomato-module/tomato-module-notice/tomato-module-notice-main  # Dockerfile 所在的目录
+      context: ./tomato-module/tomato-module-notice/tomato-module-notice-start  # Dockerfile 所在的目录
     restart: always # 容器退出时总是自动重启
     image: tomato-notice # 指定容器使用的镜像名称
     container_name: tomato-notice  # 指定容器的名称
