@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.order.infrastructure.mapper.OrderInfoMapper">
+    <update id="updateAccountStatus">
+        update
+        t_order_info
+        set
+        version = version + 1,
+        account_status = #{accountStatus}
+        where
+        order_no = #{orderNo} and order_status = '${@com.tomato.order.domain.constants.OrderStatusEnum@SUCCESS.value}'
+    </update>
+    <update id="updateNoticeStatus">
+        update
+            t_order_info
+        set
+            version = version + 1,
+            notice_status = #{noticeStatus}
+        where
+            order_no = #{orderNo} and order_status = '${@com.tomato.order.domain.constants.OrderStatusEnum@SUCCESS.value}'
+    </update>
     <update id="updateOrderStatus">
         update
         t_order_info
@@ -16,7 +34,23 @@
             #{orderStatus}
         </foreach>
     </update>
-
+    <update id="updateOrderStatusSuccess">
+        update
+        t_order_info
+        set
+        version = version + 1,
+        order_status = #{updateOrderStatusDO.orderStatus},
+        complete_time = #{updateOrderStatusDO.completeTime},
+        notice_status = #{updateOrderStatusDO.noticeStatus},
+        account_status = #{updateOrderStatusDO.accountStatus}
+        where
+        order_no = #{updateOrderStatusDO.orderNo}
+        and version = #{updateOrderStatusDO.currentVersion}
+        and order_status in
+        <foreach collection="updateOrderStatusDO.expectOrderStatus" item="orderStatus" open="(" close=")" separator=",">
+            #{orderStatus}
+        </foreach>
+    </update>
     <sql id="select_fields">
         order_status,order_no,pay_type,complete_time,create_time,version,request_amount
     </sql>

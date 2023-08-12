@@ -63,4 +63,10 @@ public interface OrderInfoRepository {
      * @return 订单
      */
     OrderInfoEntity selectByMerchant(String merchantNo, String merchantOrderNo);
+    /**
+     * 更新订单状态为成功
+     * @param orderInfoEntity 更新订单状态
+     * @return 更新条数
+     */
+    int updateOrderStatusSuccess(OrderInfoEntity orderInfoEntity);
 }

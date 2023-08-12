@@ -40,4 +40,12 @@ public class UpdateOrderStatusDO {
      * 完成时间
      */
     private LocalDateTime completeTime;
+    /**
+     * 通知状态
+     */
+    private String noticeStatus;
+    /**
+     * 入账状态
+     */
+    private String accountStatus;
 }

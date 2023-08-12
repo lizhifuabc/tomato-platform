@@ -82,4 +82,14 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
         OrderInfoDO orderInfoDO = orderInfoMapper.selectByMerchant(merchantNo, merchantOrderNo);
         return convert(orderInfoDO);
     }
+
+    @Override
+    public int updateOrderStatusSuccess(OrderInfoEntity orderInfoEntity) {
+        int i = orderInfoMapper.updateOrderStatusSuccess(convertUpdateOrderStatus(orderInfoEntity));
+        // 更新条数必须 = 1，否则回滚
+        if(i != 1 ){
+            throw new BusinessException("更新订单状态失败");
+        }
+        return i;
+    }
 }

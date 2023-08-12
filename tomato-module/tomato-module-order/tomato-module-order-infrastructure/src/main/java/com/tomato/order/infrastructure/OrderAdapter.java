@@ -50,6 +50,8 @@ public class OrderAdapter {
                 .completeTime(orderInfoEntity.getCompleteTime())
                 .orderNo(orderInfoEntity.getOrderNo())
                 .expectOrderStatus(orderInfoEntity.getExpectOrderStatus())
+                .accountStatus(orderInfoEntity.getAccountStatus())
+                .noticeStatus(orderInfoEntity.getNoticeStatus())
                 .build();
     }
 }

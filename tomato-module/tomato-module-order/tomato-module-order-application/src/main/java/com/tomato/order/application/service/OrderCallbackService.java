@@ -39,7 +39,8 @@ public class OrderCallbackService {
             return;
         }
         orderInfoEntity.success();
-        orderInfoRepository.updateOrderStatus(orderInfoEntity);
+        // 更新订单状态为成功,通知状态为处理中，入账状态为处理中
+        orderInfoRepository.updateOrderStatusSuccess(orderInfoEntity);
         // TODO 是否使用MQ消息通知
         // 发送账户入账
         AccountEntity accountEntity = AccountEntity.builder()

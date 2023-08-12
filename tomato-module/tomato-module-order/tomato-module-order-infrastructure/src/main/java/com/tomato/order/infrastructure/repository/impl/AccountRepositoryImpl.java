@@ -5,8 +5,10 @@ import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.account.vo.enums.AccountTypeEnum;
 import com.tomato.account.vo.req.AccountTradReq;
 import com.tomato.common.resp.Resp;
+import com.tomato.order.domain.constants.OrderStatusEnum;
 import com.tomato.order.domain.domain.entity.AccountEntity;
 import com.tomato.order.domain.repository.AccountRepository;
+import com.tomato.order.infrastructure.mapper.OrderInfoMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -20,9 +22,10 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 public class AccountRepositoryImpl implements AccountRepository {
     private final RemoteAccountService remoteAccountService;
-
-    public AccountRepositoryImpl(RemoteAccountService remoteAccountService) {
+    private final OrderInfoMapper orderInfoMapper;
+    public AccountRepositoryImpl(RemoteAccountService remoteAccountService, OrderInfoMapper orderInfoMapper) {
         this.remoteAccountService = remoteAccountService;
+        this.orderInfoMapper = orderInfoMapper;
     }
 
     @Override
@@ -39,6 +42,9 @@ public class AccountRepositoryImpl implements AccountRepository {
         if (!trad.isSuccess()) {
             // TODO 重试或者记录日志
             log.error("账户入账失败:{},流水号:{}",trad.getMsg(),accountEntity.getSysNo());
+            orderInfoMapper.updateAccountStatus(accountEntity.getSysNo(), OrderStatusEnum.FAIL.getValue());
+            return;
         }
+        orderInfoMapper.updateAccountStatus(accountEntity.getSysNo(), OrderStatusEnum.SUCCESS.getValue());
     }
 }

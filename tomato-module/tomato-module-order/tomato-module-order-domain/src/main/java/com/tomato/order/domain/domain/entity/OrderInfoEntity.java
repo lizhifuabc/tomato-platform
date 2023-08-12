@@ -220,6 +220,8 @@ public class OrderInfoEntity extends BaseEntity {
         // version 由数据库维护，update时会自动加1
         // TODO 超时后又支付成功的情况
         this.expectOrderStatus = Collections.singletonList(OrderStatusEnum.DEAL.getValue());
+        this.accountStatus = OrderStatusEnum.DEAL.getValue();
+        this.noticeStatus = OrderStatusEnum.DEAL.getValue();
     }
     /**
      * 订单失败

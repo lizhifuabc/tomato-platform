@@ -66,4 +66,26 @@ public interface OrderInfoMapper extends BaseMapper<OrderInfoDO,Long> {
                                          @Param("pageSize") int pageSize,
                                          @Param("createTime") LocalDateTime createTime,
                                          @Param("orderStatus") String orderStatus);
+
+    /**
+     * 更新订单状态为成功
+     * @param updateOrderStatusDO 更新订单状态
+     * @return 更新条数
+     */
+    int updateOrderStatusSuccess(@Param("updateOrderStatusDO")UpdateOrderStatusDO updateOrderStatusDO);
+
+    /**
+     * 更新账户状态
+     * @param orderNo 订单号
+     * @param accountStatus 账户状态
+     */
+    int updateAccountStatus(@Param("orderNo") String orderNo,@Param("accountStatus") String accountStatus);
+
+    /**
+     * 更新通知状态
+     * @param orderNo 订单号
+     * @param noticeStatus 通知状态
+     * @return 更新条数
+     */
+    int updateNoticeStatus(@Param("orderNo") String orderNo,@Param("noticeStatus") String noticeStatus);
 }
