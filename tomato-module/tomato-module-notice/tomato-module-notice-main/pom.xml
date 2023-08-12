@@ -25,7 +25,10 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-monitor-prometheus</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-cloud-alibaba-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
