@@ -2,6 +2,7 @@ package com.tomato.account.domain.entity;
 
 import com.tomato.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
  * @author lizhifu
  * @since 2022/12/31
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class AccountInfoEntity extends BaseEntity {
     /**

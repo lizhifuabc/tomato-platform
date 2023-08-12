@@ -2,6 +2,7 @@ package com.tomato.account.domain.entity;
 
 import com.tomato.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 账户结算规则
@@ -9,6 +10,7 @@ import lombok.Data;
  * @author lizhifu
  * @since 2023/1/8
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class AccountSettleEntity extends BaseEntity {
     /**
