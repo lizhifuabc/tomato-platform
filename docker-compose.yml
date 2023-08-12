@@ -43,3 +43,4 @@ services:
 networks:
   spring_cloud_default:  # 定义名为 spring_cloud_default 的网络
     driver: bridge #  使用 bridge 网络模式
+    name: spring_cloud_default

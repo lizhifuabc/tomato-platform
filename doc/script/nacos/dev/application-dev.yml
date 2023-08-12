@@ -1,6 +1,6 @@
-spring:
-  boot:
-    admin:
-      client:
-        # 要注册的Spring Boot管理服务器的URL。
-        url: http://tomato-monitor:9994
+#spring:
+#  boot:
+#    admin:
+#      client:
+#        # 要注册的Spring Boot管理服务器的URL。
+#        url: http://tomato-monitor:9994
