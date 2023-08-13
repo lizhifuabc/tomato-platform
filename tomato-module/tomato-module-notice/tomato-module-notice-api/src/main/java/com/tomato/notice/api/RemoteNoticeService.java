@@ -15,9 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author lizhifu
  * @since 2023/8/12
  */
-@FeignClient(contextId = "remoteAccountService", value = ServiceNameConstants.SERVICE_NAME_NOTICE,
+@FeignClient(contextId = "remoteNoticeService", value = ServiceNameConstants.SERVICE_NAME_NOTICE,
         fallbackFactory = RemoteNoticeServiceFallback.class,dismiss404 = true)
 public interface RemoteNoticeService {
+    /**
+     * 创建通知
+     * @param noticeCreateReq 通知请求
+     * @return Resp 通知结果
+     */
     @PostMapping("/notice/create")
     Resp<Void> createNotice(@Validated @RequestBody NoticeCreateReq noticeCreateReq);
 }
