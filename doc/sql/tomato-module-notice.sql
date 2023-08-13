@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS `t_notice_record`;
 CREATE TABLE `t_notice_record` (
    `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '通知记录ID',
    `order_no` varchar(36) not null  comment '订单号',
-   `merchant_no`       varchar(16)     not null comment '商户编号',
+   `merchant_no`       varchar(64)     not null comment '商户编号',
    `merchant_order_no` varchar(36)     not null comment '商户订单号',
    `rule_code`         varchar(50)       not null       comment '规则编码',
    `http_method`       varchar(32)       comment 'http方法',

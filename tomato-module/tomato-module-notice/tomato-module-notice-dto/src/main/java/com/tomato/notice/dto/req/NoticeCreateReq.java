@@ -42,7 +42,7 @@ public class NoticeCreateReq {
      */
     @NotBlank
     @Schema(description = "商户编号")
-    @Length(max = 16)
+    @Length(max = 64)
     private String merchantNo;
 
     /**
