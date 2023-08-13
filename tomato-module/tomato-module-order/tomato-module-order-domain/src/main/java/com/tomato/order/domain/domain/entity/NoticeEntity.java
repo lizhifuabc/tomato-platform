@@ -21,11 +21,6 @@ import java.util.Map;
 @AllArgsConstructor
 public class NoticeEntity {
     /**
-     * http请求方式
-     */
-    @Schema(description = "http请求方式")
-    private HttpMethod httpMethod;
-    /**
      * 订单号
      */
     @Schema(description = "订单号")
