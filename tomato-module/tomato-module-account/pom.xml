@@ -12,7 +12,7 @@
     <artifactId>tomato-module-account</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>tomato-module-account-biz</module>
+        <module>tomato-module-account-start</module>
         <module>tomato-module-account-base</module>
         <module>tomato-module-account-api</module>
         <module>tomato-module-account-vo</module>

@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-module-account-biz</artifactId>
+    <artifactId>tomato-module-account-start</artifactId>
 
     <dependencies>
         <dependency>
