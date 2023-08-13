@@ -118,6 +118,17 @@ public class BigDecimalUtil {
     }
 
     /**
+     * BigDecimal转String
+     * @param bigDecimal bigDecimal
+     * @return String
+     */
+    public static String bigDecimalToString(BigDecimal bigDecimal) {
+        if (bigDecimal == null) {
+            return null;
+        }
+        return bigDecimal.setScale(2, RoundingMode.HALF_UP).toString();
+    }
+    /**
      * 提供精确的乘法运算
      *
      * @param v1 被乘数
@@ -361,5 +372,11 @@ public class BigDecimalUtil {
         boolean res;
         res = bj > 0;
         return res;
+    }
+
+    public static void main(String[] args) {
+        BigDecimal b1 = new BigDecimal("0.100");
+        System.out.println(b1.toString());
+        System.out.println(BigDecimalUtil.bigDecimalToString(b1));
     }
 }

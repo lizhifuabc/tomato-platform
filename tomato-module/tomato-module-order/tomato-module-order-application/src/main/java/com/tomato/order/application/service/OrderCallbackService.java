@@ -72,7 +72,7 @@ public class OrderCallbackService {
             noticeParam.put("merchantNo",orderInfoEntity.getMerchantNo());
             noticeParam.put("merchantOrderNo",orderInfoEntity.getMerchantOrderNo());
             noticeParam.put("orderStatus",orderInfoEntity.getOrderStatus());
-            noticeParam.put("orderAmount",orderInfoEntity.getRequestAmount().toString());
+            noticeParam.put("orderAmount",BigDecimalUtil.bigDecimalToString(orderInfoEntity.getRequestAmount()));
             noticeParam.put("hmac", HmacUtil.hmac(noticeParam,merchantKey));
             NoticeEntity noticeEntity = NoticeEntity.builder()
                     .merchantNo(orderInfoEntity.getMerchantNo())
