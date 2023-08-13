@@ -1,11 +1,11 @@
 # 基础镜像 使用alibabadragonwell/dragonwell:17-anolis
 FROM alibabadragonwell/dragonwell:17-anolis
 # 在容器内创建目录。
-RUN mkdir -p /tomato-module-merchant-biz
+RUN mkdir -p /tomato-module-merchant-start
 # 切换工作目录
-WORKDIR /tomato-module-merchant-biz
+WORKDIR /tomato-module-merchant-start
 # 指定应用程序的 JAR 文件路径
-ARG JAR_FILE=target/tomato-module-merchant-biz.jar
+ARG JAR_FILE=target/tomato-module-merchant-start.jar
 # 将构建上下文中的应用程序 JAR 文件复制到容器内的 app.jar
 COPY ${JAR_FILE} app.jar
 # 声明容器将监听的端口号为

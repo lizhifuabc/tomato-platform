@@ -18,7 +18,7 @@ spring:
     gateway:
       routes:
         - id: merchant
-          uri: lb://tomato-module-merchant-biz
+          uri: lb://tomato-module-merchant-start
           predicates:
             - Path=/merchant/**
           filters:

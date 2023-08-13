@@ -12,7 +12,7 @@
     <artifactId>tomato-module-merchant</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>tomato-module-merchant-biz</module>
+        <module>tomato-module-merchant-start</module>
         <module>tomato-module-merchant-base</module>
         <module>tomato-module-merchant-api</module>
     </modules>

@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-module-merchant-biz</artifactId>
+    <artifactId>tomato-module-merchant-start</artifactId>
 
     <dependencies>
         <dependency>

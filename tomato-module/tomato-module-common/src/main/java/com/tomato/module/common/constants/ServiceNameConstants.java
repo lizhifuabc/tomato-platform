@@ -7,7 +7,7 @@ package com.tomato.module.common.constants;
  * @since 2023/8/1
  */
 public interface ServiceNameConstants {
-    String SERVICE_NAME_MERCHANT = "tomato-module-merchant-biz";
+    String SERVICE_NAME_MERCHANT = "tomato-module-merchant-start";
 
     String SERVICE_NAME_ACCOUNT = "tomato-module-account-biz";
 
