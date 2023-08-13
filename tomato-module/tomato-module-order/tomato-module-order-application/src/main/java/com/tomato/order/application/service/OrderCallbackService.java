@@ -10,11 +10,13 @@ import com.tomato.order.domain.repository.AccountRepository;
 import com.tomato.order.domain.repository.NoticeRepository;
 import com.tomato.order.domain.repository.OrderInfoRepository;
 import com.tomato.common.util.BigDecimalUtil;
+import io.netty.util.concurrent.CompleteFuture;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * 订单接收回调
@@ -51,31 +53,35 @@ public class OrderCallbackService {
         // 更新订单状态为成功,通知状态为处理中，入账状态为处理中
         orderInfoRepository.updateOrderStatusSuccess(orderInfoEntity);
         // TODO 是否使用MQ消息通知
-        // 发送账户入账
-        AccountEntity accountEntity = AccountEntity.builder()
-                .merchantNo(orderInfoEntity.getMerchantNo())
-                .merchantOrderNo(orderInfoEntity.getMerchantOrderNo())
-                .sysNo(orderInfoEntity.getOrderNo())
-                .amount(BigDecimalUtil.sub(orderInfoEntity.getRequestAmount(),orderInfoEntity.getMerchantFee()))
-                .build();
-        accountRepository.trad(accountEntity);
-        // 获取商户key
-        String merchantKey = merchantService.merchantKey(orderInfoEntity.getMerchantNo());
-        // 发送通知
-        Map<String,String> noticeParam = new HashMap<>();
-        noticeParam.put("orderNo",orderInfoEntity.getOrderNo());
-        noticeParam.put("merchantNo",orderInfoEntity.getMerchantNo());
-        noticeParam.put("merchantOrderNo",orderInfoEntity.getMerchantOrderNo());
-        noticeParam.put("orderStatus",orderInfoEntity.getOrderStatus());
-        noticeParam.put("orderAmount",orderInfoEntity.getRequestAmount().toString());
-        noticeParam.put("hmac", HmacUtil.hmac(noticeParam,merchantKey));
-        NoticeEntity noticeEntity = NoticeEntity.builder()
-                .merchantNo(orderInfoEntity.getMerchantNo())
-                .merchantOrderNo(orderInfoEntity.getMerchantOrderNo())
-                .orderNo(orderInfoEntity.getOrderNo())
-                .noticeUrl(orderInfoEntity.getNoticeSys())
-                .noticeParam(noticeParam)
-                .build();
-        noticeRepository.createNotice(noticeEntity);
+        CompletableFuture.runAsync(()->{
+            // 发送账户入账
+            AccountEntity accountEntity = AccountEntity.builder()
+                    .merchantNo(orderInfoEntity.getMerchantNo())
+                    .merchantOrderNo(orderInfoEntity.getMerchantOrderNo())
+                    .sysNo(orderInfoEntity.getOrderNo())
+                    .amount(BigDecimalUtil.sub(orderInfoEntity.getRequestAmount(),orderInfoEntity.getMerchantFee()))
+                    .build();
+            accountRepository.trad(accountEntity);
+        });
+        CompletableFuture.runAsync(()->{
+            // 获取商户key
+            String merchantKey = merchantService.merchantKey(orderInfoEntity.getMerchantNo());
+            // 发送通知
+            Map<String,String> noticeParam = new HashMap<>();
+            noticeParam.put("orderNo",orderInfoEntity.getOrderNo());
+            noticeParam.put("merchantNo",orderInfoEntity.getMerchantNo());
+            noticeParam.put("merchantOrderNo",orderInfoEntity.getMerchantOrderNo());
+            noticeParam.put("orderStatus",orderInfoEntity.getOrderStatus());
+            noticeParam.put("orderAmount",orderInfoEntity.getRequestAmount().toString());
+            noticeParam.put("hmac", HmacUtil.hmac(noticeParam,merchantKey));
+            NoticeEntity noticeEntity = NoticeEntity.builder()
+                    .merchantNo(orderInfoEntity.getMerchantNo())
+                    .merchantOrderNo(orderInfoEntity.getMerchantOrderNo())
+                    .orderNo(orderInfoEntity.getOrderNo())
+                    .noticeUrl(orderInfoEntity.getNoticeSys())
+                    .noticeParam(noticeParam)
+                    .build();
+            noticeRepository.createNotice(noticeEntity);
+        });
     }
 }
