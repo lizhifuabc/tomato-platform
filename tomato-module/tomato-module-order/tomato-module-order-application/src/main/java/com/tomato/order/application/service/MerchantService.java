@@ -20,4 +20,7 @@ public class MerchantService {
     public MerchantEntity merchant(MerchantEntity merchantEntity){
         return merchantRepository.merchant(merchantEntity);
     }
+    public String merchantKey(String merchantNo){
+        return merchantRepository.merchantKey(merchantNo);
+    }
 }

@@ -15,4 +15,10 @@ public interface MerchantRepository {
      * @return 商户信息
      */
     MerchantEntity merchant(MerchantEntity merchantEntity);
+    /**
+     * 商户key
+     * @param merchantNo 商户号
+     * @return 商户key
+     */
+    String merchantKey(String merchantNo);
 }

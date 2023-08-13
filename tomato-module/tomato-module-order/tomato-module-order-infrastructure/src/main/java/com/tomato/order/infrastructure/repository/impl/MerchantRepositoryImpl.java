@@ -3,6 +3,7 @@ package com.tomato.order.infrastructure.repository.impl;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.common.resp.Resp;
 import com.tomato.merchant.api.RemoteMerchantService;
+import com.tomato.merchant.domain.req.MerchantConfigQueryReq;
 import com.tomato.merchant.domain.req.MerchantTradReq;
 import com.tomato.merchant.domain.resp.MerchantTradResp;
 import com.tomato.order.domain.domain.entity.MerchantEntity;
@@ -39,5 +40,12 @@ public class MerchantRepositoryImpl implements MerchantRepository {
             return re;
         }
         throw new BusinessException(trade.getMsg());
+    }
+
+    @Override
+    public String merchantKey(String merchantNo) {
+        MerchantConfigQueryReq merchantConfigQueryReq = new MerchantConfigQueryReq();
+        merchantConfigQueryReq.setMerchantNo(merchantNo);
+        return remoteMerchantService.queryConfig(merchantConfigQueryReq).getData().getMerchantKey();
     }
 }

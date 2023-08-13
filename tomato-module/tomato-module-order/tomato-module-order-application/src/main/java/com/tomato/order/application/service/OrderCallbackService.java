@@ -2,6 +2,7 @@ package com.tomato.order.application.service;
 
 import com.tomato.common.exception.BusinessException;
 import com.tomato.order.application.req.OrderCallbackReq;
+import com.tomato.order.application.util.HmacUtil;
 import com.tomato.order.domain.domain.entity.AccountEntity;
 import com.tomato.order.domain.domain.entity.NoticeEntity;
 import com.tomato.order.domain.domain.entity.OrderInfoEntity;
@@ -58,6 +59,8 @@ public class OrderCallbackService {
                 .amount(BigDecimalUtil.sub(orderInfoEntity.getRequestAmount(),orderInfoEntity.getMerchantFee()))
                 .build();
         accountRepository.trad(accountEntity);
+        // 获取商户key
+        String merchantKey = merchantService.merchantKey(orderInfoEntity.getMerchantNo());
         // 发送通知
         Map<String,String> noticeParam = new HashMap<>();
         noticeParam.put("orderNo",orderInfoEntity.getOrderNo());
@@ -65,6 +68,7 @@ public class OrderCallbackService {
         noticeParam.put("merchantOrderNo",orderInfoEntity.getMerchantOrderNo());
         noticeParam.put("orderStatus",orderInfoEntity.getOrderStatus());
         noticeParam.put("orderAmount",orderInfoEntity.getRequestAmount().toString());
+        noticeParam.put("hmac", HmacUtil.hmac(noticeParam,merchantKey));
         NoticeEntity noticeEntity = NoticeEntity.builder()
                 .merchantNo(orderInfoEntity.getMerchantNo())
                 .merchantOrderNo(orderInfoEntity.getMerchantOrderNo())

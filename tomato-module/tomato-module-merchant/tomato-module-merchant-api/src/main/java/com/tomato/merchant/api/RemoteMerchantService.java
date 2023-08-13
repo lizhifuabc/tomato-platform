@@ -38,5 +38,5 @@ public interface RemoteMerchantService {
      */
     @PostMapping("/merchant/config/query")
     @Operation(summary = "商户配置查询", description = "商户配置查询")
-    Resp<MerchantConfigQueryResp> query(@RequestBody MerchantConfigQueryReq merchantConfigReq);
+    Resp<MerchantConfigQueryResp> queryConfig(@RequestBody MerchantConfigQueryReq merchantConfigReq);
 }
