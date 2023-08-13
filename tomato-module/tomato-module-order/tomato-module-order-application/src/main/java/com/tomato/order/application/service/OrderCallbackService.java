@@ -10,13 +10,13 @@ import com.tomato.order.domain.repository.AccountRepository;
 import com.tomato.order.domain.repository.NoticeRepository;
 import com.tomato.order.domain.repository.OrderInfoRepository;
 import com.tomato.common.util.BigDecimalUtil;
-import io.netty.util.concurrent.CompleteFuture;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 /**
  * 订单接收回调
@@ -30,11 +30,13 @@ public class OrderCallbackService {
     private final AccountRepository accountRepository;
     private final NoticeRepository noticeRepository;
     private final MerchantService merchantService;
-    public OrderCallbackService(OrderInfoRepository orderInfoRepository, AccountRepository accountRepository, NoticeRepository noticeRepository, MerchantService merchantService) {
+    private final Executor orderAsyncExecutor;
+    public OrderCallbackService(OrderInfoRepository orderInfoRepository, AccountRepository accountRepository, NoticeRepository noticeRepository, MerchantService merchantService, Executor orderAsyncExecutor) {
         this.orderInfoRepository = orderInfoRepository;
         this.accountRepository = accountRepository;
         this.noticeRepository = noticeRepository;
         this.merchantService = merchantService;
+        this.orderAsyncExecutor = orderAsyncExecutor;
     }
 
     /**
@@ -62,7 +64,7 @@ public class OrderCallbackService {
                     .amount(BigDecimalUtil.sub(orderInfoEntity.getRequestAmount(),orderInfoEntity.getMerchantFee()))
                     .build();
             accountRepository.trad(accountEntity);
-        });
+        },orderAsyncExecutor);
         CompletableFuture.runAsync(()->{
             // 获取商户key
             String merchantKey = merchantService.merchantKey(orderInfoEntity.getMerchantNo());
@@ -82,6 +84,6 @@ public class OrderCallbackService {
                     .noticeParam(noticeParam)
                     .build();
             noticeRepository.createNotice(noticeEntity);
-        });
+        },orderAsyncExecutor);
     }
 }
