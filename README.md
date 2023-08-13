@@ -36,6 +36,9 @@ spring 官方文档记录：
 - 日志中心（ TODO）：ELK
 - 日志收集（ TODO）：Logstash Logback Encoder
 - MySQL 同步 ES 方案（ TODO）：Canal（https://github.com/alibaba/canal）、dolphinscheduler（https://github.com/apache/dolphinscheduler）
+## 截图
+
+![spring-boot-admin.png](doc%2Fimage%2Fspring-boot-admin.png)
 
 ## 基础文档
 
