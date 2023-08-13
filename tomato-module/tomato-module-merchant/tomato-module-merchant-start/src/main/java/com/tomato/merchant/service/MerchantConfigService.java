@@ -2,7 +2,9 @@ package com.tomato.merchant.service;
 
 import com.tomato.common.exception.BusinessException;
 import com.tomato.merchant.domain.entity.MerchantConfig;
+import com.tomato.merchant.domain.req.MerchantConfigQueryReq;
 import com.tomato.merchant.domain.req.MerchantConfigReq;
+import com.tomato.merchant.domain.resp.MerchantConfigQueryResp;
 import com.tomato.merchant.repository.MerchantConfigRepository;
 import com.tomato.merchant.repository.MerchantInfoRepository;
 import com.tomato.web.core.util.BeanUtil;
@@ -31,5 +33,10 @@ public class MerchantConfigService {
         // TODO 生成商户密钥算法
         merchantConfig.setMerchantKey(UUID.randomUUID().toString());
         merchantConfigRepository.save(merchantConfig);
+    }
+
+    public MerchantConfigQueryResp query(MerchantConfigQueryReq merchantConfigReq) {
+        MerchantConfig merchantConfig = merchantConfigRepository.findByMerchantNo(merchantConfigReq.getMerchantNo()).orElseThrow(()->new BusinessException("商户不存在"));
+        return BeanUtil.copy(merchantConfig,MerchantConfigQueryResp.class);
     }
 }
