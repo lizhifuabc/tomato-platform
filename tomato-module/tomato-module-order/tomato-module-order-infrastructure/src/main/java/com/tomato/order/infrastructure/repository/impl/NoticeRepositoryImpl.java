@@ -47,7 +47,7 @@ public class NoticeRepositoryImpl implements NoticeRepository {
         noticeCreateReq.setMerchantNo(noticeEntity.getMerchantNo());
         noticeCreateReq.setMerchantOrderNo(noticeEntity.getMerchantOrderNo());
         noticeCreateReq.setNoticeUrl(noticeEntity.getNoticeUrl());
-        noticeCreateReq.setHttpMethod(HttpMethod.POST);
+        noticeCreateReq.setHttpMethod("POST");
         noticeCreateReq.setAppNo("tomato-order");
         noticeCreateReq.setNoticeParam(noticeEntity.getNoticeParam());
         noticeCreateReq.setOrderNo(noticeEntity.getOrderNo());

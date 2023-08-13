@@ -39,7 +39,7 @@ public class NoticeRecordManager {
         // 创建通知记录
         NoticeRecordEntity noticeRecordEntity = new NoticeRecordEntity();
         BeanUtils.copyProperties(noticeCreateReq, noticeRecordEntity);
-        noticeRecordEntity.setHttpMethod(noticeCreateReq.getHttpMethod().toString());
+        noticeRecordEntity.setHttpMethod(noticeCreateReq.getHttpMethod());
         noticeRecordEntity.setNoticeParam(JacksonUtils.toJson(noticeCreateReq.getNoticeParam()));
         noticeRecordMapper.insertSelective(noticeRecordEntity);
         return noticeRecordEntity;
