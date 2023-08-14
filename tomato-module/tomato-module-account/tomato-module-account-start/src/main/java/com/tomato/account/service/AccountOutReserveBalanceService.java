@@ -79,23 +79,28 @@ public class AccountOutReserveBalanceService {
 
         // 风险预存期内日期
         // 计算规则：当前时间 - （风险预存期 - 1）
-        // 例如：风险预存期：2天，当前时间：2023年01月11日，此时 2023年01月11日 和 2023年01月10 为风险预存期内的日期
+        // 例如：风险预存期：2天
+        // 当前时间：2023年01月11日
+        // 2023年01月11日 和 2023年01月10 为风险预存期内的日期
         // 即：2023年01月11日 - （2 - 1） = 2023年01月10日
         LocalDate start = exeLocalDate.minusDays(accountSettle.getReserveDays() - 1);
         LocalDateTime startDate = start.atTime(LocalTime.MIN);
         LocalDateTime endDate = exeLocalDate.atTime(LocalTime.MAX);
 
-        log.info("计算账户风险预存期外余额：查询账户历史：账户：{}，开始日期：{}，结束日期：{}，风险预存期为：{}",accountNo,startDate,endDate,accountSettle.getReserveDays());
+        log.info("计算账户风险预存期外余额：查询账户历史：账户：{}，开始日期：{}，结束日期：{}，风险预存期为：{}",
+                accountNo,startDate,endDate,accountSettle.getReserveDays());
         // 风内：
         // 加款：交易、退款
         // 扣款：提现、结算
-        // 只统计加款里面的交易，退款不算收入；
+        // 只统计加款里面的交易，退款不算收入，因为本身退款对应的扣款就是口的风内的钱，如果把退款也统计在风内的话，风内的钱就会变多，风外的钱就会变少，风险预存期外的钱就会变少
+        // 最终计算公式 风外的钱 = 账户余额 - 风内的钱
         AccountHisCollectResBO collect = accountHisDao.collect(accountNo,startDate, endDate, AccountHisTypeEnum.TRAD.getValue());
         // 账户余额 - 账户历史金额
         // TODO 是否存在未入账的账户历史，如果存在，此时余额是少的，此时计算是有问题的。
         BigDecimal amount = accountInfoEntity.getBalance().subtract(collect.getTotalAmount());
         if(amount.compareTo(BigDecimal.ZERO) < 0){
-            log.error("计算账户风险预存期外余额：失败：账户：{}，开始日期：{}，结束日期：{}，风险预存期外余额小于0，查看是否存在未入账的账户历史",accountNo,startDate,endDate);
+            log.error("计算账户风险预存期外余额：失败：账户：{}，开始日期：{}，结束日期：{}，风险预存期外余额小于0，查看是否存在未入账的账户历史",
+                    accountNo,startDate,endDate);
             return;
         }
         accountOutReserveBalanceManager.updateOutReserveBalance(accountInfoEntity.getAccountNo(),amount,accountInfoEntity.getVersion(),exeLocalDate);

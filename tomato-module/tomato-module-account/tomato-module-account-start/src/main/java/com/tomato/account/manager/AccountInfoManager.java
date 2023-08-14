@@ -85,7 +85,7 @@ public class AccountInfoManager {
         }
         int count = accountInfoDao.settleRefund(accountBalanceBO);
         if(count <= 0){
-            throw new BusinessException("在账户加钱时候出现乐观锁异常");
+            throw new BusinessException("在账户结算退款时候出现乐观锁异常");
         }
     }
 
