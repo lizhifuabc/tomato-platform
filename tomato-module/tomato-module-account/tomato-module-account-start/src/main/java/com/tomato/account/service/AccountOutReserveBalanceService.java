@@ -54,7 +54,7 @@ public class AccountOutReserveBalanceService {
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void exe(String accountNo){
         LocalDate exeLocalDate = LocalDate.now();
-        log.info("计算账户风险预存期外余额：开始：账户：{}，日期：{}",accountNo,exeLocalDate);
+        log.info("计算账户风险预存期外余额：开始：账户：{}，执行时间：{}",accountNo,exeLocalDate);
         // 账户查询
         AccountInfoEntity accountInfoEntity = accountInfoManager.selectByAccountNo(accountNo).orElseThrow(() -> new RuntimeException("账户不存在"));
         // 例如：
@@ -85,7 +85,7 @@ public class AccountOutReserveBalanceService {
         LocalDateTime startDate = start.atTime(LocalTime.MIN);
         LocalDateTime endDate = exeLocalDate.atTime(LocalTime.MAX);
 
-        log.info("计算账户风险预存期外余额：查询账户历史：账户：{}，开始日期：{}，结束日期：{}",accountNo,startDate,endDate);
+        log.info("计算账户风险预存期外余额：查询账户历史：账户：{}，开始日期：{}，结束日期：{}，风险预存期为：{}",accountNo,startDate,endDate,accountSettle.getReserveDays());
         // 风内：
         // 加款：交易、退款
         // 扣款：提现、结算

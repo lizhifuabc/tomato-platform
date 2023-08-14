@@ -24,6 +24,6 @@ public class AccountOutReserveBalanceServiceTest {
     public void test(){
         String merchantNo = "1234";
         AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
-        accountOutReserveBalanceService.exe(accountInfoEntity.getAccountNo());
+        accountOutReserveBalanceService.exe("102023081451860592316");
     }
 }

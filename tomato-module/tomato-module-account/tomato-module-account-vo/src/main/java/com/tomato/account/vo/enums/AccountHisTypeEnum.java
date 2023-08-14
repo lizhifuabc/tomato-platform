@@ -14,19 +14,19 @@ import lombok.Getter;
 @Getter
 public enum AccountHisTypeEnum implements BaseEnum<String> {
     /**
-     * 结算
+     * 结算，减钱
      */
     SETTLEMENT("SETTLEMENT", "结算"),
     /**
-     * 交易
+     * 交易，加钱
      */
     TRAD("TRAD", "交易"),
     /**
-     * 退款
+     * 退款，加钱
      */
     REFUND("REFUND", "退款"),
     /**
-     * 提现（默认提现在风内）
+     * 提现（默认提现在风内），减钱
      */
     CASH("CASH", "提现"),
     ;
