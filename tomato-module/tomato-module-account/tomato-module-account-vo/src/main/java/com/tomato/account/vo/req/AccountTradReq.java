@@ -67,4 +67,7 @@ public class AccountTradReq {
     @CheckEnum(value = AccountTypeEnum.class, message = "账户类型不正确")
     @Schema(description = "账户类型")
     private String accountType;
+
+    @Schema(description = "是否强制走异步入账，默认false时，走默认策略")
+    private boolean async = false;
 }

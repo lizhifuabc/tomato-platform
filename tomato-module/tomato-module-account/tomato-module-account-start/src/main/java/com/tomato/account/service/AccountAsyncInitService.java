@@ -43,4 +43,20 @@ public class AccountAsyncInitService implements InitializingBean {
     public boolean checkMerchantNo(String merchantNo){
         return MERCHANT_MAP.containsKey(merchantNo);
     }
+    public AccountAsyncEntity get(String accountNo){
+        return MAP.get(accountNo);
+    }
+    public AccountAsyncEntity getMerchantNo(String merchantNo){
+        return MERCHANT_MAP.get(merchantNo);
+    }
+    public void put(AccountAsyncEntity accountAsyncEntity){
+        MAP.putIfAbsent(accountAsyncEntity.getAccountNo(),accountAsyncEntity);
+        MERCHANT_MAP.putIfAbsent(accountAsyncEntity.getMerchantNo(),accountAsyncEntity);
+    }
+    public void remove(String accountNo){
+        MAP.remove(accountNo);
+    }
+    public void removeMerchantNo(String merchantNo){
+        MERCHANT_MAP.remove(merchantNo);
+    }
 }

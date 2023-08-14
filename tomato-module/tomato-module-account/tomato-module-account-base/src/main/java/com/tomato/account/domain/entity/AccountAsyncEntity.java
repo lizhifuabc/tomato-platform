@@ -1,8 +1,10 @@
 package com.tomato.account.domain.entity;
 
 import com.tomato.common.entity.BaseEntity;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 
 /**
  * 异步入账账户
@@ -12,6 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Table(name = "t_account_async")
 public class AccountAsyncEntity extends BaseEntity {
     /**
      * 账户编号

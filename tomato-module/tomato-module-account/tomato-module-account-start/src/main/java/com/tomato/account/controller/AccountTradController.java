@@ -53,7 +53,7 @@ public class AccountTradController extends BaseController {
         AccountInfoEntity account = accountInfoManager.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType())
                 .orElseThrow(() -> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
         accountTradDto.setAccountNo(account.getAccountNo());
-        if(async){
+        if(async || accountTradReq.isAsync()){
             accountTradService.exeAsync(accountTradDto);
         }else {
             accountTradService.exe(accountTradDto);
