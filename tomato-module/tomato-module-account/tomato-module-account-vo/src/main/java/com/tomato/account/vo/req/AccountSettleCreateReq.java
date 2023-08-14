@@ -45,7 +45,9 @@ public class AccountSettleCreateReq {
     private String cycleType;
 
     /**
-     * 结算周期数据
+     * 结算周期数据:
+     * 周结：1-7
+     * 月结：1-30
      */
     @Schema(description = "结算周期数据")
     private String cycleData;

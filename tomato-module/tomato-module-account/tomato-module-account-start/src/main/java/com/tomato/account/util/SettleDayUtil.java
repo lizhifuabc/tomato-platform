@@ -1,12 +1,13 @@
 package com.tomato.account.util;
 
 import com.tomato.account.vo.enums.CycleTypeEnum;
-import com.tomato.common.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
+import java.util.OptionalInt;
 
 /**
  * 结算日期计算
@@ -17,9 +18,15 @@ import java.util.Arrays;
 @Slf4j
 public class SettleDayUtil {
     public static void main(String[] args) {
-        // 下一结算日计算，周期类型：WEEK, 结算日设置：[1, 2, 3, 4, 6, 7], 当前值：2023-01-08
-        String[] cycleData = {"1","2","3","4","6","7"};
-        System.out.println(nextSettleDateByWeek(cycleData,LocalDate.now()) );
+        // 设置当前日期为星期五
+        LocalDate friday = LocalDate.parse("2023-08-12");
+        // 跨周测试数据
+        String[] cycleData2 = {"1", "2"};
+        System.out.println("下次结算日期: " + nextSettleDateByWeek(cycleData2, friday));
+
+        String[] cycleData = {"31"};
+        LocalDate endOfMonth = LocalDate.parse("2023-01-31");
+        System.out.println("下次结算日期: " + nextSettleDateByMonth(cycleData, endOfMonth));
     }
     public static LocalDate settleDate(String[] cycleData, LocalDate nextSettle,CycleTypeEnum cycleTypeEnum,int reserveDay){
         // 下次结算日<当前日期，取当前日期
@@ -49,43 +56,35 @@ public class SettleDayUtil {
         return switch (cycleTypeEnum) {
             case MONTH, MONTH_WORK -> nextSettleDateByMonth(cycleData, nextSettle);
             case WEEK, WEEK_WORK -> nextSettleDateByWeek(cycleData, nextSettle);
-            default -> throw new BusinessException("不支持的结算周期类型！");
         };
     }
-    private static LocalDate nextSettleDateByWeek(String[] cycleData, LocalDate nextSettle){
-        // 星期几
-        int week = nextSettle.getDayOfWeek().getValue();
-        // 最近的日期
-        String d = Arrays.stream(cycleData).filter(data -> Integer.parseInt(data) > week).findFirst().orElse(cycleData[0]);
-        int between = Integer.parseInt(d) - week;
-
-        if(between <= 0){
-            // 跨周
-            nextSettle = nextSettle.plusDays(Integer.parseInt(d));
-        }else {
-            // 同一周
-            nextSettle = nextSettle.plusDays(between);
-        }
-        return nextSettle;
+    private static LocalDate nextSettleDateByWeek(String[] cycleData, LocalDate currentSettle) {
+        // 获取当前结算日是周几
+        int week = currentSettle.getDayOfWeek().getValue();
+        // 获取下次结算日距离最近的结算日的天数
+        int daysUntilNextSettle = Arrays.stream(cycleData)
+                .mapToInt(Integer::parseInt)
+                .filter(day -> day > week)
+                .findFirst()
+                .orElse(Integer.parseInt(cycleData[0]));
+        DayOfWeek dayOfWeek = DayOfWeek.of(daysUntilNextSettle);
+        return currentSettle.with(TemporalAdjusters.next(dayOfWeek));
     }
-    private static LocalDate nextSettleDateByMonth(String[] cycleData,LocalDate nextSettle){
-        // 月几号
-        int month = nextSettle.getDayOfMonth();
-        // 最近的日期
-        String d = Arrays.stream(cycleData).filter(data -> Integer.parseInt(data) > month).findFirst().orElse(cycleData[0]);
-        int between = Integer.parseInt(d) - month;
-
-        if(between <= 0){
-            // 跨月
-            LocalDate nextMonth = LocalDate.now().plusMonths(1).withDayOfMonth(1);
-            // 2月 && 最近的日期
-            if(nextMonth.getMonth().getValue() == 2 && Integer.parseInt(d) >= nextMonth.lengthOfMonth()){
-                return nextMonth.with(TemporalAdjusters.lastDayOfMonth());
-            }
-            return nextMonth.plusDays(Integer.parseInt(d) - 1);
-        }else {
-            // 同一月
-            return nextSettle.plusDays(between);
+    private static LocalDate nextSettleDateByMonth(String[] cycleData,LocalDate currentSettle){
+        // 当前结算日期是几号
+        int month = currentSettle.getDayOfMonth();
+        // 获取下次结算日距离最近的结算日的天数
+        OptionalInt daysUntilNextSettle = Arrays.stream(cycleData)
+                .mapToInt(Integer::parseInt)
+                .filter(day -> day > month)
+                .findFirst();
+        // 如果存在，下一个结算日期，就是daysUntilNextSettle
+       if (daysUntilNextSettle.isPresent()) {
+            return currentSettle.withDayOfMonth(daysUntilNextSettle.getAsInt());
         }
+        // 下次结算日加一个月
+        currentSettle = currentSettle.plusMonths(1).withDayOfMonth(1);
+        int daysInMonth = currentSettle.lengthOfMonth();
+        return currentSettle.withDayOfMonth(Math.min(Integer.parseInt(cycleData[0]), daysInMonth));
     }
 }
