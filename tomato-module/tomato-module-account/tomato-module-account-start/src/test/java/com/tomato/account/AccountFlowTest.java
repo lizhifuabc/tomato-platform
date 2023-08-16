@@ -40,8 +40,15 @@ public class AccountFlowTest {
     private AccountAsyncInitService accountAsyncInitService;
     @Resource
     private RestTemplate restTemplate;
+
     @Test
-    public void test(){
+    public void flow(){
+        for (int i = 0; i < 5; i++) {
+            init();
+        }
+    }
+
+    public void init(){
         AccountCreateReq accountCreateReq = new AccountCreateReq();
         accountCreateReq.setMerchantNo("10202307240001002"+ new Random().nextInt(1000));
         accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
