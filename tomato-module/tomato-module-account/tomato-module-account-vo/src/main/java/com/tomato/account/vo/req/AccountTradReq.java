@@ -69,5 +69,6 @@ public class AccountTradReq {
     private String accountType;
 
     @Schema(description = "是否强制走异步入账，默认false时，走默认策略")
+    @Builder.Default
     private boolean async = false;
 }

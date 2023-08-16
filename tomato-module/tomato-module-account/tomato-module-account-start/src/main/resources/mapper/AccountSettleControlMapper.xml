@@ -34,7 +34,7 @@
         </trim>
     </insert>
 
-    <select id="selectSettleAccount" resultType="AccountSettleControlEntity">
+    <select id="selectSettleAccount" resultType="String">
         <![CDATA[
         select
             control.account_no
