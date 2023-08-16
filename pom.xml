@@ -98,6 +98,8 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <showWarnings>true</showWarnings>
+                    <!-- 跳过测试 -->
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>

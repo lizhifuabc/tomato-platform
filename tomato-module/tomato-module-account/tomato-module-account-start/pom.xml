@@ -47,6 +47,7 @@
         </dependency>
     </dependencies>
     <build>
+        <!-- Maven 自定义finalName，Maven构建会warn，建议使用默认，对应的docker也需要变更 TODO -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
