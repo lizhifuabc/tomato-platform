@@ -102,6 +102,23 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <propertiesEncoding>${project.build.sourceEncoding}</propertiesEncoding>
+                    <!-- <addDefaultExcludes>: 是否添加默认的排除项。如果设置为 false，则不会排除任何文件，默认为 true。 -->
+<!--                    <addDefaultExcludes>false</addDefaultExcludes>-->
+                    <!-- <delimiters>: 配置文件过滤器的分隔符，用于在资源文件中识别需要替换的属性 -->
+                    <!-- useDefaultDelimiters>: 是否使用默认的过滤器分隔符 ${}。如果设置为 false，则会使用上面配置的自定义分隔符。 -->
+<!--                    <delimiters>-->
+<!--                        <delimiter</delimiter>-->
+<!--                    </delimiters>-->
+<!--                    <useDefaultDelimiters>false</useDefaultDelimiters>-->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
