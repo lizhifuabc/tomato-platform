@@ -30,6 +30,7 @@ public class OrderCallbackService {
     private final AccountRepository accountRepository;
     private final NoticeRepository noticeRepository;
     private final MerchantService merchantService;
+    // TODO 回调是否要和下单使用同一个线程池
     private final Executor orderAsyncExecutor;
     public OrderCallbackService(OrderInfoRepository orderInfoRepository, AccountRepository accountRepository, NoticeRepository noticeRepository, MerchantService merchantService, Executor orderAsyncExecutor) {
         this.orderInfoRepository = orderInfoRepository;
