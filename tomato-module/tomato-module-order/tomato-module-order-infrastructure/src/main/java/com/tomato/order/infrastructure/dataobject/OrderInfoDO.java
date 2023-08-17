@@ -104,4 +104,12 @@ public class OrderInfoDO extends OrderInfoBaseDO {
      * 渠道返回订单号
      */
     private String channelOrderNo;
+    /**
+     * 分账费率快照
+     */
+    private BigDecimal merchantSplitRate;
+    /**
+     * 分账手续费
+     */
+    private BigDecimal merchantSplitFee;
 }
