@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 订单信息
@@ -101,11 +102,19 @@ public class OrderInfoEntity extends BaseEntity {
      * 手续费
      */
     private BigDecimal merchantFee;
+    /**
+     * 分账手续费
+     */
+    private BigDecimal merchantSplitFee;
 
     /**
      * 商户手续费费率快照
      */
     private BigDecimal merchantRate;
+    /**
+     * 分账费率快照
+     */
+    private BigDecimal merchantSplitRate;
 
     /**
      * 商户名称(冗余字段)
@@ -168,9 +177,15 @@ public class OrderInfoEntity extends BaseEntity {
         // 订单 5 分钟失效
         this.timeoutTime = LocalDateTime.now().plusMinutes(5);
         // 商户信息
-        this.merchantRate = merchantEntity.getTrxRate();
         this.merchantName = merchantEntity.getMerchantName();
+        // 商户费率
+        this.merchantRate = merchantEntity.getTrxRate();
         this.merchantFee = BigDecimalUtil.multiply(requestAmount,merchantRate);
+        // 分账费率
+        Optional.ofNullable(merchantEntity.getSplitRate()).ifPresent(splitRate->{
+            this.merchantSplitRate = splitRate;
+            this.merchantSplitFee = BigDecimalUtil.multiply(requestAmount,splitRate);
+        });
     }
     /**
      * 校验hmac
@@ -261,5 +276,17 @@ public class OrderInfoEntity extends BaseEntity {
         this.orderStatus = OrderStatusEnum.TIMEOUT.getValue();
         // version 由数据库维护，update时会自动加1
         this.expectOrderStatus = Arrays.asList(OrderStatusEnum.DEAL.getValue(),OrderStatusEnum.INIT.getValue());
+    }
+
+    /**
+     * 订单入账金额计算
+     */
+    public BigDecimal accountAmount(){
+        // 扣除分账手续费
+        if(merchantSplitFee != null){
+            requestAmount = BigDecimalUtil.sub(requestAmount,merchantSplitFee);
+        }
+        // 扣除商户手续费
+        return BigDecimalUtil.sub(requestAmount,merchantFee);
     }
 }

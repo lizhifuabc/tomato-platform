@@ -61,7 +61,7 @@ public class OrderCallbackService {
                     .merchantNo(orderInfoEntity.getMerchantNo())
                     .merchantOrderNo(orderInfoEntity.getMerchantOrderNo())
                     .sysNo(orderInfoEntity.getOrderNo())
-                    .amount(BigDecimalUtil.sub(orderInfoEntity.getRequestAmount(),orderInfoEntity.getMerchantFee()))
+                    .amount(orderInfoEntity.accountAmount())
                     .build();
             accountRepository.trad(accountEntity);
         },orderAsyncExecutor);
