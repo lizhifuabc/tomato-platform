@@ -1,12 +1,12 @@
 package com.tomato.merchant.domain.entity;
 
 import com.tomato.jpa.domain.entity.BaseEntity;
+import com.tomato.module.common.enums.MerchantType;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Comment;
 
-import java.util.List;
 
 /**
  * 商户信息
@@ -14,6 +14,8 @@ import java.util.List;
  * @author lizhifu
  * @since  2022/11/25
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "t_merchant_info",indexes = {@Index(name = "index_phone_search",columnList = "phoneSearch")})
 public class MerchantInfo extends BaseEntity {
@@ -29,7 +31,13 @@ public class MerchantInfo extends BaseEntity {
     @Column(length = 64,nullable = false,unique = true)
     @Comment("商户号")
     private String merchantNo;
-
+    /**
+     * 商户类型
+     */
+    @Column(length = 64,nullable = false)
+    @Comment("商户类型")
+    // @Enumerated(EnumType.STRING)
+    private String merchantType;
     /**
      * 商户名称
      */
@@ -61,60 +69,4 @@ public class MerchantInfo extends BaseEntity {
     @Column(length = 50,nullable = false,unique = true)
     @Comment("邮箱")
     private String email;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getMerchantNo() {
-        return merchantNo;
-    }
-
-    public void setMerchantNo(String merchantNo) {
-        this.merchantNo = merchantNo;
-    }
-
-    public String getMerchantName() {
-        return merchantName;
-    }
-
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
-    }
-
-    public String getMerchantShortName() {
-        return merchantShortName;
-    }
-
-    public void setMerchantShortName(String merchantShortName) {
-        this.merchantShortName = merchantShortName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPhoneSearch() {
-        return phoneSearch;
-    }
-
-    public void setPhoneSearch(String phoneSearch) {
-        this.phoneSearch = phoneSearch;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

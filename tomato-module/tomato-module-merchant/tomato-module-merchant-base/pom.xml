@@ -16,5 +16,9 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-web-jpa-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-module-common</artifactId>
+        </dependency>
     </dependencies>
 </project>

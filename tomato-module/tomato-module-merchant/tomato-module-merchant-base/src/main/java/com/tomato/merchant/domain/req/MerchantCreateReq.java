@@ -1,13 +1,12 @@
 package com.tomato.merchant.domain.req;
 
 import com.tomato.common.util.RegexPool;
+import com.tomato.module.common.enums.MerchantType;
+import com.tomato.validator.annotation.CheckEnum;
 import com.tomato.validator.annotation.Mobile;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * 商户创建
@@ -39,4 +38,11 @@ public class MerchantCreateReq {
     @Pattern(regexp = RegexPool.EMAIL,message = "邮箱格式不正确")
     @NotBlank
     private String email;
+
+    /**
+     * 商户类型
+     */
+    @NotBlank(message = "商户类型不能为空")
+    @CheckEnum(value = MerchantType.class,message = "商户类型不正确",required = true)
+    private String merchantType;
 }
