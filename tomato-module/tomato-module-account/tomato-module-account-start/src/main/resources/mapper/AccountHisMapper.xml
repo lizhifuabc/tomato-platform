@@ -49,10 +49,17 @@
          and account_his_status = 'DEAL' and account_no = #{accountNo}
     </update>
 
-    <select id="selectDeal" parameterType = "map" resultType = "AccountHisDealBO">
-        select group_concat(id) as accountHisIds,sum(amount - amount_free) as sum
-        from t_account_his
-        where account_no = #{accountNo} and account_his_status = 'DEAL'
+    <select id="selectDeal" parameterType = "AccountHisDealQueryBO" resultType = "AccountHisDealBO">
+        select
+            group_concat(id) as accountHisIds,
+            sum(amount - amount_free) as sum
+        from
+            t_account_his
+        where
+            account_no = #{accountHisDealQueryBO.accountNo} and
+            account_his_status = 'DEAL' and
+            <![CDATA[ create_time <= #{accountHisDealQueryBO.end} and create_time >= #{accountHisDealQueryBO.start}]]>
+            LIMIT #{accountHisDealQueryBO.limit}
     </select>
 
     <!-- 账户历史汇总  -->

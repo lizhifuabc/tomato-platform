@@ -4,7 +4,6 @@ import com.tomato.account.domain.bo.*;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDateTime;
 
@@ -41,10 +40,10 @@ public interface AccountHisDao {
     /**
      * 查询未入账的账户历史
      * account_status = 'DEAL'
-     * @param accountNo 账号
+     * @param accountHisDealQueryBO 账号
      * @return 账户历史
      */
-    AccountHisDealBO selectDeal(@Param("accountNo") String accountNo);
+    AccountHisDealBO selectDeal(@Param("accountHisDealQueryBO") AccountHisDealQueryBO accountHisDealQueryBO);
 
     /**
      * 金额汇总

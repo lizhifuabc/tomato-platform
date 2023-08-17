@@ -1,5 +1,6 @@
 package com.tomato.account.dao;
 
+import com.tomato.account.domain.bo.AccountHisDealQueryBO;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +18,10 @@ public class AccountHisDaoTest {
 
     @Test
     public void allTest(){
-        String accountNo = "102023042380417982345";
-        System.out.println("selectDeal:"+ accountHisDao.selectDeal(accountNo));
+        String accountNo = "102023081632289452901";
+        AccountHisDealQueryBO accountHisDealQueryBO = new AccountHisDealQueryBO();
+        accountHisDealQueryBO.setAccountNo(accountNo);
+        accountHisDealQueryBO.setLimit(50000);
+        System.out.println("selectDeal:"+ accountHisDao.selectDeal(accountHisDealQueryBO));
     }
 }
