@@ -24,6 +24,6 @@ public interface RemoteChannelService {
      * @param channelReq 请求
      * @return 渠道交易
      */
-    @RequestMapping(value = "/channel/trade", method = RequestMethod.POST)
+    @RequestMapping(value = "/channel/tradeScan", method = RequestMethod.POST)
     Resp<ChannelScanResp> tradeScan(@RequestBody ChannelReq channelReq);
 }

@@ -32,7 +32,7 @@ public class ChannelController {
      * @return 渠道交易
      */
     @Operation(summary = "扫码请求", description = "扫码请求")
-    @RequestMapping(value = "/channel/trade", method = RequestMethod.POST)
+    @RequestMapping(value = "/channel/tradeScan", method = RequestMethod.POST)
     public Resp<ChannelScanResp> tradeScan(@Valid @RequestBody ChannelReq channelReq){
         log.info("渠道交易:{}",channelReq);
         ChannelScanResp channelScanResp = new ChannelScanResp();
