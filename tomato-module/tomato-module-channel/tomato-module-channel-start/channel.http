@@ -1,0 +1,8 @@
+### Send POST request with json body
+POST http://127.0.0.1:9991/channel/tradeScan
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}

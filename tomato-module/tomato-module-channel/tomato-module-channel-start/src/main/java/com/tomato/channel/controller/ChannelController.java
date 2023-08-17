@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 通道
@@ -32,7 +29,7 @@ public class ChannelController {
      * @return 渠道交易
      */
     @Operation(summary = "扫码请求", description = "扫码请求")
-    @RequestMapping(value = "/channel/tradeScan", method = RequestMethod.POST)
+    @RequestMapping(value = "/channel/tradeScan",method = RequestMethod.POST)
     public Resp<ChannelScanResp> tradeScan(@Valid @RequestBody ChannelReq channelReq){
         log.info("渠道交易:{}",channelReq);
         ChannelScanResp channelScanResp = new ChannelScanResp();
