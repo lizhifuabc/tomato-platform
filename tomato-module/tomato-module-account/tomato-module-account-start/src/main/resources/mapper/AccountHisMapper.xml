@@ -36,7 +36,11 @@
         UPDATE
             t_account_his
         set
-            account_his_status = 'SUCCESS',version = version + 1,before_balance = #{beforeBalance},after_balance = #{afterBalance},complete_time = now(),
+            account_his_status = 'SUCCESS',
+            version = version + 1,
+            before_balance = #{beforeBalance},
+            after_balance = #{afterBalance},
+            complete_time = #{completeTime},
             account_his_serial = #{accountHisSerial}
         WHERE id in
         <foreach collection="accountHisIdList" item="id" index="index" open="(" close=")" separator=",">
