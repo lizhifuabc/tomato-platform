@@ -1,12 +1,11 @@
+# IntelliJ project files
 out/
 target/
-
-### IntelliJ IDEA ###
 .idea/
 !.idea/icon.png
-*.iws
+*.log
+*.gz
 *.iml
-*.ipr
 
 ### logs ###
 **/logs
