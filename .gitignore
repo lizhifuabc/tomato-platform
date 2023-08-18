@@ -2,10 +2,11 @@
 out/
 target/
 .idea/
+# 允许名为 icon.png 的文件在 .idea 文件夹中被提交，即保留这个图标文件。
 !.idea/icon.png
 *.log
 *.gz
 *.iml
 
-### logs ###
+### 忽略所有名为 logs 的文件夹，不管它们位于哪个子目录 ###
 **/logs
