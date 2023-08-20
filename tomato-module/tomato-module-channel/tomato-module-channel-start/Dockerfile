@@ -31,4 +31,4 @@ ENV TZ=Asia/Shanghai JAVA_OPTS="-Xms128m -Xmx256m -Djava.security.egd=file:/dev/
 # 设置默认的命令为 exec
 CMD ["exec"]
 # entrypoint.sh脚本使用exec将java作为容器1号进程，避免无法接受linux 信号导致java进程无法正常退出
-ENTRYPOINT ["bash","entrypoint.sh"]
+ENTRYPOINT ["bash","/entrypoint.sh"]
