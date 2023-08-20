@@ -97,9 +97,24 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <!-- 是否显示编译警告信息 -->
                     <showWarnings>true</showWarnings>
                     <!-- 跳过测试 -->
                     <skip>true</skip>
+                    <!-- 允许编译过程配置注解处理器的路径 -->
+                    <annotationProcessorPaths>
+                        <!-- springboot configuration processor对maven子模块不起作用 -->
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                            <version>${spring.boot.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-autoconfigure-processor</artifactId>
+                            <version>${spring.boot.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
