@@ -8,6 +8,7 @@ WORKDIR /tomato-module-channel-start
 ARG JAR_FILE=target/tomato-module-channel-start.jar
 # 将构建上下文中的应用程序 JAR 文件复制到容器内的 app.jar
 COPY ${JAR_FILE} app.jar
+COPY ./entrypoint.sh entrypoint.sh
 # 指定 Spring Boot 的 "layertools" 模式，来执行 JAR 内容的提取操作，把 JAR 文件中的不同分层提取到不同的目录中，准备用于构建 Docker 镜像
 # 删除之前的 JAR 文件，提取内容后，JAR 文件不再需要  && rm app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
