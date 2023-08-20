@@ -9,6 +9,7 @@ ARG JAR_FILE=target/tomato-module-channel-start.jar
 # 将构建上下文中的应用程序 JAR 文件复制到容器内的 app.jar
 COPY ${JAR_FILE} app.jar
 COPY ./entrypoint.sh entrypoint.sh
+
 # 指定 Spring Boot 的 "layertools" 模式，来执行 JAR 内容的提取操作，把 JAR 文件中的不同分层提取到不同的目录中，准备用于构建 Docker 镜像
 # 删除之前的 JAR 文件，提取内容后，JAR 文件不再需要  && rm app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
@@ -17,6 +18,8 @@ RUN java -Djarmode=layertools -jar app.jar extract
 FROM alibabadragonwell/dragonwell:17-anolis
 # 切换工作目录
 WORKDIR /tomato-module-channel-start
+# 添加执行权限
+RUN chmod +x entrypoint.sh
 # 从第一个阶段中，拷贝之前提取的分层内容到当前目录（可以添加用户支持 COPY --chown=1001:1001 --from=builder /app/dependencies/ ./）
 COPY --from=builder /tomato-module-channel-start/dependencies/ ./
 COPY --from=builder /tomato-module-channel-start/snapshot-dependencies/ ./
