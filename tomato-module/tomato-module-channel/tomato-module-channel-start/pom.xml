@@ -44,6 +44,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <layers>
+                        <!-- 启用分层打包支持 -->
                         <enabled>true</enabled>
                     </layers>
                 </configuration>
