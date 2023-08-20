@@ -58,8 +58,7 @@
         <cosid.version>1.16.0</cosid.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version> <!--   Apache Commons BeanUtils 库-->
         <spring.checkstyle.plugin>0.0.38</spring.checkstyle.plugin> <!-- spring boot 项目检查插件 -->
-        <springdoc.version>1.6.15</springdoc.version> <!--  springdoc https://springdoc.org/     -->
-        <springdoc.v2.version>2.1.0</springdoc.v2.version> <!--   https://springdoc.org/v2/     -->
+        <springdoc.v2.version>2.2.0</springdoc.v2.version> <!--   https://springdoc.org/v2/     -->
         <jasypt.version>3.0.5</jasypt.version> <!--   配置文件加解密 https://github.com/jasypt/jasypt     -->
         <velocity.version>2.3</velocity.version>        <!--  代码生成模板      -->
         <easy-captcha.version>1.6.2</easy-captcha.version>         <!-- 验证码 -->
@@ -181,10 +180,15 @@
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons-beanutils.version}</version>
             </dependency>
-            <!--   https://springdoc.org/v2/         -->
+            <!--   https://springdoc.org/         -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.v2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
                 <version>${springdoc.v2.version}</version>
             </dependency>
             <dependency>
