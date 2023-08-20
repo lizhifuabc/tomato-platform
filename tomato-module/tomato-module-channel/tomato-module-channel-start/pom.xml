@@ -45,6 +45,7 @@
                 <executions>
                     <execution>
                         <goals>
+                            <!-- 将 Spring Boot 应用重新打包为可执行的 JAR 文件 -->
                             <goal>repackage</goal>
                         </goals>
                     </execution>
