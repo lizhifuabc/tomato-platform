@@ -181,16 +181,19 @@
                 <version>${commons-beanutils.version}</version>
             </dependency>
             <!--   https://springdoc.org/         -->
+            <!--   在common的基础上,额外提供了OpenAPI UI的WebMVC实现,可以为WebMVC应用程序添加Swagger UI界面  -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc.v2.version}</version>
             </dependency>
+            <!--   提供了基本的OpenAPI功能支持,包括自动生成API文档等能力。但不包括UI界面         -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-common</artifactId>
                 <version>${springdoc.v2.version}</version>
             </dependency>
+            <!--   在common的基础上,额外提供了OpenAPI UI的WebFlux实现,可以为WebFlux应用程序添加Swagger UI界面   -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
