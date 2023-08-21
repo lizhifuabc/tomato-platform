@@ -60,6 +60,18 @@ public class RedisAutoConfigure {
         redisScript.setResultType(List.class);
         return redisScript;
     }
+
+    /**
+     * CAS脚本
+     * @return RedisScript<Boolean> cas脚本
+     */
+    @Bean
+    public RedisScript<Boolean> compareAndSet() {
+        DefaultRedisScript<Boolean> casScript = new DefaultRedisScript<>();
+        casScript.setResultType(Boolean.class);
+        casScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("META-INF/scripts/compareAndSet.lua")));
+        return casScript;
+    }
     @Bean
     public RedisScript<Long> redisConcurrentRequestCountLimiterScript() {
         DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
