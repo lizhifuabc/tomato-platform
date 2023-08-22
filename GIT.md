@@ -63,3 +63,18 @@ feature(message-center): 开发消息发送落库功能。或者 feature: 开发
 示例：
 
 feature_20220915_send-message_engine.li
+
+
+
+## 如何更新GitHub Fork后的代码并与原始代码同步
+
+```shell
+# 选取原始仓库
+git remote add upstream https://github.com/twbs/bootstrap.git
+# 更新本地Fork代码
+git fetch upstream
+git checkout master
+git merge upstream/master
+# 将更新应用到自己的Fork代码
+git push origin master
+```
