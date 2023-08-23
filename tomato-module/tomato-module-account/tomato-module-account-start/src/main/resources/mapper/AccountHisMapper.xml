@@ -74,4 +74,19 @@
             and account_his_type = #{accountHisType}
             and <![CDATA[ create_time <= #{end} and create_time >= #{start}]]>
     </select>
+    <!-- 账户历史汇总  -->
+    <select id="collectGroup" parameterType="map" resultType="AccountDailyCollectEntity">
+        select
+            ifnull(sum(amount - amount_free),0) as "totalAmount",
+            count(id) as "totalCount",
+            account_no as "accountNo",
+            merchant_no as "merchantNo",
+            account_his_type as "accountHisType"
+        from
+            t_account_his
+        where
+            account_no = #{accountNo}
+            and <![CDATA[ create_time <= #{end} and create_time >= #{start}]]>
+            group by account_no,merchant_no,account_his_type
+    </select>
 </mapper>

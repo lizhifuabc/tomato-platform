@@ -18,8 +18,6 @@ public class AccountSettleTimerTest {
     @Resource
     AccountSettleTimer accountSettleTimer;
     @Resource
-    AccountOutReserveBalanceTimer accountOutReserveBalanceTimer;
-    @Resource
     AccountSettleService accountSettleService;
     @Resource
     AccountSettleControlDao accountSettleControlDao;

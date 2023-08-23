@@ -219,9 +219,11 @@ create table `t_account_daily_collect`
     `total_amount`            decimal(16,2)     not null                            comment '交易总金额',
     `total_count`             bigint(20)        not null                            comment '交易总笔数',
 
+    `account_his_type`           varchar(36)     not null                            comment '账户历史类型',
+
     `version` int default 0 not null comment '乐观锁',
     `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
     `create_time` datetime not null default current_timestamp comment '创建时间',
     PRIMARY KEY (`id`),
-    UNIQUE KEY `uniq_account_collect_date` (`account_no`,`collect_date`)
+    UNIQUE KEY `uniq_account_collect_date` (`account_no`,`collect_date`,`account_his_type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '每日待结算汇总';

@@ -15,15 +15,12 @@ public class TimerTest {
     @Resource
     AccountSettleTimer accountSettleTimer;
     @Resource
-    AccountOutReserveBalanceTimer accountOutReserveBalanceTimer;
-    @Resource
     AccountTradAsyncTimer accountTradAsyncTimer;
 
     @Test
     public void timer(){
         System.out.println("执行所有定时start");
         accountTradAsyncTimer.run();
-        accountOutReserveBalanceTimer.run();
         accountSettleTimer.run();
         System.out.println("执行所有定时end");
     }

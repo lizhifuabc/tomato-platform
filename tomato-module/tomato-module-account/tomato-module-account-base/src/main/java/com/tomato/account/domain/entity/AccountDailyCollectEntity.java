@@ -1,6 +1,7 @@
 package com.tomato.account.domain.entity;
 
 import com.tomato.common.entity.BaseEntity;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,6 +16,7 @@ import java.time.LocalDate;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Table(name = "t_account_daily_collect")
 public class AccountDailyCollectEntity extends BaseEntity {
     /**
      * 账户编号
@@ -40,4 +42,8 @@ public class AccountDailyCollectEntity extends BaseEntity {
      * 交易总笔数
      */
     private Long totalCount;
+    /**
+     * 账户历史类型
+     */
+    private String accountHisType;
 }

@@ -1,11 +1,13 @@
 package com.tomato.account.dao;
 
 import com.tomato.account.domain.bo.*;
+import com.tomato.account.domain.entity.AccountDailyCollectEntity;
 import com.tomato.account.domain.entity.AccountHisEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 账户历史
@@ -58,4 +60,16 @@ public interface AccountHisDao {
                                    @Param("start") LocalDateTime start,
                                    @Param("end") LocalDateTime end,
                                    @Param("accountHisType") String accountHisType);
+
+    /**
+     * 金额汇总
+     * 根据创建时间进行汇总：不关注账户状态（异步入账的情况）
+     * @param accountNo 账号
+     * @param start 创建时间开始
+     * @param end 创建时间结束
+     * @return 日汇总账户待结算金额
+     */
+    List<AccountDailyCollectEntity> collectGroup(@Param("accountNo") String accountNo,
+                      @Param("start") LocalDateTime start,
+                      @Param("end") LocalDateTime end);
 }

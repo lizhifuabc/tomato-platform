@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * 风险预存期外余额定时
+ * AccountTimer
  *
  * @author lizhifu
- * @since 2023/1/11
+ * @since 2023/8/23
  */
 @SpringBootTest
-public class AccountOutReserveBalanceTimerTest {
+public class AccountTimerTest {
     @Resource
-    AccountOutReserveBalanceTimer accountOutReserveBalanceTimer;
+    private AccountTimer accountTimer;
 
     @Test
     public void test(){
-        accountOutReserveBalanceTimer.run();
+        accountTimer.run();
     }
 }
