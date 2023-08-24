@@ -3,12 +3,11 @@ package com.tomato.order.infrastructure.repository.impl;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.order.domain.domain.entity.OrderInfoEntity;
 import com.tomato.order.domain.repository.OrderInfoRepository;
-import com.tomato.order.infrastructure.OrderAdapter;
+import com.tomato.order.infrastructure.converter.OrderConverter;
 import com.tomato.order.infrastructure.dataobject.OrderInfoIdxDO;
 import com.tomato.order.infrastructure.mapper.OrderInfoIdxMapper;
 import com.tomato.order.infrastructure.mapper.OrderInfoMapper;
 import com.tomato.order.infrastructure.dataobject.OrderInfoDO;
-import com.tomato.web.core.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.tomato.order.infrastructure.OrderAdapter.convert;
-import static com.tomato.order.infrastructure.OrderAdapter.convertUpdateOrderStatus;
+import static com.tomato.order.infrastructure.converter.OrderConverter.convert;
+import static com.tomato.order.infrastructure.converter.OrderConverter.convertUpdateOrderStatus;
 
 /**
  * 订单新建
@@ -47,7 +46,7 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
     @Override
     public OrderInfoEntity selectByOrderNo(String orderNo) {
         OrderInfoDO orderInfoDO = orderInfoMapper.selectByOrderNo(orderNo);
-        return OrderAdapter.convert(orderInfoDO);
+        return OrderConverter.convert(orderInfoDO);
     }
 
     @Override
@@ -68,7 +67,7 @@ public class OrderInfoRepositoryImpl implements OrderInfoRepository {
     @Override
     public List<OrderInfoEntity> selectByCreateTime(int pageIndex, int pageSize, LocalDateTime createTime, String orderStatus) {
         List<OrderInfoDO> list = orderInfoMapper.selectByCreateTime(pageIndex, pageSize, createTime, orderStatus);
-        return OrderAdapter.convert(list);
+        return OrderConverter.convert(list);
     }
 
     @Override
