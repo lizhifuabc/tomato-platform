@@ -13,12 +13,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-web-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>com.tomato</groupId>
+            <artifactId>tomato-redis-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
