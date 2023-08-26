@@ -55,7 +55,7 @@
 ```shell
 1.set
 存储统计的渠道
-key: route:alarm
+key: channel:alarm
 value: wx:101(支付方式+渠道编号)
        wx:102
        wx:103
@@ -63,7 +63,7 @@ value: wx:101(支付方式+渠道编号)
 
 2.zset
 存储指定渠道请求的时间戳（秒），同一秒的数据会覆盖存储
-key: route:alarm:time:wx-101(支付方式+渠道编号)
+key: channel:alarm:time:wx-101(支付方式+渠道编号)
       score: 1657164225（时间戳） value: 1657164225（时间戳）
       score: 1657164226 value: 1657164226
       score: 1657164227 value: 1657164227
@@ -71,7 +71,7 @@ key: route:alarm:time:wx-101(支付方式+渠道编号)
 
 3.hash
 存储指定渠道1秒内的请求结果, 每秒汇总一份结果
-key: route:alarm:result:wx-101:1657164227(支付方式+渠道编号)
+key: channel:alarm:result:wx-101(支付方式+渠道编号):1657164227（时间戳）
       key: success             value: 10 (次数)
       key: fail                value: 5
       key: balance_not_enough  value: 3
