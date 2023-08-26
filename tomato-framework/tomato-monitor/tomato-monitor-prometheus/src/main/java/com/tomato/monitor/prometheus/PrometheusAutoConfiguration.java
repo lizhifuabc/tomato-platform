@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * 自动配置
- *
+ * 为应用程序中的指标数据提供自定义的配置。
+ * 通过commonTags方法为每个指标添加了一个标签。这有助于在Prometheus中更好地组织和筛选指标。
+ * 同时，Prometheus服务器的配置（在prometheus.yml中的作业配置）将使Prometheus能够定期拉取这些指标数据。
  * @author lizhifu
  * @since 2023/5/2
  */
