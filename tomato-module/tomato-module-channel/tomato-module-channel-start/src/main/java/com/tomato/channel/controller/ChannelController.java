@@ -41,7 +41,7 @@ public class ChannelController {
     public Resp<ChannelScanResp> tradeScan(@Valid @RequestBody ChannelReq channelReq){
         log.info("渠道交易:{}",channelReq);
         ChannelScanResp channelScanResp = new ChannelScanResp();
-        channelScanResp.setChannelNo(String.valueOf(System.currentTimeMillis()));
+        channelScanResp.setChannelNo("1630000000000");
         channelScanResp.setScanUrl(String.valueOf(System.currentTimeMillis()));
 
         ChannelRedisEventData channelRedisEventData = ChannelRedisEventData.builder()

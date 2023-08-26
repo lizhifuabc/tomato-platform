@@ -1,9 +1,6 @@
 package com.tomato.channel.event;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * <p>渠道 redis 事件</p>
@@ -15,8 +12,18 @@ import lombok.Setter;
 @Setter
 @Builder
 @AllArgsConstructor
+@ToString
 public class ChannelRedisEventData {
+    /**
+     * 支付类型
+     */
     String payType;
+    /**
+     * 渠道号
+     */
     String channelNo;
+    /**
+     * 结果类型
+     */
     String resultType;
 }

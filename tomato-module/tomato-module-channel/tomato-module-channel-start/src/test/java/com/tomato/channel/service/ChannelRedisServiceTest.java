@@ -17,6 +17,21 @@ import java.util.Set;
 public class ChannelRedisServiceTest {
     @Resource
     private ChannelRedisService channelRedisService;
+    @Test
+    public void data(){
+        String channelNo = String.valueOf(System.currentTimeMillis());
+        channelNo = "1630000000000";
+        String payType = "42";
+        Set<String> channelAlarm = channelRedisService.getChannelAlarm();
+        System.out.println("获取统计的渠道:" + channelAlarm);
+        channelAlarm.forEach(item -> {
+            System.out.println("===========获取渠道数据："+item+"===========");
+            Set<String> channelRequest = channelRedisService.getChannelRequest(item);
+            System.out.println("获取指定渠道请求的时间戳（秒）:" + channelRequest);
+        });
+
+        System.out.println("获取渠道请求结果:" + channelRedisService.getChannelResult(payType, channelNo));;
+    }
 
     @Test
     public void test() {
