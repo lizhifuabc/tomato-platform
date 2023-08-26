@@ -14,6 +14,11 @@
     <packaging>jar</packaging>
     <description>监控模块，基于 spring boot admin</description>
     <dependencies>
+        <!-- spring security 安全认证 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!--监控服务端-->
         <dependency>
             <groupId>de.codecentric</groupId>

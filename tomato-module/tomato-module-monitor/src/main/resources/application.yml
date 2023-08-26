@@ -16,3 +16,14 @@ spring:
       - optional:nacos:application-@profiles.active@.yml
       - optional:nacos:${spring.application.name}-@profiles.active@.yml
       - optional:nacos:application-common.yml
+--- # 监控中心服务端配置
+spring:
+  boot:
+    admin:
+        ui:
+          title: 服务监控中心
+#        context-path: /admin
+  security:
+    user:
+      name: admin
+      password: 123456
