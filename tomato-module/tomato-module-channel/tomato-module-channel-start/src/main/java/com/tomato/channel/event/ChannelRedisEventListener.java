@@ -1,5 +1,6 @@
 package com.tomato.channel.event;
 
+import com.tomato.channel.service.ChannelCollectorService;
 import com.tomato.channel.service.ChannelRedisService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Component;
 @Async
 public class ChannelRedisEventListener implements ApplicationListener<ChannelRedisEvent> {
     private final ChannelRedisService channelRedisService;
+    private final ChannelCollectorService channelCollectorService;
     @Override
     public void onApplicationEvent(ChannelRedisEvent event) {
         ChannelRedisEventData channelRedisEventData = event.getChannelRedisEventData();
@@ -29,5 +31,8 @@ public class ChannelRedisEventListener implements ApplicationListener<ChannelRed
         channelRedisService.addChannelAlarm(channelRedisEventData.getPayType(), channelRedisEventData.getChannelNo());
         long request = channelRedisService.addChannelRequest(channelRedisEventData.getPayType(), channelRedisEventData.getChannelNo());
         channelRedisService.addChannelResult(channelRedisEventData.getPayType(), channelRedisEventData.getChannelNo(), channelRedisEventData.getResultType(),request);
+
+        channelCollectorService.collectRequestMetrics(channelRedisEventData.getChannelNo());
+        channelCollectorService.collectResultMetrics(channelRedisEventData.getChannelNo(),channelRedisEventData.getResultType());
     }
 }

@@ -87,6 +87,7 @@ public class ChannelRedisService {
      * 获取渠道请求结果
      * @param payType 支付类型
      * @param channelNo 渠道编号
+     * @param second 时间戳（秒）
      * @return 请求结果
      */
     public Map<String,Long> getChannelResult(String payType,String channelNo,long second){
@@ -100,6 +101,21 @@ public class ChannelRedisService {
 
     /**
      * 获取渠道请求结果
+     * @param sign 支付方式-渠道编号
+     * @param second 时间戳（秒）
+     * @return 请求结果
+     */
+    public Map<String,Long> getChannelResult(String sign,long second){
+        Map<Object, Object> entries = stringRedisTemplate.opsForHash().entries(CHANNEL_ALARM + ":result:"+sign+":"+second);
+        return entries.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e -> (String) e.getKey(),
+                        e -> Long.valueOf((String) e.getValue()))
+                );
+    }
+
+    /**
+     * 获取渠道请求结果
      * @param payType 支付类型
      * @param channelNo 渠道编号
      * @return 请求结果
@@ -107,6 +123,21 @@ public class ChannelRedisService {
     public Map<String,Map<Object,Object>> getChannelResult(String payType,String channelNo){
         Map<String, Map<Object,Object>> entries =  new HashMap<>();
         Set<String> keys = stringRedisTemplate.keys(channelResultPrefix(payType, channelNo)+"*");
+        assert keys != null;
+        keys.forEach(item->{
+            Map<Object, Object> map = stringRedisTemplate.opsForHash().entries(item);
+            entries.put(item,map);
+        });
+        return entries;
+    }
+    /**
+     * 获取渠道请求结果
+     * @param sign  支付方式-渠道编号
+     * @return 请求结果
+     */
+    public Map<String,Map<Object,Object>> getChannelResult(String sign){
+        Map<String, Map<Object,Object>> entries =  new HashMap<>();
+        Set<String> keys = stringRedisTemplate.keys(CHANNEL_ALARM + ":result:"+sign+"*");
         assert keys != null;
         keys.forEach(item->{
             Map<Object, Object> map = stringRedisTemplate.opsForHash().entries(item);
