@@ -15,6 +15,8 @@
     <modules>
         <module>tomato-cache-core</module>
         <module>tomato-cache-guava-starter</module>
+        <module>tomato-redis-starter</module>
+        <module>tomato-redis-redisson-starter</module>
     </modules>
 
 </project>

@@ -32,7 +32,6 @@
         <module>tomato-rpc</module>
         <module>tomato-cache</module>
         <module>tomato-captcha</module>
-        <module>tomato-redis</module>
         <module>tomato-banner-starter</module>
         <module>tomato-pay</module>
         <module>tomato-dynamic-db</module>
