@@ -1,4 +1,4 @@
-package com.tomato.util.example;
+package com.tomato.utils.base.example;
 
 import com.google.common.collect.ImmutableSortedMap;
 

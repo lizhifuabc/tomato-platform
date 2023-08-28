@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-util</artifactId>
+            <artifactId>tomato-utils-base</artifactId>
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>

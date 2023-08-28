@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-framework</artifactId>
+        <artifactId>tomato-utils</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tomato-util</artifactId>
+    <artifactId>tomato-utils-base</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>

@@ -1,4 +1,4 @@
-package com.tomato.util.date;
+package com.tomato.utils.base.date;
 
 /**
  * SystemClock

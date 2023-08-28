@@ -1,4 +1,4 @@
-package com.tomato.util.crypto;
+package com.tomato.utils.base.crypto;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

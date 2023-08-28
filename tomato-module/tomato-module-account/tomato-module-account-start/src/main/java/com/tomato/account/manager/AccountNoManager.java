@@ -1,7 +1,7 @@
 package com.tomato.account.manager;
 
 import com.google.common.base.Strings;
-import com.tomato.util.date.DatePattern;
+import com.tomato.utils.base.date.DatePattern;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

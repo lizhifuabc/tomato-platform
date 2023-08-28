@@ -476,7 +476,7 @@
             </dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
-                <artifactId>tomato-util</artifactId>
+                <artifactId>tomato-utils-base</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

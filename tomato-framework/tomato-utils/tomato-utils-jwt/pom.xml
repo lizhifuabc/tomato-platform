@@ -5,15 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tomato</groupId>
-        <artifactId>tomato-example</artifactId>
+        <artifactId>tomato-utils</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>util-example</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.tomato</groupId>
-            <artifactId>tomato-utils-base</artifactId>
-        </dependency>
-    </dependencies>
+    <artifactId>tomato-utils-jwt</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
 </project>

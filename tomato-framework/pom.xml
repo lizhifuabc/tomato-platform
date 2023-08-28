@@ -13,14 +13,12 @@
     <packaging>pom</packaging>
     <modules>
         <module>tomato-web-starter</module>
-        <module>tomato-util</module>
         <module>tomato-dynamic-thread-starter</module>
         <module>tomato-validator-starter</module>
         <module>tomato-jackson-starter</module>
         <module>tomato-crypto</module>
         <module>tomato-id-starter</module>
         <module>tomato-security-starter</module>
-        <module>tomato-jwt-starter</module>
         <module>tomato-lock</module>
         <module>tomato-springdoc-starter</module>
         <module>tomato-idempotent-starter</module>
@@ -38,5 +36,6 @@
         <module>tomato-banner-starter</module>
         <module>tomato-pay</module>
         <module>tomato-dynamic-db</module>
+        <module>tomato-utils</module>
     </modules>
 </project>

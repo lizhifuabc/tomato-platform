@@ -1,4 +1,4 @@
-package com.tomato.util.lang;
+package com.tomato.utils.base.lang;
 
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
