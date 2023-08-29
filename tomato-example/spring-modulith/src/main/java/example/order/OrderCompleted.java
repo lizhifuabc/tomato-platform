@@ -6,4 +6,5 @@ import org.jmolecules.event.types.DomainEvent;
 /**
  * 订单完成事件
  */
-public record OrderCompleted(OrderIdentifier orderId) implements DomainEvent {}
+public record OrderCompleted(OrderIdentifier orderId) implements DomainEvent {
+}

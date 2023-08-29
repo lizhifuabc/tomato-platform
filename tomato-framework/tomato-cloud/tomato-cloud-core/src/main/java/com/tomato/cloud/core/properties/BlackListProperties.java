@@ -19,35 +19,40 @@ import java.util.List;
 @RefreshScope
 @ConfigurationProperties("tomato.black-list")
 public class BlackListProperties {
-    /**
-     * 是否开启
-     */
-    private Boolean enable = true;
-    /**
-     * 黑名单IP
-     */
-    private List<String> ipList = Collections.emptyList();
 
-    /**
-     * 黑名单IP与服务
-     */
-    private List<BlackList> services = Collections.emptyList();
-    @Data
-    public static class BlackList {
+	/**
+	 * 是否开启
+	 */
+	private Boolean enable = true;
 
-        /**
-         * IP
-         */
-        private String ip;
+	/**
+	 * 黑名单IP
+	 */
+	private List<String> ipList = Collections.emptyList();
 
-        /**
-         * 服务名
-         */
-        private String name;
+	/**
+	 * 黑名单IP与服务
+	 */
+	private List<BlackList> services = Collections.emptyList();
 
-        /**
-         * 路径 默认拦截所有：/**
-         */
-        private List<String> pathList = Collections.singletonList("/**");
-    }
+	@Data
+	public static class BlackList {
+
+		/**
+		 * IP
+		 */
+		private String ip;
+
+		/**
+		 * 服务名
+		 */
+		private String name;
+
+		/**
+		 * 路径 默认拦截所有：/**
+		 */
+		private List<String> pathList = Collections.singletonList("/**");
+
+	}
+
 }

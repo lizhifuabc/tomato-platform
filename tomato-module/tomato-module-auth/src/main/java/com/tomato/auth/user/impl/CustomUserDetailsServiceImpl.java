@@ -14,18 +14,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * @since 2023/5/3
  */
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("admin")
-                .roles("USER")
-                .build();
-        return user;
-    }
 
-    @Override
-    public CustomUserDetails loadCustomUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserDetails user = User.withDefaultPasswordEncoder().username("admin").password("admin").roles("USER").build();
+		return user;
+	}
+
+	@Override
+	public CustomUserDetails loadCustomUserByUsername(String username) throws UsernameNotFoundException {
+		return null;
+	}
+
 }

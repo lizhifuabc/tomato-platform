@@ -7,4 +7,5 @@ package com.tomato.multi.tenancy.autoconfigure;
  * @since 2023/7/16
  */
 public class TenantAutoconfiguration {
+
 }

@@ -14,12 +14,15 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 @AutoConfiguration
 public class BannerAutoConfiguration {
-    @PostConstruct
-    public void postConstruct() {
-        log.info("tomato-banner-starter 自动装配");
-    }
-    @Bean
-    public BannerApplicationRunner bannerApplicationRunner() {
-        return new BannerApplicationRunner();
-    }
+
+	@PostConstruct
+	public void postConstruct() {
+		log.info("tomato-banner-starter 自动装配");
+	}
+
+	@Bean
+	public BannerApplicationRunner bannerApplicationRunner() {
+		return new BannerApplicationRunner();
+	}
+
 }

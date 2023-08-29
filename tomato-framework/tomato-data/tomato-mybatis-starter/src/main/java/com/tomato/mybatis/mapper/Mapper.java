@@ -7,4 +7,5 @@ package com.tomato.mybatis.mapper;
  * @since 2023/5/18
  */
 public interface Mapper<T, ID> {
+
 }

@@ -12,13 +12,15 @@ import java.math.BigDecimal;
  */
 @Data
 public class MerchantRateDTO {
-    /**
-     * 交易费率
-     */
-    private BigDecimal tradeRate;
 
-    /**
-     * 分账费率
-     */
-    private BigDecimal splitRate;
+	/**
+	 * 交易费率
+	 */
+	private BigDecimal tradeRate;
+
+	/**
+	 * 分账费率
+	 */
+	private BigDecimal splitRate;
+
 }

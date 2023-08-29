@@ -12,13 +12,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * 启动类
+ *
  * @author lizhifu
  */
 @SpringBootApplication
-@ImportResource(locations = {"classpath:bean.xml"})
+@ImportResource(locations = { "classpath:bean.xml" })
 @EnableJpaAuditing // 开启时间的支持
 @OpenAPIDefinition(info = @Info(title = "商户服务 API", version = "1.0-SNAPSHOT", description = "商户服务 Information"),
-		servers = {@Server(url = "http://localhost:9999/")})
+		servers = { @Server(url = "http://localhost:9999/") })
 public class MerchantApplication {
 
 	public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class MerchantApplication {
 		Environment env = applicationContext.getEnvironment();
 		System.out.println("系统服务启动成功" + env);
 		// swagger-ui.html 地址
-		System.out.println("http://localhost:"+env.getProperty("server.port")+"/swagger-ui.html");
+		System.out.println("http://localhost:" + env.getProperty("server.port") + "/swagger-ui.html");
 	}
 
 }

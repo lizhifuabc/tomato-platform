@@ -9,20 +9,24 @@ import org.slf4j.MDC;
  * @author lizhifu
  * @since 2023/5/15
  */
-public class CustomRunnable implements Runnable{
-    private final Runnable runnable;
-    private final String traceId;
-    public CustomRunnable(Runnable runnable) {
-        this.runnable = runnable;
-        this.traceId = MDC.get(CustomThreadConstant.TRACE_ID);
-    }
+public class CustomRunnable implements Runnable {
 
-    @Override
-    public void run() {
-        runnable.run();
-    }
+	private final Runnable runnable;
 
-    public String getTraceId() {
-        return traceId;
-    }
+	private final String traceId;
+
+	public CustomRunnable(Runnable runnable) {
+		this.runnable = runnable;
+		this.traceId = MDC.get(CustomThreadConstant.TRACE_ID);
+	}
+
+	@Override
+	public void run() {
+		runnable.run();
+	}
+
+	public String getTraceId() {
+		return traceId;
+	}
+
 }

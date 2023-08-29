@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ResourceController {
-    @GetMapping("/hello")
-    public HttpEntity<String> hello() {
-        return ResponseEntity.ok("auth-resource -> hello");
-    }
+
+	@GetMapping("/hello")
+	public HttpEntity<String> hello() {
+		return ResponseEntity.ok("auth-resource -> hello");
+	}
+
 }

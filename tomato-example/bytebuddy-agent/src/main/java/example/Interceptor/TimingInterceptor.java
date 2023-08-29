@@ -14,16 +14,19 @@ import java.util.concurrent.Callable;
  * @since 2023/4/25
  */
 public class TimingInterceptor {
-    @RuntimeType
-    public static Object intercept(@Origin Method method,
-                                   @SuperCall Callable<?> callable) {
-        long start = System.currentTimeMillis();
-        try {
-            return callable.call();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            System.out.println(method + " took " + (System.currentTimeMillis() - start));
-        }
-    }
+
+	@RuntimeType
+	public static Object intercept(@Origin Method method, @SuperCall Callable<?> callable) {
+		long start = System.currentTimeMillis();
+		try {
+			return callable.call();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		finally {
+			System.out.println(method + " took " + (System.currentTimeMillis() - start));
+		}
+	}
+
 }

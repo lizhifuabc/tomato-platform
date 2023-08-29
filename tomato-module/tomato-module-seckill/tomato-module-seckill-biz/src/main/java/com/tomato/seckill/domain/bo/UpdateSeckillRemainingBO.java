@@ -16,16 +16,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class UpdateSeckillRemainingBO {
-    /**
-     * 秒杀活动商品记录id
-     */
-    private Long userId;
-    /**
-     * 秒杀活动商品记录id
-     */
-    private Long seckillGoodsId;
-    /**
-     * 版本号
-     */
-    private Integer version;
+
+	/**
+	 * 秒杀活动商品记录id
+	 */
+	private Long userId;
+
+	/**
+	 * 秒杀活动商品记录id
+	 */
+	private Long seckillGoodsId;
+
+	/**
+	 * 版本号
+	 */
+	private Integer version;
+
 }

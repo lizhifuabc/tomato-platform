@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
-    private final UserEntityMapper userEntityMapper;
 
-    public UserService(UserEntityMapper userEntityMapper) {
-        this.userEntityMapper = userEntityMapper;
-    }
+	private final UserEntityMapper userEntityMapper;
+
+	public UserService(UserEntityMapper userEntityMapper) {
+		this.userEntityMapper = userEntityMapper;
+	}
+
 }

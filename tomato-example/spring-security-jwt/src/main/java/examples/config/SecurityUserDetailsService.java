@@ -16,25 +16,25 @@ import java.util.Map;
 @Component
 public class SecurityUserDetailsService implements UserDetailsService {
 
-    private final Logger logger = LogManager.getLogger(getClass());
+	private final Logger logger = LogManager.getLogger(getClass());
 
-    @Autowired
-    private SqlSession sqlSession;
+	@Autowired
+	private SqlSession sqlSession;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try {
-            Map<String, Object> userinfoMap = sqlSession.selectOne("Login.loadUserByUsername", username);
-            SecurityUserDetails user = new SecurityUserDetails(username, MapUtils.getString(userinfoMap, "nick_name"),
-                    MapUtils.getString(userinfoMap, "bcrypt_passwd"), new ArrayList<>(),
-                    true, true, true, true);
-            logger.info("登录用户信息：{}", user);
-            return user;
-        } catch (Exception e) {
-            String msg = "Username: " + username + " not found";
-            logger.error(msg, e);
-            throw new UsernameNotFoundException(msg);
-        }
-    }
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		try {
+			Map<String, Object> userinfoMap = sqlSession.selectOne("Login.loadUserByUsername", username);
+			SecurityUserDetails user = new SecurityUserDetails(username, MapUtils.getString(userinfoMap, "nick_name"),
+					MapUtils.getString(userinfoMap, "bcrypt_passwd"), new ArrayList<>(), true, true, true, true);
+			logger.info("登录用户信息：{}", user);
+			return user;
+		}
+		catch (Exception e) {
+			String msg = "Username: " + username + " not found";
+			logger.error(msg, e);
+			throw new UsernameNotFoundException(msg);
+		}
+	}
 
 }

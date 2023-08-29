@@ -7,18 +7,19 @@ import org.apache.ibatis.jdbc.SQL;
 
 /**
  * 删除provider
+ *
  * @author lizhifu
  */
 @Slf4j
 public class DeleteSqlProvider extends AbstractSqlProviderSupport {
-    public String sql(ProviderContext context) {
-        return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
-            TableInfo table = tableInfo(context);
-            SQL sql = new SQL()
-                    .DELETE_FROM(table.tableName)
-                    .WHERE(table.primaryKeyColumn + " = #{id}");
-            log.info("delete sql:\n{}",sql.toString());
-            return sql.toString();
-        });
-    }
+
+	public String sql(ProviderContext context) {
+		return SQL_CACHE.computeIfAbsent(getCacheKey(context), value -> {
+			TableInfo table = tableInfo(context);
+			SQL sql = new SQL().DELETE_FROM(table.tableName).WHERE(table.primaryKeyColumn + " = #{id}");
+			log.info("delete sql:\n{}", sql.toString());
+			return sql.toString();
+		});
+	}
+
 }

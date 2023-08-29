@@ -6,5 +6,6 @@ package com.tomato.common.entity;
  * @author lizhifu
  * @since 2023/4/26
  */
-public abstract class AbstractEntity implements Entity{
+public abstract class AbstractEntity implements Entity {
+
 }

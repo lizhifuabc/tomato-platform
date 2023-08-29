@@ -12,13 +12,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SeckillCacheServiceTest {
-    @Resource
-    private SeckillCacheService seckillCacheService;
 
-    // 缓存预热
-    @Test
-    public void cacheWarmUp() throws InterruptedException {
-        seckillCacheService.cacheWarmUp(1L);
-        Thread.sleep(3000);
-    }
+	@Resource
+	private SeckillCacheService seckillCacheService;
+
+	// 缓存预热
+	@Test
+	public void cacheWarmUp() throws InterruptedException {
+		seckillCacheService.cacheWarmUp(1L);
+		Thread.sleep(3000);
+	}
+
 }

@@ -12,9 +12,11 @@ import lombok.Data;
  */
 @Data
 public class MerchantConfigReq {
-    /**
-     * 商户编号
-     */
-    @NotBlank(message = "商户编号不能为空")
-    private String merchantNo;
+
+	/**
+	 * 商户编号
+	 */
+	@NotBlank(message = "商户编号不能为空")
+	private String merchantNo;
+
 }

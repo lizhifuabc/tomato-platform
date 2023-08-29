@@ -6,9 +6,11 @@ package com.tomato.redis.service;
  * @author lizhifu
  * @since 2023/7/16
  */
-public class DefaultTenantContextService implements TenantContextService{
-    @Override
-    public String getTenant(String key) {
-        return key;
-    }
+public class DefaultTenantContextService implements TenantContextService {
+
+	@Override
+	public String getTenant(String key) {
+		return key;
+	}
+
 }

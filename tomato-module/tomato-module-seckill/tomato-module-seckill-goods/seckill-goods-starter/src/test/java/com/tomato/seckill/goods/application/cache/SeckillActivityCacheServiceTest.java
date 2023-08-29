@@ -12,14 +12,16 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SeckillActivityCacheServiceTest {
-    @Resource
-    private SeckillActivityCacheService seckillActivityCacheService;
 
-    @Test
-    public void test() {
-        Long activityId = 3L;
-        System.out.println(seckillActivityCacheService.getLocalOrDistributedCache(activityId, 1L));
-        System.out.println(seckillActivityCacheService.tryUpdate(activityId, true));
-        System.out.println(seckillActivityCacheService.getDistributedCache(activityId));
-    }
+	@Resource
+	private SeckillActivityCacheService seckillActivityCacheService;
+
+	@Test
+	public void test() {
+		Long activityId = 3L;
+		System.out.println(seckillActivityCacheService.getLocalOrDistributedCache(activityId, 1L));
+		System.out.println(seckillActivityCacheService.tryUpdate(activityId, true));
+		System.out.println(seckillActivityCacheService.getDistributedCache(activityId));
+	}
+
 }

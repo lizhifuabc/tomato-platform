@@ -18,8 +18,7 @@ public class Application {
 
 	public static void main(String... args) throws Exception {
 
-		SpringApplication.run(Application.class, args)
-				.getBean(OrderManagement.class)
-				.complete(new Order());
+		SpringApplication.run(Application.class, args).getBean(OrderManagement.class).complete(new Order());
 	}
+
 }

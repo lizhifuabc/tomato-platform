@@ -11,26 +11,27 @@ import javax.crypto.spec.SecretKeySpec;
  * @date 2022/12/12
  */
 public class HashingUtilityTest {
-    public static void main(String[] args) throws Exception {
-        byte[] key = null; // TODO
-        byte[] input = null; // TODO
-        byte[] output = null;
-        SecretKeySpec keySpec = null;
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec);
-        output = cipher.doFinal(input);
-        System.out.println(output);
-    }
-    public static String HMAC_MD5_encode(String key, String message) throws Exception {
 
-        SecretKeySpec keySpec = new SecretKeySpec(
-                key.getBytes(),
-                "HmacMD5");
+	public static void main(String[] args) throws Exception {
+		byte[] key = null; // TODO
+		byte[] input = null; // TODO
+		byte[] output = null;
+		SecretKeySpec keySpec = null;
+		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		cipher.init(Cipher.ENCRYPT_MODE, keySpec);
+		output = cipher.doFinal(input);
+		System.out.println(output);
+	}
 
-        Mac mac = Mac.getInstance("HmacMD5");
-        mac.init(keySpec);
-        byte[] rawHmac = mac.doFinal(message.getBytes());
+	public static String HMAC_MD5_encode(String key, String message) throws Exception {
 
-        return "Hex.toHexString(rawHmac)";
-    }
+		SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "HmacMD5");
+
+		Mac mac = Mac.getInstance("HmacMD5");
+		mac.init(keySpec);
+		byte[] rawHmac = mac.doFinal(message.getBytes());
+
+		return "Hex.toHexString(rawHmac)";
+	}
+
 }

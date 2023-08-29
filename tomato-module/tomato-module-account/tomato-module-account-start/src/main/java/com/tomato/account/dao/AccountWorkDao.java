@@ -15,16 +15,18 @@ import java.util.List;
  */
 @Mapper
 public interface AccountWorkDao {
-    /**
-     * 插入
-     * @param accountWorkEntity 节假日控制
-     */
-    void insert(AccountWorkEntity accountWorkEntity);
 
-    /**
-     * 查询
-     * @param workDay 日期
-     * @return
-     */
-    List<AccountWorkEntity> selectByWorkDay(@Param("workDay")LocalDate workDay);
+	/**
+	 * 插入
+	 * @param accountWorkEntity 节假日控制
+	 */
+	void insert(AccountWorkEntity accountWorkEntity);
+
+	/**
+	 * 查询
+	 * @param workDay 日期
+	 * @return
+	 */
+	List<AccountWorkEntity> selectByWorkDay(@Param("workDay") LocalDate workDay);
+
 }

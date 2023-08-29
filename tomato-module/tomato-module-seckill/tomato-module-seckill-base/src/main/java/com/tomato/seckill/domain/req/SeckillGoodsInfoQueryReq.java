@@ -12,9 +12,11 @@ import lombok.Data;
  */
 @Data
 public class SeckillGoodsInfoQueryReq extends PageQueryReq {
-    /**
-     * 活动id
-     */
-    @NotNull(message = "活动id不能为空")
-    private Long seckillActivityId;
+
+	/**
+	 * 活动id
+	 */
+	@NotNull(message = "活动id不能为空")
+	private Long seckillActivityId;
+
 }

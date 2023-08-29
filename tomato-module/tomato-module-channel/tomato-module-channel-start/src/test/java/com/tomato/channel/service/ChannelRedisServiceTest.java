@@ -15,50 +15,56 @@ import java.util.Set;
  */
 @SpringBootTest
 public class ChannelRedisServiceTest {
-    @Resource
-    private ChannelRedisService channelRedisService;
-    @Test
-    public void data(){
-        String channelNo = String.valueOf(System.currentTimeMillis());
-        channelNo = "1630000000000";
-        String payType = "42";
-        Set<String> channelAlarm = channelRedisService.getChannelAlarm();
-        System.out.println("获取统计的渠道:" + channelAlarm);
-        channelAlarm.forEach(item -> {
-            System.out.println("===========获取渠道数据："+item+"===========");
-            Set<String> channelRequest = channelRedisService.getChannelRequest(item);
-            System.out.println("获取指定渠道请求的时间戳（秒）:" + channelRequest);
-        });
 
-        System.out.println("获取渠道请求结果:" + channelRedisService.getChannelResult(payType, channelNo));;
-    }
+	@Resource
+	private ChannelRedisService channelRedisService;
 
-    @Test
-    public void test() {
-        String channelNo = String.valueOf(System.currentTimeMillis());
-        channelNo = "1630000000000";
-        String payType = "wx";
+	@Test
+	public void data() {
+		String channelNo = String.valueOf(System.currentTimeMillis());
+		channelNo = "1630000000000";
+		String payType = "42";
+		Set<String> channelAlarm = channelRedisService.getChannelAlarm();
+		System.out.println("获取统计的渠道:" + channelAlarm);
+		channelAlarm.forEach(item -> {
+			System.out.println("===========获取渠道数据：" + item + "===========");
+			Set<String> channelRequest = channelRedisService.getChannelRequest(item);
+			System.out.println("获取指定渠道请求的时间戳（秒）:" + channelRequest);
+		});
 
-        for (int i = 0; i < 10; i++) {
-            channelRedisService.addChannelAlarm(payType, channelNo);
-            long request = channelRedisService.addChannelRequest(payType, channelNo);
-            // 模拟随机请求时间
-            try {
-                Thread.sleep((long) (Math.random() * 1000));
-            } catch (InterruptedException ignored) {
-            }
-            channelRedisService.addChannelResult(payType, channelNo, "success",request);
-            channelRedisService.addChannelResult(payType, channelNo, "fail",request);
-        }
+		System.out.println("获取渠道请求结果:" + channelRedisService.getChannelResult(payType, channelNo));
+		;
+	}
 
-        Set<String> channelAlarm = channelRedisService.getChannelAlarm();
-        System.out.println("获取统计的渠道:" + channelAlarm);
-        channelAlarm.forEach(item -> {
-            System.out.println("===========获取渠道数据："+item+"===========");
-            Set<String> channelRequest = channelRedisService.getChannelRequest(item);
-            System.out.println("获取指定渠道请求的时间戳（秒）:" + channelRequest);
-        });
+	@Test
+	public void test() {
+		String channelNo = String.valueOf(System.currentTimeMillis());
+		channelNo = "1630000000000";
+		String payType = "wx";
 
-        System.out.println("获取渠道请求结果:" + channelRedisService.getChannelResult(payType, channelNo));;
-    }
+		for (int i = 0; i < 10; i++) {
+			channelRedisService.addChannelAlarm(payType, channelNo);
+			long request = channelRedisService.addChannelRequest(payType, channelNo);
+			// 模拟随机请求时间
+			try {
+				Thread.sleep((long) (Math.random() * 1000));
+			}
+			catch (InterruptedException ignored) {
+			}
+			channelRedisService.addChannelResult(payType, channelNo, "success", request);
+			channelRedisService.addChannelResult(payType, channelNo, "fail", request);
+		}
+
+		Set<String> channelAlarm = channelRedisService.getChannelAlarm();
+		System.out.println("获取统计的渠道:" + channelAlarm);
+		channelAlarm.forEach(item -> {
+			System.out.println("===========获取渠道数据：" + item + "===========");
+			Set<String> channelRequest = channelRedisService.getChannelRequest(item);
+			System.out.println("获取指定渠道请求的时间戳（秒）:" + channelRequest);
+		});
+
+		System.out.println("获取渠道请求结果:" + channelRedisService.getChannelResult(payType, channelNo));
+		;
+	}
+
 }

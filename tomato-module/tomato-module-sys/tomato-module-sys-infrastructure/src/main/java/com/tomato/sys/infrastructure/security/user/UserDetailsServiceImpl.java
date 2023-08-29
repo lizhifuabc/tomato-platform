@@ -16,15 +16,19 @@ import org.springframework.stereotype.Service;
  * @since 2023/4/22
  */
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
-    private final SysUserRepository sysUserRepository;
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-    public UserDetailsServiceImpl(SysUserRepository sysUserRepository) {
-        this.sysUserRepository = sysUserRepository;
-    }
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser sysUser = sysUserRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
-        return new SecurityUserDetails(sysUser);
-    }
+	private final SysUserRepository sysUserRepository;
+
+	public UserDetailsServiceImpl(SysUserRepository sysUserRepository) {
+		this.sysUserRepository = sysUserRepository;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		SysUser sysUser = sysUserRepository.findByUsername(username)
+			.orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
+		return new SecurityUserDetails(sysUser);
+	}
+
 }

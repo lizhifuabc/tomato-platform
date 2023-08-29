@@ -12,11 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SeckillActivityDaoTest {
-    @Resource
-    private SeckillActivityDao seckillActivityDao;
 
-    @Test
-    public void test(){
-        seckillActivityDao.selectByTime(null,null);
-    }
+	@Resource
+	private SeckillActivityDao seckillActivityDao;
+
+	@Test
+	public void test() {
+		seckillActivityDao.selectByTime(null, null);
+	}
+
 }

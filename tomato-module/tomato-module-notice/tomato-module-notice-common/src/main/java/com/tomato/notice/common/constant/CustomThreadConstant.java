@@ -7,5 +7,7 @@ package com.tomato.notice.common.constant;
  * @since 2023/5/15
  */
 public final class CustomThreadConstant {
-    public static final String TRACE_ID = "traceId";
+
+	public static final String TRACE_ID = "traceId";
+
 }

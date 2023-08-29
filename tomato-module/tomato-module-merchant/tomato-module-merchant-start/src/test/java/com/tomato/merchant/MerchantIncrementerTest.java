@@ -13,11 +13,13 @@ import org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer;
  */
 @SpringBootTest
 public class MerchantIncrementerTest {
-    @Resource
-    MySQLMaxValueIncrementer merchantIncrementer;
 
-    @Test
-    public void test(){
-        System.out.println(merchantIncrementer.nextLongValue());
-    }
+	@Resource
+	MySQLMaxValueIncrementer merchantIncrementer;
+
+	@Test
+	public void test() {
+		System.out.println(merchantIncrementer.nextLongValue());
+	}
+
 }

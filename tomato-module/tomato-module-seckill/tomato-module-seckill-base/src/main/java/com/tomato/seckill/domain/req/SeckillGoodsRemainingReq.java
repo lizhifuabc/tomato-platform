@@ -11,14 +11,17 @@ import lombok.Data;
  */
 @Data
 public class SeckillGoodsRemainingReq {
-    /**
-     * 商品id
-     */
-    @NotNull(message = "商品id不能为空")
-    private Long goodsId;
-    /**
-     * 活动id
-     */
-    @NotNull(message = "活动id不能为空")
-    private Long seckillActivityId;
+
+	/**
+	 * 商品id
+	 */
+	@NotNull(message = "商品id不能为空")
+	private Long goodsId;
+
+	/**
+	 * 活动id
+	 */
+	@NotNull(message = "活动id不能为空")
+	private Long seckillActivityId;
+
 }

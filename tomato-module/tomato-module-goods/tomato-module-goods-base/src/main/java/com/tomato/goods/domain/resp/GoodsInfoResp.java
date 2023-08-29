@@ -10,12 +10,15 @@ import lombok.Data;
  */
 @Data
 public class GoodsInfoResp {
-    /**
-     * 商品名称
-     */
-    private String goodsName;
-    /**
-     * 主键
-     */
-    private Long id;
+
+	/**
+	 * 商品名称
+	 */
+	private String goodsName;
+
+	/**
+	 * 主键
+	 */
+	private Long id;
+
 }

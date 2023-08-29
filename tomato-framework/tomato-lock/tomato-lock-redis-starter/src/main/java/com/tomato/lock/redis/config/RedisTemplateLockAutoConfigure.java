@@ -15,9 +15,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  */
 @AutoConfiguration
 public class RedisTemplateLockAutoConfigure {
-    @Bean
-    @ConditionalOnMissingBean
-    DistributedLockExe distributedLockExe(StringRedisTemplate stringRedisTemplate){
-        return new RedisTemplateLockExe(stringRedisTemplate);
-    }
+
+	@Bean
+	@ConditionalOnMissingBean
+	DistributedLockExe distributedLockExe(StringRedisTemplate stringRedisTemplate) {
+		return new RedisTemplateLockExe(stringRedisTemplate);
+	}
+
 }

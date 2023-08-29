@@ -14,16 +14,18 @@ import java.time.LocalDate;
  */
 @Service
 public class AccountOutReserveBalanceManager {
-    private final AccountInfoDao accountInfoDao;
 
-    public AccountOutReserveBalanceManager(AccountInfoDao accountInfoDao) {
-        this.accountInfoDao = accountInfoDao;
-    }
+	private final AccountInfoDao accountInfoDao;
 
-    public void updateOutReserveBalance(String accountNo, BigDecimal amount, Integer version, LocalDate exeLocalDate) {
-        int update = accountInfoDao.updateOutReserveBalance(accountNo, amount, version, exeLocalDate);
-        if (update != 1) {
-            throw new RuntimeException("更新账户风险预存期外余额失败");
-        }
-    }
+	public AccountOutReserveBalanceManager(AccountInfoDao accountInfoDao) {
+		this.accountInfoDao = accountInfoDao;
+	}
+
+	public void updateOutReserveBalance(String accountNo, BigDecimal amount, Integer version, LocalDate exeLocalDate) {
+		int update = accountInfoDao.updateOutReserveBalance(accountNo, amount, version, exeLocalDate);
+		if (update != 1) {
+			throw new RuntimeException("更新账户风险预存期外余额失败");
+		}
+	}
+
 }

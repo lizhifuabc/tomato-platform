@@ -7,14 +7,19 @@ package com.tomato.book.redis.support.incrementer;
  * @since 2023/2/27
  */
 public class MaxValueIncrementer {
-    private long nextId = 0L;
-    private long maxId = 0L;
-    public synchronized long getNextKey(){
-        if (this.maxId == this.nextId) {
 
-        }else {
-            ++this.nextId;
-        }
-        return this.nextId;
-    }
+	private long nextId = 0L;
+
+	private long maxId = 0L;
+
+	public synchronized long getNextKey() {
+		if (this.maxId == this.nextId) {
+
+		}
+		else {
+			++this.nextId;
+		}
+		return this.nextId;
+	}
+
 }

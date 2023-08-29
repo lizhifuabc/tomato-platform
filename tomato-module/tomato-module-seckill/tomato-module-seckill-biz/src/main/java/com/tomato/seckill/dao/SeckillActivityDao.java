@@ -15,31 +15,33 @@ import java.util.List;
  */
 @Mapper
 public interface SeckillActivityDao {
-    /**
-     * 创建
-     * @param seckillActivity 秒杀活动
-     */
-    void insert(@Param("seckillActivity") SeckillActivityEntity seckillActivity);
 
-    /**
-     * 查询即将开始的活动
-     * @param startTime 开始时间
-     * @param endTime 结束时间
-     * @return id 集合
-     */
-    List<Long> selectByTime(@Param("startTime")LocalDateTime startTime,@Param("endTime")LocalDateTime endTime);
+	/**
+	 * 创建
+	 * @param seckillActivity 秒杀活动
+	 */
+	void insert(@Param("seckillActivity") SeckillActivityEntity seckillActivity);
 
-    /**
-     * 查询即将开始的活动
-     * @param startTime 开始时间
-     * @return 活动信息集合
-     */
-    List<SeckillActivityEntity> selectByStartTime(@Param("startTime")LocalDateTime startTime);
+	/**
+	 * 查询即将开始的活动
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return id 集合
+	 */
+	List<Long> selectByTime(@Param("startTime") LocalDateTime startTime, @Param("endTime") LocalDateTime endTime);
 
-    /**
-     * 根据 ID 查询
-     * @param id ID
-     * @return 秒杀活动
-     */
-    SeckillActivityEntity selectById(@Param("id") Long id);
+	/**
+	 * 查询即将开始的活动
+	 * @param startTime 开始时间
+	 * @return 活动信息集合
+	 */
+	List<SeckillActivityEntity> selectByStartTime(@Param("startTime") LocalDateTime startTime);
+
+	/**
+	 * 根据 ID 查询
+	 * @param id ID
+	 * @return 秒杀活动
+	 */
+	SeckillActivityEntity selectById(@Param("id") Long id);
+
 }

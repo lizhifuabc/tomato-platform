@@ -14,15 +14,17 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountInfoManagerTest {
-    @Resource
-    AccountInfoManager accountInfoManager;
 
-    @Test
-    public void test(){
-        AccountCreateReq accountCreateReq = new AccountCreateReq();
-        accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
-        accountCreateReq.setMerchantNo("10202307240001001");
-        accountCreateReq.setRemark("测试");
-        accountInfoManager.create(accountCreateReq);
-    }
+	@Resource
+	AccountInfoManager accountInfoManager;
+
+	@Test
+	public void test() {
+		AccountCreateReq accountCreateReq = new AccountCreateReq();
+		accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
+		accountCreateReq.setMerchantNo("10202307240001001");
+		accountCreateReq.setRemark("测试");
+		accountInfoManager.create(accountCreateReq);
+	}
+
 }

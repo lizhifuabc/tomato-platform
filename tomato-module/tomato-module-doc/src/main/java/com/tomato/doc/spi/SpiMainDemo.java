@@ -10,12 +10,14 @@ import java.util.ServiceLoader;
  * @since 2023/3/16
  */
 public class SpiMainDemo {
-    public static void main(String[] args) {
-        ServiceLoader<SpiDemo> spiDemos = ServiceLoader.load(SpiDemo.class);
-        Iterator<SpiDemo> iterator = spiDemos.iterator();
-        while (iterator.hasNext()){
-            SpiDemo spiDemo = iterator.next();
-            spiDemo.hello();
-        }
-    }
+
+	public static void main(String[] args) {
+		ServiceLoader<SpiDemo> spiDemos = ServiceLoader.load(SpiDemo.class);
+		Iterator<SpiDemo> iterator = spiDemos.iterator();
+		while (iterator.hasNext()) {
+			SpiDemo spiDemo = iterator.next();
+			spiDemo.hello();
+		}
+	}
+
 }

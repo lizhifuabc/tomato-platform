@@ -7,5 +7,7 @@ package com.tomato.rpc.example.spi;
  * @since 2023/7/11
  */
 public interface SpiService {
-    String hello(String name);
+
+	String hello(String name);
+
 }

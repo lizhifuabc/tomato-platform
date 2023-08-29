@@ -24,26 +24,33 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class TaskExeService {
-    @Resource
-    private TaskMapper taskMapper;
-    @Resource
-    private DbInfoMapper dbInfoMapper;
-    @Resource
-    private TaskResultService taskResultService;
-    public void exe(Task task,LocalDate taskDate){
-        log.info("执行对账任务:id:{},name:{}",task.getId(),task.getTaskName());
-        Optional<DbInfo> upDbInfo = dbInfoMapper.selectByPrimaryKey(task.getUpDbInfoId());
-        Optional<DbInfo> downDbInfo = dbInfoMapper.selectByPrimaryKey(task.getDownDbInfoId());
 
-        List<Map<String, Object>> upList = ExecuteQueryUtil.query(upDbInfo.get(), TaskSqlAnalysis.analysis(task.getUpTableSql(),taskDate));
-        log.info("执行对账任务:上游:{}",upList.size());
+	@Resource
+	private TaskMapper taskMapper;
 
-        List<Map<String, Object>> downList = ExecuteQueryUtil.query(downDbInfo.get(), TaskSqlAnalysis.analysis(task.getDownTableSql(),taskDate));
-        log.info("执行对账任务:下游:{}",downList.size());
+	@Resource
+	private DbInfoMapper dbInfoMapper;
 
-        ReconciliationSupport reconciliationSupport = new ReconciliationSupport(upList,downList,task);
-        reconciliationSupport.reconciliation();
+	@Resource
+	private TaskResultService taskResultService;
 
-        taskResultService.result(reconciliationSupport, taskDate);
-    }
+	public void exe(Task task, LocalDate taskDate) {
+		log.info("执行对账任务:id:{},name:{}", task.getId(), task.getTaskName());
+		Optional<DbInfo> upDbInfo = dbInfoMapper.selectByPrimaryKey(task.getUpDbInfoId());
+		Optional<DbInfo> downDbInfo = dbInfoMapper.selectByPrimaryKey(task.getDownDbInfoId());
+
+		List<Map<String, Object>> upList = ExecuteQueryUtil.query(upDbInfo.get(),
+				TaskSqlAnalysis.analysis(task.getUpTableSql(), taskDate));
+		log.info("执行对账任务:上游:{}", upList.size());
+
+		List<Map<String, Object>> downList = ExecuteQueryUtil.query(downDbInfo.get(),
+				TaskSqlAnalysis.analysis(task.getDownTableSql(), taskDate));
+		log.info("执行对账任务:下游:{}", downList.size());
+
+		ReconciliationSupport reconciliationSupport = new ReconciliationSupport(upList, downList, task);
+		reconciliationSupport.reconciliation();
+
+		taskResultService.result(reconciliationSupport, taskDate);
+	}
+
 }

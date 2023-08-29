@@ -16,12 +16,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RedisConcurrentRequestCountLimiterResp {
-    /**
-     * 是否允许
-     */
-    private boolean allowed;
-    /**
-     * 已使用
-     */
-    private Long tokensUsed;
+
+	/**
+	 * 是否允许
+	 */
+	private boolean allowed;
+
+	/**
+	 * 已使用
+	 */
+	private Long tokensUsed;
+
 }

@@ -15,14 +15,15 @@ import java.util.Map;
 @ControllerAdvice
 public class CustomExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Body> handleInvalidJwtAuthenticationException(final Exception exception,
-                                                                        final HttpServletRequest request) {
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<Body> handleInvalidJwtAuthenticationException(final Exception exception,
+			final HttpServletRequest request) {
 
-        Map<String, Object> param = new HashMap<>();
-        param.put("uri", request.getRequestURI());
-        param.put("error_timestamp", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now()));
+		Map<String, Object> param = new HashMap<>();
+		param.put("uri", request.getRequestURI());
+		param.put("error_timestamp", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now()));
 
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Body.build().fail(exception.getMessage(), param));
-    }
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Body.build().fail(exception.getMessage(), param));
+	}
+
 }

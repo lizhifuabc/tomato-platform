@@ -18,70 +18,76 @@ import java.time.LocalDateTime;
  */
 @Data
 public class MerchantRateReq {
-    /**
-     * 费率
-     */
-    @Digits(integer = 9, fraction=2, message = "费率格式不正确")
-    @DecimalMin(value = "0.00", message = "费率格式不正确")
-    @NotNull(message = "费率不为空")
-    private BigDecimal rate;
-    /**
-     * 支付方式
-     */
-    @NotNull(message = "支付方式不能为空")
-    private Integer payType;
 
+	/**
+	 * 费率
+	 */
+	@Digits(integer = 9, fraction = 2, message = "费率格式不正确")
+	@DecimalMin(value = "0.00", message = "费率格式不正确")
+	@NotNull(message = "费率不为空")
+	private BigDecimal rate;
 
-    /**
-     * 商户编号
-     */
-    @NotBlank(message = "商户编号不能为空")
-    private String merchantNo;
+	/**
+	 * 支付方式
+	 */
+	@NotNull(message = "支付方式不能为空")
+	private Integer payType;
 
-    /**
-     * 交易费率
-     */
-    @Digits(integer = 9, fraction=2, message = "交易费率格式不正确")
-    @DecimalMin(value = "0.00", message = "交易费率格式不正确")
-    @NotNull(message = "交易费率不为空")
-    private BigDecimal tradeRate;
+	/**
+	 * 商户编号
+	 */
+	@NotBlank(message = "商户编号不能为空")
+	private String merchantNo;
 
-    /**
-     * 分账费率
-     */
-    @Digits(integer = 9, fraction=2, message = "分账费率格式不正确")
-    @DecimalMin(value = "0.00", message = "分账费率格式不正确")
-    private BigDecimal splitRate;
+	/**
+	 * 交易费率
+	 */
+	@Digits(integer = 9, fraction = 2, message = "交易费率格式不正确")
+	@DecimalMin(value = "0.00", message = "交易费率格式不正确")
+	@NotNull(message = "交易费率不为空")
+	private BigDecimal tradeRate;
 
-    /**
-     * 将来交易费率
-     */
-    @Digits(integer = 9, fraction=2, message = "将来交易费率格式不正确")
-    @DecimalMin(value = "0.00", message = "将来交易费率格式不正确")
-    private BigDecimal futureTradeRate;
+	/**
+	 * 分账费率
+	 */
+	@Digits(integer = 9, fraction = 2, message = "分账费率格式不正确")
+	@DecimalMin(value = "0.00", message = "分账费率格式不正确")
+	private BigDecimal splitRate;
 
-    /**
-     * 将来分账费率
-     */
-    @Digits(integer = 9, fraction=2, message = "将来分账费率格式不正确")
-    @DecimalMin(value = "0.00", message = "将来分账费率格式不正确")
-    private BigDecimal futureSplitRate;
-    /**
-     * 将来分账费率生效时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime splitRateEffectiveTime;
-    /**
-     * 将来交易费率生效时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime tradeRateEffectiveTime;
-    /**
-     * 交易是否停用: 0-否, 1-是
-     */
-    private Integer tradeStatus = 0;
-    /**
-     * 分账是否停用: 0-否, 1-是
-     */
-    private Integer splitStatus = 0;
+	/**
+	 * 将来交易费率
+	 */
+	@Digits(integer = 9, fraction = 2, message = "将来交易费率格式不正确")
+	@DecimalMin(value = "0.00", message = "将来交易费率格式不正确")
+	private BigDecimal futureTradeRate;
+
+	/**
+	 * 将来分账费率
+	 */
+	@Digits(integer = 9, fraction = 2, message = "将来分账费率格式不正确")
+	@DecimalMin(value = "0.00", message = "将来分账费率格式不正确")
+	private BigDecimal futureSplitRate;
+
+	/**
+	 * 将来分账费率生效时间
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime splitRateEffectiveTime;
+
+	/**
+	 * 将来交易费率生效时间
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime tradeRateEffectiveTime;
+
+	/**
+	 * 交易是否停用: 0-否, 1-是
+	 */
+	private Integer tradeStatus = 0;
+
+	/**
+	 * 分账是否停用: 0-否, 1-是
+	 */
+	private Integer splitStatus = 0;
+
 }

@@ -27,44 +27,52 @@ import java.util.Optional;
  */
 @Service
 public class GenTableService {
-    private final GenTableDao genTableDao;
-    private final GenConfig genConfig;
-    private final VelocityServiceFactory velocityServiceFactory;
 
-    private final GenFieldTypeService genFieldTypeService;
-    public GenTableService(GenTableDao genTableDao, GenConfig genConfig, VelocityServiceFactory velocityServiceFactory, GenFieldTypeService genFieldTypeService) {
-        this.genTableDao = genTableDao;
-        this.genConfig = genConfig;
-        this.velocityServiceFactory = velocityServiceFactory;
-        this.genFieldTypeService = genFieldTypeService;
-    }
+	private final GenTableDao genTableDao;
 
-    public void genCode(String tableName) {
-        // 1.查询表信息
-        TableResp table = genTableDao.selectTableByTableName(tableName);
-        // 存在表前缀，去除表前缀，生成类名；不存在，直接生成类名
-        String className = Optional.ofNullable(genConfig.getPrefix()).map(prefix -> table.getTableName().replace(prefix, "")).orElse(table.getTableName());
-        table.setUpperTableName(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, className));
-        // 2.查询列信息
-        List<TableColumnResp> tableColumnList = genTableDao.selectTableColumnByTableName(tableName);
-        tableColumnList.forEach(tableColumn -> {
-            // 列名转换成Java属性名
-            String attrName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, tableColumn.getColumnName());
-            tableColumn.setLowerColumnName(attrName);
-        });
-        // 3.生成代码
-        VelocityInitializer.initVelocity();
-        // 渲染模板
-        TableBo tableBo = new TableBo();
-        tableBo.setTable(table);
-        tableBo.setTableColumnList(tableColumnList);
-        VelocityService velocityService = velocityServiceFactory.getVelocityService(TemplateConstant.VM_MAPPER_XML);
-        VelocityContext context = velocityService.render(tableBo);
+	private final GenConfig genConfig;
 
-        StringWriter sw = new StringWriter();
-        Template tpl = Velocity.getTemplate(velocityService.getTemplate(), VelocityInitializer.UTF_8);
-        tpl.merge(context, sw);
+	private final VelocityServiceFactory velocityServiceFactory;
 
-        System.out.println(sw.toString());
-    }
+	private final GenFieldTypeService genFieldTypeService;
+
+	public GenTableService(GenTableDao genTableDao, GenConfig genConfig, VelocityServiceFactory velocityServiceFactory,
+			GenFieldTypeService genFieldTypeService) {
+		this.genTableDao = genTableDao;
+		this.genConfig = genConfig;
+		this.velocityServiceFactory = velocityServiceFactory;
+		this.genFieldTypeService = genFieldTypeService;
+	}
+
+	public void genCode(String tableName) {
+		// 1.查询表信息
+		TableResp table = genTableDao.selectTableByTableName(tableName);
+		// 存在表前缀，去除表前缀，生成类名；不存在，直接生成类名
+		String className = Optional.ofNullable(genConfig.getPrefix())
+			.map(prefix -> table.getTableName().replace(prefix, ""))
+			.orElse(table.getTableName());
+		table.setUpperTableName(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, className));
+		// 2.查询列信息
+		List<TableColumnResp> tableColumnList = genTableDao.selectTableColumnByTableName(tableName);
+		tableColumnList.forEach(tableColumn -> {
+			// 列名转换成Java属性名
+			String attrName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, tableColumn.getColumnName());
+			tableColumn.setLowerColumnName(attrName);
+		});
+		// 3.生成代码
+		VelocityInitializer.initVelocity();
+		// 渲染模板
+		TableBo tableBo = new TableBo();
+		tableBo.setTable(table);
+		tableBo.setTableColumnList(tableColumnList);
+		VelocityService velocityService = velocityServiceFactory.getVelocityService(TemplateConstant.VM_MAPPER_XML);
+		VelocityContext context = velocityService.render(tableBo);
+
+		StringWriter sw = new StringWriter();
+		Template tpl = Velocity.getTemplate(velocityService.getTemplate(), VelocityInitializer.UTF_8);
+		tpl.merge(context, sw);
+
+		System.out.println(sw.toString());
+	}
+
 }

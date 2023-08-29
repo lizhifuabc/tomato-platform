@@ -7,4 +7,5 @@ package com.tomato.mybatis.generator;
  * @since 2023/5/17
  */
 public class Demo {
+
 }

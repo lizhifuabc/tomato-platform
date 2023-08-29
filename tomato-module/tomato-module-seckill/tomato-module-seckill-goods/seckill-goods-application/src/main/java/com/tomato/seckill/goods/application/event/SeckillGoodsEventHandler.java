@@ -16,11 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class SeckillGoodsEventHandler {
-    @EventListener
-    // @Async
-    public void onApplicationEvent(SeckillGoodsEvent event) {
-        log.info("商品事件处理器:{}",event);
-        // TODO
 
-    }
+	@EventListener
+	// @Async
+	public void onApplicationEvent(SeckillGoodsEvent event) {
+		log.info("商品事件处理器:{}", event);
+		// TODO
+
+	}
+
 }

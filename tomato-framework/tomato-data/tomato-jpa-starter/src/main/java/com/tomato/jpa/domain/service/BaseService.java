@@ -12,10 +12,11 @@ import java.io.Serializable;
  * @since 2023/4/26
  */
 interface BaseService<E extends Entity, ID extends Serializable> {
-    /**
-     * 获取Repository
-     *
-     * @return {@link BaseJpaRepository}
-     */
-    BaseJpaRepository<E, ID> getRepository();
+
+	/**
+	 * 获取Repository
+	 * @return {@link BaseJpaRepository}
+	 */
+	BaseJpaRepository<E, ID> getRepository();
+
 }

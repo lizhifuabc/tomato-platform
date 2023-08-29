@@ -15,14 +15,16 @@ import java.lang.annotation.Target;
  * @author lizhifu
  * @date 2021/9/14
  */
-@Target({ElementType.FIELD, ElementType.METHOD})
+@Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 // 指定真正实现校验规则的类
-@Constraint(validatedBy= AmountValidator.class)
+@Constraint(validatedBy = AmountValidator.class)
 public @interface Amount {
-    String message() default "金额格式错误";
 
-    Class<?>[] groups() default {};
+	String message() default "金额格式错误";
 
-    Class<? extends Payload>[] payload() default {};
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
+
 }

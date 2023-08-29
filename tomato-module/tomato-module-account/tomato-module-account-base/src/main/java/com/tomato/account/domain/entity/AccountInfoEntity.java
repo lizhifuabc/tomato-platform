@@ -17,61 +17,65 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AccountInfoEntity extends BaseEntity {
-    /**
-     * 账户编号
-     */
-    private String accountNo;
 
-    /**
-     * 账户历史流水顺序号
-     */
-    private Long accountHisSerial;
+	/**
+	 * 账户编号
+	 */
+	private String accountNo;
 
-    /**
-     * 账户管理顺序号
-     */
-    private Long accountManageSerial;
+	/**
+	 * 账户历史流水顺序号
+	 */
+	private Long accountHisSerial;
 
-    /**
-     * 账户类型
-     */
-    private String accountType;
+	/**
+	 * 账户管理顺序号
+	 */
+	private Long accountManageSerial;
 
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
+	/**
+	 * 账户类型
+	 */
+	private String accountType;
 
-    /**
-     * 余额
-     */
-    private BigDecimal balance;
+	/**
+	 * 商户编号
+	 */
+	private String merchantNo;
 
-    /**
-     * 风险预存期外余额
-     */
-    private BigDecimal outReserveBalance;
+	/**
+	 * 余额
+	 */
+	private BigDecimal balance;
 
-    /**
-     * 上日账户余额
-     */
-    private BigDecimal yesterdayBalance;
+	/**
+	 * 风险预存期外余额
+	 */
+	private BigDecimal outReserveBalance;
 
-    /**
-     * 上一次交易日期
-     */
-    private LocalDateTime lastTradTime;
-    /**
-     * 风险预存期外余额更新日期
-     */
-    private LocalDate outReserveDate;
+	/**
+	 * 上日账户余额
+	 */
+	private BigDecimal yesterdayBalance;
 
-    /**
-     * 账户状态
-     */
-    private String accountStatus;
-    /**
-     * 备注
-     */
-    private String remark;
+	/**
+	 * 上一次交易日期
+	 */
+	private LocalDateTime lastTradTime;
+
+	/**
+	 * 风险预存期外余额更新日期
+	 */
+	private LocalDate outReserveDate;
+
+	/**
+	 * 账户状态
+	 */
+	private String accountStatus;
+
+	/**
+	 * 备注
+	 */
+	private String remark;
+
 }

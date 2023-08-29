@@ -21,10 +21,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Async
 public class OrderCreateListener implements ApplicationListener<OrderCreateEvent> {
-    private final RabbitRepository rabbitRepository;
-    @Override
-    public void onApplicationEvent(@NotNull OrderCreateEvent event) {
-        log.info("OrderCreateListener 订单创建监听:{}",event.getOrderInfoEntity().getOrderNo());
-        rabbitRepository.createOrderTimeOut(event.getOrderInfoEntity());
-    }
+
+	private final RabbitRepository rabbitRepository;
+
+	@Override
+	public void onApplicationEvent(@NotNull OrderCreateEvent event) {
+		log.info("OrderCreateListener 订单创建监听:{}", event.getOrderInfoEntity().getOrderNo());
+		rabbitRepository.createOrderTimeOut(event.getOrderInfoEntity());
+	}
+
 }

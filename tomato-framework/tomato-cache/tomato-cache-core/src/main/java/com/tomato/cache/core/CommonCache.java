@@ -7,54 +7,59 @@ package com.tomato.cache.core;
  * @since 2023/7/15
  */
 public class CommonCache<T> {
-    private T data;
-    /**
-     * 缓存数据是否存在
-     */
-    protected boolean exist;
-    /**
-     * 缓存版本
-     */
-    protected Long version;
-    /**
-     * 稍后再试
-     */
-    protected boolean retryLater;
 
-    public CommonCache<T> with(T data){
-        this.data = data;
-        this.exist = true;
-        return this;
-    }
+	private T data;
 
-    public CommonCache<T> withVersion(Long version){
-        this.version = version;
-        return this;
-    }
+	/**
+	 * 缓存数据是否存在
+	 */
+	protected boolean exist;
 
-    public CommonCache<T> retryLater(){
-        this.retryLater = true;
-        return this;
-    }
+	/**
+	 * 缓存版本
+	 */
+	protected Long version;
 
-    public CommonCache<T> notExist(){
-        this.exist = false;
-        return this;
-    }
+	/**
+	 * 稍后再试
+	 */
+	protected boolean retryLater;
 
-    public T getData() {
-        return data;
-    }
+	public CommonCache<T> with(T data) {
+		this.data = data;
+		this.exist = true;
+		return this;
+	}
 
-    public boolean isExist() {
-        return exist;
-    }
+	public CommonCache<T> withVersion(Long version) {
+		this.version = version;
+		return this;
+	}
 
-    public Long getVersion() {
-        return version;
-    }
+	public CommonCache<T> retryLater() {
+		this.retryLater = true;
+		return this;
+	}
 
-    public boolean isRetryLater() {
-        return retryLater;
-    }
+	public CommonCache<T> notExist() {
+		this.exist = false;
+		return this;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public boolean isExist() {
+		return exist;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public boolean isRetryLater() {
+		return retryLater;
+	}
+
 }

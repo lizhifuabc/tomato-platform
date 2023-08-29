@@ -7,5 +7,7 @@ package com.tomato.security.constant;
  * @since 2023/4/21
  */
 public class RedisKeyConstant {
-    public static final String TOKEN = "token:";
+
+	public static final String TOKEN = "token:";
+
 }

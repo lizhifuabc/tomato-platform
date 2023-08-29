@@ -7,22 +7,25 @@ package com.tomato.order.domain.domain;
  * @since 2023/4/7
  */
 public class OrderQueryDomain {
-    private String merchantNo;
-    private String merchantOrderNo;
 
-    public String getMerchantNo() {
-        return merchantNo;
-    }
+	private String merchantNo;
 
-    public void setMerchantNo(String merchantNo) {
-        this.merchantNo = merchantNo;
-    }
+	private String merchantOrderNo;
 
-    public String getMerchantOrderNo() {
-        return merchantOrderNo;
-    }
+	public String getMerchantNo() {
+		return merchantNo;
+	}
 
-    public void setMerchantOrderNo(String merchantOrderNo) {
-        this.merchantOrderNo = merchantOrderNo;
-    }
+	public void setMerchantNo(String merchantNo) {
+		this.merchantNo = merchantNo;
+	}
+
+	public String getMerchantOrderNo() {
+		return merchantOrderNo;
+	}
+
+	public void setMerchantOrderNo(String merchantOrderNo) {
+		this.merchantOrderNo = merchantOrderNo;
+	}
+
 }

@@ -20,21 +20,25 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AccountDailyCollectService {
-    private final AccountDailyCollectDao accountDailyCollectDao;
-    private final AccountHisDao accountHisDao;
 
-    public void exe(String accountNo, LocalDate collectDate){
-        LocalDateTime startDate = collectDate.atTime(LocalTime.MIN);
-        LocalDateTime endDate = collectDate.atTime(LocalTime.MAX);
-        List<AccountDailyCollectEntity> accountDailyCollectEntities = accountHisDao.collectGroup(accountNo, startDate, endDate);
-        accountDailyCollectEntities.forEach(accountDailyCollectEntity -> {
-            accountDailyCollectEntity.setCollectDate(collectDate);
-        });
-        // TODO 事务拆分
-        AccountDailyCollectEntity delete = new AccountDailyCollectEntity();
-        delete.setAccountNo(accountNo);
-        delete.setCollectDate(collectDate);
-        accountDailyCollectDao.deleteByCriteria(delete);
-        accountDailyCollectDao.batchInsertSelective(accountDailyCollectEntities);
-    }
+	private final AccountDailyCollectDao accountDailyCollectDao;
+
+	private final AccountHisDao accountHisDao;
+
+	public void exe(String accountNo, LocalDate collectDate) {
+		LocalDateTime startDate = collectDate.atTime(LocalTime.MIN);
+		LocalDateTime endDate = collectDate.atTime(LocalTime.MAX);
+		List<AccountDailyCollectEntity> accountDailyCollectEntities = accountHisDao.collectGroup(accountNo, startDate,
+				endDate);
+		accountDailyCollectEntities.forEach(accountDailyCollectEntity -> {
+			accountDailyCollectEntity.setCollectDate(collectDate);
+		});
+		// TODO 事务拆分
+		AccountDailyCollectEntity delete = new AccountDailyCollectEntity();
+		delete.setAccountNo(accountNo);
+		delete.setCollectDate(collectDate);
+		accountDailyCollectDao.deleteByCriteria(delete);
+		accountDailyCollectDao.batchInsertSelective(accountDailyCollectEntities);
+	}
+
 }

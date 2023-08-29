@@ -16,8 +16,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MerchantConfigQueryResp {
-    /**
-     * 商户秘钥
-     */
-    private String merchantKey;
+
+	/**
+	 * 商户秘钥
+	 */
+	private String merchantKey;
+
 }

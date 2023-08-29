@@ -22,39 +22,41 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @Tag(name = "账户结算规则", description = "账户结算规则")
 public class AccountSettleOperateController {
-    private final AccountSettleOperateService accountSettleOperateService;
 
-    public AccountSettleOperateController(AccountSettleOperateService accountSettleOperateService) {
-        this.accountSettleOperateService = accountSettleOperateService;
-    }
+	private final AccountSettleOperateService accountSettleOperateService;
 
-    /**
-     * 账户结算规则
-     * @param accountSettleCreateReq 账户结算规则
-     * @return Resp 账户结算规则结果
-     */
-    @PostMapping("/account/settle/init")
-    @Idempotent
-    @Operation(summary = "账户结算规则初始化",description = "账户结算规则初始化")
-    public Resp<Void> init(@Validated @RequestBody AccountSettleCreateReq accountSettleCreateReq){
-        log.info("账户结算规则 start :{}",accountSettleCreateReq);
-        accountSettleOperateService.create(accountSettleCreateReq);
-        log.info("账户结算规则 end :{}",accountSettleCreateReq);
-        return Resp.buildSuccess();
-    }
+	public AccountSettleOperateController(AccountSettleOperateService accountSettleOperateService) {
+		this.accountSettleOperateService = accountSettleOperateService;
+	}
 
-    /**
-     * 更改账户结算规则
-     * @param accountSettleCreateReq 更改账户结算规则
-     * @return Resp 更改账户结算规则
-     */
-    @PostMapping("/account/settle/update")
-    @Idempotent
-    @Operation(summary = "更改账户结算规则",description = "更改账户结算规则")
-    public Resp<Void> update(@Validated @RequestBody AccountSettleCreateReq accountSettleCreateReq){
-        log.info("更改账户结算规则 start :{}",accountSettleCreateReq);
-        accountSettleOperateService.update(accountSettleCreateReq);
-        log.info("更改账户结算规则 end :{}",accountSettleCreateReq);
-        return Resp.buildSuccess();
-    }
+	/**
+	 * 账户结算规则
+	 * @param accountSettleCreateReq 账户结算规则
+	 * @return Resp 账户结算规则结果
+	 */
+	@PostMapping("/account/settle/init")
+	@Idempotent
+	@Operation(summary = "账户结算规则初始化", description = "账户结算规则初始化")
+	public Resp<Void> init(@Validated @RequestBody AccountSettleCreateReq accountSettleCreateReq) {
+		log.info("账户结算规则 start :{}", accountSettleCreateReq);
+		accountSettleOperateService.create(accountSettleCreateReq);
+		log.info("账户结算规则 end :{}", accountSettleCreateReq);
+		return Resp.buildSuccess();
+	}
+
+	/**
+	 * 更改账户结算规则
+	 * @param accountSettleCreateReq 更改账户结算规则
+	 * @return Resp 更改账户结算规则
+	 */
+	@PostMapping("/account/settle/update")
+	@Idempotent
+	@Operation(summary = "更改账户结算规则", description = "更改账户结算规则")
+	public Resp<Void> update(@Validated @RequestBody AccountSettleCreateReq accountSettleCreateReq) {
+		log.info("更改账户结算规则 start :{}", accountSettleCreateReq);
+		accountSettleOperateService.update(accountSettleCreateReq);
+		log.info("更改账户结算规则 end :{}", accountSettleCreateReq);
+		return Resp.buildSuccess();
+	}
+
 }

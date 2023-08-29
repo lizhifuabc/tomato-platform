@@ -20,31 +20,35 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NoticeEntity {
-    /**
-     * 订单号
-     */
-    @Schema(description = "订单号")
-    private String orderNo;
 
-    /**
-     * 商户编号
-     */
-    @Schema(description = "商户编号")
-    private String merchantNo;
+	/**
+	 * 订单号
+	 */
+	@Schema(description = "订单号")
+	private String orderNo;
 
-    /**
-     * 商户订单号
-     */
-    @Schema(description = "商户订单号")
-    private String merchantOrderNo;
-    /**
-     * 通知地址
-     */
-    @Schema(description = "通知地址")
-    private String noticeUrl;
-    /**
-     * 通知参数
-     */
-    @Schema(description = "通知参数")
-    private Map<String,String> noticeParam;
+	/**
+	 * 商户编号
+	 */
+	@Schema(description = "商户编号")
+	private String merchantNo;
+
+	/**
+	 * 商户订单号
+	 */
+	@Schema(description = "商户订单号")
+	private String merchantOrderNo;
+
+	/**
+	 * 通知地址
+	 */
+	@Schema(description = "通知地址")
+	private String noticeUrl;
+
+	/**
+	 * 通知参数
+	 */
+	@Schema(description = "通知参数")
+	private Map<String, String> noticeParam;
+
 }

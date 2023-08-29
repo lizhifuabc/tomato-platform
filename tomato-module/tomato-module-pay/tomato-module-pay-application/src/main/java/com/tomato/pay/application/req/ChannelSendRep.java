@@ -12,20 +12,25 @@ import java.math.BigDecimal;
  */
 @Data
 public class ChannelSendRep {
-    /**
-     * 通道返回支付信息
-     */
-    private String sendUrl;
-    /**
-     * 支付信息/错误信息
-     */
-    private String remarksInfo;
-    /**
-     * 通道成本费率
-     */
-    private BigDecimal channelRate;
-    /**
-     * 通道标识
-     */
-    private String channelFlag;
+
+	/**
+	 * 通道返回支付信息
+	 */
+	private String sendUrl;
+
+	/**
+	 * 支付信息/错误信息
+	 */
+	private String remarksInfo;
+
+	/**
+	 * 通道成本费率
+	 */
+	private BigDecimal channelRate;
+
+	/**
+	 * 通道标识
+	 */
+	private String channelFlag;
+
 }

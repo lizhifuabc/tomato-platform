@@ -14,69 +14,71 @@ import lombok.*;
 @Table(name = "t_sys_token")
 @Entity
 public class SysToken extends BaseEntity {
-    @Id
-    @GeneratedValue
-    public Long id;
 
-    @Column(unique = true)
-    public String token;
+	@Id
+	@GeneratedValue
+	public Long id;
 
-    @Enumerated(EnumType.STRING)
-    public TokenType tokenType = TokenType.BEARER;
+	@Column(unique = true)
+	public String token;
 
-    public boolean revoked;
+	@Enumerated(EnumType.STRING)
+	public TokenType tokenType = TokenType.BEARER;
 
-    public boolean expired;
+	public boolean revoked;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    public SysUser sysUser;
+	public boolean expired;
 
-    public Long getId() {
-      return id;
-    }
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	public SysUser sysUser;
 
-    public void setId(Long id) {
-      this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getToken() {
-      return token;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setToken(String token) {
-      this.token = token;
-    }
+	public String getToken() {
+		return token;
+	}
 
-    public TokenType getTokenType() {
-      return tokenType;
-    }
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-    public void setTokenType(TokenType tokenType) {
-      this.tokenType = tokenType;
-    }
+	public TokenType getTokenType() {
+		return tokenType;
+	}
 
-    public boolean isRevoked() {
-      return revoked;
-    }
+	public void setTokenType(TokenType tokenType) {
+		this.tokenType = tokenType;
+	}
 
-    public void setRevoked(boolean revoked) {
-      this.revoked = revoked;
-    }
+	public boolean isRevoked() {
+		return revoked;
+	}
 
-    public boolean isExpired() {
-      return expired;
-    }
+	public void setRevoked(boolean revoked) {
+		this.revoked = revoked;
+	}
 
-    public void setExpired(boolean expired) {
-      this.expired = expired;
-    }
+	public boolean isExpired() {
+		return expired;
+	}
 
-    public SysUser getSysUser() {
-      return sysUser;
-    }
+	public void setExpired(boolean expired) {
+		this.expired = expired;
+	}
 
-    public void setSysUser(SysUser sysUser) {
-      this.sysUser = sysUser;
-    }
+	public SysUser getSysUser() {
+		return sysUser;
+	}
+
+	public void setSysUser(SysUser sysUser) {
+		this.sysUser = sysUser;
+	}
+
 }

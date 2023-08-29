@@ -11,18 +11,16 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * 项目启动类
- * 1. @SpringBootApplication 标注启动配置类
- * 2. @EnableAsync 开启异步支持
- * 3. @EnableScheduling 开启定时任务支持
- * 4. @OpenAPIDefinition 开启swagger支持
+ * 项目启动类 1. @SpringBootApplication 标注启动配置类 2. @EnableAsync 开启异步支持 3. @EnableScheduling
+ * 开启定时任务支持 4. @OpenAPIDefinition 开启swagger支持
+ *
  * @author lizhifu
  */
 @SpringBootApplication
 @EnableAsync
 @EnableScheduling
 @OpenAPIDefinition(info = @Info(title = "账户服务 API", version = "1.0-SNAPSHOT", description = "账户服务 Information"),
-		servers = {@Server(url = "http://localhost:9080/")})
+		servers = { @Server(url = "http://localhost:9080/") })
 public class AccountApplication {
 
 	public static void main(String[] args) {
@@ -30,7 +28,7 @@ public class AccountApplication {
 		Environment env = applicationContext.getEnvironment();
 		System.out.println("系统服务启动成功" + env);
 		// swagger-ui.html 地址
-		System.out.println("http://localhost:"+env.getProperty("server.port")+"/swagger-ui.html");
+		System.out.println("http://localhost:" + env.getProperty("server.port") + "/swagger-ui.html");
 	}
 
 }

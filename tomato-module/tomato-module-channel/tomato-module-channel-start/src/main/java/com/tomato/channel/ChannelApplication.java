@@ -11,12 +11,13 @@ import org.springframework.core.env.Environment;
 
 /**
  * 启动类
+ *
  * @author lizhifu
  */
 @EnableDiscoveryClient
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "渠道服务 API", version = "1.0-SNAPSHOT", description = "渠道服务 Information"),
-		servers = {@Server(url = "http://localhost:9991/")})
+		servers = { @Server(url = "http://localhost:9991/") })
 public class ChannelApplication {
 
 	public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class ChannelApplication {
 		Environment env = applicationContext.getEnvironment();
 		System.out.println("系统服务启动成功" + env);
 		// swagger-ui.html 地址
-		System.out.println("http://localhost:"+env.getProperty("server.port")+"/swagger-ui.html");
+		System.out.println("http://localhost:" + env.getProperty("server.port") + "/swagger-ui.html");
 	}
 
 }

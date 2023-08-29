@@ -10,7 +10,8 @@ import com.tomato.common.exception.BusinessException;
  */
 public class SeckillException extends BusinessException {
 
-    public SeckillException(String message) {
-        super(message);
-    }
+	public SeckillException(String message) {
+		super(message);
+	}
+
 }

@@ -10,12 +10,15 @@ import lombok.Data;
  */
 @Data
 public class SeckillGoodsInfoResp {
-    /**
-     * 商品id
-     */
-    private Long goodsId;
-    /**
-     * 商品名称
-     */
-    private String goodsName;
+
+	/**
+	 * 商品id
+	 */
+	private Long goodsId;
+
+	/**
+	 * 商品名称
+	 */
+	private String goodsName;
+
 }

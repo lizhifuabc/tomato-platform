@@ -14,5 +14,7 @@ public class Order implements AggregateRoot<Order, OrderIdentifier> {
 
 	private @Getter OrderIdentifier id = new OrderIdentifier(UUID.randomUUID());
 
-	public static record OrderIdentifier(UUID id) implements Identifier {}
+	public static record OrderIdentifier(UUID id) implements Identifier {
+	}
+
 }

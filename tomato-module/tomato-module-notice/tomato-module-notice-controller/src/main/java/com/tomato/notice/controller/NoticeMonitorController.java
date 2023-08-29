@@ -16,24 +16,27 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 通知监控
- * {@link reactor.core.scheduler.BoundedElasticScheduler}
+ * 通知监控 {@link reactor.core.scheduler.BoundedElasticScheduler}
+ *
  * @author lizhifu
  * @since 2023/5/15
  */
 @RestController
 public class NoticeMonitorController {
-    @Resource
-    private TaskExecutor asyncTaskExecutor;
-    /**
-     * 线程池统计信息
-     * @return Resp
-     */
-    @RequestMapping("/notice/threadPoolStats")
-    public Resp<ThreadPoolStatsResp> getThreadPoolStats(){
-        // Scheduler scheduler = Schedulers.boundedElastic();
-        ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor) asyncTaskExecutor;
-        ThreadPoolStatsResp convert = ThreadPoolConverter.convert(executor.getThreadPoolExecutor());
-        return Resp.of(convert);
-    }
+
+	@Resource
+	private TaskExecutor asyncTaskExecutor;
+
+	/**
+	 * 线程池统计信息
+	 * @return Resp
+	 */
+	@RequestMapping("/notice/threadPoolStats")
+	public Resp<ThreadPoolStatsResp> getThreadPoolStats() {
+		// Scheduler scheduler = Schedulers.boundedElastic();
+		ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor) asyncTaskExecutor;
+		ThreadPoolStatsResp convert = ThreadPoolConverter.convert(executor.getThreadPoolExecutor());
+		return Resp.of(convert);
+	}
+
 }

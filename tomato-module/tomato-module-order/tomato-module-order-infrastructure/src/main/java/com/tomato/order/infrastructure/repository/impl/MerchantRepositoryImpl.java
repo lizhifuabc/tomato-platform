@@ -21,31 +21,33 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Slf4j
 public class MerchantRepositoryImpl implements MerchantRepository {
-    private final RemoteMerchantService remoteMerchantService;
 
-    public MerchantRepositoryImpl(RemoteMerchantService remoteMerchantService) {
-        this.remoteMerchantService = remoteMerchantService;
-    }
+	private final RemoteMerchantService remoteMerchantService;
 
-    @Override
-    public MerchantEntity merchant(MerchantEntity merchantEntity) {
-        MerchantTradReq merchantCreateReq = new MerchantTradReq();
-        BeanUtils.copyProperties(merchantEntity,merchantCreateReq);
-        log.info("请求远程服务 merchant 参数：merchantCreateReq:{}",merchantCreateReq);
-        Resp<MerchantTradResp> trade = remoteMerchantService.trade(merchantCreateReq);
-        if (trade.isSuccess()) {
-            MerchantTradResp data = trade.getData();
-            MerchantEntity re = new MerchantEntity();
-            BeanUtils.copyProperties(data,re);
-            return re;
-        }
-        throw new BusinessException(trade.getMsg());
-    }
+	public MerchantRepositoryImpl(RemoteMerchantService remoteMerchantService) {
+		this.remoteMerchantService = remoteMerchantService;
+	}
 
-    @Override
-    public String merchantKey(String merchantNo) {
-        MerchantConfigQueryReq merchantConfigQueryReq = new MerchantConfigQueryReq();
-        merchantConfigQueryReq.setMerchantNo(merchantNo);
-        return remoteMerchantService.queryConfig(merchantConfigQueryReq).getData().getMerchantKey();
-    }
+	@Override
+	public MerchantEntity merchant(MerchantEntity merchantEntity) {
+		MerchantTradReq merchantCreateReq = new MerchantTradReq();
+		BeanUtils.copyProperties(merchantEntity, merchantCreateReq);
+		log.info("请求远程服务 merchant 参数：merchantCreateReq:{}", merchantCreateReq);
+		Resp<MerchantTradResp> trade = remoteMerchantService.trade(merchantCreateReq);
+		if (trade.isSuccess()) {
+			MerchantTradResp data = trade.getData();
+			MerchantEntity re = new MerchantEntity();
+			BeanUtils.copyProperties(data, re);
+			return re;
+		}
+		throw new BusinessException(trade.getMsg());
+	}
+
+	@Override
+	public String merchantKey(String merchantNo) {
+		MerchantConfigQueryReq merchantConfigQueryReq = new MerchantConfigQueryReq();
+		merchantConfigQueryReq.setMerchantNo(merchantNo);
+		return remoteMerchantService.queryConfig(merchantConfigQueryReq).getData().getMerchantKey();
+	}
+
 }

@@ -14,13 +14,12 @@ import java.lang.instrument.Instrumentation;
  * @since 2023/4/25
  */
 public class TimerAgent {
-    public static void premain(String arguments,
-                               Instrumentation instrumentation) {
-        new AgentBuilder.Default()
-                .type(ElementMatchers.nameEndsWith("Controller"))
-                .transform((builder, type, classLoader, module, protectionDomain) ->
-                        builder.method(ElementMatchers.any())
-                                .intercept(MethodDelegation.to(TimingInterceptor.class))
-                ).installOn(instrumentation);
-    }
+
+	public static void premain(String arguments, Instrumentation instrumentation) {
+		new AgentBuilder.Default().type(ElementMatchers.nameEndsWith("Controller"))
+			.transform((builder, type, classLoader, module, protectionDomain) -> builder.method(ElementMatchers.any())
+				.intercept(MethodDelegation.to(TimingInterceptor.class)))
+			.installOn(instrumentation);
+	}
+
 }

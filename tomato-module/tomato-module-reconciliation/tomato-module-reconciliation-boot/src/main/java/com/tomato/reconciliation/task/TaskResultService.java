@@ -24,73 +24,78 @@ import java.util.*;
 @Service
 @Slf4j
 public class TaskResultService {
-    @Resource
-    private TaskResultMapper taskResultMapper;
-    @Transactional(rollbackFor = Exception.class)
-    public void result(ReconciliationSupport reconciliationSupport, LocalDate taskDate){
-        Task task = reconciliationSupport.getTask();
-        Map<String, Map<String, Object>> downMap = reconciliationSupport.getDownMap();
-        Map<String, Map<String, Object>> upMap = reconciliationSupport.getUpMap();
-        Set<String> downSet = downMap.keySet();
-        Set<String> upSet = upMap.keySet();
-        // 循环 upMap
-        List<TaskResult> upList = new ArrayList<>();
-        for (String upKey : upSet) {
-            TaskResult taskResult = new TaskResult();
-            taskResult.setTaskId(task.getId());
-            taskResult.setTaskSignValue(upKey);
-            taskResult.setTaskValue(upMap.get(upKey).toString());
-            if (downSet.contains(upKey)){
-                taskResult.setUnilateralType(UnilateralType.ALARM_ERROR.getValue());
-            }else {
-                taskResult.setUnilateralType(UnilateralType.UP_ERROR.getValue());
-            }
-            taskResult.setTaskDate(taskDate);
-            taskResult.setTaskSysType(TaskSysType.UP.getValue());
-            upList.add(taskResult);
-        }
-        // 循环 downMap
-        List<TaskResult> downList = new ArrayList<>();
-        for (String downKey : downSet) {
-            TaskResult taskResult = new TaskResult();
-            taskResult.setTaskId(task.getId());
-            taskResult.setTaskSignValue(downKey);
-            taskResult.setTaskValue(downMap.get(downKey).toString());
-            if (upSet.contains(downKey)){
-                taskResult.setUnilateralType(UnilateralType.ALARM_ERROR.getValue());
-            }else {
-                taskResult.setUnilateralType(UnilateralType.DOWN_ERROR.getValue());
-            }
-            taskResult.setTaskDate(taskDate);
-            taskResult.setTaskSysType(TaskSysType.DOWN.getValue());
-            downList.add(taskResult);
-        }
-        // TODO 事务大小优化，list 构建提出事务
-        TaskResult delete = new TaskResult();
-        delete.setTaskId(task.getId());
-        delete.setTaskDate(taskDate);
-        taskResultMapper.deleteByCriteria(delete);
-        if(!upList.isEmpty()){
-            taskResultMapper.batchInsertSelective(upList);
-        }
-        if (!downList.isEmpty()){
-            taskResultMapper.batchInsertSelective(downList);
-        }
-    }
 
-    private void result(Task task,LocalDate taskDate) {
-        // TODO 内部数据进行核销,有些任务，例如 COUNT对账任务，不能核销
-        TaskResult currentTaskResult = new TaskResult();
-        currentTaskResult.setTaskId(task.getId());
-        currentTaskResult.setTaskDate(taskDate);
-        Sort sort = Sort.by("id");
-        List<TaskResult> currentTaskResults = taskResultMapper.selectByCriteria(sort, currentTaskResult);
-        currentTaskResults.forEach(taskResult -> {
-            TaskResult oldTaskResult = new TaskResult();
-            oldTaskResult.setTaskId(task.getId());
-            oldTaskResult.setTaskSignValue(taskResult.getTaskSignValue());
-            oldTaskResult.setTaskDate(taskDate.minusDays(task.getTimeNumber()));
-            List<TaskResult> oldTaskResults = taskResultMapper.selectByCriteria(sort, oldTaskResult);
-        });
-    }
+	@Resource
+	private TaskResultMapper taskResultMapper;
+
+	@Transactional(rollbackFor = Exception.class)
+	public void result(ReconciliationSupport reconciliationSupport, LocalDate taskDate) {
+		Task task = reconciliationSupport.getTask();
+		Map<String, Map<String, Object>> downMap = reconciliationSupport.getDownMap();
+		Map<String, Map<String, Object>> upMap = reconciliationSupport.getUpMap();
+		Set<String> downSet = downMap.keySet();
+		Set<String> upSet = upMap.keySet();
+		// 循环 upMap
+		List<TaskResult> upList = new ArrayList<>();
+		for (String upKey : upSet) {
+			TaskResult taskResult = new TaskResult();
+			taskResult.setTaskId(task.getId());
+			taskResult.setTaskSignValue(upKey);
+			taskResult.setTaskValue(upMap.get(upKey).toString());
+			if (downSet.contains(upKey)) {
+				taskResult.setUnilateralType(UnilateralType.ALARM_ERROR.getValue());
+			}
+			else {
+				taskResult.setUnilateralType(UnilateralType.UP_ERROR.getValue());
+			}
+			taskResult.setTaskDate(taskDate);
+			taskResult.setTaskSysType(TaskSysType.UP.getValue());
+			upList.add(taskResult);
+		}
+		// 循环 downMap
+		List<TaskResult> downList = new ArrayList<>();
+		for (String downKey : downSet) {
+			TaskResult taskResult = new TaskResult();
+			taskResult.setTaskId(task.getId());
+			taskResult.setTaskSignValue(downKey);
+			taskResult.setTaskValue(downMap.get(downKey).toString());
+			if (upSet.contains(downKey)) {
+				taskResult.setUnilateralType(UnilateralType.ALARM_ERROR.getValue());
+			}
+			else {
+				taskResult.setUnilateralType(UnilateralType.DOWN_ERROR.getValue());
+			}
+			taskResult.setTaskDate(taskDate);
+			taskResult.setTaskSysType(TaskSysType.DOWN.getValue());
+			downList.add(taskResult);
+		}
+		// TODO 事务大小优化，list 构建提出事务
+		TaskResult delete = new TaskResult();
+		delete.setTaskId(task.getId());
+		delete.setTaskDate(taskDate);
+		taskResultMapper.deleteByCriteria(delete);
+		if (!upList.isEmpty()) {
+			taskResultMapper.batchInsertSelective(upList);
+		}
+		if (!downList.isEmpty()) {
+			taskResultMapper.batchInsertSelective(downList);
+		}
+	}
+
+	private void result(Task task, LocalDate taskDate) {
+		// TODO 内部数据进行核销,有些任务，例如 COUNT对账任务，不能核销
+		TaskResult currentTaskResult = new TaskResult();
+		currentTaskResult.setTaskId(task.getId());
+		currentTaskResult.setTaskDate(taskDate);
+		Sort sort = Sort.by("id");
+		List<TaskResult> currentTaskResults = taskResultMapper.selectByCriteria(sort, currentTaskResult);
+		currentTaskResults.forEach(taskResult -> {
+			TaskResult oldTaskResult = new TaskResult();
+			oldTaskResult.setTaskId(task.getId());
+			oldTaskResult.setTaskSignValue(taskResult.getTaskSignValue());
+			oldTaskResult.setTaskDate(taskDate.minusDays(task.getTimeNumber()));
+			List<TaskResult> oldTaskResults = taskResultMapper.selectByCriteria(sort, oldTaskResult);
+		});
+	}
+
 }

@@ -12,27 +12,30 @@ import java.math.BigDecimal;
  */
 @Data
 public class OrderQueryResultResp {
-    /**
-     * 订单号
-     */
-    private String orderNo;
-    /**
-     * 订单状态
-     */
-    private Integer orderStatus;
 
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
+	/**
+	 * 订单号
+	 */
+	private String orderNo;
 
-    /**
-     * 商户订单号
-     */
-    private String merchantOrderNo;
+	/**
+	 * 订单状态
+	 */
+	private Integer orderStatus;
 
-    /**
-     * 订单金额
-     */
-    private BigDecimal requestAmount;
+	/**
+	 * 商户编号
+	 */
+	private String merchantNo;
+
+	/**
+	 * 商户订单号
+	 */
+	private String merchantOrderNo;
+
+	/**
+	 * 订单金额
+	 */
+	private BigDecimal requestAmount;
+
 }

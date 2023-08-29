@@ -18,12 +18,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDelayDO {
-    /**
-     * 订单号
-     */
-    private String orderNo;
-    /**
-     * 订单失效时间
-     */
-    private LocalDateTime timeoutTime;
+
+	/**
+	 * 订单号
+	 */
+	private String orderNo;
+
+	/**
+	 * 订单失效时间
+	 */
+	private LocalDateTime timeoutTime;
+
 }

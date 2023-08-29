@@ -11,14 +11,17 @@ import lombok.Data;
  */
 @Data
 public class BaseReq {
-    /**
-     * 商户编号
-     */
-    @NotBlank(message="商户编号不能为空")
-    private String merchantNo;
-    /**
-     * 签名
-     */
-    @NotBlank(message="hmac不能为空")
-    private String hmac;
+
+	/**
+	 * 商户编号
+	 */
+	@NotBlank(message = "商户编号不能为空")
+	private String merchantNo;
+
+	/**
+	 * 签名
+	 */
+	@NotBlank(message = "hmac不能为空")
+	private String hmac;
+
 }

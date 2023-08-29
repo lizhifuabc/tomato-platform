@@ -14,9 +14,15 @@ import org.jmolecules.ddd.types.Entity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class DbInfo extends BaseEntity {
-    private String dbName;
-    private String driver;
-    private String url;
-    private String username;
-    private String password;
+
+	private String dbName;
+
+	private String driver;
+
+	private String url;
+
+	private String username;
+
+	private String password;
+
 }

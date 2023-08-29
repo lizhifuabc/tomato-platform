@@ -10,11 +10,13 @@ import org.springframework.core.env.Environment;
  */
 @SpringBootApplication
 public class PayApplication {
-    public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(PayApplication.class, args);
-        Environment env = applicationContext.getEnvironment();
-        System.out.println("系统服务启动成功" + env);
-        // swagger-ui.html 地址
-        System.out.println("http://localhost:"+env.getProperty("server.port")+"/swagger-ui.html");
-    }
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext applicationContext = SpringApplication.run(PayApplication.class, args);
+		Environment env = applicationContext.getEnvironment();
+		System.out.println("系统服务启动成功" + env);
+		// swagger-ui.html 地址
+		System.out.println("http://localhost:" + env.getProperty("server.port") + "/swagger-ui.html");
+	}
+
 }

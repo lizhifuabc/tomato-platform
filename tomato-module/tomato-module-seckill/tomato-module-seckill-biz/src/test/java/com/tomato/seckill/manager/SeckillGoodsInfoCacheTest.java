@@ -14,13 +14,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SeckillGoodsInfoCacheTest {
-    @Resource
-    SeckillGoodsInfoCache seckillGoodsInfoCache;
 
-    @Test
-    public void cache(){
-        seckillGoodsInfoCache.saveSeckillGoodsInfo(1L);
-        GoodsInfoResp seckillGoodsId = seckillGoodsInfoCache.getSeckillGoodsById(1L);
-        System.out.println(seckillGoodsId);
-    }
+	@Resource
+	SeckillGoodsInfoCache seckillGoodsInfoCache;
+
+	@Test
+	public void cache() {
+		seckillGoodsInfoCache.saveSeckillGoodsInfo(1L);
+		GoodsInfoResp seckillGoodsId = seckillGoodsInfoCache.getSeckillGoodsById(1L);
+		System.out.println(seckillGoodsId);
+	}
+
 }

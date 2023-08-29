@@ -19,27 +19,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = "用户相关", description = "用户相关 API")
 public class SysUserManagerController {
-    private final SysUserPasswordService sysUserPasswordService;
-    public SysUserManagerController(SysUserPasswordService sysUserPasswordService) {
-        this.sysUserPasswordService = sysUserPasswordService;
-    }
-    @PostMapping("/sys/user/add")
-    @PreAuthorize("hasAuthority('sys:user:add')")
-    public void add() {
 
-    }
-    @PostMapping("/sys/user/update")
-    @PreAuthorize("hasAuthority('sys:user:update')")
-    public void update() {
+	private final SysUserPasswordService sysUserPasswordService;
 
-    }
-    @PostMapping("/sys/user/updatePassword")
-    @PreAuthorize("hasAuthority('sys:user:updatePassword')")
-    public void updatePassword(@Valid @RequestBody SysUserUpdatePasswordReq sysUserUpdatePasswordReq) {
-        // 新旧密码不能相同
-        if (sysUserUpdatePasswordReq.getOldPassword().equals(sysUserUpdatePasswordReq.getNewPassword())) {
-            throw new BusinessException("新旧密码不能相同");
-        }
-        sysUserPasswordService.updatePassword(sysUserUpdatePasswordReq);
-    }
+	public SysUserManagerController(SysUserPasswordService sysUserPasswordService) {
+		this.sysUserPasswordService = sysUserPasswordService;
+	}
+
+	@PostMapping("/sys/user/add")
+	@PreAuthorize("hasAuthority('sys:user:add')")
+	public void add() {
+
+	}
+
+	@PostMapping("/sys/user/update")
+	@PreAuthorize("hasAuthority('sys:user:update')")
+	public void update() {
+
+	}
+
+	@PostMapping("/sys/user/updatePassword")
+	@PreAuthorize("hasAuthority('sys:user:updatePassword')")
+	public void updatePassword(@Valid @RequestBody SysUserUpdatePasswordReq sysUserUpdatePasswordReq) {
+		// 新旧密码不能相同
+		if (sysUserUpdatePasswordReq.getOldPassword().equals(sysUserUpdatePasswordReq.getNewPassword())) {
+			throw new BusinessException("新旧密码不能相同");
+		}
+		sysUserPasswordService.updatePassword(sysUserUpdatePasswordReq);
+	}
+
 }

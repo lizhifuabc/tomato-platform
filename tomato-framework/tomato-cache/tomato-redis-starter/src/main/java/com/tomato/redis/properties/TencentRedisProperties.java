@@ -12,5 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "spring.data.redis")
 public class TencentRedisProperties {
-    private boolean tenant = false;
+
+	private boolean tenant = false;
+
 }

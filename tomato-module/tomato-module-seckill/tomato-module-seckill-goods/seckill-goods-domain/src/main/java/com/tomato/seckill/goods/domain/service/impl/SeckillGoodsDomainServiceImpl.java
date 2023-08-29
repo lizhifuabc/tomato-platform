@@ -16,13 +16,15 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class SeckillGoodsDomainServiceImpl implements SeckillGoodsDomainService {
-    @Autowired
-    private SeckillGoodsRepository seckillGoodsRepository;
 
-    @Override
-    public void saveSeckillGoods(SeckillGoods seckillGoods) {
-        // 保存商品到数据库
-        seckillGoodsRepository.saveSeckillGoods(seckillGoods);
-        // TODO 秒杀商品事件发布
-    }
+	@Autowired
+	private SeckillGoodsRepository seckillGoodsRepository;
+
+	@Override
+	public void saveSeckillGoods(SeckillGoods seckillGoods) {
+		// 保存商品到数据库
+		seckillGoodsRepository.saveSeckillGoods(seckillGoods);
+		// TODO 秒杀商品事件发布
+	}
+
 }

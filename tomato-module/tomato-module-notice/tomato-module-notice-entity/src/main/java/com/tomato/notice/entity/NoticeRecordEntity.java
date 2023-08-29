@@ -17,61 +17,65 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "t_notice_record")
 public class NoticeRecordEntity extends BaseEntity {
-    /**
-     * 订单号
-     */
-    private String orderNo;
 
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
+	/**
+	 * 订单号
+	 */
+	private String orderNo;
 
-    /**
-     * 商户订单号
-     */
-    private String merchantOrderNo;
+	/**
+	 * 商户编号
+	 */
+	private String merchantNo;
 
-    /**
-     * 规则编码
-     */
-    private String ruleCode;
+	/**
+	 * 商户订单号
+	 */
+	private String merchantOrderNo;
 
-    /**
-     * http方法
-     */
-    private String httpMethod;
+	/**
+	 * 规则编码
+	 */
+	private String ruleCode;
 
-    /**
-     * 通知地址
-     */
-    private String noticeUrl;
+	/**
+	 * http方法
+	 */
+	private String httpMethod;
 
-    /**
-     * 通知响应结果
-     */
-    private String noticeResult;
+	/**
+	 * 通知地址
+	 */
+	private String noticeUrl;
 
-    /**
-     * 通知次数
-     */
-    private Integer noticeCount;
+	/**
+	 * 通知响应结果
+	 */
+	private String noticeResult;
 
-    /**
-     * 最大通知次数， 默认6次
-     */
-    private Integer noticeCountLimit;
+	/**
+	 * 通知次数
+	 */
+	private Integer noticeCount;
 
-    /**
-     * 通知状态，1-通知中，2-通知成功，3-通知失败
-     */
-    private Byte state;
-    /**
-     * 通知参数
-     */
-    private String noticeParam;
-    /**
-     * 最后一次通知时间
-     */
-    private LocalDateTime lastNoticeTime;
+	/**
+	 * 最大通知次数， 默认6次
+	 */
+	private Integer noticeCountLimit;
+
+	/**
+	 * 通知状态，1-通知中，2-通知成功，3-通知失败
+	 */
+	private Byte state;
+
+	/**
+	 * 通知参数
+	 */
+	private String noticeParam;
+
+	/**
+	 * 最后一次通知时间
+	 */
+	private LocalDateTime lastNoticeTime;
+
 }

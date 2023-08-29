@@ -8,17 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *
- *
  * @author lizhifu
  * @since 2023/7/15
  */
 @Component
 public class SeckillActivityRepositoryImpl implements SeckillActivityRepository {
-    @Autowired
-    private SeckillActivityMapper seckillActivityMapper;
-    @Override
-    public SeckillActivity getSeckillActivityById(Long activityId) {
-        return seckillActivityMapper.selectByPrimaryKey(activityId).orElseThrow(()-> new SeckillException("秒杀活动不存在"));
-    }
+
+	@Autowired
+	private SeckillActivityMapper seckillActivityMapper;
+
+	@Override
+	public SeckillActivity getSeckillActivityById(Long activityId) {
+		return seckillActivityMapper.selectByPrimaryKey(activityId).orElseThrow(() -> new SeckillException("秒杀活动不存在"));
+	}
+
 }

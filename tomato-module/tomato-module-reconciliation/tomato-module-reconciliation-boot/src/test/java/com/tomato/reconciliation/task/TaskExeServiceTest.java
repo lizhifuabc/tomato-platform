@@ -19,18 +19,23 @@ import java.util.List;
  */
 @SpringBootTest
 public class TaskExeServiceTest {
-    @Resource
-    TaskExeService taskExeService;
-    @Resource
-    TaskMapper taskMapper;
-    @Resource
-    DbInfoMapper dbInfoMapper;
-    @Test
-    public void test(){
-        Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
-        List<Task> taskList = taskMapper.selectAll(sort);
-        taskList.forEach(task -> {
-            taskExeService.exe(task, LocalDate.now().minusDays(2));
-        });
-    }
+
+	@Resource
+	TaskExeService taskExeService;
+
+	@Resource
+	TaskMapper taskMapper;
+
+	@Resource
+	DbInfoMapper dbInfoMapper;
+
+	@Test
+	public void test() {
+		Sort sort = Sort.by("id", Sort.Direction.ASC).and("create_time", Sort.Direction.DESC);
+		List<Task> taskList = taskMapper.selectAll(sort);
+		taskList.forEach(task -> {
+			taskExeService.exe(task, LocalDate.now().minusDays(2));
+		});
+	}
+
 }

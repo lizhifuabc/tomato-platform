@@ -32,33 +32,40 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "账户入账", description = "账户入账")
 @RequestMapping
 public class AccountTradController extends BaseController {
-    @Resource(name = "accountAddService")
-    private AccountTradService accountTradService;
-    @Resource
-    private AccountAsyncInitService accountAsyncInitService;
-    @Resource
-    private AccountInfoManager accountInfoManager;
-    /**
-     * 账户入账
-     * @param accountTradReq 入账请求
-     * @return Resp 账户入账结果
-     */
-    @PostMapping("/account/trad")
-    @Idempotent(timeout = 60)
-    @Operation(summary = "账户入账",description = "账户入账")
-    public Resp<Void> trad(@Validated @RequestBody AccountTradReq accountTradReq){
-        log.info("账户入账 start :{}",accountTradReq);
-        boolean async = accountAsyncInitService.checkMerchantNo(accountTradReq.getMerchantNo());
-        AccountTradDto accountTradDto = copy(accountTradReq, AccountTradDto.class);
-        AccountInfoEntity account = accountInfoManager.selectByMerchantNo(accountTradReq.getMerchantNo(),accountTradReq.getAccountType())
-                .orElseThrow(() -> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
-        accountTradDto.setAccountNo(account.getAccountNo());
-        if(async || accountTradReq.isAsync()){
-            accountTradService.exeAsync(accountTradDto);
-        }else {
-            accountTradService.exe(accountTradDto);
-        }
-        log.info("账户入账 end :{}",accountTradReq);
-        return Resp.buildSuccess();
-    }
+
+	@Resource(name = "accountAddService")
+	private AccountTradService accountTradService;
+
+	@Resource
+	private AccountAsyncInitService accountAsyncInitService;
+
+	@Resource
+	private AccountInfoManager accountInfoManager;
+
+	/**
+	 * 账户入账
+	 * @param accountTradReq 入账请求
+	 * @return Resp 账户入账结果
+	 */
+	@PostMapping("/account/trad")
+	@Idempotent(timeout = 60)
+	@Operation(summary = "账户入账", description = "账户入账")
+	public Resp<Void> trad(@Validated @RequestBody AccountTradReq accountTradReq) {
+		log.info("账户入账 start :{}", accountTradReq);
+		boolean async = accountAsyncInitService.checkMerchantNo(accountTradReq.getMerchantNo());
+		AccountTradDto accountTradDto = copy(accountTradReq, AccountTradDto.class);
+		AccountInfoEntity account = accountInfoManager
+			.selectByMerchantNo(accountTradReq.getMerchantNo(), accountTradReq.getAccountType())
+			.orElseThrow(() -> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
+		accountTradDto.setAccountNo(account.getAccountNo());
+		if (async || accountTradReq.isAsync()) {
+			accountTradService.exeAsync(accountTradDto);
+		}
+		else {
+			accountTradService.exe(accountTradDto);
+		}
+		log.info("账户入账 end :{}", accountTradReq);
+		return Resp.buildSuccess();
+	}
+
 }

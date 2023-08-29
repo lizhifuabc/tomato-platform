@@ -15,24 +15,28 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class SeckillGoodsService {
-    private final SeckillGoodsDao seckillGoodsDao;
-    private final SeckillUserManager seckillUserManager;
 
-    public SeckillGoodsService(SeckillGoodsDao seckillGoodsDao, SeckillUserManager seckillUserManager) {
-        this.seckillGoodsDao = seckillGoodsDao;
-        this.seckillUserManager = seckillUserManager;
-    }
+	private final SeckillGoodsDao seckillGoodsDao;
 
-    /**
-     * 扣减库存
-     */
-    @Transactional(rollbackFor = Exception.class)
-    public void deductSeckillGoods(Long seckillGoodsId,Long userId){
-        SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectById(seckillGoodsId);
-        int skillRemainingRes = seckillGoodsDao.updateSkillRemaining(seckillGoodsEntity.getId(), seckillGoodsEntity.getVersion());
-        if(skillRemainingRes != 1){
-            throw new BusinessException("抢购失败，库存不足");
-        }
-        seckillUserManager.userSeckill(seckillGoodsEntity,userId);
-    }
+	private final SeckillUserManager seckillUserManager;
+
+	public SeckillGoodsService(SeckillGoodsDao seckillGoodsDao, SeckillUserManager seckillUserManager) {
+		this.seckillGoodsDao = seckillGoodsDao;
+		this.seckillUserManager = seckillUserManager;
+	}
+
+	/**
+	 * 扣减库存
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public void deductSeckillGoods(Long seckillGoodsId, Long userId) {
+		SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectById(seckillGoodsId);
+		int skillRemainingRes = seckillGoodsDao.updateSkillRemaining(seckillGoodsEntity.getId(),
+				seckillGoodsEntity.getVersion());
+		if (skillRemainingRes != 1) {
+			throw new BusinessException("抢购失败，库存不足");
+		}
+		seckillUserManager.userSeckill(seckillGoodsEntity, userId);
+	}
+
 }

@@ -11,6 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023/8/5
  */
 @Mapper
-public interface OrderInfoIdxMapper extends BaseMapper<OrderInfoIdxDO,Long> {
+public interface OrderInfoIdxMapper extends BaseMapper<OrderInfoIdxDO, Long> {
 
 }

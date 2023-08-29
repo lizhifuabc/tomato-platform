@@ -12,16 +12,20 @@ import java.time.LocalDateTime;
  */
 @Data
 public class OrderShardingTableDO {
-    /**
-     * 主键
-     */
-    private Long id;
-    /**
-     * 开始时间
-     */
-    private LocalDateTime startTime;
-    /**
-     * 结束时间
-     */
-    private LocalDateTime endTime;
+
+	/**
+	 * 主键
+	 */
+	private Long id;
+
+	/**
+	 * 开始时间
+	 */
+	private LocalDateTime startTime;
+
+	/**
+	 * 结束时间
+	 */
+	private LocalDateTime endTime;
+
 }

@@ -22,33 +22,33 @@ import org.springframework.web.bind.annotation.RestController;
  * 商户创建
  *
  * @author lizhifu
- * @since  2022/12/13
+ * @since 2022/12/13
  */
 @RestController
 @RequestMapping
-@Tags({
-        @Tag(name = "商户创建"),
-})
-public class MerchantCreateController extends AbstractBaseController<MerchantInfo,Long> {
-    private final MerchantInfoService merchantInfoService;
+@Tags({ @Tag(name = "商户创建"), })
+public class MerchantCreateController extends AbstractBaseController<MerchantInfo, Long> {
 
-    public MerchantCreateController(MerchantInfoService merchantInfoService) {
-        this.merchantInfoService = merchantInfoService;
-    }
+	private final MerchantInfoService merchantInfoService;
 
-    @PostMapping("/merchant/create")
-    @Operation(summary = "商户创建", description = "商户创建")
-    public Resp<MerchantInfo> create(@Valid @RequestBody MerchantCreateReq merchantCreateReq){
-        return Resp.of(merchantInfoService.save(merchantCreateReq));
-    }
+	public MerchantCreateController(MerchantInfoService merchantInfoService) {
+		this.merchantInfoService = merchantInfoService;
+	}
 
-    @Override
-    public BaseReadableService<MerchantInfo, Long> getReadableService() {
-        return this.merchantInfoService;
-    }
+	@PostMapping("/merchant/create")
+	@Operation(summary = "商户创建", description = "商户创建")
+	public Resp<MerchantInfo> create(@Valid @RequestBody MerchantCreateReq merchantCreateReq) {
+		return Resp.of(merchantInfoService.save(merchantCreateReq));
+	}
 
-    @Override
-    public BaseWriteableService<MerchantInfo, Long> getWriteableService() {
-        return this.merchantInfoService;
-    }
+	@Override
+	public BaseReadableService<MerchantInfo, Long> getReadableService() {
+		return this.merchantInfoService;
+	}
+
+	@Override
+	public BaseWriteableService<MerchantInfo, Long> getWriteableService() {
+		return this.merchantInfoService;
+	}
+
 }

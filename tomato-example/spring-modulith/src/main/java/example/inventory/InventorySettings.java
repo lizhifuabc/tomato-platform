@@ -12,7 +12,6 @@ record InventorySettings(int stockThreshold) {
 
 	/**
 	 * Some Javadoc.
-	 *
 	 * @return
 	 */
 	public int stockThreshold() {

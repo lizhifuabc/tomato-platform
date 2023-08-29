@@ -6,12 +6,14 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 选择角色
+ *
  * @author lizhifu
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class SysRoleSelectedVO extends SysRoleVO {
 
-    @Schema(description = "角色名称")
-    private Boolean selected;
+	@Schema(description = "角色名称")
+	private Boolean selected;
+
 }

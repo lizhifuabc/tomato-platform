@@ -16,76 +16,76 @@ import java.util.List;
  * @since 2023/4/7
  */
 @Repository
-public interface OrderInfoMapper extends BaseMapper<OrderInfoDO,Long> {
-    /**
-     * 订单查询
-     * @param merchantNo 商户编号
-     * @param merchantOrderNo 商户订单号
-     * @return 订单信息
-     */
-    OrderInfoDO selectByMerchant(@Param("merchantNo") String merchantNo, @Param("merchantOrderNo") String merchantOrderNo);
+public interface OrderInfoMapper extends BaseMapper<OrderInfoDO, Long> {
 
-    /**
-     * 订单查询
-     * @param orderNo 订单号
-     * @return 订单信息
-     */
-    OrderInfoDO selectByOrderNo(@Param("orderNo") String orderNo);
-    /**
-     * 订单查询
-     * @param orderNo 订单号
-     * @param merchantNo 商户号
-     * @return 订单信息
-     */
-    OrderInfoDO selectByMerchantOrderNo(@Param("orderNo") String orderNo,@Param("merchantNo") String merchantNo);
+	/**
+	 * 订单查询
+	 * @param merchantNo 商户编号
+	 * @param merchantOrderNo 商户订单号
+	 * @return 订单信息
+	 */
+	OrderInfoDO selectByMerchant(@Param("merchantNo") String merchantNo,
+			@Param("merchantOrderNo") String merchantOrderNo);
 
-    /**
-     * 更新订单状态
-     * @param updateOrderStatusDO 更新订单状态
-     * @return 更新条数
-     */
-    int updateOrderStatus(@Param("updateOrderStatusDO") UpdateOrderStatusDO updateOrderStatusDO);
-    /**
-     * 超时订单状态更新
-     * TODO 大数据量处理
-     * TODO 分库分表
-     * @return 更新条数
-     */
-    int updateTimeOutOrder();
+	/**
+	 * 订单查询
+	 * @param orderNo 订单号
+	 * @return 订单信息
+	 */
+	OrderInfoDO selectByOrderNo(@Param("orderNo") String orderNo);
 
-    /**
-     * 订单查询
-     * TODO 分库分表
-     * @param pageIndex 当前页码
-     * @param pageSize 查询数量
-     * @param createTime 创建时间
-     * @param orderStatus 订单状态
-     * @return 订单
-     */
-    List<OrderInfoDO> selectByCreateTime(@Param("pageIndex") int pageIndex,
-                                         @Param("pageSize") int pageSize,
-                                         @Param("createTime") LocalDateTime createTime,
-                                         @Param("orderStatus") String orderStatus);
+	/**
+	 * 订单查询
+	 * @param orderNo 订单号
+	 * @param merchantNo 商户号
+	 * @return 订单信息
+	 */
+	OrderInfoDO selectByMerchantOrderNo(@Param("orderNo") String orderNo, @Param("merchantNo") String merchantNo);
 
-    /**
-     * 更新订单状态为成功
-     * @param updateOrderStatusDO 更新订单状态
-     * @return 更新条数
-     */
-    int updateOrderStatusSuccess(@Param("updateOrderStatusDO")UpdateOrderStatusDO updateOrderStatusDO);
+	/**
+	 * 更新订单状态
+	 * @param updateOrderStatusDO 更新订单状态
+	 * @return 更新条数
+	 */
+	int updateOrderStatus(@Param("updateOrderStatusDO") UpdateOrderStatusDO updateOrderStatusDO);
 
-    /**
-     * 更新账户状态
-     * @param orderNo 订单号
-     * @param accountStatus 账户状态
-     */
-    int updateAccountStatus(@Param("orderNo") String orderNo,@Param("accountStatus") String accountStatus);
+	/**
+	 * 超时订单状态更新 TODO 大数据量处理 TODO 分库分表
+	 * @return 更新条数
+	 */
+	int updateTimeOutOrder();
 
-    /**
-     * 更新通知状态
-     * @param orderNo 订单号
-     * @param noticeStatus 通知状态
-     * @return 更新条数
-     */
-    int updateNoticeStatus(@Param("orderNo") String orderNo,@Param("noticeStatus") String noticeStatus);
+	/**
+	 * 订单查询 TODO 分库分表
+	 * @param pageIndex 当前页码
+	 * @param pageSize 查询数量
+	 * @param createTime 创建时间
+	 * @param orderStatus 订单状态
+	 * @return 订单
+	 */
+	List<OrderInfoDO> selectByCreateTime(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize,
+			@Param("createTime") LocalDateTime createTime, @Param("orderStatus") String orderStatus);
+
+	/**
+	 * 更新订单状态为成功
+	 * @param updateOrderStatusDO 更新订单状态
+	 * @return 更新条数
+	 */
+	int updateOrderStatusSuccess(@Param("updateOrderStatusDO") UpdateOrderStatusDO updateOrderStatusDO);
+
+	/**
+	 * 更新账户状态
+	 * @param orderNo 订单号
+	 * @param accountStatus 账户状态
+	 */
+	int updateAccountStatus(@Param("orderNo") String orderNo, @Param("accountStatus") String accountStatus);
+
+	/**
+	 * 更新通知状态
+	 * @param orderNo 订单号
+	 * @param noticeStatus 通知状态
+	 * @return 更新条数
+	 */
+	int updateNoticeStatus(@Param("orderNo") String orderNo, @Param("noticeStatus") String noticeStatus);
+
 }

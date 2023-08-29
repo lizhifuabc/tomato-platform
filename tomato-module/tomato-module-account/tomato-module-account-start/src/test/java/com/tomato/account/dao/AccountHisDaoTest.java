@@ -13,15 +13,17 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountHisDaoTest {
-    @Resource
-    AccountHisDao accountHisDao;
 
-    @Test
-    public void allTest(){
-        String accountNo = "102023081632289452901";
-        AccountHisDealQueryBO accountHisDealQueryBO = new AccountHisDealQueryBO();
-        accountHisDealQueryBO.setAccountNo(accountNo);
-        accountHisDealQueryBO.setLimit(50000);
-        System.out.println("selectDeal:"+ accountHisDao.selectDeal(accountHisDealQueryBO));
-    }
+	@Resource
+	AccountHisDao accountHisDao;
+
+	@Test
+	public void allTest() {
+		String accountNo = "102023081632289452901";
+		AccountHisDealQueryBO accountHisDealQueryBO = new AccountHisDealQueryBO();
+		accountHisDealQueryBO.setAccountNo(accountNo);
+		accountHisDealQueryBO.setLimit(50000);
+		System.out.println("selectDeal:" + accountHisDao.selectDeal(accountHisDealQueryBO));
+	}
+
 }

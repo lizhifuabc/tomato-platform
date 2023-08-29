@@ -21,26 +21,30 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class SeckillUserTest {
-    @Resource
-    RedisTemplate redisTemplate;
-    @Resource
-    DefaultRedisScript<Long> userSeckillRedisScript;
-    @Test
-    public void test(){
-        SeckillUserReq seckillUserReq = new SeckillUserReq();
-        seckillUserReq.setSeckillGoodsId(1L);
-        seckillUserReq.setUserId(1L);
 
-        System.out.println("test");
-        log.info("用户抢购请求,seckillUserReq:{}",seckillUserReq);
-        String goods = CacheConstant.SECKILL_GOODS_SECKILL + seckillUserReq.getSeckillGoodsId();
-        String goodsUser = CacheConstant.SECKILL_GOODS_SECKILL_USER + seckillUserReq.getSeckillGoodsId();
+	@Resource
+	RedisTemplate redisTemplate;
 
-        log.info("goods:{}",goods);
-        log.info("goodsUser:{}",goodsUser);
+	@Resource
+	DefaultRedisScript<Long> userSeckillRedisScript;
 
-        List<String> keys = Arrays.asList(goods, goodsUser);
-        Long result = (Long) redisTemplate.execute(userSeckillRedisScript, keys, seckillUserReq.getUserId());
-        log.info("用户{}抢购结果,result:{}",seckillUserReq,result);
-    }
+	@Test
+	public void test() {
+		SeckillUserReq seckillUserReq = new SeckillUserReq();
+		seckillUserReq.setSeckillGoodsId(1L);
+		seckillUserReq.setUserId(1L);
+
+		System.out.println("test");
+		log.info("用户抢购请求,seckillUserReq:{}", seckillUserReq);
+		String goods = CacheConstant.SECKILL_GOODS_SECKILL + seckillUserReq.getSeckillGoodsId();
+		String goodsUser = CacheConstant.SECKILL_GOODS_SECKILL_USER + seckillUserReq.getSeckillGoodsId();
+
+		log.info("goods:{}", goods);
+		log.info("goodsUser:{}", goodsUser);
+
+		List<String> keys = Arrays.asList(goods, goodsUser);
+		Long result = (Long) redisTemplate.execute(userSeckillRedisScript, keys, seckillUserReq.getUserId());
+		log.info("用户{}抢购结果,result:{}", seckillUserReq, result);
+	}
+
 }

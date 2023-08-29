@@ -7,10 +7,12 @@ package com.tomato.redis.redisson.semaphore;
  * @since 2023/7/13
  */
 public interface DistributedSemaphoreFactory {
-    /**
-     * 获取分布式信号量
-     * @param key 信号量的key
-     * @return 分布式信号量
-     */
-    DistributedSemaphore getDistributedSemaphore(String key);
+
+	/**
+	 * 获取分布式信号量
+	 * @param key 信号量的key
+	 * @return 分布式信号量
+	 */
+	DistributedSemaphore getDistributedSemaphore(String key);
+
 }

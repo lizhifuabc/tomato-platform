@@ -16,16 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class DemoController {
-    private final RemoteGoodsService remoteGoodsService;
 
-    public DemoController(RemoteGoodsService remoteGoodsService) {
-        this.remoteGoodsService = remoteGoodsService;
-    }
+	private final RemoteGoodsService remoteGoodsService;
 
-    @GetMapping("/demo")
-    public String demo(){
-        Resp<GoodsInfoResp> goodsInfoRespSingleResp = remoteGoodsService.queryGoodsInfo(1L);
-        log.info("goodsInfoRespSingleResp:{}",goodsInfoRespSingleResp);
-        return goodsInfoRespSingleResp.getData().getGoodsName();
-    }
+	public DemoController(RemoteGoodsService remoteGoodsService) {
+		this.remoteGoodsService = remoteGoodsService;
+	}
+
+	@GetMapping("/demo")
+	public String demo() {
+		Resp<GoodsInfoResp> goodsInfoRespSingleResp = remoteGoodsService.queryGoodsInfo(1L);
+		log.info("goodsInfoRespSingleResp:{}", goodsInfoRespSingleResp);
+		return goodsInfoRespSingleResp.getData().getGoodsName();
+	}
+
 }

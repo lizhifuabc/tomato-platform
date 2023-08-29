@@ -13,10 +13,12 @@ import java.util.List;
  * @since 2023/1/8
  */
 @Mapper
-public interface AccountAsyncDao extends BaseMapper<AccountAsyncEntity,Long> {
-    /**
-     * 查询
-     * @return List<AccountAsyncEntity> 账户信息
-     */
-    List<AccountAsyncEntity> select();
+public interface AccountAsyncDao extends BaseMapper<AccountAsyncEntity, Long> {
+
+	/**
+	 * 查询
+	 * @return List<AccountAsyncEntity> 账户信息
+	 */
+	List<AccountAsyncEntity> select();
+
 }

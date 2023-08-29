@@ -12,4 +12,5 @@ import java.lang.annotation.*;
  * @since 2022/12/19
  */
 public @interface DateRange {
+
 }

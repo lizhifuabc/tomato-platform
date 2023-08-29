@@ -12,9 +12,12 @@ import org.springframework.context.ApplicationEvent;
  */
 @Getter
 public final class OrderCreateEvent extends ApplicationEvent {
-    private final OrderInfoEntity orderInfoEntity;
-    public OrderCreateEvent(Object source, OrderInfoEntity orderInfoEntity) {
-        super(source);
-        this.orderInfoEntity = orderInfoEntity;
-    }
+
+	private final OrderInfoEntity orderInfoEntity;
+
+	public OrderCreateEvent(Object source, OrderInfoEntity orderInfoEntity) {
+		super(source);
+		this.orderInfoEntity = orderInfoEntity;
+	}
+
 }

@@ -11,12 +11,14 @@ import org.springframework.beans.BeanUtils;
  * @since 2023/7/14
  */
 public class SeckillGoodsBuilder {
-    public static SeckillGoods toSeckillGoods(SeckillGoodsCreateReq seckillGoodsCreateReq){
-        if (seckillGoodsCreateReq == null){
-            return null;
-        }
-        SeckillGoods seckillGoods = new SeckillGoods();
-        BeanUtils.copyProperties(seckillGoodsCreateReq, seckillGoods);
-        return seckillGoods;
-    }
+
+	public static SeckillGoods toSeckillGoods(SeckillGoodsCreateReq seckillGoodsCreateReq) {
+		if (seckillGoodsCreateReq == null) {
+			return null;
+		}
+		SeckillGoods seckillGoods = new SeckillGoods();
+		BeanUtils.copyProperties(seckillGoodsCreateReq, seckillGoods);
+		return seckillGoods;
+	}
+
 }

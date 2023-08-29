@@ -14,11 +14,14 @@ import org.springframework.context.annotation.Configuration;
  * @since 2023/5/2
  */
 @Configuration(proxyBeanMethods = false)
-@EnableConfigurationProperties({AuthProperties.class})
+@EnableConfigurationProperties({ AuthProperties.class })
 public class AutoConfiguration {
-    private static final Logger log = LoggerFactory.getLogger(AutoConfiguration.class);
-    @PostConstruct
-    public void postConstruct() {
-        log.info("spring auth server 自动配置");
-    }
+
+	private static final Logger log = LoggerFactory.getLogger(AutoConfiguration.class);
+
+	@PostConstruct
+	public void postConstruct() {
+		log.info("spring auth server 自动配置");
+	}
+
 }

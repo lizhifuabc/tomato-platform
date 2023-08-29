@@ -7,10 +7,12 @@ package com.tomato.redis.service;
  * @since 2023/7/16
  */
 public interface TenantContextService {
-    /**
-     * 获取租户信息
-     * @param key key
-     * @return 租户信息
-     */
-    String getTenant(String key);
+
+	/**
+	 * 获取租户信息
+	 * @param key key
+	 * @return 租户信息
+	 */
+	String getTenant(String key);
+
 }

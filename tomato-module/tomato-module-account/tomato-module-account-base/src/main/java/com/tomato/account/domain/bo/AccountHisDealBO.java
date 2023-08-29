@@ -9,16 +9,19 @@ import java.util.List;
  * 查询未入账的账户历史返回
  *
  * @author lizhifu
- * @since  2022/6/28
+ * @since 2022/6/28
  */
 @Data
 public class AccountHisDealBO {
-    /**
-     * 账户历史表ID
-     */
-    private String accountHisIds;
-    /**
-     * 金额汇总
-     */
-    private BigDecimal sum;
+
+	/**
+	 * 账户历史表ID
+	 */
+	private String accountHisIds;
+
+	/**
+	 * 金额汇总
+	 */
+	private BigDecimal sum;
+
 }

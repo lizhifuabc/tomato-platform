@@ -22,21 +22,21 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping
-@Tags({
-        @Tag(name = "商户交易"),
-})
+@Tags({ @Tag(name = "商户交易"), })
 @Slf4j
 public class MerchantTradeController {
-    private final MerchantTradeService merchantTradeService;
 
-    public MerchantTradeController(MerchantTradeService merchantTradeService) {
-        this.merchantTradeService = merchantTradeService;
-    }
+	private final MerchantTradeService merchantTradeService;
 
-    @PostMapping("/merchant/trade")
-    @Operation(summary = "商户交易", description = "商户交易")
-    public Resp<MerchantTradResp> trade(@Valid @RequestBody MerchantTradReq merchantCreateReq){
-        log.info("商户交易:{}",merchantCreateReq);
-        return Resp.of(merchantTradeService.trade(merchantCreateReq));
-    }
+	public MerchantTradeController(MerchantTradeService merchantTradeService) {
+		this.merchantTradeService = merchantTradeService;
+	}
+
+	@PostMapping("/merchant/trade")
+	@Operation(summary = "商户交易", description = "商户交易")
+	public Resp<MerchantTradResp> trade(@Valid @RequestBody MerchantTradReq merchantCreateReq) {
+		log.info("商户交易:{}", merchantCreateReq);
+		return Resp.of(merchantTradeService.trade(merchantCreateReq));
+	}
+
 }

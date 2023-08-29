@@ -13,8 +13,10 @@ import java.util.concurrent.ThreadLocalRandom;
  * @since 2023/5/25
  */
 public class RandomLoadBalancer extends AbsLoadBalancer {
-    @Override
-    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
-        return list.get(ThreadLocalRandom.current().nextInt(list.size()));
-    }
+
+	@Override
+	protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
+		return list.get(ThreadLocalRandom.current().nextInt(list.size()));
+	}
+
 }

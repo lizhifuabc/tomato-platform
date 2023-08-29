@@ -12,10 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class GenFieldTypeServiceTest {
-    @Resource
-    GenFieldTypeService genFieldTypeService;
-    @Test
-    public void test(){
-        System.out.println(genFieldTypeService.getByDataType("varchar").getAttrType());
-    }
+
+	@Resource
+	GenFieldTypeService genFieldTypeService;
+
+	@Test
+	public void test() {
+		System.out.println(genFieldTypeService.getByDataType("varchar").getAttrType());
+	}
+
 }

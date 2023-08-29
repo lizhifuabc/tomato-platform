@@ -14,8 +14,10 @@ import java.util.Map;
  */
 @RestController
 public class PayCallbackController {
-    @PostMapping("/pay/callback")
-    public void callback(@RequestParam Map<String, Object> requestParam) {
 
-    }
+	@PostMapping("/pay/callback")
+	public void callback(@RequestParam Map<String, Object> requestParam) {
+
+	}
+
 }

@@ -18,92 +18,109 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 public abstract class AbstractSqlProviderSupport {
-    /**
-     * key -> mapper class   value -> tableInfo
-     */
-    private static final Map<Class<?>, TableInfo> TABLE_CACHE = new ConcurrentHashMap<>(128);
-    /**
-     * key -> {@link #getCacheKey}   value -> SQL
-     */
-    static final Map<String, String> SQL_CACHE = new ConcurrentHashMap<>(128);
-    /**
-     * 获取表信息结构
-     *
-     * @param context  provider context
-     * @return  表基本信息
-     */
-    protected TableInfo tableInfo(ProviderContext context) {
-        log.info("context:{}",context.getMapperType());
-        // 如果不存在则创建
-        return TABLE_CACHE.computeIfAbsent(context.getMapperType(), TableInfo::of);
-    }
-    static String getCacheKey(ProviderContext context) {
-        return context.getMapperType().getSimpleName() + ":" + context.getMapperMethod().getName();
-    }
 
-    protected String orderBySql(Sort sort) {
-        return "\n order by " + sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
-    }
-    protected String orderBySqlSimple(Sort sort) {
-        return sort.getOrders().stream().map(order -> order.column() + " " + order.direction()).collect(Collectors.joining(","));
-    }
-    /**
-     * 构建WHERE条件不能为null的SQL语句XML片段
-     *
-     * @param table 实体类映射
-     * @return SQL片段
-     */
-    protected String whereSql(TableInfo table) {
-        Field[] fields = table.fields;
-        String[] columns = table.columns;
-        StringBuilder builder = new StringBuilder();
-        builder.append("\n<where>");
-        for (int i = 0; i < columns.length; i++) {
-            String column = columns[i];
-            Field field = fields[i];
-            builder.append(String.format("\n<if test='criteria.%s != null'> AND %s = #{criteria.%s}</if>", field.getName(), column, field.getName()));
-        }
-        builder.append("\n</where>");
-        return builder.toString();
-    }
-    /**
-     * 更新非null的记录
-     * @param table 实体类映射
-     * @return SQL语句
-     */
-    public String updateSql(TableInfo table) {
-        Field[] fields = table.fields;
-        String[] columns = table.columns;
-        StringBuilder builder = new StringBuilder("\n<set>");
-        for (int i = 0; i < columns.length; i++) {
-            String column = columns[i];
-            Field field = fields[i];
-            builder.append(String.format("\n<if test='criteria.%s != null'>%s = #{criteria.%s},</if>", field.getName(), column, field.getName()));
-        }
-        builder.append("\n</set>");
-        return builder.toString();
-    }
+	/**
+	 * key -> mapper class value -> tableInfo
+	 */
+	private static final Map<Class<?>, TableInfo> TABLE_CACHE = new ConcurrentHashMap<>(128);
 
-    public String limitSql() {
-        return "\n limit #{page.offset},#{page.limit}";
-    }
-    public String inSql(){
-        return "\n<foreach collection='ids' item='id' open='(' separator=',' close=')'>#{id}</foreach>";
-    }
-    public String tableSql(TableInfo table) {
-        return String.format("select \n%s \n from \n%s", String.join(",", table.selectColumns), table.tableName);
-    }
-    public String insertColumnsSql(TableInfo table) {
-        Field[] fields = table.fields;
-        String[] columns = table.columns;
-        StringBuilder builder = new StringBuilder();
-        builder.append("\n<trim prefix='(' suffix=')' suffixOverrides=','>");
-        for (int i = 0; i < columns.length; i++) {
-            String column = columns[i];
-            Field field = fields[i];
-            builder.append(String.format("\n<if test='entities[0].%s != null'>%s,</if>", field.getName(), column));
-        }
-        builder.append("\n</trim>");
-        return builder.toString();
-    }
+	/**
+	 * key -> {@link #getCacheKey} value -> SQL
+	 */
+	static final Map<String, String> SQL_CACHE = new ConcurrentHashMap<>(128);
+
+	/**
+	 * 获取表信息结构
+	 * @param context provider context
+	 * @return 表基本信息
+	 */
+	protected TableInfo tableInfo(ProviderContext context) {
+		log.info("context:{}", context.getMapperType());
+		// 如果不存在则创建
+		return TABLE_CACHE.computeIfAbsent(context.getMapperType(), TableInfo::of);
+	}
+
+	static String getCacheKey(ProviderContext context) {
+		return context.getMapperType().getSimpleName() + ":" + context.getMapperMethod().getName();
+	}
+
+	protected String orderBySql(Sort sort) {
+		return "\n order by " + sort.getOrders()
+			.stream()
+			.map(order -> order.column() + " " + order.direction())
+			.collect(Collectors.joining(","));
+	}
+
+	protected String orderBySqlSimple(Sort sort) {
+		return sort.getOrders()
+			.stream()
+			.map(order -> order.column() + " " + order.direction())
+			.collect(Collectors.joining(","));
+	}
+
+	/**
+	 * 构建WHERE条件不能为null的SQL语句XML片段
+	 * @param table 实体类映射
+	 * @return SQL片段
+	 */
+	protected String whereSql(TableInfo table) {
+		Field[] fields = table.fields;
+		String[] columns = table.columns;
+		StringBuilder builder = new StringBuilder();
+		builder.append("\n<where>");
+		for (int i = 0; i < columns.length; i++) {
+			String column = columns[i];
+			Field field = fields[i];
+			builder.append(String.format("\n<if test='criteria.%s != null'> AND %s = #{criteria.%s}</if>",
+					field.getName(), column, field.getName()));
+		}
+		builder.append("\n</where>");
+		return builder.toString();
+	}
+
+	/**
+	 * 更新非null的记录
+	 * @param table 实体类映射
+	 * @return SQL语句
+	 */
+	public String updateSql(TableInfo table) {
+		Field[] fields = table.fields;
+		String[] columns = table.columns;
+		StringBuilder builder = new StringBuilder("\n<set>");
+		for (int i = 0; i < columns.length; i++) {
+			String column = columns[i];
+			Field field = fields[i];
+			builder.append(String.format("\n<if test='criteria.%s != null'>%s = #{criteria.%s},</if>", field.getName(),
+					column, field.getName()));
+		}
+		builder.append("\n</set>");
+		return builder.toString();
+	}
+
+	public String limitSql() {
+		return "\n limit #{page.offset},#{page.limit}";
+	}
+
+	public String inSql() {
+		return "\n<foreach collection='ids' item='id' open='(' separator=',' close=')'>#{id}</foreach>";
+	}
+
+	public String tableSql(TableInfo table) {
+		return String.format("select \n%s \n from \n%s", String.join(",", table.selectColumns), table.tableName);
+	}
+
+	public String insertColumnsSql(TableInfo table) {
+		Field[] fields = table.fields;
+		String[] columns = table.columns;
+		StringBuilder builder = new StringBuilder();
+		builder.append("\n<trim prefix='(' suffix=')' suffixOverrides=','>");
+		for (int i = 0; i < columns.length; i++) {
+			String column = columns[i];
+			Field field = fields[i];
+			builder.append(String.format("\n<if test='entities[0].%s != null'>%s,</if>", field.getName(), column));
+		}
+		builder.append("\n</trim>");
+		return builder.toString();
+	}
+
 }

@@ -25,11 +25,11 @@ import java.util.Optional;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-
 /**
  * 默认安全配置
  * <p>
  * 默认异常处理：{@link Http403ForbiddenEntryPoint}
+ *
  * @author lizhifu
  * @since 2023/5/3
  */
@@ -37,65 +37,68 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration(proxyBeanMethods = false)
 @Slf4j
 public class DefaultSecurityConfig {
-    /**
-     * 默认忽略的静态资源
-     */
-    private static final List<String> DEFAULT_IGNORED_STATIC_RESOURCES = List.of(
-            "/assets/**", "/webjars/**", "/login");
-    @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity, AuthProperties authProperties) throws Exception {
-        log.info("默认安全配置");
-        // 禁用CSRF 开启跨域
-        httpSecurity.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable);
-        httpSecurity
-                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        // 忽略静态资源
-                        .requestMatchers(DEFAULT_IGNORED_STATIC_RESOURCES.toArray(new String[0])).permitAll()
-                        // 其他请求需要认证
-                        .anyRequest().authenticated()
-                )
-                // 表单登录
-                .formLogin(form->{
-                    // 登录配置
-                    form.loginPage(authProperties.getLoginPageUrl())
-                            .usernameParameter(authProperties.getUsernameParameter())
-                            .passwordParameter(authProperties.getPasswordParameter());
-                    // successForwardUrl：请求转发，转发后浏览器的地址不会变，登录成功后不会跳转到原来的地址
-                    // defaultSuccessUrl：302重定向，登录成功后会跳转到原来的地址
-                    Optional.ofNullable(authProperties.getSuccessForwardUrl())
-                            .ifPresent(form::successForwardUrl);
-                    Optional.ofNullable(authProperties.getFailureForwardUrl())
-                            .ifPresent(form::failureForwardUrl);
-                    form.permitAll();
-                });
-        return httpSecurity.build();
-    }
 
-    /**
-     * OAuth2 中的资源拥有者（Resource Owner）。资源拥有者是指能够对资源进行授权的主体，通常是用户。
-     * @return UserDetailsService
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    public UserDetailsService userDetailsService() {
-        log.info("自定义 UserDetailsService 配置");
-        return new CustomUserDetailsServiceImpl();
-    }
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
-    }
+	/**
+	 * 默认忽略的静态资源
+	 */
+	private static final List<String> DEFAULT_IGNORED_STATIC_RESOURCES = List.of("/assets/**", "/webjars/**", "/login");
 
-    /**
-     * 密码加密
-     * @return 密码加密
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+	@Bean
+	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity, AuthProperties authProperties)
+			throws Exception {
+		log.info("默认安全配置");
+		// 禁用CSRF 开启跨域
+		httpSecurity.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable);
+		httpSecurity.authorizeHttpRequests(authorizeRequests -> authorizeRequests
+			// 忽略静态资源
+			.requestMatchers(DEFAULT_IGNORED_STATIC_RESOURCES.toArray(new String[0]))
+			.permitAll()
+			// 其他请求需要认证
+			.anyRequest()
+			.authenticated())
+			// 表单登录
+			.formLogin(form -> {
+				// 登录配置
+				form.loginPage(authProperties.getLoginPageUrl())
+					.usernameParameter(authProperties.getUsernameParameter())
+					.passwordParameter(authProperties.getPasswordParameter());
+				// successForwardUrl：请求转发，转发后浏览器的地址不会变，登录成功后不会跳转到原来的地址
+				// defaultSuccessUrl：302重定向，登录成功后会跳转到原来的地址
+				Optional.ofNullable(authProperties.getSuccessForwardUrl()).ifPresent(form::successForwardUrl);
+				Optional.ofNullable(authProperties.getFailureForwardUrl()).ifPresent(form::failureForwardUrl);
+				form.permitAll();
+			});
+		return httpSecurity.build();
+	}
+
+	/**
+	 * OAuth2 中的资源拥有者（Resource Owner）。资源拥有者是指能够对资源进行授权的主体，通常是用户。
+	 * @return UserDetailsService
+	 */
+	@Bean
+	@ConditionalOnMissingBean
+	public UserDetailsService userDetailsService() {
+		log.info("自定义 UserDetailsService 配置");
+		return new CustomUserDetailsServiceImpl();
+	}
+
+	@Bean
+	public SessionRegistry sessionRegistry() {
+		return new SessionRegistryImpl();
+	}
+
+	@Bean
+	public HttpSessionEventPublisher httpSessionEventPublisher() {
+		return new HttpSessionEventPublisher();
+	}
+
+	/**
+	 * 密码加密
+	 * @return 密码加密
+	 */
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+
 }

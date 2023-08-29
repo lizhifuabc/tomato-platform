@@ -20,14 +20,18 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(CustomWebProperties.class)
 @Slf4j
 public class AutoConfiguration {
-    @PostConstruct
-    public void postConstruct() {
-        log.info("tomato-web-starter 自动装配");
-    }
-    @Bean
-    @ConditionalOnProperty(prefix = WebConstants.PROPERTY_PREFIX_WEB, name = "controller-point-enable", havingValue = "true")
-    ControllerParamJoinPoint controllerParamJoinPoint(){
-        log.info("tomato-web-starter ControllerParamJoinPoint Auto Configure.");
-        return new ControllerParamJoinPoint();
-    }
+
+	@PostConstruct
+	public void postConstruct() {
+		log.info("tomato-web-starter 自动装配");
+	}
+
+	@Bean
+	@ConditionalOnProperty(prefix = WebConstants.PROPERTY_PREFIX_WEB, name = "controller-point-enable",
+			havingValue = "true")
+	ControllerParamJoinPoint controllerParamJoinPoint() {
+		log.info("tomato-web-starter ControllerParamJoinPoint Auto Configure.");
+		return new ControllerParamJoinPoint();
+	}
+
 }

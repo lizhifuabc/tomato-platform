@@ -20,21 +20,23 @@ import java.util.List;
  * @since 2023/3/21
  */
 @FeignClient(contextId = "remoteClientDetailsService", value = "tomato-module-goods-biz",
-        fallbackFactory = RemoteGoodsFallbackFactory.class)
+		fallbackFactory = RemoteGoodsFallbackFactory.class)
 public interface RemoteGoodsService {
-    /**
-     * 查询商品信息
-     * @param id 商品id
-     * @return 商品信息
-     */
-    @GetMapping("/goods/query/{id}")
-    Resp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id);
 
-    /**
-     * 批量查询商品
-     * @param ids 商品id
-     * @return
-     */
-    @PostMapping("/goods/query/list")
-    Resp<GoodsInfoResp> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids);
+	/**
+	 * 查询商品信息
+	 * @param id 商品id
+	 * @return 商品信息
+	 */
+	@GetMapping("/goods/query/{id}")
+	Resp<GoodsInfoResp> queryGoodsInfo(@PathVariable("id") @NotNull Long id);
+
+	/**
+	 * 批量查询商品
+	 * @param ids 商品id
+	 * @return
+	 */
+	@PostMapping("/goods/query/list")
+	Resp<GoodsInfoResp> queryGoodsInfoList(@RequestBody @Size(max = 15) @NotNull List<Long> ids);
+
 }

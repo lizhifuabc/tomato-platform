@@ -14,8 +14,10 @@ import java.util.List;
 @Data
 @ConfigurationProperties("spring.rabbitmq")
 public class RabbitProperties {
-    /**
-     * 绑定配置
-     */
-    List<RabbitInfo> rabbitInfoList;
+
+	/**
+	 * 绑定配置
+	 */
+	List<RabbitInfo> rabbitInfoList;
+
 }

@@ -18,31 +18,34 @@ import java.util.Map;
 @Service
 @Slf4j
 public class GenFieldTypeService implements InitializingBean {
-    /**
-     * 字段类型缓存
-     */
-    private static final Map<String, GenFieldTypeEntity> FIELD_TYPE_ENTITY_MAP = new HashMap<>();
-    private final GenFieldTypeDao genFieldTypeDao;
 
-    public GenFieldTypeService(GenFieldTypeDao genFieldTypeDao) {
-        this.genFieldTypeDao = genFieldTypeDao;
-    }
+	/**
+	 * 字段类型缓存
+	 */
+	private static final Map<String, GenFieldTypeEntity> FIELD_TYPE_ENTITY_MAP = new HashMap<>();
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        genFieldTypeDao.selectAll().forEach(genFieldTypeEntity -> {
-            // 写入缓存
-            FIELD_TYPE_ENTITY_MAP.putIfAbsent(genFieldTypeEntity.getDataType(),genFieldTypeEntity);
-        });
-        log.info("GenFieldTypeService afterPropertiesSet");
-    }
+	private final GenFieldTypeDao genFieldTypeDao;
 
-    /**
-     * 根据字段类型获取属性类型
-     * @param dataType 字段类型
-     * @return 属性类型
-     */
-    public GenFieldTypeEntity getByDataType(String dataType) {
-        return FIELD_TYPE_ENTITY_MAP.get(dataType);
-    }
+	public GenFieldTypeService(GenFieldTypeDao genFieldTypeDao) {
+		this.genFieldTypeDao = genFieldTypeDao;
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		genFieldTypeDao.selectAll().forEach(genFieldTypeEntity -> {
+			// 写入缓存
+			FIELD_TYPE_ENTITY_MAP.putIfAbsent(genFieldTypeEntity.getDataType(), genFieldTypeEntity);
+		});
+		log.info("GenFieldTypeService afterPropertiesSet");
+	}
+
+	/**
+	 * 根据字段类型获取属性类型
+	 * @param dataType 字段类型
+	 * @return 属性类型
+	 */
+	public GenFieldTypeEntity getByDataType(String dataType) {
+		return FIELD_TYPE_ENTITY_MAP.get(dataType);
+	}
+
 }

@@ -12,8 +12,10 @@ import lombok.Data;
 @Data
 @Tag(name = "账户创建返回", description = "账户创建返回")
 public class AccountCreateResp {
-    /**
-     * 账户编号
-     */
-    private String accountNo;
+
+	/**
+	 * 账户编号
+	 */
+	private String accountNo;
+
 }

@@ -6,9 +6,11 @@ import lombok.Data;
  * 查单返回
  *
  * @author lizhifu
- * @since  2022/6/25
+ * @since 2022/6/25
  */
 @Data
 public class ChannelQueryRep {
-    private boolean success;
+
+	private boolean success;
+
 }

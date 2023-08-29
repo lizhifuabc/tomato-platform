@@ -9,9 +9,11 @@ import com.tomato.order.domain.domain.entity.AccountEntity;
  * @since 2023/8/10
  */
 public interface AccountRepository {
-    /**
-     * 账户入账
-     * @param accountEntity 入账请求
-     */
-    void trad(AccountEntity accountEntity);
+
+	/**
+	 * 账户入账
+	 * @param accountEntity 入账请求
+	 */
+	void trad(AccountEntity accountEntity);
+
 }

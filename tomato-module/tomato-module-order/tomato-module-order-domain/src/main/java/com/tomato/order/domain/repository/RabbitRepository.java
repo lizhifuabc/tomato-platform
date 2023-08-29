@@ -9,15 +9,17 @@ import com.tomato.order.domain.domain.entity.OrderInfoEntity;
  * @since 2023/8/2
  */
 public interface RabbitRepository {
-    /**
-     * 创建订单超时
-     * @param orderInfoEntity 订单信息
-     */
-    void createOrderTimeOut(OrderInfoEntity orderInfoEntity);
 
-    /**
-     * 订单完成
-     * @param orderInfoEntity 订单信息
-     */
-    void orderComplete(OrderInfoEntity orderInfoEntity);
+	/**
+	 * 创建订单超时
+	 * @param orderInfoEntity 订单信息
+	 */
+	void createOrderTimeOut(OrderInfoEntity orderInfoEntity);
+
+	/**
+	 * 订单完成
+	 * @param orderInfoEntity 订单信息
+	 */
+	void orderComplete(OrderInfoEntity orderInfoEntity);
+
 }

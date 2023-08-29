@@ -12,18 +12,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class OrderNoComponent {
-    private final IdWorker idWorker;
 
-    public OrderNoComponent(IdWorker idWorker) {
-       this.idWorker = idWorker;
-    }
+	private final IdWorker idWorker;
 
-    /**
-     * 生成订单编号
-     * @return 订单编号
-     */
-    public String createOrderNo(String merchantNo) {
-        // 商户号的后六位数字
-        return idWorker.nextIdStr() + ShardingConstant.merchantNoSpilt(merchantNo);
-    }
+	public OrderNoComponent(IdWorker idWorker) {
+		this.idWorker = idWorker;
+	}
+
+	/**
+	 * 生成订单编号
+	 * @return 订单编号
+	 */
+	public String createOrderNo(String merchantNo) {
+		// 商户号的后六位数字
+		return idWorker.nextIdStr() + ShardingConstant.merchantNoSpilt(merchantNo);
+	}
+
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 /**
  * 角色
  *
@@ -21,33 +20,35 @@ import java.util.List;
 @RestController
 @Tag(name = "角色", description = "角色相关API")
 public class SysRoleController {
-    @Operation(summary ="添加角色")
-    @PostMapping("/role/add")
-    public Resp<Void> addRole(@Valid @RequestBody SysRoleAddForm sysRoleAddForm) {
-        return Resp.buildSuccess();
-    }
 
-    @Operation(summary ="删除角色")
-    @GetMapping("/role/delete/{roleId}")
-    public Resp<Void> deleteRole(@PathVariable Long roleId) {
-        return Resp.buildSuccess();
-    }
+	@Operation(summary = "添加角色")
+	@PostMapping("/role/add")
+	public Resp<Void> addRole(@Valid @RequestBody SysRoleAddForm sysRoleAddForm) {
+		return Resp.buildSuccess();
+	}
 
-    @Operation(summary ="更新角色")
-    @PostMapping("/role/update")
-    public Resp<Void> updateRole(@Valid @RequestBody SysRoleUpdateForm roleUpdateDTO) {
-        return Resp.buildSuccess();
-    }
+	@Operation(summary = "删除角色")
+	@GetMapping("/role/delete/{roleId}")
+	public Resp<Void> deleteRole(@PathVariable Long roleId) {
+		return Resp.buildSuccess();
+	}
 
-    @Operation(summary ="获取角色数据")
-    @GetMapping("/role/get/{roleId}")
-    public Resp<SysRoleVO> getRole(@PathVariable("roleId") Long roleId) {
-        return Resp.of(new SysRoleVO());
-    }
+	@Operation(summary = "更新角色")
+	@PostMapping("/role/update")
+	public Resp<Void> updateRole(@Valid @RequestBody SysRoleUpdateForm roleUpdateDTO) {
+		return Resp.buildSuccess();
+	}
 
-    @Operation(summary ="获取所有角色")
-    @GetMapping("/role/getAll")
-    public Resp<List<SysRoleVO>> getAllRole() {
-        return Resp.of(List.of(new SysRoleVO()));
-    }
+	@Operation(summary = "获取角色数据")
+	@GetMapping("/role/get/{roleId}")
+	public Resp<SysRoleVO> getRole(@PathVariable("roleId") Long roleId) {
+		return Resp.of(new SysRoleVO());
+	}
+
+	@Operation(summary = "获取所有角色")
+	@GetMapping("/role/getAll")
+	public Resp<List<SysRoleVO>> getAllRole() {
+		return Resp.of(List.of(new SysRoleVO()));
+	}
+
 }

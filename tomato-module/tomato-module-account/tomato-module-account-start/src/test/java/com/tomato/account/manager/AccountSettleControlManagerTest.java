@@ -17,20 +17,22 @@ import java.time.LocalDateTime;
  */
 @SpringBootTest
 public class AccountSettleControlManagerTest {
-    @Resource
-    AccountSettleControlManager accountSettleControlManager;
 
-    @Test
-    public void test(){
-        AccountSettleEntity accountSettleEntity = new AccountSettleEntity();
-        accountSettleEntity.setId(1000L);
-        accountSettleEntity.setAccountNo("12312");
-        accountSettleEntity.setMerchantNo("12312");
-        accountSettleEntity.setCreateTime(LocalDateTime.now());
-        accountSettleEntity.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
-        accountSettleEntity.setCycleData("1,2,4");
-        accountSettleEntity.setCycleType(CycleTypeEnum.WEEK.getValue());
-        accountSettleEntity.setReserveDays(3);
-        accountSettleControlManager.create(accountSettleEntity);
-    }
+	@Resource
+	AccountSettleControlManager accountSettleControlManager;
+
+	@Test
+	public void test() {
+		AccountSettleEntity accountSettleEntity = new AccountSettleEntity();
+		accountSettleEntity.setId(1000L);
+		accountSettleEntity.setAccountNo("12312");
+		accountSettleEntity.setMerchantNo("12312");
+		accountSettleEntity.setCreateTime(LocalDateTime.now());
+		accountSettleEntity.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
+		accountSettleEntity.setCycleData("1,2,4");
+		accountSettleEntity.setCycleType(CycleTypeEnum.WEEK.getValue());
+		accountSettleEntity.setReserveDays(3);
+		accountSettleControlManager.create(accountSettleEntity);
+	}
+
 }

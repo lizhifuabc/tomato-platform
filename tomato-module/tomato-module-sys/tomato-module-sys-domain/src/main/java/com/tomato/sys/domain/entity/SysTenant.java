@@ -6,6 +6,7 @@ import org.hibernate.annotations.Comment;
 
 /**
  * 多租户
+ *
  * @author lizhifu
  */
 @Schema(title = "多租户")
@@ -13,53 +14,55 @@ import org.hibernate.annotations.Comment;
 @Table(name = "t_sys_tenant")
 @Cacheable
 public class SysTenant extends BaseSysEntity {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "tenant_id")
-    @Comment("租户ID")
-    private Long tenantId;
 
-    @Schema(name = "数据库用户名")
-    @Column(name = "username", length = 100)
-    private String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "tenant_id")
+	@Comment("租户ID")
+	private Long tenantId;
 
-    @Schema(name = "数据库密码")
-    @Column(name = "password", length = 100)
-    private String password;
+	@Schema(name = "数据库用户名")
+	@Column(name = "username", length = 100)
+	private String username;
 
-    @Schema(name = "数据库连接")
-    @Column(name = "url", length = 1000)
-    private String url;
+	@Schema(name = "数据库密码")
+	@Column(name = "password", length = 100)
+	private String password;
 
-    public Long getTenantId() {
-        return tenantId;
-    }
+	@Schema(name = "数据库连接")
+	@Column(name = "url", length = 1000)
+	private String url;
 
-    public void setTenantId(Long tenantId) {
-        this.tenantId = tenantId;
-    }
+	public Long getTenantId() {
+		return tenantId;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public void setTenantId(Long tenantId) {
+		this.tenantId = tenantId;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 }

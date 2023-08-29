@@ -7,8 +7,10 @@ package com.tomato.seckill.constant;
  * @since 2022/12/19
  */
 public class RabbitmqConstant {
-    /**
-     * 秒杀延迟队列
-     */
-    public static final String SECKILL_DELAY_QUEUE = "seckill.delay.queue";
+
+	/**
+	 * 秒杀延迟队列
+	 */
+	public static final String SECKILL_DELAY_QUEUE = "seckill.delay.queue";
+
 }

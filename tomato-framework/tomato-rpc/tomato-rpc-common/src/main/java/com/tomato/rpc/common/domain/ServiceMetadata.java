@@ -10,37 +10,40 @@ import lombok.Data;
  */
 @Data
 public class ServiceMetadata {
-    /**
-     * 名称
-     */
-    private String serviceName;
 
-    /**
-     * 版本号
-     */
-    private String serviceVersion;
+	/**
+	 * 名称
+	 */
+	private String serviceName;
 
-    /**
-     * 地址
-     */
-    private String serviceAddr;
+	/**
+	 * 版本号
+	 */
+	private String serviceVersion;
 
-    /**
-     * 端口号
-     */
-    private int servicePort;
+	/**
+	 * 地址
+	 */
+	private String serviceAddr;
 
-    /**
-     * 分组
-     */
-    private String serviceGroup;
+	/**
+	 * 端口号
+	 */
+	private int servicePort;
 
-    /**
-     * 权重
-     */
-    private int weight;
-    /**
-     * 连接数
-     */
-    private int connectionCount;
+	/**
+	 * 分组
+	 */
+	private String serviceGroup;
+
+	/**
+	 * 权重
+	 */
+	private int weight;
+
+	/**
+	 * 连接数
+	 */
+	private int connectionCount;
+
 }

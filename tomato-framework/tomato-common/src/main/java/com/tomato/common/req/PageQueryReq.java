@@ -4,63 +4,67 @@ package com.tomato.common.req;
  * 分页查询请求
  *
  * @author lizhifu
- * @since  2022/11/21
+ * @since 2022/11/21
  */
 public class PageQueryReq {
-    /**
-     * 默认每页数量
-     */
-    private static final int DEFAULT_PAGE_SIZE = 10;
-    /**
-     * 每页数量
-     */
-    private int pageSize = DEFAULT_PAGE_SIZE;
-    /**
-     * 页码
-     */
-    private int pageIndex = 1;
-    /**
-     * 是否查询总数
-     */
-    private boolean needTotalCount = true;
 
-    public int getPageIndex() {
-        if (pageIndex < 1) {
-            return 1;
-        }
-        return pageIndex;
-    }
+	/**
+	 * 默认每页数量
+	 */
+	private static final int DEFAULT_PAGE_SIZE = 10;
 
-    public PageQueryReq setPageIndex(int pageIndex) {
-        this.pageIndex = pageIndex;
-        return this;
-    }
+	/**
+	 * 每页数量
+	 */
+	private int pageSize = DEFAULT_PAGE_SIZE;
 
-    public int getPageSize() {
-        if (pageSize < 1) {
-            pageSize = DEFAULT_PAGE_SIZE;
-        }
-        return pageSize;
-    }
+	/**
+	 * 页码
+	 */
+	private int pageIndex = 1;
 
-    public PageQueryReq setPageSize(int pageSize) {
-        if (pageSize < 1) {
-            pageSize = DEFAULT_PAGE_SIZE;
-        }
-        this.pageSize = pageSize;
-        return this;
-    }
+	/**
+	 * 是否查询总数
+	 */
+	private boolean needTotalCount = true;
 
-    public int getOffset() {
-        return (getPageIndex() - 1) * getPageSize();
-    }
+	public int getPageIndex() {
+		if (pageIndex < 1) {
+			return 1;
+		}
+		return pageIndex;
+	}
 
-    public boolean isNeedTotalCount() {
-        return needTotalCount;
-    }
+	public PageQueryReq setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+		return this;
+	}
 
-    public void setNeedTotalCount(boolean needTotalCount) {
-        this.needTotalCount = needTotalCount;
-    }
+	public int getPageSize() {
+		if (pageSize < 1) {
+			pageSize = DEFAULT_PAGE_SIZE;
+		}
+		return pageSize;
+	}
+
+	public PageQueryReq setPageSize(int pageSize) {
+		if (pageSize < 1) {
+			pageSize = DEFAULT_PAGE_SIZE;
+		}
+		this.pageSize = pageSize;
+		return this;
+	}
+
+	public int getOffset() {
+		return (getPageIndex() - 1) * getPageSize();
+	}
+
+	public boolean isNeedTotalCount() {
+		return needTotalCount;
+	}
+
+	public void setNeedTotalCount(boolean needTotalCount) {
+		this.needTotalCount = needTotalCount;
+	}
 
 }

@@ -16,16 +16,17 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Aspect
 @Slf4j
 public class RepeatSubmitAspect {
-    /**
-     * 环绕通知 TODO 增加删除token,用户级别防止重复提交
-     *
-     * @param point 切点
-     * @return Object
-     * @throws Throwable 异常
-     */
-    @Around("@annotation(com.tomato.idempotent.annotation.RepeatSubmit)")
-    public Object around(ProceedingJoinPoint point) throws Throwable {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        return point.proceed();
-    }
+
+	/**
+	 * 环绕通知 TODO 增加删除token,用户级别防止重复提交
+	 * @param point 切点
+	 * @return Object
+	 * @throws Throwable 异常
+	 */
+	@Around("@annotation(com.tomato.idempotent.annotation.RepeatSubmit)")
+	public Object around(ProceedingJoinPoint point) throws Throwable {
+		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		return point.proceed();
+	}
+
 }

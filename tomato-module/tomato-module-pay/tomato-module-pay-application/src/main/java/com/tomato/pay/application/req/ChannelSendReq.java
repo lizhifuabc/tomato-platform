@@ -15,25 +15,30 @@ import java.math.BigDecimal;
  */
 @Data
 public class ChannelSendReq {
-    /**
-     * 支付记录号
-     */
-    @NotBlank(message = "支付记录号不能为空")
-    private String payNo;
-    /**
-     * 请求金额
-     */
-    @NotNull(message = "请求金额不能为空")
-    @DecimalMin(value = "0.01", message = "请求金额不能小于0.01")
-    private BigDecimal requestAmount;
-    /**
-     * 支付方式
-     */
-    @NotNull(message = "支付方式不能为空")
-    private Integer payType;
-    /**
-     * 商户编号
-     */
-    @NotBlank(message = "商户编号不能为空")
-    private String merchantNo;
+
+	/**
+	 * 支付记录号
+	 */
+	@NotBlank(message = "支付记录号不能为空")
+	private String payNo;
+
+	/**
+	 * 请求金额
+	 */
+	@NotNull(message = "请求金额不能为空")
+	@DecimalMin(value = "0.01", message = "请求金额不能小于0.01")
+	private BigDecimal requestAmount;
+
+	/**
+	 * 支付方式
+	 */
+	@NotNull(message = "支付方式不能为空")
+	private Integer payType;
+
+	/**
+	 * 商户编号
+	 */
+	@NotBlank(message = "商户编号不能为空")
+	private String merchantNo;
+
 }

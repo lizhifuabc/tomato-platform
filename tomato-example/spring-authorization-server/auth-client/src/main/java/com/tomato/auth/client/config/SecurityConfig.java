@@ -46,8 +46,8 @@ public class SecurityConfig {
 	// @formatter:on
 
 	private LogoutSuccessHandler oidcLogoutSuccessHandler() {
-		OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler =
-				new OidcClientInitiatedLogoutSuccessHandler(this.clientRegistrationRepository);
+		OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler = new OidcClientInitiatedLogoutSuccessHandler(
+				this.clientRegistrationRepository);
 
 		// Set the location that the End-User's User Agent will be redirected to
 		// after the logout has been performed at the Provider

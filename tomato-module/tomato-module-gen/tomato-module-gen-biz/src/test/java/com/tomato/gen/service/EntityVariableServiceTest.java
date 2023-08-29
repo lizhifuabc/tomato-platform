@@ -12,12 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class EntityVariableServiceTest {
-    @Resource
-    EntityVariableService entityVariableService;
 
-    @Test
-    public void test(){
-        String tableName = "t_gen_field_type";
-        entityVariableService.getInjectVariablesMap(tableName);
-    }
+	@Resource
+	EntityVariableService entityVariableService;
+
+	@Test
+	public void test() {
+		String tableName = "t_gen_field_type";
+		entityVariableService.getInjectVariablesMap(tableName);
+	}
+
 }

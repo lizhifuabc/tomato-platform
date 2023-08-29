@@ -19,24 +19,26 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Slf4j
 public class ChannelRepositoryImpl implements ChannelRepository {
-    private final RemoteChannelService remoteChannelService;
 
-    public ChannelRepositoryImpl(RemoteChannelService remoteChannelService) {
-        this.remoteChannelService = remoteChannelService;
-    }
+	private final RemoteChannelService remoteChannelService;
 
-    @Override
-    public ChannelEntity tradeChannel(Integer payType, String merchantNo) {
-        ChannelReq channelReq = new ChannelReq();
-        channelReq.setPayType(payType);
-        channelReq.setMerchantNo(merchantNo);
-        Resp<ChannelScanResp> trade = remoteChannelService.tradeScan(channelReq);
-        if (trade.isSuccess()) {
-            ChannelScanResp data = trade.getData();
-            ChannelEntity channelEntity = new ChannelEntity();
-            BeanUtil.copyProperties(data, channelEntity);
-            return channelEntity;
-        }
-        throw new RuntimeException(trade.getMsg());
-    }
+	public ChannelRepositoryImpl(RemoteChannelService remoteChannelService) {
+		this.remoteChannelService = remoteChannelService;
+	}
+
+	@Override
+	public ChannelEntity tradeChannel(Integer payType, String merchantNo) {
+		ChannelReq channelReq = new ChannelReq();
+		channelReq.setPayType(payType);
+		channelReq.setMerchantNo(merchantNo);
+		Resp<ChannelScanResp> trade = remoteChannelService.tradeScan(channelReq);
+		if (trade.isSuccess()) {
+			ChannelScanResp data = trade.getData();
+			ChannelEntity channelEntity = new ChannelEntity();
+			BeanUtil.copyProperties(data, channelEntity);
+			return channelEntity;
+		}
+		throw new RuntimeException(trade.getMsg());
+	}
+
 }

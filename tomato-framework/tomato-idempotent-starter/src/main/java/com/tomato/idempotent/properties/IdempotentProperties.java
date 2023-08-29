@@ -10,5 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = IdempotentProperties.PREFIX)
 public class IdempotentProperties {
-    public static final String PREFIX = "tomato.idempotent";
+
+	public static final String PREFIX = "tomato.idempotent";
+
 }

@@ -16,14 +16,16 @@ import java.util.List;
  */
 @RestController
 public class SeckillGoodsQueryController {
-    /**
-     * 根据活动id查询秒杀商品基本信息
-     * @param queryReq 查询请求
-     */
-    @PostMapping("/seckill/goods/info/list")
-    public Resp<List<SeckillGoodsInfoResp>> querySeckillGoodsInfoListByActivityId(
-            @RequestBody @Valid SeckillGoodsInfoQueryReq queryReq){
 
-        return Resp.of(null);
-    }
+	/**
+	 * 根据活动id查询秒杀商品基本信息
+	 * @param queryReq 查询请求
+	 */
+	@PostMapping("/seckill/goods/info/list")
+	public Resp<List<SeckillGoodsInfoResp>> querySeckillGoodsInfoListByActivityId(
+			@RequestBody @Valid SeckillGoodsInfoQueryReq queryReq) {
+
+		return Resp.of(null);
+	}
+
 }

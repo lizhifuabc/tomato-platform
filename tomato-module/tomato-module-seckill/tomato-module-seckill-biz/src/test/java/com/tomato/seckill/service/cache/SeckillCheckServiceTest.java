@@ -13,13 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SeckillCheckServiceTest {
-    @Resource
-    SeckillCheckService seckillCheckService;
 
-    @Test
-    public void test(){
-        seckillCheckService.checkSeckillActivity(1L);
-        seckillCheckService.checkSeckillUser(1L,1L);
-        seckillCheckService.checkSeckillGoods(1L);
-    }
+	@Resource
+	SeckillCheckService seckillCheckService;
+
+	@Test
+	public void test() {
+		seckillCheckService.checkSeckillActivity(1L);
+		seckillCheckService.checkSeckillUser(1L, 1L);
+		seckillCheckService.checkSeckillGoods(1L);
+	}
+
 }

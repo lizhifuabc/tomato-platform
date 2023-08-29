@@ -23,29 +23,35 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class SysTokenServiceImpl implements SysTokenService {
-    private final SysTokenRepository sysTokenRepository;
-    private final SysUserRepository sysUserRepository;
-    public SysTokenServiceImpl(SysTokenRepository sysTokenRepository, SysUserRepository sysUserRepository) {
-        this.sysTokenRepository = sysTokenRepository;
-        this.sysUserRepository = sysUserRepository;
-    }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void saveToken(String username,String token, String refreshToken) {
-        SysUser sysUser = sysUserRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
-        SysToken sysToken = sysTokenRepository.findBySysUser(sysUser).orElse(new SysToken());
-        sysToken.setSysUser(sysUser);
-        sysToken.setExpired(false);
-        sysToken.setRevoked(false);
-        sysToken.setTokenType(TokenType.BEARER);
-        sysToken.setToken(token);
-        sysTokenRepository.save(sysToken);
-    }
+	private final SysTokenRepository sysTokenRepository;
 
-    @Override
-    public SysToken getToken(String username) {
-        SysUser sysUser = sysUserRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
-        return sysTokenRepository.findBySysUser(sysUser).orElseThrow(() -> new BusinessException("token不存在"));
-    }
+	private final SysUserRepository sysUserRepository;
+
+	public SysTokenServiceImpl(SysTokenRepository sysTokenRepository, SysUserRepository sysUserRepository) {
+		this.sysTokenRepository = sysTokenRepository;
+		this.sysUserRepository = sysUserRepository;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void saveToken(String username, String token, String refreshToken) {
+		SysUser sysUser = sysUserRepository.findByUsername(username)
+			.orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
+		SysToken sysToken = sysTokenRepository.findBySysUser(sysUser).orElse(new SysToken());
+		sysToken.setSysUser(sysUser);
+		sysToken.setExpired(false);
+		sysToken.setRevoked(false);
+		sysToken.setTokenType(TokenType.BEARER);
+		sysToken.setToken(token);
+		sysTokenRepository.save(sysToken);
+	}
+
+	@Override
+	public SysToken getToken(String username) {
+		SysUser sysUser = sysUserRepository.findByUsername(username)
+			.orElseThrow(() -> new UsernameNotFoundException("用户不存在"));
+		return sysTokenRepository.findBySysUser(sysUser).orElseThrow(() -> new BusinessException("token不存在"));
+	}
+
 }

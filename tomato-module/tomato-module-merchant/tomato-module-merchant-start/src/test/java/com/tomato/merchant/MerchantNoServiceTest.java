@@ -13,11 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class MerchantNoServiceTest {
-    @Resource
-    MerchantNoService merchantNoService;
 
-    @Test
-    public void test(){
-        System.out.println(merchantNoService.nextStringValue());
-    }
+	@Resource
+	MerchantNoService merchantNoService;
+
+	@Test
+	public void test() {
+		System.out.println(merchantNoService.nextStringValue());
+	}
+
 }

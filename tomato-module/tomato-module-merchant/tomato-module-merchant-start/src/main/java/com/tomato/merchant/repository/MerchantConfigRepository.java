@@ -11,11 +11,13 @@ import java.util.Optional;
  * @author lizhifu
  * @since 2023/7/24
  */
-public interface MerchantConfigRepository extends BaseJpaRepository<MerchantConfig,Long> {
-    /**
-     * 根据商户号查询
-     * @param merchantNo 商户号
-     * @return 商户配置
-     */
-    Optional<MerchantConfig> findByMerchantNo(String merchantNo);
+public interface MerchantConfigRepository extends BaseJpaRepository<MerchantConfig, Long> {
+
+	/**
+	 * 根据商户号查询
+	 * @param merchantNo 商户号
+	 * @return 商户配置
+	 */
+	Optional<MerchantConfig> findByMerchantNo(String merchantNo);
+
 }

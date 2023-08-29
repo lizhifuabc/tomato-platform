@@ -25,44 +25,50 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class SysUserAuthServiceImpl implements SysUserAuthService {
-    private final SysTokenService sysTokenService;
-    private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
 
-    public SysUserAuthServiceImpl(SysTokenService sysTokenService, JwtService jwtService, AuthenticationManager authenticationManager) {
-        this.sysTokenService = sysTokenService;
-        this.jwtService = jwtService;
-        this.authenticationManager = authenticationManager;
-    }
+	private final SysTokenService sysTokenService;
 
-    @Override
-    public SysLoginResp login(SysLoginDTO sysLoginDTO) {
-        log.info("登录:{}",sysLoginDTO);
-        // 调用 Spring Security 的 AuthenticationManager 进行用户名密码验证
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(sysLoginDTO.getUsername(),sysLoginDTO.getPassword()));
-        // 生成access_token 和 refresh_token 并返回
-        User user = (User) authentication.getPrincipal();
-        String jwtToken = jwtService.generateToken(user);
-        String refreshToken = jwtService.generateRefreshToken(user);
-        sysTokenService.saveToken(user.getUsername(),jwtToken,refreshToken);
-        return SysLoginResp.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
-    }
+	private final JwtService jwtService;
 
-    @Override
-    public SysLoginResp refreshToken(String refreshToken) {
-        String username = jwtService.extractUsername(refreshToken);
-        SysToken token = sysTokenService.getToken(username);
-        if(token.getToken().equals(refreshToken)){
-            throw new BusinessException("请使用refreshToken");
-        }
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        final UserDetails userDetails = ((UserDetails) authentication.getPrincipal());
-        boolean tokenValid = jwtService.isTokenValid(refreshToken, userDetails);
-        if(tokenValid){
-            String jwtToken = jwtService.generateToken(userDetails);
-            sysTokenService.saveToken(username,jwtToken,refreshToken);
-            return SysLoginResp.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
-        }
-        throw new BusinessException("refreshToken过期,请重新登录");
-    }
+	private final AuthenticationManager authenticationManager;
+
+	public SysUserAuthServiceImpl(SysTokenService sysTokenService, JwtService jwtService,
+			AuthenticationManager authenticationManager) {
+		this.sysTokenService = sysTokenService;
+		this.jwtService = jwtService;
+		this.authenticationManager = authenticationManager;
+	}
+
+	@Override
+	public SysLoginResp login(SysLoginDTO sysLoginDTO) {
+		log.info("登录:{}", sysLoginDTO);
+		// 调用 Spring Security 的 AuthenticationManager 进行用户名密码验证
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(sysLoginDTO.getUsername(), sysLoginDTO.getPassword()));
+		// 生成access_token 和 refresh_token 并返回
+		User user = (User) authentication.getPrincipal();
+		String jwtToken = jwtService.generateToken(user);
+		String refreshToken = jwtService.generateRefreshToken(user);
+		sysTokenService.saveToken(user.getUsername(), jwtToken, refreshToken);
+		return SysLoginResp.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
+	}
+
+	@Override
+	public SysLoginResp refreshToken(String refreshToken) {
+		String username = jwtService.extractUsername(refreshToken);
+		SysToken token = sysTokenService.getToken(username);
+		if (token.getToken().equals(refreshToken)) {
+			throw new BusinessException("请使用refreshToken");
+		}
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		final UserDetails userDetails = ((UserDetails) authentication.getPrincipal());
+		boolean tokenValid = jwtService.isTokenValid(refreshToken, userDetails);
+		if (tokenValid) {
+			String jwtToken = jwtService.generateToken(userDetails);
+			sysTokenService.saveToken(username, jwtToken, refreshToken);
+			return SysLoginResp.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
+		}
+		throw new BusinessException("refreshToken过期,请重新登录");
+	}
+
 }

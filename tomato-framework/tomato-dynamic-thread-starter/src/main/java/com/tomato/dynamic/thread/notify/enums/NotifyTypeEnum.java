@@ -8,49 +8,49 @@ package com.tomato.dynamic.thread.notify.enums;
  */
 public enum NotifyTypeEnum {
 
-    /**
-     * Config change notify.
-     */
-    CHANGE("change"),
+	/**
+	 * Config change notify.
+	 */
+	CHANGE("change"),
 
-    /**
-     * ThreadPool livenes notify.
-     * livenes = activeCount / maximumPoolSize
-     */
-    LIVENESS("liveness"),
+	/**
+	 * ThreadPool livenes notify. livenes = activeCount / maximumPoolSize
+	 */
+	LIVENESS("liveness"),
 
-    /**
-     * Capacity threshold notify
-     */
-    CAPACITY("capacity"),
+	/**
+	 * Capacity threshold notify
+	 */
+	CAPACITY("capacity"),
 
-    /**
-     * Reject notify.
-     */
-    REJECT("reject"),
+	/**
+	 * Reject notify.
+	 */
+	REJECT("reject"),
 
-    /**
-     * Task run timeout alarm.
-     */
-    RUN_TIMEOUT("run_timeout"),
+	/**
+	 * Task run timeout alarm.
+	 */
+	RUN_TIMEOUT("run_timeout"),
 
-    /**
-     * Task queue wait timeout alarm.
-     */
-    QUEUE_TIMEOUT("QUEUE_TIMEOUT");
+	/**
+	 * Task queue wait timeout alarm.
+	 */
+	QUEUE_TIMEOUT("QUEUE_TIMEOUT");
 
-    private final String value;
+	private final String value;
 
-    NotifyTypeEnum(String value) {
-        this.value = value;
-    }
+	NotifyTypeEnum(String value) {
+		this.value = value;
+	}
 
-    public static NotifyTypeEnum of(String value) {
-        for (NotifyTypeEnum notifyType : NotifyTypeEnum.values()) {
-            if (notifyType.value.equals(value)) {
-                return notifyType;
-            }
-        }
-        return null;
-    }
+	public static NotifyTypeEnum of(String value) {
+		for (NotifyTypeEnum notifyType : NotifyTypeEnum.values()) {
+			if (notifyType.value.equals(value)) {
+				return notifyType;
+			}
+		}
+		return null;
+	}
+
 }

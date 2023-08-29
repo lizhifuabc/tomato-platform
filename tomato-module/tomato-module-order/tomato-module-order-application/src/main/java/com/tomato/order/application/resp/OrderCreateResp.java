@@ -10,20 +10,25 @@ import lombok.Data;
  */
 @Data
 public class OrderCreateResp {
-    /**
-     * 订单号
-     */
-    private String orderNo;
-    /**
-     * 商户订单号
-     */
-    private String merchantOrderNo;
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
-    /**
-     * 商户扩展参数
-     */
-    private String extParam;
+
+	/**
+	 * 订单号
+	 */
+	private String orderNo;
+
+	/**
+	 * 商户订单号
+	 */
+	private String merchantOrderNo;
+
+	/**
+	 * 商户编号
+	 */
+	private String merchantNo;
+
+	/**
+	 * 商户扩展参数
+	 */
+	private String extParam;
+
 }

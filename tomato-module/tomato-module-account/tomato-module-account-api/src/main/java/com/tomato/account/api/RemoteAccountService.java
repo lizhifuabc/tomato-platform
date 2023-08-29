@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @since 2023/8/1
  */
 @FeignClient(contextId = "remoteAccountService", value = ServiceNameConstants.SERVICE_NAME_ACCOUNT,
-        fallbackFactory = RemoteAccountServiceFallback.class,dismiss404 = true)
+		fallbackFactory = RemoteAccountServiceFallback.class, dismiss404 = true)
 public interface RemoteAccountService {
-    /**
-     * 账户入账
-     * @param accountTradReq 入账请求
-     * @return Resp 账户入账结果
-     */
-    @PostMapping("/account/trad")
-    Resp<Void> trad(@RequestBody AccountTradReq accountTradReq);
+
+	/**
+	 * 账户入账
+	 * @param accountTradReq 入账请求
+	 * @return Resp 账户入账结果
+	 */
+	@PostMapping("/account/trad")
+	Resp<Void> trad(@RequestBody AccountTradReq accountTradReq);
+
 }

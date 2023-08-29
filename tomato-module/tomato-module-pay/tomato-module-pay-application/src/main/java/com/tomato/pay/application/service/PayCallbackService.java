@@ -7,4 +7,5 @@ package com.tomato.pay.application.service;
  * @since 2023/4/12
  */
 public class PayCallbackService {
+
 }

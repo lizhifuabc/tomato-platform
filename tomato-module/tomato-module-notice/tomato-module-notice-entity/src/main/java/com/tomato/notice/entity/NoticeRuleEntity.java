@@ -15,4 +15,5 @@ import lombok.EqualsAndHashCode;
 @Data
 @Table(name = "t_notice_rule")
 public class NoticeRuleEntity extends BaseEntity {
+
 }

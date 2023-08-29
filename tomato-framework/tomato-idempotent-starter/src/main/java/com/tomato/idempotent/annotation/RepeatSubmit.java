@@ -11,15 +11,14 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 public @interface RepeatSubmit {
 
-    /**
-     * 重复提交间隔时间/毫秒
-     * 默认1秒
-     */
-    int value() default 1000;
+	/**
+	 * 重复提交间隔时间/毫秒 默认1秒
+	 */
+	int value() default 1000;
 
-    /**
-     * 最长间隔30s
-     */
-    int MAX_INTERVAL = 30000;
+	/**
+	 * 最长间隔30s
+	 */
+	int MAX_INTERVAL = 30000;
 
 }

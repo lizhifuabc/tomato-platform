@@ -12,28 +12,35 @@ import java.math.BigDecimal;
  */
 @Data
 public class AccountHisUpdateBO {
-    /**
-     * 账号编号
-     */
-    private String accountNo;
-    /**
-     * 账户历史表ID
-     */
-    private Long accountHisId;
-    /**
-     * 入账状态
-     */
-    private Integer accountStatus;
-    /**
-     * 版本号
-     */
-    private Integer version;
-    /**
-     * 发生前余额
-     */
-    private BigDecimal beforeBalance;
-    /**
-     * 发生后余额
-     */
-    private BigDecimal afterBalance;
+
+	/**
+	 * 账号编号
+	 */
+	private String accountNo;
+
+	/**
+	 * 账户历史表ID
+	 */
+	private Long accountHisId;
+
+	/**
+	 * 入账状态
+	 */
+	private Integer accountStatus;
+
+	/**
+	 * 版本号
+	 */
+	private Integer version;
+
+	/**
+	 * 发生前余额
+	 */
+	private BigDecimal beforeBalance;
+
+	/**
+	 * 发生后余额
+	 */
+	private BigDecimal afterBalance;
+
 }

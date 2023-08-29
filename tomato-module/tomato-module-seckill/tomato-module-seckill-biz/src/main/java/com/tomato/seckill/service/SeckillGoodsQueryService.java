@@ -10,5 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SeckillGoodsQueryService {
-    // 查询秒杀商品基本信息
+
+	// 查询秒杀商品基本信息
+
 }

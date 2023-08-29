@@ -13,22 +13,23 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface AccountSettleDao {
 
-    /**
-     * 插入
-     * @param accountSettleEntity 账户结算规则
-     */
-    void insert(AccountSettleEntity accountSettleEntity);
+	/**
+	 * 插入
+	 * @param accountSettleEntity 账户结算规则
+	 */
+	void insert(AccountSettleEntity accountSettleEntity);
 
-    /**
-     * 查询
-     * @param accountNo accountNo
-     * @return 实体
-     */
-    AccountSettleEntity selectByAccountNo(@Param("accountNo") String accountNo);
+	/**
+	 * 查询
+	 * @param accountNo accountNo
+	 * @return 实体
+	 */
+	AccountSettleEntity selectByAccountNo(@Param("accountNo") String accountNo);
 
-    /**
-     * 更新
-     * @param accountSettleEntity 账户结算规则
-     */
-    int updateByAccountNo(AccountSettleEntity accountSettleEntity);
+	/**
+	 * 更新
+	 * @param accountSettleEntity 账户结算规则
+	 */
+	int updateByAccountNo(AccountSettleEntity accountSettleEntity);
+
 }

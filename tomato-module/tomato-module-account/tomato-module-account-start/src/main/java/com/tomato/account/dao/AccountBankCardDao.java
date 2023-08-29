@@ -11,9 +11,11 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface AccountBankCardDao {
-    /**
-     * 插入
-     * @param accountBankCardEntity 目标银行卡
-     */
-    public void insert(AccountBankCardEntity accountBankCardEntity);
+
+	/**
+	 * 插入
+	 * @param accountBankCardEntity 目标银行卡
+	 */
+	public void insert(AccountBankCardEntity accountBankCardEntity);
+
 }

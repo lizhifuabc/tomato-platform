@@ -7,8 +7,10 @@ package com.tomato.order.domain.domain.entity;
  * @since 2023/8/9
  */
 public class OrderInfoEntityTest {
-    public static void main(String[] args) {
-        OrderInfoEntity orderInfoEntity = null;
-        orderInfoEntity.finalStatus();
-    }
+
+	public static void main(String[] args) {
+		OrderInfoEntity orderInfoEntity = null;
+		orderInfoEntity.finalStatus();
+	}
+
 }

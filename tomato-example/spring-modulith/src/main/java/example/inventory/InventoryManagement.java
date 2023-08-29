@@ -35,4 +35,5 @@ class InventoryManagement {
 
 		log.info("接收订单完成事件处理完成 {}.", orderId);
 	}
+
 }

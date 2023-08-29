@@ -8,6 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 启动类
+ *
  * @author lizhifu
  */
 @EnableAdminServer
@@ -15,6 +16,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 @Slf4j
 public class MonitorApplication {
+
 	public static void main(String[] args) {
 		log.info("MonitorApplication start...");
 		SpringApplication.run(MonitorApplication.class, args);

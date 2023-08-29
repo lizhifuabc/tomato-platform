@@ -7,10 +7,12 @@ package com.tomato.redis.redisson.lock;
  * @since 2023/7/13
  */
 public interface DistributedLockFactory {
-    /**
-     * 获取分布式锁
-     * @param key 锁的key
-     * @return 分布式锁
-     */
-    DistributedLock getLock(String key);
+
+	/**
+	 * 获取分布式锁
+	 * @param key 锁的key
+	 * @return 分布式锁
+	 */
+	DistributedLock getLock(String key);
+
 }

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/player")
 public class UserController {
-    private final UserClientService userClientService;
 
-    public UserController(UserClientService userClientService) {
-        this.userClientService = userClientService;
-    }
+	private final UserClientService userClientService;
+
+	public UserController(UserClientService userClientService) {
+		this.userClientService = userClientService;
+	}
+
 }

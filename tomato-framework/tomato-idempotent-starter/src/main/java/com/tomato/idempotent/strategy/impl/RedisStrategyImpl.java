@@ -18,25 +18,30 @@ import java.util.Objects;
  */
 @Service
 public class RedisStrategyImpl extends AbstractIdempotentStrategy {
-    private final StringRedisTemplate redisTemplate;
-    public RedisStrategyImpl(StringRedisTemplate redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
 
-    @Override
-    public void execute(JoinPoint joinPoint, Idempotent idempotent) {
-        String methodName = joinPoint.getSignature().toString();
-        String argsStr = Arrays.toString(joinPoint.getArgs());
-        String redisKey = generateRequestKey(methodName + argsStr);
-        // 如果存在，说明已经请求过了
-        // 设置过期时间，防止死锁
-        Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent(Objects.requireNonNull(redisKey), "", idempotent.timeout(), idempotent.timeUnit());
-        if (Boolean.FALSE.equals(aBoolean)) {
-            throw new BusinessException(idempotent.message());
-        }
-    }
-    @Override
-    public String name() {
-        return "REDIS";
-    }
+	private final StringRedisTemplate redisTemplate;
+
+	public RedisStrategyImpl(StringRedisTemplate redisTemplate) {
+		this.redisTemplate = redisTemplate;
+	}
+
+	@Override
+	public void execute(JoinPoint joinPoint, Idempotent idempotent) {
+		String methodName = joinPoint.getSignature().toString();
+		String argsStr = Arrays.toString(joinPoint.getArgs());
+		String redisKey = generateRequestKey(methodName + argsStr);
+		// 如果存在，说明已经请求过了
+		// 设置过期时间，防止死锁
+		Boolean aBoolean = redisTemplate.opsForValue()
+			.setIfAbsent(Objects.requireNonNull(redisKey), "", idempotent.timeout(), idempotent.timeUnit());
+		if (Boolean.FALSE.equals(aBoolean)) {
+			throw new BusinessException(idempotent.message());
+		}
+	}
+
+	@Override
+	public String name() {
+		return "REDIS";
+	}
+
 }

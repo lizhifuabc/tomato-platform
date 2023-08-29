@@ -20,22 +20,24 @@ import java.nio.charset.Charset;
  */
 @Slf4j
 public class CustomAuthenticationEntryPoint implements ServerAuthenticationEntryPoint {
-    @Override
-    public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException ex) {
-        log.error("token请求头过期或签名错误",ex);
-        return Mono.defer(() -> Mono.just(exchange.getResponse())).flatMap(response -> {
 
-            response.setStatusCode(HttpStatus.UNAUTHORIZED);
+	@Override
+	public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException ex) {
+		log.error("token请求头过期或签名错误", ex);
+		return Mono.defer(() -> Mono.just(exchange.getResponse())).flatMap(response -> {
 
-            response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+			response.setStatusCode(HttpStatus.UNAUTHORIZED);
 
-            DataBufferFactory dataBufferFactory = response.bufferFactory();
+			response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 
-            String result = "token请求头过期或签名错误";
+			DataBufferFactory dataBufferFactory = response.bufferFactory();
 
-            DataBuffer buffer = dataBufferFactory.wrap(result.getBytes(Charset.defaultCharset()));
+			String result = "token请求头过期或签名错误";
 
-            return response.writeWith(Mono.just(buffer));
-        });
-    }
+			DataBuffer buffer = dataBufferFactory.wrap(result.getBytes(Charset.defaultCharset()));
+
+			return response.writeWith(Mono.just(buffer));
+		});
+	}
+
 }

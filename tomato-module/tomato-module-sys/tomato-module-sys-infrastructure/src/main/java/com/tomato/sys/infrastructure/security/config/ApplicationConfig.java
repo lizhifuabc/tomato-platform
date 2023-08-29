@@ -21,34 +21,42 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @Slf4j
 public class ApplicationConfig {
-    private final UserDetailsService userDetailsService;
-    private final UserDetailsPasswordService userDetailsPasswordSerivce;
-    public ApplicationConfig(UserDetailsService userDetailsService, UserDetailsPasswordService userDetailsPasswordSerivce) {
-        this.userDetailsService = userDetailsService;
-        this.userDetailsPasswordSerivce = userDetailsPasswordSerivce;
-    }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        log.info("密码加密方式配置，passwordEncoder");
-        //return new BCryptPasswordEncoder();
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return  userDetailsService;
-    }
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        // 配置密码自动升级服务
-        authProvider.setUserDetailsPasswordService(userDetailsPasswordSerivce);
-        return authProvider;
-    }
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+	private final UserDetailsService userDetailsService;
+
+	private final UserDetailsPasswordService userDetailsPasswordSerivce;
+
+	public ApplicationConfig(UserDetailsService userDetailsService,
+			UserDetailsPasswordService userDetailsPasswordSerivce) {
+		this.userDetailsService = userDetailsService;
+		this.userDetailsPasswordSerivce = userDetailsPasswordSerivce;
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		log.info("密码加密方式配置，passwordEncoder");
+		// return new BCryptPasswordEncoder();
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return userDetailsService;
+	}
+
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService());
+		authProvider.setPasswordEncoder(passwordEncoder());
+		// 配置密码自动升级服务
+		authProvider.setUserDetailsPasswordService(userDetailsPasswordSerivce);
+		return authProvider;
+	}
+
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+		return config.getAuthenticationManager();
+	}
+
 }

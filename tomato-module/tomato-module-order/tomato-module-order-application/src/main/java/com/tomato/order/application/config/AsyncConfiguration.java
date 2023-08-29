@@ -15,27 +15,30 @@ import java.util.concurrent.*;
  * 自定义线程池
  *
  * @author lizhifu
- * @since  2022/11/30
+ * @since 2022/11/30
  */
 @Configuration
 @Slf4j
 public class AsyncConfiguration implements AsyncConfigurer {
-    @Resource
-    private MeterRegistry meterRegistry;
-    @Override
-    @Bean(name = "orderAsyncExecutor")
-    public Executor getAsyncExecutor() {
-        log.info("初始化自定义线程池");
-        // 不定长线程池
-        return new TraceIdThreadPoolTaskExecutor(meterRegistry);
-    }
 
-    /**
-     * 异常处理
-     * @return AsyncUncaughtExceptionHandler 异常处理
-     */
-    @Override
-    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        return (ex, method, params) -> log.error(String.format("[async] task{} error:", method), ex);
-    }
+	@Resource
+	private MeterRegistry meterRegistry;
+
+	@Override
+	@Bean(name = "orderAsyncExecutor")
+	public Executor getAsyncExecutor() {
+		log.info("初始化自定义线程池");
+		// 不定长线程池
+		return new TraceIdThreadPoolTaskExecutor(meterRegistry);
+	}
+
+	/**
+	 * 异常处理
+	 * @return AsyncUncaughtExceptionHandler 异常处理
+	 */
+	@Override
+	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+		return (ex, method, params) -> log.error(String.format("[async] task{} error:", method), ex);
+	}
+
 }

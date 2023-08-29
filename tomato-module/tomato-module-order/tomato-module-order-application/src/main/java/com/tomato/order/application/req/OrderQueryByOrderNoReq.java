@@ -14,9 +14,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class OrderQueryByOrderNoReq extends BaseReq {
-    /**
-     * 订单号
-     */
-    @NotBlank(message="订单号不能为为空！")
-    private String orderNo;
+
+	/**
+	 * 订单号
+	 */
+	@NotBlank(message = "订单号不能为为空！")
+	private String orderNo;
+
 }

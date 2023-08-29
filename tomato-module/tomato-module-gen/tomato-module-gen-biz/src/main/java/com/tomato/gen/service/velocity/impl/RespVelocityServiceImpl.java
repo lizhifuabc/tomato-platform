@@ -20,33 +20,37 @@ import java.util.Optional;
  */
 @Component
 public class RespVelocityServiceImpl implements VelocityService {
-    private final GenConfig genConfig;
-    private final GenFieldTypeService genFieldTypeService;
-    public RespVelocityServiceImpl(GenConfig genConfig, GenFieldTypeService genFieldTypeService) {
-        this.genConfig = genConfig;
-        this.genFieldTypeService = genFieldTypeService;
-    }
 
-    @Override
-    public String getTemplate() {
-        return TemplateConstant.VM_RESP;
-    }
+	private final GenConfig genConfig;
 
-    @Override
-    public VelocityContext render(TableBo tableBo){
-        HashSet<String> importPackageList = new HashSet<>();
-        tableBo.getTableColumnList().forEach(tableColumn -> {
-            // 列的数据类型，转换成Java类型
-            GenFieldTypeEntity dataType = genFieldTypeService.getByDataType(tableColumn.getDataType());
-            Optional.ofNullable(dataType.getPackageName()).ifPresent(importPackageList::add);
-            tableColumn.setJavaType(dataType.getAttrType());
-        });
+	private final GenFieldTypeService genFieldTypeService;
 
-        VelocityContext context = new VelocityContext();
-        context.put("table", tableBo.getTable());
-        context.put("tableColumnList", tableBo.getTableColumnList());
-        context.put("genConfig", genConfig);
-        context.put("importPackageList", importPackageList);
-        return context;
-    }
+	public RespVelocityServiceImpl(GenConfig genConfig, GenFieldTypeService genFieldTypeService) {
+		this.genConfig = genConfig;
+		this.genFieldTypeService = genFieldTypeService;
+	}
+
+	@Override
+	public String getTemplate() {
+		return TemplateConstant.VM_RESP;
+	}
+
+	@Override
+	public VelocityContext render(TableBo tableBo) {
+		HashSet<String> importPackageList = new HashSet<>();
+		tableBo.getTableColumnList().forEach(tableColumn -> {
+			// 列的数据类型，转换成Java类型
+			GenFieldTypeEntity dataType = genFieldTypeService.getByDataType(tableColumn.getDataType());
+			Optional.ofNullable(dataType.getPackageName()).ifPresent(importPackageList::add);
+			tableColumn.setJavaType(dataType.getAttrType());
+		});
+
+		VelocityContext context = new VelocityContext();
+		context.put("table", tableBo.getTable());
+		context.put("tableColumnList", tableBo.getTableColumnList());
+		context.put("genConfig", genConfig);
+		context.put("importPackageList", importPackageList);
+		return context;
+	}
+
 }

@@ -17,20 +17,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AutoConfiguration
 @EnableConfigurationProperties(SecurityProperties.class)
 public class SecurityAutoConfig {
-    /**
-     * Spring Security 加密器 BCryptPasswordEncoder
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-    /**
-     * Token服务
-     * @param stringRedisTemplate StringRedisTemplate
-     * @return TokenService
-     */
-    @Bean
-    public TokenService tokenService(StringRedisTemplate stringRedisTemplate){
-        return new TokenService(stringRedisTemplate);
-    }
+
+	/**
+	 * Spring Security 加密器 BCryptPasswordEncoder
+	 */
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+
+	/**
+	 * Token服务
+	 * @param stringRedisTemplate StringRedisTemplate
+	 * @return TokenService
+	 */
+	@Bean
+	public TokenService tokenService(StringRedisTemplate stringRedisTemplate) {
+		return new TokenService(stringRedisTemplate);
+	}
+
 }

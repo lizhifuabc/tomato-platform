@@ -17,41 +17,46 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SeckillUserManager {
-    private final SeckillUserDetailDao seckillUserDetailDao;
-    private final SeckillUserDao seckillUserDao;
 
-    public SeckillUserManager(SeckillUserDetailDao seckillUserDetailDao, SeckillUserDao seckillUserDao) {
-        this.seckillUserDetailDao = seckillUserDetailDao;
-        this.seckillUserDao = seckillUserDao;
-    }
+	private final SeckillUserDetailDao seckillUserDetailDao;
 
-    public void userSeckill(SeckillGoodsEntity seckillGoodsEntity, Long userId){
-        Long seckillUserId;
-        SeckillUserEntity seckillUserEntity = seckillUserDao.selectByUserIdSeckillGoodsId(userId, seckillGoodsEntity.getId());
-        if(null == seckillUserEntity){
-            seckillUserEntity = new SeckillUserEntity();
-            seckillUserEntity.setSeckillGoodsId(seckillGoodsEntity.getId());
-            seckillUserEntity.setUserId(userId);
-            seckillUserEntity.setGoodsId(seckillGoodsEntity.getGoodsId());
-            seckillUserEntity.setSeckillCount(seckillGoodsEntity.getSeckillLimit());
-            // 剩余 -1
-            seckillUserEntity.setSeckillRemaining(seckillGoodsEntity.getSeckillLimit() - 1);
-            seckillUserId = seckillUserDao.insert(seckillUserEntity);
-        }else {
-            seckillUserId = seckillUserEntity.getId();
-            UpdateSeckillRemainingBO updateSkillRemainingBO = UpdateSeckillRemainingBO.builder()
-                    .seckillGoodsId(seckillUserEntity.getSeckillGoodsId())
-                    .version(seckillUserEntity.getVersion())
-                    .userId(seckillUserEntity.getUserId())
-                    .build();
-            int res = seckillUserDao.updateSkillRemaining(updateSkillRemainingBO);
-            if(res != 1){
-                throw new BusinessException("用户已到达最大抢购次数");
-            }
-        }
-        // 只做记录使用
-        SeckillUserDetailEntity seckillUserDetailEntity = new SeckillUserDetailEntity();
-        seckillUserDetailEntity.setSeckillUserId(seckillUserId);
-        seckillUserDetailDao.insert(seckillUserDetailEntity);
-    }
+	private final SeckillUserDao seckillUserDao;
+
+	public SeckillUserManager(SeckillUserDetailDao seckillUserDetailDao, SeckillUserDao seckillUserDao) {
+		this.seckillUserDetailDao = seckillUserDetailDao;
+		this.seckillUserDao = seckillUserDao;
+	}
+
+	public void userSeckill(SeckillGoodsEntity seckillGoodsEntity, Long userId) {
+		Long seckillUserId;
+		SeckillUserEntity seckillUserEntity = seckillUserDao.selectByUserIdSeckillGoodsId(userId,
+				seckillGoodsEntity.getId());
+		if (null == seckillUserEntity) {
+			seckillUserEntity = new SeckillUserEntity();
+			seckillUserEntity.setSeckillGoodsId(seckillGoodsEntity.getId());
+			seckillUserEntity.setUserId(userId);
+			seckillUserEntity.setGoodsId(seckillGoodsEntity.getGoodsId());
+			seckillUserEntity.setSeckillCount(seckillGoodsEntity.getSeckillLimit());
+			// 剩余 -1
+			seckillUserEntity.setSeckillRemaining(seckillGoodsEntity.getSeckillLimit() - 1);
+			seckillUserId = seckillUserDao.insert(seckillUserEntity);
+		}
+		else {
+			seckillUserId = seckillUserEntity.getId();
+			UpdateSeckillRemainingBO updateSkillRemainingBO = UpdateSeckillRemainingBO.builder()
+				.seckillGoodsId(seckillUserEntity.getSeckillGoodsId())
+				.version(seckillUserEntity.getVersion())
+				.userId(seckillUserEntity.getUserId())
+				.build();
+			int res = seckillUserDao.updateSkillRemaining(updateSkillRemainingBO);
+			if (res != 1) {
+				throw new BusinessException("用户已到达最大抢购次数");
+			}
+		}
+		// 只做记录使用
+		SeckillUserDetailEntity seckillUserDetailEntity = new SeckillUserDetailEntity();
+		seckillUserDetailEntity.setSeckillUserId(seckillUserId);
+		seckillUserDetailDao.insert(seckillUserDetailEntity);
+	}
+
 }

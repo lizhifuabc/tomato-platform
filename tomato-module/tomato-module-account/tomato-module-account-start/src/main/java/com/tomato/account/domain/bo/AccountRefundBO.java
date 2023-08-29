@@ -11,14 +11,17 @@ import lombok.Data;
  */
 @Data
 public class AccountRefundBO {
-    /**
-     * 商户编号
-     */
-    @NotBlank(message = "商户编号不能为空")
-    private String merchantNo;
-    /**
-     * 原始第三方流水号不能为空
-     */
-    @NotBlank(message = "原始第三方流水号不能为空")
-    private String orgThirdNo;
+
+	/**
+	 * 商户编号
+	 */
+	@NotBlank(message = "商户编号不能为空")
+	private String merchantNo;
+
+	/**
+	 * 原始第三方流水号不能为空
+	 */
+	@NotBlank(message = "原始第三方流水号不能为空")
+	private String orgThirdNo;
+
 }

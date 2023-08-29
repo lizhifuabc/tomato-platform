@@ -10,12 +10,15 @@ import lombok.Data;
  */
 @Data
 public class ChannelScanResp {
-    /**
-     * 扫码地址
-     */
-    private String scanUrl;
-    /**
-     * 渠道编号
-     */
-    private String channelNo;
+
+	/**
+	 * 扫码地址
+	 */
+	private String scanUrl;
+
+	/**
+	 * 渠道编号
+	 */
+	private String channelNo;
+
 }

@@ -16,13 +16,15 @@ import java.util.Optional;
  */
 @SpringBootTest
 public class ExecuteQueryUtilTest {
-    @Resource
-    DbInfoMapper dbInfoMapper;
 
-    @Test
-    public void test(){
-        Optional<DbInfo> dbInfo = dbInfoMapper.selectByPrimaryKey(1L);
+	@Resource
+	DbInfoMapper dbInfoMapper;
 
-        System.out.println(ExecuteQueryUtil.query(dbInfo.get(), "select * from t_db_info"));
-    }
+	@Test
+	public void test() {
+		Optional<DbInfo> dbInfo = dbInfoMapper.selectByPrimaryKey(1L);
+
+		System.out.println(ExecuteQueryUtil.query(dbInfo.get(), "select * from t_db_info"));
+	}
+
 }

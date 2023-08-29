@@ -9,9 +9,11 @@ import com.tomato.seckill.goods.application.req.SeckillGoodsCreateReq;
  * @since 2023/7/14
  */
 public interface SeckillGoodsService {
-    /**
-     * 保存秒杀商品
-     * @param seckillGoodsCreateReq 请求参数
-     */
-    void saveSeckillGoods(SeckillGoodsCreateReq seckillGoodsCreateReq);
+
+	/**
+	 * 保存秒杀商品
+	 * @param seckillGoodsCreateReq 请求参数
+	 */
+	void saveSeckillGoods(SeckillGoodsCreateReq seckillGoodsCreateReq);
+
 }

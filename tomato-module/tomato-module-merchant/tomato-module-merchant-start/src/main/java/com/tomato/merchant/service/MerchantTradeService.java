@@ -18,29 +18,37 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MerchantTradeService {
-    private final MerchantRateService merchantRateService;
-    private final MerchantInfoRepository merchantInfoRepository;
-    private final MerchantConfigRepository merchantConfigRepository;
 
-    public MerchantTradeService(MerchantRateService merchantRateService, MerchantInfoRepository merchantInfoRepository, MerchantConfigRepository merchantConfigRepository) {
-        this.merchantRateService = merchantRateService;
-        this.merchantInfoRepository = merchantInfoRepository;
-        this.merchantConfigRepository = merchantConfigRepository;
-    }
+	private final MerchantRateService merchantRateService;
 
-    public MerchantTradResp trade(MerchantTradReq merchantTradReq){
-        // 商户信息
-        MerchantInfo merchantInfo = merchantInfoRepository.findByMerchantNo(merchantTradReq.getMerchantNo()).orElseThrow(()->new BusinessException("商户不存在"));
-        // 商户费率
-        MerchantRateDTO merchantRateDTO = merchantRateService.trade(merchantTradReq.getMerchantNo(),merchantTradReq.getPayType());
-        // 商户配置
-        MerchantConfig merchantConfig = merchantConfigRepository.findByMerchantNo(merchantTradReq.getMerchantNo()).orElseThrow(()->new BusinessException("商户配置不存在"));
-        return MerchantTradResp.builder()
-                .merchantNo(merchantInfo.getMerchantNo())
-                .merchantName(merchantInfo.getMerchantName())
-                .merchantKey(merchantConfig.getMerchantKey())
-                .trxRate(merchantRateDTO.getTradeRate())
-                .splitRate(merchantRateDTO.getSplitRate())
-                .build();
-    }
+	private final MerchantInfoRepository merchantInfoRepository;
+
+	private final MerchantConfigRepository merchantConfigRepository;
+
+	public MerchantTradeService(MerchantRateService merchantRateService, MerchantInfoRepository merchantInfoRepository,
+			MerchantConfigRepository merchantConfigRepository) {
+		this.merchantRateService = merchantRateService;
+		this.merchantInfoRepository = merchantInfoRepository;
+		this.merchantConfigRepository = merchantConfigRepository;
+	}
+
+	public MerchantTradResp trade(MerchantTradReq merchantTradReq) {
+		// 商户信息
+		MerchantInfo merchantInfo = merchantInfoRepository.findByMerchantNo(merchantTradReq.getMerchantNo())
+			.orElseThrow(() -> new BusinessException("商户不存在"));
+		// 商户费率
+		MerchantRateDTO merchantRateDTO = merchantRateService.trade(merchantTradReq.getMerchantNo(),
+				merchantTradReq.getPayType());
+		// 商户配置
+		MerchantConfig merchantConfig = merchantConfigRepository.findByMerchantNo(merchantTradReq.getMerchantNo())
+			.orElseThrow(() -> new BusinessException("商户配置不存在"));
+		return MerchantTradResp.builder()
+			.merchantNo(merchantInfo.getMerchantNo())
+			.merchantName(merchantInfo.getMerchantName())
+			.merchantKey(merchantConfig.getMerchantKey())
+			.trxRate(merchantRateDTO.getTradeRate())
+			.splitRate(merchantRateDTO.getSplitRate())
+			.build();
+	}
+
 }

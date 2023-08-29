@@ -20,23 +20,30 @@ import java.util.UUID;
  */
 @Service
 public class MerchantConfigService {
-    private final MerchantConfigRepository merchantConfigRepository;
-    private final MerchantInfoRepository merchantInfoRepository;
-    public MerchantConfigService(MerchantConfigRepository merchantConfigRepository, MerchantInfoRepository merchantInfoRepository) {
-        this.merchantConfigRepository = merchantConfigRepository;
-        this.merchantInfoRepository = merchantInfoRepository;
-    }
 
-    public void create(MerchantConfigReq merchantConfigReq) {
-        merchantInfoRepository.findByMerchantNo(merchantConfigReq.getMerchantNo()).orElseThrow(()->new BusinessException("商户不存在"));
-        MerchantConfig merchantConfig = BeanUtil.copy(merchantConfigReq, MerchantConfig.class);
-        // TODO 生成商户密钥算法
-        merchantConfig.setMerchantKey(UUID.randomUUID().toString());
-        merchantConfigRepository.save(merchantConfig);
-    }
+	private final MerchantConfigRepository merchantConfigRepository;
 
-    public MerchantConfigQueryResp query(MerchantConfigQueryReq merchantConfigReq) {
-        MerchantConfig merchantConfig = merchantConfigRepository.findByMerchantNo(merchantConfigReq.getMerchantNo()).orElseThrow(()->new BusinessException("商户不存在"));
-        return BeanUtil.copy(merchantConfig,MerchantConfigQueryResp.class);
-    }
+	private final MerchantInfoRepository merchantInfoRepository;
+
+	public MerchantConfigService(MerchantConfigRepository merchantConfigRepository,
+			MerchantInfoRepository merchantInfoRepository) {
+		this.merchantConfigRepository = merchantConfigRepository;
+		this.merchantInfoRepository = merchantInfoRepository;
+	}
+
+	public void create(MerchantConfigReq merchantConfigReq) {
+		merchantInfoRepository.findByMerchantNo(merchantConfigReq.getMerchantNo())
+			.orElseThrow(() -> new BusinessException("商户不存在"));
+		MerchantConfig merchantConfig = BeanUtil.copy(merchantConfigReq, MerchantConfig.class);
+		// TODO 生成商户密钥算法
+		merchantConfig.setMerchantKey(UUID.randomUUID().toString());
+		merchantConfigRepository.save(merchantConfig);
+	}
+
+	public MerchantConfigQueryResp query(MerchantConfigQueryReq merchantConfigReq) {
+		MerchantConfig merchantConfig = merchantConfigRepository.findByMerchantNo(merchantConfigReq.getMerchantNo())
+			.orElseThrow(() -> new BusinessException("商户不存在"));
+		return BeanUtil.copy(merchantConfig, MerchantConfigQueryResp.class);
+	}
+
 }

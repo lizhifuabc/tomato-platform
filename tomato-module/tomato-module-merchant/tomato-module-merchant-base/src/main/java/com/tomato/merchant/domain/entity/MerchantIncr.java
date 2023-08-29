@@ -13,31 +13,33 @@ import org.hibernate.annotations.Comment;
 @Entity
 @Table(name = "t_merchant_incr")
 public class MerchantIncr extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
 
-    /**
-     * 商户号
-     */
-    @Column
-    @Comment("商户号")
-    private Long merchantNo;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Long id;
 
-    public Long getId() {
-        return id;
-    }
+	/**
+	 * 商户号
+	 */
+	@Column
+	@Comment("商户号")
+	private Long merchantNo;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Long getMerchantNo() {
-        return merchantNo;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setMerchantNo(Long merchantNo) {
-        this.merchantNo = merchantNo;
-    }
+	public Long getMerchantNo() {
+		return merchantNo;
+	}
+
+	public void setMerchantNo(Long merchantNo) {
+		this.merchantNo = merchantNo;
+	}
+
 }

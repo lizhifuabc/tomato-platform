@@ -10,5 +10,6 @@ import org.springframework.stereotype.Repository;
  * @author lizhifu
  * @since 2022/12/15
  */
-public interface MerchantIncrRepository extends BaseJpaRepository<MerchantIncr,Long> {
+public interface MerchantIncrRepository extends BaseJpaRepository<MerchantIncr, Long> {
+
 }

@@ -29,6 +29,7 @@
         <spring.cloud.version>2022.0.4</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
         <spring-security-oauth2-authorization-server.version>1.1.1</spring-security-oauth2-authorization-server.version> <!-- Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
+        <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin> <!-- spring 代码格式插件 -->
 
         <!--Maven Plugin 组件统一依赖管理-->
         <mapstruct-processor.version>1.5.5.Final</mapstruct-processor.version> <!-- https://mapstruct.org/，MapStruct代码生成的处理器插件 -->
@@ -57,7 +58,6 @@
         <jnanoid.version>2.0.0</jnanoid.version> <!--   唯一ID生成类NanoId     -->
         <cosid.version>1.16.0</cosid.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version> <!--   Apache Commons BeanUtils 库-->
-        <spring.checkstyle.plugin>0.0.38</spring.checkstyle.plugin> <!-- spring boot 项目检查插件 -->
         <springdoc.v2.version>2.2.0</springdoc.v2.version> <!--   https://springdoc.org/v2/     -->
         <jasypt.version>3.0.5</jasypt.version> <!--   配置文件加解密 https://github.com/jasypt/jasypt     -->
         <velocity.version>2.3</velocity.version>        <!--  代码生成模板      -->

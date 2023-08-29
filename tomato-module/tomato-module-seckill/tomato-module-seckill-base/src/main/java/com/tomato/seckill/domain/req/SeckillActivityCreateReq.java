@@ -16,27 +16,31 @@ import java.time.LocalDateTime;
  */
 @Data
 public class SeckillActivityCreateReq {
-    /**
-     * 活动名称
-     */
-    @NotNull(message = "活动名称不能为空")
-    @Length(max = 64, message = "活动名称最多64字符")
-    private String activityName;
-    /**
-     * 活动描述
-     */
-    @NotNull(message = "活动描述不能为空")
-    @Length(max = 128, message = "活动描述最多128字符")
-    private String activityDesc;
-    /**
-     * 开始时间
-     */
-    @Future
-    private LocalDateTime startTime;
-    /**
-     * 结束时间
-     * TODO 结束时间必须大于开始时间
-     */
-    @Future
-    private LocalDateTime endTime;
+
+	/**
+	 * 活动名称
+	 */
+	@NotNull(message = "活动名称不能为空")
+	@Length(max = 64, message = "活动名称最多64字符")
+	private String activityName;
+
+	/**
+	 * 活动描述
+	 */
+	@NotNull(message = "活动描述不能为空")
+	@Length(max = 128, message = "活动描述最多128字符")
+	private String activityDesc;
+
+	/**
+	 * 开始时间
+	 */
+	@Future
+	private LocalDateTime startTime;
+
+	/**
+	 * 结束时间 TODO 结束时间必须大于开始时间
+	 */
+	@Future
+	private LocalDateTime endTime;
+
 }

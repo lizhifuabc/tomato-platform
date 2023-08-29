@@ -14,8 +14,10 @@ import java.util.List;
  */
 @Slf4j
 public class AliyunSmsSendHandler extends AbstractSmsSendHandler {
-    @Override
-    protected boolean exe(SmsTemplate template, List<String> phoneList) {
-        return false;
-    }
+
+	@Override
+	protected boolean exe(SmsTemplate template, List<String> phoneList) {
+		return false;
+	}
+
 }

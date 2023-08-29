@@ -16,27 +16,29 @@ import java.time.LocalDate;
 @Data
 public class AccountSettleControlEntity extends BaseEntity {
 
-    /**
-     * 账户结算规则id
-     */
-    private Long accountSettleId;
-    /**
-     * 账户结算记录ID
-     */
-    private Long settleRecordId;
+	/**
+	 * 账户结算规则id
+	 */
+	private Long accountSettleId;
 
-    /**
-     * 账户编号
-     */
-    private String accountNo;
+	/**
+	 * 账户结算记录ID
+	 */
+	private Long settleRecordId;
 
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
+	/**
+	 * 账户编号
+	 */
+	private String accountNo;
 
-    /**
-     * 下次结算日期
-     */
-    private LocalDate nextSettleDate;
+	/**
+	 * 商户编号
+	 */
+	private String merchantNo;
+
+	/**
+	 * 下次结算日期
+	 */
+	private LocalDate nextSettleDate;
+
 }

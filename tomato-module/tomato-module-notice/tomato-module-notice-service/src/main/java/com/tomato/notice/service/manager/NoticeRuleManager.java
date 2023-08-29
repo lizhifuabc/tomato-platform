@@ -14,13 +14,15 @@ import java.util.Optional;
  */
 @Service
 public class NoticeRuleManager {
-    private final NoticeRuleMapper noticeRuleMapper;
 
-    public NoticeRuleManager(NoticeRuleMapper noticeRuleMapper) {
-        this.noticeRuleMapper = noticeRuleMapper;
-    }
+	private final NoticeRuleMapper noticeRuleMapper;
 
-    public Optional<NoticeRuleEntity> selectByRuleCode(String ruleCode) {
-        return Optional.ofNullable(noticeRuleMapper.selectByRuleCode(ruleCode));
-    }
+	public NoticeRuleManager(NoticeRuleMapper noticeRuleMapper) {
+		this.noticeRuleMapper = noticeRuleMapper;
+	}
+
+	public Optional<NoticeRuleEntity> selectByRuleCode(String ruleCode) {
+		return Optional.ofNullable(noticeRuleMapper.selectByRuleCode(ruleCode));
+	}
+
 }

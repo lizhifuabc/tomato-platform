@@ -17,16 +17,17 @@ import org.springframework.core.env.Environment;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class GatewayApiApplication {
-    public static void main(String[] args) {
-        log.info("Begin to start Spring Boot Application");
-        long startTime = System.currentTimeMillis();
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(GatewayApiApplication.class, args);
-        System.out.println("网关启动成功");
-        long endTime = System.currentTimeMillis();
-        log.info("End starting Spring Boot Application, Time used: "+ (endTime - startTime) );
 
+	public static void main(String[] args) {
+		log.info("Begin to start Spring Boot Application");
+		long startTime = System.currentTimeMillis();
+		ConfigurableApplicationContext applicationContext = SpringApplication.run(GatewayApiApplication.class, args);
+		System.out.println("网关启动成功");
+		long endTime = System.currentTimeMillis();
+		log.info("End starting Spring Boot Application, Time used: " + (endTime - startTime));
 
-        Environment env = applicationContext.getEnvironment();
-        log.info("环境信息{}",env);
-    }
+		Environment env = applicationContext.getEnvironment();
+		log.info("环境信息{}", env);
+	}
+
 }

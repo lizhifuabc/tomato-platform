@@ -12,11 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountTimerTest {
-    @Resource
-    private AccountTimer accountTimer;
 
-    @Test
-    public void test(){
-        accountTimer.run();
-    }
+	@Resource
+	private AccountTimer accountTimer;
+
+	@Test
+	public void test() {
+		accountTimer.run();
+	}
+
 }

@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 项目启动类：服务消费者
+ *
  * @author lizhifu
  */
 @SpringBootApplication

@@ -20,55 +20,63 @@ import java.util.List;
  */
 @SpringBootTest
 public class RedisTest {
-    @Resource
-    RedisTemplate redisTemplate;
-    @Resource
-    DefaultRedisScript<Long> seckillRedisScript;
-    @Resource
-    StringRedisTemplate stringRedisTemplate;
-    @Test
-    public void test(){
-        SeckillGoodsEntity seckillGoodsEntity = new SeckillGoodsEntity();
-        seckillGoodsEntity.setGoodsId(10000L);
-        seckillGoodsEntity.setCreateTime(LocalDateTime.now());
-        redisTemplate.opsForValue().set("test", seckillGoodsEntity);
-        Object test = redisTemplate.opsForValue().get("test");
-        System.out.println(test);
-    }
-    @Test
-    public void seckill(){
-        List<String> redisKeys = Arrays.asList("123456");
-        Long result = (Long) redisTemplate.execute(seckillRedisScript, redisKeys);
-        if(result > 0){
-            System.out.println("剩余库存:"+result);
-        }
-        System.out.println(result);
-    }
-    @Test
-    public void lua(){
-        StringBuilder lua = new StringBuilder();
-        lua.append("if (redis.call('exists', KEYS[1]) == 1) then");
-        lua.append("    local stock = tonumber(redis.call('get', KEYS[1]));");
-        lua.append("    if (stock == -1) then");
-        lua.append("        return 1;");
-        lua.append("    end;");
-        lua.append("    if (stock > 0) then");
-        lua.append("        redis.call('incrby', KEYS[1], -1);");
-        lua.append("        return stock;");
-        lua.append("    end;");
-        lua.append("    return 0;");
-        lua.append("end;");
-        lua.append("return -1;");
-        System.out.println(lua.toString());
-    }
-    @Test
-    public void queue(){
-        // SECKILL:QUEUE:121:123
-        String key = "SECKILL:QUEUE:1:1";
-        System.out.println(stringRedisTemplate.opsForList().size(key));
-        // range(K key, long start, long end)
-        // 获取指定区间的值。
-        List<Object> list =  redisTemplate.opsForList().range(key,0,-1);
-        System.out.println(list);
-    }
+
+	@Resource
+	RedisTemplate redisTemplate;
+
+	@Resource
+	DefaultRedisScript<Long> seckillRedisScript;
+
+	@Resource
+	StringRedisTemplate stringRedisTemplate;
+
+	@Test
+	public void test() {
+		SeckillGoodsEntity seckillGoodsEntity = new SeckillGoodsEntity();
+		seckillGoodsEntity.setGoodsId(10000L);
+		seckillGoodsEntity.setCreateTime(LocalDateTime.now());
+		redisTemplate.opsForValue().set("test", seckillGoodsEntity);
+		Object test = redisTemplate.opsForValue().get("test");
+		System.out.println(test);
+	}
+
+	@Test
+	public void seckill() {
+		List<String> redisKeys = Arrays.asList("123456");
+		Long result = (Long) redisTemplate.execute(seckillRedisScript, redisKeys);
+		if (result > 0) {
+			System.out.println("剩余库存:" + result);
+		}
+		System.out.println(result);
+	}
+
+	@Test
+	public void lua() {
+		StringBuilder lua = new StringBuilder();
+		lua.append("if (redis.call('exists', KEYS[1]) == 1) then");
+		lua.append("    local stock = tonumber(redis.call('get', KEYS[1]));");
+		lua.append("    if (stock == -1) then");
+		lua.append("        return 1;");
+		lua.append("    end;");
+		lua.append("    if (stock > 0) then");
+		lua.append("        redis.call('incrby', KEYS[1], -1);");
+		lua.append("        return stock;");
+		lua.append("    end;");
+		lua.append("    return 0;");
+		lua.append("end;");
+		lua.append("return -1;");
+		System.out.println(lua.toString());
+	}
+
+	@Test
+	public void queue() {
+		// SECKILL:QUEUE:121:123
+		String key = "SECKILL:QUEUE:1:1";
+		System.out.println(stringRedisTemplate.opsForList().size(key));
+		// range(K key, long start, long end)
+		// 获取指定区间的值。
+		List<Object> list = redisTemplate.opsForList().range(key, 0, -1);
+		System.out.println(list);
+	}
+
 }

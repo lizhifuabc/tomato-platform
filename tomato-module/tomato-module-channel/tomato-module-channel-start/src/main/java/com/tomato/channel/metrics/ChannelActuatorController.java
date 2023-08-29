@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping
 @Slf4j
-@Tags({
-        @Tag(name = "渠道指标监测"),
-})
+@Tags({ @Tag(name = "渠道指标监测"), })
 public class ChannelActuatorController {
-    /**
-     * 渠道指标监测
-     * @return 渠道指标监测
-     */
-    @RequestMapping(value = "/channel/actuator")
-    public String actuator(){
-        log.info("渠道指标监测");
-        return "渠道指标监测";
-    }
+
+	/**
+	 * 渠道指标监测
+	 * @return 渠道指标监测
+	 */
+	@RequestMapping(value = "/channel/actuator")
+	public String actuator() {
+		log.info("渠道指标监测");
+		return "渠道指标监测";
+	}
+
 }

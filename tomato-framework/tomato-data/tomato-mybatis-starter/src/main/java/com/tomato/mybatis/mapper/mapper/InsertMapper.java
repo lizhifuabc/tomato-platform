@@ -16,41 +16,41 @@ import java.util.List;
  * @since 2023/5/18
  */
 public interface InsertMapper<T, ID> extends Mapper<T, ID> {
-    /**
-     * 插入新对象,并返回主键id值(id通过实体获取)
-     *
-     * @param entity 实体对象
-     * @return  影响条数
-     */
-    @InsertProvider(type = InsertSqlProvider.class, method = "sql")
-    @Options(useGeneratedKeys = true, keyColumn = TableInfo.DEFAULT_PRIMARY_KEY, keyProperty = TableInfo.DEFAULT_PRIMARY_KEY)
-    int insert(@Param("criteria") T entity);
 
-    /**
-     * 插入新对象（只设置非空字段）,并返回主键id值(id通过实体获取)
-     *
-     * @param criteria 实体对象
-     * @return  影响条数
-     */
-    @InsertProvider(type = InsertSelectiveSqlProvider.class, method = "sql")
-    @Options(useGeneratedKeys = true, keyColumn = TableInfo.DEFAULT_PRIMARY_KEY, keyProperty = TableInfo.DEFAULT_PRIMARY_KEY)
-    int insertSelective(@Param("criteria") T criteria);
+	/**
+	 * 插入新对象,并返回主键id值(id通过实体获取)
+	 * @param entity 实体对象
+	 * @return 影响条数
+	 */
+	@InsertProvider(type = InsertSqlProvider.class, method = "sql")
+	@Options(useGeneratedKeys = true, keyColumn = TableInfo.DEFAULT_PRIMARY_KEY,
+			keyProperty = TableInfo.DEFAULT_PRIMARY_KEY)
+	int insert(@Param("criteria") T entity);
 
-    /**
-     * 批量插入实体
-     *
-     * @param entities  实体列表
-     * @return          影响条数
-     */
-    @InsertProvider(type = BatchInsertSqlProvider.class, method = "sql")
-    int batchInsert(@Param("entities") List<T> entities);
+	/**
+	 * 插入新对象（只设置非空字段）,并返回主键id值(id通过实体获取)
+	 * @param criteria 实体对象
+	 * @return 影响条数
+	 */
+	@InsertProvider(type = InsertSelectiveSqlProvider.class, method = "sql")
+	@Options(useGeneratedKeys = true, keyColumn = TableInfo.DEFAULT_PRIMARY_KEY,
+			keyProperty = TableInfo.DEFAULT_PRIMARY_KEY)
+	int insertSelective(@Param("criteria") T criteria);
 
-    /**
-     * 批量插入实体
-     *
-     * @param entities  实体列表
-     * @return          影响条数
-     */
-    @InsertProvider(type = BatchInsertSqlProvider.class, method = "sqlSelective")
-    int batchInsertSelective(@Param("entities") List<T> entities);
+	/**
+	 * 批量插入实体
+	 * @param entities 实体列表
+	 * @return 影响条数
+	 */
+	@InsertProvider(type = BatchInsertSqlProvider.class, method = "sql")
+	int batchInsert(@Param("entities") List<T> entities);
+
+	/**
+	 * 批量插入实体
+	 * @param entities 实体列表
+	 * @return 影响条数
+	 */
+	@InsertProvider(type = BatchInsertSqlProvider.class, method = "sqlSelective")
+	int batchInsertSelective(@Param("entities") List<T> entities);
+
 }

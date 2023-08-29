@@ -16,28 +16,30 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class OrderInfoBaseDO extends BaseEntity {
-    /**
-     * 订单号
-     */
-    private String orderNo;
 
-    /**
-     * 订单金额
-     */
-    private BigDecimal requestAmount;
+	/**
+	 * 订单号
+	 */
+	private String orderNo;
 
-    /**
-     * 订单状态
-     */
-    private String orderStatus;
+	/**
+	 * 订单金额
+	 */
+	private BigDecimal requestAmount;
 
-    /**
-     * 完成时间
-     */
-    private LocalDateTime completeTime;
+	/**
+	 * 订单状态
+	 */
+	private String orderStatus;
 
-    /**
-     * 订单失效时间
-     */
-    private LocalDateTime timeoutTime;
+	/**
+	 * 完成时间
+	 */
+	private LocalDateTime completeTime;
+
+	/**
+	 * 订单失效时间
+	 */
+	private LocalDateTime timeoutTime;
+
 }

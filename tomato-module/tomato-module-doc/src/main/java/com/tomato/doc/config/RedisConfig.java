@@ -13,8 +13,10 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
  */
 @Configuration
 public class RedisConfig {
-    @Bean
-    public RedisLockService redisLockService(RedisConnectionFactory factory) {
-        return new RedisLockService(factory);
-    }
+
+	@Bean
+	public RedisLockService redisLockService(RedisConnectionFactory factory) {
+		return new RedisLockService(factory);
+	}
+
 }

@@ -21,37 +21,41 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Slf4j
 public class NoticeRepositoryImpl implements NoticeRepository {
-    private final RemoteNoticeService remoteNoticeService;
-    private final OrderInfoMapper orderInfoMapper;
-    public NoticeRepositoryImpl(RemoteNoticeService remoteNoticeService, OrderInfoMapper orderInfoMapper) {
-        this.remoteNoticeService = remoteNoticeService;
-        this.orderInfoMapper = orderInfoMapper;
-    }
 
-    @Override
-    public void createNotice(NoticeEntity noticeEntity) {
-        NoticeCreateReq noticeCreateReq = getNoticeCreateReq(noticeEntity);
-        Resp<Void> notice = remoteNoticeService.createNotice(noticeCreateReq);
-        if (!notice.isSuccess()) {
-            // TODO 重试或者记录日志
-            log.error("通知系统失败:{},流水号:{}",notice.getMsg(),noticeEntity.getOrderNo());
-            orderInfoMapper.updateNoticeStatus(noticeEntity.getOrderNo(), OrderStatusEnum.FAIL.getValue());
-            return;
-        }
-        orderInfoMapper.updateNoticeStatus(noticeEntity.getOrderNo(), OrderStatusEnum.SUCCESS.getValue());
-    }
+	private final RemoteNoticeService remoteNoticeService;
 
-    @NotNull
-    private static NoticeCreateReq getNoticeCreateReq(NoticeEntity noticeEntity) {
-        NoticeCreateReq noticeCreateReq = new NoticeCreateReq();
-        noticeCreateReq.setMerchantNo(noticeEntity.getMerchantNo());
-        noticeCreateReq.setMerchantOrderNo(noticeEntity.getMerchantOrderNo());
-        noticeCreateReq.setNoticeUrl(noticeEntity.getNoticeUrl());
-        noticeCreateReq.setHttpMethod("POST");
-        noticeCreateReq.setAppNo("tomato-order");
-        noticeCreateReq.setNoticeParam(noticeEntity.getNoticeParam());
-        noticeCreateReq.setOrderNo(noticeEntity.getOrderNo());
-        noticeCreateReq.setRuleCode("tomato-order");
-        return noticeCreateReq;
-    }
+	private final OrderInfoMapper orderInfoMapper;
+
+	public NoticeRepositoryImpl(RemoteNoticeService remoteNoticeService, OrderInfoMapper orderInfoMapper) {
+		this.remoteNoticeService = remoteNoticeService;
+		this.orderInfoMapper = orderInfoMapper;
+	}
+
+	@Override
+	public void createNotice(NoticeEntity noticeEntity) {
+		NoticeCreateReq noticeCreateReq = getNoticeCreateReq(noticeEntity);
+		Resp<Void> notice = remoteNoticeService.createNotice(noticeCreateReq);
+		if (!notice.isSuccess()) {
+			// TODO 重试或者记录日志
+			log.error("通知系统失败:{},流水号:{}", notice.getMsg(), noticeEntity.getOrderNo());
+			orderInfoMapper.updateNoticeStatus(noticeEntity.getOrderNo(), OrderStatusEnum.FAIL.getValue());
+			return;
+		}
+		orderInfoMapper.updateNoticeStatus(noticeEntity.getOrderNo(), OrderStatusEnum.SUCCESS.getValue());
+	}
+
+	@NotNull
+	private static NoticeCreateReq getNoticeCreateReq(NoticeEntity noticeEntity) {
+		NoticeCreateReq noticeCreateReq = new NoticeCreateReq();
+		noticeCreateReq.setMerchantNo(noticeEntity.getMerchantNo());
+		noticeCreateReq.setMerchantOrderNo(noticeEntity.getMerchantOrderNo());
+		noticeCreateReq.setNoticeUrl(noticeEntity.getNoticeUrl());
+		noticeCreateReq.setHttpMethod("POST");
+		noticeCreateReq.setAppNo("tomato-order");
+		noticeCreateReq.setNoticeParam(noticeEntity.getNoticeParam());
+		noticeCreateReq.setOrderNo(noticeEntity.getOrderNo());
+		noticeCreateReq.setRuleCode("tomato-order");
+		return noticeCreateReq;
+	}
+
 }

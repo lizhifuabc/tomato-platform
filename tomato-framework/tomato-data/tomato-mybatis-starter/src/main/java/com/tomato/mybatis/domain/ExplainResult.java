@@ -10,27 +10,29 @@ import lombok.Data;
  */
 @Data
 public class ExplainResult {
-    private String id;
 
-    private String selectType;
+	private String id;
 
-    private String table;
+	private String selectType;
 
-    private String partitions;
+	private String table;
 
-    private String type;
+	private String partitions;
 
-    private String possibleKeys;
+	private String type;
 
-    private String key;
+	private String possibleKeys;
 
-    private String keyLen;
+	private String key;
 
-    private String ref;
+	private String keyLen;
 
-    private String rows;
+	private String ref;
 
-    private String filtered;
+	private String rows;
 
-    private String extra;
+	private String filtered;
+
+	private String extra;
+
 }

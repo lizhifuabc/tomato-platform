@@ -10,4 +10,5 @@ import com.tomato.sys.domain.entity.SysPermission;
  * @since 2023/4/21
  */
 public interface SysPermissionRepository extends BaseJpaRepository<SysPermission, String> {
+
 }

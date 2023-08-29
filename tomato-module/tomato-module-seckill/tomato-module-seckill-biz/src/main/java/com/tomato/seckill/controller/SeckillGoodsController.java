@@ -18,25 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SeckillGoodsController {
-    private final SeckillGoodsManager seckillGoodsManager;
-    public SeckillGoodsController(SeckillGoodsManager seckillGoodsManager) {
-        this.seckillGoodsManager = seckillGoodsManager;
-    }
 
-    @PostMapping("/seckill/activity/goods/create")
-    public Resp goodsCreate(@Validated @RequestBody SeckillGoodsCreateListReq listReq){
-        seckillGoodsManager.goodsCreate(listReq);
-        return Resp.buildSuccess();
-    }
+	private final SeckillGoodsManager seckillGoodsManager;
 
-    @RequestMapping("/seckill/activity/goods/remaining/redis")
-    public Resp remainingRedis(@Validated @RequestBody SeckillGoodsRemainingReq req){
+	public SeckillGoodsController(SeckillGoodsManager seckillGoodsManager) {
+		this.seckillGoodsManager = seckillGoodsManager;
+	}
 
-        return Resp.buildSuccess();
-    }
-    @RequestMapping("/seckill/activity/goods/remaining/db")
-    public Resp remainingDb(@Validated @RequestBody SeckillGoodsRemainingReq req){
+	@PostMapping("/seckill/activity/goods/create")
+	public Resp goodsCreate(@Validated @RequestBody SeckillGoodsCreateListReq listReq) {
+		seckillGoodsManager.goodsCreate(listReq);
+		return Resp.buildSuccess();
+	}
 
-        return Resp.buildSuccess();
-    }
+	@RequestMapping("/seckill/activity/goods/remaining/redis")
+	public Resp remainingRedis(@Validated @RequestBody SeckillGoodsRemainingReq req) {
+
+		return Resp.buildSuccess();
+	}
+
+	@RequestMapping("/seckill/activity/goods/remaining/db")
+	public Resp remainingDb(@Validated @RequestBody SeckillGoodsRemainingReq req) {
+
+		return Resp.buildSuccess();
+	}
+
 }

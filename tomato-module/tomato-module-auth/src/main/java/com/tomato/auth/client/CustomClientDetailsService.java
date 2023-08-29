@@ -7,4 +7,5 @@ package com.tomato.auth.client;
  * @since 2023/5/9
  */
 public class CustomClientDetailsService {
+
 }

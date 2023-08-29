@@ -12,12 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class GenTableServiceTest {
-    @Resource
-    GenTableService genTableService;
 
-    @Test
-    public void test(){
-        String tableName = "t_gen_field_type";
-        genTableService.genCode(tableName);
-    }
+	@Resource
+	GenTableService genTableService;
+
+	@Test
+	public void test() {
+		String tableName = "t_gen_field_type";
+		genTableService.genCode(tableName);
+	}
+
 }

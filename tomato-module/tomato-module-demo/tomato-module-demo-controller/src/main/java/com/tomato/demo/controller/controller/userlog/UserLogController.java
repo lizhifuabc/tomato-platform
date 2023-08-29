@@ -7,4 +7,5 @@ package com.tomato.demo.controller.controller.userlog;
  * @since 2023/4/3
  */
 public class UserLogController {
+
 }

@@ -16,18 +16,20 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class RedisRateLimiterTest {
-    @Resource
-    RedisRateLimiter redisRateLimiter;
 
-    @Test
-    public void test(){
-        RedisRateLimiterReq redisRateLimiterReq = RedisRateLimiterReq.builder()
-                .id("test")
-                .replenishRate(10)
-                .burstCapacity(100)
-                .requestedTokens(1)
-                .build();
-        Resp<RedisRateLimiterResp> allowed = redisRateLimiter.isAllowed(redisRateLimiterReq);
-        System.out.println(allowed);
-    }
+	@Resource
+	RedisRateLimiter redisRateLimiter;
+
+	@Test
+	public void test() {
+		RedisRateLimiterReq redisRateLimiterReq = RedisRateLimiterReq.builder()
+			.id("test")
+			.replenishRate(10)
+			.burstCapacity(100)
+			.requestedTokens(1)
+			.build();
+		Resp<RedisRateLimiterResp> allowed = redisRateLimiter.isAllowed(redisRateLimiterReq);
+		System.out.println(allowed);
+	}
+
 }

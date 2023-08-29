@@ -25,21 +25,26 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @Tag(name = "订单接口", description = "订单接口")
 public class OrderCreateController {
-    private final OrderCreateService orderCreateService;
-    public OrderCreateController(OrderCreateService orderCreateService) {
-        this.orderCreateService = orderCreateService;
-    }
 
-    /**
-     * 订单新建:扫码
-     * @param orderCreateReq 订单新建
-     * @return Resp Void
-     */
-    @Operation(summary = "扫码收单", description = "扫码收单")
-    @PostMapping("/order/create/scan")
-    public Resp<OrderScanCreateResp> createScanOrder(@Valid @RequestBody OrderCreateReq orderCreateReq, HttpServletRequest request) {
-        log.info("扫码收单:{}",orderCreateReq.getMerchantOrderNo());
-        OrderScanCreateResp orderScanCreateResp = orderCreateService.createScanOrder(orderCreateReq,request.getRemoteAddr());
-        return Resp.of(orderScanCreateResp);
-    }
+	private final OrderCreateService orderCreateService;
+
+	public OrderCreateController(OrderCreateService orderCreateService) {
+		this.orderCreateService = orderCreateService;
+	}
+
+	/**
+	 * 订单新建:扫码
+	 * @param orderCreateReq 订单新建
+	 * @return Resp Void
+	 */
+	@Operation(summary = "扫码收单", description = "扫码收单")
+	@PostMapping("/order/create/scan")
+	public Resp<OrderScanCreateResp> createScanOrder(@Valid @RequestBody OrderCreateReq orderCreateReq,
+			HttpServletRequest request) {
+		log.info("扫码收单:{}", orderCreateReq.getMerchantOrderNo());
+		OrderScanCreateResp orderScanCreateResp = orderCreateService.createScanOrder(orderCreateReq,
+				request.getRemoteAddr());
+		return Resp.of(orderScanCreateResp);
+	}
+
 }

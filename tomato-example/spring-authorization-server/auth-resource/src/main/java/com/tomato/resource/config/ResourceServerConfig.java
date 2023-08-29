@@ -8,10 +8,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * 资源服务器配置
+ *
  * @author lizhifu
  */
-//@EnableWebSecurity
-//@Configuration(proxyBeanMethods = false)
+// @EnableWebSecurity
+// @Configuration(proxyBeanMethods = false)
 public class ResourceServerConfig {
 
 	// @formatter:off

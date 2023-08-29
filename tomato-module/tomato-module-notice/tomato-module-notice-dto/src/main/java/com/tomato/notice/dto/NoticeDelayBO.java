@@ -10,12 +10,15 @@ import lombok.Data;
  */
 @Data
 public class NoticeDelayBO {
-    /**
-     * id
-     */
-    private Long id;
-    /**
-     * 通知次数
-     */
-    private Integer noticeCount;
+
+	/**
+	 * id
+	 */
+	private Long id;
+
+	/**
+	 * 通知次数
+	 */
+	private Integer noticeCount;
+
 }

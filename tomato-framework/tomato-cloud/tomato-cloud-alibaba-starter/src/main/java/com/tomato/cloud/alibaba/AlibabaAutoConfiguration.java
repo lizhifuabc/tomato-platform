@@ -13,9 +13,12 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
  */
 @AutoConfiguration
 public class AlibabaAutoConfiguration {
-    private static final Logger log = LoggerFactory.getLogger(AlibabaAutoConfiguration.class);
-    @PostConstruct
-    public void postConstruct() {
-        log.info("tomato-cloud-alibaba-starter 自动配置");
-    }
+
+	private static final Logger log = LoggerFactory.getLogger(AlibabaAutoConfiguration.class);
+
+	@PostConstruct
+	public void postConstruct() {
+		log.info("tomato-cloud-alibaba-starter 自动配置");
+	}
+
 }

@@ -7,8 +7,10 @@ package com.tomato.utils.base.date;
  * @date 2022/12/3
  */
 public class SystemClockTest {
-    public static void main(String[] args) {
-        System.out.println(SystemClock.nowDate());
-        System.out.println(SystemClock.now());
-    }
+
+	public static void main(String[] args) {
+		System.out.println(SystemClock.nowDate());
+		System.out.println(SystemClock.now());
+	}
+
 }

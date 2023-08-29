@@ -11,10 +11,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserLogEntityMapper {
-    /**
-     * 插入
-     * @param record 用户日志表
-     * @return int 影响行数
-     */
-    int insert(UserLogEntity record);
+
+	/**
+	 * 插入
+	 * @param record 用户日志表
+	 * @return int 影响行数
+	 */
+	int insert(UserLogEntity record);
+
 }

@@ -7,4 +7,5 @@ package com.tomato.sys.domain.constants;
  * @since 2023/5/3
  */
 public interface DataConstants {
+
 }

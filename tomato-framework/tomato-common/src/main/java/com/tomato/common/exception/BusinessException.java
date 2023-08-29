@@ -10,26 +10,28 @@ import com.tomato.common.resp.RespCode;
  */
 public class BusinessException extends AbstractException {
 
-    public BusinessException() {
-        this(CommonRespCode.INTERNAL_SERVER_ERROR,null,null);
-    }
+	public BusinessException() {
+		this(CommonRespCode.INTERNAL_SERVER_ERROR, null, null);
+	}
 
-    public BusinessException(RespCode respCode) {
-        this(respCode,null,null);
-    }
+	public BusinessException(RespCode respCode) {
+		this(respCode, null, null);
+	}
 
-    public BusinessException(String message) {
-        this(CommonRespCode.INTERNAL_SERVER_ERROR,message,null);
-    }
+	public BusinessException(String message) {
+		this(CommonRespCode.INTERNAL_SERVER_ERROR, message, null);
+	}
 
-    public BusinessException(String message, Throwable cause) {
-        this(CommonRespCode.INTERNAL_SERVER_ERROR,message,cause);
-    }
+	public BusinessException(String message, Throwable cause) {
+		this(CommonRespCode.INTERNAL_SERVER_ERROR, message, cause);
+	}
 
-    public BusinessException(Throwable cause) {
-        this(CommonRespCode.INTERNAL_SERVER_ERROR,null,cause);
-    }
-    public BusinessException(RespCode respCode, String message, Throwable throwable) {
-        super(respCode, message, throwable);
-    }
+	public BusinessException(Throwable cause) {
+		this(CommonRespCode.INTERNAL_SERVER_ERROR, null, cause);
+	}
+
+	public BusinessException(RespCode respCode, String message, Throwable throwable) {
+		super(respCode, message, throwable);
+	}
+
 }

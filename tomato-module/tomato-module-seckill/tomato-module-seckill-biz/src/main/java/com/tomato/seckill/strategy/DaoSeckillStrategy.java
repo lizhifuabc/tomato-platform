@@ -14,33 +14,37 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2023/3/17
  */
 @Service("daoSeckillStrategy")
-public class DaoSeckillStrategy implements SeckillStrategyFactory{
-    private final SeckillGoodsDao seckillGoodsDao;
-    private final SeckillUserManager seckillUserManager;
+public class DaoSeckillStrategy implements SeckillStrategyFactory {
 
-    public DaoSeckillStrategy(SeckillGoodsDao seckillGoodsDao, SeckillUserManager seckillUserManager) {
-        this.seckillGoodsDao = seckillGoodsDao;
-        this.seckillUserManager = seckillUserManager;
-    }
+	private final SeckillGoodsDao seckillGoodsDao;
 
-    @Override
-    public void checkSeckillGoods(Long seckillGoodsId, Long seckillActivityId) {
+	private final SeckillUserManager seckillUserManager;
 
-    }
+	public DaoSeckillStrategy(SeckillGoodsDao seckillGoodsDao, SeckillUserManager seckillUserManager) {
+		this.seckillGoodsDao = seckillGoodsDao;
+		this.seckillUserManager = seckillUserManager;
+	}
 
-    @Override
-    public void checkUserLimit(Long userId, Long seckillGoodsId) {
+	@Override
+	public void checkSeckillGoods(Long seckillGoodsId, Long seckillActivityId) {
 
-    }
+	}
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void deductSeckillGoods(Long seckillGoodsId, Long userId) {
-        SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectById(seckillGoodsId);
-        int skillRemainingRes = seckillGoodsDao.updateSkillRemaining(seckillGoodsEntity.getId(), seckillGoodsEntity.getVersion());
-        if(skillRemainingRes != 1){
-            throw new BusinessException("抢购失败，库存不足");
-        }
-        seckillUserManager.userSeckill(seckillGoodsEntity,userId);
-    }
+	@Override
+	public void checkUserLimit(Long userId, Long seckillGoodsId) {
+
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deductSeckillGoods(Long seckillGoodsId, Long userId) {
+		SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectById(seckillGoodsId);
+		int skillRemainingRes = seckillGoodsDao.updateSkillRemaining(seckillGoodsEntity.getId(),
+				seckillGoodsEntity.getVersion());
+		if (skillRemainingRes != 1) {
+			throw new BusinessException("抢购失败，库存不足");
+		}
+		seckillUserManager.userSeckill(seckillGoodsEntity, userId);
+	}
+
 }

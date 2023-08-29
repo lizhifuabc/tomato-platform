@@ -14,13 +14,15 @@ import java.util.Map;
 @Getter
 @Setter
 public class SmsTemplate {
-    /**
-     * 类型
-     */
-    private String type;
 
-    /**
-     * 参数列表
-     */
-    private Map<String, String> params;
+	/**
+	 * 类型
+	 */
+	private String type;
+
+	/**
+	 * 参数列表
+	 */
+	private Map<String, String> params;
+
 }

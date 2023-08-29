@@ -18,20 +18,23 @@ import java.util.List;
  */
 @Service
 public class SeckillGoodsManager {
-    private final SeckillGoodsDao seckillGoodsDao;
-    public SeckillGoodsManager(SeckillGoodsDao seckillGoodsDao) {
-        this.seckillGoodsDao = seckillGoodsDao;
-    }
 
-    public Resp goodsCreate(SeckillGoodsCreateListReq listReq){
-        List<SeckillGoodsEntity> goodsList = new ArrayList<>();
-        listReq.getGoodsList().forEach(seckillGoodsCreateReq -> {
-            SeckillGoodsEntity seckillGoodsEntity = BeanUtil.copy(seckillGoodsCreateReq,SeckillGoodsEntity.class);
-            seckillGoodsEntity.setSeckillActivityId(listReq.getSeckillActivityId());
-            seckillGoodsEntity.setSeckillRemaining(seckillGoodsCreateReq.getSeckillCount());
-            goodsList.add(seckillGoodsEntity);
-        });
-        seckillGoodsDao.insertList(goodsList);
-        return Resp.buildSuccess();
-    }
+	private final SeckillGoodsDao seckillGoodsDao;
+
+	public SeckillGoodsManager(SeckillGoodsDao seckillGoodsDao) {
+		this.seckillGoodsDao = seckillGoodsDao;
+	}
+
+	public Resp goodsCreate(SeckillGoodsCreateListReq listReq) {
+		List<SeckillGoodsEntity> goodsList = new ArrayList<>();
+		listReq.getGoodsList().forEach(seckillGoodsCreateReq -> {
+			SeckillGoodsEntity seckillGoodsEntity = BeanUtil.copy(seckillGoodsCreateReq, SeckillGoodsEntity.class);
+			seckillGoodsEntity.setSeckillActivityId(listReq.getSeckillActivityId());
+			seckillGoodsEntity.setSeckillRemaining(seckillGoodsCreateReq.getSeckillCount());
+			goodsList.add(seckillGoodsEntity);
+		});
+		seckillGoodsDao.insertList(goodsList);
+		return Resp.buildSuccess();
+	}
+
 }

@@ -18,17 +18,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public RabbitMQConfig(RabbitTemplate rabbitTemplate) {
-        rabbitTemplate.setConfirmCallback(new CustomRabbitTemplateConfirmReturn());
-    }
+	public RabbitMQConfig(RabbitTemplate rabbitTemplate) {
+		rabbitTemplate.setConfirmCallback(new CustomRabbitTemplateConfirmReturn());
+	}
 
-    /**
-     * 将消息广播到绑定到它的所有队列中，不管路由键是什么。也就是说，一个 FanoutExchange 绑定到多个 Queue，
-     * 当向该 Exchange 发送消息时，它会将消息发送到所有绑定的 Queue 中，忽略消息的路由键。因此，FanoutExchange 适用于消息广播的场景。
-     * @return FanoutExchange
-     */
-    @Bean
-    public FanoutExchange payExchange() {
-        return new FanoutExchange(PayMqConstant.PAY_RESULT_EXCHANGE);
-    }
+	/**
+	 * 将消息广播到绑定到它的所有队列中，不管路由键是什么。也就是说，一个 FanoutExchange 绑定到多个 Queue， 当向该 Exchange
+	 * 发送消息时，它会将消息发送到所有绑定的 Queue 中，忽略消息的路由键。因此，FanoutExchange 适用于消息广播的场景。
+	 * @return FanoutExchange
+	 */
+	@Bean
+	public FanoutExchange payExchange() {
+		return new FanoutExchange(PayMqConstant.PAY_RESULT_EXCHANGE);
+	}
+
 }

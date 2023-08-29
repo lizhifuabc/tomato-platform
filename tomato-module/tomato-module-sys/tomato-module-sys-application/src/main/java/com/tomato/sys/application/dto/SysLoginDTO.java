@@ -10,29 +10,31 @@ import lombok.Data;
  */
 @Data
 public class SysLoginDTO {
-    /**
-     * 用户名
-     */
-    private String username;
-    /**
-     * 密码
-     */
-    private String password;
-    /**
-     * 验证码
-     */
-    private String captchaCode;
-    /**
-     * 验证码key
-     */
-    private String captchaUuid;
 
-    @Override
-    public String toString() {
-        return "SysLoginDTO{" +
-                "username='" + username + '\'' +
-                ", captchaCode='" + captchaCode + '\'' +
-                ", captchaUuid='" + captchaUuid + '\'' +
-                '}';
-    }
+	/**
+	 * 用户名
+	 */
+	private String username;
+
+	/**
+	 * 密码
+	 */
+	private String password;
+
+	/**
+	 * 验证码
+	 */
+	private String captchaCode;
+
+	/**
+	 * 验证码key
+	 */
+	private String captchaUuid;
+
+	@Override
+	public String toString() {
+		return "SysLoginDTO{" + "username='" + username + '\'' + ", captchaCode='" + captchaCode + '\''
+				+ ", captchaUuid='" + captchaUuid + '\'' + '}';
+	}
+
 }

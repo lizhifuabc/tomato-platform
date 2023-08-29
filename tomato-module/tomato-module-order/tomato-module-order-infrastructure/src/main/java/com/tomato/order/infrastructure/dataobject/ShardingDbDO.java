@@ -16,16 +16,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ShardingDbDO {
-    /**
-     * 主键
-     */
-    private Long id;
-    /**
-     * 商户号
-     */
-    private String merchantNoSpilt;
-    /**
-     * 分库
-     */
-    private String shardingDb;
+
+	/**
+	 * 主键
+	 */
+	private Long id;
+
+	/**
+	 * 商户号
+	 */
+	private String merchantNoSpilt;
+
+	/**
+	 * 分库
+	 */
+	private String shardingDb;
+
 }

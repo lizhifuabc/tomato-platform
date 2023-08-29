@@ -23,4 +23,5 @@ class ModularityTests {
 	void createModuleDocumentation() {
 		new Documenter(modules).writeDocumentation();
 	}
+
 }

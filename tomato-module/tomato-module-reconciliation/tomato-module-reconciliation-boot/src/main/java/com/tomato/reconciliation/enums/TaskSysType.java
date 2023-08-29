@@ -9,30 +9,33 @@ import com.tomato.common.enums.BaseEnum;
  * @since 2023/5/28
  */
 public enum TaskSysType implements BaseEnum<String> {
-    /**
-     * 上游
-     */
-    UP("UP","上游"),
-    /**
-     * 下游
-     */
-    DOWN("DOWN","下游");
-    private final String value;
 
-    private final String desc;
+	/**
+	 * 上游
+	 */
+	UP("UP", "上游"),
+	/**
+	 * 下游
+	 */
+	DOWN("DOWN", "下游");
 
-    TaskSysType(String value, String desc) {
-        this.value = value;
-        this.desc = desc;
-    }
+	private final String value;
 
-    @Override
-    public String getDesc() {
-        return desc;
-    }
+	private final String desc;
 
-    @Override
-    public String getValue() {
-        return value;
-    }
+	TaskSysType(String value, String desc) {
+		this.value = value;
+		this.desc = desc;
+	}
+
+	@Override
+	public String getDesc() {
+		return desc;
+	}
+
+	@Override
+	public String getValue() {
+		return value;
+	}
+
 }

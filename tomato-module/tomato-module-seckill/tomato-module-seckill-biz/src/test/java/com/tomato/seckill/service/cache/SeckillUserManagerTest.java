@@ -15,13 +15,17 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SeckillUserManagerTest {
-    @Resource
-    SeckillUserManager seckillUserManager;
-    @Resource
-    SeckillGoodsDao seckillGoodsDao;
-    @Test
-    public void test(){
-        SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectById(1L);
-        seckillUserManager.userSeckill(seckillGoodsEntity,10001L);
-    }
+
+	@Resource
+	SeckillUserManager seckillUserManager;
+
+	@Resource
+	SeckillGoodsDao seckillGoodsDao;
+
+	@Test
+	public void test() {
+		SeckillGoodsEntity seckillGoodsEntity = seckillGoodsDao.selectById(1L);
+		seckillUserManager.userSeckill(seckillGoodsEntity, 10001L);
+	}
+
 }

@@ -19,17 +19,19 @@ import java.util.Map;
 @Controller
 @Slf4j
 public class DefaultErrorController implements ErrorController {
-    @RequestMapping("/error")
-    public ModelAndView handleError(HttpServletRequest request) {
-        String message = getErrorMessage(request);
-        log.info("进入error页面，message{}", message);
-        if (message.startsWith("[access_denied]")) {
-            return new ModelAndView("access-denied");
-        }
-        return new ModelAndView("error", Map.of("message", message));
-    }
 
-    private String getErrorMessage(HttpServletRequest request) {
-        return (String) request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
-    }
+	@RequestMapping("/error")
+	public ModelAndView handleError(HttpServletRequest request) {
+		String message = getErrorMessage(request);
+		log.info("进入error页面，message{}", message);
+		if (message.startsWith("[access_denied]")) {
+			return new ModelAndView("access-denied");
+		}
+		return new ModelAndView("error", Map.of("message", message));
+	}
+
+	private String getErrorMessage(HttpServletRequest request) {
+		return (String) request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
+	}
+
 }

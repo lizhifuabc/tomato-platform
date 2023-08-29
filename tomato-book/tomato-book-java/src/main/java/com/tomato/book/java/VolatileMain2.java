@@ -7,9 +7,11 @@ package com.tomato.book.java;
  * @since 2023/3/7
  */
 public class VolatileMain2 {
-    volatile boolean flag = false;
 
-    public void toFlag(){
-        flag = true;
-    }
+	volatile boolean flag = false;
+
+	public void toFlag() {
+		flag = true;
+	}
+
 }

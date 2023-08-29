@@ -1,44 +1,46 @@
 package com.tomato.common.enums;
 
-
 /**
  * 通用
  *
  * @author lizhifu
  * @since 2023/1/7
  */
-public enum CommonStatusEnum implements BaseEnum<String>{
-    /**
-     * 成功
-     */
-    SUCCESS("SUCCESS", "成功"),
-    /**
-     * 处理中
-     */
-    DEAL("DEAL", "处理中"),
+public enum CommonStatusEnum implements BaseEnum<String> {
 
-    /**
-     * 失败
-     */
-    FAIL("FAIL", "失败"),
+	/**
+	 * 成功
+	 */
+	SUCCESS("SUCCESS", "成功"),
+	/**
+	 * 处理中
+	 */
+	DEAL("DEAL", "处理中"),
 
-    ;
-    private final String value;
+	/**
+	 * 失败
+	 */
+	FAIL("FAIL", "失败"),
 
-    private final String desc;
+	;
 
-    CommonStatusEnum(String value, String desc) {
-        this.value = value;
-        this.desc = desc;
-    }
+	private final String value;
 
-    @Override
-    public String getValue() {
-        return value;
-    }
+	private final String desc;
 
-    @Override
-    public String getDesc() {
-        return desc;
-    }
+	CommonStatusEnum(String value, String desc) {
+		this.value = value;
+		this.desc = desc;
+	}
+
+	@Override
+	public String getValue() {
+		return value;
+	}
+
+	@Override
+	public String getDesc() {
+		return desc;
+	}
+
 }

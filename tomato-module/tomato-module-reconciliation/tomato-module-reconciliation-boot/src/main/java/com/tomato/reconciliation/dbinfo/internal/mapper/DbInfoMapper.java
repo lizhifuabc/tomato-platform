@@ -11,6 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023/5/27
  */
 @Mapper
-public interface DbInfoMapper extends BaseMapper<DbInfo,Long> {
+public interface DbInfoMapper extends BaseMapper<DbInfo, Long> {
 
 }

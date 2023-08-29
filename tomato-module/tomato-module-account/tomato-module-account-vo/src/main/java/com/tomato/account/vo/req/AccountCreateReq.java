@@ -12,30 +12,33 @@ import org.hibernate.validator.constraints.Length;
  * 账户创建请求
  *
  * @author lizhifu
- * @since  2022/7/1
+ * @since 2022/7/1
  */
 @Data
 @Tag(name = "账户创建请求", description = "账户创建请求")
 public class AccountCreateReq {
-    /**
-     * 商户编号
-     */
-    @NotBlank(message = "商户编号不能为空")
-    @Length(min = 4, message = "商户编号长度不能低于4位")
-    @Schema(description = "商户编号")
-    private String merchantNo;
-    /**
-     * 账户类型
-     */
-    @NotBlank(message = "账户类型不能为空")
-    @CheckEnum(value = AccountTypeEnum.class, message = "账户类型错误")
-    @Schema(description = "账户类型")
-    private String accountType;
 
-    /**
-     * 备注
-     */
-    @Schema(description = "备注")
-    @Length(max = 50, message = "备注长度不能超过50位")
-    private String remark;
+	/**
+	 * 商户编号
+	 */
+	@NotBlank(message = "商户编号不能为空")
+	@Length(min = 4, message = "商户编号长度不能低于4位")
+	@Schema(description = "商户编号")
+	private String merchantNo;
+
+	/**
+	 * 账户类型
+	 */
+	@NotBlank(message = "账户类型不能为空")
+	@CheckEnum(value = AccountTypeEnum.class, message = "账户类型错误")
+	@Schema(description = "账户类型")
+	private String accountType;
+
+	/**
+	 * 备注
+	 */
+	@Schema(description = "备注")
+	@Length(max = 50, message = "备注长度不能超过50位")
+	private String remark;
+
 }

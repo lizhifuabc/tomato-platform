@@ -14,19 +14,21 @@ import org.springframework.scripting.support.ResourceScriptSource;
  */
 @Configuration
 public class RedisScriptConfig {
-    @Bean
-    public DefaultRedisScript<Long> seckillRedisScript() {
-        DefaultRedisScript<Long> defaultRedisScript = new DefaultRedisScript<>();
-        defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("script/seckill.lua")));
-        defaultRedisScript.setResultType(Long.class);
-        return defaultRedisScript;
-    }
 
-    @Bean
-    public DefaultRedisScript<Long> userSeckillRedisScript() {
-        DefaultRedisScript<Long> defaultRedisScript = new DefaultRedisScript<>();
-        defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("script/user_seckill.lua")));
-        defaultRedisScript.setResultType(Long.class);
-        return defaultRedisScript;
-    }
+	@Bean
+	public DefaultRedisScript<Long> seckillRedisScript() {
+		DefaultRedisScript<Long> defaultRedisScript = new DefaultRedisScript<>();
+		defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("script/seckill.lua")));
+		defaultRedisScript.setResultType(Long.class);
+		return defaultRedisScript;
+	}
+
+	@Bean
+	public DefaultRedisScript<Long> userSeckillRedisScript() {
+		DefaultRedisScript<Long> defaultRedisScript = new DefaultRedisScript<>();
+		defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("script/user_seckill.lua")));
+		defaultRedisScript.setResultType(Long.class);
+		return defaultRedisScript;
+	}
+
 }

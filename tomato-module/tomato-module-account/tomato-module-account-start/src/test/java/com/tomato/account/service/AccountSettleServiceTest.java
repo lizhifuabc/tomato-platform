@@ -17,18 +17,25 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountSettleServiceTest {
-    @Resource
-    AccountSettleService accountSettleService;
-    @Resource
-    AccountSettleControlDao accountSettleControlDao;
-    @Resource
-    AccountInfoDao accountInfoDao;
-    @Test
-    public void settle(){
-        String merchantNo = "1234";
-        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
-        AccountSettleControlEntity accountSettleControlEntity = accountSettleControlDao.selectByAccountNo(accountInfoEntity.getAccountNo());
 
-        accountSettleService.settle(accountSettleControlEntity.getAccountNo());
-    }
+	@Resource
+	AccountSettleService accountSettleService;
+
+	@Resource
+	AccountSettleControlDao accountSettleControlDao;
+
+	@Resource
+	AccountInfoDao accountInfoDao;
+
+	@Test
+	public void settle() {
+		String merchantNo = "1234";
+		AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo,
+				AccountTypeEnum.SETTLEMENT.getValue());
+		AccountSettleControlEntity accountSettleControlEntity = accountSettleControlDao
+			.selectByAccountNo(accountInfoEntity.getAccountNo());
+
+		accountSettleService.settle(accountSettleControlEntity.getAccountNo());
+	}
+
 }

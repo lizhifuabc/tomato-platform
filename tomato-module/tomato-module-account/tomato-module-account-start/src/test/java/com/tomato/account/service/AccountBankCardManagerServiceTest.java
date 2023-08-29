@@ -14,20 +14,22 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountBankCardManagerServiceTest {
-    @Resource
-    AccountBankCardManagerService accountBankCardManagerService;
 
-    @Test
-    public void test(){
-        AccountInfoEntity accountInfo = new AccountInfoEntity();
-        accountInfo.setAccountNo("12312");
-        accountInfo.setMerchantNo("12312");
-        AccountBankCardCreateReq accountBankCardCreateReq = new AccountBankCardCreateReq();
-        accountBankCardCreateReq.setBankCode("123123");
-        accountBankCardCreateReq.setBankName("fdasf");
-        accountBankCardCreateReq.setCardNo("6556556555454544");
-        accountBankCardCreateReq.setAccountName("早上");
-        accountBankCardCreateReq.setCardType("fadf");
-        accountBankCardManagerService.create(accountBankCardCreateReq,accountInfo);
-    }
+	@Resource
+	AccountBankCardManagerService accountBankCardManagerService;
+
+	@Test
+	public void test() {
+		AccountInfoEntity accountInfo = new AccountInfoEntity();
+		accountInfo.setAccountNo("12312");
+		accountInfo.setMerchantNo("12312");
+		AccountBankCardCreateReq accountBankCardCreateReq = new AccountBankCardCreateReq();
+		accountBankCardCreateReq.setBankCode("123123");
+		accountBankCardCreateReq.setBankName("fdasf");
+		accountBankCardCreateReq.setCardNo("6556556555454544");
+		accountBankCardCreateReq.setAccountName("早上");
+		accountBankCardCreateReq.setCardType("fadf");
+		accountBankCardManagerService.create(accountBankCardCreateReq, accountInfo);
+	}
+
 }

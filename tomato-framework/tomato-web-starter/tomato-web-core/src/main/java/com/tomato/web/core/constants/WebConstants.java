@@ -7,5 +7,7 @@ package com.tomato.web.core.constants;
  * @since 2023/4/8
  */
 public interface WebConstants {
-    String PROPERTY_PREFIX_WEB = "tomato.web";
+
+	String PROPERTY_PREFIX_WEB = "tomato.web";
+
 }

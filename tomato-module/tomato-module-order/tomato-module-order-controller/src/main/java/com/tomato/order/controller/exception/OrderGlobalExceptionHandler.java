@@ -13,6 +13,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  * OrderGlobalExceptionHandler
+ *
  * @see GlobalExceptionHandler
  * @author lizhifu
  * @since 2023/8/2
@@ -20,17 +21,19 @@ import java.sql.SQLIntegrityConstraintViolationException;
 @Slf4j
 @RestControllerAdvice
 public class OrderGlobalExceptionHandler {
-    @ExceptionHandler(value = SQLIntegrityConstraintViolationException.class)
-    @ResponseBody
-    public Resp<Void> handleAccessDeniedException(SQLIntegrityConstraintViolationException e) {
-        log.warn("数据重复:{}",e.getLocalizedMessage());
-        return Resp.buildFailure(String.valueOf(HttpStatus.ACCEPTED.value()),e.getLocalizedMessage());
-    }
 
-    @ExceptionHandler(value = FeignException.class)
-    @ResponseBody
-    public Resp<Void> feignException(FeignException e) {
-        log.error("远程调用异常:{}",e.getLocalizedMessage());
-        return Resp.buildFailure(String.valueOf(HttpStatus.ACCEPTED.value()),e.getLocalizedMessage());
-    }
+	@ExceptionHandler(value = SQLIntegrityConstraintViolationException.class)
+	@ResponseBody
+	public Resp<Void> handleAccessDeniedException(SQLIntegrityConstraintViolationException e) {
+		log.warn("数据重复:{}", e.getLocalizedMessage());
+		return Resp.buildFailure(String.valueOf(HttpStatus.ACCEPTED.value()), e.getLocalizedMessage());
+	}
+
+	@ExceptionHandler(value = FeignException.class)
+	@ResponseBody
+	public Resp<Void> feignException(FeignException e) {
+		log.error("远程调用异常:{}", e.getLocalizedMessage());
+		return Resp.buildFailure(String.valueOf(HttpStatus.ACCEPTED.value()), e.getLocalizedMessage());
+	}
+
 }

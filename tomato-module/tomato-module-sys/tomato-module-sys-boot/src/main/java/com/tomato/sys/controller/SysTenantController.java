@@ -22,35 +22,42 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 多租户
+ *
  * @author lizhifu
  */
 @RestController
-@Tags({@Tag(name = "多租户")})
+@Tags({ @Tag(name = "多租户") })
 public class SysTenantController extends AbstractBaseController<SysTenant, Long> {
-    private final SysTenantService sysTenantService;
-    public SysTenantController(SysTenantService sysTenantService) {
-        this.sysTenantService = sysTenantService;
-    }
-    @Operation(summary = "根据租户ID查询",
-            responses = {
-                    @ApiResponse(description = "查询到的租户数据", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SysTenant.class))),
-                    @ApiResponse(responseCode = "204", description = "查询成功，未查到数据"),
-                    @ApiResponse(responseCode = "500", description = "查询失败")
-            }
-    )
-    @Parameters({@Parameter(name = "tenantId", in = ParameterIn.PATH, required = true, description = "租户ID")})
-    @GetMapping("/tenant/{tenantId}")
-    public Resp<SysTenant> findByTenantId(@PathVariable("tenantId") Long tenantId) {
-        SysTenant sysTenant = sysTenantService.findByTenantId(tenantId).orElseThrow(() -> new BusinessException("未找到租户信息"));
-        return result(sysTenant);
-    }
-    @Override
-    public BaseReadableService<SysTenant, Long> getReadableService() {
-        return this.sysTenantService;
-    }
 
-    @Override
-    public BaseWriteableService<SysTenant, Long> getWriteableService() {
-        return this.sysTenantService;
-    }
+	private final SysTenantService sysTenantService;
+
+	public SysTenantController(SysTenantService sysTenantService) {
+		this.sysTenantService = sysTenantService;
+	}
+
+	@Operation(summary = "根据租户ID查询",
+			responses = {
+					@ApiResponse(description = "查询到的租户数据",
+							content = @Content(mediaType = "application/json",
+									schema = @Schema(implementation = SysTenant.class))),
+					@ApiResponse(responseCode = "204", description = "查询成功，未查到数据"),
+					@ApiResponse(responseCode = "500", description = "查询失败") })
+	@Parameters({ @Parameter(name = "tenantId", in = ParameterIn.PATH, required = true, description = "租户ID") })
+	@GetMapping("/tenant/{tenantId}")
+	public Resp<SysTenant> findByTenantId(@PathVariable("tenantId") Long tenantId) {
+		SysTenant sysTenant = sysTenantService.findByTenantId(tenantId)
+			.orElseThrow(() -> new BusinessException("未找到租户信息"));
+		return result(sysTenant);
+	}
+
+	@Override
+	public BaseReadableService<SysTenant, Long> getReadableService() {
+		return this.sysTenantService;
+	}
+
+	@Override
+	public BaseWriteableService<SysTenant, Long> getWriteableService() {
+		return this.sysTenantService;
+	}
+
 }

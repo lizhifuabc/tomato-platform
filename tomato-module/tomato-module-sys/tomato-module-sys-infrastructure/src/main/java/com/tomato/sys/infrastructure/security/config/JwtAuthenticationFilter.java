@@ -26,40 +26,44 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private final JwtService jwtService;
-    private final UserDetailsService userDetailsService;
-    private final SysTokenRepository tokenRepository;
-    @Override
-    protected void doFilterInternal(@NonNull HttpServletRequest request,@NonNull HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        final String authHeader = request.getHeader(RequestHeaderConstant.TOKEN);
-        final String jwt;
-        if (authHeader == null ||!authHeader.startsWith(RequestHeaderConstant.AUTHORIZATION_BEARER)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-        jwt = authHeader.substring(7);
-        final String username = jwtService.extractUsername(jwt);
-        // 获取当前登录用户的Authentication对象 SecurityContextHolder.getContext().getAuthentication()，
-        // 如果该对象为null，表示当前用户本机未认证，需要将authToken对象设置到SecurityContext中
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            SecurityUserDetails userDetails = (SecurityUserDetails) userDetailsService.loadUserByUsername(username);
 
-            boolean isTokenValid = tokenRepository.findBySysUser(userDetails.getSysUser())
-                    .map(t -> !t.isExpired() && !t.isRevoked() && t.getToken().equals(jwt))
-                    .orElse(false);
-            if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
-                // 基于用户信息构建一个认证令牌对象
-                // 该对象包含了用户信息以及用户权限等，和密码无关，可以保证安全性
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
-                );
-                authToken.setDetails(userDetails);
-                // 该authToken对象设置到SecurityContext中,表示该用户已认证登录
-                SecurityContextHolder.getContext().setAuthentication(authToken);
-            }
-        }
-        filterChain.doFilter(request, response);
-    }
+	private final JwtService jwtService;
+
+	private final UserDetailsService userDetailsService;
+
+	private final SysTokenRepository tokenRepository;
+
+	@Override
+	protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
+			FilterChain filterChain) throws ServletException, IOException {
+		final String authHeader = request.getHeader(RequestHeaderConstant.TOKEN);
+		final String jwt;
+		if (authHeader == null || !authHeader.startsWith(RequestHeaderConstant.AUTHORIZATION_BEARER)) {
+			filterChain.doFilter(request, response);
+			return;
+		}
+		jwt = authHeader.substring(7);
+		final String username = jwtService.extractUsername(jwt);
+		// 获取当前登录用户的Authentication对象
+		// SecurityContextHolder.getContext().getAuthentication()，
+		// 如果该对象为null，表示当前用户本机未认证，需要将authToken对象设置到SecurityContext中
+		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+			SecurityUserDetails userDetails = (SecurityUserDetails) userDetailsService.loadUserByUsername(username);
+
+			boolean isTokenValid = tokenRepository.findBySysUser(userDetails.getSysUser())
+				.map(t -> !t.isExpired() && !t.isRevoked() && t.getToken().equals(jwt))
+				.orElse(false);
+			if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
+				// 基于用户信息构建一个认证令牌对象
+				// 该对象包含了用户信息以及用户权限等，和密码无关，可以保证安全性
+				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
+						null, userDetails.getAuthorities());
+				authToken.setDetails(userDetails);
+				// 该authToken对象设置到SecurityContext中,表示该用户已认证登录
+				SecurityContextHolder.getContext().setAuthentication(authToken);
+			}
+		}
+		filterChain.doFilter(request, response);
+	}
+
 }

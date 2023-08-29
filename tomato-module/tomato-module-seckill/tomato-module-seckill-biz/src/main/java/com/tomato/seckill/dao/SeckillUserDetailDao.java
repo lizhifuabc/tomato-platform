@@ -12,9 +12,11 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface SeckillUserDetailDao {
-    /**
-     * 插入
-     * @param seckillUserDetailEntity 用户参与活动明细
-     */
-    void insert(@Param("seckillUserDetailEntity") SeckillUserDetailEntity seckillUserDetailEntity);
+
+	/**
+	 * 插入
+	 * @param seckillUserDetailEntity 用户参与活动明细
+	 */
+	void insert(@Param("seckillUserDetailEntity") SeckillUserDetailEntity seckillUserDetailEntity);
+
 }

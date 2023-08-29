@@ -18,20 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SeckillQueueController {
-    private final SeckillGoodsCacheManager seckillGoodsCacheManager;
 
-    public SeckillQueueController(SeckillGoodsCacheManager seckillGoodsCacheManager) {
-        this.seckillGoodsCacheManager = seckillGoodsCacheManager;
-    }
+	private final SeckillGoodsCacheManager seckillGoodsCacheManager;
 
-    /**
-     * 用户秒杀
-     * @return 用户秒杀
-     */
-    @PostMapping("/seckill/queue/user/seckill")
-    public Resp<SeckillResp> seckill(@Validated @RequestBody SeckillUserReq seckillUserReq){
-        SeckillResp seckillResp = new SeckillResp();
-        seckillResp.setSeckillResult(SeckillResultEnum.SUCCESS.getValue());
-        return Resp.of(seckillResp);
-    }
+	public SeckillQueueController(SeckillGoodsCacheManager seckillGoodsCacheManager) {
+		this.seckillGoodsCacheManager = seckillGoodsCacheManager;
+	}
+
+	/**
+	 * 用户秒杀
+	 * @return 用户秒杀
+	 */
+	@PostMapping("/seckill/queue/user/seckill")
+	public Resp<SeckillResp> seckill(@Validated @RequestBody SeckillUserReq seckillUserReq) {
+		SeckillResp seckillResp = new SeckillResp();
+		seckillResp.setSeckillResult(SeckillResultEnum.SUCCESS.getValue());
+		return Resp.of(seckillResp);
+	}
+
 }

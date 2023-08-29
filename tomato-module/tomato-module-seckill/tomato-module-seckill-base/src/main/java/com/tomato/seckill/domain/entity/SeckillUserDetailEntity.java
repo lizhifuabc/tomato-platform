@@ -11,8 +11,10 @@ import lombok.Data;
  */
 @Data
 public class SeckillUserDetailEntity extends BaseEntity {
-    /**
-     * 用户参与活动记录id {@link SeckillUserEntity}
-     */
-    private Long seckillUserId;
+
+	/**
+	 * 用户参与活动记录id {@link SeckillUserEntity}
+	 */
+	private Long seckillUserId;
+
 }

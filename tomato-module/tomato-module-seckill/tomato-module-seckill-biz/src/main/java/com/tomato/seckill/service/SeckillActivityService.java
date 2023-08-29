@@ -14,14 +14,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SeckillActivityService {
-    private final SeckillActivityDao seckillActivityDao;
 
-    public SeckillActivityService(SeckillActivityDao seckillActivityDao) {
-        this.seckillActivityDao = seckillActivityDao;
-    }
+	private final SeckillActivityDao seckillActivityDao;
 
-    public void create(SeckillActivityCreateReq seckillActivityCreateReq){
-        SeckillActivityEntity seckillActivity = BeanUtil.copy(seckillActivityCreateReq,SeckillActivityEntity.class);
-        seckillActivityDao.insert(seckillActivity);
-    }
+	public SeckillActivityService(SeckillActivityDao seckillActivityDao) {
+		this.seckillActivityDao = seckillActivityDao;
+	}
+
+	public void create(SeckillActivityCreateReq seckillActivityCreateReq) {
+		SeckillActivityEntity seckillActivity = BeanUtil.copy(seckillActivityCreateReq, SeckillActivityEntity.class);
+		seckillActivityDao.insert(seckillActivity);
+	}
+
 }

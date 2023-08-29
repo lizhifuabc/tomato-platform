@@ -7,6 +7,9 @@ package com.tomato.pay.domain.constants;
  * @since 2023/5/23
  */
 public interface RedisConstant {
-    String key = "routeAlarm:";
-    String PAY_TYPE = "pay_type";
+
+	String key = "routeAlarm:";
+
+	String PAY_TYPE = "pay_type";
+
 }

@@ -9,4 +9,5 @@ import org.springframework.amqp.rabbit.listener.api.ChannelAwareMessageListener;
  * @since 2023/5/11
  */
 public interface ConsumerService extends ChannelAwareMessageListener {
+
 }

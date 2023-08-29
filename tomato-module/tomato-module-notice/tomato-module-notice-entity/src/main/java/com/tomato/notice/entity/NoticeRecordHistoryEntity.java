@@ -14,35 +14,40 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "t_notice_record_history")
 public class NoticeRecordHistoryEntity {
-    /**
-     * 通知记录历史id
-     */
-    private Long id;
 
-    /**
-     * 通知记录id
-     */
-    private Long noticeRecordId;
+	/**
+	 * 通知记录历史id
+	 */
+	private Long id;
 
-    /**
-     * 通知响应结果
-     */
-    private String noticeResult;
+	/**
+	 * 通知记录id
+	 */
+	private Long noticeRecordId;
 
-    /**
-     * 通知时间
-     */
-    private LocalDateTime createTime;
-    /**
-     * 通知完成时间
-     */
-    private LocalDateTime completeTime;
-    /**
-     * 耗时
-     */
-    private Long costTime;
-    /**
-     * 通知状态，1-通知中，2-通知成功，3-通知失败
-     */
-    private Byte state;
+	/**
+	 * 通知响应结果
+	 */
+	private String noticeResult;
+
+	/**
+	 * 通知时间
+	 */
+	private LocalDateTime createTime;
+
+	/**
+	 * 通知完成时间
+	 */
+	private LocalDateTime completeTime;
+
+	/**
+	 * 耗时
+	 */
+	private Long costTime;
+
+	/**
+	 * 通知状态，1-通知中，2-通知成功，3-通知失败
+	 */
+	private Byte state;
+
 }

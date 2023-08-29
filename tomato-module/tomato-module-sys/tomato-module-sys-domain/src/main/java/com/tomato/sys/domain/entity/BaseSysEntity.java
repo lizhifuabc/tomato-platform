@@ -13,43 +13,45 @@ import org.springframework.data.annotation.LastModifiedBy;
  * @author lizhifu
  * @since 2023/4/9
  */
-@MappedSuperclass   //实体继承映射
+@MappedSuperclass // 实体继承映射
 public abstract class BaseSysEntity extends BaseEntity {
-    @Column(name = "create_by", length = 64)
-    @CreatedBy
-    @Comment("创建人")
-    private String createBy;
 
-    @Column(name = "update_by", length = 64)
-    @LastModifiedBy
-    @Comment("更新人")
-    private String updateBy;
+	@Column(name = "create_by", length = 64)
+	@CreatedBy
+	@Comment("创建人")
+	private String createBy;
 
-    @Column(name = "remark", length = 500)
-    @Comment("备注")
-    private String remark;
+	@Column(name = "update_by", length = 64)
+	@LastModifiedBy
+	@Comment("更新人")
+	private String updateBy;
 
-    public String getCreateBy() {
-        return createBy;
-    }
+	@Column(name = "remark", length = 500)
+	@Comment("备注")
+	private String remark;
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
+	public String getCreateBy() {
+		return createBy;
+	}
 
-    public String getUpdateBy() {
-        return updateBy;
-    }
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
 
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
+	public String getUpdateBy() {
+		return updateBy;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
 }

@@ -13,12 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class RedisLockServiceExeTest {
-    @Resource
-    RedisLockService redisLockService;
-    @Test
-    public void test() throws InterruptedException {
-        redisLockService.obtain("test").lock();
-        Thread.sleep(10000);
-        redisLockService.obtain("test").unlock();
-    }
+
+	@Resource
+	RedisLockService redisLockService;
+
+	@Test
+	public void test() throws InterruptedException {
+		redisLockService.obtain("test").lock();
+		Thread.sleep(10000);
+		redisLockService.obtain("test").unlock();
+	}
+
 }

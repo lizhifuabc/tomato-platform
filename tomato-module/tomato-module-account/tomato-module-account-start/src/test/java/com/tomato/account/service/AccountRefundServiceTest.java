@@ -13,14 +13,16 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountRefundServiceTest {
-    @Resource
-    AccountRefundService accountRefundService;
 
-    @Test
-    public void test(){
-        AccountRefundBO accountRefundBO = new AccountRefundBO();
-        accountRefundBO.setMerchantNo("10202301010004121");
-        accountRefundBO.setOrgThirdNo("b096f5e3-a5c9-44e3-a299-70b50bbf34e7");
-        accountRefundService.settleRefund(accountRefundBO);
-    }
+	@Resource
+	AccountRefundService accountRefundService;
+
+	@Test
+	public void test() {
+		AccountRefundBO accountRefundBO = new AccountRefundBO();
+		accountRefundBO.setMerchantNo("10202301010004121");
+		accountRefundBO.setOrgThirdNo("b096f5e3-a5c9-44e3-a299-70b50bbf34e7");
+		accountRefundService.settleRefund(accountRefundBO);
+	}
+
 }

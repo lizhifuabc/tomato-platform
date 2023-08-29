@@ -13,13 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class OrderCallbackServiceTest {
-    @Resource
-    private OrderCallbackService orderCallbackService;
 
-    @Test
-    public void callback() {
-        OrderCallbackReq orderCallbackReq = new OrderCallbackReq();
-        orderCallbackReq.setOrderNo("54044858177482756001001");
-        orderCallbackService.callback(orderCallbackReq);
-    }
+	@Resource
+	private OrderCallbackService orderCallbackService;
+
+	@Test
+	public void callback() {
+		OrderCallbackReq orderCallbackReq = new OrderCallbackReq();
+		orderCallbackReq.setOrderNo("54044858177482756001001");
+		orderCallbackService.callback(orderCallbackReq);
+	}
+
 }

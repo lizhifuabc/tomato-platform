@@ -13,22 +13,22 @@ import java.io.IOException;
 
 public class JwtTokenOncePerRequestFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+	@Autowired
+	private JwtTokenProvider jwtTokenProvider;
 
-    @Override
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws IOException, ServletException {
+	@Override
+	public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
 
-        String token = jwtTokenProvider.resolveToken(request);
-        if (token != null && jwtTokenProvider.validateToken(token)) {
-            Authentication auth = jwtTokenProvider.getAuthentication(token);
+		String token = jwtTokenProvider.resolveToken(request);
+		if (token != null && jwtTokenProvider.validateToken(token)) {
+			Authentication auth = jwtTokenProvider.getAuthentication(token);
 
-            if (auth != null) {
-                SecurityContextHolder.getContext().setAuthentication(auth);
-            }
-        }
-        filterChain.doFilter(request, response);
-    }
+			if (auth != null) {
+				SecurityContextHolder.getContext().setAuthentication(auth);
+			}
+		}
+		filterChain.doFilter(request, response);
+	}
 
 }

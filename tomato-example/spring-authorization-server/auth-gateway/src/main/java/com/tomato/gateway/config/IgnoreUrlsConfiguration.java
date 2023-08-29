@@ -17,10 +17,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(IgnoreUrlsConfiguration.IgnoreUrlsConfig.class)
 public class IgnoreUrlsConfiguration {
 
-    @Data
-    @ConfigurationProperties(prefix = "secure.ignore")
-    public static class IgnoreUrlsConfig {
-        private String[] urls  = new String[] {"0"};
-    }
+	@Data
+	@ConfigurationProperties(prefix = "secure.ignore")
+	public static class IgnoreUrlsConfig {
+
+		private String[] urls = new String[] { "0" };
+
+	}
 
 }

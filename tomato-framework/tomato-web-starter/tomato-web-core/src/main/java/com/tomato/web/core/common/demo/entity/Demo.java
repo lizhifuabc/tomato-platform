@@ -1,6 +1,5 @@
 package com.tomato.web.core.common.demo.entity;
 
-
 /**
  * demo
  *
@@ -8,13 +7,15 @@ package com.tomato.web.core.common.demo.entity;
  * @date 2021/9/15
  */
 public class Demo {
-    private int a;
 
-    public int getA() {
-        return a;
-    }
+	private int a;
 
-    public void setA(int a) {
-        this.a = a;
-    }
+	public int getA() {
+		return a;
+	}
+
+	public void setA(int a) {
+		this.a = a;
+	}
+
 }

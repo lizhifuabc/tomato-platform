@@ -18,8 +18,10 @@ import org.springframework.util.IdGenerator;
  */
 @Slf4j
 public class WxSignature {
-    /**
-     * 随机字符串生成器
-     */
-    private final IdGenerator nonceStrGenerator = new AlternativeJdkIdGenerator();
+
+	/**
+	 * 随机字符串生成器
+	 */
+	private final IdGenerator nonceStrGenerator = new AlternativeJdkIdGenerator();
+
 }

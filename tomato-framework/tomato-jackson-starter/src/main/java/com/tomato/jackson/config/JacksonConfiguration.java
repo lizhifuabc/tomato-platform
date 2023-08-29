@@ -16,16 +16,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
-
 /**
  * Jackson 配置
+ *
  * @author lizhifu
  */
 @AutoConfiguration
 // @ConditionalOnClass({ObjectMapper.class})
 // @AutoConfigureBefore(JacksonAutoConfiguration.class)
 public class JacksonConfiguration {
+
 	private static final Logger log = LoggerFactory.getLogger(JacksonConfiguration.class);
+
 	@PostConstruct
 	public void postConstruct() {
 		log.info("tomato-jackson-starter 自动装配");
@@ -38,8 +40,9 @@ public class JacksonConfiguration {
 	@Bean
 	public Jackson2ObjectMapperBuilderCustomizer customStreamReadConstraints() {
 		return (builder) -> builder.postConfigurer((objectMapper) -> objectMapper.getFactory()
-				.setStreamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(2000).build()));
+			.setStreamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(2000).build()));
 	}
+
 	/**
 	 * 转换器全局配置
 	 * @return MappingJackson2HttpMessageConverter
@@ -49,6 +52,7 @@ public class JacksonConfiguration {
 		log.info("tomato-jackson-starter mappingJackson2HttpMessageConverter 自动装配");
 		return new MappingJackson2HttpMessageConverter(objectMapper);
 	}
+
 	@Bean
 	public CustomizerJackson2ObjectMapperBuilderCustomizer defaultObjectMapperBuilderCustomizer() {
 		return new CustomizerJackson2ObjectMapperBuilderCustomizer();
@@ -58,14 +62,14 @@ public class JacksonConfiguration {
 	 * jackson 工具类，方便注入使用
 	 */
 	@Configuration(proxyBeanMethods = false)
-	@ComponentScan({
-			"com.tomato.jackson.utils"
-	})
+	@ComponentScan({ "com.tomato.jackson.utils" })
 	public static class JacksonUtilsConfiguration {
 
 		@PostConstruct
 		public void postConstruct() {
 			log.info("tomato-jackson-starter utils 自动装配");
 		}
+
 	}
+
 }

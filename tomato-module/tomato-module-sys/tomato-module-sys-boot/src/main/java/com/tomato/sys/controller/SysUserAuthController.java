@@ -21,38 +21,43 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * 系统用户授权
  *
  * @author lizhifu
- * @since  2022/12/12
+ * @since 2022/12/12
  */
 @RestController
 @Tag(name = "系统用户授权", description = "系统用户授权")
 @Slf4j
 public class SysUserAuthController extends BaseController {
-    private final SysUserAuthService sysUserAuthService;
 
-    public SysUserAuthController(SysUserAuthService sysUserAuthService) {
-        this.sysUserAuthService = sysUserAuthService;
-    }
+	private final SysUserAuthService sysUserAuthService;
 
-    @PostMapping("/sys/user/auth/login")
-    @Operation(summary = "登录", description = "登录")
-    public Resp<SysLoginResp> login(@Valid @RequestBody SysLoginReq sysLoginReq) {
-        log.info("登录:{}",sysLoginReq);
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        SysLoginResp login = sysUserAuthService.login(SysLoginAdapter.convert(sysLoginReq));
-        return Resp.of(login);
-    }
-    @GetMapping("/sys/user/auth/logout")
-    public Resp<Void> logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
-        return Resp.buildSuccess();
-    }
-    @PostMapping("/sys/user/auth/refresh-token")
-    public Resp<SysLoginResp> refreshToken(HttpServletRequest request,HttpServletRequest response) {
-        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (authHeader == null ||!authHeader.startsWith(RequestHeaderConstant.AUTHORIZATION_BEARER)) {
-            Resp.buildFailure("header token 不存在");
-        }
-        assert authHeader != null;
-        SysLoginResp sysLoginResp = sysUserAuthService.refreshToken(authHeader.substring(7));
-        return Resp.of(sysLoginResp);
-    }
+	public SysUserAuthController(SysUserAuthService sysUserAuthService) {
+		this.sysUserAuthService = sysUserAuthService;
+	}
+
+	@PostMapping("/sys/user/auth/login")
+	@Operation(summary = "登录", description = "登录")
+	public Resp<SysLoginResp> login(@Valid @RequestBody SysLoginReq sysLoginReq) {
+		log.info("登录:{}", sysLoginReq);
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+			.getRequest();
+		SysLoginResp login = sysUserAuthService.login(SysLoginAdapter.convert(sysLoginReq));
+		return Resp.of(login);
+	}
+
+	@GetMapping("/sys/user/auth/logout")
+	public Resp<Void> logout(@RequestHeader(value = RequestHeaderConstant.TOKEN, required = false) String token) {
+		return Resp.buildSuccess();
+	}
+
+	@PostMapping("/sys/user/auth/refresh-token")
+	public Resp<SysLoginResp> refreshToken(HttpServletRequest request, HttpServletRequest response) {
+		final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+		if (authHeader == null || !authHeader.startsWith(RequestHeaderConstant.AUTHORIZATION_BEARER)) {
+			Resp.buildFailure("header token 不存在");
+		}
+		assert authHeader != null;
+		SysLoginResp sysLoginResp = sysUserAuthService.refreshToken(authHeader.substring(7));
+		return Resp.of(sysLoginResp);
+	}
+
 }

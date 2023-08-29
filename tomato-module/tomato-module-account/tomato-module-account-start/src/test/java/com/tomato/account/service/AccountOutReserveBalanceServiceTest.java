@@ -7,7 +7,6 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 /**
  * AccountOutReserveBalanceService
  *
@@ -16,14 +15,19 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountOutReserveBalanceServiceTest {
-    @Resource
-    AccountOutReserveBalanceService accountOutReserveBalanceService;
-    @Resource
-    AccountInfoDao accountInfoDao;
-    @Test
-    public void test(){
-        String merchantNo = "1234";
-        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
-        accountOutReserveBalanceService.exe("102023081632289452901");
-    }
+
+	@Resource
+	AccountOutReserveBalanceService accountOutReserveBalanceService;
+
+	@Resource
+	AccountInfoDao accountInfoDao;
+
+	@Test
+	public void test() {
+		String merchantNo = "1234";
+		AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo,
+				AccountTypeEnum.SETTLEMENT.getValue());
+		accountOutReserveBalanceService.exe("102023081632289452901");
+	}
+
 }

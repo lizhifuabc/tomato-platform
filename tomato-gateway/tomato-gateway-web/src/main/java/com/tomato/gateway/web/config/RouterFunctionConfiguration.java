@@ -15,7 +15,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
  * 路由配置
  *
  * @author lizhifu
- * @since  2023年03月31日13:32:23
+ * @since 2023年03月31日13:32:23
  */
 @Slf4j
 @Configuration(proxyBeanMethods = false)
@@ -26,8 +26,8 @@ public class RouterFunctionConfiguration {
 
 	@Bean
 	public RouterFunction<ServerResponse> routerFunction() {
-		return RouterFunctions.route(
-				RequestPredicates.path("/code").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), codeHandler);
+		return RouterFunctions
+			.route(RequestPredicates.path("/code").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), codeHandler);
 	}
 
 }

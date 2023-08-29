@@ -12,12 +12,15 @@ import java.math.BigDecimal;
  */
 @Data
 public class AccountHisCollectResBO {
-    /**
-     * 总金额
-     */
-    private BigDecimal totalAmount;
-    /**
-     * 总笔数
-     */
-    private Integer totalCount;
+
+	/**
+	 * 总金额
+	 */
+	private BigDecimal totalAmount;
+
+	/**
+	 * 总笔数
+	 */
+	private Integer totalCount;
+
 }

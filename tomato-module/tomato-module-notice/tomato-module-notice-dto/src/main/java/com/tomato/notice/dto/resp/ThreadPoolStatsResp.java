@@ -12,83 +12,85 @@ import lombok.Data;
 @Data
 @Builder
 public class ThreadPoolStatsResp {
-    private String poolName;
 
-    private int corePoolSize;
+	private String poolName;
 
-    private int maximumPoolSize;
+	private int corePoolSize;
 
-    private String queueType;
+	private int maximumPoolSize;
 
-    private int queueCapacity;
+	private String queueType;
 
-    /**
-     * 队列任务数量
-     */
-    private int queueSize;
+	private int queueCapacity;
 
-    /**
-     * SynchronousQueue队列模式
-     */
-    private boolean fair;
+	/**
+	 * 队列任务数量
+	 */
+	private int queueSize;
 
-    /**
-     * 队列剩余容量
-     */
-    private int queueRemainingCapacity;
+	/**
+	 * SynchronousQueue队列模式
+	 */
+	private boolean fair;
 
-    /**
-     * 正在执行任务的活跃线程大致总数
-     */
-    private int activeCount;
+	/**
+	 * 队列剩余容量
+	 */
+	private int queueRemainingCapacity;
 
-    /**
-     * 大致任务总数
-     */
-    private long taskCount;
+	/**
+	 * 正在执行任务的活跃线程大致总数
+	 */
+	private int activeCount;
 
-    /**
-     * 已执行完成的大致任务总数
-     */
-    private long completedTaskCount;
+	/**
+	 * 大致任务总数
+	 */
+	private long taskCount;
 
-    /**
-     * 池中曾经同时存在的最大线程数量
-     */
-    private int largestPoolSize;
+	/**
+	 * 已执行完成的大致任务总数
+	 */
+	private long completedTaskCount;
 
-    /**
-     * 当前池中存在的线程总数
-     */
-    private int poolSize;
+	/**
+	 * 池中曾经同时存在的最大线程数量
+	 */
+	private int largestPoolSize;
 
-    /**
-     * 等待执行的任务数量
-     */
-    private int waitTaskCount;
+	/**
+	 * 当前池中存在的线程总数
+	 */
+	private int poolSize;
 
-    /**
-     * 拒绝的任务数量
-     */
-    private long rejectCount;
+	/**
+	 * 等待执行的任务数量
+	 */
+	private int waitTaskCount;
 
-    /**
-     * 拒绝策略名称
-     */
-    private String rejectHandlerName;
+	/**
+	 * 拒绝的任务数量
+	 */
+	private long rejectCount;
 
-    /**
-     * 是否DtpExecutor线程池
-     */
-    private boolean dynamic;
+	/**
+	 * 拒绝策略名称
+	 */
+	private String rejectHandlerName;
 
-    /**
-     * 执行超时任务数量
-     */
-    private long runTimeoutCount;
+	/**
+	 * 是否DtpExecutor线程池
+	 */
+	private boolean dynamic;
 
-    /**
-     * 在队列等待超时任务数量
-     */
-    private long queueTimeoutCount;
+	/**
+	 * 执行超时任务数量
+	 */
+	private long runTimeoutCount;
+
+	/**
+	 * 在队列等待超时任务数量
+	 */
+	private long queueTimeoutCount;
+
 }

@@ -11,20 +11,21 @@ import java.lang.annotation.Target;
 
 /**
  * xss 校验注解
- * 
+ *
  * @author lizhfiu
  * @since 2022年12月16日
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = { ElementType.METHOD, ElementType.FIELD, ElementType.CONSTRUCTOR, ElementType.PARAMETER })
 @Constraint(validatedBy = { XssValidator.class })
-public @interface Xss
-{
-    String message()
+public @interface Xss {
 
-    default "不允许任何脚本运行";
+	String message()
 
-    Class<?>[] groups() default {};
+	default "不允许任何脚本运行";
 
-    Class<? extends Payload>[] payload() default {};
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
+
 }

@@ -13,18 +13,18 @@ import java.util.List;
  * @since 2023/5/26
  */
 public class LeastConnectionLoadBalancer extends AbsLoadBalancer {
-    @Override
-    protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
-        // 获取所有服务器的连接数信息
-        List<Integer> connections = list.stream()
-                .map(ServiceMetadata::getConnectionCount)
-                .toList();
-        // 找到连接数最小的服务器下标
-        int index = connections.indexOf(Collections.min(connections));
-        // 选择该服务器,并更新其连接数
-        ServiceMetadata server = list.get(index);
-        // TODO 放在这里是为了方便测试，实际上应该在客户端调用成功后更新连接数
-        server.setConnectionCount(server.getConnectionCount() + 1);
-        return server;
-    }
+
+	@Override
+	protected ServiceMetadata doChoose(List<ServiceMetadata> list, String source, int hashCode) {
+		// 获取所有服务器的连接数信息
+		List<Integer> connections = list.stream().map(ServiceMetadata::getConnectionCount).toList();
+		// 找到连接数最小的服务器下标
+		int index = connections.indexOf(Collections.min(connections));
+		// 选择该服务器,并更新其连接数
+		ServiceMetadata server = list.get(index);
+		// TODO 放在这里是为了方便测试，实际上应该在客户端调用成功后更新连接数
+		server.setConnectionCount(server.getConnectionCount() + 1);
+		return server;
+	}
+
 }

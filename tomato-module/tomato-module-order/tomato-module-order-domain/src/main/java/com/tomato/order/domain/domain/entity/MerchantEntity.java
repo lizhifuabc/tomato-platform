@@ -18,28 +18,35 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MerchantEntity {
-    /**
-     * 商户号
-     */
-    private String merchantNo;
-    /**
-     * 商户名称
-     */
-    private String merchantName;
-    /**
-     * 商户密钥
-     */
-    private String merchantKey;
-    /**
-     * 交易费率
-     */
-    private BigDecimal trxRate;
-    /**
-     * 分账费率
-     */
-    private BigDecimal splitRate;
-    /**
-     * 支付方式
-     */
-    private Integer payType;
+
+	/**
+	 * 商户号
+	 */
+	private String merchantNo;
+
+	/**
+	 * 商户名称
+	 */
+	private String merchantName;
+
+	/**
+	 * 商户密钥
+	 */
+	private String merchantKey;
+
+	/**
+	 * 交易费率
+	 */
+	private BigDecimal trxRate;
+
+	/**
+	 * 分账费率
+	 */
+	private BigDecimal splitRate;
+
+	/**
+	 * 支付方式
+	 */
+	private Integer payType;
+
 }

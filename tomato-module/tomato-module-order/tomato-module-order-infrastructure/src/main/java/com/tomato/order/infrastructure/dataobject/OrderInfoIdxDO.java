@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 
 /**
  * 订单索引表
+ *
  * @author lizhifu
  * @since 2023/8/5
  */
@@ -19,25 +20,30 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "t_order_info_idx")
 public class OrderInfoIdxDO {
-    /**
-     * 主键
-     */
-    private Long id;
-    /**
-     * 商户订单号
-     */
-    private String merchantOrderNo;
 
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
-    /**
-     * 订单号
-     */
-    private String orderNo;
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
+	/**
+	 * 主键
+	 */
+	private Long id;
+
+	/**
+	 * 商户订单号
+	 */
+	private String merchantOrderNo;
+
+	/**
+	 * 商户编号
+	 */
+	private String merchantNo;
+
+	/**
+	 * 订单号
+	 */
+	private String orderNo;
+
+	/**
+	 * 创建时间
+	 */
+	private LocalDateTime createTime;
+
 }

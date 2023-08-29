@@ -12,8 +12,10 @@ import lombok.Data;
 @Data
 @Tag(name = "订单回调", description = "订单回调")
 public class OrderCallbackReq {
-    /**
-     * 订单号
-     */
-    private String orderNo;
+
+	/**
+	 * 订单号
+	 */
+	private String orderNo;
+
 }

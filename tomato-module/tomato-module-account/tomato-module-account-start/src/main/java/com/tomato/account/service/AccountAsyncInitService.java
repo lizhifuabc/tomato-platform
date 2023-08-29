@@ -16,47 +16,58 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class AccountAsyncInitService implements InitializingBean {
-    private static final ConcurrentHashMap<String,AccountAsyncEntity> MAP = new ConcurrentHashMap<>();
-    private static final ConcurrentHashMap<String,AccountAsyncEntity> MERCHANT_MAP = new ConcurrentHashMap<>();
-    private final AccountAsyncDao accountAsyncDao;
 
-    public AccountAsyncInitService(AccountAsyncDao accountAsyncDao) {
-        this.accountAsyncDao = accountAsyncDao;
-    }
+	private static final ConcurrentHashMap<String, AccountAsyncEntity> MAP = new ConcurrentHashMap<>();
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        // TODO 从数据库加载，动态更新
-        List<AccountAsyncEntity> select = accountAsyncDao.select();
-        select.forEach(accountAsyncEntity->{
-            MAP.putIfAbsent(accountAsyncEntity.getAccountNo(),accountAsyncEntity);
-            MERCHANT_MAP.putIfAbsent(accountAsyncEntity.getMerchantNo(),accountAsyncEntity);
-        });
-    }
+	private static final ConcurrentHashMap<String, AccountAsyncEntity> MERCHANT_MAP = new ConcurrentHashMap<>();
 
-    public List<String> accountList(){
-        return MAP.keySet().stream().toList();
-    }
-    public boolean check(String accountNo){
-        return MAP.containsKey(accountNo);
-    }
-    public boolean checkMerchantNo(String merchantNo){
-        return MERCHANT_MAP.containsKey(merchantNo);
-    }
-    public AccountAsyncEntity get(String accountNo){
-        return MAP.get(accountNo);
-    }
-    public AccountAsyncEntity getMerchantNo(String merchantNo){
-        return MERCHANT_MAP.get(merchantNo);
-    }
-    public void put(AccountAsyncEntity accountAsyncEntity){
-        MAP.putIfAbsent(accountAsyncEntity.getAccountNo(),accountAsyncEntity);
-        MERCHANT_MAP.putIfAbsent(accountAsyncEntity.getMerchantNo(),accountAsyncEntity);
-    }
-    public void remove(String accountNo){
-        MAP.remove(accountNo);
-    }
-    public void removeMerchantNo(String merchantNo){
-        MERCHANT_MAP.remove(merchantNo);
-    }
+	private final AccountAsyncDao accountAsyncDao;
+
+	public AccountAsyncInitService(AccountAsyncDao accountAsyncDao) {
+		this.accountAsyncDao = accountAsyncDao;
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO 从数据库加载，动态更新
+		List<AccountAsyncEntity> select = accountAsyncDao.select();
+		select.forEach(accountAsyncEntity -> {
+			MAP.putIfAbsent(accountAsyncEntity.getAccountNo(), accountAsyncEntity);
+			MERCHANT_MAP.putIfAbsent(accountAsyncEntity.getMerchantNo(), accountAsyncEntity);
+		});
+	}
+
+	public List<String> accountList() {
+		return MAP.keySet().stream().toList();
+	}
+
+	public boolean check(String accountNo) {
+		return MAP.containsKey(accountNo);
+	}
+
+	public boolean checkMerchantNo(String merchantNo) {
+		return MERCHANT_MAP.containsKey(merchantNo);
+	}
+
+	public AccountAsyncEntity get(String accountNo) {
+		return MAP.get(accountNo);
+	}
+
+	public AccountAsyncEntity getMerchantNo(String merchantNo) {
+		return MERCHANT_MAP.get(merchantNo);
+	}
+
+	public void put(AccountAsyncEntity accountAsyncEntity) {
+		MAP.putIfAbsent(accountAsyncEntity.getAccountNo(), accountAsyncEntity);
+		MERCHANT_MAP.putIfAbsent(accountAsyncEntity.getMerchantNo(), accountAsyncEntity);
+	}
+
+	public void remove(String accountNo) {
+		MAP.remove(accountNo);
+	}
+
+	public void removeMerchantNo(String merchantNo) {
+		MERCHANT_MAP.remove(merchantNo);
+	}
+
 }

@@ -25,45 +25,50 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @AutoConfiguration
 @Slf4j
 public class GatewaySentinelAutoConfiguration {
-    @PostConstruct
-    public void init() {
-        log.info("tomato-cloud-sentinel-gateway-starter 自动装配");
-    }
-    /**
-     * 限流、熔断统一处理类
-     * classpath中存在WebFlux的ServerResponse类时才启用该配置
-     * 只在WebFlux环境生效
-     */
-    @Configuration(proxyBeanMethods = false)
-    @ConditionalOnClass(ServerResponse.class)
-    public static class WebfluxHandler {
-        @Bean
-        public BlockRequestHandler webfluxBlockExceptionHandler() {
-            log.info("tomato-cloud-sentinel-gateway-starter 自动装配|WebFlux环境");
-            return (exchange, t) ->
-                    // 设置状态码：429，请求太多
-                    ServerResponse.status(HttpStatus.TOO_MANY_REQUESTS)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .body(BodyInserters.fromValue(Resp.buildFailure(t.getMessage())));
-        }
-    }
-    /**
-     * 限流、熔断统一处理类
-     * 只有在classpath中有HttpServletRequest类的情况下,才会实例化这个配置类和其中的@Bean。
-     * 只有在Spring MVC环境下才生效
-     */
-    @Configuration(proxyBeanMethods = false)
-    @ConditionalOnClass(HttpServletRequest.class)
-    public static class WebmvcHandler {
-        @Bean
-        public BlockExceptionHandler webmvcBlockExceptionHandler() {
-            log.info("tomato-cloud-sentinel-gateway-starter 自动装配|Spring MVC环境");
-            return (request, response, e) -> {
-                // 设置状态码：429，请求太多
-                response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
-                Resp<String> result = Resp.buildFailure("请求太多，请稍后重试。");
-                response.getWriter().print(JacksonUtils.toJson(result));
-            };
-        }
-    }
+
+	@PostConstruct
+	public void init() {
+		log.info("tomato-cloud-sentinel-gateway-starter 自动装配");
+	}
+
+	/**
+	 * 限流、熔断统一处理类 classpath中存在WebFlux的ServerResponse类时才启用该配置 只在WebFlux环境生效
+	 */
+	@Configuration(proxyBeanMethods = false)
+	@ConditionalOnClass(ServerResponse.class)
+	public static class WebfluxHandler {
+
+		@Bean
+		public BlockRequestHandler webfluxBlockExceptionHandler() {
+			log.info("tomato-cloud-sentinel-gateway-starter 自动装配|WebFlux环境");
+			return (exchange, t) ->
+			// 设置状态码：429，请求太多
+			ServerResponse.status(HttpStatus.TOO_MANY_REQUESTS)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(BodyInserters.fromValue(Resp.buildFailure(t.getMessage())));
+		}
+
+	}
+
+	/**
+	 * 限流、熔断统一处理类 只有在classpath中有HttpServletRequest类的情况下,才会实例化这个配置类和其中的@Bean。 只有在Spring
+	 * MVC环境下才生效
+	 */
+	@Configuration(proxyBeanMethods = false)
+	@ConditionalOnClass(HttpServletRequest.class)
+	public static class WebmvcHandler {
+
+		@Bean
+		public BlockExceptionHandler webmvcBlockExceptionHandler() {
+			log.info("tomato-cloud-sentinel-gateway-starter 自动装配|Spring MVC环境");
+			return (request, response, e) -> {
+				// 设置状态码：429，请求太多
+				response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
+				Resp<String> result = Resp.buildFailure("请求太多，请稍后重试。");
+				response.getWriter().print(JacksonUtils.toJson(result));
+			};
+		}
+
+	}
+
 }

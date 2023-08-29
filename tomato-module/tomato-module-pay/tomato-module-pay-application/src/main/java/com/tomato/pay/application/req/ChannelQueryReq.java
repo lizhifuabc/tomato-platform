@@ -9,5 +9,6 @@ import lombok.Data;
  * @date 2022/6/25
  */
 @Data
-public class ChannelQueryReq{
+public class ChannelQueryReq {
+
 }

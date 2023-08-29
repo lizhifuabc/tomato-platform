@@ -15,20 +15,25 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AccountRateEntity extends BaseEntity {
-    /**
-     * 账户编号
-     */
-    private String accountNo;
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
-    /**
-     * 费率
-     */
-    private BigDecimal rate;
-    /**
-     * 费率类型
-     */
-    private String rateType;
+
+	/**
+	 * 账户编号
+	 */
+	private String accountNo;
+
+	/**
+	 * 商户编号
+	 */
+	private String merchantNo;
+
+	/**
+	 * 费率
+	 */
+	private BigDecimal rate;
+
+	/**
+	 * 费率类型
+	 */
+	private String rateType;
+
 }

@@ -13,9 +13,11 @@ import java.nio.charset.StandardCharsets;
  * @since 2023/4/14
  */
 public class HashTest {
-    public static void main(String[] args) {
-        String key = "tomato";
-        HashCode hashCode = Hashing.murmur3_128().hashObject(key, Funnels.stringFunnel(StandardCharsets.UTF_8));
-        System.out.println(hashCode.bits());
-    }
+
+	public static void main(String[] args) {
+		String key = "tomato";
+		HashCode hashCode = Hashing.murmur3_128().hashObject(key, Funnels.stringFunnel(StandardCharsets.UTF_8));
+		System.out.println(hashCode.bits());
+	}
+
 }

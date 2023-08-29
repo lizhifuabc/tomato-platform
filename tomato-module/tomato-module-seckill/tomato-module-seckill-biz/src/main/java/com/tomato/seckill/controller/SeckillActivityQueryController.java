@@ -19,24 +19,23 @@ import java.util.List;
  */
 @RestController
 public class SeckillActivityQueryController extends BaseController {
-    private final SeckillActivityDao seckillActivityDao;
 
-    public SeckillActivityQueryController(SeckillActivityDao seckillActivityDao) {
-        this.seckillActivityDao = seckillActivityDao;
-    }
+	private final SeckillActivityDao seckillActivityDao;
 
-    /**
-     * 获取秒杀活动列表:
-     * 1. 活动开始时间小于当前时间
-     * 2. 活动结束时间大于当前时间
-     * TODO 优化：缓存？
-     * @return 秒杀活动列表
-     */
-    @GetMapping("/seckill/activity/list")
-    public Resp querySeckillActivityList(){
-        // 获取秒杀活动列表
-        LocalDateTime start = LocalDateTime.now();
-        List<SeckillActivityEntity> entityList = seckillActivityDao.selectByStartTime(start);
-        return Resp.of(copyList(entityList, SeckillActivityQueryResp.class));
-    }
+	public SeckillActivityQueryController(SeckillActivityDao seckillActivityDao) {
+		this.seckillActivityDao = seckillActivityDao;
+	}
+
+	/**
+	 * 获取秒杀活动列表: 1. 活动开始时间小于当前时间 2. 活动结束时间大于当前时间 TODO 优化：缓存？
+	 * @return 秒杀活动列表
+	 */
+	@GetMapping("/seckill/activity/list")
+	public Resp querySeckillActivityList() {
+		// 获取秒杀活动列表
+		LocalDateTime start = LocalDateTime.now();
+		List<SeckillActivityEntity> entityList = seckillActivityDao.selectByStartTime(start);
+		return Resp.of(copyList(entityList, SeckillActivityQueryResp.class));
+	}
+
 }

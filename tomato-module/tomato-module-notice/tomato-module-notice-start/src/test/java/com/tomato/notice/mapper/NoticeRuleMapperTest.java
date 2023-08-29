@@ -15,14 +15,15 @@ import java.util.Optional;
  */
 @SpringBootTest
 public class NoticeRuleMapperTest {
-    @Resource
-    NoticeRuleMapper noticeRuleMapper;
 
-    @Test
-    public void test() {
-        NoticeRuleEntity noticeRuleEntity = new NoticeRuleEntity();
-        Optional<NoticeRuleEntity> noticeRuleEntity1 = noticeRuleMapper.selectByPrimaryKey(1L);
-        System.out.println(noticeRuleEntity1.get().getCreateTime());
-    }
+	@Resource
+	NoticeRuleMapper noticeRuleMapper;
+
+	@Test
+	public void test() {
+		NoticeRuleEntity noticeRuleEntity = new NoticeRuleEntity();
+		Optional<NoticeRuleEntity> noticeRuleEntity1 = noticeRuleMapper.selectByPrimaryKey(1L);
+		System.out.println(noticeRuleEntity1.get().getCreateTime());
+	}
 
 }

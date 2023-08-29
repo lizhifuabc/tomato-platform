@@ -20,32 +20,32 @@ import java.util.Map;
  */
 @Configuration
 public class DruidConfig {
-    @Bean(name = DbConstant.MASTER)
-    @ConfigurationProperties("spring.datasource.druid.master")
-    public DataSource masterDataSource()
-    {
-        return DruidDataSourceBuilder.create().build();
-    }
 
-    @Bean(name = DbConstant.SLAVE)
-    @ConfigurationProperties("spring.datasource.druid.slave")
-    public DataSource slaveDataSource()
-    {
-        return DruidDataSourceBuilder.create().build();
-    }
-    @Bean
-    @Primary
-    public DynamicDataSource dynamicDataSource()
-    {
-        Map<Object, Object> dataSourceMap = new HashMap<>(2);
-        dataSourceMap.put(DbConstant.MASTER,masterDataSource());
-        dataSourceMap.put(DbConstant.SLAVE,slaveDataSource());
-        //设置动态数据源
-        DynamicDataSource dynamicDataSource = new DynamicDataSource();
-        dynamicDataSource.setDefaultTargetDataSource(masterDataSource());
-        dynamicDataSource.setTargetDataSources(dataSourceMap);
-        //将数据源信息备份在defineTargetDataSources中
-        dynamicDataSource.setDefineTargetDataSources(dataSourceMap);
-        return dynamicDataSource;
-    }
+	@Bean(name = DbConstant.MASTER)
+	@ConfigurationProperties("spring.datasource.druid.master")
+	public DataSource masterDataSource() {
+		return DruidDataSourceBuilder.create().build();
+	}
+
+	@Bean(name = DbConstant.SLAVE)
+	@ConfigurationProperties("spring.datasource.druid.slave")
+	public DataSource slaveDataSource() {
+		return DruidDataSourceBuilder.create().build();
+	}
+
+	@Bean
+	@Primary
+	public DynamicDataSource dynamicDataSource() {
+		Map<Object, Object> dataSourceMap = new HashMap<>(2);
+		dataSourceMap.put(DbConstant.MASTER, masterDataSource());
+		dataSourceMap.put(DbConstant.SLAVE, slaveDataSource());
+		// 设置动态数据源
+		DynamicDataSource dynamicDataSource = new DynamicDataSource();
+		dynamicDataSource.setDefaultTargetDataSource(masterDataSource());
+		dynamicDataSource.setTargetDataSources(dataSourceMap);
+		// 将数据源信息备份在defineTargetDataSources中
+		dynamicDataSource.setDefineTargetDataSources(dataSourceMap);
+		return dynamicDataSource;
+	}
+
 }

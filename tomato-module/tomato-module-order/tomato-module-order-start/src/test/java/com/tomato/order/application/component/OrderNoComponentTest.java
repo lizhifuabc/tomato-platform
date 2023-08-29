@@ -12,14 +12,16 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class OrderNoComponentTest {
-    @Resource
-    OrderNoComponent orderNoComponent;
 
-    /**
-     * 生成订单编号
-     */
-     @Test
-    public void createOrderNo() {
-        System.out.println(orderNoComponent.createOrderNo("123456789"));
-    }
+	@Resource
+	OrderNoComponent orderNoComponent;
+
+	/**
+	 * 生成订单编号
+	 */
+	@Test
+	public void createOrderNo() {
+		System.out.println(orderNoComponent.createOrderNo("123456789"));
+	}
+
 }

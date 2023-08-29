@@ -9,7 +9,6 @@ import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * 幂等切面
  *
@@ -18,16 +17,19 @@ import org.slf4j.LoggerFactory;
  */
 @Aspect
 public class IdempotentAspect {
-    private final IdempotentStrategyFactory idempotentStrategyFactory;
-    private static final Logger log = LoggerFactory.getLogger(IdempotentAutoConfiguration.class);
 
-    public IdempotentAspect(IdempotentStrategyFactory idempotentStrategyFactory) {
-        this.idempotentStrategyFactory = idempotentStrategyFactory;
-    }
+	private final IdempotentStrategyFactory idempotentStrategyFactory;
 
-    @Before("@annotation(idempotent)")
-    public void idempotentHandler(JoinPoint joinPoint, Idempotent idempotent) {
-        idempotentStrategyFactory.getStrategy(idempotent.strategy()).execute(joinPoint, idempotent);
-        log.info("[beforePointCut][方法({}) 参数({}) 存在重复请求]", joinPoint.getSignature().toString(), joinPoint.getArgs());
-    }
+	private static final Logger log = LoggerFactory.getLogger(IdempotentAutoConfiguration.class);
+
+	public IdempotentAspect(IdempotentStrategyFactory idempotentStrategyFactory) {
+		this.idempotentStrategyFactory = idempotentStrategyFactory;
+	}
+
+	@Before("@annotation(idempotent)")
+	public void idempotentHandler(JoinPoint joinPoint, Idempotent idempotent) {
+		idempotentStrategyFactory.getStrategy(idempotent.strategy()).execute(joinPoint, idempotent);
+		log.info("[beforePointCut][方法({}) 参数({}) 存在重复请求]", joinPoint.getSignature().toString(), joinPoint.getArgs());
+	}
+
 }

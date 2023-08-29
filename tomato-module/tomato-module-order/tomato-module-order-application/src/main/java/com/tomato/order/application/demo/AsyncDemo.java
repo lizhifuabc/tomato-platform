@@ -9,15 +9,17 @@ import org.springframework.stereotype.Service;
  * demo
  *
  * @author lizhifu
- * @since  2022/12/6
+ * @since 2022/12/6
  */
 @Service
 @Slf4j
 public class AsyncDemo {
-    @SneakyThrows
-    @Async("asyncTaskExecutor")
-    public void demo(){
-        Thread.sleep(5000L);
-        log.info("thread is:{}",Thread.currentThread());
-    }
+
+	@SneakyThrows
+	@Async("asyncTaskExecutor")
+	public void demo() {
+		Thread.sleep(5000L);
+		log.info("thread is:{}", Thread.currentThread());
+	}
+
 }

@@ -7,6 +7,7 @@ import java.util.concurrent.ThreadFactory;
 /**
  * {@link com.tomato.dynamic.thread.thread.CustomThreadCreator}.
  * {@link org.springframework.scheduling.concurrent.CustomizableThreadFactory}
+ *
  * @author lizhifu
  */
 public class CustomThreadFactory extends CustomThreadCreator implements ThreadFactory {
@@ -25,7 +26,6 @@ public class CustomThreadFactory extends CustomThreadCreator implements ThreadFa
 	public CustomThreadFactory(String threadNamePrefix) {
 		super(threadNamePrefix);
 	}
-
 
 	@Override
 	public Thread newThread(@NonNull Runnable runnable) {

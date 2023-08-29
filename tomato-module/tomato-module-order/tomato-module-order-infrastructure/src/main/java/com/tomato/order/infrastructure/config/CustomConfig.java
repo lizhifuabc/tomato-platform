@@ -12,9 +12,11 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class CustomConfig {
-    @Bean
-    public IdWorker idWorker() {
-        // TODO redis 生成workerId
-        return new IdWorker(null);
-    }
+
+	@Bean
+	public IdWorker idWorker() {
+		// TODO redis 生成workerId
+		return new IdWorker(null);
+	}
+
 }

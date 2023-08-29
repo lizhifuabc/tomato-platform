@@ -14,6 +14,8 @@ import java.util.List;
  */
 @Mapper
 public interface OrderShardingTableMapper {
-    @Select("select * from t_order_sharding_table")
-    List<OrderShardingTableDO> selectAll();
+
+	@Select("select * from t_order_sharding_table")
+	List<OrderShardingTableDO> selectAll();
+
 }

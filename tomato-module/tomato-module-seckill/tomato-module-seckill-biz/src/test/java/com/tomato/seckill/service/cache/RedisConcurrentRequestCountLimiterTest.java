@@ -15,20 +15,22 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class RedisConcurrentRequestCountLimiterTest {
-    @Resource
-    RedisConcurrentRequestCountLimiter redisConcurrentRequestCountLimiter;
 
-    @SneakyThrows
-    @Test
-    public void test(){
-        for (int i = 0; i < 5; i++) {
-            RedisConcurrentRequestCountLimiterReq req = RedisConcurrentRequestCountLimiterReq.builder()
-                    .id("10000")
-                    .count(2)
-                    .interval(5)
-                    .build();
-            System.out.println(redisConcurrentRequestCountLimiter.isAllowed(req));
-            Thread.sleep(4000L);
-        }
-    }
+	@Resource
+	RedisConcurrentRequestCountLimiter redisConcurrentRequestCountLimiter;
+
+	@SneakyThrows
+	@Test
+	public void test() {
+		for (int i = 0; i < 5; i++) {
+			RedisConcurrentRequestCountLimiterReq req = RedisConcurrentRequestCountLimiterReq.builder()
+				.id("10000")
+				.count(2)
+				.interval(5)
+				.build();
+			System.out.println(redisConcurrentRequestCountLimiter.isAllowed(req));
+			Thread.sleep(4000L);
+		}
+	}
+
 }

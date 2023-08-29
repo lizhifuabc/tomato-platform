@@ -18,28 +18,35 @@ import java.util.List;
 @Component
 @Slf4j
 public class AccountTradAsyncTimer {
-    private final AccountAsyncInitService accountAsyncInitService;
-    private final AccountTradAsyncService accountTradAsyncService;
-    public AccountTradAsyncTimer(AccountAsyncInitService accountAsyncInitService, AccountTradAsyncService accountTradAsyncService) {
-        this.accountAsyncInitService = accountAsyncInitService;
-        this.accountTradAsyncService = accountTradAsyncService;
-    }
-    /**
-     * 每分钟执行一次
-     */
-    @Scheduled(cron="0 0/1 * * * ?")
-    public void run() {
-        log.info("账户异步入账定时:{}", LocalDateTime.now());
-        // 查询所有需要异步入账的账户
-        List<String> accountList = accountAsyncInitService.accountList();
-        // 执行异步入账
-        for (String accountNo : accountList) {
-            log.info("账户异步入账服务 accountNo:{}",accountNo);
-            try {
-                accountTradAsyncService.exe(accountNo);
-            } catch (Exception e) {
-                log.error("账户异步入账服务异常 accountNo:{}",accountNo,e);
-            }
-        }
-    }
+
+	private final AccountAsyncInitService accountAsyncInitService;
+
+	private final AccountTradAsyncService accountTradAsyncService;
+
+	public AccountTradAsyncTimer(AccountAsyncInitService accountAsyncInitService,
+			AccountTradAsyncService accountTradAsyncService) {
+		this.accountAsyncInitService = accountAsyncInitService;
+		this.accountTradAsyncService = accountTradAsyncService;
+	}
+
+	/**
+	 * 每分钟执行一次
+	 */
+	@Scheduled(cron = "0 0/1 * * * ?")
+	public void run() {
+		log.info("账户异步入账定时:{}", LocalDateTime.now());
+		// 查询所有需要异步入账的账户
+		List<String> accountList = accountAsyncInitService.accountList();
+		// 执行异步入账
+		for (String accountNo : accountList) {
+			log.info("账户异步入账服务 accountNo:{}", accountNo);
+			try {
+				accountTradAsyncService.exe(accountNo);
+			}
+			catch (Exception e) {
+				log.error("账户异步入账服务异常 accountNo:{}", accountNo, e);
+			}
+		}
+	}
+
 }

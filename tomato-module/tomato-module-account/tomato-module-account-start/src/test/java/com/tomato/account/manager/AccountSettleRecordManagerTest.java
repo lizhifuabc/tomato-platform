@@ -19,20 +19,27 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountSettleRecordManagerTest {
-    @Resource
-    AccountSettleRecordManager accountSettleRecordManager;
-    @Resource
-    AccountSettleControlDao accountSettleControlDao;
-    @Resource
-    AccountInfoDao accountInfoDao;
-    @Resource
-    AccountSettleDao accountSettleDao;
-    @Test
-    public void test(){
-        String merchantNo = "10202301010004121";
-        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo, AccountTypeEnum.SETTLEMENT.getValue());
-        AccountSettleEntity accountSettleEntity = accountSettleDao.selectByAccountNo(accountInfoEntity.getAccountNo());
-        AccountSettleControlEntity accountSettleControl = accountSettleControlDao.selectById(1L);
-        accountSettleRecordManager.create(accountSettleControl,accountInfoEntity);
-    }
+
+	@Resource
+	AccountSettleRecordManager accountSettleRecordManager;
+
+	@Resource
+	AccountSettleControlDao accountSettleControlDao;
+
+	@Resource
+	AccountInfoDao accountInfoDao;
+
+	@Resource
+	AccountSettleDao accountSettleDao;
+
+	@Test
+	public void test() {
+		String merchantNo = "10202301010004121";
+		AccountInfoEntity accountInfoEntity = accountInfoDao.selectByMerchantNo(merchantNo,
+				AccountTypeEnum.SETTLEMENT.getValue());
+		AccountSettleEntity accountSettleEntity = accountSettleDao.selectByAccountNo(accountInfoEntity.getAccountNo());
+		AccountSettleControlEntity accountSettleControl = accountSettleControlDao.selectById(1L);
+		accountSettleRecordManager.create(accountSettleControl, accountInfoEntity);
+	}
+
 }

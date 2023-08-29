@@ -9,11 +9,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * 项目启动类：服务消费者
+ *
  * @author lizhifu
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.tomato"}) //开启feign
+@EnableFeignClients(basePackages = { "com.tomato" }) // 开启feign
 public class SeckillApplication {
 
 	public static void main(String[] args) {

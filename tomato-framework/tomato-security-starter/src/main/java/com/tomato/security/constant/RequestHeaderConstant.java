@@ -7,6 +7,9 @@ package com.tomato.security.constant;
  * @since 2022/12/30
  */
 public class RequestHeaderConstant {
-    public static final String TOKEN = "Authorization";
-    public static final String AUTHORIZATION_BEARER = "Bearer ";
+
+	public static final String TOKEN = "Authorization";
+
+	public static final String AUTHORIZATION_BEARER = "Bearer ";
+
 }

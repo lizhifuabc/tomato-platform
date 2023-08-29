@@ -33,40 +33,47 @@ import java.util.UUID;
 @Slf4j
 @Tag(name = "账户提现", description = "账户提现")
 public class AccountCashController extends BaseController {
-    @Resource(name = "accountDeductService")
-    private AccountTradService accountTradService;
-    @Resource
-    private AccountAsyncInitService accountAsyncInitService;
-    @Resource
-    private AccountInfoManager accountInfoManager;
-    /**
-     * 账户提现(商户后台) TODO 短信等等安全校验 银行卡校验
-     * @param accountCashReq 账户提现请求
-     * @return Resp 账户提现结果
-     */
-    @PostMapping("/account/cash")
-    @Idempotent
-    @Operation(summary = "账户提现(商户后台)",description = "账户提现(商户后台)")
-    public Resp<Void> cash(@Validated @RequestBody AccountCashReq accountCashReq){
-        log.info("账户提现 start :{}",accountCashReq);
-        String sysNo = UUID.randomUUID().toString().replace("-", "");
-        boolean async = accountAsyncInitService.check(accountCashReq.getAccountNo());
 
-        AccountTradDto accountTradDto = copy(accountCashReq, AccountTradDto.class);
-        accountTradDto.setAccountHisType(AccountHisTypeEnum.CASH.getValue());
-        accountTradDto.setSysNo(sysNo);
-        accountTradDto.setMerchantOrderNo(sysNo);
-        AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountCashReq.getAccountNo()).orElseThrow(()-> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
-        accountTradDto.setAccountNo(account.getAccountNo());
-        accountTradDto.setAmount(accountCashReq.getAmount().negate());
-        accountTradDto.setRemark("账户提现");
+	@Resource(name = "accountDeductService")
+	private AccountTradService accountTradService;
 
-        if(async){
-            accountTradService.exeAsync(accountTradDto);
-        }else {
-            accountTradService.exe(accountTradDto);
-        }
-        log.info("账户提现 end :{}",accountCashReq);
-        return Resp.buildSuccess();
-    }
+	@Resource
+	private AccountAsyncInitService accountAsyncInitService;
+
+	@Resource
+	private AccountInfoManager accountInfoManager;
+
+	/**
+	 * 账户提现(商户后台) TODO 短信等等安全校验 银行卡校验
+	 * @param accountCashReq 账户提现请求
+	 * @return Resp 账户提现结果
+	 */
+	@PostMapping("/account/cash")
+	@Idempotent
+	@Operation(summary = "账户提现(商户后台)", description = "账户提现(商户后台)")
+	public Resp<Void> cash(@Validated @RequestBody AccountCashReq accountCashReq) {
+		log.info("账户提现 start :{}", accountCashReq);
+		String sysNo = UUID.randomUUID().toString().replace("-", "");
+		boolean async = accountAsyncInitService.check(accountCashReq.getAccountNo());
+
+		AccountTradDto accountTradDto = copy(accountCashReq, AccountTradDto.class);
+		accountTradDto.setAccountHisType(AccountHisTypeEnum.CASH.getValue());
+		accountTradDto.setSysNo(sysNo);
+		accountTradDto.setMerchantOrderNo(sysNo);
+		AccountInfoEntity account = accountInfoManager.selectByAccountNo(accountCashReq.getAccountNo())
+			.orElseThrow(() -> new BusinessException(AccountRespCode.ACCOUNT_NOT_EXIST));
+		accountTradDto.setAccountNo(account.getAccountNo());
+		accountTradDto.setAmount(accountCashReq.getAmount().negate());
+		accountTradDto.setRemark("账户提现");
+
+		if (async) {
+			accountTradService.exeAsync(accountTradDto);
+		}
+		else {
+			accountTradService.exe(accountTradDto);
+		}
+		log.info("账户提现 end :{}", accountCashReq);
+		return Resp.buildSuccess();
+	}
+
 }

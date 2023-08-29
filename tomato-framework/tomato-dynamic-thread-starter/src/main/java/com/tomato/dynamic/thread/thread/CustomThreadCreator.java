@@ -8,16 +8,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 复制于 {@link org.springframework.util.CustomizableThreadCreator}
- * {@link com.tomato.dynamic.thread.thread.CustomThreadFactory}.
- * 用于创建新的｛@link Thread｝实例的简单可自定义帮助程序类。
- * 提供各种bean属性：线程名称前缀、线程优先级等。
+ * {@link com.tomato.dynamic.thread.thread.CustomThreadFactory}. 用于创建新的｛@link
+ * Thread｝实例的简单可自定义帮助程序类。 提供各种bean属性：线程名称前缀、线程优先级等。
+ *
  * @author lizhifu
  */
 public class CustomThreadCreator implements Serializable {
+
 	/**
 	 * 线程名称前缀
 	 */
 	private String threadNamePrefix;
+
 	/**
 	 * 线程优先级
 	 */
@@ -29,7 +31,6 @@ public class CustomThreadCreator implements Serializable {
 	private ThreadGroup threadGroup;
 
 	private final AtomicInteger threadCount = new AtomicInteger();
-
 
 	/**
 	 * Create a new CustomizableThreadCreator with default thread name prefix.
@@ -46,26 +47,23 @@ public class CustomThreadCreator implements Serializable {
 		this.threadNamePrefix = (threadNamePrefix != null ? threadNamePrefix : getDefaultThreadNamePrefix());
 	}
 
-
 	/**
-	 * Specify the prefix to use for the names of newly created threads.
-	 * Default is "SimpleAsyncTaskExecutor-".
+	 * Specify the prefix to use for the names of newly created threads. Default is
+	 * "SimpleAsyncTaskExecutor-".
 	 */
 	public void setThreadNamePrefix(@Nullable String threadNamePrefix) {
 		this.threadNamePrefix = (threadNamePrefix != null ? threadNamePrefix : getDefaultThreadNamePrefix());
 	}
 
 	/**
-	 * Return the thread name prefix to use for the names of newly
-	 * created threads.
+	 * Return the thread name prefix to use for the names of newly created threads.
 	 */
 	public String getThreadNamePrefix() {
 		return this.threadNamePrefix;
 	}
 
 	/**
-	 * Set the priority of the threads that this factory creates.
-	 * Default is 5.
+	 * Set the priority of the threads that this factory creates. Default is 5.
 	 * @see Thread#NORM_PRIORITY
 	 */
 	public void setThreadPriority(int threadPriority) {
@@ -80,13 +78,14 @@ public class CustomThreadCreator implements Serializable {
 	}
 
 	/**
-	 * Set whether this factory is supposed to create daemon threads,
-	 * just executing as long as the application itself is running.
-	 * <p>Default is "false": Concrete factories usually support explicit cancelling.
-	 * Hence, if the application shuts down, Runnables will by default finish their
-	 * execution.
-	 * <p>Specify "true" for eager shutdown of threads which still actively execute
-	 * a {@link Runnable} at the time that the application itself shuts down.
+	 * Set whether this factory is supposed to create daemon threads, just executing as
+	 * long as the application itself is running.
+	 * <p>
+	 * Default is "false": Concrete factories usually support explicit cancelling. Hence,
+	 * if the application shuts down, Runnables will by default finish their execution.
+	 * <p>
+	 * Specify "true" for eager shutdown of threads which still actively execute a
+	 * {@link Runnable} at the time that the application itself shuts down.
 	 * @see Thread#setDaemon
 	 */
 	public void setDaemon(boolean daemon) {
@@ -117,19 +116,18 @@ public class CustomThreadCreator implements Serializable {
 	}
 
 	/**
-	 * Return the thread group that threads should be created in
-	 * (or {@code null} for the default group).
+	 * Return the thread group that threads should be created in (or {@code null} for the
+	 * default group).
 	 */
 	@Nullable
 	public ThreadGroup getThreadGroup() {
 		return this.threadGroup;
 	}
 
-
 	/**
 	 * 用于创建新模板的模板方法 {@link Thread}.
-	 * <p>默认实现为给定的的线程
-	 * {@link Runnable}, applying an appropriate thread name.
+	 * <p>
+	 * 默认实现为给定的的线程 {@link Runnable}, applying an appropriate thread name.
 	 * @param runnable the Runnable to execute
 	 * @see #nextThreadName()
 	 */
@@ -142,8 +140,9 @@ public class CustomThreadCreator implements Serializable {
 
 	/**
 	 * Return the thread name to use for a newly created {@link Thread}.
-	 * <p>The default implementation returns the specified thread name prefix
-	 * with an increasing thread count appended: e.g. "SimpleAsyncTaskExecutor-0".
+	 * <p>
+	 * The default implementation returns the specified thread name prefix with an
+	 * increasing thread count appended: e.g. "SimpleAsyncTaskExecutor-0".
 	 * @see #getThreadNamePrefix()
 	 */
 	protected String nextThreadName() {

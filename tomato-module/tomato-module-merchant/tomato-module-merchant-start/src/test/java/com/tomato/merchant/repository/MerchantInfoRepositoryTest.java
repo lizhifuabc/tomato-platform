@@ -14,19 +14,20 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class MerchantInfoRepositoryTest {
-    @Resource
-    MerchantInfoRepository merchantInfoRepository;
 
-    @Test
-    public void test(){
-        MerchantInfo merchantInfo = new MerchantInfo();
-        merchantInfo.setMerchantNo("12");
-        merchantInfo.setMerchantName("12");
-        merchantInfo.setMerchantShortName("12");
-        merchantInfo.setEmail("123");
-        merchantInfo.setPhone("123");
-        merchantInfo.setPhoneSearch("123");
-        merchantInfoRepository.save(merchantInfo);
-    }
+	@Resource
+	MerchantInfoRepository merchantInfoRepository;
+
+	@Test
+	public void test() {
+		MerchantInfo merchantInfo = new MerchantInfo();
+		merchantInfo.setMerchantNo("12");
+		merchantInfo.setMerchantName("12");
+		merchantInfo.setMerchantShortName("12");
+		merchantInfo.setEmail("123");
+		merchantInfo.setPhone("123");
+		merchantInfo.setPhoneSearch("123");
+		merchantInfoRepository.save(merchantInfo);
+	}
 
 }

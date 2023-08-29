@@ -24,19 +24,22 @@ import java.util.concurrent.TimeUnit;
  * 验证码生成逻辑处理类
  *
  * @author lizhifu
- * @since  2022/5/26
+ * @since 2022/5/26
  */
 @Slf4j
 @Service
 public class CodeHandler implements HandlerFunction<ServerResponse> {
+
 	/**
 	 * 验证码前缀
 	 */
 	private static final String CODE_KEY = "CODE_KEY:";
+
 	/**
 	 * 验证码有效期,默认 60秒
 	 */
 	private static final long CODE_TIME = 60;
+
 	private static final Integer DEFAULT_IMAGE_WIDTH = 100;
 
 	private static final Integer DEFAULT_IMAGE_HEIGHT = 40;
@@ -57,8 +60,8 @@ public class CodeHandler implements HandlerFunction<ServerResponse> {
 		// 保存验证码信息
 		Optional<String> randomStr = serverRequest.queryParam("randomStr");
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
-		randomStr.ifPresent(s -> redisTemplate.opsForValue()
-			.set(CODE_KEY + s, captchaText, CODE_TIME, TimeUnit.SECONDS));
+		randomStr
+			.ifPresent(s -> redisTemplate.opsForValue().set(CODE_KEY + s, captchaText, CODE_TIME, TimeUnit.SECONDS));
 
 		// 转换流信息写出
 		FastByteArrayOutputStream os = new FastByteArrayOutputStream();

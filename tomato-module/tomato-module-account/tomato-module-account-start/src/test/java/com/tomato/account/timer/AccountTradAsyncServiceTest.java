@@ -13,11 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountTradAsyncServiceTest {
-    @Resource
-    AccountTradAsyncService accountTradAsyncService;
 
-    @Test
-    public void test(){
-        accountTradAsyncService.exe("102023010703528952850");
-    }
+	@Resource
+	AccountTradAsyncService accountTradAsyncService;
+
+	@Test
+	public void test() {
+		accountTradAsyncService.exe("102023010703528952850");
+	}
+
 }

@@ -13,16 +13,19 @@ import java.util.List;
  */
 @Mapper
 public interface GoodsInfoDao {
-    /**
-     * 根据id查询
-     * @param id 商品id
-     * @return 商品信息
-     */
-    GoodsInfoEntity selectById(Long id);
-    /**
-     * 批量查询
-     * @param ids 商品id
-     * @return 商品信息
-     */
-    List<GoodsInfoEntity> selectBatchByIds(List<Long> ids);
+
+	/**
+	 * 根据id查询
+	 * @param id 商品id
+	 * @return 商品信息
+	 */
+	GoodsInfoEntity selectById(Long id);
+
+	/**
+	 * 批量查询
+	 * @param ids 商品id
+	 * @return 商品信息
+	 */
+	List<GoodsInfoEntity> selectBatchByIds(List<Long> ids);
+
 }

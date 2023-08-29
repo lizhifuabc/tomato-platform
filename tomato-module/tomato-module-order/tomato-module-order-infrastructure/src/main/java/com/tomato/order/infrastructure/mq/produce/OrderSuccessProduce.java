@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class OrderSuccessProduce {
-    private final RabbitRepository rabbitRepository;
 
-    public OrderSuccessProduce(RabbitRepository rabbitRepository) {
-        this.rabbitRepository = rabbitRepository;
-    }
+	private final RabbitRepository rabbitRepository;
+
+	public OrderSuccessProduce(RabbitRepository rabbitRepository) {
+		this.rabbitRepository = rabbitRepository;
+	}
+
 }

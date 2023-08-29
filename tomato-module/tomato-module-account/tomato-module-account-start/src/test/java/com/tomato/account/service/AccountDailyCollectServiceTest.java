@@ -14,11 +14,13 @@ import java.time.LocalDate;
  */
 @SpringBootTest
 public class AccountDailyCollectServiceTest {
-    @Resource
-    AccountDailyCollectService accountDailyCollectService;
 
-    @Test
-    public void test(){
-        accountDailyCollectService.exe("102023081632289452901", LocalDate.now().minusDays(7));
-    }
+	@Resource
+	AccountDailyCollectService accountDailyCollectService;
+
+	@Test
+	public void test() {
+		accountDailyCollectService.exe("102023081632289452901", LocalDate.now().minusDays(7));
+	}
+
 }

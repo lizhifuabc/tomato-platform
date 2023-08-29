@@ -14,10 +14,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SeckillGoodsRepositoryImpl implements SeckillGoodsRepository {
-    @Autowired
-    private SeckillGoodsMapper seckillGoodsMapper;
-    @Override
-    public int saveSeckillGoods(SeckillGoods seckillGoods) {
-        return seckillGoodsMapper.insert(seckillGoods);
-    }
+
+	@Autowired
+	private SeckillGoodsMapper seckillGoodsMapper;
+
+	@Override
+	public int saveSeckillGoods(SeckillGoods seckillGoods) {
+		return seckillGoodsMapper.insert(seckillGoods);
+	}
+
 }

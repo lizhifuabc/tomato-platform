@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 订单管理
+ *
  * @author lizhifu
  */
 @Service
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderManagement {
 
 	private final @NonNull ApplicationEventPublisher events;
+
 	private final @NonNull OrderInternal dependency;
 
 	@Transactional
@@ -26,4 +28,5 @@ public class OrderManagement {
 		log.info("发送订单完成事件 {}.", order.getId());
 		events.publishEvent(new OrderCompleted(order.getId()));
 	}
+
 }

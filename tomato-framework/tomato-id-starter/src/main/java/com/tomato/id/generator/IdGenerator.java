@@ -7,10 +7,11 @@ package com.tomato.id.generator;
  * @date 2022/12/15
  */
 public interface IdGenerator {
-    /**
-     * 生成Id
-     *
-     * @return id
-     */
-    Comparable<?> nextId();
+
+	/**
+	 * 生成Id
+	 * @return id
+	 */
+	Comparable<?> nextId();
+
 }

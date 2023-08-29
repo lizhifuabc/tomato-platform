@@ -7,4 +7,5 @@ package com.tomato.rpc.spi.annotation;
  * @since 2023/7/11
  */
 public @interface SPIClass {
+
 }

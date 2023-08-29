@@ -14,18 +14,24 @@ import java.util.HashMap;
  */
 @Component
 public class IdempotentStrategyFactory implements InitializingBean {
-    private final ApplicationContext applicationContext;
-    private final HashMap<String, IdempotentStrategy> strategyMap = new HashMap<>();
-    public IdempotentStrategyFactory(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
-    }
-    public IdempotentStrategy getStrategy(String name) {
-        return strategyMap.get(name);
-    }
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        applicationContext.getBeansOfType(IdempotentStrategy.class).forEach((k, v) -> {
-            strategyMap.put(v.name(), v);
-        });
-    }
+
+	private final ApplicationContext applicationContext;
+
+	private final HashMap<String, IdempotentStrategy> strategyMap = new HashMap<>();
+
+	public IdempotentStrategyFactory(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
+	}
+
+	public IdempotentStrategy getStrategy(String name) {
+		return strategyMap.get(name);
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		applicationContext.getBeansOfType(IdempotentStrategy.class).forEach((k, v) -> {
+			strategyMap.put(v.name(), v);
+		});
+	}
+
 }

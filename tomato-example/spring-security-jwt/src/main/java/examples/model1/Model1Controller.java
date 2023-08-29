@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("/model1")
 public class Model1Controller {
 
-    private Logger logger = LogManager.getLogger();
+	private Logger logger = LogManager.getLogger();
 
-    @Autowired
-    private SqlSession sqlSession;
+	@Autowired
+	private SqlSession sqlSession;
 
-    @PostMapping("/add_task")
-    ResponseEntity<Body> addTask(@Valid @RequestBody Model1Pojo model1Pojo) {
-        sqlSession.insert("Model1.addTask");
-        return ResponseEntity.ok(Body.build().ok("任务发布成功", model1Pojo));
-    }
+	@PostMapping("/add_task")
+	ResponseEntity<Body> addTask(@Valid @RequestBody Model1Pojo model1Pojo) {
+		sqlSession.insert("Model1.addTask");
+		return ResponseEntity.ok(Body.build().ok("任务发布成功", model1Pojo));
+	}
+
 }

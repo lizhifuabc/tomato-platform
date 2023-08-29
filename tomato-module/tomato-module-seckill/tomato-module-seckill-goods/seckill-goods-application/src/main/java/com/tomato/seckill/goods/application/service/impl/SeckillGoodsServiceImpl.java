@@ -16,16 +16,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SeckillGoodsServiceImpl implements SeckillGoodsService {
-    @Autowired
-    private SeckillGoodsDomainService seckillGoodsDomainService;
 
-    @Override
-    public void saveSeckillGoods(SeckillGoodsCreateReq seckillGoodsCreateReq) {
-        // 秒杀活动是否存在校验
-        // 将商品的库存同步到Redis
-        // 商品限购同步到Redis
-        // 保存商品到数据库
-        SeckillGoods seckillGoods = SeckillGoodsBuilder.toSeckillGoods(seckillGoodsCreateReq);
-        seckillGoodsDomainService.saveSeckillGoods(seckillGoods);
-    }
+	@Autowired
+	private SeckillGoodsDomainService seckillGoodsDomainService;
+
+	@Override
+	public void saveSeckillGoods(SeckillGoodsCreateReq seckillGoodsCreateReq) {
+		// 秒杀活动是否存在校验
+		// 将商品的库存同步到Redis
+		// 商品限购同步到Redis
+		// 保存商品到数据库
+		SeckillGoods seckillGoods = SeckillGoodsBuilder.toSeckillGoods(seckillGoodsCreateReq);
+		seckillGoodsDomainService.saveSeckillGoods(seckillGoods);
+	}
+
 }

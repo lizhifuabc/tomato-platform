@@ -14,25 +14,28 @@ import java.util.stream.Stream;
  * @since 2023/6/8
  */
 public class SecurityUserDetails extends User {
-    private SysUser sysUser;
-    public SecurityUserDetails(SysUser sysUser) {
-        super(
-                sysUser.getUsername(),
-                sysUser.getPassword(),
-                sysUser.isEnabled(),
-                true,
-                sysUser.getCredentialsExpireAt().isAfter(LocalDateTime.now()),
-                true,
-                sysUser.getRoles().stream().map(role -> role.getPermissions().stream().map(permission -> (GrantedAuthority) permission::getPermissionCode)).flatMap(Stream::distinct).toList()
-        );
-        this.sysUser = sysUser;
-    }
 
-    public SysUser getSysUser() {
-        return sysUser;
-    }
+	private SysUser sysUser;
 
-    public void setSysUser(SysUser sysUser) {
-        this.sysUser = sysUser;
-    }
+	public SecurityUserDetails(SysUser sysUser) {
+		super(sysUser.getUsername(), sysUser.getPassword(), sysUser.isEnabled(), true,
+				sysUser.getCredentialsExpireAt().isAfter(LocalDateTime.now()), true,
+				sysUser.getRoles()
+					.stream()
+					.map(role -> role.getPermissions()
+						.stream()
+						.map(permission -> (GrantedAuthority) permission::getPermissionCode))
+					.flatMap(Stream::distinct)
+					.toList());
+		this.sysUser = sysUser;
+	}
+
+	public SysUser getSysUser() {
+		return sysUser;
+	}
+
+	public void setSysUser(SysUser sysUser) {
+		this.sysUser = sysUser;
+	}
+
 }

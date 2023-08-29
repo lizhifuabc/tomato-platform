@@ -19,24 +19,29 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @Component
 public class PayResultProduct {
-    private final RabbitTemplate rabbitTemplate;
 
-    public PayResultProduct(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-    }
-    public void send(PayResultEvent payResultEvent) {
-        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        log.info("支付结果通知消息发送，Keys：{}，消息内容：{}", correlationData.getId(), payResultEvent);
-        CompletableFuture<CorrelationData.Confirm> future = correlationData.getFuture();
-        future.whenComplete((confirm, throwable) -> {
-            if (confirm.isAck()) {
-                log.info("支付结果通知消息发送成功，Keys：{}，消息内容：{}", correlationData.getId(), payResultEvent);
-            } else {
-                // TODO 重试或者记录日志，报警，人工处理，或者其他处理方式
-                log.error("支付结果通知消息发送失败，Keys：{}，消息内容：{}", correlationData.getId(), payResultEvent);
-            }
-        });
-        // rabbitTemplate.convertSendAndReceive(PayMqConstant.PAY_RESULT_EXCHANGE, PayMqConstant.PAY_RESULT_ROUTING_KEY, payResultEvent);
-        rabbitTemplate.convertAndSend(PayMqConstant.PAY_RESULT_EXCHANGE, "", payResultEvent,correlationData);
-    }
+	private final RabbitTemplate rabbitTemplate;
+
+	public PayResultProduct(RabbitTemplate rabbitTemplate) {
+		this.rabbitTemplate = rabbitTemplate;
+	}
+
+	public void send(PayResultEvent payResultEvent) {
+		CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+		log.info("支付结果通知消息发送，Keys：{}，消息内容：{}", correlationData.getId(), payResultEvent);
+		CompletableFuture<CorrelationData.Confirm> future = correlationData.getFuture();
+		future.whenComplete((confirm, throwable) -> {
+			if (confirm.isAck()) {
+				log.info("支付结果通知消息发送成功，Keys：{}，消息内容：{}", correlationData.getId(), payResultEvent);
+			}
+			else {
+				// TODO 重试或者记录日志，报警，人工处理，或者其他处理方式
+				log.error("支付结果通知消息发送失败，Keys：{}，消息内容：{}", correlationData.getId(), payResultEvent);
+			}
+		});
+		// rabbitTemplate.convertSendAndReceive(PayMqConstant.PAY_RESULT_EXCHANGE,
+		// PayMqConstant.PAY_RESULT_ROUTING_KEY, payResultEvent);
+		rabbitTemplate.convertAndSend(PayMqConstant.PAY_RESULT_EXCHANGE, "", payResultEvent, correlationData);
+	}
+
 }

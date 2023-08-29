@@ -11,15 +11,17 @@ import java.util.function.Function;
  * @since 2023/7/16
  */
 public class TenantPrefixStringRedisSerializer extends StringRedisSerializer {
-    private final Function<String, String> prefixFunction;
 
-    public TenantPrefixStringRedisSerializer(Function<String, String> prefixFunction) {
-        this.prefixFunction = prefixFunction;
-    }
+	private final Function<String, String> prefixFunction;
 
-    @Override
-    public byte[] serialize(String key) {
-        key = prefixFunction.apply(key);
-        return super.serialize(key);
-    }
+	public TenantPrefixStringRedisSerializer(Function<String, String> prefixFunction) {
+		this.prefixFunction = prefixFunction;
+	}
+
+	@Override
+	public byte[] serialize(String key) {
+		key = prefixFunction.apply(key);
+		return super.serialize(key);
+	}
+
 }

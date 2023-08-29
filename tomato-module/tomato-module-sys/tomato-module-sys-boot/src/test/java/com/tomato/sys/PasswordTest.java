@@ -13,11 +13,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @SpringBootTest
 public class PasswordTest {
-    @Resource
-    PasswordEncoder passwordEncoder;
-    @Test
-    public void test(){
-        String admin = passwordEncoder.encode("admin");
-        System.out.println(admin);
-    }
+
+	@Resource
+	PasswordEncoder passwordEncoder;
+
+	@Test
+	public void test() {
+		String admin = passwordEncoder.encode("admin");
+		System.out.println(admin);
+	}
+
 }

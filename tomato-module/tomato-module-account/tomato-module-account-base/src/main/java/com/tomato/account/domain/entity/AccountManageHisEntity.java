@@ -13,23 +13,25 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AccountManageHisEntity extends BaseEntity {
-    /**
-     * 账户编号
-     */
-    private String accountNo;
 
-    /**
-     * 账户管理顺序号
-     */
-    private Long accountManageSerial;
+	/**
+	 * 账户编号
+	 */
+	private String accountNo;
 
-    /**
-     * 改变前值
-     */
-    private String beforeValue;
+	/**
+	 * 账户管理顺序号
+	 */
+	private Long accountManageSerial;
 
-    /**
-     * 改变后值
-     */
-    private String afterValue;
+	/**
+	 * 改变前值
+	 */
+	private String beforeValue;
+
+	/**
+	 * 改变后值
+	 */
+	private String afterValue;
+
 }

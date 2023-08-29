@@ -22,21 +22,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @since 2023/8/1
  */
 @FeignClient(contextId = "remoteMerchantService", value = ServiceNameConstants.SERVICE_NAME_MERCHANT,
-        fallbackFactory = RemoteMerchantServiceFallback.class,dismiss404 = true)
+		fallbackFactory = RemoteMerchantServiceFallback.class, dismiss404 = true)
 public interface RemoteMerchantService {
-    /**
-     * 商户交易
-     * @param merchantTradReq 商户交易
-     * @return 商户交易
-     */
-    @RequestMapping(value = "/merchant/trade", method = RequestMethod.POST)
-    Resp<MerchantTradResp> trade(@RequestBody MerchantTradReq merchantTradReq);
-    /**
-     * 商户配置
-     * @param merchantConfigReq 商户配置
-     * @return 商户配置
-     */
-    @PostMapping("/merchant/config/query")
-    @Operation(summary = "商户配置查询", description = "商户配置查询")
-    Resp<MerchantConfigQueryResp> queryConfig(@RequestBody MerchantConfigQueryReq merchantConfigReq);
+
+	/**
+	 * 商户交易
+	 * @param merchantTradReq 商户交易
+	 * @return 商户交易
+	 */
+	@RequestMapping(value = "/merchant/trade", method = RequestMethod.POST)
+	Resp<MerchantTradResp> trade(@RequestBody MerchantTradReq merchantTradReq);
+
+	/**
+	 * 商户配置
+	 * @param merchantConfigReq 商户配置
+	 * @return 商户配置
+	 */
+	@PostMapping("/merchant/config/query")
+	@Operation(summary = "商户配置查询", description = "商户配置查询")
+	Resp<MerchantConfigQueryResp> queryConfig(@RequestBody MerchantConfigQueryReq merchantConfigReq);
+
 }

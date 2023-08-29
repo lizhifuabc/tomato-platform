@@ -25,35 +25,44 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class MerchantInfoService extends AbstractService<MerchantInfo,Long> {
-    private final MerchantInfoRepository merchantInfoRepository;
-    private final MerchantNoService merchantNoService;
-    private final MerchantSecurityManager merchantSecurityManager;
-    public MerchantInfoService(MerchantInfoRepository merchantInfoRepository, MerchantNoService merchantNoService, MerchantSecurityManager merchantSecurityManager) {
-        this.merchantInfoRepository = merchantInfoRepository;
-        this.merchantNoService = merchantNoService;
-        this.merchantSecurityManager = merchantSecurityManager;
-    }
-    @Transactional(rollbackFor = Exception.class)
-    public MerchantInfo save(MerchantCreateReq merchantCreateReq){
-        merchantInfoRepository.findByEmail(merchantCreateReq.getEmail()).ifPresent(e->{
-            throw new BusinessException("邮箱已存在");
-        });
-        merchantInfoRepository.findByPhone(merchantSecurityManager.security(merchantCreateReq.getPhone())).ifPresent(e->{
-            throw new BusinessException("手机号已存在");
-        });
-        // 生成商户号
-        String merchantNo = merchantNoService.nextStringValue();
-        // 保存商户信息
-        MerchantInfo merchantInfo = BeanUtil.copy(merchantCreateReq, MerchantInfo.class);
-        merchantInfo.setPhone(merchantSecurityManager.security(merchantInfo.getPhone()));
-        merchantInfo.setPhoneSearch(merchantSecurityManager.phone(merchantInfo.getPhone()));
-        merchantInfo.setMerchantNo(merchantNo);
-        merchantInfoRepository.save(merchantInfo);
-        return merchantInfo;
-    }
-    @Override
-    public BaseJpaRepository<MerchantInfo, Long> getRepository() {
-        return this.merchantInfoRepository;
-    }
+public class MerchantInfoService extends AbstractService<MerchantInfo, Long> {
+
+	private final MerchantInfoRepository merchantInfoRepository;
+
+	private final MerchantNoService merchantNoService;
+
+	private final MerchantSecurityManager merchantSecurityManager;
+
+	public MerchantInfoService(MerchantInfoRepository merchantInfoRepository, MerchantNoService merchantNoService,
+			MerchantSecurityManager merchantSecurityManager) {
+		this.merchantInfoRepository = merchantInfoRepository;
+		this.merchantNoService = merchantNoService;
+		this.merchantSecurityManager = merchantSecurityManager;
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public MerchantInfo save(MerchantCreateReq merchantCreateReq) {
+		merchantInfoRepository.findByEmail(merchantCreateReq.getEmail()).ifPresent(e -> {
+			throw new BusinessException("邮箱已存在");
+		});
+		merchantInfoRepository.findByPhone(merchantSecurityManager.security(merchantCreateReq.getPhone()))
+			.ifPresent(e -> {
+				throw new BusinessException("手机号已存在");
+			});
+		// 生成商户号
+		String merchantNo = merchantNoService.nextStringValue();
+		// 保存商户信息
+		MerchantInfo merchantInfo = BeanUtil.copy(merchantCreateReq, MerchantInfo.class);
+		merchantInfo.setPhone(merchantSecurityManager.security(merchantInfo.getPhone()));
+		merchantInfo.setPhoneSearch(merchantSecurityManager.phone(merchantInfo.getPhone()));
+		merchantInfo.setMerchantNo(merchantNo);
+		merchantInfoRepository.save(merchantInfo);
+		return merchantInfo;
+	}
+
+	@Override
+	public BaseJpaRepository<MerchantInfo, Long> getRepository() {
+		return this.merchantInfoRepository;
+	}
+
 }

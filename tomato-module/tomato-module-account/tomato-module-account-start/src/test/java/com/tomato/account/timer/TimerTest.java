@@ -12,16 +12,19 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class TimerTest {
-    @Resource
-    AccountSettleTimer accountSettleTimer;
-    @Resource
-    AccountTradAsyncTimer accountTradAsyncTimer;
 
-    @Test
-    public void timer(){
-        System.out.println("执行所有定时start");
-        accountTradAsyncTimer.run();
-        accountSettleTimer.run();
-        System.out.println("执行所有定时end");
-    }
+	@Resource
+	AccountSettleTimer accountSettleTimer;
+
+	@Resource
+	AccountTradAsyncTimer accountTradAsyncTimer;
+
+	@Test
+	public void timer() {
+		System.out.println("执行所有定时start");
+		accountTradAsyncTimer.run();
+		accountSettleTimer.run();
+		System.out.println("执行所有定时end");
+	}
+
 }

@@ -7,12 +7,15 @@ package com.tomato.cloud.gateway.gray.constant;
  * @since 2023/7/18
  */
 public interface HeaderConstant {
-    /**
-     * 灰度用户
-     */
-    String USER_ID = "userId";
-    /**
-     * 扰动函数
-     */
-    String DISTURBANCE_HASH = "disturbanceHash";
+
+	/**
+	 * 灰度用户
+	 */
+	String USER_ID = "userId";
+
+	/**
+	 * 扰动函数
+	 */
+	String DISTURBANCE_HASH = "disturbanceHash";
+
 }

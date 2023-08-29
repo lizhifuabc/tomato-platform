@@ -13,9 +13,11 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ApplicationBaseAutoConfiguration {
-    @Bean
-    @ConditionalOnMissingBean
-    public ApplicationContextHolder applicationContextHolder() {
-        return new ApplicationContextHolder();
-    }
+
+	@Bean
+	@ConditionalOnMissingBean
+	public ApplicationContextHolder applicationContextHolder() {
+		return new ApplicationContextHolder();
+	}
+
 }

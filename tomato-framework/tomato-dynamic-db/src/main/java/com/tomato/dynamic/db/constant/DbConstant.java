@@ -7,12 +7,15 @@ package com.tomato.dynamic.db.constant;
  * @since 2023/8/10
  */
 public class DbConstant {
-    /**
-     * 默认数据源标识
-     */
-    public static final String MASTER = "master";
-    /**
-     * 从数据源标识
-     */
-    public static final String SLAVE = "slave";
+
+	/**
+	 * 默认数据源标识
+	 */
+	public static final String MASTER = "master";
+
+	/**
+	 * 从数据源标识
+	 */
+	public static final String SLAVE = "slave";
+
 }

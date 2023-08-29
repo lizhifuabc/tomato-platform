@@ -21,30 +21,34 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Slf4j
 public class AccountRepositoryImpl implements AccountRepository {
-    private final RemoteAccountService remoteAccountService;
-    private final OrderInfoMapper orderInfoMapper;
-    public AccountRepositoryImpl(RemoteAccountService remoteAccountService, OrderInfoMapper orderInfoMapper) {
-        this.remoteAccountService = remoteAccountService;
-        this.orderInfoMapper = orderInfoMapper;
-    }
 
-    @Override
-    public void trad(AccountEntity accountEntity) {
-        AccountTradReq accountTradReq = AccountTradReq.builder()
-                .merchantNo(accountEntity.getMerchantNo())
-                .amount(accountEntity.getAmount())
-                .sysNo(accountEntity.getSysNo())
-                .merchantOrderNo(accountEntity.getMerchantOrderNo())
-                .accountType(AccountTypeEnum.SETTLEMENT.getValue())
-                .accountHisType(AccountHisTypeEnum.TRAD.getValue())
-                .build();
-        Resp<Void> trad = remoteAccountService.trad(accountTradReq);
-        if (!trad.isSuccess()) {
-            // TODO 重试或者记录日志
-            log.error("账户入账失败:{},流水号:{}",trad.getMsg(),accountEntity.getSysNo());
-            orderInfoMapper.updateAccountStatus(accountEntity.getSysNo(), OrderStatusEnum.FAIL.getValue());
-            return;
-        }
-        orderInfoMapper.updateAccountStatus(accountEntity.getSysNo(), OrderStatusEnum.SUCCESS.getValue());
-    }
+	private final RemoteAccountService remoteAccountService;
+
+	private final OrderInfoMapper orderInfoMapper;
+
+	public AccountRepositoryImpl(RemoteAccountService remoteAccountService, OrderInfoMapper orderInfoMapper) {
+		this.remoteAccountService = remoteAccountService;
+		this.orderInfoMapper = orderInfoMapper;
+	}
+
+	@Override
+	public void trad(AccountEntity accountEntity) {
+		AccountTradReq accountTradReq = AccountTradReq.builder()
+			.merchantNo(accountEntity.getMerchantNo())
+			.amount(accountEntity.getAmount())
+			.sysNo(accountEntity.getSysNo())
+			.merchantOrderNo(accountEntity.getMerchantOrderNo())
+			.accountType(AccountTypeEnum.SETTLEMENT.getValue())
+			.accountHisType(AccountHisTypeEnum.TRAD.getValue())
+			.build();
+		Resp<Void> trad = remoteAccountService.trad(accountTradReq);
+		if (!trad.isSuccess()) {
+			// TODO 重试或者记录日志
+			log.error("账户入账失败:{},流水号:{}", trad.getMsg(), accountEntity.getSysNo());
+			orderInfoMapper.updateAccountStatus(accountEntity.getSysNo(), OrderStatusEnum.FAIL.getValue());
+			return;
+		}
+		orderInfoMapper.updateAccountStatus(accountEntity.getSysNo(), OrderStatusEnum.SUCCESS.getValue());
+	}
+
 }

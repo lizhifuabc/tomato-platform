@@ -12,14 +12,17 @@ import lombok.Data;
  */
 @Data
 public class MerchantTradReq {
-    /**
-     * 商户号
-     */
-    @NotBlank(message = "商户号不能为空")
-    private String merchantNo;
-    /**
-     * 支付方式
-     */
-    @NotNull
-    private Integer payType;
+
+	/**
+	 * 商户号
+	 */
+	@NotBlank(message = "商户号不能为空")
+	private String merchantNo;
+
+	/**
+	 * 支付方式
+	 */
+	@NotNull
+	private Integer payType;
+
 }

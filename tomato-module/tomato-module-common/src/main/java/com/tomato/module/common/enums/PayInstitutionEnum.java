@@ -13,35 +13,36 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum PayInstitutionEnum implements BaseEnum<String> {
-    /**
-     * 银联
-     */
-    UNION_PAY("UNION_PAY", "银联"),
-    /**
-     * 支付宝
-     */
-    ALI_PAY("ALI_PAY","支付宝"),
-    /**
-     * 财付通
-     */
-    TENCENT_PAY("TENCENT_PAY","财付通"),
-    /**
-     * 网联
-     */
-    NETS_UNION("NETS_UNION","网联"),
-    ;
 
-    @Override
-    public String getDesc() {
-        return desc;
-    }
+	/**
+	 * 银联
+	 */
+	UNION_PAY("UNION_PAY", "银联"),
+	/**
+	 * 支付宝
+	 */
+	ALI_PAY("ALI_PAY", "支付宝"),
+	/**
+	 * 财付通
+	 */
+	TENCENT_PAY("TENCENT_PAY", "财付通"),
+	/**
+	 * 网联
+	 */
+	NETS_UNION("NETS_UNION", "网联"),;
 
-    @Override
-    public String getValue() {
-        return value;
-    }
+	@Override
+	public String getDesc() {
+		return desc;
+	}
 
-    private final String value;
+	@Override
+	public String getValue() {
+		return value;
+	}
 
-    private final String desc;
+	private final String value;
+
+	private final String desc;
+
 }

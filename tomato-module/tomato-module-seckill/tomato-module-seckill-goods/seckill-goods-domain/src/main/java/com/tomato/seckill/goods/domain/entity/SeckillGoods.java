@@ -16,68 +16,70 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class SeckillGoods extends BaseEntity {
-    /**
-     * 商品名称
-     */
-    private String goodsName;
 
-    /**
-     * 活动id
-     */
-    private Long seckillActivityId;
+	/**
+	 * 商品名称
+	 */
+	private String goodsName;
 
-    /**
-     * 开始时间
-     */
-    private LocalDateTime startTime;
+	/**
+	 * 活动id
+	 */
+	private Long seckillActivityId;
 
-    /**
-     * 结束时间
-     */
-    private LocalDateTime endTime;
+	/**
+	 * 开始时间
+	 */
+	private LocalDateTime startTime;
 
-    /**
-     * 商品原价格
-     */
-    private BigDecimal originalPrice;
+	/**
+	 * 结束时间
+	 */
+	private LocalDateTime endTime;
 
-    /**
-     * 商品秒杀价格
-     */
-    private BigDecimal seckillPrice;
+	/**
+	 * 商品原价格
+	 */
+	private BigDecimal originalPrice;
 
-    /**
-     * 状态，0：已发布； 1：上线； 2：下线
-     */
-    private Integer status;
+	/**
+	 * 商品秒杀价格
+	 */
+	private BigDecimal seckillPrice;
 
-    /**
-     * 秒杀总量
-     */
-    private Integer seckillCount;
+	/**
+	 * 状态，0：已发布； 1：上线； 2：下线
+	 */
+	private Integer status;
 
-    /**
-     * 秒杀剩余量
-     */
-    private Integer seckillRemaining;
+	/**
+	 * 秒杀总量
+	 */
+	private Integer seckillCount;
 
-    /**
-     * 每人限购数量
-     */
-    private Integer seckillLimit;
+	/**
+	 * 秒杀剩余量
+	 */
+	private Integer seckillRemaining;
 
-    /**
-     * 排序
-     */
-    private Integer seckillSort;
+	/**
+	 * 每人限购数量
+	 */
+	private Integer seckillLimit;
 
-    /**
-     * 商品描述
-     */
-    private String description;
+	/**
+	 * 排序
+	 */
+	private Integer seckillSort;
 
-    /**
-     * 商品图片
-     */
-    private String imgUrl;
+	/**
+	 * 商品描述
+	 */
+	private String description;
+
+	/**
+	 * 商品图片
+	 */
+	private String imgUrl;
+
 }

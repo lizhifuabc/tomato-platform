@@ -12,23 +12,25 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "tomato.mybatis")
 @Data
 public class TomatoMybatisProperties {
-    /**
-     * 表前缀
-     */
-    private static final String TABLE_PREFIX = "t_";
 
-    /**
-     * 主键名
-     */
-    public static final String DEFAULT_PRIMARY_KEY = "id";
+	/**
+	 * 表前缀
+	 */
+	private static final String TABLE_PREFIX = "t_";
 
-    /**
-     * 是否启用慢SQL拦截
-     */
-    private boolean slowSql = false;
+	/**
+	 * 主键名
+	 */
+	public static final String DEFAULT_PRIMARY_KEY = "id";
 
-    /**
-     * 慢SQL拦截阈值,单位毫秒
-     */
-    private long slowSqlMillis = 1000L;
+	/**
+	 * 是否启用慢SQL拦截
+	 */
+	private boolean slowSql = false;
+
+	/**
+	 * 慢SQL拦截阈值,单位毫秒
+	 */
+	private long slowSqlMillis = 1000L;
+
 }

@@ -20,43 +20,48 @@ import java.util.Objects;
 @Aspect
 @Component
 public class DataSourceAspect {
-    /**
-     * 设置DataSource注解的切点表达式
-     */
-    @Pointcut("@annotation(com.tomato.dynamic.db.annotation.DataSource)")
-    public void dynamicDataSourcePointCut(){
 
-    }
+	/**
+	 * 设置DataSource注解的切点表达式
+	 */
+	@Pointcut("@annotation(com.tomato.dynamic.db.annotation.DataSource)")
+	public void dynamicDataSourcePointCut() {
 
-    /**
-     * 环绕通知
-     * @param joinPoint 切点
-     * @return Object
-     * @throws Throwable Throwable
-     */
-    @Around("dynamicDataSourcePointCut()")
-    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-        String key = getDefineAnnotation(joinPoint).value();
-        DynamicDataSourceHolder.setDynamicDataSourceKey(key);
-        try {
-            return joinPoint.proceed();
-        } finally {
-            DynamicDataSourceHolder.removeDynamicDataSourceKey();
-        }
-    }
-    /**
-     * 先判断方法的注解，后判断类的注解，以方法的注解为准
-     * @param joinPoint 切点
-     * @return DataSource
-     */
-    private DataSource getDefineAnnotation(ProceedingJoinPoint joinPoint){
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        DataSource dataSourceAnnotation = methodSignature.getMethod().getAnnotation(DataSource.class);
-        if (Objects.nonNull(methodSignature)) {
-            return dataSourceAnnotation;
-        } else {
-            Class<?> dsClass = joinPoint.getTarget().getClass();
-            return dsClass.getAnnotation(DataSource.class);
-        }
-    }
+	}
+
+	/**
+	 * 环绕通知
+	 * @param joinPoint 切点
+	 * @return Object
+	 * @throws Throwable Throwable
+	 */
+	@Around("dynamicDataSourcePointCut()")
+	public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+		String key = getDefineAnnotation(joinPoint).value();
+		DynamicDataSourceHolder.setDynamicDataSourceKey(key);
+		try {
+			return joinPoint.proceed();
+		}
+		finally {
+			DynamicDataSourceHolder.removeDynamicDataSourceKey();
+		}
+	}
+
+	/**
+	 * 先判断方法的注解，后判断类的注解，以方法的注解为准
+	 * @param joinPoint 切点
+	 * @return DataSource
+	 */
+	private DataSource getDefineAnnotation(ProceedingJoinPoint joinPoint) {
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		DataSource dataSourceAnnotation = methodSignature.getMethod().getAnnotation(DataSource.class);
+		if (Objects.nonNull(methodSignature)) {
+			return dataSourceAnnotation;
+		}
+		else {
+			Class<?> dsClass = joinPoint.getTarget().getClass();
+			return dsClass.getAnnotation(DataSource.class);
+		}
+	}
+
 }

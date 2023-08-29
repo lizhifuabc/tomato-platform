@@ -5,7 +5,6 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 /**
  * 异步入账账户
  *
@@ -16,12 +15,15 @@ import lombok.EqualsAndHashCode;
 @Data
 @Table(name = "t_account_async")
 public class AccountAsyncEntity extends BaseEntity {
-    /**
-     * 账户编号
-     */
-    private String accountNo;
-    /**
-     * 商户编号
-     */
-    private String merchantNo;
+
+	/**
+	 * 账户编号
+	 */
+	private String accountNo;
+
+	/**
+	 * 商户编号
+	 */
+	private String merchantNo;
+
 }

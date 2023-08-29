@@ -7,4 +7,5 @@ package com.tomato.demo.client.user.service;
  * @since 2023/4/3
  */
 public interface UserClientService {
+
 }

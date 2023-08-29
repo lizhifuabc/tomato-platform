@@ -19,20 +19,22 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @Component
 public class CustomEventNotifier extends AbstractEventNotifier {
-    protected CustomEventNotifier(InstanceRepository repository) {
-        super(repository);
-    }
 
-    @Override
-    protected Mono<Void> doNotify(InstanceEvent event,Instance instance) {
-        return Mono.fromRunnable(() -> {
-            // 实例状态改变事件
-            if (event instanceof InstanceStatusChangedEvent) {
-                String registrationName = instance.getRegistration().getName();
-                String instanceId = event.getInstance().getValue();
-                String status = ((InstanceStatusChangedEvent) event).getStatusInfo().getStatus();
-                log.info("实例状态更改: 注册名称：{},实例ID：{},状态：{}", registrationName, instanceId, status);
-            }
-        });
-    }
+	protected CustomEventNotifier(InstanceRepository repository) {
+		super(repository);
+	}
+
+	@Override
+	protected Mono<Void> doNotify(InstanceEvent event, Instance instance) {
+		return Mono.fromRunnable(() -> {
+			// 实例状态改变事件
+			if (event instanceof InstanceStatusChangedEvent) {
+				String registrationName = instance.getRegistration().getName();
+				String instanceId = event.getInstance().getValue();
+				String status = ((InstanceStatusChangedEvent) event).getStatusInfo().getStatus();
+				log.info("实例状态更改: 注册名称：{},实例ID：{},状态：{}", registrationName, instanceId, status);
+			}
+		});
+	}
+
 }

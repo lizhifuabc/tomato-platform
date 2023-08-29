@@ -19,14 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/goods")
 public class SeckillGoodsController {
-    @Autowired
-    private SeckillGoodsService seckillGoodsService;
-    /**
-     * 保存秒杀商品
-     */
-    @RequestMapping(value = "/saveSeckillGoods", method = {RequestMethod.POST})
-    public Resp<Void> saveSeckillActivityDTO(@Valid @RequestBody SeckillGoodsCreateReq seckillGoodsCreateReq){
-        seckillGoodsService.saveSeckillGoods(seckillGoodsCreateReq);
-        return Resp.buildSuccess();
-    }
+
+	@Autowired
+	private SeckillGoodsService seckillGoodsService;
+
+	/**
+	 * 保存秒杀商品
+	 */
+	@RequestMapping(value = "/saveSeckillGoods", method = { RequestMethod.POST })
+	public Resp<Void> saveSeckillActivityDTO(@Valid @RequestBody SeckillGoodsCreateReq seckillGoodsCreateReq) {
+		seckillGoodsService.saveSeckillGoods(seckillGoodsCreateReq);
+		return Resp.buildSuccess();
+	}
+
 }

@@ -18,38 +18,42 @@ import java.util.UUID;
  * @since 2023/5/11
  */
 public abstract class AbstractProducerService implements ProducerService {
-    @Resource
-    private RabbitTemplate rabbitTemplate;
 
-    /**
-     * 交换机
-     */
-    private String exchange;
+	@Resource
+	private RabbitTemplate rabbitTemplate;
 
-    /**
-     * 路由
-     */
-    private String routingKey;
-    @Override
-    public void send(Object msg) {
-        MessagePostProcessor messagePostProcessor = (message) -> {
-            MessageProperties messageProperties = message.getMessageProperties();
-            messageProperties.setMessageId(UUID.randomUUID().toString());
-            messageProperties.setTimestamp(new Date());
-            return message;
-        };
-        MessageProperties messageProperties = new MessageProperties();
-        messageProperties.setContentEncoding("UTF-8");
-        messageProperties.setContentType("text/plain");
-        String data = JacksonUtils.toJson(msg);
-        Message message = new Message(data.getBytes(StandardCharsets.UTF_8), messageProperties);
-        rabbitTemplate.convertAndSend(this.exchange, this.routingKey, message, messagePostProcessor);
-    }
-    public void setExchange(String exchange) {
-        this.exchange = exchange;
-    }
+	/**
+	 * 交换机
+	 */
+	private String exchange;
 
-    public void setRoutingKey(String routingKey) {
-        this.routingKey = routingKey;
-    }
+	/**
+	 * 路由
+	 */
+	private String routingKey;
+
+	@Override
+	public void send(Object msg) {
+		MessagePostProcessor messagePostProcessor = (message) -> {
+			MessageProperties messageProperties = message.getMessageProperties();
+			messageProperties.setMessageId(UUID.randomUUID().toString());
+			messageProperties.setTimestamp(new Date());
+			return message;
+		};
+		MessageProperties messageProperties = new MessageProperties();
+		messageProperties.setContentEncoding("UTF-8");
+		messageProperties.setContentType("text/plain");
+		String data = JacksonUtils.toJson(msg);
+		Message message = new Message(data.getBytes(StandardCharsets.UTF_8), messageProperties);
+		rabbitTemplate.convertAndSend(this.exchange, this.routingKey, message, messagePostProcessor);
+	}
+
+	public void setExchange(String exchange) {
+		this.exchange = exchange;
+	}
+
+	public void setRoutingKey(String routingKey) {
+		this.routingKey = routingKey;
+	}
+
 }

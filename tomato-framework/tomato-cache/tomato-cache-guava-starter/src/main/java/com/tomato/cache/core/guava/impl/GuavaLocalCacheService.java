@@ -12,22 +12,24 @@ import java.util.Optional;
  * @author lizhifu
  * @since 2023/7/10
  */
-public class GuavaLocalCacheService <K, V> implements LocalCacheService<K, V> {
-    private final Cache<K, V> cache = LocalGuavaCacheFactory.getLocalCache();
+public class GuavaLocalCacheService<K, V> implements LocalCacheService<K, V> {
 
-    @Override
-    public void put(K key, V value) {
-        cache.put(key, value);
-    }
+	private final Cache<K, V> cache = LocalGuavaCacheFactory.getLocalCache();
 
-    @Override
-    public V getIfPresent(Object key) {
-        Optional.ofNullable(key).orElseThrow(() -> new NullPointerException("key is null"));
-        return cache.getIfPresent(key);
-    }
+	@Override
+	public void put(K key, V value) {
+		cache.put(key, value);
+	}
 
-    @Override
-    public void remove(K key) {
-        cache.invalidate(key);
-    }
+	@Override
+	public V getIfPresent(Object key) {
+		Optional.ofNullable(key).orElseThrow(() -> new NullPointerException("key is null"));
+		return cache.getIfPresent(key);
+	}
+
+	@Override
+	public void remove(K key) {
+		cache.invalidate(key);
+	}
+
 }

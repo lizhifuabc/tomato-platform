@@ -7,4 +7,5 @@ package com.tomato.seckill.domain.resp;
  * @since 2023/3/22
  */
 public class SeckillGoodsInfoDetailResp {
+
 }

@@ -12,11 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class StringStructureTest {
-    @Resource
-    private StringStructure stringStructure;
-    @Test
-    public void test(){
-        stringStructure.set("name","lizhifu");
-        stringStructure.incr("name");
-    }
+
+	@Resource
+	private StringStructure stringStructure;
+
+	@Test
+	public void test() {
+		stringStructure.set("name", "lizhifu");
+		stringStructure.incr("name");
+	}
+
 }

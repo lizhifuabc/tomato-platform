@@ -15,14 +15,16 @@ import java.util.Optional;
  */
 @Service
 public class SysUserServiceImpl implements SysUserService {
-    private final SysUserRepository sysUserRepository;
 
-    public SysUserServiceImpl(SysUserRepository sysUserRepository) {
-        this.sysUserRepository = sysUserRepository;
-    }
+	private final SysUserRepository sysUserRepository;
 
-    @Override
-    public Optional<SysUser> getUserByUserName(String userName) {
-        return sysUserRepository.findByUsername(userName);
-    }
+	public SysUserServiceImpl(SysUserRepository sysUserRepository) {
+		this.sysUserRepository = sysUserRepository;
+	}
+
+	@Override
+	public Optional<SysUser> getUserByUserName(String userName) {
+		return sysUserRepository.findByUsername(userName);
+	}
+
 }

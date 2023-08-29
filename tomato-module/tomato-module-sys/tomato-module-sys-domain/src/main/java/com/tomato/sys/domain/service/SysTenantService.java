@@ -13,10 +13,12 @@ import java.util.Optional;
  * @since 2023/5/3
  */
 public interface SysTenantService extends BaseReadableService<SysTenant, Long>, BaseWriteableService<SysTenant, Long> {
-    /**
-     * 根据租户ID查询
-     * @param tenantId 租户ID
-     * @return 租户信息
-     */
-    Optional<SysTenant> findByTenantId(Long tenantId);
+
+	/**
+	 * 根据租户ID查询
+	 * @param tenantId 租户ID
+	 * @return 租户信息
+	 */
+	Optional<SysTenant> findByTenantId(Long tenantId);
+
 }

@@ -21,27 +21,26 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
  */
 @Controller
 public class AuthorizationController {
+
 	private final WebClient webClient;
+
 	private final String messagesBaseUri;
 
-	public AuthorizationController(WebClient webClient,
-			@Value("${messages.base-uri}") String messagesBaseUri) {
+	public AuthorizationController(WebClient webClient, @Value("${messages.base-uri}") String messagesBaseUri) {
 		this.webClient = webClient;
 		this.messagesBaseUri = messagesBaseUri;
 	}
 
 	@GetMapping(value = "/authorize", params = "grant_type=authorization_code")
 	public String authorizationCodeGrant(Model model,
-			@RegisteredOAuth2AuthorizedClient("messaging-client-authorization-code")
-					OAuth2AuthorizedClient authorizedClient) {
+			@RegisteredOAuth2AuthorizedClient("messaging-client-authorization-code") OAuth2AuthorizedClient authorizedClient) {
 
-		String[] messages = this.webClient
-				.get()
-				.uri(this.messagesBaseUri)
-				.attributes(oauth2AuthorizedClient(authorizedClient))
-				.retrieve()
-				.bodyToMono(String[].class)
-				.block();
+		String[] messages = this.webClient.get()
+			.uri(this.messagesBaseUri)
+			.attributes(oauth2AuthorizedClient(authorizedClient))
+			.retrieve()
+			.bodyToMono(String[].class)
+			.block();
 		model.addAttribute("messages", messages);
 
 		return "index";
@@ -53,11 +52,8 @@ public class AuthorizationController {
 		String errorCode = request.getParameter(OAuth2ParameterNames.ERROR);
 		if (StringUtils.hasText(errorCode)) {
 			model.addAttribute("error",
-					new OAuth2Error(
-							errorCode,
-							request.getParameter(OAuth2ParameterNames.ERROR_DESCRIPTION),
-							request.getParameter(OAuth2ParameterNames.ERROR_URI))
-			);
+					new OAuth2Error(errorCode, request.getParameter(OAuth2ParameterNames.ERROR_DESCRIPTION),
+							request.getParameter(OAuth2ParameterNames.ERROR_URI)));
 		}
 
 		return "index";
@@ -66,15 +62,15 @@ public class AuthorizationController {
 	@GetMapping(value = "/authorize", params = "grant_type=client_credentials")
 	public String clientCredentialsGrant(Model model) {
 
-		String[] messages = this.webClient
-				.get()
-				.uri(this.messagesBaseUri)
-				.attributes(clientRegistrationId("messaging-client-client-credentials"))
-				.retrieve()
-				.bodyToMono(String[].class)
-				.block();
+		String[] messages = this.webClient.get()
+			.uri(this.messagesBaseUri)
+			.attributes(clientRegistrationId("messaging-client-client-credentials"))
+			.retrieve()
+			.bodyToMono(String[].class)
+			.block();
 		model.addAttribute("messages", messages);
 
 		return "index";
 	}
+
 }

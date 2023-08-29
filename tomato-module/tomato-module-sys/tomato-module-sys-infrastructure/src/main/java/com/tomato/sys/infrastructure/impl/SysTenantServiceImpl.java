@@ -16,19 +16,21 @@ import java.util.Optional;
  */
 @Service
 public class SysTenantServiceImpl implements SysTenantService {
-    private final SysTenantJpaRepository sysTenantJpaRepository;
 
-    public SysTenantServiceImpl(SysTenantJpaRepository sysTenantJpaRepository) {
-        this.sysTenantJpaRepository = sysTenantJpaRepository;
-    }
+	private final SysTenantJpaRepository sysTenantJpaRepository;
 
-    @Override
-    public Optional<SysTenant> findByTenantId(Long tenantId) {
-        return Optional.ofNullable(sysTenantJpaRepository.findByTenantId(tenantId));
-    }
+	public SysTenantServiceImpl(SysTenantJpaRepository sysTenantJpaRepository) {
+		this.sysTenantJpaRepository = sysTenantJpaRepository;
+	}
 
-    @Override
-    public BaseJpaRepository<SysTenant, Long> getRepository() {
-        return this.sysTenantJpaRepository;
-    }
+	@Override
+	public Optional<SysTenant> findByTenantId(Long tenantId) {
+		return Optional.ofNullable(sysTenantJpaRepository.findByTenantId(tenantId));
+	}
+
+	@Override
+	public BaseJpaRepository<SysTenant, Long> getRepository() {
+		return this.sysTenantJpaRepository;
+	}
+
 }

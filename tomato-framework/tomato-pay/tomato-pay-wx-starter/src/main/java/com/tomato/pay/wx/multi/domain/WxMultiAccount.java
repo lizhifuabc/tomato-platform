@@ -13,20 +13,25 @@ import java.security.KeyPair;
  */
 @Data
 public class WxMultiAccount {
-    /**
-     * 密钥对
-     */
-    private KeyPair keyPair;
-    /**
-     * 证书序列号
-     */
-    private String serialNumber;
-    /**
-     * 账号标识
-     */
-    private String multiAccountId;
-    /**
-     * V3 配置
-     */
-    private WxPayProperties.V3 v3;
+
+	/**
+	 * 密钥对
+	 */
+	private KeyPair keyPair;
+
+	/**
+	 * 证书序列号
+	 */
+	private String serialNumber;
+
+	/**
+	 * 账号标识
+	 */
+	private String multiAccountId;
+
+	/**
+	 * V3 配置
+	 */
+	private WxPayProperties.V3 v3;
+
 }

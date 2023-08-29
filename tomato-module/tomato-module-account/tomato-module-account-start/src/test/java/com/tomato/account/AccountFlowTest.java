@@ -33,72 +33,81 @@ import java.util.Random;
  */
 @SpringBootTest
 public class AccountFlowTest {
-    @Resource
-    private AccountAsyncDao accountAsyncDao;
-    @Resource
-    private AccountAsyncInitService accountAsyncInitService;
-    @Resource
-    private RestTemplate restTemplate;
 
-    @Test
-    public void flow(){
-        for (int i = 0; i < 5; i++) {
-            init();
-        }
-    }
+	@Resource
+	private AccountAsyncDao accountAsyncDao;
 
-    public void init(){
-        AccountCreateReq accountCreateReq = new AccountCreateReq();
-        accountCreateReq.setMerchantNo("10202307240001002"+ new Random().nextInt(1000));
-        accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
-        accountCreateReq.setRemark("测试");
+	@Resource
+	private AccountAsyncInitService accountAsyncInitService;
 
-        HttpEntity<AccountCreateReq> requestEntity = new HttpEntity<>(accountCreateReq);
-        ParameterizedTypeReference<Resp<AccountCreateResp>> responseType = new ParameterizedTypeReference<>() {};
-        ResponseEntity<Resp<AccountCreateResp>> responseEntity = restTemplate.exchange("http://localhost:9080/account/create", HttpMethod.POST, requestEntity, responseType);
-        Resp<AccountCreateResp> accountCreateRespResp = responseEntity.getBody();
+	@Resource
+	private RestTemplate restTemplate;
 
-        System.out.println("账户系统流程测试:创建账户:返回:"+accountCreateRespResp);
+	@Test
+	public void flow() {
+		for (int i = 0; i < 5; i++) {
+			init();
+		}
+	}
 
-        System.out.println("账户系统流程测试:创建账户:异步入库");
-        AccountAsyncEntity accountAsyncEntity = new AccountAsyncEntity();
-        accountAsyncEntity.setAccountNo(accountCreateRespResp.getData().getAccountNo());
-        accountAsyncEntity.setMerchantNo(accountCreateReq.getMerchantNo());
-        accountAsyncDao.insertSelective(accountAsyncEntity);
-        accountAsyncInitService.put(accountAsyncEntity);
-        System.out.println("账户系统流程测试:创建账户:异步入库:完成");
+	public void init() {
+		AccountCreateReq accountCreateReq = new AccountCreateReq();
+		accountCreateReq.setMerchantNo("10202307240001002" + new Random().nextInt(1000));
+		accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
+		accountCreateReq.setRemark("测试");
 
-        System.out.println("账户系统流程测试:创建结算规则");
-        AccountSettleCreateReq accountSettleCreateReq = new AccountSettleCreateReq();
-        accountSettleCreateReq.setAccountNo(accountCreateRespResp.getData().getAccountNo());
-        accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
-        accountSettleCreateReq.setMaxSettleDays(10);
-        accountSettleCreateReq.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
-        accountSettleCreateReq.setReserveDays(1);
-        accountSettleCreateReq.setCycleType(CycleTypeEnum.WEEK.getValue());
-        accountSettleCreateReq.setCycleData("1,2,3,4,5,6,7");
-        accountSettleCreateReq.setRemark("测试结算规则");
+		HttpEntity<AccountCreateReq> requestEntity = new HttpEntity<>(accountCreateReq);
+		ParameterizedTypeReference<Resp<AccountCreateResp>> responseType = new ParameterizedTypeReference<>() {
+		};
+		ResponseEntity<Resp<AccountCreateResp>> responseEntity = restTemplate
+			.exchange("http://localhost:9080/account/create", HttpMethod.POST, requestEntity, responseType);
+		Resp<AccountCreateResp> accountCreateRespResp = responseEntity.getBody();
 
-        Resp resp = restTemplate.postForEntity("http://localhost:9080/account/settle/init",accountSettleCreateReq,Resp.class).getBody();
-        System.out.println("账户系统流程测试:创建结算规则:返回:"+resp);
+		System.out.println("账户系统流程测试:创建账户:返回:" + accountCreateRespResp);
 
-        System.out.println("账户系统流程测试:入账");
-        BigDecimal sum = new BigDecimal(0);
-        for (int i = 0; i < 100; i++) {
-            AccountTradReq accountTradReq = new AccountTradReq();
-            accountTradReq.setMerchantNo(accountCreateReq.getMerchantNo());
-            int amount = new Random().nextInt(1000);
-            accountTradReq.setAmount(BigDecimal.valueOf(amount));
-            accountTradReq.setSysNo(UUIDGenerator.get32UUID());
-            accountTradReq.setMerchantOrderNo(UUIDGenerator.get32UUID());
-            accountTradReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
-            accountTradReq.setAccountHisType(AccountTypeEnum.SETTLEMENT.getValue());
-            accountTradReq.setAsync(true);
+		System.out.println("账户系统流程测试:创建账户:异步入库");
+		AccountAsyncEntity accountAsyncEntity = new AccountAsyncEntity();
+		accountAsyncEntity.setAccountNo(accountCreateRespResp.getData().getAccountNo());
+		accountAsyncEntity.setMerchantNo(accountCreateReq.getMerchantNo());
+		accountAsyncDao.insertSelective(accountAsyncEntity);
+		accountAsyncInitService.put(accountAsyncEntity);
+		System.out.println("账户系统流程测试:创建账户:异步入库:完成");
 
-            Resp resp1 = restTemplate.postForEntity("http://localhost:9080//account/trad",accountTradReq,Resp.class).getBody();
-            System.out.println("账户系统流程测试:入账:返回:"+resp1);
-            sum = sum.add(accountTradReq.getAmount());
-        }
-        System.out.println("账户系统流程测试:入账:总金额:"+sum);
-    }
+		System.out.println("账户系统流程测试:创建结算规则");
+		AccountSettleCreateReq accountSettleCreateReq = new AccountSettleCreateReq();
+		accountSettleCreateReq.setAccountNo(accountCreateRespResp.getData().getAccountNo());
+		accountSettleCreateReq.setSettleType(SettleTypeEnum.AUTO_SETTLEMENT.getValue());
+		accountSettleCreateReq.setMaxSettleDays(10);
+		accountSettleCreateReq.setSettleTargetType(SettleTargetTypeEnum.BANK_CARD.getValue());
+		accountSettleCreateReq.setReserveDays(1);
+		accountSettleCreateReq.setCycleType(CycleTypeEnum.WEEK.getValue());
+		accountSettleCreateReq.setCycleData("1,2,3,4,5,6,7");
+		accountSettleCreateReq.setRemark("测试结算规则");
+
+		Resp resp = restTemplate
+			.postForEntity("http://localhost:9080/account/settle/init", accountSettleCreateReq, Resp.class)
+			.getBody();
+		System.out.println("账户系统流程测试:创建结算规则:返回:" + resp);
+
+		System.out.println("账户系统流程测试:入账");
+		BigDecimal sum = new BigDecimal(0);
+		for (int i = 0; i < 100; i++) {
+			AccountTradReq accountTradReq = new AccountTradReq();
+			accountTradReq.setMerchantNo(accountCreateReq.getMerchantNo());
+			int amount = new Random().nextInt(1000);
+			accountTradReq.setAmount(BigDecimal.valueOf(amount));
+			accountTradReq.setSysNo(UUIDGenerator.get32UUID());
+			accountTradReq.setMerchantOrderNo(UUIDGenerator.get32UUID());
+			accountTradReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
+			accountTradReq.setAccountHisType(AccountTypeEnum.SETTLEMENT.getValue());
+			accountTradReq.setAsync(true);
+
+			Resp resp1 = restTemplate.postForEntity("http://localhost:9080//account/trad", accountTradReq, Resp.class)
+				.getBody();
+			System.out.println("账户系统流程测试:入账:返回:" + resp1);
+			sum = sum.add(accountTradReq.getAmount());
+		}
+		System.out.println("账户系统流程测试:入账:总金额:" + sum);
+	}
+
 }

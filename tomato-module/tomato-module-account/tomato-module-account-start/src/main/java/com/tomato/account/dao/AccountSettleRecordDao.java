@@ -15,16 +15,20 @@ import java.time.LocalDate;
  */
 @Mapper
 public interface AccountSettleRecordDao {
-    /**
-     * 插入
-     * @param accountSettleRecordEntity 账户结算记录
-     */
-    void insert(AccountSettleRecordEntity accountSettleRecordEntity);
-    /**
-     * 根据账号和结算日期查询
-     * @param accountNo 账号
-     * @param settleDate 结算日期
-     * @return 实体
-     */
-    AccountSettleRecordEntity selectByAccountNoAndSettleDate(@Param("accountNo") String accountNo,@Param("settleDate") LocalDate settleDate);
+
+	/**
+	 * 插入
+	 * @param accountSettleRecordEntity 账户结算记录
+	 */
+	void insert(AccountSettleRecordEntity accountSettleRecordEntity);
+
+	/**
+	 * 根据账号和结算日期查询
+	 * @param accountNo 账号
+	 * @param settleDate 结算日期
+	 * @return 实体
+	 */
+	AccountSettleRecordEntity selectByAccountNoAndSettleDate(@Param("accountNo") String accountNo,
+			@Param("settleDate") LocalDate settleDate);
+
 }

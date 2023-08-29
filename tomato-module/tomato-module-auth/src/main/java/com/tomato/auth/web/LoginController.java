@@ -12,19 +12,21 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * 登录
  * <p>
- * {@link DefaultLoginPageConfigurer 默认登录页配置}
- * {@link DefaultLoginPageGeneratingFilter 默认登录页生成过滤器}
- * {@link DefaultLogoutPageGeneratingFilter 默认登出页生成过滤器}
+ * {@link DefaultLoginPageConfigurer 默认登录页配置} {@link DefaultLoginPageGeneratingFilter
+ * 默认登录页生成过滤器} {@link DefaultLogoutPageGeneratingFilter 默认登出页生成过滤器}
+ *
  * @author lizhifu
  * @since 2023/5/3
  */
 @Controller
 @Slf4j
 public class LoginController {
-    @GetMapping("/login")
-    public ModelAndView login(HttpServletRequest request) {
-        log.info("进入login页面");
-        ModelAndView modelAndView = new ModelAndView("login");
-        return modelAndView;
-    }
+
+	@GetMapping("/login")
+	public ModelAndView login(HttpServletRequest request) {
+		log.info("进入login页面");
+		ModelAndView modelAndView = new ModelAndView("login");
+		return modelAndView;
+	}
+
 }

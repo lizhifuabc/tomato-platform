@@ -15,29 +15,31 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Slf4j
 public class ShardingRepositoryImpl implements ShardingRepository {
-    private final ShardingDbMapper shardingDbMapper;
 
-    public ShardingRepositoryImpl(ShardingDbMapper shardingDbMapper) {
-        this.shardingDbMapper = shardingDbMapper;
-    }
+	private final ShardingDbMapper shardingDbMapper;
 
-    @Override
-    public String getShardingDb(String merchantNoSpilt) {
-        return shardingDbMapper.selectShardingDb(merchantNoSpilt).orElse(ShardingConstant.DB_DEFAULT);
-    }
+	public ShardingRepositoryImpl(ShardingDbMapper shardingDbMapper) {
+		this.shardingDbMapper = shardingDbMapper;
+	}
 
-    @Override
-    public String getShardingTable(String merchantNoSpilt) {
-        return null;
-    }
+	@Override
+	public String getShardingDb(String merchantNoSpilt) {
+		return shardingDbMapper.selectShardingDb(merchantNoSpilt).orElse(ShardingConstant.DB_DEFAULT);
+	}
 
-    @Override
-    public String getShardingDbByOrderNo(String orderNo) {
-        return null;
-    }
+	@Override
+	public String getShardingTable(String merchantNoSpilt) {
+		return null;
+	}
 
-    @Override
-    public String getShardingTableByOrderNo(String orderNo) {
-        return null;
-    }
+	@Override
+	public String getShardingDbByOrderNo(String orderNo) {
+		return null;
+	}
+
+	@Override
+	public String getShardingTableByOrderNo(String orderNo) {
+		return null;
+	}
+
 }

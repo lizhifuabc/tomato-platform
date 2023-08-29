@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserPasswordService {
 
-    public void updatePassword(SysUserUpdatePasswordReq sysUserUpdatePasswordReq) {
+	public void updatePassword(SysUserUpdatePasswordReq sysUserUpdatePasswordReq) {
 
-    }
+	}
+
 }

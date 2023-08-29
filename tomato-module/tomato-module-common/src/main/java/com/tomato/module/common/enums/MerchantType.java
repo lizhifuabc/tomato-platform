@@ -13,18 +13,19 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum MerchantType implements BaseEnum<String> {
-    /**
-     * 支付商户
-     */
-    PAY("PAY", "支付商户"),
 
-    /**
-     * 代理商商户
-     */
-    AGENT("AGENT", "代理商商户"),
-    ;
+	/**
+	 * 支付商户
+	 */
+	PAY("PAY", "支付商户"),
 
-    private final String value;
+	/**
+	 * 代理商商户
+	 */
+	AGENT("AGENT", "代理商商户"),;
 
-    private final String desc;
+	private final String value;
+
+	private final String desc;
+
 }

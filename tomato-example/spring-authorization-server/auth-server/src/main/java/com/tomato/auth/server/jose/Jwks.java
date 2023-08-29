@@ -70,4 +70,5 @@ public final class Jwks {
 				.build();
 		// @formatter:on
 	}
+
 }

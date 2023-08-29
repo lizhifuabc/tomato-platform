@@ -11,12 +11,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * @since 2023/5/3
  */
 public interface CustomUserDetailsService extends UserDetailsService {
-    /**
-     * 系统用户名
-     *
-     * @param username 用户账号
-     * @return {@link CustomUserDetails}
-     * @throws UsernameNotFoundException 用户不存在
-     */
-    CustomUserDetails loadCustomUserByUsername(String username) throws UsernameNotFoundException;
+
+	/**
+	 * 系统用户名
+	 * @param username 用户账号
+	 * @return {@link CustomUserDetails}
+	 * @throws UsernameNotFoundException 用户不存在
+	 */
+	CustomUserDetails loadCustomUserByUsername(String username) throws UsernameNotFoundException;
+
 }

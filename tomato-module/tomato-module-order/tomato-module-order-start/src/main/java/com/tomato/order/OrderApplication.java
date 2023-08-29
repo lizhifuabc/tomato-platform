@@ -11,12 +11,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 项目启动类
+ *
  * @author lizhifu
  */
-@SpringBootApplication(scanBasePackages = {"com.tomato"})
+@SpringBootApplication(scanBasePackages = { "com.tomato" })
 @EnableAsync // 开启异步支持
 @EnableScheduling
-@EnableFeignClients(basePackages = {"com.tomato.merchant.api","com.tomato.channel.api","com.tomato.account.api","com.tomato.notice.api"})
+@EnableFeignClients(basePackages = { "com.tomato.merchant.api", "com.tomato.channel.api", "com.tomato.account.api",
+		"com.tomato.notice.api" })
 @MapperScan("com.tomato.order.infrastructure.mapper")
 public class OrderApplication {
 
@@ -25,7 +27,7 @@ public class OrderApplication {
 		Environment env = applicationContext.getEnvironment();
 		System.out.println("系统服务启动成功" + env);
 		// swagger-ui.html 地址
-		System.out.println("http://localhost:"+env.getProperty("server.port")+"/swagger-ui.html");
+		System.out.println("http://localhost:" + env.getProperty("server.port") + "/swagger-ui.html");
 	}
 
 }

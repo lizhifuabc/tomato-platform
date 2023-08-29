@@ -13,20 +13,25 @@ import java.time.LocalDateTime;
  */
 @Data
 public class SeckillInfoEntity extends BaseEntity {
-    /**
-     * 活动名称
-     */
-    private String name;
-    /**
-     * 开始时间
-     */
-    private LocalDateTime startTime;
-    /**
-     * 结束时间
-     */
-    private LocalDateTime endTime;
-    /**
-     * 是否关闭,0-否, 1-是
-     */
-    private Boolean disabledFlag;
+
+	/**
+	 * 活动名称
+	 */
+	private String name;
+
+	/**
+	 * 开始时间
+	 */
+	private LocalDateTime startTime;
+
+	/**
+	 * 结束时间
+	 */
+	private LocalDateTime endTime;
+
+	/**
+	 * 是否关闭,0-否, 1-是
+	 */
+	private Boolean disabledFlag;
+
 }

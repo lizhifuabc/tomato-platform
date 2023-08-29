@@ -9,5 +9,7 @@ import com.tomato.order.domain.domain.entity.ChannelEntity;
  * @since 2023/8/5
  */
 public interface ChannelRepository {
-    ChannelEntity tradeChannel(Integer payType, String merchantNo);
+
+	ChannelEntity tradeChannel(Integer payType, String merchantNo);
+
 }

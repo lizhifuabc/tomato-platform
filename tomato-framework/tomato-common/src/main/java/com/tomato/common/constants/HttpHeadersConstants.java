@@ -7,8 +7,10 @@ package com.tomato.common.constants;
  * @since 2023/8/1
  */
 public interface HttpHeadersConstants {
-    /**
-     * 租户ID
-     */
-    String X_TOMATO_TENANT_ID = "X-Tomato-Tenant-Id";
+
+	/**
+	 * 租户ID
+	 */
+	String X_TOMATO_TENANT_ID = "X-Tomato-Tenant-Id";
+
 }

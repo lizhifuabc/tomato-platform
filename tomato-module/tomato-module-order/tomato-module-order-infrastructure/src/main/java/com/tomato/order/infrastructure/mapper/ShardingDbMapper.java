@@ -14,11 +14,13 @@ import java.util.Optional;
  */
 @Mapper
 public interface ShardingDbMapper {
-    /**
-     * 根据商户号查询分库
-     * @param merchantNoSpilt 商户号
-     * @return 分库
-     */
-    @Select("select sharding_db from t_order_sharding_db where merchant_no_spilt = #{merchantNoSpilt}")
-    Optional<String> selectShardingDb(@Param("merchantNoSpilt") String merchantNoSpilt);
+
+	/**
+	 * 根据商户号查询分库
+	 * @param merchantNoSpilt 商户号
+	 * @return 分库
+	 */
+	@Select("select sharding_db from t_order_sharding_db where merchant_no_spilt = #{merchantNoSpilt}")
+	Optional<String> selectShardingDb(@Param("merchantNoSpilt") String merchantNoSpilt);
+
 }

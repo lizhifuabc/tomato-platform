@@ -11,11 +11,13 @@ import java.lang.annotation.*;
  * @author lizhifu
  * @date 2022/12/12
  */
-@Target({ElementType.FIELD, ElementType.TYPE})
+@Target({ ElementType.FIELD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @JacksonAnnotationsInside
 @JsonSerialize(using = DataMaskingSerializer.class)
 public @interface DataMask {
-    DataMaskEnum function();
+
+	DataMaskEnum function();
+
 }

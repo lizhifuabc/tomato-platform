@@ -9,29 +9,34 @@ import com.tomato.web.core.util.BeanUtil;
 import org.springframework.stereotype.Service;
 
 /**
- *  订单查询
+ * 订单查询
  *
  * @author lizhifu
- * @since  2022/12/1
+ * @since 2022/12/1
  */
 @Service
 public class OrderQueryService {
-    private final OrderInfoRepository orderInfoRepository;
 
-    public OrderQueryService(OrderInfoRepository orderInfoRepository) {
-        this.orderInfoRepository = orderInfoRepository;
-    }
+	private final OrderInfoRepository orderInfoRepository;
 
-    public OrderQueryResultResp orderQueryByMerchant(OrderQueryByMerchantReq orderQueryByMerchantReq) {
-        OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByMerchant(orderQueryByMerchantReq.getMerchantNo(),orderQueryByMerchantReq.getMerchantOrderNo());
-        return convert(orderInfoEntity);
-    }
+	public OrderQueryService(OrderInfoRepository orderInfoRepository) {
+		this.orderInfoRepository = orderInfoRepository;
+	}
 
-    public OrderQueryResultResp orderQueryByOrderNo(OrderQueryByOrderNoReq orderQueryByOrderNoReq) {
-        OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByOrderNo(orderQueryByOrderNoReq.getMerchantNo(),orderQueryByOrderNoReq.getOrderNo());
-        return convert(orderInfoEntity);
-    }
-    private OrderQueryResultResp convert(OrderInfoEntity orderInfoEntity){
-        return BeanUtil.copy(orderInfoEntity,OrderQueryResultResp.class);
-    }
+	public OrderQueryResultResp orderQueryByMerchant(OrderQueryByMerchantReq orderQueryByMerchantReq) {
+		OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByMerchant(orderQueryByMerchantReq.getMerchantNo(),
+				orderQueryByMerchantReq.getMerchantOrderNo());
+		return convert(orderInfoEntity);
+	}
+
+	public OrderQueryResultResp orderQueryByOrderNo(OrderQueryByOrderNoReq orderQueryByOrderNoReq) {
+		OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByOrderNo(orderQueryByOrderNoReq.getMerchantNo(),
+				orderQueryByOrderNoReq.getOrderNo());
+		return convert(orderInfoEntity);
+	}
+
+	private OrderQueryResultResp convert(OrderInfoEntity orderInfoEntity) {
+		return BeanUtil.copy(orderInfoEntity, OrderQueryResultResp.class);
+	}
+
 }

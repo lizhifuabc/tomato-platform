@@ -21,21 +21,25 @@ import java.util.concurrent.TimeUnit;
 @NoArgsConstructor
 @Builder
 public class RedisConcurrentRequestCountLimiterReq {
-    /**
-     * 限流唯一性标识
-     */
-    @NotBlank
-    private String id;
-    /**
-     * 数量
-     */
-    @NotNull
-    @Min(1)
-    private Integer count;
-    /**
-     * 时间间隔,单位 秒
-     */
-    @Min(1)
-    @NotNull
-    private Integer interval;
+
+	/**
+	 * 限流唯一性标识
+	 */
+	@NotBlank
+	private String id;
+
+	/**
+	 * 数量
+	 */
+	@NotNull
+	@Min(1)
+	private Integer count;
+
+	/**
+	 * 时间间隔,单位 秒
+	 */
+	@Min(1)
+	@NotNull
+	private Integer interval;
+
 }

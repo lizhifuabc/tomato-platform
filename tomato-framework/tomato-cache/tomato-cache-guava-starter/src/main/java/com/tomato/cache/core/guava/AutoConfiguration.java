@@ -16,14 +16,18 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration(proxyBeanMethods = false)
 public class AutoConfiguration {
-    private static final Logger log = LoggerFactory.getLogger(AutoConfiguration.class);
-    @PostConstruct
-    public void postConstruct() {
-        log.info("guava 自动配置");
-    }
-    @Bean
-    @ConditionalOnProperty(name = "cache.type.local", havingValue = "guava")
-    public GuavaLocalCacheService guavaLocalCacheService() {
-        return new GuavaLocalCacheService();
-    }
+
+	private static final Logger log = LoggerFactory.getLogger(AutoConfiguration.class);
+
+	@PostConstruct
+	public void postConstruct() {
+		log.info("guava 自动配置");
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "cache.type.local", havingValue = "guava")
+	public GuavaLocalCacheService guavaLocalCacheService() {
+		return new GuavaLocalCacheService();
+	}
+
 }

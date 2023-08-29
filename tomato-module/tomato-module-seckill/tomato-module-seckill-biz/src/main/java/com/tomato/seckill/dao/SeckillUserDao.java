@@ -13,24 +13,27 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface SeckillUserDao {
-    /**
-     * 更新秒杀剩余量
-     * @return
-     */
-    int updateSkillRemaining(UpdateSeckillRemainingBO updateSkillRemainingBO);
 
-    /**
-     * 插入
-     * @param seckillUserEntity
-     * @return ID
-     */
-    Long insert(SeckillUserEntity seckillUserEntity);
+	/**
+	 * 更新秒杀剩余量
+	 * @return
+	 */
+	int updateSkillRemaining(UpdateSeckillRemainingBO updateSkillRemainingBO);
 
-    /**
-     * 查询
-     * @param userId 用户id
-     * @param seckillGoodsId 秒杀活动商品记录id
-     * @return
-     */
-    SeckillUserEntity selectByUserIdSeckillGoodsId(@Param("userId") Long userId,@Param("seckillGoodsId") Long seckillGoodsId);
+	/**
+	 * 插入
+	 * @param seckillUserEntity
+	 * @return ID
+	 */
+	Long insert(SeckillUserEntity seckillUserEntity);
+
+	/**
+	 * 查询
+	 * @param userId 用户id
+	 * @param seckillGoodsId 秒杀活动商品记录id
+	 * @return
+	 */
+	SeckillUserEntity selectByUserIdSeckillGoodsId(@Param("userId") Long userId,
+			@Param("seckillGoodsId") Long seckillGoodsId);
+
 }

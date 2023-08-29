@@ -13,8 +13,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = WebConstants.PROPERTY_PREFIX_WEB)
 public class CustomWebProperties {
-    /**
-     * 是否开启controller切面
-     */
-    private Boolean controllerPointEnable = true;
+
+	/**
+	 * 是否开启controller切面
+	 */
+	private Boolean controllerPointEnable = true;
+
 }

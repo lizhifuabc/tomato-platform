@@ -12,8 +12,10 @@ import org.springframework.boot.ApplicationRunner;
  */
 @Slf4j
 public class BannerApplicationRunner implements ApplicationRunner {
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        log.info("tomato-banner-starter 自动装配");
-    }
+
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		log.info("tomato-banner-starter 自动装配");
+	}
+
 }

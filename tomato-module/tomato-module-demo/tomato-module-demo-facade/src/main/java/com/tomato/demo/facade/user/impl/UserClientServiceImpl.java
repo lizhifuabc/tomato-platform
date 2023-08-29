@@ -9,4 +9,5 @@ import com.tomato.demo.client.user.service.UserClientService;
  * @since 2023/4/3
  */
 public class UserClientServiceImpl implements UserClientService {
+
 }

@@ -20,22 +20,23 @@ import java.nio.charset.Charset;
  */
 @Slf4j
 public class CustomServerAccessDeniedHandler implements ServerAccessDeniedHandler {
-    @Override
-    public Mono<Void> handle(ServerWebExchange exchange, AccessDeniedException denied) {
-        log.error("token请求头鉴权失败",denied);
-        return Mono.defer(() -> Mono.just(exchange.getResponse()))
-                .flatMap(response -> {
-                    response.setStatusCode(HttpStatus.OK);
 
-                    response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+	@Override
+	public Mono<Void> handle(ServerWebExchange exchange, AccessDeniedException denied) {
+		log.error("token请求头鉴权失败", denied);
+		return Mono.defer(() -> Mono.just(exchange.getResponse())).flatMap(response -> {
+			response.setStatusCode(HttpStatus.OK);
 
-                    DataBufferFactory dataBufferFactory = response.bufferFactory();
+			response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 
-                    String result = "token请求头鉴权失败:";
+			DataBufferFactory dataBufferFactory = response.bufferFactory();
 
-                    DataBuffer buffer = dataBufferFactory.wrap(result.getBytes(Charset.defaultCharset()));
+			String result = "token请求头鉴权失败:";
 
-                    return response.writeWith(Mono.just(buffer));
-                });
-    }
+			DataBuffer buffer = dataBufferFactory.wrap(result.getBytes(Charset.defaultCharset()));
+
+			return response.writeWith(Mono.just(buffer));
+		});
+	}
+
 }

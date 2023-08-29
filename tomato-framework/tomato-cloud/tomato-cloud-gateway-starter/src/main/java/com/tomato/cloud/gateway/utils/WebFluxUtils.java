@@ -19,21 +19,22 @@ import java.nio.charset.StandardCharsets;
  * @since 2023/6/4
  */
 public class WebFluxUtils {
-    /**
-     * 写入 JSON 响应
-     *
-     * @param response 响应
-     * @param result   结果
-     * @return Mono<Void>
-     */
-    public static Mono<Void> writeJsonResponse(ServerHttpResponse response, Resp<String> result) {
-        response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        response.setStatusCode(HttpStatus.valueOf(result.getStatus()));
 
-        String jsonResult = JacksonUtils.toJson(result);
-        byte[] bytes = jsonResult.getBytes(StandardCharsets.UTF_8);
+	/**
+	 * 写入 JSON 响应
+	 * @param response 响应
+	 * @param result 结果
+	 * @return Mono<Void>
+	 */
+	public static Mono<Void> writeJsonResponse(ServerHttpResponse response, Resp<String> result) {
+		response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+		response.setStatusCode(HttpStatus.valueOf(result.getStatus()));
 
-        DataBuffer buffer = response.bufferFactory().wrap(bytes);
-        return response.writeWith(Flux.just(buffer));
-    }
+		String jsonResult = JacksonUtils.toJson(result);
+		byte[] bytes = jsonResult.getBytes(StandardCharsets.UTF_8);
+
+		DataBuffer buffer = response.bufferFactory().wrap(bytes);
+		return response.writeWith(Flux.just(buffer));
+	}
+
 }

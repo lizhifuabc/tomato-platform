@@ -14,8 +14,14 @@ import java.time.LocalTime;
  */
 @Data
 public class AccountHisDealQueryBO {
-    private String accountNo;
-    private Integer limit;
-    private LocalDateTime start = LocalDate.now().minusDays(3).atTime(LocalTime.MIN);;
-    private LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);
+
+	private String accountNo;
+
+	private Integer limit;
+
+	private LocalDateTime start = LocalDate.now().minusDays(3).atTime(LocalTime.MIN);
+
+	;
+	private LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);
+
 }

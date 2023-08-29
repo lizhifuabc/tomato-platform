@@ -7,4 +7,5 @@ package com.tomato.order.domain.domain;
  * @since 2023/4/7
  */
 public class OrderQueryResultDomain {
+
 }

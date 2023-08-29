@@ -13,9 +13,11 @@ import java.util.List;
  */
 @Mapper
 public interface GenFieldTypeDao {
-    /**
-     * 查询所有
-     * @return 字段类型列表
-     */
-    List<GenFieldTypeEntity> selectAll();
+
+	/**
+	 * 查询所有
+	 * @return 字段类型列表
+	 */
+	List<GenFieldTypeEntity> selectAll();
+
 }

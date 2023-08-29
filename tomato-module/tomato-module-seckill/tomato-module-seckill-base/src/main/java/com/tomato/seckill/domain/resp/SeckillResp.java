@@ -10,5 +10,7 @@ import lombok.Data;
  */
 @Data
 public class SeckillResp {
-    private String seckillResult;
+
+	private String seckillResult;
+
 }

@@ -17,21 +17,23 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountOperateServiceTest {
-    @Resource
-    AccountOperateService accountOperateService;
 
-    @Test
-    public void test(){
-        AccountCreateReq accountCreateReq = new AccountCreateReq();
-        accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
-        accountCreateReq.setMerchantNo("10202307240001001");
-        accountCreateReq.setRemark("测试");
-        accountOperateService.createAccount(accountCreateReq);
+	@Resource
+	AccountOperateService accountOperateService;
 
-        AccountFreezeReq accountFreezeReq = new AccountFreezeReq();
-        accountOperateService.freezeOrUnfreeze(accountFreezeReq,AccountStatusTypeEnum.ACCOUNT_FROZEN.getValue());
+	@Test
+	public void test() {
+		AccountCreateReq accountCreateReq = new AccountCreateReq();
+		accountCreateReq.setAccountType(AccountTypeEnum.SETTLEMENT.getValue());
+		accountCreateReq.setMerchantNo("10202307240001001");
+		accountCreateReq.setRemark("测试");
+		accountOperateService.createAccount(accountCreateReq);
 
-        AccountCancelledReq accountCancelledReq = new AccountCancelledReq();
-        accountOperateService.cancelledAccount(accountCancelledReq);
-    }
+		AccountFreezeReq accountFreezeReq = new AccountFreezeReq();
+		accountOperateService.freezeOrUnfreeze(accountFreezeReq, AccountStatusTypeEnum.ACCOUNT_FROZEN.getValue());
+
+		AccountCancelledReq accountCancelledReq = new AccountCancelledReq();
+		accountOperateService.cancelledAccount(accountCancelledReq);
+	}
+
 }

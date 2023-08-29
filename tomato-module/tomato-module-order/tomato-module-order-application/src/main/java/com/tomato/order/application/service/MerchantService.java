@@ -12,15 +12,19 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MerchantService {
-    private final MerchantRepository merchantRepository;
 
-    public MerchantService(MerchantRepository merchantRepository) {
-        this.merchantRepository = merchantRepository;
-    }
-    public MerchantEntity merchant(MerchantEntity merchantEntity){
-        return merchantRepository.merchant(merchantEntity);
-    }
-    public String merchantKey(String merchantNo){
-        return merchantRepository.merchantKey(merchantNo);
-    }
+	private final MerchantRepository merchantRepository;
+
+	public MerchantService(MerchantRepository merchantRepository) {
+		this.merchantRepository = merchantRepository;
+	}
+
+	public MerchantEntity merchant(MerchantEntity merchantEntity) {
+		return merchantRepository.merchant(merchantEntity);
+	}
+
+	public String merchantKey(String merchantNo) {
+		return merchantRepository.merchantKey(merchantNo);
+	}
+
 }

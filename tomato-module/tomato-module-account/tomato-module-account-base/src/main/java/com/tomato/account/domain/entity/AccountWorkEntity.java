@@ -15,14 +15,15 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AccountWorkEntity extends BaseEntity {
-    /**
-     * 日期
-     */
-    private LocalDate workDay;
 
-    /**
-     * 0:工作日；1：调休工作日；2：周末休息日；3：法定休息日；
-     */
-    private int dayType;
+	/**
+	 * 日期
+	 */
+	private LocalDate workDay;
+
+	/**
+	 * 0:工作日；1：调休工作日；2：周末休息日；3：法定休息日；
+	 */
+	private int dayType;
 
 }

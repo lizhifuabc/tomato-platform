@@ -14,12 +14,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class PayResultProductTest {
-    @Resource
-    PayResultProduct payResultProduct;
-    @Test
-    public void test(){
-        PayResultEvent payResultEvent = new PayResultEvent();
-        payResultEvent.setOrderNo("123");
-        payResultProduct.send(payResultEvent);
-    }
+
+	@Resource
+	PayResultProduct payResultProduct;
+
+	@Test
+	public void test() {
+		PayResultEvent payResultEvent = new PayResultEvent();
+		payResultEvent.setOrderNo("123");
+		payResultProduct.send(payResultEvent);
+	}
+
 }

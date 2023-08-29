@@ -9,10 +9,12 @@ import com.tomato.seckill.goods.domain.entity.SeckillActivity;
  * @since 2023/7/15
  */
 public interface SeckillActivityDomainService {
-    /**
-     * 根据活动id获取活动信息
-     * @param activityId 活动id
-     * @return 活动信息
-     */
-    SeckillActivity getSeckillActivityById(Long activityId);
+
+	/**
+	 * 根据活动id获取活动信息
+	 * @param activityId 活动id
+	 * @return 活动信息
+	 */
+	SeckillActivity getSeckillActivityById(Long activityId);
+
 }

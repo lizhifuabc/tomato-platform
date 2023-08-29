@@ -20,25 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping
-@Tags({
-        @Tag(name = "商户费率"),
-})
+@Tags({ @Tag(name = "商户费率"), })
 public class MerchantRateController {
-    private final MerchantRateService merchantRateService;
 
-    public MerchantRateController(MerchantRateService merchantRateService) {
-        this.merchantRateService = merchantRateService;
-    }
+	private final MerchantRateService merchantRateService;
 
-    /**
-     * 商户费率
-     * @param merchantRateReq 商户费率
-     * @return Resp<Void>
-     */
-    @PostMapping("/merchant/rate")
-    @Operation(summary = "商户费率", description = "商户费率")
-    public Resp<Void> rate(@Valid @RequestBody MerchantRateReq merchantRateReq) {
-        merchantRateService.rate(merchantRateReq);
-        return Resp.buildSuccess();
-    }
+	public MerchantRateController(MerchantRateService merchantRateService) {
+		this.merchantRateService = merchantRateService;
+	}
+
+	/**
+	 * 商户费率
+	 * @param merchantRateReq 商户费率
+	 * @return Resp<Void>
+	 */
+	@PostMapping("/merchant/rate")
+	@Operation(summary = "商户费率", description = "商户费率")
+	public Resp<Void> rate(@Valid @RequestBody MerchantRateReq merchantRateReq) {
+		merchantRateService.rate(merchantRateReq);
+		return Resp.buildSuccess();
+	}
+
 }

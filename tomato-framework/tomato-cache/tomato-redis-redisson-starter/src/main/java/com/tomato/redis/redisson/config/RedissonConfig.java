@@ -23,21 +23,26 @@ import java.io.IOException;
 @AutoConfiguration
 @Slf4j
 public class RedissonConfig {
-    @PostConstruct
-    public void postConstruct() {
-        log.info("tomato-redis-redisson-starter 自动装配");
-    }
-    @Bean(destroyMethod = "shutdown")
-    public RedissonClient redisson(@Value("classpath:/redisson.yaml") Resource configFile) throws IOException {
-        Config config = Config.fromYAML(configFile.getInputStream());
-        return Redisson.create(config);
-    }
-    @Bean
-    public RedissonConnectionFactory redissonConnectionFactory(RedissonClient redisson) {
-        return new RedissonConnectionFactory(redisson);
-    }
-    @Bean
-    RedissonDistributedLockFactory redissonDistributedLockFactory(RedissonClient redissonClient) {
-        return new RedissonDistributedLockFactory(redissonClient);
-    }
+
+	@PostConstruct
+	public void postConstruct() {
+		log.info("tomato-redis-redisson-starter 自动装配");
+	}
+
+	@Bean(destroyMethod = "shutdown")
+	public RedissonClient redisson(@Value("classpath:/redisson.yaml") Resource configFile) throws IOException {
+		Config config = Config.fromYAML(configFile.getInputStream());
+		return Redisson.create(config);
+	}
+
+	@Bean
+	public RedissonConnectionFactory redissonConnectionFactory(RedissonClient redisson) {
+		return new RedissonConnectionFactory(redisson);
+	}
+
+	@Bean
+	RedissonDistributedLockFactory redissonDistributedLockFactory(RedissonClient redissonClient) {
+		return new RedissonDistributedLockFactory(redissonClient);
+	}
+
 }

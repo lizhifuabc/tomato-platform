@@ -17,22 +17,26 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 @Slf4j
 public class AsyncConfiguration implements AsyncConfigurer {
-    @Bean(name = "asyncTaskExecutor")
-    public TaskExecutor taskExecutor() {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(20);
-        executor.setQueueCapacity(10);
-        executor.setThreadNamePrefix("tomato-async-task-");
-        executor.setKeepAliveSeconds(60);
-        return executor;
-    }
-    @Override
-    public TaskExecutor getAsyncExecutor() {
-        return taskExecutor();
-    }
-    @Override
-    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        return (ex, method, params) -> log.error(String.format("[async] task{} error:", method), ex);
-    }
+
+	@Bean(name = "asyncTaskExecutor")
+	public TaskExecutor taskExecutor() {
+		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+		executor.setCorePoolSize(10);
+		executor.setMaxPoolSize(20);
+		executor.setQueueCapacity(10);
+		executor.setThreadNamePrefix("tomato-async-task-");
+		executor.setKeepAliveSeconds(60);
+		return executor;
+	}
+
+	@Override
+	public TaskExecutor getAsyncExecutor() {
+		return taskExecutor();
+	}
+
+	@Override
+	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+		return (ex, method, params) -> log.error(String.format("[async] task{} error:", method), ex);
+	}
+
 }

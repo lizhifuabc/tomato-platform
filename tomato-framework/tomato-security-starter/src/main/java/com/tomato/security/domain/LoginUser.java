@@ -7,10 +7,11 @@ package com.tomato.security.domain;
  * @since 2022/12/30
  */
 public interface LoginUser {
-    /**
-     * 请求用户名称
-     *
-     * @return
-     */
-    String getLoginName();
+
+	/**
+	 * 请求用户名称
+	 * @return
+	 */
+	String getLoginName();
+
 }

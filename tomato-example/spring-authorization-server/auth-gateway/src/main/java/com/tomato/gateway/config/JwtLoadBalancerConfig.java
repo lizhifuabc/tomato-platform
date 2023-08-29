@@ -14,12 +14,14 @@ import org.springframework.web.reactive.function.client.WebClient;
  */
 @Configuration
 public class JwtLoadBalancerConfig {
-    @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
-    private String jwkSetUri;
 
-    @Bean
-    @LoadBalanced
-    public WebClient.Builder loadBalancedWebClientBuilder() {
-        return WebClient.builder().baseUrl(jwkSetUri);
-    }
+	@Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+	private String jwkSetUri;
+
+	@Bean
+	@LoadBalanced
+	public WebClient.Builder loadBalancedWebClientBuilder() {
+		return WebClient.builder().baseUrl(jwkSetUri);
+	}
+
 }

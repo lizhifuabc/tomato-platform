@@ -13,5 +13,6 @@ import java.io.Serializable;
  * @since 2023/4/26
  */
 public abstract class AbstractBaseController<E extends AbstractEntity, ID extends Serializable>
-        implements BaseReadableController<E,ID>, BaseWriteableController<E, ID> {
+		implements BaseReadableController<E, ID>, BaseWriteableController<E, ID> {
+
 }

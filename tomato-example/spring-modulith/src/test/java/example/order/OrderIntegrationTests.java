@@ -23,8 +23,9 @@ class OrderIntegrationTests {
 		var reference = new Order();
 
 		scenario.stimulate(() -> orders.complete(reference))
-				.andWaitForEventOfType(OrderCompleted.class)
-				.matchingMappedValue(OrderCompleted::orderId, reference.getId())
-				.toArrive();
+			.andWaitForEventOfType(OrderCompleted.class)
+			.matchingMappedValue(OrderCompleted::orderId, reference.getId())
+			.toArrive();
 	}
+
 }

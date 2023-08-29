@@ -13,69 +13,71 @@ import java.util.Date;
  */
 @Data
 public class AccountBankCardCreateReq {
-    /**
-     * 银行代码(结算到银行卡必须)
-     */
-    private String bankCode;
 
-    /**
-     * 银行名称(结算到银行卡必须)
-     */
-    private String bankName;
+	/**
+	 * 银行代码(结算到银行卡必须)
+	 */
+	private String bankCode;
 
-    /**
-     * 银行地址
-     */
-    private String bankAddress;
+	/**
+	 * 银行名称(结算到银行卡必须)
+	 */
+	private String bankName;
 
-    /**
-     * 银行分行号
-     */
-    private String bankBranch;
+	/**
+	 * 银行地址
+	 */
+	private String bankAddress;
 
-    /**
-     * 银行卡号(结算到银行卡必须)
-     */
-    private String cardNo;
+	/**
+	 * 银行分行号
+	 */
+	private String bankBranch;
 
-    /**
-     * 银行开户姓名(结算到银行卡必须)
-     */
-    private String accountName;
+	/**
+	 * 银行卡号(结算到银行卡必须)
+	 */
+	private String cardNo;
 
-    /**
-     * 银行卡类型(结算到银行卡必须)
-     * @link BankCardAttributeEnum
-     */
-    private String cardType;
+	/**
+	 * 银行开户姓名(结算到银行卡必须)
+	 */
+	private String accountName;
 
-    /**
-     * 省
-     */
-    private String province;
+	/**
+	 * 银行卡类型(结算到银行卡必须)
+	 * @link BankCardAttributeEnum
+	 */
+	private String cardType;
 
-    /**
-     * 省名称
-     */
-    private String provinceName;
+	/**
+	 * 省
+	 */
+	private String province;
 
-    /**
-     * 市
-     */
-    private String city;
+	/**
+	 * 省名称
+	 */
+	private String provinceName;
 
-    /**
-     * 市名称
-     */
-    private String cityName;
+	/**
+	 * 市
+	 */
+	private String city;
 
-    /**
-     * 上次结算日期 TODO
-     */
-    private Date lastSettleDate;
+	/**
+	 * 市名称
+	 */
+	private String cityName;
 
-    /**
-     * 账户出款比例 TODO
-     */
-    private BigDecimal outRatio;
+	/**
+	 * 上次结算日期 TODO
+	 */
+	private Date lastSettleDate;
+
+	/**
+	 * 账户出款比例 TODO
+	 */
+	private BigDecimal outRatio;
+
 }

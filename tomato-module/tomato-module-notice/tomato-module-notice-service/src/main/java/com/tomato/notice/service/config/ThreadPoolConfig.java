@@ -19,21 +19,22 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @Slf4j
 public class ThreadPoolConfig {
-    private static final int CORE_POOL_SIZE = 10 * Runtime.getRuntime().availableProcessors();
-    private static final int QUEUE_SIZE = 100000;
-    private static final int MAX_POOL_SIZE = CORE_POOL_SIZE * 2;
-    private static final int KEEP_ALIVE_TIME = 60;
-    @Bean
-    public CustomThreadPoolExecutor customThreadPoolExecutor() {
-        log.info("初始化线程池,corePoolSize:{},maxPoolSize:{},queueSize:{}",CORE_POOL_SIZE,MAX_POOL_SIZE,QUEUE_SIZE);
-        CustomThreadPoolExecutor customThreadPoolExecutor = new CustomThreadPoolExecutor(
-                CORE_POOL_SIZE,
-                MAX_POOL_SIZE,
-                KEEP_ALIVE_TIME,
-                TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(QUEUE_SIZE),
-                new ThreadPoolExecutor.CallerRunsPolicy()
-        );
-        return customThreadPoolExecutor;
-    }
+
+	private static final int CORE_POOL_SIZE = 10 * Runtime.getRuntime().availableProcessors();
+
+	private static final int QUEUE_SIZE = 100000;
+
+	private static final int MAX_POOL_SIZE = CORE_POOL_SIZE * 2;
+
+	private static final int KEEP_ALIVE_TIME = 60;
+
+	@Bean
+	public CustomThreadPoolExecutor customThreadPoolExecutor() {
+		log.info("初始化线程池,corePoolSize:{},maxPoolSize:{},queueSize:{}", CORE_POOL_SIZE, MAX_POOL_SIZE, QUEUE_SIZE);
+		CustomThreadPoolExecutor customThreadPoolExecutor = new CustomThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE,
+				KEEP_ALIVE_TIME, TimeUnit.SECONDS, new LinkedBlockingQueue<>(QUEUE_SIZE),
+				new ThreadPoolExecutor.CallerRunsPolicy());
+		return customThreadPoolExecutor;
+	}
+
 }

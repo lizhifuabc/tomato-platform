@@ -19,30 +19,35 @@ import java.util.List;
  */
 @Validated
 public class RedisConcurrentRequestCountLimiter {
-    private final StringRedisTemplate stringRedisTemplate;
-    private final RedisScript<Long> script;
 
-    public RedisConcurrentRequestCountLimiter(StringRedisTemplate stringRedisTemplate, RedisScript<Long> script) {
-        this.stringRedisTemplate = stringRedisTemplate;
-        this.script = script;
-    }
-    public Resp<RedisConcurrentRequestCountLimiterResp> isAllowed(@Valid RedisConcurrentRequestCountLimiterReq req){
-        // 设置 keys
-        List<String> keys = getKeys(req.getId());
-        Long results = this.stringRedisTemplate.execute(this.script, keys, req.getCount() + "", req.getInterval() + "");
+	private final StringRedisTemplate stringRedisTemplate;
 
-        RedisConcurrentRequestCountLimiterResp resp = RedisConcurrentRequestCountLimiterResp.builder()
-                .allowed(results >= 1L)
-                .tokensUsed(results)
-                .build();
-        return Resp.of(resp);
-    }
-    private List<String> getKeys(String id) {
-        // redis 集群的时候 `{}` 包裹的内容会被哈希到同一个哈希槽中
-        // 唯一标识
-        String prefix = "concurrent_request_count_limiter.{" + id;
-        // 令牌桶的两个 key
-        String tokenKey = prefix + "}.tokens";
-        return Arrays.asList(tokenKey);
-    }
+	private final RedisScript<Long> script;
+
+	public RedisConcurrentRequestCountLimiter(StringRedisTemplate stringRedisTemplate, RedisScript<Long> script) {
+		this.stringRedisTemplate = stringRedisTemplate;
+		this.script = script;
+	}
+
+	public Resp<RedisConcurrentRequestCountLimiterResp> isAllowed(@Valid RedisConcurrentRequestCountLimiterReq req) {
+		// 设置 keys
+		List<String> keys = getKeys(req.getId());
+		Long results = this.stringRedisTemplate.execute(this.script, keys, req.getCount() + "", req.getInterval() + "");
+
+		RedisConcurrentRequestCountLimiterResp resp = RedisConcurrentRequestCountLimiterResp.builder()
+			.allowed(results >= 1L)
+			.tokensUsed(results)
+			.build();
+		return Resp.of(resp);
+	}
+
+	private List<String> getKeys(String id) {
+		// redis 集群的时候 `{}` 包裹的内容会被哈希到同一个哈希槽中
+		// 唯一标识
+		String prefix = "concurrent_request_count_limiter.{" + id;
+		// 令牌桶的两个 key
+		String tokenKey = prefix + "}.tokens";
+		return Arrays.asList(tokenKey);
+	}
+
 }

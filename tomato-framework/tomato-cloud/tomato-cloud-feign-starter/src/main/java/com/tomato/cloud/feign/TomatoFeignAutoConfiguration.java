@@ -19,18 +19,22 @@ import org.springframework.context.annotation.Import;
  * @since 2023/5/2
  */
 @AutoConfiguration
-@Import({FeignLoggerConfiguration.class})
+@Import({ FeignLoggerConfiguration.class })
 public class TomatoFeignAutoConfiguration {
-    private static final Logger log = LoggerFactory.getLogger(TomatoFeignAutoConfiguration.class);
-    @PostConstruct
-    public void postConstruct() {
-        log.info("tomato-cloud-feign-starter 自动配置");
-    }
-    @Bean
-    @ConditionalOnMissingBean(FeignRequestInterceptor.class)
-    public RequestInterceptor feignRequestInterceptor(Tracer tracer) {
-        FeignRequestInterceptor feignRequestInterceptor = new FeignRequestInterceptor(tracer);
-        log.info("tomato-cloud-feign-starter feignRequestInterceptor 自动配置");
-        return feignRequestInterceptor;
-    }
+
+	private static final Logger log = LoggerFactory.getLogger(TomatoFeignAutoConfiguration.class);
+
+	@PostConstruct
+	public void postConstruct() {
+		log.info("tomato-cloud-feign-starter 自动配置");
+	}
+
+	@Bean
+	@ConditionalOnMissingBean(FeignRequestInterceptor.class)
+	public RequestInterceptor feignRequestInterceptor(Tracer tracer) {
+		FeignRequestInterceptor feignRequestInterceptor = new FeignRequestInterceptor(tracer);
+		log.info("tomato-cloud-feign-starter feignRequestInterceptor 自动配置");
+		return feignRequestInterceptor;
+	}
+
 }

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class HelloController {
-    @GetMapping("/hello")
-    public String hello() {
-        log.info("hello");
-        return "hello";
-    }
+
+	@GetMapping("/hello")
+	public String hello() {
+		log.info("hello");
+		return "hello";
+	}
+
 }

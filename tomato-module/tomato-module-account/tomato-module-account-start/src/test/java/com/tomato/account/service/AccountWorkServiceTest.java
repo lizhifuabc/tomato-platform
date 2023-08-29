@@ -15,11 +15,13 @@ import java.time.LocalDate;
  */
 @SpringBootTest
 public class AccountWorkServiceTest {
-    @Resource
-    AccountWorkService accountWorkService;
 
-    @Test
-    public void test(){
-        System.out.println(accountWorkService.nextWorkDay(LocalDate.now(), CycleTypeEnum.MONTH_WORK));
-    }
+	@Resource
+	AccountWorkService accountWorkService;
+
+	@Test
+	public void test() {
+		System.out.println(accountWorkService.nextWorkDay(LocalDate.now(), CycleTypeEnum.MONTH_WORK));
+	}
+
 }

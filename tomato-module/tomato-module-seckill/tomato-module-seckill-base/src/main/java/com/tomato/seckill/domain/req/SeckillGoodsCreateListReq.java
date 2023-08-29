@@ -15,13 +15,16 @@ import java.util.List;
  */
 @Data
 public class SeckillGoodsCreateListReq {
-    /**
-     * 活动id
-     */
-    @NotNull(message = "活动id不能为空")
-    private Long seckillActivityId;
-    @Valid
-    @Size(min = 1, max = 10)
-    @NotNull
-    private List<SeckillGoodsCreateReq> goodsList;
+
+	/**
+	 * 活动id
+	 */
+	@NotNull(message = "活动id不能为空")
+	private Long seckillActivityId;
+
+	@Valid
+	@Size(min = 1, max = 10)
+	@NotNull
+	private List<SeckillGoodsCreateReq> goodsList;
+
 }

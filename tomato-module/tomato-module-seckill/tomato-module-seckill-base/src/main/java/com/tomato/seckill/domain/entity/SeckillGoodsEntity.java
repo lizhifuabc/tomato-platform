@@ -13,32 +13,40 @@ import java.math.BigDecimal;
  */
 @Data
 public class SeckillGoodsEntity extends BaseEntity {
-    /**
-     * 商品id {@link GoodsEntity}
-     */
-    private Long goodsId;
-    /**
-     * 活动id {@link SeckillActivityEntity}
-     */
-    private Long seckillActivityId;
-    /**
-     * 秒杀价格
-     */
-    private BigDecimal seckillPrice;
-    /**
-     * 秒杀总量
-     */
-    private Integer seckillCount;
-    /**
-     * 秒杀剩余量
-     */
-    private Integer seckillRemaining;
-    /**
-     * 每人限购数量
-     */
-    private Integer seckillLimit;
-    /**
-     * 排序
-     */
-    private Integer seckillSort;
+
+	/**
+	 * 商品id {@link GoodsEntity}
+	 */
+	private Long goodsId;
+
+	/**
+	 * 活动id {@link SeckillActivityEntity}
+	 */
+	private Long seckillActivityId;
+
+	/**
+	 * 秒杀价格
+	 */
+	private BigDecimal seckillPrice;
+
+	/**
+	 * 秒杀总量
+	 */
+	private Integer seckillCount;
+
+	/**
+	 * 秒杀剩余量
+	 */
+	private Integer seckillRemaining;
+
+	/**
+	 * 每人限购数量
+	 */
+	private Integer seckillLimit;
+
+	/**
+	 * 排序
+	 */
+	private Integer seckillSort;
+
 }

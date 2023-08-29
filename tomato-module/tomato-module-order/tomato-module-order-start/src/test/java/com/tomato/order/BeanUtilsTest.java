@@ -11,14 +11,16 @@ import org.springframework.beans.BeanUtils;
  * @since 2023/8/2
  */
 public class BeanUtilsTest {
-    public static void main(String[] args) {
-        OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
 
-        OrderInfoDO orderInfoDO = new OrderInfoDO();
-        orderInfoDO.setChannelOrderNo("123");
+	public static void main(String[] args) {
+		OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
 
-        BeanUtils.copyProperties(orderInfoDO,orderInfoEntity);
+		OrderInfoDO orderInfoDO = new OrderInfoDO();
+		orderInfoDO.setChannelOrderNo("123");
 
-        System.out.println(orderInfoEntity.getChannelOrderNo());
-    }
+		BeanUtils.copyProperties(orderInfoDO, orderInfoEntity);
+
+		System.out.println(orderInfoEntity.getChannelOrderNo());
+	}
+
 }

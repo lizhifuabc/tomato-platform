@@ -17,18 +17,21 @@ import java.time.LocalDate;
  */
 @SpringBootTest
 public class AccountInfoDaoTest {
-    @Resource
-    AccountInfoDao accountInfoDao;
 
-    @Test
-    public void allTest(){
-        String accountNo = "102023011064752054121";
-        String merchantNo = "10202301010004121";
-        AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountNo);
-        System.out.println("selectByMerchantNo:"+ accountInfoDao.selectByMerchantNo(merchantNo,"12"));
+	@Resource
+	AccountInfoDao accountInfoDao;
 
-        accountInfoDao.updateOutReserveBalance(accountNo,new BigDecimal(100),accountInfoEntity.getVersion(), LocalDate.now());
+	@Test
+	public void allTest() {
+		String accountNo = "102023011064752054121";
+		String merchantNo = "10202301010004121";
+		AccountInfoEntity accountInfoEntity = accountInfoDao.selectByAccountNo(accountNo);
+		System.out.println("selectByMerchantNo:" + accountInfoDao.selectByMerchantNo(merchantNo, "12"));
 
-        System.out.println("freeze:"+ accountInfoDao.freeze(accountNo, new BigDecimal(100), 1));
-    }
+		accountInfoDao.updateOutReserveBalance(accountNo, new BigDecimal(100), accountInfoEntity.getVersion(),
+				LocalDate.now());
+
+		System.out.println("freeze:" + accountInfoDao.freeze(accountNo, new BigDecimal(100), 1));
+	}
+
 }

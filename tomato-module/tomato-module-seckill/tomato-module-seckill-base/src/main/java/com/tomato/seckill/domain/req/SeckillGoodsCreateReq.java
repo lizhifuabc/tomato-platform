@@ -15,32 +15,38 @@ import java.math.BigDecimal;
  */
 @Data
 public class SeckillGoodsCreateReq {
-    /**
-     * 商品id
-     */
-    @NotNull(message = "商品id不能为空")
-    private Long goodsId;
-    /**
-     * 秒杀价格
-     */
-    @NotNull(message = "秒杀价格不能为空")
-    @DecimalMin(value = "0.00", message = "秒杀价格格式不正确")
-    private BigDecimal seckillPrice;
-    /**
-     * 秒杀总量
-     */
-    @NotNull(message = "秒杀总量不能为空")
-    @Min(0)
-    private Integer seckillCount;
-    /**
-     * 每人限购数量
-     */
-    @NotNull(message = "每人限购数量不能为空")
-    @Min(0)
-    private Integer seckillLimit;
-    /**
-     * 排序
-     */
-    @Min(0)
-    private Integer seckillSort;
+
+	/**
+	 * 商品id
+	 */
+	@NotNull(message = "商品id不能为空")
+	private Long goodsId;
+
+	/**
+	 * 秒杀价格
+	 */
+	@NotNull(message = "秒杀价格不能为空")
+	@DecimalMin(value = "0.00", message = "秒杀价格格式不正确")
+	private BigDecimal seckillPrice;
+
+	/**
+	 * 秒杀总量
+	 */
+	@NotNull(message = "秒杀总量不能为空")
+	@Min(0)
+	private Integer seckillCount;
+
+	/**
+	 * 每人限购数量
+	 */
+	@NotNull(message = "每人限购数量不能为空")
+	@Min(0)
+	private Integer seckillLimit;
+
+	/**
+	 * 排序
+	 */
+	@Min(0)
+	private Integer seckillSort;
+
 }

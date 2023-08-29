@@ -19,18 +19,19 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(SpringDocProperties.class)
-@ConditionalOnProperty(name = {"springdoc.api-docs.enabled"},matchIfMissing = true)
+@ConditionalOnProperty(name = { "springdoc.api-docs.enabled" }, matchIfMissing = true)
 public class SpringDocConfig {
-    @Bean
-    @ConditionalOnMissingBean
-    public OpenAPI createOpenApi() {
-        return new OpenAPI()
-                .info(new Info().title("西红柿土豆安安")
-                        .description("西红柿土豆安安")
-                        .version("Swagger V3")
-                        .license(new License().name("WTFPL license").url("http://www.wtfpl.net/")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("西红柿土豆安安文档")
-                        .url("https://github.com/lizhifuabc/tomato-platform"));
-    }
+
+	@Bean
+	@ConditionalOnMissingBean
+	public OpenAPI createOpenApi() {
+		return new OpenAPI()
+			.info(new Info().title("西红柿土豆安安")
+				.description("西红柿土豆安安")
+				.version("Swagger V3")
+				.license(new License().name("WTFPL license").url("http://www.wtfpl.net/")))
+			.externalDocs(new ExternalDocumentation().description("西红柿土豆安安文档")
+				.url("https://github.com/lizhifuabc/tomato-platform"));
+	}
+
 }

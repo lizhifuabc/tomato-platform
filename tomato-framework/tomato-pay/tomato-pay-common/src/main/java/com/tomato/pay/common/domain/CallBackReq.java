@@ -13,18 +13,20 @@ import java.util.Map;
  */
 @Data
 public class CallBackReq {
-    /**
-     * 请求体
-     */
-    private Map<String, Object> body;
 
-    /**
-     * 请求头
-     */
-    private Map<String, List<String>> headers;
+	/**
+	 * 请求体
+	 */
+	private Map<String, Object> body;
 
-    /**
-     * 其他附加属性
-     */
-    private Map<String, Object> attr;
+	/**
+	 * 请求头
+	 */
+	private Map<String, List<String>> headers;
+
+	/**
+	 * 其他附加属性
+	 */
+	private Map<String, Object> attr;
+
 }

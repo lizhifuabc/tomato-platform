@@ -13,20 +13,22 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum SeckillResultEnum implements BaseEnum {
-    /**
-     * 排队中
-     */
-    DEAL("DEAL", "排队中"),
-    /**
-     * 成功
-     */
-    SUCCESS("SUCCESS", "成功"),
-    /**
-     * 失败
-     */
-    FAIL("FAIL", "失败"),
-    ;
-    private final String value;
 
-    private final String desc;
+	/**
+	 * 排队中
+	 */
+	DEAL("DEAL", "排队中"),
+	/**
+	 * 成功
+	 */
+	SUCCESS("SUCCESS", "成功"),
+	/**
+	 * 失败
+	 */
+	FAIL("FAIL", "失败"),;
+
+	private final String value;
+
+	private final String desc;
+
 }

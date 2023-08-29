@@ -9,9 +9,11 @@ import com.tomato.seckill.goods.domain.entity.SeckillGoods;
  * @since 2023/7/14
  */
 public interface SeckillGoodsDomainService {
-    /**
-     * 保存秒杀商品
-     * @param seckillGoods 秒杀商品
-     */
-    void saveSeckillGoods(SeckillGoods seckillGoods);
+
+	/**
+	 * 保存秒杀商品
+	 * @param seckillGoods 秒杀商品
+	 */
+	void saveSeckillGoods(SeckillGoods seckillGoods);
+
 }

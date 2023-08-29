@@ -11,9 +11,11 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface AccountManageHisDao {
-    /**
-     * 插入
-     * @param accountManageHisEntity 账户管理历史表
-     */
-    public void insert(AccountManageHisEntity accountManageHisEntity);
+
+	/**
+	 * 插入
+	 * @param accountManageHisEntity 账户管理历史表
+	 */
+	public void insert(AccountManageHisEntity accountManageHisEntity);
+
 }

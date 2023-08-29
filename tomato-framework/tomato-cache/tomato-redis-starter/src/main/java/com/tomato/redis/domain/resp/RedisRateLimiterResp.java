@@ -16,6 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RedisRateLimiterResp {
-    private boolean allowed;
-    private Long tokensLeft;
+
+	private boolean allowed;
+
+	private Long tokensLeft;
+
 }

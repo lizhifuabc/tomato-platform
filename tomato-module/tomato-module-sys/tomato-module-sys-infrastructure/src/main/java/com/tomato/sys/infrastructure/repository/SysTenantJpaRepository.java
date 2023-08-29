@@ -10,10 +10,12 @@ import com.tomato.sys.domain.entity.SysTenant;
  * @since 2023/5/3
  */
 public interface SysTenantJpaRepository extends BaseJpaRepository<SysTenant, Long> {
-    /**
-     * 根据租户ID查询
-     * @param tenantId 租户ID
-     * @return 租户信息
-     */
-    SysTenant findByTenantId(Long tenantId);
+
+	/**
+	 * 根据租户ID查询
+	 * @param tenantId 租户ID
+	 * @return 租户信息
+	 */
+	SysTenant findByTenantId(Long tenantId);
+
 }

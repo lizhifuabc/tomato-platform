@@ -16,16 +16,18 @@ import java.time.LocalDateTime;
  */
 @SpringBootTest
 public class SysRoleRepositoryTest {
-    @Resource
-    private SysRoleRepository sysRoleRepository;
 
-    @Test
-    public void test(){
-        System.out.println(LocalDateTime.now());
-        SysRole sysRole = new SysRole();
-        sysRole.setRoleName("test");
-        sysRole.setRoleCode("test");
-        sysRole.setRoleId(2L);
-        sysRoleRepository.save(sysRole);
-    }
+	@Resource
+	private SysRoleRepository sysRoleRepository;
+
+	@Test
+	public void test() {
+		System.out.println(LocalDateTime.now());
+		SysRole sysRole = new SysRole();
+		sysRole.setRoleName("test");
+		sysRole.setRoleCode("test");
+		sysRole.setRoleId(2L);
+		sysRoleRepository.save(sysRole);
+	}
+
 }

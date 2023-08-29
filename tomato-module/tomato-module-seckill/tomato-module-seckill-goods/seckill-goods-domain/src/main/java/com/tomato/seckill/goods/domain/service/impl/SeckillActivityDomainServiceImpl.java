@@ -16,10 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class SeckillActivityDomainServiceImpl implements SeckillActivityDomainService {
-    @Autowired
-    private SeckillActivityRepository seckillActivityRepository;
-    @Override
-    public SeckillActivity getSeckillActivityById(Long activityId) {
-        return seckillActivityRepository.getSeckillActivityById(activityId);
-    }
+
+	@Autowired
+	private SeckillActivityRepository seckillActivityRepository;
+
+	@Override
+	public SeckillActivity getSeckillActivityById(Long activityId) {
+		return seckillActivityRepository.getSeckillActivityById(activityId);
+	}
+
 }

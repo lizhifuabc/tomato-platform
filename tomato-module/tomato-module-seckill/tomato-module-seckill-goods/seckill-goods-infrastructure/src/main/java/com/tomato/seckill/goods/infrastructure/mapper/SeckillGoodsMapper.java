@@ -11,5 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023/7/14
  */
 @Mapper
-public interface SeckillGoodsMapper extends BaseMapper<SeckillGoods,Long> {
+public interface SeckillGoodsMapper extends BaseMapper<SeckillGoods, Long> {
+
 }

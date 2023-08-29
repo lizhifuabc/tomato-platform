@@ -22,26 +22,31 @@ import java.time.LocalTime;
 @Service
 @Slf4j
 public class AccountTradAsyncService {
-    private final AccountHisDao accountHisDao;
-    private final AccountAsyncService accountAsyncService;
 
-    public AccountTradAsyncService(AccountHisDao accountHisDao, AccountAsyncService accountAsyncService) {
-        this.accountHisDao = accountHisDao;
-        this.accountAsyncService = accountAsyncService;
-    }
-    @Async("asyncTaskExecutorAccount")
-    public void exe(String accountNo){
-        AccountHisDealQueryBO accountHisDealQueryBO = new AccountHisDealQueryBO();
-        accountHisDealQueryBO.setAccountNo(accountNo);
-        // TODO 增加循环查询
-        accountHisDealQueryBO.setLimit(50000);
-        AccountHisDealBO accountHisDealBO = accountHisDao.selectDeal(accountHisDealQueryBO);
-        if(accountHisDealBO == null){
-            return;
-        }
-        log.info("账户异步入账服务 accountNo:{},accountHisDealBO:{}",accountNo,accountHisDealBO.getSum());
-        AccountHisUpdateBatchBO accountHisUpdateBatchDO = BeanUtil.copy(accountHisDealBO,AccountHisUpdateBatchBO.class);
-        accountHisUpdateBatchDO.setAccountNo(accountNo);
-        accountAsyncService.async(accountHisUpdateBatchDO);
-    }
+	private final AccountHisDao accountHisDao;
+
+	private final AccountAsyncService accountAsyncService;
+
+	public AccountTradAsyncService(AccountHisDao accountHisDao, AccountAsyncService accountAsyncService) {
+		this.accountHisDao = accountHisDao;
+		this.accountAsyncService = accountAsyncService;
+	}
+
+	@Async("asyncTaskExecutorAccount")
+	public void exe(String accountNo) {
+		AccountHisDealQueryBO accountHisDealQueryBO = new AccountHisDealQueryBO();
+		accountHisDealQueryBO.setAccountNo(accountNo);
+		// TODO 增加循环查询
+		accountHisDealQueryBO.setLimit(50000);
+		AccountHisDealBO accountHisDealBO = accountHisDao.selectDeal(accountHisDealQueryBO);
+		if (accountHisDealBO == null) {
+			return;
+		}
+		log.info("账户异步入账服务 accountNo:{},accountHisDealBO:{}", accountNo, accountHisDealBO.getSum());
+		AccountHisUpdateBatchBO accountHisUpdateBatchDO = BeanUtil.copy(accountHisDealBO,
+				AccountHisUpdateBatchBO.class);
+		accountHisUpdateBatchDO.setAccountNo(accountNo);
+		accountAsyncService.async(accountHisUpdateBatchDO);
+	}
+
 }

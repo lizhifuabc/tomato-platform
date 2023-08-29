@@ -12,9 +12,11 @@ import java.util.Set;
  */
 @FunctionalInterface
 public interface WxMultiAccountService {
-    /**
-     * 加载微信支付配置,多个商户信息
-     * @return Set
-     */
-    Set<WxMultiAccount> load();
+
+	/**
+	 * 加载微信支付配置,多个商户信息
+	 * @return Set
+	 */
+	Set<WxMultiAccount> load();
+
 }

@@ -13,11 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class TestRemoteGoodsFallbackFactory {
-    @Resource
-    RemoteGoodsFallbackFactory remoteGoodsFallbackFactory;
 
-    @Test
-    public void test(){
-        remoteGoodsFallbackFactory.create(null);
-    }
+	@Resource
+	RemoteGoodsFallbackFactory remoteGoodsFallbackFactory;
+
+	@Test
+	public void test() {
+		remoteGoodsFallbackFactory.create(null);
+	}
+
 }

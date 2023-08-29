@@ -9,4 +9,5 @@ import com.tomato.common.exception.BusinessException;
  * @since 2023/7/18
  */
 public class AccountException extends BusinessException {
+
 }

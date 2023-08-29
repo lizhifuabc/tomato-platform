@@ -16,25 +16,27 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DynamicDataSource extends AbstractRoutingDataSource {
-    /**
-     * 所有数据源
-     */
-    private Map<Object, Object> defineTargetDataSources;
 
-    /**
-     * 设置/切换数据源，决定当前线程使用哪个数据源
-     * @return 数据源名称
-     */
-    @Override
-    protected Object determineCurrentLookupKey() {
-        return DynamicDataSourceHolder.getDynamicDataSourceKey();
-    }
+	/**
+	 * 所有数据源
+	 */
+	private Map<Object, Object> defineTargetDataSources;
 
-    public Map<Object, Object> getDefineTargetDataSources() {
-        return defineTargetDataSources;
-    }
+	/**
+	 * 设置/切换数据源，决定当前线程使用哪个数据源
+	 * @return 数据源名称
+	 */
+	@Override
+	protected Object determineCurrentLookupKey() {
+		return DynamicDataSourceHolder.getDynamicDataSourceKey();
+	}
 
-    public void setDefineTargetDataSources(Map<Object, Object> defineTargetDataSources) {
-        this.defineTargetDataSources = defineTargetDataSources;
-    }
+	public Map<Object, Object> getDefineTargetDataSources() {
+		return defineTargetDataSources;
+	}
+
+	public void setDefineTargetDataSources(Map<Object, Object> defineTargetDataSources) {
+		this.defineTargetDataSources = defineTargetDataSources;
+	}
+
 }

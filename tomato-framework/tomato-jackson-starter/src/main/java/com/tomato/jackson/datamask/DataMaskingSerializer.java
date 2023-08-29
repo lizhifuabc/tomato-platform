@@ -17,20 +17,23 @@ import java.util.Objects;
  * @date 2022/12/12
  */
 public class DataMaskingSerializer extends JsonSerializer<String> implements ContextualSerializer {
-    private DataMaskEnum dataMaskEnum;
 
-    @Override
-    public void serialize(String value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeString(dataMaskEnum.function().apply(value));
-    }
+	private DataMaskEnum dataMaskEnum;
 
-    @Override
-    public JsonSerializer<?> createContextual(SerializerProvider prov, BeanProperty property) throws JsonMappingException {
-        DataMask annotation = property.getAnnotation(DataMask.class);
-        if (Objects.nonNull(annotation) && Objects.equals(String.class, property.getType().getRawClass())) {
-            this.dataMaskEnum = annotation.function();
-            return this;
-        }
-        return prov.findValueSerializer(property.getType(), property);
-    }
+	@Override
+	public void serialize(String value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+		gen.writeString(dataMaskEnum.function().apply(value));
+	}
+
+	@Override
+	public JsonSerializer<?> createContextual(SerializerProvider prov, BeanProperty property)
+			throws JsonMappingException {
+		DataMask annotation = property.getAnnotation(DataMask.class);
+		if (Objects.nonNull(annotation) && Objects.equals(String.class, property.getType().getRawClass())) {
+			this.dataMaskEnum = annotation.function();
+			return this;
+		}
+		return prov.findValueSerializer(property.getType(), property);
+	}
+
 }

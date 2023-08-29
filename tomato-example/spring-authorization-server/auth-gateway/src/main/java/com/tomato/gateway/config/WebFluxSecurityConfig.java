@@ -28,47 +28,48 @@ import reactor.core.publisher.Mono;
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity // 开启方法级别的权限认证
 public class WebFluxSecurityConfig {
-    private final IgnoreUrlsConfiguration.IgnoreUrlsConfig ignoreUrlsConfig;
 
-    public WebFluxSecurityConfig(IgnoreUrlsConfiguration.IgnoreUrlsConfig ignoreUrlsConfig) {
-        this.ignoreUrlsConfig = ignoreUrlsConfig;
-    }
+	private final IgnoreUrlsConfiguration.IgnoreUrlsConfig ignoreUrlsConfig;
 
-    @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity) {
-        // jwt处理
-        httpSecurity.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());;
-        // 自定义处理token请求头过期或签名错误的结果
-        httpSecurity.oauth2ResourceServer().authenticationEntryPoint(new CustomAuthenticationEntryPoint());
-        // 自定义处理token请求头鉴权失败的结果
-        httpSecurity.oauth2ResourceServer().accessDeniedHandler(new CustomServerAccessDeniedHandler());
-        //AJAX进行跨域请求时的预检,需要向另外一个域名的资源发送一个HTTP OPTIONS请求头,用以判断实际发送的请求是否安全
-        httpSecurity.authorizeExchange().pathMatchers(HttpMethod.OPTIONS).permitAll();
-        //白名单不拦截
-        httpSecurity.authorizeExchange().pathMatchers(ignoreUrlsConfig.getUrls()).permitAll();
-        /* 请求拦截处理 */
-        httpSecurity.authorizeExchange().anyExchange().access(new CustomAuthorizationManager());
-        //跨域保护禁用
-        httpSecurity.csrf().disable();
-        return httpSecurity.build();
-    }
+	public WebFluxSecurityConfig(IgnoreUrlsConfiguration.IgnoreUrlsConfig ignoreUrlsConfig) {
+		this.ignoreUrlsConfig = ignoreUrlsConfig;
+	}
 
-    /**
-     * 从 JWT 的 scope 中获取的权限 取消 SCOPE_ 的前缀
-     * 设置从 jwt claim 中那个字段获取权限
-     * 如果需要同多个字段中获取权限或者是通过url请求获取的权限，则需要自己提供jwtAuthenticationConverter()这个方法的实现
-     */
-    private Converter<Jwt, ? extends Mono<? extends AbstractAuthenticationToken>> jwtAuthenticationConverter() {
-        JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        // 去掉 SCOPE_ 的前缀
-        jwtGrantedAuthoritiesConverter.setAuthorityPrefix("");
-        // 从jwt claim 中那个字段获取权限，模式是从 scope 或 scp 字段中获取
-        jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName("scope");
+	@Bean
+	public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity) {
+		// jwt处理
+		httpSecurity.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
+		;
+		// 自定义处理token请求头过期或签名错误的结果
+		httpSecurity.oauth2ResourceServer().authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+		// 自定义处理token请求头鉴权失败的结果
+		httpSecurity.oauth2ResourceServer().accessDeniedHandler(new CustomServerAccessDeniedHandler());
+		// AJAX进行跨域请求时的预检,需要向另外一个域名的资源发送一个HTTP OPTIONS请求头,用以判断实际发送的请求是否安全
+		httpSecurity.authorizeExchange().pathMatchers(HttpMethod.OPTIONS).permitAll();
+		// 白名单不拦截
+		httpSecurity.authorizeExchange().pathMatchers(ignoreUrlsConfig.getUrls()).permitAll();
+		/* 请求拦截处理 */
+		httpSecurity.authorizeExchange().anyExchange().access(new CustomAuthorizationManager());
+		// 跨域保护禁用
+		httpSecurity.csrf().disable();
+		return httpSecurity.build();
+	}
 
-        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
+	/**
+	 * 从 JWT 的 scope 中获取的权限 取消 SCOPE_ 的前缀 设置从 jwt claim 中那个字段获取权限
+	 * 如果需要同多个字段中获取权限或者是通过url请求获取的权限，则需要自己提供jwtAuthenticationConverter()这个方法的实现
+	 */
+	private Converter<Jwt, ? extends Mono<? extends AbstractAuthenticationToken>> jwtAuthenticationConverter() {
+		JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+		// 去掉 SCOPE_ 的前缀
+		jwtGrantedAuthoritiesConverter.setAuthorityPrefix("");
+		// 从jwt claim 中那个字段获取权限，模式是从 scope 或 scp 字段中获取
+		jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName("scope");
 
-        return new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter);
-    }
+		JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+		jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
+
+		return new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter);
+	}
 
 }

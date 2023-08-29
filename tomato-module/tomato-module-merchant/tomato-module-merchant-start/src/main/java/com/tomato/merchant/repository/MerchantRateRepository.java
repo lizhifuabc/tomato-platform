@@ -11,12 +11,14 @@ import java.util.Optional;
  * @author lizhifu
  * @since 2023/7/24
  */
-public interface MerchantRateRepository extends BaseJpaRepository<MerchantRate,Long> {
-    /**
-     * 根据商户号查询
-     * @param merchantNo 商户号
-     * @param payType 支付类型
-     * @return 商户费率
-     */
-    Optional<MerchantRate> findByMerchantNoAndPayType(String merchantNo,Integer payType);
+public interface MerchantRateRepository extends BaseJpaRepository<MerchantRate, Long> {
+
+	/**
+	 * 根据商户号查询
+	 * @param merchantNo 商户号
+	 * @param payType 支付类型
+	 * @return 商户费率
+	 */
+	Optional<MerchantRate> findByMerchantNoAndPayType(String merchantNo, Integer payType);
+
 }

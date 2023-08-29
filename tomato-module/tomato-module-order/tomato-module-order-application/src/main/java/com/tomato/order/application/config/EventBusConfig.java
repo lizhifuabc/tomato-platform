@@ -14,17 +14,20 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  */
 @Configuration
 public class EventBusConfig {
-    @Bean
-    public TaskExecutor taskExecutor(){
-        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(5);
-        taskExecutor.setMaxPoolSize(10);
-        taskExecutor.setQueueCapacity(1024);
-        taskExecutor.setKeepAliveSeconds(300);
-        return taskExecutor;
-    }
-    @Bean
-    public AsyncEventBus asyncEventBus(){
-        return new AsyncEventBus(taskExecutor());
-    }
+
+	@Bean
+	public TaskExecutor taskExecutor() {
+		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+		taskExecutor.setCorePoolSize(5);
+		taskExecutor.setMaxPoolSize(10);
+		taskExecutor.setQueueCapacity(1024);
+		taskExecutor.setKeepAliveSeconds(300);
+		return taskExecutor;
+	}
+
+	@Bean
+	public AsyncEventBus asyncEventBus() {
+		return new AsyncEventBus(taskExecutor());
+	}
+
 }

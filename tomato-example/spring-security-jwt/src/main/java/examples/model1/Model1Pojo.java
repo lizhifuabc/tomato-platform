@@ -8,14 +8,17 @@ import java.util.Date;
 
 public class Model1Pojo {
 
-    private String taskId;
-    @NotBlank(message = "任务名不能为空")
-    private String taskName;
+	private String taskId;
 
-    private Date taskStartDate;
-    private Date taskEndDate;
+	@NotBlank(message = "任务名不能为空")
+	private String taskName;
 
-    @Min(1)
-    @Max(20)
-    private int memberNum;
+	private Date taskStartDate;
+
+	private Date taskEndDate;
+
+	@Min(1)
+	@Max(20)
+	private int memberNum;
+
 }

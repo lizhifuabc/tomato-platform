@@ -11,9 +11,11 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class OrderScanCreateResp extends OrderCreateResp{
-    /**
-     * 扫码地址
-     */
-    private String scanUrl;
+public class OrderScanCreateResp extends OrderCreateResp {
+
+	/**
+	 * 扫码地址
+	 */
+	private String scanUrl;
+
 }

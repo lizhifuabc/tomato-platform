@@ -6,9 +6,11 @@ package com.tomato.rpc.example.spi;
  * @author lizhifu
  * @since 2023/7/11
  */
-public class SpiServiceImpl implements SpiService{
-    @Override
-    public String hello(String name) {
-        return "hello " + name;
-    }
+public class SpiServiceImpl implements SpiService {
+
+	@Override
+	public String hello(String name) {
+		return "hello " + name;
+	}
+
 }

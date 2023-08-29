@@ -13,25 +13,30 @@ import java.time.LocalDateTime;
  */
 @Data
 public class AccountBalanceBO {
-    /**
-     * 账户编号
-     */
-    private String accountNo;
-    /**
-     * 金额
-     */
-    private BigDecimal amount;
-    /**
-     * 版本号
-     */
-    private Integer version;
-    /**
-     * 上日账户余额
-     */
-    private BigDecimal yesterdayBalance;
 
-    /**
-     * 上一次交易日期
-     */
-    private LocalDateTime lastTradTime;
+	/**
+	 * 账户编号
+	 */
+	private String accountNo;
+
+	/**
+	 * 金额
+	 */
+	private BigDecimal amount;
+
+	/**
+	 * 版本号
+	 */
+	private Integer version;
+
+	/**
+	 * 上日账户余额
+	 */
+	private BigDecimal yesterdayBalance;
+
+	/**
+	 * 上一次交易日期
+	 */
+	private LocalDateTime lastTradTime;
+
 }

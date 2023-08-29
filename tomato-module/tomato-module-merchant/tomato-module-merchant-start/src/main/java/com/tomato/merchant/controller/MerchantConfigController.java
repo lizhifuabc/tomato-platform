@@ -23,26 +23,27 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping
-@Tags({
-        @Tag(name = "商户配置"),
-})
+@Tags({ @Tag(name = "商户配置"), })
 public class MerchantConfigController {
-    private final MerchantConfigService merchantConfigService;
 
-    public MerchantConfigController(MerchantConfigService merchantConfigService) {
-        this.merchantConfigService = merchantConfigService;
-    }
+	private final MerchantConfigService merchantConfigService;
 
-    @PostMapping("/merchant/config")
-    @Operation(summary = "商户配置", description = "商户配置")
-    public Resp<Void> create(@Valid @RequestBody MerchantConfigReq merchantConfigReq){
-        merchantConfigService.create(merchantConfigReq);
-        return Resp.buildSuccess();
-    }
-    @PostMapping("/merchant/config/query")
-    @Operation(summary = "商户配置查询", description = "商户配置查询")
-    public Resp<MerchantConfigQueryResp> query(@Valid @RequestBody MerchantConfigQueryReq merchantConfigReq){
-        MerchantConfigQueryResp merchantConfigQueryResp = merchantConfigService.query(merchantConfigReq);
-        return Resp.of(merchantConfigQueryResp);
-    }
+	public MerchantConfigController(MerchantConfigService merchantConfigService) {
+		this.merchantConfigService = merchantConfigService;
+	}
+
+	@PostMapping("/merchant/config")
+	@Operation(summary = "商户配置", description = "商户配置")
+	public Resp<Void> create(@Valid @RequestBody MerchantConfigReq merchantConfigReq) {
+		merchantConfigService.create(merchantConfigReq);
+		return Resp.buildSuccess();
+	}
+
+	@PostMapping("/merchant/config/query")
+	@Operation(summary = "商户配置查询", description = "商户配置查询")
+	public Resp<MerchantConfigQueryResp> query(@Valid @RequestBody MerchantConfigQueryReq merchantConfigReq) {
+		MerchantConfigQueryResp merchantConfigQueryResp = merchantConfigService.query(merchantConfigReq);
+		return Resp.of(merchantConfigQueryResp);
+	}
+
 }

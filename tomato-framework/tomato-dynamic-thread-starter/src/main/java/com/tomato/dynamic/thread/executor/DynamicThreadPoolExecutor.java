@@ -11,17 +11,15 @@ import java.util.concurrent.*;
  * @date 2022/12/4
  */
 public class DynamicThreadPoolExecutor extends ExtendThreadPoolExecutor {
-    public DynamicThreadPoolExecutor(int corePoolSize,
-                                     int maximumPoolSize,
-                                     long keepAliveTime,
-                                     BlockingQueue<Runnable> workQueue) {
-        super(corePoolSize, maximumPoolSize, keepAliveTime, workQueue);
-    }
-    public DynamicThreadPoolExecutor(int corePoolSize,
-                                     int maximumPoolSize,
-                                     long keepAliveTime,
-                                     BlockingQueue<Runnable> workQueue,
-                                     ThreadFactory threadFactory) {
-        super(corePoolSize, maximumPoolSize, keepAliveTime, workQueue,threadFactory);
-    }
+
+	public DynamicThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime,
+			BlockingQueue<Runnable> workQueue) {
+		super(corePoolSize, maximumPoolSize, keepAliveTime, workQueue);
+	}
+
+	public DynamicThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime,
+			BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory) {
+		super(corePoolSize, maximumPoolSize, keepAliveTime, workQueue, threadFactory);
+	}
+
 }

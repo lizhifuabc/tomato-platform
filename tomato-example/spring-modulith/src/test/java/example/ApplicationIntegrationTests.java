@@ -14,7 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ApplicationIntegrationTests {
 
-	@Autowired OrderManagement orders;
+	@Autowired
+	OrderManagement orders;
 
 	@Test
 	void completesOrder() throws Exception {
@@ -23,4 +24,5 @@ class ApplicationIntegrationTests {
 
 		Thread.sleep(2000);
 	}
+
 }

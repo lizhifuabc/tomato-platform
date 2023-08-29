@@ -16,19 +16,22 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AccountBankCardManagerService {
-    private final AccountBankCardDao accountBankCardDao;
 
-    public AccountBankCardManagerService(AccountBankCardDao accountBankCardDao) {
-        this.accountBankCardDao = accountBankCardDao;
-    }
+	private final AccountBankCardDao accountBankCardDao;
 
-    public void create(AccountBankCardCreateReq accountBankCardCreateReq, AccountInfoEntity accountInfo){
-        AccountBankCardEntity accountBankCardEntity = BeanUtil.copy(accountBankCardCreateReq,AccountBankCardEntity.class);
-        accountBankCardEntity.setAccountNo(accountInfo.getAccountNo());
-        accountBankCardEntity.setMerchantNo(accountInfo.getMerchantNo());
-        accountBankCardEntity.setSettleFlag(YesNoTypeEnum.YES.getValue());
-        // TODO 存储加密
-        accountBankCardEntity.setCardNo(accountBankCardCreateReq.getCardNo());
-        accountBankCardDao.insert(accountBankCardEntity);
-    }
+	public AccountBankCardManagerService(AccountBankCardDao accountBankCardDao) {
+		this.accountBankCardDao = accountBankCardDao;
+	}
+
+	public void create(AccountBankCardCreateReq accountBankCardCreateReq, AccountInfoEntity accountInfo) {
+		AccountBankCardEntity accountBankCardEntity = BeanUtil.copy(accountBankCardCreateReq,
+				AccountBankCardEntity.class);
+		accountBankCardEntity.setAccountNo(accountInfo.getAccountNo());
+		accountBankCardEntity.setMerchantNo(accountInfo.getMerchantNo());
+		accountBankCardEntity.setSettleFlag(YesNoTypeEnum.YES.getValue());
+		// TODO 存储加密
+		accountBankCardEntity.setCardNo(accountBankCardCreateReq.getCardNo());
+		accountBankCardDao.insert(accountBankCardEntity);
+	}
+
 }

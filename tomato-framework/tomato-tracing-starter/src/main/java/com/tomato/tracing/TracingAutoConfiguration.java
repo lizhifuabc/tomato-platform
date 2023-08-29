@@ -13,9 +13,12 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
  */
 @AutoConfiguration
 public class TracingAutoConfiguration {
-    private static final Logger log = LoggerFactory.getLogger(TracingAutoConfiguration.class);
-    @PostConstruct
-    public void postConstruct() {
-        log.info("tomato-tracing-starter 自动配置");
-    }
+
+	private static final Logger log = LoggerFactory.getLogger(TracingAutoConfiguration.class);
+
+	@PostConstruct
+	public void postConstruct() {
+		log.info("tomato-tracing-starter 自动配置");
+	}
+
 }

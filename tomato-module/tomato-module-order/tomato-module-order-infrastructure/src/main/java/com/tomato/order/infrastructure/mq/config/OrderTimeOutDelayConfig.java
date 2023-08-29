@@ -19,39 +19,44 @@ import java.util.Map;
  */
 @Configuration
 public class OrderTimeOutDelayConfig {
-    /**
-     * RabbitMQ插件 rabbitmq_delayed_message_exchange
-     * <a href="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange">延时插件</a>
-     * 延时交换机:延迟插件，本质不是一种交换机，只是一种插件
-     * @return Exchange
-     */
-    @Bean
-    public Exchange orderDelayExchange() {
-        Map<String, Object> arguments = new HashMap<>(4);
-        // 交换机类型(topic/direct/fanout)的属性
-        // TOPIC 根据routing-key模糊匹配队列，*匹配任意一个字符，#匹配0个或多个字符
-        arguments.put("x-delayed-type","topic");
-        // 是否持久化 true
-        // 当所有队绑定列均不在使用时，是否自动删除交换机 false
-        return new CustomExchange(RabbitMqConstant.ORDER_DELAY_EXCHANGE, "x-delayed-message", true, false, arguments);
-    }
-    /**
-     * 创建一个队列
-     * @return Queue 队列
-     */
-    @Bean
-    public Queue orderDelayQueue() {
-        // 是否持久化 true
-        // 是否具有排他性，可多个消费者消费同一个队列 false
-        // 当消费者均断开连接，是否自动删除队列 false
-        return new Queue(RabbitMqConstant.ORDER_DELAY_QUEUE, true, false, false);
-    }
-    /**
-     * 绑定队列到自定义交换机
-     * @return Binding 绑定关系
-     */
-    @Bean
-    public Binding bindingOrderDelay() {
-        return new Binding(RabbitMqConstant.ORDER_DELAY_QUEUE, Binding.DestinationType.QUEUE, RabbitMqConstant.ORDER_DELAY_EXCHANGE, RabbitMqConstant.ORDER_DELAY_ROUTING_KEY, null);
-    }
+
+	/**
+	 * RabbitMQ插件 rabbitmq_delayed_message_exchange
+	 * <a href="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange">延时插件</a>
+	 * 延时交换机:延迟插件，本质不是一种交换机，只是一种插件
+	 * @return Exchange
+	 */
+	@Bean
+	public Exchange orderDelayExchange() {
+		Map<String, Object> arguments = new HashMap<>(4);
+		// 交换机类型(topic/direct/fanout)的属性
+		// TOPIC 根据routing-key模糊匹配队列，*匹配任意一个字符，#匹配0个或多个字符
+		arguments.put("x-delayed-type", "topic");
+		// 是否持久化 true
+		// 当所有队绑定列均不在使用时，是否自动删除交换机 false
+		return new CustomExchange(RabbitMqConstant.ORDER_DELAY_EXCHANGE, "x-delayed-message", true, false, arguments);
+	}
+
+	/**
+	 * 创建一个队列
+	 * @return Queue 队列
+	 */
+	@Bean
+	public Queue orderDelayQueue() {
+		// 是否持久化 true
+		// 是否具有排他性，可多个消费者消费同一个队列 false
+		// 当消费者均断开连接，是否自动删除队列 false
+		return new Queue(RabbitMqConstant.ORDER_DELAY_QUEUE, true, false, false);
+	}
+
+	/**
+	 * 绑定队列到自定义交换机
+	 * @return Binding 绑定关系
+	 */
+	@Bean
+	public Binding bindingOrderDelay() {
+		return new Binding(RabbitMqConstant.ORDER_DELAY_QUEUE, Binding.DestinationType.QUEUE,
+				RabbitMqConstant.ORDER_DELAY_EXCHANGE, RabbitMqConstant.ORDER_DELAY_ROUTING_KEY, null);
+	}
+
 }

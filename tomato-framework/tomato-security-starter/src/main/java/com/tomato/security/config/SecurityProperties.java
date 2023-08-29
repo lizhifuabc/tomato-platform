@@ -13,25 +13,28 @@ import java.util.List;
  */
 @ConfigurationProperties(prefix = "tomato.security")
 public class SecurityProperties {
-    private String login = "/sys/user/login";
-    /**
-     * 免登录的 URL 列表
-     */
-    private List<String> permitAllUrls = Collections.emptyList();
 
-    public List<String> getPermitAllUrls() {
-        return permitAllUrls;
-    }
+	private String login = "/sys/user/login";
 
-    public void setPermitAllUrls(List<String> permitAllUrls) {
-        this.permitAllUrls = permitAllUrls;
-    }
+	/**
+	 * 免登录的 URL 列表
+	 */
+	private List<String> permitAllUrls = Collections.emptyList();
 
-    public String getLogin() {
-        return login;
-    }
+	public List<String> getPermitAllUrls() {
+		return permitAllUrls;
+	}
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+	public void setPermitAllUrls(List<String> permitAllUrls) {
+		this.permitAllUrls = permitAllUrls;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 }

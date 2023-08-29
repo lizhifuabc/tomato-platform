@@ -12,13 +12,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 项目启动类
+ *
  * @author lizhifu
  */
 @SpringBootApplication
 @EnableAsync // 开启异步支持
 @EnableScheduling
 @OpenAPIDefinition(info = @Info(title = "通知系统 API", version = "1.0-SNAPSHOT", description = "通知系统 Information"),
-		servers = {@Server(url = "http://localhost:9996/")})
+		servers = { @Server(url = "http://localhost:9996/") })
 public class NoticeApplication {
 
 	public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class NoticeApplication {
 		Environment env = applicationContext.getEnvironment();
 		System.out.println("系统服务启动成功" + env);
 		// swagger-ui.html 地址
-		System.out.println("http://localhost:"+env.getProperty("server.port")+"/swagger-ui.html");
+		System.out.println("http://localhost:" + env.getProperty("server.port") + "/swagger-ui.html");
 	}
 
 }

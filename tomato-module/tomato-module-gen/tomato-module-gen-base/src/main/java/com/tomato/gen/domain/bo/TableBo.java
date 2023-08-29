@@ -14,12 +14,15 @@ import java.util.List;
  */
 @Data
 public class TableBo {
-    /**
-     * 表信息
-     */
-    private TableResp table;
-    /**
-     * 列信息
-     */
-    private List<TableColumnResp> tableColumnList;
+
+	/**
+	 * 表信息
+	 */
+	private TableResp table;
+
+	/**
+	 * 列信息
+	 */
+	private List<TableColumnResp> tableColumnList;
+
 }

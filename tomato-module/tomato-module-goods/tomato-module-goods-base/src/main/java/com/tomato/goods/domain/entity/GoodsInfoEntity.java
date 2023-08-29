@@ -13,9 +13,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class GoodsInfoEntity extends BaseEntity {
-    /**
-     * 商品名称
-     */
-    private String goodsName;
+
+	/**
+	 * 商品名称
+	 */
+	private String goodsName;
 
 }

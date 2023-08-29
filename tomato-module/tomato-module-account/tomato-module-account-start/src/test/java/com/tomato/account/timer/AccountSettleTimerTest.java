@@ -15,16 +15,22 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class AccountSettleTimerTest {
-    @Resource
-    AccountSettleTimer accountSettleTimer;
-    @Resource
-    AccountSettleService accountSettleService;
-    @Resource
-    AccountSettleControlDao accountSettleControlDao;
-    @Resource
-    AccountInfoDao accountInfoDao;
-    @Test
-    public void test(){
-        accountSettleTimer.run();
-    }
+
+	@Resource
+	AccountSettleTimer accountSettleTimer;
+
+	@Resource
+	AccountSettleService accountSettleService;
+
+	@Resource
+	AccountSettleControlDao accountSettleControlDao;
+
+	@Resource
+	AccountInfoDao accountInfoDao;
+
+	@Test
+	public void test() {
+		accountSettleTimer.run();
+	}
+
 }

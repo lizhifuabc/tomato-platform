@@ -10,8 +10,10 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
  * @since 2023/7/25
  */
 public class EncapsulationClassJackson2Module extends SimpleModule {
-    public EncapsulationClassJackson2Module() {
-        this.addSerializer(Long.class, ToStringSerializer.instance);
-        this.addSerializer(Long.TYPE, ToStringSerializer.instance);
-    }
+
+	public EncapsulationClassJackson2Module() {
+		this.addSerializer(Long.class, ToStringSerializer.instance);
+		this.addSerializer(Long.TYPE, ToStringSerializer.instance);
+	}
+
 }

@@ -20,22 +20,20 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Implementation of {@link ExpirableLockRegistry} providing a distributed lock using Redis.
- * Locks are stored under the key {@code registryKey:lockKey}. Locks expire after
- * (default 60) seconds. Threads unlocking an
- * expired lock will get an {@link IllegalStateException}. This should be
- * considered as a critical error because it is possible the protected
- * resources were compromised.
+ * Implementation of {@link ExpirableLockRegistry} providing a distributed lock using
+ * Redis. Locks are stored under the key {@code registryKey:lockKey}. Locks expire after
+ * (default 60) seconds. Threads unlocking an expired lock will get an
+ * {@link IllegalStateException}. This should be considered as a critical error because it
+ * is possible the protected resources were compromised.
  * <p>
  * Locks are reentrant.
  * <p>
  * <b>However, locks are scoped by the registry; a lock from a different registry with the
- * same key (even if the registry uses the same 'registryKey') are different
- * locks, and the second cannot be acquired by the same thread while the first is
- * locked.</b>
+ * same key (even if the registry uses the same 'registryKey') are different locks, and
+ * the second cannot be acquired by the same thread while the first is locked.</b>
  * <p>
- * <b>Note: This is not intended for low latency applications.</b> It is intended
- * for resource locking across multiple JVMs.
+ * <b>Note: This is not intended for low latency applications.</b> It is intended for
+ * resource locking across multiple JVMs.
  * <p>
  * {@link Condition}s are not supported.
  *
@@ -44,17 +42,17 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 @Slf4j
 public final class RedisLockService implements ExpirableLockRegistry, DisposableBean {
+
 	private static final int DEFAULT_CAPACITY = 100_000;
 
-	private final Map<String, RedisLock> locks =
-			new LinkedHashMap<String, RedisLock>(16, 0.75F, true) {
+	private final Map<String, RedisLock> locks = new LinkedHashMap<String, RedisLock>(16, 0.75F, true) {
 
-				@Override
-				protected boolean removeEldestEntry(Entry<String, RedisLock> eldest) {
-					return size() > RedisLockService.this.cacheCapacity;
-				}
+		@Override
+		protected boolean removeEldestEntry(Entry<String, RedisLock> eldest) {
+			return size() > RedisLockService.this.cacheCapacity;
+		}
 
-			};
+	};
 
 	private final String clientId = UUID.randomUUID().toString();
 
@@ -65,11 +63,10 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 	private int cacheCapacity = DEFAULT_CAPACITY;
 
 	/**
-	 * An {@link ExecutorService} to call {@link StringRedisTemplate#delete} in
-	 * the separate thread when the current one is interrupted.
+	 * An {@link ExecutorService} to call {@link StringRedisTemplate#delete} in the
+	 * separate thread when the current one is interrupted.
 	 */
-	private Executor executor =
-			Executors.newCachedThreadPool(new CustomizableThreadFactory("redis-lock-registry-"));
+	private Executor executor = Executors.newCachedThreadPool(new CustomizableThreadFactory("redis-lock-registry-"));
 
 	/**
 	 * Flag to denote whether the {@link ExecutorService} was provided via the setter and
@@ -78,6 +75,7 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 	private boolean executorExplicitlySet;
 
 	private volatile boolean unlinkAvailable = true;
+
 	/**
 	 * Constructs a lock registry with the supplied lock expiration.
 	 * @param connectionFactory The connection factory.
@@ -89,8 +87,8 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 	}
 
 	/**
-	 * Set the {@link Executor}, where is not provided then a default of
-	 * cached thread pool Executor will be used.
+	 * Set the {@link Executor}, where is not provided then a default of cached thread
+	 * pool Executor will be used.
 	 * @param executor the executor service
 	 * @since 5.0.5
 	 */
@@ -120,15 +118,13 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 	public void expireUnusedOlderThan(long age) {
 		long now = System.currentTimeMillis();
 		synchronized (this.locks) {
-			this.locks.entrySet()
-					.removeIf(entry -> {
-						RedisLock lock = entry.getValue();
-						long lockedAt = lock.getLockedAt();
-						return now - lockedAt > age
-								// 'lockedAt = 0' means that the lock is still not acquired!
-								&& lockedAt > 0
-								&& !lock.isAcquiredInThisProcess();
-					});
+			this.locks.entrySet().removeIf(entry -> {
+				RedisLock lock = entry.getValue();
+				long lockedAt = lock.getLockedAt();
+				return now - lockedAt > age
+						// 'lockedAt = 0' means that the lock is still not acquired!
+						&& lockedAt > 0 && !lock.isAcquiredInThisProcess();
+			});
 		}
 	}
 
@@ -141,19 +137,13 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 
 	private abstract class RedisLock implements Lock {
 
-		private static final String OBTAIN_LOCK_SCRIPT =
-				"local lockClientId = redis.call('GET', KEYS[1]) " +
-						"if lockClientId == ARGV[1] then " +
-						"  redis.call('PEXPIRE', KEYS[1], ARGV[2]) " +
-						"  return true " +
-						"elseif not lockClientId then " +
-						"  redis.call('SET', KEYS[1], ARGV[1], 'PX', ARGV[2]) " +
-						"  return true " +
-						"end " +
-						"return false";
+		private static final String OBTAIN_LOCK_SCRIPT = "local lockClientId = redis.call('GET', KEYS[1]) "
+				+ "if lockClientId == ARGV[1] then " + "  redis.call('PEXPIRE', KEYS[1], ARGV[2]) " + "  return true "
+				+ "elseif not lockClientId then " + "  redis.call('SET', KEYS[1], ARGV[1], 'PX', ARGV[2]) "
+				+ "  return true " + "end " + "return false";
 
-		protected static final RedisScript<Boolean>
-				OBTAIN_LOCK_REDIS_SCRIPT = new DefaultRedisScript<>(OBTAIN_LOCK_SCRIPT, Boolean.class);
+		protected static final RedisScript<Boolean> OBTAIN_LOCK_REDIS_SCRIPT = new DefaultRedisScript<>(
+				OBTAIN_LOCK_SCRIPT, Boolean.class);
 
 		protected final String lockKey;
 
@@ -172,9 +162,10 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 		/**
 		 * Attempt to acquire a lock in redis.
 		 * @param time the maximum time(milliseconds) to wait for the lock, -1 infinity
-		 * @return true if the lock was acquired and false if the waiting time elapsed before the lock was acquired
-		 * @throws InterruptedException –
-		 * if the current thread is interrupted while acquiring the lock (and interruption of lock acquisition is supported)
+		 * @return true if the lock was acquired and false if the waiting time elapsed
+		 * before the lock was acquired
+		 * @throws InterruptedException – if the current thread is interrupted while
+		 * acquiring the lock (and interruption of lock acquisition is supported)
 		 */
 		protected abstract boolean tryRedisLockInner(long time) throws ExecutionException, InterruptedException;
 
@@ -202,9 +193,8 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 				}
 				catch (InterruptedException e) {
 					/*
-					 * This method must be uninterruptible so catch and ignore
-					 * interrupts and only break out of the while loop when
-					 * we get the lock.
+					 * This method must be uninterruptible so catch and ignore interrupts
+					 * and only break out of the while loop when we get the lock.
 					 */
 				}
 				catch (Exception e) {
@@ -280,10 +270,9 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 		}
 
 		protected final Boolean obtainLock() {
-			return RedisLockService.this.redisTemplate
-					.execute(OBTAIN_LOCK_REDIS_SCRIPT, Collections.singletonList(this.lockKey),
-							RedisLockService.this.clientId,
-							String.valueOf(RedisLockService.this.expireAfter));
+			return RedisLockService.this.redisTemplate.execute(OBTAIN_LOCK_REDIS_SCRIPT,
+					Collections.singletonList(this.lockKey), RedisLockService.this.clientId,
+					String.valueOf(RedisLockService.this.expireAfter));
 		}
 
 		@Override
@@ -297,8 +286,8 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 			}
 			try {
 				if (!isAcquiredInThisProcess()) {
-					throw new IllegalStateException("Lock was released in the store due to expiration. " +
-							"The integrity of data protected by this lock may have been compromised.");
+					throw new IllegalStateException("Lock was released in the store due to expiration. "
+							+ "The integrity of data protected by this lock may have been compromised.");
 				}
 
 				if (Thread.currentThread().isInterrupted()) {
@@ -325,8 +314,8 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 				}
 				catch (Exception ex) {
 					RedisLockService.this.unlinkAvailable = false;
-					log.error("The UNLINK command has failed (not supported on the Redis server?); " +
-							"falling back to the regular DELETE command", ex);
+					log.error("The UNLINK command has failed (not supported on the Redis server?); "
+							+ "falling back to the regular DELETE command", ex);
 				}
 			}
 			removeLockKeyInnerDelete();
@@ -338,18 +327,16 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 		}
 
 		public final boolean isAcquiredInThisProcess() {
-			return RedisLockService.this.clientId.equals(
-					RedisLockService.this.redisTemplate.boundValueOps(this.lockKey).get());
+			return RedisLockService.this.clientId
+				.equals(RedisLockService.this.redisTemplate.boundValueOps(this.lockKey).get());
 		}
 
 		@Override
 		public String toString() {
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd@HH:mm:ss.SSS");
-			return "RedisLock [lockKey=" + this.lockKey
-					+ ",lockedAt=" + dateFormat.format(new Date(this.lockedAt))
-					+ ", clientId=" + RedisLockService.this.clientId
-					+ "]";
+			return "RedisLock [lockKey=" + this.lockKey + ",lockedAt=" + dateFormat.format(new Date(this.lockedAt))
+					+ ", clientId=" + RedisLockService.this.clientId + "]";
 		}
 
 		@Override
@@ -358,7 +345,9 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 			int result = 1;
 			result = prime * result + getOuterType().hashCode();
 			result = prime * result + ((this.lockKey == null) ? 0 : this.lockKey.hashCode());
-			result = prime * result + (int) (this.lockedAt ^ (this.lockedAt >>> 32)); // NOSONAR magic number
+			result = prime * result + (int) (this.lockedAt ^ (this.lockedAt >>> 32)); // NOSONAR
+																						// magic
+																						// number
 			result = prime * result + RedisLockService.this.clientId.hashCode();
 			return result;
 		}
@@ -402,15 +391,15 @@ public final class RedisLockService implements ExpirableLockRegistry, Disposable
 			// -1L means wait forever
 			if (time == -1L) {
 				while (!obtainLock()) {
-					Thread.sleep(100); //NOSONAR
+					Thread.sleep(100); // NOSONAR
 				}
 				return true;
 			}
 			else {
 				long expire = now + TimeUnit.MILLISECONDS.convert(time, TimeUnit.MILLISECONDS);
 				boolean acquired;
-				while (!(acquired = obtainLock()) && System.currentTimeMillis() < expire) { //NOSONAR
-					Thread.sleep(100); //NOSONAR
+				while (!(acquired = obtainLock()) && System.currentTimeMillis() < expire) { // NOSONAR
+					Thread.sleep(100); // NOSONAR
 				}
 				return acquired;
 			}

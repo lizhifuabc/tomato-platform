@@ -15,26 +15,29 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SeckillUserDaoTest {
-    @Resource
-    SeckillUserDao seckillUserDao;
 
-    @Test
-    public void insert(){
-        SeckillUserEntity seckillUserEntity = new SeckillUserEntity();
-        seckillUserEntity.setSeckillGoodsId(1L);
-        seckillUserEntity.setUserId(1L);
-        seckillUserEntity.setSeckillCount(1);
-        seckillUserEntity.setGoodsId(1L);
-        seckillUserEntity.setSeckillRemaining(1);
-        seckillUserDao.insert(seckillUserEntity);
-    }
-    @Test
-    public void updateSkillRemaining(){
-        UpdateSeckillRemainingBO updateSkillRemainingBO =  UpdateSeckillRemainingBO.builder()
-                .seckillGoodsId(1L)
-                .userId(1L)
-                .version(1)
-                .build();
-        System.out.println(seckillUserDao.updateSkillRemaining(updateSkillRemainingBO));
-    }
+	@Resource
+	SeckillUserDao seckillUserDao;
+
+	@Test
+	public void insert() {
+		SeckillUserEntity seckillUserEntity = new SeckillUserEntity();
+		seckillUserEntity.setSeckillGoodsId(1L);
+		seckillUserEntity.setUserId(1L);
+		seckillUserEntity.setSeckillCount(1);
+		seckillUserEntity.setGoodsId(1L);
+		seckillUserEntity.setSeckillRemaining(1);
+		seckillUserDao.insert(seckillUserEntity);
+	}
+
+	@Test
+	public void updateSkillRemaining() {
+		UpdateSeckillRemainingBO updateSkillRemainingBO = UpdateSeckillRemainingBO.builder()
+			.seckillGoodsId(1L)
+			.userId(1L)
+			.version(1)
+			.build();
+		System.out.println(seckillUserDao.updateSkillRemaining(updateSkillRemainingBO));
+	}
+
 }

@@ -13,13 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class GenFieldTypeDaoTest {
-    @Resource
-    GenFieldTypeDao genFieldTypeDao;
 
-    @Test
-    public void selectAll(){
-        genFieldTypeDao.selectAll().forEach(genFieldTypeEntity -> {
-            System.out.println(genFieldTypeEntity.getCreateTime());
-        });
-    }
+	@Resource
+	GenFieldTypeDao genFieldTypeDao;
+
+	@Test
+	public void selectAll() {
+		genFieldTypeDao.selectAll().forEach(genFieldTypeEntity -> {
+			System.out.println(genFieldTypeEntity.getCreateTime());
+		});
+	}
+
 }

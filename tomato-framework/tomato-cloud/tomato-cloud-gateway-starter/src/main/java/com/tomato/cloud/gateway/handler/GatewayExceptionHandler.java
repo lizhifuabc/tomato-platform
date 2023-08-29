@@ -18,46 +18,44 @@ import reactor.core.publisher.Mono;
 import java.util.Objects;
 
 /**
- * 网关统一异常处理
- * {@link ResponseEntityExceptionHandler}
- * {@link ExceptionHandlingWebHandler} 可以查看异常排序情况
+ * 网关统一异常处理 {@link ResponseEntityExceptionHandler} {@link ExceptionHandlingWebHandler}
+ * 可以查看异常排序情况
+ *
  * @author lizhifu
  * @since 2023/7/30
  */
 @Slf4j
 public class GatewayExceptionHandler implements WebExceptionHandler {
-    private final Tracer tracer;
 
-    public GatewayExceptionHandler(Tracer tracer) {
-        this.tracer = tracer;
-    }
+	private final Tracer tracer;
 
-    @Override
-    public @NotNull Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
-        ServerHttpResponse response = exchange.getResponse();
-        if (exchange.getResponse().isCommitted())
-        {
-            return Mono.error(ex);
-        }
-        String msg;
-        if (ex instanceof NotFoundException)
-        {
-            msg = "服务未找到";
-        }
-        else if (ex instanceof ResponseStatusException responseStatusException)
-        {
-            msg = responseStatusException.getMessage();
-        }
-        else
-        {
-            msg = "内部服务器错误";
-        }
-        log.error("[网关异常处理]请求路径:{},异常信息:{}", exchange.getRequest().getPath(), ex.getMessage());
-        Resp<String> resp = Resp.buildFailure(msg);
-        Span span = tracer.currentSpan();
-        if (Objects.nonNull(span)) {
-            resp.setTraceId(span.context().traceId());
-        }
-        return WebFluxUtils.writeJsonResponse(response, resp);
-    }
+	public GatewayExceptionHandler(Tracer tracer) {
+		this.tracer = tracer;
+	}
+
+	@Override
+	public @NotNull Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
+		ServerHttpResponse response = exchange.getResponse();
+		if (exchange.getResponse().isCommitted()) {
+			return Mono.error(ex);
+		}
+		String msg;
+		if (ex instanceof NotFoundException) {
+			msg = "服务未找到";
+		}
+		else if (ex instanceof ResponseStatusException responseStatusException) {
+			msg = responseStatusException.getMessage();
+		}
+		else {
+			msg = "内部服务器错误";
+		}
+		log.error("[网关异常处理]请求路径:{},异常信息:{}", exchange.getRequest().getPath(), ex.getMessage());
+		Resp<String> resp = Resp.buildFailure(msg);
+		Span span = tracer.currentSpan();
+		if (Objects.nonNull(span)) {
+			resp.setTraceId(span.context().traceId());
+		}
+		return WebFluxUtils.writeJsonResponse(response, resp);
+	}
+
 }

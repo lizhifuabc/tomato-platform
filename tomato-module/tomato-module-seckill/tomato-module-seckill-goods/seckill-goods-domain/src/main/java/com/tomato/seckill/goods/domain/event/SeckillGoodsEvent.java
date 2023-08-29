@@ -13,14 +13,19 @@ import java.time.Clock;
  */
 @Slf4j
 public class SeckillGoodsEvent extends ApplicationEvent {
-    private Long activityId;
-    private Long id;
-    private Integer status;
-    public SeckillGoodsEvent(Object source) {
-        super(source);
-    }
 
-    public SeckillGoodsEvent(Object source, Clock clock) {
-        super(source, clock);
-    }
+	private Long activityId;
+
+	private Long id;
+
+	private Integer status;
+
+	public SeckillGoodsEvent(Object source) {
+		super(source);
+	}
+
+	public SeckillGoodsEvent(Object source, Clock clock) {
+		super(source, clock);
+	}
+
 }

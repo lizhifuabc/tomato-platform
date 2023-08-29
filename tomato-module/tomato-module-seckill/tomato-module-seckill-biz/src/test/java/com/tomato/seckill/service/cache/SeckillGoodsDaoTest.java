@@ -13,12 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class SeckillGoodsDaoTest {
-    @Resource
-    SeckillGoodsDao seckillGoodsDao;
 
-    @Test
-    public void test(){
-        int i = seckillGoodsDao.updateSkillRemaining(1L, 1);
-        System.out.println(i);
-    }
+	@Resource
+	SeckillGoodsDao seckillGoodsDao;
+
+	@Test
+	public void test() {
+		int i = seckillGoodsDao.updateSkillRemaining(1L, 1);
+		System.out.println(i);
+	}
+
 }
