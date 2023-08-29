@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-cloud-gateway-sentinel-starter</artifactId>
+            <artifactId>tomato-cloud-gateway-starter</artifactId>
         </dependency>
     </dependencies>
 

@@ -17,14 +17,16 @@ spring:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
     gateway:
       routes:
-        - id: merchant
-          uri: lb://tomato-module-merchant-start
+        - id: order
+          uri: lb://tomato-module-order-start
           predicates:
-            - Path=/merchant/**
+            - Path=/order/**
           filters:
             - StripPrefix=1
   config:
     import:
+      - optional:nacos:application-common.yml
+      - optional:nacos:gray.yaml
       # 从nacos中获取配置
       - optional:nacos:application-@profiles.active@.yml
       # 从nacos中获取配置
