@@ -98,24 +98,12 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                    <!-- 是否显示编译警告信息 -->
+					<!-- 启用unchecked警告,这样在编译时就可以发现未进行泛型检查的地方 -->
+					<compilerArgument>-Xlint:unchecked</compilerArgument>
+					<!-- 是否显示编译警告信息 -->
                     <showWarnings>true</showWarnings>
                     <!-- 跳过测试 -->
                     <skip>true</skip>
-                    <!-- 允许编译过程配置注解处理器的路径 TODO 需要添加lombok mapreduce-->
-<!--                    <annotationProcessorPaths>-->
-<!--                        &lt;!&ndash; springboot configuration processor对maven子模块不起作用 &ndash;&gt;-->
-<!--                        <path>-->
-<!--                            <groupId>org.springframework.boot</groupId>-->
-<!--                            <artifactId>spring-boot-configuration-processor</artifactId>-->
-<!--                            <version>${spring.boot.version}</version>-->
-<!--                        </path>-->
-<!--                        <path>-->
-<!--                            <groupId>org.springframework.boot</groupId>-->
-<!--                            <artifactId>spring-boot-autoconfigure-processor</artifactId>-->
-<!--                            <version>${spring.boot.version}</version>-->
-<!--                        </path>-->
-<!--                    </annotationProcessorPaths>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -125,14 +113,6 @@
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <propertiesEncoding>${project.build.sourceEncoding}</propertiesEncoding>
-                    <!-- <addDefaultExcludes>: 是否添加默认的排除项。如果设置为 false，则不会排除任何文件，默认为 true。 -->
-<!--                    <addDefaultExcludes>false</addDefaultExcludes>-->
-                    <!-- <delimiters>: 配置文件过滤器的分隔符，用于在资源文件中识别需要替换的属性 -->
-                    <!-- useDefaultDelimiters>: 是否使用默认的过滤器分隔符 ${}。如果设置为 false，则会使用上面配置的自定义分隔符。 -->
-<!--                    <delimiters>-->
-<!--                        <delimiter</delimiter>-->
-<!--                    </delimiters>-->
-<!--                    <useDefaultDelimiters>false</useDefaultDelimiters>-->
                 </configuration>
             </plugin>
             <!-- spring 代码格式插件 ./mvnw spring-javaformat:apply 或 mvn spring-javaformat:apply -->
