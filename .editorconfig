@@ -1,0 +1,12 @@
+# 表示是 EditorConfig 配置文件
+root = true
+#  表示匹配 groovy、java、kt 和 xml 后缀的文件
+[*.{java,xml}]
+# 表示使用 tab 进行缩进
+indent_style = tab
+# 表示缩进大小为 4
+indent_size = 4
+# 表示换行后缩进 8 个空格或 tab,用于区分长语句的续行
+continuation_indent_size = 8
+# 编码为 UTF-8
+charset = utf-8
