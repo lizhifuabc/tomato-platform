@@ -88,6 +88,7 @@
             </plugins>
         </pluginManagement>
 
+        <!-- 默认构建插件       -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
