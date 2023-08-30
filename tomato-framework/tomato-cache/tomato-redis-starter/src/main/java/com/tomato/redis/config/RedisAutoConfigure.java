@@ -8,6 +8,8 @@ import com.tomato.redis.service.TenantContextService;
 import com.tomato.redis.support.TenantPrefixStringRedisSerializer;
 import com.tomato.redis.support.RedisTemplateCustomizer;
 import com.tomato.redis.utils.RedisBitMapUtils;
+import com.tomato.redis.utils.RedisBloomUtils;
+import com.tomato.redis.utils.RedisUtils;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -215,8 +217,15 @@ public class RedisAutoConfigure {
 	}
 
 	@Bean
-	public RedisBitMapUtils redisUtil(StringRedisTemplate stringRedisTemplate) {
+	public RedisBitMapUtils redisBitMapUtils(StringRedisTemplate stringRedisTemplate) {
 		return new RedisBitMapUtils(stringRedisTemplate);
 	}
-
+	@Bean
+	public RedisBloomUtils redisBloomUtils(StringRedisTemplate stringRedisTemplate) {
+		return new RedisBloomUtils(stringRedisTemplate);
+	}
+	@Bean
+	public RedisUtils redisUtils(StringRedisTemplate stringRedisTemplate) {
+		return new RedisUtils(stringRedisTemplate);
+	}
 }
