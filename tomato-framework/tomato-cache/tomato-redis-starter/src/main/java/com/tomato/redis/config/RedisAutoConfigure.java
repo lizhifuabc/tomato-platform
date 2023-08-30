@@ -216,14 +216,19 @@ public class RedisAutoConfigure {
 		return config;
 	}
 
+	@ConditionalOnMissingBean
 	@Bean
 	public RedisBitMapUtils redisBitMapUtils(StringRedisTemplate stringRedisTemplate) {
 		return new RedisBitMapUtils(stringRedisTemplate);
 	}
+
+	@ConditionalOnMissingBean
 	@Bean
 	public RedisBloomUtils redisBloomUtils(StringRedisTemplate stringRedisTemplate) {
 		return new RedisBloomUtils(stringRedisTemplate);
 	}
+
+	@ConditionalOnMissingBean
 	@Bean
 	public RedisUtils redisUtils(StringRedisTemplate stringRedisTemplate) {
 		return new RedisUtils(stringRedisTemplate);
