@@ -1,6 +1,6 @@
 # 支付渠道 TODO 需要引入规则引擎
 CREATE TABLE t_pay_channel (
-    id                          bigint          AUTO_INCREMENT PRIMARY KEY COMMENT 'ID',
+                               `id`                  bigint AUTO_INCREMENT PRIMARY KEY       COMMENT 'ID',
     channel_no                  VARCHAR(36)     NOT NULL                COMMENT '渠道编号',
     channel_name                VARCHAR(100)    NOT NULL                COMMENT '渠道名称',
     channel_rate                DECIMAL(10, 2)  NOT NULL                COMMENT '渠道成本百分比，例如0.02表示2%',
@@ -17,22 +17,24 @@ CREATE TABLE t_pay_channel (
 )engine = innodb auto_increment = 1 character set = utf8mb4 collate = utf8mb4_unicode_ci  COMMENT '渠道表，用于存储不同支付渠道的信息' row_format = dynamic;
 
 # 支付路由规则表
-CREATE TABLE t_router_rule (
-    id                  bigint AUTO_INCREMENT PRIMARY KEY       COMMENT 'ID',
-    rule_no             VARCHAR(50)     NOT NULL                COMMENT '路由规则编号',
-    rule_name           VARCHAR(100)    NOT NULL                COMMENT '路由规则名称',
-    `pay_type`          VARCHAR(50)     NOT NULL                    COMMENT '支付方式',
-    rule_description    VARCHAR(255)    default null            COMMENT '路由规则描述',
-    `status`            ENUM('ACTIVE', 'INACTIVE') NOT NULL         COMMENT '状态，active表示可用，inactive表示不可用',
-    filter_type         ENUM('COST', 'RESPONSE_TIME', 'WEIGHT') NOT NULL COMMENT '筛选方式，可以是成本、响应时间或权重'
+drop table if exists `t_router_rule`;
+CREATE TABLE `t_router_rule` (
+    `id`                    bigint AUTO_INCREMENT PRIMARY KEY       COMMENT 'ID',
+    `rule_no`               VARCHAR(50)     NOT NULL                COMMENT '路由规则编号',
+    `rule_name`             VARCHAR(100)    NOT NULL                COMMENT '路由规则名称',
+    `pay_type`              VARCHAR(50)     NOT NULL                    COMMENT '支付方式',
+    `rule_description`      VARCHAR(255)    default null            COMMENT '路由规则描述',
+    `status`                ENUM('ACTIVE', 'INACTIVE') NOT NULL         COMMENT '状态，active表示可用，inactive表示不可用',
+    `filter_type`           ENUM('COST', 'RESPONSE_TIME', 'WEIGHT') NOT NULL COMMENT '筛选方式，可以是成本、响应时间或权重'
 ) COMMENT '支付路由规则表，用于存储不同支付路由规则的信息';
 
 # 路由与渠道绑定表
-CREATE TABLE t_router_channel_binding (
-    id              bigint          AUTO_INCREMENT PRIMARY KEY  COMMENT 'ID',
-    rule_no         VARCHAR(50)     NOT NULL                    COMMENT '路由规则编号',
-    channel_no      VARCHAR(36)     NOT NULL                    COMMENT '渠道编号',
-    weight          INT             NOT NULL                    COMMENT '绑定权重，用于选择优先级',
+drop table if exists `t_router_channel_binding`;
+CREATE TABLE `t_router_channel_binding` (
+    `id`              bigint AUTO_INCREMENT PRIMARY KEY           COMMENT 'ID',
+    `rule_no`         VARCHAR(50)     NOT NULL                    COMMENT '路由规则编号',
+    `channel_no`      VARCHAR(36)     NOT NULL                    COMMENT '渠道编号',
+    `weight`          INT             NOT NULL                    COMMENT '绑定权重，用于选择优先级',
     unique key uk_rule_channel (`rule_no`, `channel_no`)
 ) COMMENT '路由与渠道绑定表，用于存储路由规则与渠道之间的关联关系';
 

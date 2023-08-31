@@ -36,4 +36,9 @@ public class MerchantRouterRule extends BaseEntity {
 	 * 支付类型
 	 */
 	private String payType;
+
+	/**
+	 * 状态
+	 */
+	private String status;
 }

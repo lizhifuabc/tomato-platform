@@ -8,6 +8,6 @@
 		from
 		    t_merchant_router_rule
 		where
-		    merchant_no = #{merchantNo} and pay_type = #{payType}
+		    merchant_no = #{merchantNo} and pay_type = #{payType} and status = 'ACTIVE'
 	</select>
 </mapper>

@@ -16,7 +16,7 @@ import java.util.List;
 @Mapper
 public interface MerchantRouterRuleMapper extends BaseMapper<MerchantRouterRule, Long> {
 	/**
-	 * 根据商户和支付类型查询详情
+	 * 根据商户和支付类型查询详情:状态为激活状态
 	 * @param merchantNo 商户号
 	 * @param payType 支付类型
 	 * @return 商户绑定路由规则表
