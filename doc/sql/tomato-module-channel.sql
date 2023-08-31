@@ -5,8 +5,8 @@ CREATE TABLE t_pay_channel (
     channel_name                VARCHAR(100)    NOT NULL                COMMENT '渠道名称',
     channel_rate                DECIMAL(10, 2)  NOT NULL                COMMENT '渠道成本百分比，例如0.02表示2%',
     channel_description         VARCHAR(255)    default null            COMMENT '渠道描述',
-    status                      ENUM('ACTIVE', 'INACTIVE') NOT NULL     COMMENT '渠道状态，active表示可用，inactive表示不可用',
-    pay_type                    VARCHAR(50)     NOT NULL                COMMENT '支付方式',
+    `status`                    ENUM('ACTIVE', 'INACTIVE') NOT NULL         COMMENT '状态，active表示可用，inactive表示不可用',
+    `pay_type`                  VARCHAR(50)     NOT NULL                    COMMENT '支付方式',
     transaction_limit           DECIMAL(15, 2)  default null            COMMENT '渠道交易限额',
     processing_time             TIME            default null            COMMENT '渠道平均交易处理时间',
     daily_limit                 DECIMAL(15, 2)  default null            COMMENT '渠道单日限额',
@@ -21,9 +21,9 @@ CREATE TABLE t_router_rule (
     id                  bigint AUTO_INCREMENT PRIMARY KEY       COMMENT 'ID',
     rule_no             VARCHAR(50)     NOT NULL                COMMENT '路由规则编号',
     rule_name           VARCHAR(100)    NOT NULL                COMMENT '路由规则名称',
-    pay_type            VARCHAR(50)     NOT NULL                COMMENT '支付方式',
+    `pay_type`          VARCHAR(50)     NOT NULL                    COMMENT '支付方式',
     rule_description    VARCHAR(255)    default null            COMMENT '路由规则描述',
-    status              ENUM('ACTIVE', 'INACTIVE')              NOT NULL COMMENT '路由规则状态，active表示启用，inactive表示禁用',
+    `status`            ENUM('ACTIVE', 'INACTIVE') NOT NULL         COMMENT '状态，active表示可用，inactive表示不可用',
     filter_type         ENUM('COST', 'RESPONSE_TIME', 'WEIGHT') NOT NULL COMMENT '筛选方式，可以是成本、响应时间或权重'
 ) COMMENT '支付路由规则表，用于存储不同支付路由规则的信息';
 
@@ -37,14 +37,25 @@ CREATE TABLE t_router_channel_binding (
 ) COMMENT '路由与渠道绑定表，用于存储路由规则与渠道之间的关联关系';
 
 # 商户绑定路由规则表
-CREATE TABLE t_merchant_router_rule (
-    id              bigint          AUTO_INCREMENT PRIMARY KEY  COMMENT 'ID',
-    merchant_no     varchar(64)     NOT NULL                    COMMENT '商户编号',
-    rule_no         VARCHAR(50)     NOT NULL                    COMMENT '路由规则编号',
-    binding_type    ENUM('DEFAULT', 'BACKUP') NOT NULL COMMENT '绑定类型，默认或备份',
+drop table if exists `t_merchant_router_rule`;
+CREATE TABLE `t_merchant_router_rule` (
+    `id`              bigint          AUTO_INCREMENT PRIMARY KEY        COMMENT 'ID',
+    `merchant_no`     varchar(64)     NOT NULL                          COMMENT '商户编号',
+    `pay_type`        VARCHAR(50)     NOT NULL                          COMMENT '支付方式',
+    `rule_no`         VARCHAR(50)     NOT NULL                          COMMENT '路由规则编号',
+    `binding_type`    ENUM('DEFAULT', 'BACKUP')  NOT NULL               COMMENT '绑定类型，默认或备份',
+    `status`          ENUM('ACTIVE', 'INACTIVE') default 'ACTIVE'       COMMENT '状态，active表示可用，inactive表示不可用',
+    `version`         int             not null default 0                COMMENT '乐观锁',
+    `update_time`     datetime        not null default current_timestamp on update current_timestamp comment '更新时间',
+    `create_time`     datetime        not null default current_timestamp comment '创建时间',
     unique key uk_merchant_rule (`merchant_no`, `rule_no`)
 ) COMMENT '商户绑定路由规则表，用于存储商户和路由规则之间的关联关系';
 
+INSERT INTO tomato_channel.t_merchant_router_rule (id, merchant_no, pay_type, rule_no, binding_type)
+VALUES (1, '10202307240001001', 'WX', '10202307240001001_WX_DEFAULT', 'DEFAULT');
+
+INSERT INTO tomato_channel.t_merchant_router_rule (id, merchant_no, pay_type, rule_no, binding_type)
+VALUES (2, '10202307240001001', 'WX', '10202307240001001_WX_BACKUP', 'BACKUP');
 
 # 支付方式表
 drop table if exists `t_pay_type`;
