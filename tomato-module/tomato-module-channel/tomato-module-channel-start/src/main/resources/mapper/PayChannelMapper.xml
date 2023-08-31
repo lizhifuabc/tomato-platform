@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.channel.mapper.PayChannelMapper">
+	<select id="selectByRuleNo" resultType="RoutePayChannel">
+		select
+			ch.*,bind.weight
+		from
+		    t_pay_channel ch inner join t_router_channel_binding bind
+		on
+			ch.channel_no = bind.channel_no
+		where
+			bind.rule_no = #{ruleNo}
+	</select>
+</mapper>
