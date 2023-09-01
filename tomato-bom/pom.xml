@@ -86,8 +86,10 @@
 
         <!--  其他第三方依赖      -->
         <com.deepoove.poi.version>1.12.1</com.deepoove.poi.version> <!--  poi 依赖:https://github.com/Sayi/poi-tl -->
+		<jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version> <!--  application.yml文件的敏感信息加密 -->
 
-        <!--  第三方相关依赖      -->
+
+		<!--  第三方相关依赖      -->
         <wx-java-mp.version>4.5.0</wx-java-mp.version> <!-- https://github.com/Wechat-Group/WxJava -->
         <alipay-sdk.version>4.38.55.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
         <bcprov.version>1.76</bcprov.version>
@@ -245,6 +247,11 @@
                 <artifactId>spring-security-oauth2-authorization-server</artifactId>
                 <version>${spring-security-oauth2-authorization-server.version}</version>
             </dependency>
+			<dependency>
+				<groupId>com.github.ulisesbocchio</groupId>
+				<artifactId>jasypt-spring-boot-starter</artifactId>
+				<version>${jasypt-spring-boot-starter.version}</version>
+			</dependency>
             <dependency>
                 <groupId>me.ahoo.cosid</groupId>
                 <artifactId>cosid-core</artifactId>
