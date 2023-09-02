@@ -37,5 +37,6 @@
         <module>tomato-dynamic-db</module>
         <module>tomato-utils</module>
         <module>tomato-sms</module>
-    </modules>
+		<module>tomato-oauth2</module>
+	</modules>
 </project>

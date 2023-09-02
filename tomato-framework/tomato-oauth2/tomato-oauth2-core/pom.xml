@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tomato</groupId>
+		<artifactId>tomato-oauth2</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>tomato-oauth2-core</artifactId>
+
+	<dependencies>
+
+		<!--	CAS 是一种用于实现单点登录的开源框架，允许用户在一次登录后访问多个不同的应用程序而无需重新认证	-->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-cas</artifactId>
+		</dependency>
+
+		<!--	JOSE 定义了用于在 OAuth 2.0 中安全地传输和签名令牌的标准		-->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-jose</artifactId>
+		</dependency>
+
+		<!--	Spring Security OAuth 2.0 的资源服务器，资源服务器用于保护和验证受保护资源的访问权限	-->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-resource-server</artifactId>
+		</dependency>
+
+		<!--	web 依赖	-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!--	tomato common 依赖	-->
+		<dependency>
+			<groupId>com.tomato</groupId>
+			<artifactId>tomato-common</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
