@@ -366,6 +366,11 @@
                 <artifactId>tomato-lock-redis-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+			<dependency>
+				<groupId>com.tomato</groupId>
+				<artifactId>tomato-utils-spring</artifactId>
+				<version>${project.version}</version>
+			</dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-tracing-starter</artifactId>

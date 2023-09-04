@@ -14,6 +14,7 @@
     <modules>
         <module>tomato-utils-jwt</module>
         <module>tomato-utils-base</module>
+        <module>tomato-utils-spring</module>
     </modules>
 
     <properties>
