@@ -38,5 +38,6 @@
         <module>tomato-utils</module>
         <module>tomato-sms</module>
 		<module>tomato-oauth2</module>
+		<module>tomato-binlog</module>
 	</modules>
 </project>
