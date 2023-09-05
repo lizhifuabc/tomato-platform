@@ -1,6 +1,5 @@
 package com.tomato.business.comment;
 
-import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +13,6 @@ import java.time.LocalTime;
  */
 @Getter
 @Setter
-@Entity
 public class CommentChild {
 	/**
 	 * id
