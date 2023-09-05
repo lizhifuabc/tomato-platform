@@ -33,6 +33,7 @@ public class TransactionalUtil {
 		// 开启事务
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		def.setPropagationBehavior(propagationBehavior);
+		// 获取事务管理器，DataSourceTransactionManager
 		PlatformTransactionManager transactionManager = SpringContextUtil.getBean(PlatformTransactionManager.class);
 		TransactionStatus transactionStatus = transactionManager.getTransaction(def);
 		try {
@@ -41,6 +42,7 @@ public class TransactionalUtil {
 			return result;
 		}catch (Exception e){
 			log.warn("事务执行异常:",e);
+			// 回滚事务
 			transactionManager.rollback(transactionStatus);
 			return defaultResult;
 		}
