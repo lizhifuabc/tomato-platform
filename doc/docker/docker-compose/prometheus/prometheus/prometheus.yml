@@ -19,7 +19,16 @@ scrape_configs:
       - targets:
           - 192.168.31.156:9991 # SpringBoot 应用的 IP 和端口
           - 192.168.31.156:9998
-
+  - job_name: spring-boot-resilience4j
+    # 采集间隔
+    scrape_interval: 5s
+    # 采集超时
+    scrape_timeout: 5s
+    # 指标路径
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets:
+          - 192.168.31.156:7080 # SpringBoot 应用的 IP 和端口
   # prometheus
   - job_name: prometheus
     static_configs:
