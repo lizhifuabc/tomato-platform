@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2023/6/6
  */
 @Configuration
-public class FeignLoggerConfiguration {
+public class FeignConfiguration {
 
 	/**
 	 * 全局配置日志

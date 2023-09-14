@@ -1,6 +1,6 @@
 package com.tomato.cloud.feign;
 
-import com.tomato.cloud.feign.config.FeignLoggerConfiguration;
+import com.tomato.cloud.feign.config.FeignConfiguration;
 import com.tomato.cloud.feign.config.FeignRequestInterceptor;
 import feign.RequestInterceptor;
 import io.micrometer.tracing.Tracer;
@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Import;
  * @since 2023/5/2
  */
 @AutoConfiguration
-@Import({ FeignLoggerConfiguration.class })
+@Import({ FeignConfiguration.class })
 public class TomatoFeignAutoConfiguration {
 
 	private static final Logger log = LoggerFactory.getLogger(TomatoFeignAutoConfiguration.class);

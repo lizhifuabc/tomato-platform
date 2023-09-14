@@ -62,12 +62,6 @@
             <groupId>org.springframework.retry</groupId>
             <artifactId>spring-retry</artifactId>
         </dependency>
-        <!-- Resilience4j: 提供了一些常见的模式，例如断路器，重试，速率限制，延迟和回退。-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.tomato</groupId>
             <artifactId>tomato-common</artifactId>
