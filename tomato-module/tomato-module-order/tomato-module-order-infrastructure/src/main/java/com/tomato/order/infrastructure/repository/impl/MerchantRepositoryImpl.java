@@ -5,6 +5,7 @@ import com.tomato.common.resp.Resp;
 import com.tomato.merchant.api.RemoteMerchantService;
 import com.tomato.merchant.domain.req.MerchantConfigQueryReq;
 import com.tomato.merchant.domain.req.MerchantTradReq;
+import com.tomato.merchant.domain.resp.MerchantConfigQueryResp;
 import com.tomato.merchant.domain.resp.MerchantTradResp;
 import com.tomato.order.domain.domain.entity.MerchantEntity;
 import com.tomato.order.domain.repository.MerchantRepository;
@@ -47,7 +48,10 @@ public class MerchantRepositoryImpl implements MerchantRepository {
 	public String merchantKey(String merchantNo) {
 		MerchantConfigQueryReq merchantConfigQueryReq = new MerchantConfigQueryReq();
 		merchantConfigQueryReq.setMerchantNo(merchantNo);
-		return remoteMerchantService.queryConfig(merchantConfigQueryReq).getData().getMerchantKey();
+		Resp<MerchantConfigQueryResp> merchantConfigQueryRespResp = remoteMerchantService.queryConfig(merchantConfigQueryReq);
+		if (!merchantConfigQueryRespResp.isSuccess()) {
+			throw new BusinessException(merchantConfigQueryRespResp.getMsg());
+		}
+		return merchantConfigQueryRespResp.getData().getMerchantKey();
 	}
-
 }
