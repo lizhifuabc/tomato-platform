@@ -6,6 +6,7 @@ import org.hibernate.annotations.Comment;
 
 /**
  * 商户交易配置
+ * TODO 增加商户出款配置
  *
  * @author lizhifu
  * @since 2023/7/24
