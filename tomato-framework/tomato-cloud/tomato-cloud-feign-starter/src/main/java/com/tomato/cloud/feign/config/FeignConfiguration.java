@@ -5,6 +5,7 @@ import feign.Logger;
 import feign.Request;
 import feign.Retryer;
 import feign.micrometer.MicrometerCapability;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2023/6/6
  */
 @Configuration
+@Slf4j
 public class FeignConfiguration {
 
 	/**
@@ -28,6 +30,7 @@ public class FeignConfiguration {
 	 */
 	@Bean
 	Logger.Level feignLoggerLevel() {
+		log.info("tomato-cloud-feign-starter Logger.Level 自动配置");
 		return Logger.Level.BASIC;
 	}
 
@@ -37,6 +40,8 @@ public class FeignConfiguration {
 	 */
 	@Bean
 	public Request.Options options() {
+		log.info("tomato-cloud-feign-starter Request.Options 自动配置");
+		// connectTimeoutMillis: 连接超时时间
 		return new Request.Options(10, TimeUnit.SECONDS, 60, TimeUnit.SECONDS, true);
 	}
 
@@ -46,11 +51,13 @@ public class FeignConfiguration {
 	 */
 	@Bean
 	public Retryer feignRetryer() {
+		log.info("tomato-cloud-feign-starter Retryer 自动配置");
 		return new Retryer.Default();
 	}
 
 	@Bean
 	public Feign.Builder feignBuilder() {
+		log.info("tomato-cloud-feign-starter Feign.Builder 自动配置");
 		return Feign.builder()
 			// 添加 MicrometerCapability
 			.addCapability(new MicrometerCapability());
