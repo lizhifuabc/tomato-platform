@@ -18,10 +18,8 @@
         <module>micrometer-prometheus</module>
         <module>bytebuddy-agent</module>
         <module>spring-boot-tracing</module>
-        <module>spring-boot-layer</module>
         <module>maven-pom</module>
         <module>mybatis-generator</module>
         <module>spring-modulith</module>
-        <module>util-example</module>
     </modules>
 </project>
