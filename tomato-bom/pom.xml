@@ -361,6 +361,11 @@
                 <artifactId>tomato-cloud-gateway-sentinel-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+			<dependency>
+				<groupId>com.tomato</groupId>
+				<artifactId>tomato-cloud-feign-resilience4j-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-lock-redis-starter</artifactId>

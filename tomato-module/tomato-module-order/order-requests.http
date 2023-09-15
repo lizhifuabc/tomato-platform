@@ -1,5 +1,5 @@
 ### 查询
-POST http://localhost:8080/order/query/merchant
+POST http://localhost:9998/order/query/merchant
 Content-Type: application/json
 
 {
@@ -9,10 +9,11 @@ Content-Type: application/json
 }
 
 ### 订单号查询
-POST http://localhost:8080/order/query/orderNo
+POST http://localhost:9998/order/query/orderNo
 Content-Type: application/json
 
 {
   "orderNo": "admin",
+  "merchantNo": "123456",
   "hmac": "123456"
 }

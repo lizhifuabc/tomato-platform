@@ -35,6 +35,7 @@ spring:
 logging:
   level:
     com.tomato.merchant.api: debug # 这里是openfeign client 所在的包路径
+    org.springframework.cloud.circuitbreaker: debug
 
 mybatis:
   type-aliases-package: com.tomato.order.infrastructure.dataobject
@@ -51,3 +52,26 @@ mybatis:
 #          enabled: true
 #          base-url: http://tomato-prometheus-pushgateway:9091
 #          job: tomato-module-order-start2
+
+---
+# https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-cloud-feign-circuitbreaker
+# https://resilience4j.readme.io/docs/getting-started-3
+spring:
+  cloud:
+    openfeign:
+      circuitbreaker:
+        # resilience4j 配置
+        enabled: true
+        # OpenFeign 的断路器会为每个请求生成一个数字和字母混合的唯一标识符，用于标识不同的请求。
+        # 这个标识符可以用于在断路器中记录请求的状态，例如是否成功、是否超时等等。
+        # 启用数字和字母混合的唯一标识符可以提高 OpenFeign 断路器的可靠性和准确性，
+        # 避免因为相同的请求被多次计算而导致的误判和重复计算。
+        # 但是，启用这个标识符也会增加一些额外的计算和存储开销，因此在性能和可靠性之间需要做出权衡。
+        alphanumeric-ids:
+          enabled: true
+resilience4j:
+  ratelimiter:
+    instances:
+      RemoteMerchantService#queryConfig(MerchantConfigQueryReq): # 服务名#方法名(参数类型)
+        limitForPeriod: 1 # 每周期限制次数
+        limitRefreshPeriod: 1s # 刷新周期

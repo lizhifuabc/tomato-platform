@@ -18,5 +18,6 @@
         <module>tomato-cloud-gateway-starter</module>
         <module>tomato-cloud-gateway-sentinel-starter</module>
         <module>tomato-cloud-core</module>
+        <module>tomato-cloud-feign-resilience4j-starter</module>
     </modules>
 </project>

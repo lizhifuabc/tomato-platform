@@ -29,6 +29,12 @@ public class OrderGlobalExceptionHandler {
 		return Resp.buildFailure(String.valueOf(HttpStatus.ACCEPTED.value()), e.getLocalizedMessage());
 	}
 
+	/**
+	 * 远程调用异常
+	 * 如果此处配置了，那么就不会走到 {@link org.springframework.cloud.openfeign.FallbackFactory} 中
+	 * @param e 异常
+	 * @return Resp
+	 */
 	@ExceptionHandler(value = FeignException.class)
 	@ResponseBody
 	public Resp<Void> feignException(FeignException e) {
