@@ -48,7 +48,7 @@
 
         <!-- 开源的第三方算法提供商  -->
         <bouncycastle.version>1.70</bouncycastle.version>
-		<redisson.version>3.23.4</redisson.version> <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
+		<redisson.version>3.23.5</redisson.version> <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
         <jjwt.version>0.9.1</jjwt.version>         <!--  jwt 相关      -->
         <jwks-rsa.version>0.21.3</jwks-rsa.version>
         <nimbus-jose-jwt.version>9.31</nimbus-jose-jwt.version> <!-- https://connect2id.com/products/nimbus-jose-jwt/examples       -->
