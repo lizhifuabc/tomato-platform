@@ -64,16 +64,16 @@
         <easy-captcha.version>1.6.2</easy-captcha.version>         <!-- 验证码 -->
         <nashorn.version>15.4</nashorn.version>
 
-        <!--Webjars 依赖-->
-        <animate.css.version>3.7.2</animate.css.version>
-		<bootstrap.version>5.3.3</bootstrap.version>
+		<!--Webjars 依赖-->
+		<animate.css.version>3.7.2</animate.css.version>
+		<bootstrap.version>5.3.2</bootstrap.version>
 		<font-awesome.version>6.4.2</font-awesome.version>
-        <jquery.version>3.7.0</jquery.version>
-        <jquery-backstretch.version>2.1.16</jquery-backstretch.version>
-        <mdi__font.version>7.2.96</mdi__font.version>
-        <quasar.version>2.12.0</quasar.version>
-        <uniform.version>2.1.2-1</uniform.version>
-        <vue.version>3.3.4</vue.version>
+		<jquery.version>3.7.1</jquery.version>
+		<jquery-backstretch.version>2.1.16</jquery-backstretch.version>
+		<mdi__font.version>7.2.96</mdi__font.version>
+		<quasar.version>2.12.6</quasar.version>
+		<uniform.version>2.1.2-1</uniform.version>
+		<vue.version>3.3.4</vue.version>
 
         <!-- 阿里巴巴开源工具依赖：https://github.com/alibaba -->
         <fastjson.version>1.2.83</fastjson.version>
