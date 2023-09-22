@@ -91,7 +91,7 @@
 
 		<!--  第三方相关依赖      -->
         <wx-java-mp.version>4.5.0</wx-java-mp.version> <!-- https://github.com/Wechat-Group/WxJava -->
-        <alipay-sdk.version>4.38.55.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
+        <alipay-sdk.version>4.38.85.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
         <bcprov.version>1.76</bcprov.version>
         <wechatpay.java.version>0.2.10</wechatpay.java.version> <!--微信支付官方包 https://github.com/wechatpay-apiv3/wechatpay-java -->
         <aliyun-java-sdk-core.version>4.6.3</aliyun-java-sdk-core.version>
