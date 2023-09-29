@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="/static/icon2.png" th:href="@{/logo.png}" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+    <link href="/static/bootstrap/bootstrap.min.css" th:href="@{/bootstrap/bootstrap.min.css}" media="screen"
+          rel="stylesheet" type="text/css"/>
+
+    <title>spring quartz</title>
+</head>
+<body>
+<div class="container">
+    <h3>
+        任务执行中
+    </h3>
+    <span th:text="${date}"></span>
+    <hr/>
+
+    <p th:if="${param.isEmpty()}">
+        <a href="add_job.xhtm" th:href="@{add_job.xhtm}">Add Dynamic Job</a>
+    </p>
+
+    <div th:if="not ${param.isEmpty()}">
+        <p style="color:blue;" th:if="${param.get('result')}">
+            A new DynamicJob added, please see console log...
+            <br/>
+            <a href="remove_job.xhtm" th:href="@{remove_job.xhtm}">删除已添加的动态作业</a>
+        </p>
+
+    </div>
+
+</div>
+</body>
+</html>

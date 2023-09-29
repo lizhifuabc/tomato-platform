@@ -31,5 +31,6 @@
         <module>tomato-module-pay-monitor</module>
         <module>tomato-module-reconciliation</module>
         <module>tomato-module-common</module>
+        <module>tomato-module-job</module>
     </modules>
 </project>

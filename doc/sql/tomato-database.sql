@@ -80,3 +80,9 @@ CREATE DATABASE IF NOT EXISTS `tomato_reconciliation` DEFAULT CHARACTER SET utf8
 -- 渠道库
 -- ----------------------------
 CREATE DATABASE IF NOT EXISTS `tomato_channel` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
+
+
+-- ----------------------------
+-- job 任务库
+-- ----------------------------
+CREATE DATABASE IF NOT EXISTS `tomato_job` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
