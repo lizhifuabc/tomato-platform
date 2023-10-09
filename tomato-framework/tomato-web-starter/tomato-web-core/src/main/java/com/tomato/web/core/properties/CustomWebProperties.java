@@ -18,5 +18,8 @@ public class CustomWebProperties {
 	 * 是否开启controller切面
 	 */
 	private Boolean controllerPointEnable = true;
-
+	/**
+	 * 是否开启 xss 过滤
+	 */
+	private Boolean xssFilterEnable = true;
 }
