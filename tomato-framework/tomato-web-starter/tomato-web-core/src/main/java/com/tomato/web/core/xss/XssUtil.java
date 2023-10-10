@@ -29,12 +29,12 @@ public class XssUtil {
 	}
 	/**
 	 * 清洗
-	 * @param taintedHTML html
+	 * @param taintedHtml html
 	 * @return 结果
 	 */
-	public String cleaning(String taintedHTML) {
+	public String cleaning(String taintedHtml) {
 		// 对转义的HTML特殊字符（<、>、"等）进行反转义，AntiSamy调用scan方法时会将特殊字符转义
-		String cleanHtml = HtmlUtils.htmlUnescape(cleanHtml(taintedHTML));
+		String cleanHtml = HtmlUtils.htmlUnescape(cleanHtml(taintedHtml));
 		//AntiSamy会把“&nbsp;”转换成乱码，把双引号转换成"&quot;" 先将&nbsp;的乱码替换为空，双引号的乱码替换为双引号
 		String temp = cleanHtml.replaceAll(this.nbsp, "");
 		temp = temp.replaceAll(this.quot, "\"");
