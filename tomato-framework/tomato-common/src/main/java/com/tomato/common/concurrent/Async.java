@@ -1,4 +1,4 @@
-package com.tomato.common.async;
+package com.tomato.common.concurrent;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
