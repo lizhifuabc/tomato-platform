@@ -52,6 +52,7 @@ public class OrderCallbackService {
 	 * @param orderCallbackReq 回调参数
 	 */
 	public void callback(OrderCallbackReq orderCallbackReq) {
+		// TODO 分布式锁，微信支付宝重复回调几乎都是同1秒发生
 		// 查询订单信息
 		OrderInfoEntity orderInfoEntity = orderInfoRepository.selectByOrderNo(orderCallbackReq.getOrderNo());
 		Optional.ofNullable(orderInfoEntity).orElseThrow(() -> new BusinessException("订单不存在"));
