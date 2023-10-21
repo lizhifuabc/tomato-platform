@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- spring boot / spring cloud 统一依赖管理 -->
-        <spring.boot.version>3.1.4</spring.boot.version>
+        <spring.boot.version>3.1.5</spring.boot.version>
         <spring-security-cas.version>5.8.3</spring-security-cas.version>
 		<spring-boot-admin.version>3.1.7</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
         <spring.cloud.version>2022.0.4</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
