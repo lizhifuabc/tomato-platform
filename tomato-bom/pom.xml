@@ -28,7 +28,7 @@
 		<spring-boot-admin.version>3.1.7</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
         <spring.cloud.version>2022.0.4</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
-        <spring-security-oauth2-authorization-server.version>1.1.2</spring-security-oauth2-authorization-server.version> <!-- Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
+		<!-- <spring-security-oauth2-authorization-server.version>1.1.2</spring-security-oauth2-authorization-server.version>  由spring 统计管理 Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
         <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin> <!-- spring 代码格式插件 -->
 
         <!--Maven Plugin 组件统一依赖管理-->
@@ -247,11 +247,6 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>transmittable-thread-local</artifactId>
                 <version>${transmittable-thread-local.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-oauth2-authorization-server</artifactId>
-                <version>${spring-security-oauth2-authorization-server.version}</version>
             </dependency>
 			<dependency>
 				<groupId>com.github.ulisesbocchio</groupId>
