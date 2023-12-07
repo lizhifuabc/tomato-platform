@@ -23,10 +23,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- spring boot / spring cloud 统一依赖管理 -->
-        <spring.boot.version>3.1.5</spring.boot.version>
+		<spring.boot.version>3.2.0</spring.boot.version>
         <spring-security-cas.version>5.8.3</spring-security-cas.version>
-		<spring-boot-admin.version>3.1.7</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
-        <spring.cloud.version>2022.0.4</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
+		<spring-boot-admin.version>3.1.8</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
+        <spring.cloud.version>2023.0.0</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
 		<!-- <spring-security-oauth2-authorization-server.version>1.1.2</spring-security-oauth2-authorization-server.version>  由spring 统计管理 Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
         <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin> <!-- spring 代码格式插件 -->
@@ -40,7 +40,7 @@
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
 
         <!-- mybatis 版本管理 -->
-        <spring.boot.mybatis.version>3.0.2</spring.boot.mybatis.version>
+        <spring.boot.mybatis.version>3.0.3</spring.boot.mybatis.version>
 
         <!-- shardingsphere 分库分表依赖 -->
         <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
