@@ -40,5 +40,6 @@
 		<module>tomato-oauth2</module>
 		<module>tomato-binlog</module>
         <module>tomato-business</module>
+        <module>tomato-common-starter</module>
     </modules>
 </project>

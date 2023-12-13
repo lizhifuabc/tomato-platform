@@ -41,6 +41,7 @@
 
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.3</spring.boot.mybatis.version>
+		<mybatis-flex.version>1.7.5</mybatis-flex.version> <!-- https://mybatis-flex.com/ -->
 
         <!-- shardingsphere 分库分表依赖 -->
         <spring-boot.shardingsphere.version>5.2.1</spring-boot.shardingsphere.version>
@@ -103,6 +104,9 @@
         <apache.commons.codec.version>1.15</apache.commons.codec.version>  <!-- apache 编解码库 https://github.com/apache/commons-codec -->
         <apache.commons.lang3.version>3.12.0</apache.commons.lang3.version> <!-- apache commons https://github.com/apache/commons-lang -->
         <apache.commons.crypto.version>1.1.0</apache.commons.crypto.version> <!-- apache commons https://github.com/apache/commons-crypto -->
+		<lombok.version>1.18.30</lombok.version>
+		<mapstruct-plus.version>1.3.5</mapstruct-plus.version>
+		<mapstruct-plus.lombok.version>0.2.0</mapstruct-plus.lombok.version>
     </properties>
     <!--在父pom中定义子pom需要的相关依赖 -->
     <dependencyManagement>
@@ -137,6 +141,24 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${spring.boot.mybatis.version}</version>
             </dependency>
+			<!-- 添加已适配 springboot 3.2 的 mybatis-spring 依赖-->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${spring.boot.mybatis.version}</version>
+			</dependency>
+			<!-- mybatis-flex -->
+			<dependency>
+				<groupId>com.mybatis-flex</groupId>
+				<artifactId>mybatis-flex-spring-boot-starter</artifactId>
+				<version>${mybatis-flex.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.mybatis</groupId>
+						<artifactId>mybatis-spring</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
             <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
             <dependency>
                 <groupId>org.redisson</groupId>
@@ -412,6 +434,11 @@
                 <artifactId>tomato-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
+			<dependency>
+				<groupId>com.tomato</groupId>
+				<artifactId>tomato-common-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-redis-redisson-starter</artifactId>

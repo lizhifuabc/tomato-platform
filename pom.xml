@@ -104,6 +104,24 @@
                     <showWarnings>true</showWarnings>
                     <!-- 跳过测试 -->
                     <skip>true</skip>
+					<!-- 用于指定 Maven 构建过程中所需的注解处理器路径，以便在编译时自动调用这些处理器生成额外的代码。 -->
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>${mapstruct-plus.lombok.version}</version>
+						</path>
+						<path>
+							<groupId>com.mybatis-flex</groupId>
+							<artifactId>mybatis-flex-processor</artifactId>
+							<version>${mybatis-flex.version}</version>
+						</path>
+					</annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
