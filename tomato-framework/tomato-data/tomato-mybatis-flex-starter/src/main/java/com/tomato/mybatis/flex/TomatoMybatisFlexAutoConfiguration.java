@@ -5,9 +5,11 @@ import com.mybatisflex.core.audit.AuditManager;
 import com.mybatisflex.core.logicdelete.LogicDeleteProcessor;
 import com.mybatisflex.core.logicdelete.impl.DateTimeLogicDeleteProcessor;
 import com.mybatisflex.spring.boot.MyBatisFlexCustomizer;
+import com.tomato.mybatis.flex.config.PageHelperConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -17,6 +19,7 @@ import org.springframework.context.annotation.Bean;
  * @since 2023/12/13
  */
 @AutoConfiguration
+@ImportAutoConfiguration(classes = {PageHelperConfig.class})
 @Slf4j
 public class TomatoMybatisFlexAutoConfiguration implements InitializingBean, MyBatisFlexCustomizer {
 
