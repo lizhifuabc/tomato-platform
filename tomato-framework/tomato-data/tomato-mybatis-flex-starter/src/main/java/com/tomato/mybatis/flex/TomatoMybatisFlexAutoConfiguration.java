@@ -4,6 +4,7 @@ import com.mybatisflex.core.FlexGlobalConfig;
 import com.mybatisflex.core.audit.AuditManager;
 import com.mybatisflex.core.logicdelete.LogicDeleteProcessor;
 import com.mybatisflex.core.logicdelete.impl.DateTimeLogicDeleteProcessor;
+import com.mybatisflex.spring.boot.MyBatisFlexCustomizer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -17,11 +18,22 @@ import org.springframework.context.annotation.Bean;
  */
 @AutoConfiguration
 @Slf4j
-public class TomatoMybatisFlexAutoConfiguration implements InitializingBean {
+public class TomatoMybatisFlexAutoConfiguration implements InitializingBean, MyBatisFlexCustomizer {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		log.info("tomato-mybatis-flex-starter 自动装配");
+	}
+
+
+	@Bean
+	public LogicDeleteProcessor logicDeleteProcessor(){
+		log.info("tomato-mybatis-flex-starter 自动装配 LogicDeleteProcessor");
+		return new DateTimeLogicDeleteProcessor();
+	}
+
+	@Override
+	public void customize(FlexGlobalConfig flexGlobalConfig) {
 
 		// 开启审计功能
 		AuditManager.setAuditEnable(true);
@@ -34,22 +46,12 @@ public class TomatoMybatisFlexAutoConfiguration implements InitializingBean {
 		);
 		log.info("tomato-mybatis-flex-starter 自动装配 AuditManager.setMessageCollector");
 
-		FlexGlobalConfig globalConfig = FlexGlobalConfig.getDefaultConfig();
-
 		// 全局配置乐观锁字段 version
-		globalConfig.setVersionColumn("version");
+		flexGlobalConfig.setVersionColumn("version");
 		log.info("tomato-mybatis-flex-starter 自动装配 全局配置乐观锁字段 version");
 
 		// 正常状态的值为 0， 已删除 的值为 1
-		globalConfig.setLogicDeleteColumn("del_flag");
+		flexGlobalConfig.setLogicDeleteColumn("del_flag");
 		log.info("tomato-mybatis-flex-starter 自动装配 全局配置逻辑删除字段 del_flag");
-
-	}
-
-
-	@Bean
-	public LogicDeleteProcessor logicDeleteProcessor(){
-		log.info("tomato-mybatis-flex-starter 自动装配 LogicDeleteProcessor");
-		return new DateTimeLogicDeleteProcessor();
 	}
 }
