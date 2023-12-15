@@ -149,6 +149,11 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${spring.boot.mybatis.version}</version>
             </dependency>
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter-test</artifactId>
+				<version>${spring.boot.mybatis.version}</version>
+			</dependency>
 			<!-- 添加已适配 springboot 3.2 的 mybatis-spring 依赖-->
 			<dependency>
 				<groupId>org.mybatis</groupId>
