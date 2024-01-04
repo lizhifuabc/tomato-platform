@@ -36,7 +36,7 @@
 
         <!--  主要用于 构建插件的配置，放在这里会造成和猪POM不一致的问题，TODO      -->
         <!-- spring boot 版本管理 -->
-        <spring.boot.version>3.2.0</spring.boot.version>
+        <spring.boot.version>3.2.1</spring.boot.version>
         <!--  docker 相关配置 -->
         <docker.plugin.version>0.32.0</docker.plugin.version>
         <docker.host>http://xxx.xxx.x.xxxx:xxxx</docker.host>
