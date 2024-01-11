@@ -2,8 +2,10 @@ package com.tomato.mybatis.flex;
 
 import com.mybatisflex.core.FlexGlobalConfig;
 import com.mybatisflex.core.audit.AuditManager;
+import com.mybatisflex.core.logicdelete.LogicDeleteManager;
 import com.mybatisflex.core.logicdelete.LogicDeleteProcessor;
 import com.mybatisflex.core.logicdelete.impl.DateTimeLogicDeleteProcessor;
+import com.mybatisflex.core.logicdelete.impl.TimeStampLogicDeleteProcessor;
 import com.mybatisflex.spring.boot.MyBatisFlexCustomizer;
 import com.tomato.mybatis.flex.config.PageHelperConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +55,8 @@ public class TomatoMybatisFlexAutoConfiguration implements InitializingBean, MyB
 		flexGlobalConfig.setVersionColumn("version");
 		log.info("tomato-mybatis-flex-starter 自动装配 全局配置乐观锁字段 version");
 
-		// 正常状态的值为 0， 已删除 的值为 1
+		// 解决逻辑删除的唯一索引冲突问题
+		LogicDeleteManager.setProcessor(new TimeStampLogicDeleteProcessor());
 		flexGlobalConfig.setLogicDeleteColumn("del_flag");
 		log.info("tomato-mybatis-flex-starter 自动装配 全局配置逻辑删除字段 del_flag");
 	}
