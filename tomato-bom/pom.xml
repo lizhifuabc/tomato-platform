@@ -60,7 +60,7 @@
         <jnanoid.version>2.0.0</jnanoid.version> <!--   唯一ID生成类NanoId     -->
         <cosid.version>1.16.0</cosid.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version> <!--   Apache Commons BeanUtils 库-->
-        <springdoc.v2.version>2.2.0</springdoc.v2.version> <!--   https://springdoc.org/v2/     -->
+		<springdoc.version>2.3.0</springdoc.version> <!--   https://springdoc.org/     -->
         <jasypt.version>3.0.5</jasypt.version> <!--   配置文件加解密 https://github.com/jasypt/jasypt     -->
         <velocity.version>2.3</velocity.version>        <!--  代码生成模板      -->
         <easy-captcha.version>1.6.2</easy-captcha.version>         <!-- 验证码 -->
@@ -136,6 +136,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+			<!--  springdoc 依赖管理 https://springdoc.org/ -->
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi</artifactId>
+				<version>${springdoc.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<!-- pagehelper 分页插件 -->
 			<dependency>
 				<groupId>com.github.pagehelper</groupId>
@@ -214,23 +224,20 @@
             </dependency>
             <!--   https://springdoc.org/         -->
             <!--   在common的基础上,额外提供了OpenAPI UI的WebMVC实现,可以为WebMVC应用程序添加Swagger UI界面  -->
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>${springdoc.v2.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springdoc</groupId>-->
+<!--                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+<!--            </dependency>-->
             <!--   提供了基本的OpenAPI功能支持,包括自动生成API文档等能力。但不包括UI界面         -->
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-common</artifactId>
-                <version>${springdoc.v2.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springdoc</groupId>-->
+<!--                <artifactId>springdoc-openapi-starter-common</artifactId>-->
+<!--            </dependency>-->
             <!--   在common的基础上,额外提供了OpenAPI UI的WebFlux实现,可以为WebFlux应用程序添加Swagger UI界面   -->
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-                <version>${springdoc.v2.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springdoc</groupId>-->
+<!--                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
