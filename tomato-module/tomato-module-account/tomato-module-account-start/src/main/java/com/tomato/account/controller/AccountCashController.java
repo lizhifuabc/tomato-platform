@@ -11,7 +11,7 @@ import com.tomato.account.service.trad.AccountTradService;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.common.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;
-import com.tomato.web.core.common.BaseController;
+import com.tomato.web.core.controller.BaseController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;

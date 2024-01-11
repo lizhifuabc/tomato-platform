@@ -1,7 +1,7 @@
-package com.tomato.web.core.common.demo;
+package com.tomato.web.core.controller.demo;
 
 import com.tomato.common.resp.Resp;
-import com.tomato.web.core.common.demo.entity.Demo;
+import com.tomato.web.core.controller.demo.entity.Demo;
 import org.springframework.web.bind.annotation.*;
 
 /**

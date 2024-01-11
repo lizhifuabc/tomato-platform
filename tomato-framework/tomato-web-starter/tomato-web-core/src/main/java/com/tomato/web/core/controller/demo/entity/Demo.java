@@ -1,4 +1,4 @@
-package com.tomato.web.core.common.demo.entity;
+package com.tomato.web.core.controller.demo.entity;
 
 /**
  * demo

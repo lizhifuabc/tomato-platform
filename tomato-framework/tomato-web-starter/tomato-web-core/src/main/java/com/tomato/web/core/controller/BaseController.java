@@ -1,4 +1,4 @@
-package com.tomato.web.core.common;
+package com.tomato.web.core.controller;
 
 import com.tomato.web.core.util.BeanUtil;
 
