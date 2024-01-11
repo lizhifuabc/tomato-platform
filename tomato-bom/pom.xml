@@ -24,8 +24,7 @@
 
         <!-- spring boot / spring cloud 统一依赖管理 -->
 		<spring.boot.version>3.2.1</spring.boot.version>
-        <spring-security-cas.version>5.8.3</spring-security-cas.version>
-		<spring-boot-admin.version>3.1.8</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
+		<spring-boot-admin.version>3.2.1</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
         <spring.cloud.version>2023.0.0</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
 		<!-- <spring-security-oauth2-authorization-server.version>1.1.2</spring-security-oauth2-authorization-server.version>  由spring 统计管理 Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
@@ -51,7 +50,7 @@
 
         <!-- 开源的第三方算法提供商  -->
         <bouncycastle.version>1.70</bouncycastle.version>
-		<redisson.version>3.23.5</redisson.version> <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
+		<redisson.version>3.25.2</redisson.version><!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
         <jjwt.version>0.9.1</jjwt.version>         <!--  jwt 相关      -->
         <jwks-rsa.version>0.21.3</jwks-rsa.version>
         <nimbus-jose-jwt.version>9.31</nimbus-jose-jwt.version> <!-- https://connect2id.com/products/nimbus-jose-jwt/examples       -->
