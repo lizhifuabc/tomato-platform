@@ -16,7 +16,7 @@
 		<!-- mybatis-flex -->
 		<dependency>
 			<groupId>com.mybatis-flex</groupId>
-			<artifactId>mybatis-flex-spring-boot-starter</artifactId>
+			<artifactId>mybatis-flex-spring-boot3-starter</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.tomato</groupId>

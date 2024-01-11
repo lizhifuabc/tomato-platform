@@ -41,7 +41,7 @@
 
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.3</spring.boot.mybatis.version>
-		<mybatis-flex.version>1.7.5</mybatis-flex.version> <!-- https://mybatis-flex.com/ -->
+		<mybatis-flex.version>1.7.7</mybatis-flex.version> <!-- https://mybatis-flex.com/ -->
 		<pagehelper.version>5.3.3</pagehelper.version>
 
 
@@ -163,14 +163,8 @@
 			<!-- mybatis-flex -->
 			<dependency>
 				<groupId>com.mybatis-flex</groupId>
-				<artifactId>mybatis-flex-spring-boot-starter</artifactId>
+				<artifactId>mybatis-flex-spring-boot3-starter</artifactId>
 				<version>${mybatis-flex.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.mybatis</groupId>
-						<artifactId>mybatis-spring</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
             <!-- for Spring Data Redis v.3.0.x https://github.com/redisson/redisson -->
             <dependency>
