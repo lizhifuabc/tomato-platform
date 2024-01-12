@@ -79,8 +79,8 @@
 
         <!-- 阿里巴巴开源工具依赖：https://github.com/alibaba -->
         <fastjson.version>1.2.83</fastjson.version>
-        <fastjson2.version>2.0.35</fastjson2.version>
-        <jetcache.version>2.7.3</jetcache.version>
+		<fastjson2.version>2.0.45</fastjson2.version>
+		<jetcache.version>2.7.4</jetcache.version>
         <nacos.version>2.2.4</nacos.version>
         <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version> <!-- 提供ThreadLocal值的传递功能，解决异步执行时上下文传递的问题 https://github.com/alibaba/transmittable-thread-local -->
         <cola.version>4.3.2</cola.version> <!--  COLA：干净的面向对象分层体系结构 https://github.com/alibaba/COLA/ -->
@@ -98,10 +98,11 @@
         <wechatpay.java.version>0.2.10</wechatpay.java.version> <!--微信支付官方包 https://github.com/wechatpay-apiv3/wechatpay-java -->
         <aliyun-java-sdk-core.version>4.6.3</aliyun-java-sdk-core.version>
         <dysmsapi20170525.version>2.0.24</dysmsapi20170525.version>
-        <!-- 常用工具包 -->
+
+		<!-- 常用工具包 -->
 		<antisamy.version>1.7.4</antisamy.version> <!-- xss https://github.com/nahsra/antisamy -->
-        <hutool.version>6.0.0-M6</hutool.version> <!-- https://gitee.com/dromara/hutool -->
-        <guava.version>32.1.2-jre</guava.version> <!-- https://github.com/google/guava  -->
+		<hutool.version>6.0.0-M9</hutool.version> <!-- https://gitee.com/dromara/hutool -->
+		<guava.version>33.0.0-jre</guava.version> <!-- https://github.com/google/guava  -->
         <apache.commons.codec.version>1.15</apache.commons.codec.version>  <!-- apache 编解码库 https://github.com/apache/commons-codec -->
         <apache.commons.lang3.version>3.12.0</apache.commons.lang3.version> <!-- apache commons https://github.com/apache/commons-lang -->
         <apache.commons.crypto.version>1.1.0</apache.commons.crypto.version> <!-- apache commons https://github.com/apache/commons-crypto -->
