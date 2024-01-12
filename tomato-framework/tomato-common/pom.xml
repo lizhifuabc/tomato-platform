@@ -22,6 +22,11 @@
             <groupId>com.tomato</groupId>
             <artifactId>tomato-springdoc-starter</artifactId>
         </dependency>
+		<!-- 解决异步执行时上下文传递的问题 依赖 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>transmittable-thread-local</artifactId>
+		</dependency>
     </dependencies>
 
 </project>
