@@ -12,23 +12,18 @@
     <artifactId>tomato-cloud-feign-starter</artifactId>
 
     <dependencies>
-        <!--  在编译时会自动收集配置类的条件 spring-autoconfigure-metadata.properties      -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!-- 生成 spring-configuration-metadata.json，代码提示-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>  <!-- 表示依赖不会传递 -->
-        </dependency>
-        <!--  编译依赖项      -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
+
+		<!-- cloud 通用依赖-->
+		<dependency>
+			<groupId>com.tomato</groupId>
+			<artifactId>tomato-cloud-core</artifactId>
+		</dependency>
+
+		<!-- servlet 通用依赖-->
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+		</dependency>
         <!-- OpenFeign 客户端依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

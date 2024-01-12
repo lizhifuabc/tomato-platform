@@ -483,6 +483,11 @@
                 <artifactId>tomato-domain-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
+			<dependency>
+				<groupId>com.tomato</groupId>
+				<artifactId>tomato-cloud-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-cloud-feign-starter</artifactId>
