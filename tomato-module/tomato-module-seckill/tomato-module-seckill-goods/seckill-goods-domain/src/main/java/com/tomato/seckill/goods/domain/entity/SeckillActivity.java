@@ -1,6 +1,6 @@
 package com.tomato.seckill.goods.domain.entity;
 
-import com.tomato.common.entity.BaseEntity;
+import com.tomato.common.domain.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,6 +1,6 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.RemoteGoodsService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package com.tomato.notice.api.fallback;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.notice.api.RemoteNoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;

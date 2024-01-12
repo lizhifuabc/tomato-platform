@@ -4,7 +4,7 @@ import com.tomato.account.api.RemoteAccountService;
 import com.tomato.account.vo.enums.AccountHisTypeEnum;
 import com.tomato.account.vo.enums.AccountTypeEnum;
 import com.tomato.account.vo.req.AccountTradReq;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.order.domain.constants.OrderStatusEnum;
 import com.tomato.order.domain.domain.entity.AccountEntity;
 import com.tomato.order.domain.repository.AccountRepository;

@@ -1,4 +1,4 @@
-package com.tomato.common.entity;
+package com.tomato.common.domain.entity;
 
 /**
  * AbstractEntity

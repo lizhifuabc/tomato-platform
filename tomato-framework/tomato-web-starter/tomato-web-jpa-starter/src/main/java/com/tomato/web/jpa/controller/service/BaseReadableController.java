@@ -1,7 +1,7 @@
 package com.tomato.web.jpa.controller.service;
 
-import com.tomato.common.entity.AbstractEntity;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.entity.AbstractEntity;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.jpa.domain.service.BaseReadableService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;

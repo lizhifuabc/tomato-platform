@@ -4,6 +4,9 @@
 
 ## 组件说明
 
+- 本地HOST配置
+  - 127.0.0.1 tomato-nacos
+
 - Nacos [home (nacos.io)](https://nacos.io/zh-cn/index.html)
   - 服务注册&发现和配置中心（ 2.2.0）  
   - 更改配置文件：位置：nacos/conf/application.properties

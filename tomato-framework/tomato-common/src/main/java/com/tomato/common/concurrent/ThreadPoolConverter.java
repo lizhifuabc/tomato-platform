@@ -1,6 +1,7 @@
-package com.tomato.notice.dto.converter;
+package com.tomato.common.concurrent;
 
-import com.tomato.notice.dto.resp.ThreadPoolStatsResp;
+
+import com.tomato.common.domain.resp.ThreadPoolStatsResp;
 
 import java.util.concurrent.ThreadPoolExecutor;
 

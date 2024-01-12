@@ -1,6 +1,6 @@
 package com.tomato.seckill.domain.req;
 
-import com.tomato.common.req.PageQueryReq;
+import com.tomato.common.domain.req.PageQueryReq;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 

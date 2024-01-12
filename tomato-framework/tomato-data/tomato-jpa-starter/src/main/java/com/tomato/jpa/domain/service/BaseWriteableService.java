@@ -1,6 +1,6 @@
 package com.tomato.jpa.domain.service;
 
-import com.tomato.common.entity.Entity;
+import com.tomato.common.domain.entity.Entity;
 
 import java.io.Serializable;
 import java.util.List;

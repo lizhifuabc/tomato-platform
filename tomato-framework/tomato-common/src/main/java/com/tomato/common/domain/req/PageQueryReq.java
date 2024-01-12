@@ -1,4 +1,4 @@
-package com.tomato.common.req;
+package com.tomato.common.domain.req;
 
 /**
  * 分页查询请求

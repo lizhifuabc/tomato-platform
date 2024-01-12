@@ -1,4 +1,4 @@
-package com.tomato.common.resp;
+package com.tomato.common.domain.resp;
 
 /**
  * 错误码

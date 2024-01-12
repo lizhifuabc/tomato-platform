@@ -1,7 +1,6 @@
 package com.tomato.merchant.controller;
 
-import com.tomato.common.resp.Resp;
-import com.tomato.merchant.domain.entity.MerchantInfo;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.merchant.domain.req.MerchantConfigQueryReq;
 import com.tomato.merchant.domain.req.MerchantConfigReq;
 import com.tomato.merchant.domain.resp.MerchantConfigQueryResp;

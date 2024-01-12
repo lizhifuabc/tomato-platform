@@ -1,6 +1,6 @@
 package com.tomato.sys.infrastructure.security.config;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.jackson.utils.JacksonUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.tomato.web.jpa.controller;
 
-import com.tomato.common.entity.AbstractEntity;
+import com.tomato.common.domain.entity.AbstractEntity;
 import com.tomato.web.jpa.controller.service.BaseReadableController;
 import com.tomato.web.jpa.controller.service.BaseWriteableController;
 

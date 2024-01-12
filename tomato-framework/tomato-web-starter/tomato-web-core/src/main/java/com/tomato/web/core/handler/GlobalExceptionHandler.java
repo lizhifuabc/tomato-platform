@@ -1,7 +1,7 @@
 package com.tomato.web.core.handler;
 
 import com.tomato.common.exception.BusinessException;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.common.constants.CommonRespCode;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

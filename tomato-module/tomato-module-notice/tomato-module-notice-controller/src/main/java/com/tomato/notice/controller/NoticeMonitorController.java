@@ -1,19 +1,13 @@
 package com.tomato.notice.controller;
 
-import com.tomato.common.resp.Resp;
-import com.tomato.notice.dto.converter.ThreadPoolConverter;
-import com.tomato.notice.dto.resp.ThreadPoolStatsResp;
+import com.tomato.common.concurrent.ThreadPoolConverter;
+import com.tomato.common.domain.resp.Resp;
+import com.tomato.common.domain.resp.ThreadPoolStatsResp;
 import jakarta.annotation.Resource;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.Disposable;
-import reactor.core.scheduler.Scheduler;
-import reactor.core.scheduler.Schedulers;
-
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 通知监控 {@link reactor.core.scheduler.BoundedElasticScheduler}

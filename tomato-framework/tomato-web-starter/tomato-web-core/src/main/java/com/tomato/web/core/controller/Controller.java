@@ -1,7 +1,7 @@
 package com.tomato.web.core.controller;
 
-import com.tomato.common.entity.Entity;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.entity.Entity;
+import com.tomato.common.domain.resp.Resp;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.Serializable;

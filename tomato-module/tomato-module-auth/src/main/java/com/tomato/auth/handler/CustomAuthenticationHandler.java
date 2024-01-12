@@ -1,7 +1,7 @@
 package com.tomato.auth.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

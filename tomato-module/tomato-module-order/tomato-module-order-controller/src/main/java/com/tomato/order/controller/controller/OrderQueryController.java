@@ -1,6 +1,6 @@
 package com.tomato.order.controller.controller;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.order.application.req.OrderQueryByMerchantReq;
 import com.tomato.order.application.req.OrderQueryByOrderNoReq;
 import com.tomato.order.application.req.OrderQueryResultResp;

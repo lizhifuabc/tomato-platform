@@ -1,7 +1,7 @@
 package com.tomato.sys.controller;
 
 import com.tomato.common.exception.BusinessException;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.jpa.domain.service.BaseReadableService;
 import com.tomato.jpa.domain.service.BaseWriteableService;
 import com.tomato.sys.domain.entity.SysTenant;

@@ -1,6 +1,6 @@
 package com.tomato.jpa.domain.entity;
 
-import com.tomato.common.entity.AbstractEntity;
+import com.tomato.common.domain.entity.AbstractEntity;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

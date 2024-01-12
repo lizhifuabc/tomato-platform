@@ -1,6 +1,6 @@
 package com.tomato.notice.controller;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.notice.dto.req.NoticeCreateReq;
 import com.tomato.notice.service.service.NoticeRecordService;
 import io.swagger.v3.oas.annotations.Operation;

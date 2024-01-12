@@ -1,6 +1,6 @@
 package com.tomato.notice.api;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.module.common.constants.ServiceNameConstants;
 import com.tomato.notice.api.fallback.RemoteNoticeServiceFallback;
 import com.tomato.notice.dto.req.NoticeCreateReq;

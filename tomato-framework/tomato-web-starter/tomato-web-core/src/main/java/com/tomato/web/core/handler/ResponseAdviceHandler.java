@@ -1,6 +1,6 @@
 package com.tomato.web.core.handler;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import io.micrometer.tracing.Span;
 import io.micrometer.tracing.Tracer;
 import jakarta.annotation.Resource;

@@ -1,6 +1,6 @@
 package com.tomato.cloud.gateway.utils;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.jackson.utils.JacksonUtils;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;

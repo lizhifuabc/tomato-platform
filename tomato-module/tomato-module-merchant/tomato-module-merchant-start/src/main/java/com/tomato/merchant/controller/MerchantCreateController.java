@@ -1,13 +1,11 @@
 package com.tomato.merchant.controller;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.jpa.domain.service.BaseReadableService;
 import com.tomato.jpa.domain.service.BaseWriteableService;
 import com.tomato.merchant.domain.entity.MerchantInfo;
-import com.tomato.merchant.domain.entity.MerchantRate;
 import com.tomato.merchant.domain.req.MerchantCreateReq;
 import com.tomato.merchant.service.MerchantInfoService;
-import com.tomato.web.core.util.BeanUtil;
 import com.tomato.web.jpa.controller.AbstractBaseController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

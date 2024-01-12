@@ -4,7 +4,7 @@ import com.tomato.channel.event.ChannelRedisEvent;
 import com.tomato.channel.event.ChannelRedisEventData;
 import com.tomato.channel.vo.req.ChannelReq;
 import com.tomato.channel.vo.resp.ChannelScanResp;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;

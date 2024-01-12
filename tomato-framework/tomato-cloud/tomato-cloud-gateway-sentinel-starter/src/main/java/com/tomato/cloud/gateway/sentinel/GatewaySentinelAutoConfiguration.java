@@ -2,7 +2,7 @@ package com.tomato.cloud.gateway.sentinel;
 
 import com.alibaba.csp.sentinel.adapter.spring.webflux.callback.BlockRequestHandler;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.jackson.utils.JacksonUtils;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,9 +1,8 @@
 package com.tomato.reconciliation.dbinfo.internal.domain;
 
-import com.tomato.common.entity.BaseEntity;
+import com.tomato.common.domain.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.jmolecules.ddd.types.Entity;
 
 /**
  * 对账数据源信息

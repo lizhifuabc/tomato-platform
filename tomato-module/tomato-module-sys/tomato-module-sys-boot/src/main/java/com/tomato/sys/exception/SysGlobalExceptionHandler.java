@@ -1,6 +1,6 @@
 package com.tomato.sys.exception;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.web.core.handler.GlobalExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;

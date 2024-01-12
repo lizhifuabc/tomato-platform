@@ -1,7 +1,7 @@
 package com.tomato.order.infrastructure.repository.impl;
 
 import com.tomato.common.exception.BusinessException;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.merchant.api.RemoteMerchantService;
 import com.tomato.merchant.domain.req.MerchantConfigQueryReq;
 import com.tomato.merchant.domain.req.MerchantTradReq;

@@ -1,7 +1,7 @@
 package com.tomato.web.jpa.controller.service;
 
-import com.tomato.common.entity.Entity;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.entity.Entity;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.web.core.controller.Controller;
 import org.springframework.data.domain.Page;
 

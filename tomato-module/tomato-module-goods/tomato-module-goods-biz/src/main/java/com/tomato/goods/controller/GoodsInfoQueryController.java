@@ -1,6 +1,6 @@
 package com.tomato.goods.controller;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.goods.dao.GoodsInfoDao;
 import com.tomato.goods.domain.entity.GoodsInfoEntity;
 import com.tomato.goods.domain.resp.GoodsInfoResp;

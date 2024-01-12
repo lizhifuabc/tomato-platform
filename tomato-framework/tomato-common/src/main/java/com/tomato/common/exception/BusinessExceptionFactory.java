@@ -1,6 +1,6 @@
 package com.tomato.common.exception;
 
-import com.tomato.common.resp.RespCode;
+import com.tomato.common.domain.resp.RespCode;
 
 /**
  * 自定义异常工厂

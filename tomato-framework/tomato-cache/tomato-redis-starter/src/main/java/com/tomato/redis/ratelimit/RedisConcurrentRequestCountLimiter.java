@@ -1,6 +1,6 @@
 package com.tomato.redis.ratelimit;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.redis.domain.req.RedisConcurrentRequestCountLimiterReq;
 import com.tomato.redis.domain.resp.RedisConcurrentRequestCountLimiterResp;
 import jakarta.validation.Valid;

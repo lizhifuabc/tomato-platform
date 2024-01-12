@@ -1,7 +1,7 @@
 package com.tomato.common.exception;
 
 import com.tomato.common.constants.CommonRespCode;
-import com.tomato.common.resp.RespCode;
+import com.tomato.common.domain.resp.RespCode;
 
 /**
  * 客户端异常

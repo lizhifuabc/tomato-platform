@@ -1,6 +1,6 @@
 package com.tomato.channel.domain;
 
-import com.tomato.common.entity.BaseEntity;
+import com.tomato.common.domain.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;

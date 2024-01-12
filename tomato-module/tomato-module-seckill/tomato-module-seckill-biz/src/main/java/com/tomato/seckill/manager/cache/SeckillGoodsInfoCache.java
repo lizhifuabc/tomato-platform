@@ -1,6 +1,6 @@
 package com.tomato.seckill.manager.cache;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.goods.domain.resp.GoodsInfoResp;
 import com.tomato.goods.feign.RemoteGoodsService;
 import com.tomato.seckill.constant.CacheConstant;

@@ -2,7 +2,7 @@ package com.tomato.account.controller;
 
 import com.tomato.account.vo.req.AccountSettleCreateReq;
 import com.tomato.account.service.AccountSettleOperateService;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.idempotent.annotation.Idempotent;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

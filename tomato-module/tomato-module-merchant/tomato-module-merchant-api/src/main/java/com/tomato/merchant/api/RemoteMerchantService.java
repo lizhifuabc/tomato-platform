@@ -1,6 +1,6 @@
 package com.tomato.merchant.api;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.merchant.api.fallback.RemoteMerchantServiceFallback;
 import com.tomato.merchant.domain.req.MerchantConfigQueryReq;
 import com.tomato.merchant.domain.req.MerchantTradReq;
@@ -8,7 +8,6 @@ import com.tomato.merchant.domain.resp.MerchantConfigQueryResp;
 import com.tomato.merchant.domain.resp.MerchantTradResp;
 import com.tomato.module.common.constants.ServiceNameConstants;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

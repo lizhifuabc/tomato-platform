@@ -11,7 +11,7 @@ import com.tomato.account.vo.req.AccountCreateReq;
 import com.tomato.account.vo.req.AccountSettleCreateReq;
 import com.tomato.account.vo.req.AccountTradReq;
 import com.tomato.account.vo.resp.AccountCreateResp;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.utils.base.lang.UUIDGenerator;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;

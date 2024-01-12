@@ -1,6 +1,6 @@
 package com.tomato.notice.entity;
 
-import com.tomato.common.entity.BaseEntity;
+import com.tomato.common.domain.entity.BaseEntity;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -3,7 +3,7 @@ package com.tomato.channel.api;
 import com.tomato.channel.api.fallback.RemoteChannelServiceFallback;
 import com.tomato.channel.vo.req.ChannelReq;
 import com.tomato.channel.vo.resp.ChannelScanResp;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.module.common.constants.ServiceNameConstants;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;

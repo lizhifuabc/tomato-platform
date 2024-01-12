@@ -1,6 +1,6 @@
 package com.tomato.order.infrastructure.repository.impl;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.notice.api.RemoteNoticeService;
 import com.tomato.notice.dto.req.NoticeCreateReq;
 import com.tomato.order.domain.constants.OrderStatusEnum;
@@ -9,7 +9,6 @@ import com.tomato.order.domain.repository.NoticeRepository;
 import com.tomato.order.infrastructure.mapper.OrderInfoMapper;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Repository;
 
 /**

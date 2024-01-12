@@ -1,6 +1,6 @@
 package com.tomato.reconciliation.task.internal.domain;
 
-import com.tomato.common.entity.BaseEntity;
+import com.tomato.common.domain.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

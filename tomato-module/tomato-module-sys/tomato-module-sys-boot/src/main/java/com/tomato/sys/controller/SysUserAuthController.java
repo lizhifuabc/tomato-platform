@@ -3,7 +3,7 @@ package com.tomato.sys.controller;
 import com.tomato.sys.application.adapter.SysLoginAdapter;
 import com.tomato.sys.application.resp.SysLoginResp;
 import com.tomato.sys.application.service.SysUserAuthService;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.sys.application.req.SysLoginReq;
 import com.tomato.sys.domain.constants.RequestHeaderConstant;
 import com.tomato.web.core.controller.BaseController;

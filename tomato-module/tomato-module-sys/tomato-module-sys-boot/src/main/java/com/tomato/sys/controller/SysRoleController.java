@@ -1,6 +1,6 @@
 package com.tomato.sys.controller;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.sys.form.SysRoleAddForm;
 import com.tomato.sys.form.SysRoleUpdateForm;
 import com.tomato.sys.vo.SysRoleVO;

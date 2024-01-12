@@ -1,6 +1,6 @@
 package com.tomato.seckill.controller;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.seckill.domain.req.SeckillGoodsCreateListReq;
 import com.tomato.seckill.domain.req.SeckillGoodsRemainingReq;
 import com.tomato.seckill.manager.SeckillGoodsManager;

@@ -1,6 +1,6 @@
 package com.tomato.merchant.api.fallback;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.merchant.api.RemoteMerchantService;
 import com.tomato.merchant.domain.req.MerchantConfigQueryReq;
 import com.tomato.merchant.domain.req.MerchantTradReq;

@@ -1,7 +1,7 @@
 package com.tomato.channel.api.fallback;
 
 import com.tomato.channel.api.RemoteChannelService;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;

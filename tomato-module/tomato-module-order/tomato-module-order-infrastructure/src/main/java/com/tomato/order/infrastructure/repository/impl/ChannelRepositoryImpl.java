@@ -3,7 +3,7 @@ package com.tomato.order.infrastructure.repository.impl;
 import com.tomato.channel.api.RemoteChannelService;
 import com.tomato.channel.vo.req.ChannelReq;
 import com.tomato.channel.vo.resp.ChannelScanResp;
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.order.domain.domain.entity.ChannelEntity;
 import com.tomato.order.domain.repository.ChannelRepository;
 import com.tomato.web.core.util.BeanUtil;

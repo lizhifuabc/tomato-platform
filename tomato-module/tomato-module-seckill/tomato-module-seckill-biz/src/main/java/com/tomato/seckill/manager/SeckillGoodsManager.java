@@ -1,6 +1,6 @@
 package com.tomato.seckill.manager;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.seckill.dao.SeckillGoodsDao;
 import com.tomato.seckill.domain.entity.SeckillGoodsEntity;
 import com.tomato.seckill.domain.req.SeckillGoodsCreateListReq;

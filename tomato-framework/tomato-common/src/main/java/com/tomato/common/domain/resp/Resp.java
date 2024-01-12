@@ -1,4 +1,4 @@
-package com.tomato.common.resp;
+package com.tomato.common.domain.resp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

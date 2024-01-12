@@ -1,7 +1,6 @@
 package com.tomato.order.controller.controller;
 
-import com.tomato.common.resp.Resp;
-import com.tomato.order.application.event.OrderCreateEvent;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.order.application.req.OrderCreateReq;
 import com.tomato.order.application.resp.OrderScanCreateResp;
 import com.tomato.order.application.service.OrderCreateService;
@@ -10,7 +9,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

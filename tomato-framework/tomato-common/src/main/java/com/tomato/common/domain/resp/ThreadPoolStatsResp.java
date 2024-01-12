@@ -1,4 +1,4 @@
-package com.tomato.notice.dto.resp;
+package com.tomato.common.domain.resp;
 
 import lombok.Builder;
 import lombok.Data;

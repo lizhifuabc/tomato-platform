@@ -1,6 +1,6 @@
 package com.tomato.seckill.goods.interfaces.controller;
 
-import com.tomato.common.resp.Resp;
+import com.tomato.common.domain.resp.Resp;
 import com.tomato.seckill.goods.application.req.SeckillGoodsCreateReq;
 import com.tomato.seckill.goods.application.service.SeckillGoodsService;
 import jakarta.validation.Valid;
