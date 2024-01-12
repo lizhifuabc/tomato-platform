@@ -4,7 +4,7 @@ import com.rabbitmq.client.Channel;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.notice.common.constant.RabbitMqConstant;
 import com.tomato.notice.dto.NoticeDelayBO;
-import com.tomato.notice.service.service.NoticeSendService;
+import com.tomato.notice.service.service.NoticeAsyncSendService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -27,14 +27,14 @@ import java.util.Map;
 public class NoticeMQDelayReceiver {
 
 	@Resource
-	private NoticeSendService noticeSendService;
+	private NoticeAsyncSendService noticeAsyncSendService;
 
 	@RabbitListener(queues = RabbitMqConstant.NOTICE_DELAY_QUEUE, ackMode = "MANUAL", concurrency = "2-4")
 	public void delay(@Payload NoticeDelayBO noticeDelayBO, Message message, Channel channel,
 			@Headers Map<String, Object> headers) throws IOException {
 		log.info("商户通知mq监听器监听到延迟队列：订单 {}", noticeDelayBO);
 		try {
-			noticeSendService.send(noticeDelayBO.getId());
+			noticeAsyncSendService.sendAsync(noticeDelayBO.getId());
 			// 消息的标识，false只确认当前一个消息收到，true确认所有consumer获得的消息（成功消费，消息从队列中删除 ）
 			channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 		}

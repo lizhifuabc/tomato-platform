@@ -16,19 +16,22 @@ public class NoticeRecordService {
 
 	private final NoticeRecordManager noticeRecordManager;
 
-	private final NoticeSendService noticeSendService;
+	private final NoticeAsyncSendService noticeAsyncSendService;
 
-	public NoticeRecordService(NoticeRecordManager noticeRecordManager, NoticeSendService noticeSendService) {
+	private final NoticeSyncSendService noticeSyncSendService;
+
+	public NoticeRecordService(NoticeRecordManager noticeRecordManager, NoticeAsyncSendService noticeAsyncSendService, NoticeSyncSendService noticeSyncSendService) {
 		this.noticeRecordManager = noticeRecordManager;
-		this.noticeSendService = noticeSendService;
-	}
+		this.noticeAsyncSendService = noticeAsyncSendService;
+        this.noticeSyncSendService = noticeSyncSendService;
+    }
 
 	public void createNotice(NoticeCreateReq noticeCreateReq) {
 		// 创建通知记录，如果已经存在则不创建；存在则发送通知
 		NoticeRecordEntity noticeRecordEntity = noticeRecordManager
 			.selectByMerchant(noticeCreateReq.getMerchantNo(), noticeCreateReq.getMerchantOrderNo())
 			.orElseGet(() -> noticeRecordManager.createNotice(noticeCreateReq));
-		noticeSendService.send(noticeRecordEntity.getId());
+		noticeSyncSendService.sendSync(noticeRecordEntity.getId());
 	}
 
 	public void createNoticeAsync(NoticeCreateReq noticeCreateReq) {
@@ -36,7 +39,7 @@ public class NoticeRecordService {
 		NoticeRecordEntity noticeRecordEntity = noticeRecordManager
 			.selectByMerchant(noticeCreateReq.getMerchantNo(), noticeCreateReq.getMerchantOrderNo())
 			.orElseGet(() -> noticeRecordManager.createNotice(noticeCreateReq));
-		noticeSendService.sendAsync(noticeRecordEntity.getId());
+		noticeAsyncSendService.sendAsync(noticeRecordEntity.getId());
 	}
 
 }

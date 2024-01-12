@@ -3,7 +3,7 @@ package com.tomato.notice.service.mq;
 import com.rabbitmq.client.Channel;
 import com.tomato.common.exception.BusinessException;
 import com.tomato.notice.common.constant.RabbitMqConstant;
-import com.tomato.notice.service.service.NoticeSendService;
+import com.tomato.notice.service.service.NoticeAsyncSendService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -29,7 +29,7 @@ import java.util.Map;
 public class NoticeMQReceiver {
 
 	@Resource
-	private NoticeSendService noticeSendService;
+	private NoticeAsyncSendService noticeAsyncSendService;
 
 	@RabbitListener(
 			bindings = @QueueBinding(value = @Queue(value = RabbitMqConstant.PAY_RESULT_NOTICE_QUEUE),
