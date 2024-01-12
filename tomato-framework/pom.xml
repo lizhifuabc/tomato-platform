@@ -41,5 +41,6 @@
 		<module>tomato-binlog</module>
         <module>tomato-business</module>
         <module>tomato-common-starter</module>
+        <module>tomato-satoken-starter</module>
     </modules>
 </project>

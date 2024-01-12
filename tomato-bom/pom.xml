@@ -89,9 +89,7 @@
         <!--  其他第三方依赖      -->
         <com.deepoove.poi.version>1.12.1</com.deepoove.poi.version> <!--  poi 依赖:https://github.com/Sayi/poi-tl -->
 		<jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version> <!--  application.yml文件的敏感信息加密 -->
-
-
-		<!--  第三方相关依赖      -->
+		<sa-token.version>1.37.0</sa-token.version> <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
         <wx-java-mp.version>4.5.0</wx-java-mp.version> <!-- https://github.com/Wechat-Group/WxJava -->
         <alipay-sdk.version>4.38.85.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
         <bcprov.version>1.76</bcprov.version>
@@ -153,7 +151,14 @@
 				<artifactId>pagehelper</artifactId>
 				<version>${pagehelper.version}</version>
 			</dependency>
-            <!-- mybatis  -->
+			<!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
+			<dependency>
+				<groupId>cn.dev33</groupId>
+				<artifactId>sa-token-spring-boot3-starter</artifactId>
+				<version>${sa-token.version}</version>
+			</dependency>
+
+			<!-- mybatis  -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
