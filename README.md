@@ -2,6 +2,13 @@
 
 仅用于学习。
 
+## 组件说明
+
+- Nacos [home (nacos.io)](https://nacos.io/zh-cn/index.html)
+  - 服务注册&发现和配置中心（ 2.2.0）  
+  - 更改配置文件：位置：nacos/conf/application.properties
+  - 单机模式运行：sh startup.sh -m standalone
+
 ## 微服务架构
 
 - API 网关（Api Gateway Pattern）
