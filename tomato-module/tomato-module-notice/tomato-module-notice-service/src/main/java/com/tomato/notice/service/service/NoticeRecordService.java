@@ -31,7 +31,7 @@ public class NoticeRecordService {
 		NoticeRecordEntity noticeRecordEntity = noticeRecordManager
 			.selectByMerchant(noticeCreateReq.getMerchantNo(), noticeCreateReq.getMerchantOrderNo())
 			.orElseGet(() -> noticeRecordManager.createNotice(noticeCreateReq));
-		noticeSyncSendService.sendSync(noticeRecordEntity.getId());
+		noticeSyncSendService.send(noticeRecordEntity.getId());
 	}
 
 	public void createNoticeAsync(NoticeCreateReq noticeCreateReq) {
@@ -39,7 +39,7 @@ public class NoticeRecordService {
 		NoticeRecordEntity noticeRecordEntity = noticeRecordManager
 			.selectByMerchant(noticeCreateReq.getMerchantNo(), noticeCreateReq.getMerchantOrderNo())
 			.orElseGet(() -> noticeRecordManager.createNotice(noticeCreateReq));
-		noticeAsyncSendService.sendAsync(noticeRecordEntity.getId());
+		noticeAsyncSendService.send(noticeRecordEntity.getId());
 	}
 
 }

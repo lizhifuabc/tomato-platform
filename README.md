@@ -6,11 +6,34 @@
 
 - 本地HOST配置
   - 127.0.0.1 tomato-nacos
+  - 127.0.0.1  tomato-rabbitmq
+  - 127.0.0.1 tomato-mysql
 
 - Nacos [home (nacos.io)](https://nacos.io/zh-cn/index.html)
   - 服务注册&发现和配置中心（ 2.2.0）  
   - 更改配置文件：位置：nacos/conf/application.properties
   - 单机模式运行：sh startup.sh -m standalone
+- rabbitmq [RabbitMQ: easy to use, flexible messaging and streaming — RabbitMQ](https://www.rabbitmq.com/)
+  - 安装：[The Homebrew RabbitMQ Formula — RabbitMQ](https://rabbitmq.com/install-homebrew.html)
+  - 延迟队列：[rabbitmq/rabbitmq-delayed-message-exchange: Delayed Messaging for RabbitMQ (github.com)](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
+
+
+
+> 记录本机服务启动：
+>
+> sh /Users/lizhifu/Downloads/cloud/nacos/bin/startup.sh -m standalone
+>
+> sh /Users/lizhifu/Downloads/cloud/nacos/bin/shutdown.sh
+>
+> 
+>
+> docker cp ./rabbitmq_delayed_message_exchange-3.9.0.ez some-rabbit:/plugins
+>
+> /Users/lizhifu/Downloads/rabbitmq_server-3.11.5
+>
+> ./sbin/rabbitmq-server
+>
+> 启动：http://localhost:15672/ guest/guesg
 
 ## 微服务架构
 

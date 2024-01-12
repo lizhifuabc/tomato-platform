@@ -1,29 +1,29 @@
 use `tomato_notice`;
 # 通知记录表
-DROP TABLE IF EXISTS `t_notice_record`;
-CREATE TABLE `t_notice_record` (
-   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '通知记录ID',
-   `order_no` varchar(36) not null  comment '订单号',
-   `merchant_no`       varchar(64)     not null comment '商户编号',
-   `merchant_order_no` varchar(36)     not null comment '商户订单号',
-   `rule_code`         varchar(50)       not null       comment '规则编码',
-   `http_method`       varchar(32)       comment 'http方法',
-   `notice_url` varchar(256) NOT NULL COMMENT '通知地址',
-   `notice_param` json NOT NULL COMMENT '通知参数',
-   `notice_result` TEXT DEFAULT NULL COMMENT '最后一次通知响应结果',
-   `notice_count` INT(11) NOT NULL DEFAULT '0' COMMENT '通知次数',
-   `notice_count_limit` INT(11) NOT NULL DEFAULT '6' COMMENT '最大通知次数, 默认6次',
-   `state` TINYINT(6) NOT NULL DEFAULT '1' COMMENT '通知状态,1-通知中,2-通知成功,3-通知失败',
-   `last_notice_time` DATETIME not null default current_timestamp COMMENT '最后一次通知时间',
-   -- `last_notice_record_history` BIGINT(20) default NULL COMMENT '最后一次通知记录历史ID',
+drop table if exists `t_notice_record`;
+create table `t_notice_record` (
+   `id`                 bigint(20)          not null auto_increment comment '通知记录id',
+   `order_no`           varchar(36)         not null                comment '订单号',
+   `merchant_no`        varchar(64)         not null                comment '商户编号',
+   `merchant_order_no`  varchar(36)         not null                comment '商户订单号',
+   `rule_code`          varchar(50)         default 'default'       comment '规则编码',
+   `http_method`        varchar(32)                                 comment 'http方法',
+   `notice_url`         varchar(255)        not null                comment '通知地址',
+   `notice_param`       json                not null                comment '通知参数',
+   `notice_result` text default null comment '最后一次通知响应结果',
+   `notice_count` int(11) not null default '0' comment '通知次数',
+   `notice_count_limit` int(11) not null default '6' comment '最大通知次数, 默认6次',
+   `state` tinyint(6) not null default '1' comment '通知状态,1-通知中,2-通知成功,3-通知失败',
+   `last_notice_time` datetime not null default current_timestamp comment '最后一次通知时间',
+   -- `last_notice_record_history` bigint(20) default null comment '最后一次通知记录历史id',
    `version` int default 0 not null comment '乐观锁',
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
    `create_time` datetime not null default current_timestamp comment '创建时间',
-   PRIMARY KEY (`id`),
+   primary key (`id`),
    unique index index_merchant_no_merchant_order_no (`merchant_no`,`merchant_order_no`) using btree,
    index index_order_no (`order_no`) using btree,
    index index_create_time (`last_notice_time`) using btree
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知记录表';
+) engine=innodb auto_increment=1 default charset=utf8mb4 comment='通知记录表';
 
 # 通知规则
 drop table if exists `t_notice_rule`;
@@ -46,18 +46,18 @@ create table `t_notice_rule`(
    `update_time` datetime not null default current_timestamp on update current_timestamp comment '更新时间',
    `create_time` datetime not null default current_timestamp comment '创建时间',
     unique index index_rule_code (`rule_code`) using btree
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知规则';
+)engine=innodb auto_increment=1 default charset=utf8mb4 comment='通知规则';
 
 # 通知记录历史
-DROP TABLE IF EXISTS `t_notice_record_history`;
-CREATE TABLE `t_notice_record_history` (
-   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '通知记录历史ID',
-   `notice_record_id` BIGINT(20) NOT NULL COMMENT '通知记录ID',
+drop table if exists `t_notice_record_history`;
+create table `t_notice_record_history` (
+   `id` bigint(20) not null auto_increment comment '通知记录历史id',
+   `notice_record_id` bigint(20) not null comment '通知记录id',
    `notice_result` text comment '通知响应结果',
-   `state` TINYINT(6) NOT NULL DEFAULT '1' COMMENT '通知状态,1-通知中,2-通知成功,3-通知失败',
+   `state` tinyint(6) not null default '1' comment '通知状态,1-通知中,2-通知成功,3-通知失败',
    `cost_time` int  comment '通知耗时',
    `create_time` datetime not null default current_timestamp comment '通知时间',
    `complete_time` datetime default null comment '通知完成时间',
-   PRIMARY KEY (`id`),
+   primary key (`id`),
    index index_notice_record_id (`notice_record_id`) using btree
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='通知记录历史';
+) engine=innodb auto_increment=1 default charset=utf8mb4 comment='通知记录历史';

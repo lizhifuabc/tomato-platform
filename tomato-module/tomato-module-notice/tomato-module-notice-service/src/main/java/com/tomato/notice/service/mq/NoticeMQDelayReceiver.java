@@ -34,7 +34,7 @@ public class NoticeMQDelayReceiver {
 			@Headers Map<String, Object> headers) throws IOException {
 		log.info("商户通知mq监听器监听到延迟队列：订单 {}", noticeDelayBO);
 		try {
-			noticeAsyncSendService.sendAsync(noticeDelayBO.getId());
+			noticeAsyncSendService.send(noticeDelayBO.getId());
 			// 消息的标识，false只确认当前一个消息收到，true确认所有consumer获得的消息（成功消费，消息从队列中删除 ）
 			channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 		}

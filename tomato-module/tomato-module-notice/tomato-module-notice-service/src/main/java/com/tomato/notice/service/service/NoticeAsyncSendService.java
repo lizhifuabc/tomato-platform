@@ -21,9 +21,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
-public class NoticeAsyncSendService {
-
-	private final NoticeRecordManager noticeRecordManager;
+public class NoticeAsyncSendService extends AbstractNoticeSend {
 
 	private final NoticeResultService noticeResultService;
 
@@ -31,15 +29,13 @@ public class NoticeAsyncSendService {
 
 	public NoticeAsyncSendService(NoticeRecordManager noticeRecordManager,
 								  NoticeResultService noticeResultService, WebClient webClient) {
-		this.noticeRecordManager = noticeRecordManager;
+        super(noticeRecordManager);
 		this.noticeResultService = noticeResultService;
 		this.webClient = webClient;
 	}
 
-	public void sendAsync(Long id) {
-		NoticeRecordEntity noticeRecordEntity = noticeRecordManager.selectById(id);
-		// 创建通知历史记录
-		NoticeRecordHistoryEntity noticeHis = noticeRecordManager.createNoticeHis(noticeRecordEntity);
+	@Override
+	public void send(NoticeRecordEntity noticeRecordEntity, NoticeRecordHistoryEntity noticeHis) {
 		// webClient 发送post请求，并对错误进行处理
 		// TODO webClient 重试方式进行优化??rabbitmq延迟队列
 		webClient.post()
