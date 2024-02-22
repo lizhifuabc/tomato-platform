@@ -2,6 +2,20 @@
 
 商户管理: 支持商户入驻，商户需要向平台方提供相关的资料备案。
 
+```java
+/tomato-module-merchant/
+|-- tomato-module-merchant-start/       【springboot项目】是admin端的业务逻辑，最终以springboot 启动
+|-- tomato-module-merchant-base/        【jar项目】是通用的类和业务逻辑，最终以jar形式，被start或者其他项目使用
+|-- pom.xml             								【pom.xml文件】父级pom.xml文件，定义共用依赖、模块、多环境profile
+```
+
+## base
+
+- 通用的无状态的类，如：javabean对象、常量、异常、枚举、错误码、工具类、序列化类等等
+- 通用的配置，如：mybatis、心跳、数据库、http、环境变量、reload、重复提交 等等配置
+- 通用支撑类的业务逻辑，如：缓存、文件上传、验证码、数据字典、操作记录、token、序列号、加密 等等
+- 全局的常量维护，如：redis key前缀、错误码范围、url前缀 等等
+
 ## Docker 执行
 
 mvn:构建：

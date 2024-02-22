@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- spring boot / spring cloud 统一依赖管理 -->
-		<spring.boot.version>3.2.1</spring.boot.version>
+		<spring.boot.version>3.2.2</spring.boot.version>
 		<spring-boot-admin.version>3.2.1</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
         <spring.cloud.version>2023.0.0</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
@@ -99,7 +99,7 @@
 
 		<!-- 常用工具包 -->
 		<antisamy.version>1.7.4</antisamy.version> <!-- xss https://github.com/nahsra/antisamy -->
-		<hutool.version>6.0.0-M9</hutool.version> <!-- https://gitee.com/dromara/hutool -->
+		<hutool.version>6.0.0-M11</hutool.version> <!-- https://gitee.com/dromara/hutool -->
 		<guava.version>33.0.0-jre</guava.version> <!-- https://github.com/google/guava  -->
         <apache.commons.codec.version>1.15</apache.commons.codec.version>  <!-- apache 编解码库 https://github.com/apache/commons-codec -->
         <apache.commons.lang3.version>3.12.0</apache.commons.lang3.version> <!-- apache commons https://github.com/apache/commons-lang -->
