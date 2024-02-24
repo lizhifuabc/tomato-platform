@@ -42,6 +42,9 @@
         <spring.boot.mybatis.version>3.0.3</spring.boot.mybatis.version>
 		<mybatis-flex.version>1.7.7</mybatis-flex.version> <!-- https://mybatis-flex.com/ -->
 		<pagehelper.version>5.3.3</pagehelper.version>
+		<mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
+		<mybatis-plus-generator.version>3.5.5</mybatis-plus-generator.version>
+		<mybatis.version>3.5.15</mybatis.version>
 
 
 		<!-- shardingsphere 分库分表依赖 -->
@@ -159,6 +162,26 @@
 			</dependency>
 
 			<!-- mybatis  -->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-core</artifactId>
+				<version>${mybatis-plus-boot-starter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus-boot-starter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>${mybatis-plus-generator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
