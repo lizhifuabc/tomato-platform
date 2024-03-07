@@ -23,11 +23,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- spring boot / spring cloud 统一依赖管理 -->
-		<spring.boot.version>3.2.2</spring.boot.version>
-		<spring-boot-admin.version>3.2.1</spring-boot-admin.version> <!--   监控 https://github.com/codecentric/spring-boot-admin     -->
-        <spring.cloud.version>2023.0.0</spring.cloud.version>  <!-- https://spring.io/projects/spring-cloud       -->
-        <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version> <!-- spring cloud alibaba 统一依赖管理 -->
-		<!-- <spring-security-oauth2-authorization-server.version>1.1.2</spring-security-oauth2-authorization-server.version>  由spring 统计管理 Spring Authorization Server --> <!-- https://spring.io/projects/spring-authorization-server -->
+		<spring-boot-admin.version>3.2.2</spring-boot-admin.version>
+		<spring-boot-dependencies.version>3.2.3</spring-boot-dependencies.version>
+		<spring-cloud-dependencies.version>2023.0.0</spring-cloud-dependencies.version>
+		<spring-cloud-alibaba-dependencies.version>2023.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>
+		<spring-cloud-tencent-dependencies.version>1.13.0-2023.0.0-SNAPSHOT</spring-cloud-tencent-dependencies.version>
         <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin> <!-- spring 代码格式插件 -->
 
         <!--Maven Plugin 组件统一依赖管理-->
@@ -118,7 +118,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
+                <version>${spring-boot-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -126,7 +126,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -134,7 +134,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -404,17 +404,11 @@
                 <version>${hutool.version}</version>
             </dependency>
             <!--监控服务端-->
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-server</artifactId>
-                <version>${spring-boot-admin.version}</version>
-            </dependency>
-            <!--监控客户端-->
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring-boot-admin.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-starter-server</artifactId>
+				<version>${spring-boot-admin.version}</version>
+			</dependency>
             <!--  业务代码 start -->
             <dependency>
                 <groupId>com.tomato</groupId>
