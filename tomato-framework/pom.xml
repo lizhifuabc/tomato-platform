@@ -16,7 +16,6 @@
         <module>tomato-dynamic-thread-starter</module>
         <module>tomato-validator-starter</module>
         <module>tomato-jackson-starter</module>
-        <module>tomato-crypto</module>
         <module>tomato-id-starter</module>
         <module>tomato-security-starter</module>
         <module>tomato-lock</module>
@@ -42,5 +41,6 @@
         <module>tomato-business</module>
         <module>tomato-common-starter</module>
         <module>tomato-satoken-starter</module>
+        <module>tomato-encrypt-starter</module>
     </modules>
 </project>
