@@ -25,7 +25,7 @@ public @interface CheckEnum {
 	 * 默认的错误提示信息
 	 * @return String
 	 */
-	String message();
+	String message() default "枚举类型不匹配";
 
 	/**
 	 * 枚举类对象 必须实现BaseEnum接口
