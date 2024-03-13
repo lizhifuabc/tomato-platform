@@ -12,11 +12,27 @@ import org.aspectj.lang.JoinPoint;
 public interface IdempotentStrategy {
 
 	/**
-	 * 幂等执行
+	 * 执行前
 	 * @param joinPoint 切点
 	 * @param idempotent 幂等注解
 	 */
-	void execute(JoinPoint joinPoint, Idempotent idempotent);
+	void doBefore(JoinPoint joinPoint, Idempotent idempotent);
+
+	/**
+	 * 执行后
+	 * @param joinPoint 切点
+	 * @param idempotent 幂等注解
+	 * @param jsonResult 返回结果
+	 */
+	default void doAfterReturning(JoinPoint joinPoint, Idempotent idempotent, Object jsonResult){}
+
+	/**
+	 * 异常处理
+	 * @param joinPoint 切点
+	 * @param idempotent 幂等注解
+	 * @param e 异常
+	 */
+	default void doAfterThrowing(JoinPoint joinPoint, Idempotent idempotent, Exception e){}
 
 	/**
 	 * 策略名称

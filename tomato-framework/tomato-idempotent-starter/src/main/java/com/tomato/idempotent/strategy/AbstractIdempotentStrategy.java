@@ -12,6 +12,8 @@ import java.nio.charset.StandardCharsets;
  */
 public abstract class AbstractIdempotentStrategy implements IdempotentStrategy {
 
+	protected static final ThreadLocal<String> KEY_CACHE = new ThreadLocal<>();
+
 	/**
 	 * MD5加密
 	 * @param input 签名

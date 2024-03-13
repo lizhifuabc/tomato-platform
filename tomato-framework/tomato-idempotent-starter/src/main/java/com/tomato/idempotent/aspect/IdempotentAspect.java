@@ -28,7 +28,7 @@ public class IdempotentAspect {
 
 	@Before("@annotation(idempotent)")
 	public void idempotentHandler(JoinPoint joinPoint, Idempotent idempotent) {
-		idempotentStrategyFactory.getStrategy(idempotent.strategy()).execute(joinPoint, idempotent);
+		idempotentStrategyFactory.getStrategy(idempotent.strategy()).doBefore(joinPoint, idempotent);
 		log.info("[beforePointCut][方法({}) 参数({}) 存在重复请求]", joinPoint.getSignature().toString(), joinPoint.getArgs());
 	}
 
