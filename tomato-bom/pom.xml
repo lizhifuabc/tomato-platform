@@ -68,6 +68,7 @@
         <velocity.version>2.3</velocity.version>        <!--  代码生成模板      -->
         <easy-captcha.version>1.6.2</easy-captcha.version>         <!-- 验证码 -->
         <nashorn.version>15.4</nashorn.version>
+		<bouncycastle.version>1.76</bouncycastle.version>
 
 		<!--Webjars 依赖-->
 		<animate.css.version>3.7.2</animate.css.version>
@@ -102,7 +103,7 @@
 
 		<!-- 常用工具包 -->
 		<antisamy.version>1.7.4</antisamy.version> <!-- xss https://github.com/nahsra/antisamy -->
-		<hutool.version>6.0.0-M11</hutool.version> <!-- https://gitee.com/dromara/hutool -->
+		<hutool.version>5.8.22</hutool.version><!-- https://gitee.com/dromara/hutool -->
 		<guava.version>33.0.0-jre</guava.version> <!-- https://github.com/google/guava  -->
         <apache.commons.codec.version>1.15</apache.commons.codec.version>  <!-- apache 编解码库 https://github.com/apache/commons-codec -->
         <apache.commons.lang3.version>3.12.0</apache.commons.lang3.version> <!-- apache commons https://github.com/apache/commons-lang -->
@@ -144,6 +145,15 @@
 				<groupId>org.springdoc</groupId>
 				<artifactId>springdoc-openapi</artifactId>
 				<version>${springdoc.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- hutool 的依赖配置-->
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-bom</artifactId>
+				<version>${hutool.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -322,12 +332,6 @@
                 <artifactId>cosid-core</artifactId>
                 <version>${cosid.version}</version>
             </dependency>
-            <!-- 一个开源的第三方算法提供商  -->
-            <dependency>
-                <groupId>org.bouncycastle</groupId>
-                <artifactId>bcpkix-jdk15on</artifactId>
-                <version>${bouncycastle.version}</version>
-            </dependency>
             <!-- apache 编解码库 https://github.com/apache/commons-codec -->
             <dependency>
                 <groupId>commons-codec</groupId>
@@ -398,11 +402,12 @@
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.dromara.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
+			<!-- 加密包引入 -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15to18</artifactId>
+				<version>${bouncycastle.version}</version>
+			</dependency>
             <!--监控服务端-->
 			<dependency>
 				<groupId>de.codecentric</groupId>
