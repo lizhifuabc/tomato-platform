@@ -1,6 +1,7 @@
 package com.tomato.lock.redis.exe;
 
 import com.tomato.lock.core.exe.AbstractLockExe;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
@@ -24,6 +25,7 @@ import java.util.UUID;
  * @author lizhifu
  * @since 2023/1/17
  */
+@Slf4j
 public class RedisTemplateLockExe extends AbstractLockExe<Boolean> {
 
 	private final StringRedisTemplate stringRedisTemplate;
@@ -54,8 +56,24 @@ public class RedisTemplateLockExe extends AbstractLockExe<Boolean> {
 
 	@Override
 	public Boolean lock(String lockKey, long expire, long acquireTimeout) {
-		return stringRedisTemplate.execute(LOCK_SCRIPT, Collections.singletonList(lockKey), uuid,
+		Boolean result = stringRedisTemplate.execute(LOCK_SCRIPT, Collections.singletonList(lockKey), uuid,
 				String.valueOf(expire));
+		// 重试时间间隔 TODO 优化
+		long retryDuration = 100;
+		// 重试次数
+		long retryTimes = acquireTimeout / retryDuration;
+
+		while ((Boolean.FALSE.equals(result)) && retryTimes-- > 0) {
+			try {
+				log.debug("加锁失败，重试..." + acquireTimeout);
+				Thread.sleep(retryDuration);
+			}catch (Exception e){
+				return false;
+			}
+			result = stringRedisTemplate.execute(LOCK_SCRIPT, Collections.singletonList(lockKey), uuid,
+					String.valueOf(expire));
+		}
+		return result;
 	}
 
 	@Override
