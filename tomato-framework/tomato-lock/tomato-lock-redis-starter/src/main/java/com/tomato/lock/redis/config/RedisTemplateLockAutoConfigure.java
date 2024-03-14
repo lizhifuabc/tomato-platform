@@ -18,7 +18,7 @@ public class RedisTemplateLockAutoConfigure {
 
 	@Bean
 	@ConditionalOnMissingBean
-	DistributedLockExe distributedLockExe(StringRedisTemplate stringRedisTemplate) {
+	DistributedLockExe<Boolean> distributedLockExe(StringRedisTemplate stringRedisTemplate) {
 		return new RedisTemplateLockExe(stringRedisTemplate);
 	}
 
