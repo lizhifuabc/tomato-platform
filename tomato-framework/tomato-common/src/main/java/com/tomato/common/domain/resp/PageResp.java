@@ -1,60 +1,55 @@
 package com.tomato.common.domain.resp;
 
 import com.tomato.common.constants.CommonRespCode;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 
 /**
- * 页面返回数据
+ * 分页返回对象
  *
  * @author lizhifu
  * @since 2022/11/21
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class PageResp<T> extends Resp<T> {
 
-	private int totalCount = 0;
+	/**
+	 * 当前页
+	 */
+	@Schema(description = "当前页")
+	private Long pageNum;
 
-	private int pageSize = 1;
+	/**
+	 * 每页的数量
+	 */
+	@Schema(description = "每页的数量")
+	private Long pageSize;
 
-	private int pageIndex = 1;
+	/**
+	 * 总记录数
+	 */
+	@Schema(description = "总记录数")
+	private Long total;
 
-	public int getTotalCount() {
-		return totalCount;
-	}
+	/**
+	 * 总页数
+	 */
+	@Schema(description = "总页数")
+	private Long pages;
 
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
-
-	public int getPageSize() {
-		return Math.max(pageSize, 1);
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = Math.max(pageSize, 1);
-	}
-
-	public int getPageIndex() {
-		return Math.max(pageIndex, 1);
-	}
-
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = Math.max(pageIndex, 1);
-	}
-
-	public int getTotalPages() {
-		return this.totalCount % this.pageSize == 0 ? this.totalCount / this.pageSize
-				: (this.totalCount / this.pageSize) + 1;
-	}
-
-	public static <T> PageResp<T> of(T data, int totalCount, int pageSize, int pageIndex) {
+	public static <T> PageResp<T> of(T data, Long total, Long pageSize, Long pageNum) {
 		PageResp<T> response = new PageResp<>();
 		response.setSuccess(true);
 		response.setCode(CommonRespCode.SUCCESS.code());
 		response.setMsg(CommonRespCode.SUCCESS.msg());
 		response.setData(data);
-		response.setTotalCount(totalCount);
+		response.setTotal(total);
 		response.setPageSize(pageSize);
-		response.setPageIndex(pageIndex);
+		response.setPageNum(pageNum);
+		response.setPages(total % pageSize == 0 ? total / pageSize : (total / pageSize + 1));
 		return response;
 	}
-
 }
