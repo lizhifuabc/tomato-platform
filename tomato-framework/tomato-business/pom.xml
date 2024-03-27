@@ -13,5 +13,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>tomato-business-comment</module>
-	</modules>
+        <module>tomato-business-pay</module>
+    </modules>
 </project>
