@@ -27,6 +27,11 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>transmittable-thread-local</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.tomato</groupId>
+			<artifactId>tomato-validator-starter</artifactId>
+		</dependency>
     </dependencies>
 
 </project>
