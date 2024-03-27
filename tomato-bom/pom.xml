@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
+		<version>3.2.4</version>
 		<relativePath/>
 	</parent>
 
@@ -30,7 +30,6 @@
 
         <!-- spring boot / spring cloud 统一依赖管理 -->
 		<spring-boot-admin.version>3.2.2</spring-boot-admin.version>
-		<spring-boot-dependencies.version>3.2.3</spring-boot-dependencies.version>
 		<spring-cloud-dependencies.version>2023.0.0</spring-cloud-dependencies.version>
 		<spring-cloud-alibaba-dependencies.version>2023.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>
 		<spring-cloud-tencent-dependencies.version>1.13.0-2023.0.0-SNAPSHOT</spring-cloud-tencent-dependencies.version>
@@ -70,7 +69,6 @@
         <cosid.version>1.16.0</cosid.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version> <!--   Apache Commons BeanUtils 库-->
 		<springdoc.version>2.3.0</springdoc.version> <!--   https://springdoc.org/     -->
-        <jasypt.version>3.0.5</jasypt.version> <!--   配置文件加解密 https://github.com/jasypt/jasypt     -->
         <velocity.version>2.3</velocity.version>        <!--  代码生成模板      -->
         <easy-captcha.version>1.6.2</easy-captcha.version>         <!-- 验证码 -->
         <nashorn.version>15.4</nashorn.version>
@@ -98,7 +96,7 @@
 
         <!--  其他第三方依赖      -->
         <com.deepoove.poi.version>1.12.1</com.deepoove.poi.version> <!--  poi 依赖:https://github.com/Sayi/poi-tl -->
-		<jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version> <!--  application.yml文件的敏感信息加密 -->
+		<jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version> <!--  application.yml文件的敏感信息加密 --> <!--   配置文件加解密 https://github.com/jasypt/jasypt     -->
 		<sa-token.version>1.37.0</sa-token.version> <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
         <wx-java-mp.version>4.5.0</wx-java-mp.version> <!-- https://github.com/Wechat-Group/WxJava -->
         <alipay-sdk.version>4.38.85.ALL</alipay-sdk.version> <!-- https://github.com/alipay/alipay-sdk-java-all -->
@@ -121,14 +119,6 @@
     <!--在父pom中定义子pom需要的相关依赖 -->
     <dependencyManagement>
         <dependencies>
-            <!--  spring boot 依赖管理 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <!--  spring cloud 依赖管理 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -253,12 +243,6 @@
                 <groupId>org.openjdk.nashorn</groupId>
                 <artifactId>nashorn-core</artifactId>
                 <version>${nashorn.version}</version>
-            </dependency>
-            <!--配置文件加解密-->
-            <dependency>
-                <groupId>com.github.ulisesbocchio</groupId>
-                <artifactId>jasypt-spring-boot-starter</artifactId>
-                <version>${jasypt.version}</version>
             </dependency>
             <!--   Apache Commons BeanUtils 库。
             这个库提供了许多工具类和方法来简化 JavaBean 的操作，包括复制属性、转换数据类型、访问属性等等     -->
