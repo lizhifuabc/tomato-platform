@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
@@ -48,7 +47,6 @@ public class PageQueryReq {
 
 		@Schema(description = "排序字段")
 		@NotBlank(message = "排序字段不能为空")
-		@Length(max = 30, message = "排序字段最多30")
 		private String column;
 	}
 }
