@@ -15,4 +15,5 @@ ENV TZ=Asia/Shanghai JAVA_OPTS="-Xms128m -Xmx256m -Djava.security.egd=file:/dev/
 
 # 容器启动后,先睡眠3秒钟
 # 然后再执行java命令启动应用
-CMD sleep 3; java $JAVA_OPTS -jar app.jar
+CMD sleep 3; java $JAVA_OPTS -jar app.jar \
+-XX:+HeapDumpOnOutOfMemoryError -Xlog:gc*,:time,tags,level -XX:+UseZGC
