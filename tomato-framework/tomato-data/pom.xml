@@ -18,6 +18,7 @@
         <module>tomato-multi-tenancy-starter</module>
 		<module>tomato-mybatis-flex-starter</module>
         <module>tomato-mybatis-plus-starter</module>
+        <module>tomato-mybatis-mp-starter</module>
     </modules>
 
 </project>

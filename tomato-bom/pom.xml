@@ -46,6 +46,7 @@
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.3</spring.boot.mybatis.version>
 		<mybatis-flex.version>1.7.7</mybatis-flex.version> <!-- https://mybatis-flex.com/ -->
+		<mybatis-mp.version>1.4.7-spring-boot3</mybatis-mp.version>
 		<pagehelper.version>5.3.3</pagehelper.version>
 		<mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
 		<mybatis-plus-generator.version>3.5.5</mybatis-plus-generator.version>
@@ -150,6 +151,15 @@
 				<groupId>cn.hutool</groupId>
 				<artifactId>hutool-bom</artifactId>
 				<version>${hutool.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- mybatis-mp 的依赖配置-->
+			<dependency>
+				<groupId>cn.mybatis-mp</groupId>
+				<artifactId>mybatis-mp-spring-boot-parent</artifactId>
+				<version>${mybatis-mp.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
