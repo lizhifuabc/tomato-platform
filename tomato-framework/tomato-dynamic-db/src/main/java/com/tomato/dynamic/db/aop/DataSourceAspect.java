@@ -2,6 +2,7 @@ package com.tomato.dynamic.db.aop;
 
 import com.tomato.dynamic.db.annotation.DataSource;
 import com.tomato.dynamic.db.holder.DynamicDataSourceHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,6 +20,7 @@ import java.util.Objects;
  */
 @Aspect
 @Component
+@Slf4j
 public class DataSourceAspect {
 
 	/**
@@ -37,13 +39,23 @@ public class DataSourceAspect {
 	 */
 	@Around("dynamicDataSourcePointCut()")
 	public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+		// 注解获取数据源
 		String key = getDefineAnnotation(joinPoint).value();
+		// 当前数据源
+		String currentKey = DynamicDataSourceHolder.getDynamicDataSourceKey();
+		if (key == null || key.equals(currentKey)) {
+			// 数据源相同，不需要切换
+			return joinPoint.proceed();
+		}
+
 		DynamicDataSourceHolder.setDynamicDataSourceKey(key);
 		try {
 			return joinPoint.proceed();
 		}
 		finally {
 			DynamicDataSourceHolder.removeDynamicDataSourceKey();
+			// 切换回原来的数据源
+			log.info("数据源切回至：{}", DynamicDataSourceHolder.getDynamicDataSourceKey());
 		}
 	}
 
@@ -54,11 +66,13 @@ public class DataSourceAspect {
 	 */
 	private DataSource getDefineAnnotation(ProceedingJoinPoint joinPoint) {
 		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		// 方法上的注解
 		DataSource dataSourceAnnotation = methodSignature.getMethod().getAnnotation(DataSource.class);
 		if (Objects.nonNull(methodSignature)) {
 			return dataSourceAnnotation;
 		}
 		else {
+			// 类上的注解
 			Class<?> dsClass = joinPoint.getTarget().getClass();
 			return dsClass.getAnnotation(DataSource.class);
 		}
