@@ -26,12 +26,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
+			<optional>true</optional>
+		</dependency>
         <!--德鲁伊数据源连接池依赖-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-        </dependency>
+			<optional>true</optional>
+		</dependency>
         <!--spring核心aop模块依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -40,12 +42,14 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-        </dependency>
+			<optional>true</optional>
+		</dependency>
         <!--web模块依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+			<optional>true</optional>
+		</dependency>
     </dependencies>
 
 </project>

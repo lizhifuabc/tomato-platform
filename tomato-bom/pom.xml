@@ -445,6 +445,11 @@
                 <artifactId>tomato-tracing-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+			<dependency>
+				<groupId>com.tomato</groupId>
+				<artifactId>tomato-dynamic-db</artifactId>
+				<version>${project.version}</version>
+			</dependency>
             <dependency>
                 <groupId>com.tomato</groupId>
                 <artifactId>tomato-idempotent-starter</artifactId>

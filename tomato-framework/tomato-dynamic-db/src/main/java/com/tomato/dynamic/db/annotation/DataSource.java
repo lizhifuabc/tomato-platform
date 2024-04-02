@@ -1,7 +1,5 @@
 package com.tomato.dynamic.db.annotation;
 
-import com.tomato.dynamic.db.constant.DbConstant;
-
 import java.lang.annotation.*;
 
 /**
@@ -19,6 +17,6 @@ public @interface DataSource {
 	/**
 	 * 切换数据源名称
 	 */
-	public String value() default DbConstant.MASTER;
+	String value();
 
 }
