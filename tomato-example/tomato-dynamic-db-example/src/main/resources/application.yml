@@ -5,19 +5,24 @@ spring:
     pool:
       master:
         username: root
-        password: 123456
-        url: jdbc:mysql://127.0.0.1:3306/tomato_order_0?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+        password: 12345678
+        url: jdbc:mysql://127.0.0.1:3306/master?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
         hikari:
           pool-name: master
       slave1:
         username: root
-        password: 123456
-        url: jdbc:mysql://127.0.0.1:3306/tomato_order_0?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+        password: 12345678
+        url: jdbc:mysql://127.0.0.1:3306/slave1?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
         hikari:
           pool-name: slave1
       slave2:
         username: root
-        password: 123456
-        url: jdbc:mysql://127.0.0.1:3306/tomato_order_0?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+        password: 12345678
+        url: jdbc:mysql://127.0.0.1:3306/slave2?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
         hikari:
           pool-name: slave2
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

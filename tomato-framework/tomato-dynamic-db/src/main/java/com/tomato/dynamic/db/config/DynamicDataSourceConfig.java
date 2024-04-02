@@ -68,8 +68,8 @@ public class DynamicDataSourceConfig implements BeanDefinitionRegistryPostProces
 			// 加载 DataSource
 			DataSource dataSource = value.initializeDataSourceBuilder().build();
 			if (Objects.nonNull(value.getPoolType())) {
-				// 加载数据源配置
-				binder.bind(DynamicDataSourcePoolProperties.PREFIX + "." + value.getPoolType() + "." + value.getPoolType(), Bindable.ofInstance(dataSource));
+				// 加载数据源配置 绑定数据库连接池配置属性
+				binder.bind(DynamicDataSourcePoolProperties.PREFIX + "." + key + "." + value.getPoolType(), Bindable.ofInstance(dataSource));
 			}
 			dataSourceMap.put(key, dataSource);
 			// 注册 BeanDefinition
