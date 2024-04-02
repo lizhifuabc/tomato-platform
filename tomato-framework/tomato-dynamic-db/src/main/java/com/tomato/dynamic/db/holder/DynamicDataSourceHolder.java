@@ -35,12 +35,12 @@ public class DynamicDataSourceHolder {
 	}
 
 	/**
-	 * 获取动态数据源名称，默认使用mater数据源
+	 * 获取动态数据源
 	 */
 	public static String getDynamicDataSourceKey() {
 		Deque<String> list = DYNAMIC_DATASOURCE_KEY.get();
 		if (Objects.isNull(list) || list.isEmpty()) {
-			return DbConstant.MASTER;
+			return null;
 		}
 		return list.getFirst();
 	}
