@@ -1,6 +1,5 @@
 package com.tomato.dynamic.db.holder;
 
-import com.tomato.dynamic.db.constant.DbConstant;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Deque;
