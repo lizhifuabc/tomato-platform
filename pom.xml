@@ -64,26 +64,26 @@
         <!-- 子项目中通过显式的配置plugin和execution元素来使用插件。-->
         <pluginManagement>
             <plugins>
-                <plugin>
+				<!-- spring boot 默认插件 -->
+				<plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring.boot.version}</version>
-                    <configuration>
-                        <!-- 最终构建文件名 -->
-                        <finalName>${project.build.finalName}</finalName>
-                        <!-- 开启分层jar的构建 -->
-                        <layers>
-                            <enabled>true</enabled>
-                        </layers>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <!-- 在package阶段执行repackage目标，解决jar中没有主清单属性 -->
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+<!--                    <configuration>-->
+<!--                        &lt;!&ndash; 最终构建文件名 &ndash;&gt;-->
+<!--                        <finalName>${project.build.finalName}</finalName>-->
+<!--                        &lt;!&ndash; 开启分层jar的构建 &ndash;&gt;-->
+<!--                        <layers>-->
+<!--                            <enabled>true</enabled>-->
+<!--                        </layers>-->
+<!--                    </configuration>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <goals>-->
+<!--                                &lt;!&ndash; 在package阶段执行repackage目标，解决jar中没有主清单属性 &ndash;&gt;-->
+<!--                                <goal>repackage</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
                 </plugin>
             </plugins>
         </pluginManagement>
