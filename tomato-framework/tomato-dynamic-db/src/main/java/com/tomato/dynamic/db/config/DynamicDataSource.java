@@ -2,7 +2,9 @@ package com.tomato.dynamic.db.config;
 
 import com.tomato.dynamic.db.holder.DynamicDataSourceHolder;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import java.util.Map;
@@ -13,6 +15,8 @@ import java.util.Map;
  * @author lizhifu
  * @since 2023/8/12
  */
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class DynamicDataSource extends AbstractRoutingDataSource {
@@ -29,14 +33,6 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 	@Override
 	protected Object determineCurrentLookupKey() {
 		return DynamicDataSourceHolder.getDynamicDataSourceKey();
-	}
-
-	public Map<Object, Object> getDefineTargetDataSources() {
-		return defineTargetDataSources;
-	}
-
-	public void setDefineTargetDataSources(Map<Object, Object> defineTargetDataSources) {
-		this.defineTargetDataSources = defineTargetDataSources;
 	}
 
 }
