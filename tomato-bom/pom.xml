@@ -50,7 +50,7 @@
 		<pagehelper.version>5.3.3</pagehelper.version>
 		<mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
 		<mybatis-plus-generator.version>3.5.5</mybatis-plus-generator.version>
-		<mybatis.version>3.5.15</mybatis.version>
+		<mybatis.version>3.5.16</mybatis.version>
 
 
 		<!-- shardingsphere 分库分表依赖 -->
