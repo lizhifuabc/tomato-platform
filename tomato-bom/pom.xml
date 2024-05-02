@@ -29,10 +29,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- spring boot / spring cloud 统一依赖管理 -->
-		<spring-boot-admin.version>3.2.2</spring-boot-admin.version>
-		<spring-cloud-dependencies.version>2023.0.0</spring-cloud-dependencies.version>
-		<spring-cloud-alibaba-dependencies.version>2023.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>
-		<spring-cloud-tencent-dependencies.version>1.13.0-2023.0.0-SNAPSHOT</spring-cloud-tencent-dependencies.version>
+		<spring-boot-admin.version>3.2.3</spring-boot-admin.version>
+		<spring-cloud-dependencies.version>2023.0.1</spring-cloud-dependencies.version>
+		<spring-cloud-alibaba-dependencies.version>2023.0.1.0</spring-cloud-alibaba-dependencies.version>
+		<spring-cloud-tencent-dependencies.version>1.13.1-2023.0.0</spring-cloud-tencent-dependencies.version>
         <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin> <!-- spring 代码格式插件 -->
 
         <!--Maven Plugin 组件统一依赖管理-->
