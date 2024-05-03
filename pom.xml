@@ -85,6 +85,26 @@
 <!--                        </execution>-->
 <!--                    </executions>-->
                 </plugin>
+
+				<!-- Git信息记录插件 -->
+				<plugin>
+					<groupId>io.github.git-commit-id</groupId>
+					<artifactId>git-commit-id-maven-plugin</artifactId>
+					<configuration>
+						<skip>${skip.build.git.commit.info}</skip>
+						<!-- 检查的仓库根目录，${project.basedir}：项目根目录，即包含pom.xml文件的目录 -->
+						<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+						<!-- 生成git属性文件，默认false：不生成 -->
+						<generateGitPropertiesFile>true</generateGitPropertiesFile>
+						<dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+						<gitDescribe>
+							<skip>false</skip>
+							<always>false</always>
+							<dirty>-dirty</dirty>
+						</gitDescribe>
+					</configuration>
+				</plugin>
+
             </plugins>
         </pluginManagement>
 
