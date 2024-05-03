@@ -29,8 +29,9 @@ public class WeightGrayVersionStrategy implements GrayVersionStrategy {
 		}
 		// 获取请求头
 		HttpHeaders httpHeaders = requestData.getHeaders();
-		String disturbanceHash = httpHeaders.getFirst(HeaderConstant.DISTURBANCE_HASH);
 		// 扰动函数
+		String disturbanceHash = httpHeaders.getFirst(HeaderConstant.DISTURBANCE_HASH);
+		// 从请求头中获取扰动函数，如果为空，则使用随机数作为扰动函数。
 		Integer hash = Stream.of(disturbanceHash)
 			.filter(StringUtils::hasLength)
 			.findFirst()

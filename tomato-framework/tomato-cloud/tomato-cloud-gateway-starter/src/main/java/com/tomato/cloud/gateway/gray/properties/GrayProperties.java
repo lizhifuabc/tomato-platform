@@ -48,8 +48,10 @@ public class GrayProperties {
 
 			private Map<String, List<String>> headerParam = Collections.emptyMap();
 
-			private double weight;
-
+			/**
+			 * 权重 默认0
+			 */
+			private Integer weight = 0;
 		}
 
 	}
