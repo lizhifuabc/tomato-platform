@@ -1,6 +1,6 @@
 # https://hub.docker.com/_/mysql
 # 指定 Docker Compose 文件格式的版本
-version: '3'
+version: '3.9'
 # 定义服务部分，可以包含一个或多个服务配置
 services:
   # 服务的名称，这里是 MySQL 服务

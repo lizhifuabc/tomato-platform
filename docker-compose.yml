@@ -1,4 +1,4 @@
-version: '3' # 使用 Docker Compose 版本 3
+version: '3.9' # 使用 Docker Compose 版本 3
 services:
   tomato-merchant:
     build:  # 构建 Docker 镜像的设置

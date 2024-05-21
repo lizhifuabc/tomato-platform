@@ -1,4 +1,5 @@
-version: '3'
+# 参考: https://nacos.io/zh-cn/docs/quick-start-docker.html
+version: '3.9'
 services:
   nacos:
     image: nacos/nacos-server:latest                             # 镜像`nacos/nacos-server:latest`

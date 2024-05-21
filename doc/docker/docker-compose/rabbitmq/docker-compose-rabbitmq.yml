@@ -1,6 +1,6 @@
 # 环境变量可参考： https://www.rabbitmq.com/configure.html
 #               https://github.com/rabbitmq/rabbitmq-server/blob/master/deps/rabbit/docs/rabbitmq.conf.example
-version: '3'
+version: '3.9'
 services:
   rabbitmq:
     image: rabbitmq:3.12-management        # 镜像`rabbitmq:3.9.1-management` 【 注：该版本包含了web控制页面 】
