@@ -3,7 +3,6 @@ package com.tomato.dynamic.db.holder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
-import java.util.LinkedList;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -73,5 +72,18 @@ public class DynamicDataSourceHolder {
 	 */
 	public static ConcurrentHashMap<Object, Object> getTargetDatasource() {
 		return TARGET_DATASOURCE;
+	}
+
+	/**
+	 * 添加新的数据源
+	 * @param key 数据源名称
+	 * @param dataSource 数据源
+	 */
+	public static void addTargetDatasource(String key, Object dataSource) {
+		if (TARGET_DATASOURCE.contains(key)){
+			log.error("数据源已存在：{}", key);
+			throw new RuntimeException("数据源已存在:"+key);
+		}
+		TARGET_DATASOURCE.put(key, dataSource);
 	}
 }

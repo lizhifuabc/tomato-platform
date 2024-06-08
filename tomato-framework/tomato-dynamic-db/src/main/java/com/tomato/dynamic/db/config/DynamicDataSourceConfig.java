@@ -65,7 +65,7 @@ public class DynamicDataSourceConfig implements BeanDefinitionRegistryPostProces
 				// 加载数据源配置 绑定数据库连接池配置属性
 				binder.bind(DynamicDataSourcePoolProperties.PREFIX + "." + key + "." + value.getPoolType(), Bindable.ofInstance(dataSource));
 			}
-			DynamicDataSourceHolder.getTargetDatasource().put(key, dataSource);
+			DynamicDataSourceHolder.addTargetDatasource(key, dataSource);
 			// 注册 BeanDefinition
 			AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(DataSource.class, () -> dataSource).getBeanDefinition();
 			beanDefinition.setPrimary(false);
