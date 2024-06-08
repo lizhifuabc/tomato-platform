@@ -1,1 +1,2 @@
 com.tomato.dynamic.db.config.DynamicDataSourceAutoConfiguration
+com.tomato.dynamic.db.config.DynamicDataSourceService
