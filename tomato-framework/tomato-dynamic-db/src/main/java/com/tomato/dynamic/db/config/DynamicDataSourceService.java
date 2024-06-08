@@ -22,6 +22,12 @@ public class DynamicDataSourceService {
 	@Autowired
 	private ApplicationContext applicationContext;
 
+	/**
+	 * TODO 目前无法直接使用个，例如有N个服务器，每个服务器有一个数据源，需要循环调用
+	 * TODO 每台服务器，目前的思路是，通过订阅的方式，监听数据源的变化，然后动态添加数据源
+ 	 * @param key
+	 * @param dataSource
+	 */
 	public void addDataSource(String key, DataSource dataSource) {
 		// 设置动态数据源
 		DynamicDataSourceHolder.addTargetDatasource(key, dataSource);
