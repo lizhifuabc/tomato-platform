@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.LinkedList;
 import java.util.LinkedList;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 数据源切换
@@ -14,6 +15,11 @@ import java.util.Objects;
  */
 @Slf4j
 public class DynamicDataSourceHolder {
+
+	/**
+	 * 保存动态数据源
+	 */
+	private static final ConcurrentHashMap<Object, Object> TARGET_DATASOURCE = new ConcurrentHashMap<>();
 
 	/**
 	 * 保存动态数据源名称
@@ -60,5 +66,12 @@ public class DynamicDataSourceHolder {
 		}else {
 			list.removeFirst();
 		}
+	}
+
+	/**
+	 * 获取数据源
+	 */
+	public static ConcurrentHashMap<Object, Object> getTargetDatasource() {
+		return TARGET_DATASOURCE;
 	}
 }

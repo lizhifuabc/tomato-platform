@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-import java.util.Map;
-
 /**
  * 动态数据源
  *
@@ -20,11 +18,6 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DynamicDataSource extends AbstractRoutingDataSource {
-
-	/**
-	 * 所有数据源
-	 */
-	private Map<Object, Object> defineTargetDataSources;
 
 	/**
 	 * 设置/切换数据源，决定当前线程使用哪个数据源

@@ -1,5 +1,6 @@
 package com.tomato.dynamic.db.config;
 
+import com.tomato.dynamic.db.holder.DynamicDataSourceHolder;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -12,13 +13,10 @@ import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -31,27 +29,23 @@ import java.util.Objects;
 @Slf4j
 public class DynamicDataSourceConfig implements BeanDefinitionRegistryPostProcessor, ApplicationContextAware {
 
-	private final Map<Object, Object> dataSourceMap = new HashMap<>();
-
 	private ApplicationContext applicationContext;
 
 	@Primary
 	@Bean(name = "dataSource")
 	public DynamicDataSource dataSource(DynamicDataSourceProperties dynamicDataSourceProperties) {
 		log.info("动态数据源初始化开始");
-		Object master = dataSourceMap.get(dynamicDataSourceProperties.getMaster());
+		Object master = DynamicDataSourceHolder.getTargetDatasource().get(dynamicDataSourceProperties.getMaster());
 
 		Objects.requireNonNull(master, "master 数据源不存在");
 
 		// 设置动态数据源
 		DynamicDataSource dynamicDataSource = new DynamicDataSource();
 		dynamicDataSource.setDefaultTargetDataSource(master);
-		dynamicDataSource.setTargetDataSources(dataSourceMap);
-		// 将数据源信息备份在defineTargetDataSources中
-		dynamicDataSource.setDefineTargetDataSources(dataSourceMap);
+		dynamicDataSource.setTargetDataSources(DynamicDataSourceHolder.getTargetDatasource());
 		dynamicDataSource.setLenientFallback(dynamicDataSourceProperties.getLenientFallback());
 
-		log.info("动态数据源初始化完成:{}",dataSourceMap);
+		log.info("动态数据源初始化完成:{}",DynamicDataSourceHolder.getTargetDatasource());
 		return dynamicDataSource;
 	}
 	@Override
@@ -71,7 +65,7 @@ public class DynamicDataSourceConfig implements BeanDefinitionRegistryPostProces
 				// 加载数据源配置 绑定数据库连接池配置属性
 				binder.bind(DynamicDataSourcePoolProperties.PREFIX + "." + key + "." + value.getPoolType(), Bindable.ofInstance(dataSource));
 			}
-			dataSourceMap.put(key, dataSource);
+			DynamicDataSourceHolder.getTargetDatasource().put(key, dataSource);
 			// 注册 BeanDefinition
 			AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(DataSource.class, () -> dataSource).getBeanDefinition();
 			beanDefinition.setPrimary(false);
