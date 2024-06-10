@@ -1,7 +1,7 @@
 package com.tomato.channel.domain;
 
+import cn.mybatis.mp.db.annotations.Table;
 import com.tomato.common.domain.entity.BaseEntity;
-import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity(name = "t_router_rule")
+@Table(value = "t_router_rule")
 public class RouterRule extends BaseEntity {
 	/**
 	 * 路由规则编号

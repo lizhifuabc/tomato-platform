@@ -63,7 +63,7 @@ VALUES (1, '10202307240001001', 'WX', '10202307240001001_WX_DEFAULT', 'DEFAULT')
 INSERT INTO tomato_channel.t_merchant_router_rule (id, merchant_no, pay_type, rule_no, binding_type)
 VALUES (2, '10202307240001001', 'WX', '10202307240001001_WX_BACKUP', 'BACKUP');
 
-# 支付方式表
+# 支付方式
 drop table if exists `t_pay_type`;
 create table`t_pay_type` (
       `id` bigint(20) unsigned not null auto_increment,
@@ -71,7 +71,7 @@ create table`t_pay_type` (
       `pay_type_desc` varchar(36) not null  comment '支付方式描述',
       primary key (`id`) using btree,
       unique key uk_order_no (`pay_type`) using btree
-) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = '支付方式表';
+) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = '支付方式';
 
 
 # 支付产品表

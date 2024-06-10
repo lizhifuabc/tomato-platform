@@ -1,7 +1,7 @@
 package com.tomato.channel.domain;
 
+import cn.mybatis.mp.db.annotations.Table;
 import com.tomato.common.domain.entity.BaseEntity;
-import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString
-@Entity(name = "t_merchant_router_rule")
+@Table(value = "t_merchant_router_rule")
 public class PayChannel extends BaseEntity {
 	/**
 	 * 渠道编号

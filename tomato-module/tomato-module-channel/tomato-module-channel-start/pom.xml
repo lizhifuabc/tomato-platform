@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>com.tomato</groupId>
-            <artifactId>tomato-mybatis-starter</artifactId>
+            <artifactId>tomato-mybatis-mp-starter</artifactId>
         </dependency>
     </dependencies>
     <build>

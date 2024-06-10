@@ -23,6 +23,6 @@ public class RouterRuleMapperTest {
 		routerRule.setRuleName("测试路由");
 		routerRule.setRuleNo("10202307240001001_WX_BACKUP");
 		routerRule.setPayType("WX");
-		routerRuleMapper.insertSelective(routerRule);
+//		routerRuleMapper.insertSelective(routerRule);
 	}
 }
