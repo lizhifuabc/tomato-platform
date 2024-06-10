@@ -46,7 +46,7 @@
         <!-- mybatis 版本管理 -->
         <spring.boot.mybatis.version>3.0.3</spring.boot.mybatis.version>
 		<mybatis-flex.version>1.7.7</mybatis-flex.version> <!-- https://mybatis-flex.com/ -->
-		<version>1.5.7-rc6-spring-boot3</version>
+		<mybatis-mp.version>1.5.7-rc6-spring-boot3</mybatis-mp.version>
 		<pagehelper.version>5.3.3</pagehelper.version>
 		<mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
 		<mybatis-plus-generator.version>3.5.5</mybatis-plus-generator.version>
