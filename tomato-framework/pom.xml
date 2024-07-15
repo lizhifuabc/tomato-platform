@@ -43,5 +43,6 @@
         <module>tomato-satoken-starter</module>
         <module>tomato-encrypt-starter</module>
         <module>tomato-operator-log-starter</module>
-    </modules>
+		<module>tomato-serial-number-starter</module>
+	</modules>
 </project>
