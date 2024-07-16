@@ -2,6 +2,7 @@
 out/
 target/
 .idea/
+generate
 # 允许名为 icon.png 的文件在 .idea 文件夹中被提交，即保留这个图标文件。
 !.idea/icon.png
 *.log

@@ -14,5 +14,6 @@
     <modules>
         <module>tomato-module-gen-base</module>
         <module>tomato-module-gen-biz</module>
-    </modules>
+		<module>tomato-module-gen-mp</module>
+	</modules>
 </project>
