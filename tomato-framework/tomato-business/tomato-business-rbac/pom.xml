@@ -5,15 +5,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.tomato</groupId>
-		<artifactId>tomato-framework</artifactId>
+		<artifactId>tomato-business</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>tomato-business</artifactId>
+	<artifactId>tomato-business-rbac</artifactId>
 	<packaging>pom</packaging>
 	<modules>
-		<module>tomato-business-comment</module>
-        <module>tomato-business-pay</module>
-        <module>tomato-business-rbac</module>
+		<module>rbac-spring-boot-starter</module>
+		<module>rbac-api</module>
+		<module>rbac-business</module>
 	</modules>
+
 </project>
