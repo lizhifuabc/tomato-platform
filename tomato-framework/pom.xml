@@ -44,5 +44,6 @@
         <module>tomato-encrypt-starter</module>
         <module>tomato-operator-log-starter</module>
 		<module>tomato-serial-number-starter</module>
-	</modules>
+        <module>tomato-common-excel</module>
+    </modules>
 </project>

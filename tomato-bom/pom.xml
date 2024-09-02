@@ -91,6 +91,7 @@
 		<QLExpress.version>3.3.3</QLExpress.version><!-- 动态脚本引擎解析工具 https://github.com/alibaba/QLExpress -->
 		<fastjson2.version>2.0.45</fastjson2.version>
 		<jetcache.version>2.7.4</jetcache.version>
+		<easyexcel.version>4.0.2</easyexcel.version>
         <nacos.version>2.2.4</nacos.version>
         <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version> <!-- 提供ThreadLocal值的传递功能，解决异步执行时上下文传递的问题 https://github.com/alibaba/transmittable-thread-local -->
         <cola.version>4.3.2</cola.version> <!--  COLA：干净的面向对象分层体系结构 https://github.com/alibaba/COLA/ -->
@@ -317,6 +318,11 @@
                 <artifactId>dysmsapi20170525</artifactId>
                 <version>${dysmsapi20170525.version}</version>
             </dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>easyexcel</artifactId>
+				<version>${easyexcel.version}</version>
+			</dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>transmittable-thread-local</artifactId>
